@@ -223,7 +223,7 @@ export default function DemoPage() {
             {/* 핫딜 배너 */}
             <div className="bg-gradient-to-r from-[#1A1614] to-[#2A2010] rounded-[14px] p-4 flex items-center justify-between gap-3 mb-5">
               <div>
-                <div className="text-[0.65rem] text-[#D04020] font-bold mb-1" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>🔥 TODAY'S DEAL</div>
+                <div className="text-[0.65rem] text-[#D04020] font-bold mb-1" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>🔥 TODAY&apos;S DEAL</div>
                 <div className="text-white font-bold text-[0.9rem] leading-tight">FairPrice 주간 특가 · 항공권 최저가</div>
                 <div className="text-white/50 text-[0.72rem] mt-1">매일 업데이트</div>
               </div>

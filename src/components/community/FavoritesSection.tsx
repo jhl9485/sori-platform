@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CATEGORIES, DEFAULT_FAVORITES, type Category } from "@/data/categories";
+import { CATEGORIES, DEFAULT_FAVORITES } from "@/data/categories";
 
 interface Props {
   onSelect: (categoryId: string) => void;

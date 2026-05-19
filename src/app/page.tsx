@@ -1,4 +1,3 @@
-import Link from "next/link";
 import HomeFavorites from "@/components/home/HomeFavorites";
 import SearchBar from "@/components/home/SearchBar";
 import LiveBar from "@/components/home/LiveBar";
