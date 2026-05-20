@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { CommunityPost } from "@/data/communityPosts";
 
 export default function CommunityPostCard({ post }: { post: CommunityPost }) {
   const [helped, setHelped] = useState(false);
 
   return (
-    <div className="bg-white rounded-[14px] border border-black/[0.08] p-[14px] cursor-pointer hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up">
+    <Link href={`/community/${post.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-[14px] cursor-pointer hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up">
       <div className="flex items-center gap-2 mb-2">
         <div
           className="w-8 h-8 rounded-full flex items-center justify-center text-[0.9rem] font-bold flex-shrink-0"
@@ -50,6 +51,6 @@ export default function CommunityPostCard({ post }: { post: CommunityPost }) {
           {helped ? "✓ 도움됨" : "👍 도움돼요"}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }

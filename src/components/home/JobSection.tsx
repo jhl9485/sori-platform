@@ -1,5 +1,8 @@
+import Link from "next/link";
+
 const jobs = [
   {
+    id: "1",
     emoji: "🏢",
     bg: "bg-[#EBF0FB]",
     title: "마케팅 매니저",
@@ -11,6 +14,7 @@ const jobs = [
     ],
   },
   {
+    id: "2",
     emoji: "💻",
     bg: "bg-[#EBF5F0]",
     title: "풀스택 개발자",
@@ -22,6 +26,7 @@ const jobs = [
     ],
   },
   {
+    id: "3",
     emoji: "🍽️",
     bg: "bg-[#FBF0EC]",
     title: "한식 조리사",
@@ -40,17 +45,16 @@ export default function JobSection() {
       <div className="h-px bg-black/[0.08] mx-4 mb-5" />
       <div className="flex justify-between items-center px-4 pb-[10px]">
         <h2 className="text-base font-bold tracking-tight">최신 채용공고</h2>
-        <button className="text-[0.78rem] text-[#D04020] font-medium">전체보기</button>
+        <Link href="/jobs" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">전체보기</Link>
       </div>
       <div className="flex gap-[10px] px-4 pb-[10px] overflow-x-auto scrollbar-hide">
         {jobs.map((job) => (
-          <div
-            key={job.title}
-            className="flex-shrink-0 w-[220px] bg-white rounded-[14px] border border-black/[0.08] p-[14px] cursor-pointer hover:-translate-y-0.5 transition-transform"
+          <Link
+            key={job.id}
+            href={`/jobs/${job.id}`}
+            className="flex-shrink-0 w-[220px] block bg-white rounded-[14px] border border-black/[0.08] p-[14px] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all"
           >
-            <div
-              className={`w-9 h-9 rounded-[10px] flex items-center justify-center text-[1.1rem] mb-2 ${job.bg}`}
-            >
+            <div className={`w-9 h-9 rounded-[10px] flex items-center justify-center text-[1.1rem] mb-2 ${job.bg}`}>
               {job.emoji}
             </div>
             <div className="text-[0.85rem] font-bold mb-[2px]">{job.title}</div>
@@ -65,7 +69,7 @@ export default function JobSection() {
                 </span>
               ))}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

@@ -10,10 +10,10 @@ export default function TopNav() {
       </Link>
       <div className="text-[0.72rem] text-[#888070]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>싱가포르 🇸🇬</div>
       <div className="flex gap-2">
-        <button className="w-8 h-8 rounded-[8px] border border-black/[0.08] bg-white flex items-center justify-center text-sm hover:bg-[#F5F3EE] transition-colors relative">
+        <Link href="/notifications" className="w-8 h-8 rounded-[8px] border border-black/[0.08] bg-white flex items-center justify-center text-sm hover:bg-[#F5F3EE] transition-colors relative">
           🔔
           <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-[#D04020] rounded-full" />
-        </button>
+        </Link>
         <Link href="/my" className="w-8 h-8 rounded-[8px] border border-black/[0.08] bg-white flex items-center justify-center text-sm hover:bg-[#F5F3EE] transition-colors">
           🤍
         </Link>

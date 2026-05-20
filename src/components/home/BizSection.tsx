@@ -34,7 +34,7 @@ export default function BizSection() {
 
 function BizCard({ biz }: { biz: typeof businesses[0] }) {
   return (
-    <div className="bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all">
+    <Link href="/business" className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all">
       <div className={`w-full h-[80px] flex items-center justify-center text-[2.2rem] ${biz.bg}`}>
         {biz.emoji}
       </div>
@@ -47,6 +47,6 @@ function BizCard({ biz }: { biz: typeof businesses[0] }) {
           <span className="text-[0.68rem] font-semibold text-[#2B7A50] ml-auto">영업중</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

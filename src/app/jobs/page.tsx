@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import SponsoredJobCard from "@/components/ads/SponsoredJobCard";
 
@@ -89,7 +90,7 @@ export default function JobsPage() {
           {/* ⑤ 스폰서 채용공고 — 상단 고정 노출 ($80~150/월) */}
           <SponsoredJobCard />
           {filtered.map((job) => (
-            <div key={job.id} className="bg-white rounded-[14px] border border-black/[0.08] p-4 cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
+            <Link key={job.id} href={`/jobs/${job.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-4 cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className="flex items-start gap-3 mb-3">
                 <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 ${job.companyBg}`}>
                   {job.companyIcon}
@@ -119,7 +120,7 @@ export default function JobsPage() {
                 </div>
                 <span className="text-[0.7rem] text-[#888070]">{job.postedAt}</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

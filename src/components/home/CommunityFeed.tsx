@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import FeedCard from "./FeedCard";
 import NativeFeedAd from "@/components/ads/NativeFeedAd";
 import type { FeedItem } from "@/types/feed";
@@ -82,7 +83,7 @@ export default function CommunityFeed() {
       {/* 섹션 헤더 */}
       <div className="flex justify-between items-center px-4 pb-[10px]">
         <h2 className="text-base font-bold tracking-tight">커뮤니티</h2>
-        <button className="text-[0.78rem] text-[#D04020] font-medium">전체보기</button>
+        <Link href="/community" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">전체보기</Link>
       </div>
 
       {/* 탭 */}

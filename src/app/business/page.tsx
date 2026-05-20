@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
 import SponsoredBizCard from "@/components/ads/SponsoredBizCard";
 
@@ -61,7 +62,7 @@ export default function BusinessPage() {
           {/* ④ 스폰서 업소 카드 — 최상단 고정 노출 ($150~250/월) */}
           <SponsoredBizCard />
           {filtered.map((biz) => (
-            <div key={biz.id} className="bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
+            <Link key={biz.id} href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] ${biz.bg}`}>{biz.emoji}</div>
               <div className="p-3">
                 <div className="flex items-center justify-between mb-1">
@@ -77,10 +78,10 @@ export default function BusinessPage() {
                 <div className="flex flex-wrap gap-1 mb-2">
                   {biz.tags.slice(0, 3).map((tag) => <span key={tag} className="text-[0.65rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-2 py-[1px] text-[#888070]">{tag}</span>)}
                 </div>
-                <div className="bg-[#F5F3EE] rounded-lg p-2 text-[0.72rem] text-[#888070] line-clamp-1">💬 &ldquo;{biz.recentReview}&rdquo;</div>
+                <div className="bg-[#F5F3EE] rounded-lg p-2 text-[0.72rem] text-[#888070] line-clamp-1">💬 &ldquo;{biz.description}&rdquo;</div>
                 <div className="mt-2 text-[0.7rem] text-[#888070]">🕐 {biz.openHours}</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

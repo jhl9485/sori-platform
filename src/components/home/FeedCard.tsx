@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { FeedItem, FeedCategory } from "@/types/feed";
 
 const categoryStyle: Record<FeedCategory, string> = {
@@ -14,7 +15,7 @@ export default function FeedCard({ item }: { item: FeedItem }) {
   const [helped, setHelped] = useState(false);
 
   return (
-    <div className="bg-white rounded-[14px] border border-black/[0.08] p-[14px] cursor-pointer hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up">
+    <Link href={`/community/${item.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-[14px] cursor-pointer hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up">
       {/* 헤더 */}
       <div className="flex items-center gap-2 mb-2">
         <div
@@ -74,6 +75,6 @@ export default function FeedCard({ item }: { item: FeedItem }) {
           {helped ? "✓ 도움됨" : "👍 도움돼요"}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
