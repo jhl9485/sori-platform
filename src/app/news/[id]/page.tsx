@@ -13,17 +13,38 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
   if (!news) return notFound();
 
   const related = NEWS_ITEMS.filter((n) => news.relatedIds.includes(n.id));
+  const others = NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3);
 
   const lines = news.fullContent.split("\n").map((line, i) => {
-    if (line.startsWith("**") && line.endsWith("**")) {
-      return <p key={i} className="font-bold text-[0.9rem] mt-4 mb-1 text-[#181614]">{line.replace(/\*\*/g, "")}</p>;
+    if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
+      return <p key={i} className="font-bold text-[0.9rem] mt-5 mb-2 text-[#181614]">{line.replace(/\*\*/g, "")}</p>;
     }
     if (line.startsWith("- ")) {
       return <li key={i} className="text-[0.85rem] text-[#181614] ml-4 list-disc leading-relaxed">{line.slice(2)}</li>;
     }
+    if (line.startsWith("|") && line.endsWith("|")) {
+      if (line.includes("---")) return null;
+      const cells = line.split("|").filter((c) => c.trim());
+      const nextLine = news.fullContent.split("\n")[i + 1];
+      const isHeader = nextLine?.includes("---");
+      return (
+        <div key={i} className={`flex gap-3 text-[0.82rem] py-[6px] border-b border-black/[0.05] ${isHeader ? "font-bold bg-[#F5F3EE] px-2 rounded-t-lg" : "px-2"}`}>
+          {cells.map((c, j) => <span key={j} className="flex-1 min-w-0">{c.trim()}</span>)}
+        </div>
+      );
+    }
     if (line.trim() === "") return <br key={i} />;
     return <p key={i} className="text-[0.85rem] text-[#181614] leading-relaxed">{line}</p>;
   });
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({ title: news.title, url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("링크가 복사되었습니다.");
+    }
+  };
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -49,41 +70,56 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           <h1 className="text-[1.1rem] font-bold leading-snug mb-4">{news.title}</h1>
 
           <div className="flex items-center justify-between text-[0.72rem] text-[#888070]">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="font-medium text-[#181614]">{news.source}</span>
               <span>·</span>
               <span>{news.time}</span>
             </div>
             <div className="flex items-center gap-2">
               <span>📖 {news.readTime}</span>
-              <button className="hover:text-[#181614]">↗ 공유</button>
+              <button onClick={handleShare} className="hover:text-[#181614]">↗ 공유</button>
             </div>
           </div>
         </div>
 
-        {/* 요약 박스 */}
+        {/* 3줄 요약 박스 */}
         <div className="mx-4 md:mx-6 mb-4 bg-[#F5F3EE] rounded-[12px] p-4">
-          <div className="text-[0.7rem] font-bold text-[#888070] mb-1 uppercase tracking-wider">요약</div>
+          <div className="text-[0.7rem] font-bold text-[#888070] mb-1 uppercase tracking-wider">3줄 요약</div>
           <p className="text-[0.85rem] text-[#181614] leading-relaxed">{news.summary}</p>
         </div>
 
         <div className="h-px bg-black/[0.06] mx-4 md:mx-6 mb-4" />
 
         {/* 본문 */}
-        <div className="px-4 md:px-6 pb-5 space-y-1">{lines}</div>
+        <div className="px-4 md:px-6 pb-5 space-y-[2px]">{lines}</div>
+
+        {/* 원문 링크 */}
+        {news.sourceUrl && (
+          <div className="mx-4 md:mx-6 mb-4">
+            <a
+              href={news.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-white border border-black/[0.1] rounded-[10px] px-4 py-3 text-[0.82rem] text-[#888070] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+            >
+              <span className="flex-1">📄 원문 기사 보기 — {news.source}</span>
+              <span>↗</span>
+            </a>
+          </div>
+        )}
 
         {/* AI 번역 고지 */}
         <div className="mx-4 md:mx-6 mb-5 bg-[#EBF0FB] rounded-[10px] p-3 flex items-start gap-2">
           <span className="text-sm flex-shrink-0">🤖</span>
           <p className="text-[0.72rem] text-[#2050A0]">
-            이 기사는 AI가 번역하고 편집자가 검토한 콘텐츠입니다. 원문과 일부 차이가 있을 수 있습니다.
+            이 기사는 SORI 편집팀이 원문 자료를 바탕으로 한인 커뮤니티에 유용한 정보 위주로 번역·편집했습니다. 원문과 일부 차이가 있을 수 있습니다.
           </p>
         </div>
 
         {/* 액션 */}
         <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
-          <button className="flex items-center gap-1 text-[0.82rem] text-[#888070] hover:text-[#D04020]">
-            ↗ 공유
+          <button onClick={handleShare} className="flex items-center gap-1 text-[0.82rem] text-[#888070] hover:text-[#D04020]">
+            ↗ 공유하기
           </button>
           <button
             onClick={() => setSaved(!saved)}
@@ -113,7 +149,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
       {/* 다른 뉴스 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-4">
         <h3 className="text-[0.85rem] font-bold mb-3 text-[#888070]">다른 뉴스</h3>
-        {NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3).map((n) => (
+        {others.map((n) => (
           <Link key={n.id} href={`/news/${n.id}`} className="flex items-center gap-3 py-2 border-b border-black/[0.04] last:border-0 group">
             <span className="text-xl">{n.emoji}</span>
             <div className="flex-1 min-w-0">
@@ -122,6 +158,9 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
             </div>
           </Link>
         ))}
+        <Link href="/news" className="block text-center text-[0.78rem] text-[#D04020] font-medium pt-3 hover:underline">
+          뉴스 전체 보기 →
+        </Link>
       </div>
 
       <div className="h-4" />

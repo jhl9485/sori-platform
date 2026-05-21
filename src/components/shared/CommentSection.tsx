@@ -5,7 +5,7 @@ import type { Comment } from "@/data/communityPosts";
 
 interface Props {
   comments: Comment[];
-  postId: string;
+  postId?: string;
 }
 
 function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number }) {
