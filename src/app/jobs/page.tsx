@@ -71,12 +71,20 @@ export default function JobsPage() {
         </button>
       </div>
 
-      {/* 결과 수 */}
-      <div className="flex items-center justify-between pb-3">
+      {/* 결과 수 + 등록 */}
+      <div className="flex items-center justify-between pb-3 gap-2">
         <span className="text-[0.75rem] text-[#888070]">
           <span className="font-bold text-[#181614]">{filtered.length}개</span> 공고
         </span>
-        <button className="text-[0.75rem] text-[#888070]">최신순 ▾</button>
+        <div className="flex items-center gap-2">
+          <button className="text-[0.75rem] text-[#888070]">최신순 ▾</button>
+          <Link
+            href="/jobs/write"
+            className="bg-[#2B7A50] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#246642] transition-colors flex items-center gap-1"
+          >
+            📋 공고 등록
+          </Link>
+        </div>
       </div>
 
       {/* 공고 목록 — 데스크탑 2열 그리드 */}
@@ -125,9 +133,13 @@ export default function JobsPage() {
         </div>
       )}
 
-      <button className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#2B7A50] text-white rounded-full shadow-[0_4px_16px_rgba(43,122,80,0.35)] flex items-center justify-center text-xl z-40 hover:bg-[#246642] hover:scale-105 transition-all">
+      <Link
+        href="/jobs/write"
+        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#2B7A50] text-white rounded-full shadow-[0_4px_16px_rgba(43,122,80,0.35)] flex items-center justify-center text-xl z-40 hover:bg-[#246642] hover:scale-105 transition-all"
+        aria-label="공고 등록"
+      >
         📋
-      </button>
+      </Link>
     </div>
   );
 }

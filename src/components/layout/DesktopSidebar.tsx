@@ -4,12 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV = [
-  { icon: "🏠", label: "홈",        href: "/" },
-  { icon: "🏪", label: "한인업소록", href: "/business" },
+  { icon: "🏠", label: "홈",         href: "/" },
+  { icon: "📰", label: "Daily 뉴스", href: "/news" },
+  { icon: "🏪", label: "한인업소록",  href: "/business" },
+  { icon: "🏘️", label: "부동산",     href: "/realty" },
+  { icon: "🛍️", label: "벼룩시장",   href: "/flea" },
   { icon: "💼", label: "구인구직",   href: "/jobs" },
   { icon: "💬", label: "커뮤니티",   href: "/community" },
-  { icon: "📰", label: "Daily 뉴스", href: "/news" },
-  { icon: "🛍️", label: "벼룩시장",  href: "/flea" },
+];
+
+const MY_ACTIONS = [
+  { icon: "📝", label: "내가 쓴 글", href: "/my?tab=posts" },
+  { icon: "💬", label: "내 댓글",    href: "/my?tab=comments" },
+  { icon: "🔖", label: "저장한 글",  href: "/my?tab=saved" },
 ];
 
 export default function DesktopSidebar() {
@@ -80,8 +87,8 @@ export default function DesktopSidebar() {
       {/* 구분선 */}
       <div className="h-px bg-white/[0.06] mx-4" />
 
-      {/* MY */}
-      <div className="px-3 py-3">
+      {/* MY 프로필 */}
+      <div className="px-3 pt-3">
         <Link
           href="/my"
           className={`flex items-center gap-3 px-3 py-[9px] rounded-[10px] transition-all duration-150 ${
@@ -98,6 +105,22 @@ export default function DesktopSidebar() {
             <span className="text-[0.65rem] text-white/30">EP 3년차</span>
           </div>
         </Link>
+      </div>
+
+      {/* MY 빠른 액션 */}
+      <div className="px-4 pb-4 pt-2 grid grid-cols-3 gap-1">
+        {MY_ACTIONS.map((act) => (
+          <Link
+            key={act.label}
+            href={act.href}
+            className="flex flex-col items-center gap-[3px] py-2 rounded-[8px] hover:bg-white/[0.05] transition-colors group"
+          >
+            <span className="text-[0.95rem]">{act.icon}</span>
+            <span className="text-[0.6rem] text-white/45 group-hover:text-white/80 text-center leading-tight">
+              {act.label}
+            </span>
+          </Link>
+        ))}
       </div>
     </aside>
   );

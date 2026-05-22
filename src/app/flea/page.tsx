@@ -50,6 +50,19 @@ export default function FleaPage() {
         ))}
       </div>
 
+      {/* 결과 수 + 등록 버튼 */}
+      <div className="flex items-center justify-between pb-3">
+        <span className="text-[0.75rem] text-[#888070]">
+          <span className="font-bold text-[#181614]">{filtered.length}개</span> 매물
+        </span>
+        <Link
+          href="/flea/write"
+          className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
+        >
+          📸 물건 등록
+        </Link>
+      </div>
+
       {/* 그리드 — 모바일 2열, 태블릿 3열, 데스크탑 4열 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pb-6">
         {filtered.map((item) => (
@@ -80,9 +93,13 @@ export default function FleaPage() {
         ))}
       </div>
 
-      <button className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl z-40 hover:bg-[#B83515] hover:scale-105 transition-all">
+      <Link
+        href="/flea/write"
+        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        aria-label="물건 등록"
+      >
         📸
-      </button>
+      </Link>
     </div>
   );
 }

@@ -19,7 +19,7 @@ const ALL_ITEMS: FavItem[] = [
   { id: "community", icon: "💬", label: "커뮤니티",   href: "/community", color: "bg-[#F0EDE8]" },
   { id: "qna",       icon: "❓", label: "Q&A",        href: "/community", color: "bg-[#FBF0EC]" },
   { id: "visa",      icon: "📋", label: "비자정보",   href: "/community", color: "bg-[#EBF0FB]" },
-  { id: "realty",    icon: "🏠", label: "부동산",     href: "/community", color: "bg-[#FBF5E8]" },
+  { id: "realty",    icon: "🏘️", label: "부동산",    href: "/realty",    color: "bg-[#FBF5E8]" },
   { id: "food",      icon: "🍱", label: "맛집",       href: "/business",  color: "bg-[#FBF0EC]" },
   { id: "anon",      icon: "🎭", label: "익명",       href: "/community", color: "bg-[#F0EDE8]" },
   { id: "event",     icon: "📅", label: "이벤트",     href: "/community", color: "bg-[#FBF5E8]" },

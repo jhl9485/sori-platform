@@ -3,13 +3,11 @@ export type CommunityCategory =
   | "맛집"
   | "취업정보"
   | "금융/투자"
-  | "부동산"
   | "육아"
   | "의료"
   | "연애"
   | "익명"
-  | "동아리"
-  | "벼룩시장";
+  | "동아리";
 
 export type VisaBadge = "EP" | "S-Pass" | "DP" | "PR" | "시민권" | "WH" | null;
 
