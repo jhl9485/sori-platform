@@ -5,12 +5,31 @@ import type { Comment } from "@/data/communityPosts";
 
 interface Props {
   comments: Comment[];
-  postId?: string;
 }
 
 function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number }) {
   const [liked, setLiked] = useState(false);
   const [showReply, setShowReply] = useState(false);
+  const [replies, setReplies] = useState<Comment[]>(comment.replies || []);
+  const [replyText, setReplyText] = useState("");
+
+  const submitReply = () => {
+    const text = replyText.trim();
+    if (!text) return;
+    const newReply: Comment = {
+      id: `${comment.id}-r${replies.length + 1}-${Date.now()}`,
+      author: "나",
+      avatarChar: "나",
+      avatarBg: "#FBF0EC",
+      avatarColor: "#D04020",
+      content: text,
+      time: "방금 전",
+      likes: 0,
+    };
+    setReplies([...replies, newReply]);
+    setReplyText("");
+    setShowReply(false);
+  };
 
   return (
     <div className={depth > 0 ? "ml-8 border-l-2 border-black/[0.05] pl-3" : ""}>
@@ -50,17 +69,27 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
             <div className="flex gap-2">
               <input
                 type="text"
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") submitReply(); }}
                 placeholder="답글을 입력하세요..."
                 className="flex-1 bg-[#F5F3EE] rounded-full px-3 py-[6px] text-[0.78rem] outline-none"
+                autoFocus
               />
-              <button className="bg-[#181614] text-white px-3 py-[6px] rounded-full text-[0.75rem] font-medium">
+              <button
+                onClick={submitReply}
+                disabled={!replyText.trim()}
+                className={`px-3 py-[6px] rounded-full text-[0.75rem] font-medium ${
+                  replyText.trim() ? "bg-[#181614] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"
+                }`}
+              >
                 등록
               </button>
             </div>
           </div>
         )}
       </div>
-      {comment.replies?.map((reply) => (
+      {replies.map((reply) => (
         <CommentItem key={reply.id} comment={reply} depth={depth + 1} />
       ))}
     </div>
@@ -68,15 +97,45 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
 }
 
 export default function CommentSection({ comments }: Props) {
+  const [list, setList] = useState<Comment[]>(comments);
   const [newComment, setNewComment] = useState("");
   const [isAnon, setIsAnon] = useState(false);
+
+  const submitComment = () => {
+    const text = newComment.trim();
+    if (!text) return;
+    const c: Comment = isAnon
+      ? {
+          id: `c-${list.length + 1}-${Date.now()}`,
+          isAnon: true,
+          author: "익명",
+          avatarChar: "?",
+          avatarBg: "#F0EDE8",
+          avatarColor: "#888070",
+          content: text,
+          time: "방금 전",
+          likes: 0,
+        }
+      : {
+          id: `c-${list.length + 1}-${Date.now()}`,
+          author: "나",
+          avatarChar: "나",
+          avatarBg: "#FBF0EC",
+          avatarColor: "#D04020",
+          content: text,
+          time: "방금 전",
+          likes: 0,
+        };
+    setList([...list, c]);
+    setNewComment("");
+  };
 
   return (
     <div className="bg-white border-t border-black/[0.06]">
       {/* 댓글 입력 */}
       <div className="px-4 md:px-6 py-4 border-b border-black/[0.06]">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-[0.78rem] font-bold">댓글 {comments.length}개</span>
+          <span className="text-[0.78rem] font-bold">댓글 {list.length}개</span>
           <button
             onClick={() => setIsAnon(!isAnon)}
             className={`ml-auto text-[0.7rem] px-2 py-[3px] rounded-full border transition-colors ${
@@ -91,10 +150,12 @@ export default function CommentSection({ comments }: Props) {
             type="text"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter") submitComment(); }}
             placeholder="댓글을 입력하세요..."
             className="flex-1 bg-[#F5F3EE] rounded-full px-4 py-[8px] text-[0.82rem] outline-none"
           />
           <button
+            onClick={submitComment}
             disabled={!newComment.trim()}
             className={`px-4 py-[8px] rounded-full text-[0.78rem] font-bold transition-colors ${
               newComment.trim() ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"
@@ -107,12 +168,12 @@ export default function CommentSection({ comments }: Props) {
 
       {/* 댓글 목록 */}
       <div className="px-4 md:px-6 divide-y divide-black/[0.04]">
-        {comments.length === 0 ? (
+        {list.length === 0 ? (
           <div className="py-10 text-center text-[#888070] text-[0.82rem]">
             첫 댓글을 남겨보세요 💬
           </div>
         ) : (
-          comments.map((comment) => (
+          list.map((comment) => (
             <CommentItem key={comment.id} comment={comment} />
           ))
         )}

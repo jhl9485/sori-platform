@@ -1,8 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { CATEGORIES } from "@/data/categories";
+
+const DRAFT_KEY = "sori_write_draft";
+const POSTS_KEY = "sori_user_posts";
+
+interface DraftState {
+  selectedCat: string;
+  title: string;
+  content: string;
+  isAnon: boolean;
+}
 
 export default function WritePage() {
   const router = useRouter();
@@ -11,9 +21,73 @@ export default function WritePage() {
   const [content, setContent] = useState("");
   const [isAnon, setIsAnon] = useState(false);
   const [showCatPicker, setShowCatPicker] = useState(false);
+  const [restored, setRestored] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  // 진입 시 임시저장 복원
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (raw) {
+        const draft = JSON.parse(raw) as DraftState;
+        if (draft.title || draft.content) {
+          setSelectedCat(draft.selectedCat || "");
+          setTitle(draft.title || "");
+          setContent(draft.content || "");
+          setIsAnon(!!draft.isAnon);
+          setRestored(true);
+        }
+      }
+    } catch {}
+    setHydrated(true);
+  }, []);
+
+  // 변경될 때마다 임시저장
+  useEffect(() => {
+    if (!hydrated) return;
+    if (!title && !content && !selectedCat) {
+      localStorage.removeItem(DRAFT_KEY);
+      return;
+    }
+    try {
+      localStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({ selectedCat, title, content, isAnon } satisfies DraftState)
+      );
+    } catch {}
+  }, [selectedCat, title, content, isAnon, hydrated]);
 
   const selectedCatData = CATEGORIES.find((c) => c.id === selectedCat);
   const canSubmit = selectedCat && title.trim().length > 0 && content.trim().length > 0;
+
+  const submit = () => {
+    if (!canSubmit) return;
+    try {
+      const raw = localStorage.getItem(POSTS_KEY);
+      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
+      arr.unshift({
+        id: `user-${Date.now()}`,
+        categoryId: selectedCat,
+        categoryLabel: selectedCatData?.label || "",
+        title: title.trim(),
+        content: content.trim(),
+        isAnon,
+        createdAt: new Date().toISOString(),
+      });
+      localStorage.setItem(POSTS_KEY, JSON.stringify(arr));
+      localStorage.removeItem(DRAFT_KEY);
+    } catch {}
+    router.push("/community");
+  };
+
+  const discardDraft = () => {
+    setSelectedCat("");
+    setTitle("");
+    setContent("");
+    setIsAnon(false);
+    setRestored(false);
+    localStorage.removeItem(DRAFT_KEY);
+  };
 
   return (
     <div className="max-w-[390px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
@@ -22,7 +96,8 @@ export default function WritePage() {
         <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]">✕</button>
         <span className="text-[0.9rem] font-bold">글쓰기</span>
         <button
-          onClick={() => canSubmit && router.push("/community")}
+          onClick={submit}
+          disabled={!canSubmit}
           className={`text-[0.85rem] font-bold px-3 py-1 rounded-full transition-colors ${
             canSubmit ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
@@ -30,6 +105,17 @@ export default function WritePage() {
           등록
         </button>
       </div>
+
+      {/* 임시저장 복원 알림 */}
+      {restored && (
+        <div className="mx-4 mt-3 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-2 flex items-center gap-2">
+          <span className="text-sm">📝</span>
+          <span className="text-[0.75rem] text-[#2050A0] flex-1">작성 중이던 글을 복원했어요</span>
+          <button onClick={discardDraft} className="text-[0.72rem] text-[#888070] hover:text-[#D04020]">
+            지우기
+          </button>
+        </div>
+      )}
 
       <div className="px-4 py-4">
         {/* 카테고리 선택 */}
@@ -92,9 +178,14 @@ export default function WritePage() {
           className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none placeholder:text-[#C0BBB0] bg-transparent resize-none"
         />
 
-        {/* 글자수 */}
-        <div className="text-right text-[0.72rem] text-[#C0BBB0] mt-2" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
-          {content.length} / 2000
+        {/* 글자수 + 자동저장 안내 */}
+        <div className="flex items-center justify-between mt-2">
+          <span className="text-[0.7rem] text-[#C0BBB0]">
+            {hydrated && (title || content) ? "💾 자동 저장 중" : ""}
+          </span>
+          <span className="text-[0.72rem] text-[#C0BBB0]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+            {content.length} / 2000
+          </span>
         </div>
       </div>
 

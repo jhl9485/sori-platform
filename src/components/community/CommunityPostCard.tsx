@@ -1,23 +1,29 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import type { CommunityPost, VisaBadge } from "@/data/communityPosts";
+import type { CommunityPost } from "@/data/communityPosts";
+import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
+import { useToggleSet } from "@/lib/storage";
 
-const VISA_BADGE_STYLE: Record<NonNullable<VisaBadge>, string> = {
-  "EP":    "bg-[#EBF0FB] text-[#2050A0]",
-  "S-Pass":"bg-[#EBF5F0] text-[#2B7A50]",
-  "DP":    "bg-[#FBF5E8] text-[#B07010]",
-  "PR":    "bg-[#F0EDE8] text-[#555]",
-  "시민권": "bg-[#181614] text-white",
-  "WH":   "bg-[#F5F0FF] text-[#7040C0]",
-};
+function isNew(time: string): boolean {
+  // "분 전" / "시간 전" / "방금" → 24시간 이내로 간주
+  return /방금|분 전|시간 전/.test(time);
+}
+
+function isHot(likes: string): boolean {
+  return parseInt(likes.replace(/,/g, ""), 10) >= 200;
+}
 
 export default function CommunityPostCard({ post }: { post: CommunityPost }) {
-  const [helped, setHelped] = useState(false);
+  const { has: isHelped, toggle: toggleHelped } = useToggleSet("sori_helped_posts");
+  const { has: isRead } = useToggleSet("sori_read_posts");
+  const helped = isHelped(post.id);
+  const read = isRead(post.id);
+  const newBadge = isNew(post.time);
+  const hotBadge = isHot(post.likes);
 
   return (
-    <Link href={`/community/${post.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-[14px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up">
+    <Link href={`/community/${post.id}`} className={`block rounded-[14px] border p-[14px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
       {/* 헤더 */}
       <div className="flex items-center gap-2 mb-2">
         <div
@@ -42,7 +48,11 @@ export default function CommunityPostCard({ post }: { post: CommunityPost }) {
         </span>
       </div>
 
-      <div className="text-[0.9rem] font-bold mb-1 tracking-tight line-clamp-2">{post.title}</div>
+      <div className={`text-[0.9rem] font-bold mb-1 tracking-tight line-clamp-2 ${read ? "text-[#888070]" : ""}`}>
+        {newBadge && <span className="inline-block text-[0.58rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold mr-1 align-middle">NEW</span>}
+        {hotBadge && <span className="inline-block text-[0.58rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold mr-1 align-middle">🔥 HOT</span>}
+        {post.title}
+      </div>
       <div className="text-[0.8rem] text-[#888070] leading-[1.5] mb-[10px] line-clamp-2">{post.preview}</div>
 
       <div className="flex flex-wrap gap-[5px] mb-2">
@@ -62,7 +72,7 @@ export default function CommunityPostCard({ post }: { post: CommunityPost }) {
         <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {post.comments}</span>
         <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">❤️ {post.likes}</span>
         <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setHelped(true); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleHelped(post.id); }}
           className={`ml-auto bg-[#F5F3EE] border border-black/[0.08] rounded-lg px-[10px] py-1 text-[0.75rem] font-semibold transition-colors ${helped ? "text-[#2B7A50] border-[#2B7A50]" : "text-[#181614]"}`}
         >
           {helped ? "✓ 도움됨" : "👍 도움돼요"}

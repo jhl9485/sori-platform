@@ -4,13 +4,16 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import { BUSINESSES } from "@/data/businesses";
+import { useToggleSet } from "@/lib/storage";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
   const biz = BUSINESSES.find((b) => b.id === params.id);
-  const [saved, setSaved] = useState(false);
+  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_biz");
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
 
   if (!biz) return notFound();
+
+  const saved = isSaved(biz.id);
 
   const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(biz.rating));
 
@@ -18,7 +21,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => setSaved(!saved)} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => toggleSave(biz.id)} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "❤️" : "🤍"}
           </button>
         }

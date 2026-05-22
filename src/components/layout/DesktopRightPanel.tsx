@@ -1,5 +1,8 @@
 import Link from "next/link";
 import RightPanelAd from "@/components/ads/RightPanelAd";
+import { COMMUNITY_POSTS } from "@/data/communityPosts";
+import { JOBS } from "@/data/jobs";
+import { BUSINESSES } from "@/data/businesses";
 
 const LIVE_INFO = [
   { icon: "💱", label: "SGD → KRW", value: "₩1,048", sub: "+2원" },
@@ -7,23 +10,13 @@ const LIVE_INFO = [
   { icon: "🚇", label: "MRT", value: "정상운행", sub: "전 노선" },
 ];
 
-const JOBS_PREVIEW = [
-  { icon: "📱", bg: "bg-[#EBF0FB]", title: "Senior Software Engineer", company: "Samsung SG", salary: "$8K~12K", visa: "EP" },
-  { icon: "🍱", bg: "bg-[#EBF5F0]", title: "한식 조리사", company: "강남부식", salary: "$3.5K~4.5K", visa: "S-Pass" },
-  { icon: "✈️", bg: "bg-[#FBF5E8]", title: "항공사 지상직", company: "Korean Air SG", salary: "$3.2K~4K", visa: "무관" },
-];
+// 실제 데이터에서 인기/최신 추출 (좋아요·조회수 기준)
+const HOT_POSTS = [...COMMUNITY_POSTS]
+  .sort((a, b) => parseInt(b.views.replace(/,/g, "")) - parseInt(a.views.replace(/,/g, "")))
+  .slice(0, 3);
 
-const BIZ_PREVIEW = [
-  { emoji: "🍱", name: "강남부식", cat: "한식 · Tanjong Pagar", rating: "4.8", open: true },
-  { emoji: "💅", name: "서울뷰티", cat: "뷰티 · Orchard", rating: "4.6", open: true },
-  { emoji: "🛒", name: "K-마트", cat: "마트 · Buona Vista", rating: "4.5", open: true },
-];
-
-const HOT_POSTS = [
-  { cat: "취업", title: "IT 기업 싱가포르 취업 성공기", views: "3,401" },
-  { cat: "금융", title: "한국 주식 양도소득세 2025 정리", views: "4,521" },
-  { cat: "생활", title: "OCBC 계좌 개설 최신 후기", views: "1,234" },
-];
+const JOBS_PREVIEW = JOBS.slice(0, 3);
+const BIZ_PREVIEW = BUSINESSES.slice(0, 3);
 
 export default function DesktopRightPanel() {
   return (
@@ -68,16 +61,17 @@ export default function DesktopRightPanel() {
       <div className="bg-white rounded-[14px] border border-black/[0.08] p-4">
         <div className="flex justify-between items-center mb-3">
           <span className="text-[0.78rem] font-bold">🔥 이번 주 인기글</span>
+          <Link href="/community" className="text-[0.7rem] text-[#D04020] hover:underline">전체보기</Link>
         </div>
         <div className="flex flex-col gap-2">
           {HOT_POSTS.map((post, i) => (
-            <Link href="/community" key={i} className="flex items-start gap-2 group">
-              <span className="text-[0.65rem] font-bold text-[#D04020] w-4 flex-shrink-0 mt-[2px]"style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+            <Link href={`/community/${post.id}`} key={post.id} className="flex items-start gap-2 group">
+              <span className="text-[0.65rem] font-bold text-[#D04020] w-4 flex-shrink-0 mt-[2px]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="flex-1 min-w-0">
                 <div className="text-[0.78rem] font-medium group-hover:text-[#D04020] transition-colors line-clamp-1">{post.title}</div>
-                <div className="text-[0.68rem] text-[#888070] mt-[2px]">{post.cat} · 👁 {post.views}</div>
+                <div className="text-[0.68rem] text-[#888070] mt-[2px]">{post.categoryLabel} · 👁 {post.views}</div>
               </div>
             </Link>
           ))}
@@ -92,16 +86,16 @@ export default function DesktopRightPanel() {
         </div>
         <div className="flex flex-col gap-2">
           {JOBS_PREVIEW.map((job) => (
-            <Link href="/jobs" key={job.title} className="flex items-center gap-2 group py-1">
-              <div className={`w-8 h-8 rounded-[8px] flex items-center justify-center text-base flex-shrink-0 ${job.bg}`}>
-                {job.icon}
+            <Link href={`/jobs/${job.id}`} key={job.id} className="flex items-center gap-2 group py-1">
+              <div className={`w-8 h-8 rounded-[8px] flex items-center justify-center text-base flex-shrink-0 ${job.companyBg}`}>
+                {job.companyIcon}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[0.78rem] font-medium truncate group-hover:text-[#D04020] transition-colors">{job.title}</div>
                 <div className="text-[0.68rem] text-[#888070]">{job.company} · {job.salary}</div>
               </div>
               <span className="text-[0.62rem] bg-[#EBF0FB] text-[#2050A0] px-[5px] py-[2px] rounded-full font-medium flex-shrink-0">
-                {job.visa}
+                {job.visaType}
               </span>
             </Link>
           ))}
@@ -116,15 +110,15 @@ export default function DesktopRightPanel() {
         </div>
         <div className="flex flex-col divide-y divide-black/[0.04]">
           {BIZ_PREVIEW.map((biz) => (
-            <Link href="/business" key={biz.name} className="flex items-center gap-3 py-[9px] first:pt-0 last:pb-0 group">
+            <Link href={`/business/${biz.id}`} key={biz.id} className="flex items-center gap-3 py-[9px] first:pt-0 last:pb-0 group">
               <div className="w-9 h-9 rounded-[10px] bg-[#F5F3EE] flex items-center justify-center text-xl flex-shrink-0">{biz.emoji}</div>
               <div className="flex-1 min-w-0">
                 <div className="text-[0.8rem] font-bold group-hover:text-[#D04020] transition-colors">{biz.name}</div>
-                <div className="text-[0.68rem] text-[#888070] truncate">{biz.cat}</div>
+                <div className="text-[0.68rem] text-[#888070] truncate">{biz.category} · {biz.area}</div>
               </div>
               <div className="flex flex-col items-end flex-shrink-0">
                 <span className="text-[0.75rem] font-bold text-[#B07010]">★ {biz.rating}</span>
-                <span className="text-[0.62rem] text-[#2B7A50] font-medium">{biz.open ? "영업중" : "영업종료"}</span>
+                <span className={`text-[0.62rem] font-medium ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>{biz.isOpen ? "영업중" : "영업종료"}</span>
               </div>
             </Link>
           ))}
@@ -134,7 +128,7 @@ export default function DesktopRightPanel() {
       {/* 푸터 */}
       <div className="text-[0.63rem] text-[#C0BBB0] leading-relaxed pb-2" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
         SORI · 싱가포르 한인 커뮤니티<br/>
-        © 2025 · All rights reserved
+        © 2026 · All rights reserved
       </div>
     </aside>
   );

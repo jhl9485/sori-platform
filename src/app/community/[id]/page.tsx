@@ -1,59 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import CommentSection from "@/components/shared/CommentSection";
-import { COMMUNITY_POSTS, SAMPLE_COMMENTS, type VisaBadge } from "@/data/communityPosts";
-
-const VISA_BADGE_STYLE: Record<NonNullable<VisaBadge>, string> = {
-  "EP":    "bg-[#EBF0FB] text-[#2050A0]",
-  "S-Pass":"bg-[#EBF5F0] text-[#2B7A50]",
-  "DP":    "bg-[#FBF5E8] text-[#B07010]",
-  "PR":    "bg-[#F0EDE8] text-[#555]",
-  "시민권": "bg-[#181614] text-white",
-  "WH":   "bg-[#F5F0FF] text-[#7040C0]",
-};
-
-function renderContent(fullContent: string) {
-  return fullContent.split("\n").map((line, i) => {
-    if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
-      return <p key={i} className="font-bold text-[0.9rem] mt-5 mb-2 text-[#181614]">{line.replace(/\*\*/g, "")}</p>;
-    }
-    if (line.startsWith("- ")) {
-      return <li key={i} className="text-[0.85rem] text-[#181614] leading-relaxed ml-4 list-disc">{line.slice(2)}</li>;
-    }
-    if (line.startsWith("|") && line.endsWith("|")) {
-      if (line.includes("---")) return null;
-      const cells = line.split("|").filter((c) => c.trim());
-      const isHeader = fullContent.split("\n")[i + 1]?.includes("---");
-      return (
-        <div key={i} className={`flex gap-2 text-[0.82rem] py-1 border-b border-black/[0.05] ${isHeader ? "font-bold bg-[#F5F3EE] px-2 rounded-t" : "px-2"}`}>
-          {cells.map((c, j) => <span key={j} className="flex-1">{c.trim()}</span>)}
-        </div>
-      );
-    }
-    if (line.trim() === "") return <br key={i} />;
-    return <p key={i} className="text-[0.85rem] text-[#181614] leading-relaxed">{line}</p>;
-  });
-}
+import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
+import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
+import { renderMarkdown } from "@/lib/renderMarkdown";
+import { useToggleSet } from "@/lib/storage";
 
 export default function PostDetailPage({ params }: { params: { id: string } }) {
   const post = COMMUNITY_POSTS.find((p) => p.id === params.id);
-  const [liked, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
+  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_posts");
+  const { toggle: markRead } = useToggleSet("sori_read_posts");
+
+  useEffect(() => {
+    if (post) markRead(post.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [post?.id]);
 
   if (!post) return notFound();
 
+  const liked = isLiked(post.id);
+  const saved = isSaved(post.id);
   const comments = SAMPLE_COMMENTS[post.id] || [];
 
   // relatedIds 기반 연관글, 없으면 같은 카테고리에서 표시
-  const relatedPosts = post.relatedIds && post.relatedIds.length > 0
-    ? post.relatedIds.map((rid) => COMMUNITY_POSTS.find((p) => p.id === rid)).filter(Boolean)
-    : COMMUNITY_POSTS.filter((p) => p.categoryId === post.categoryId && p.id !== post.id).slice(0, 2);
+  const relatedPosts = (post.relatedIds && post.relatedIds.length > 0
+    ? post.relatedIds.map((rid) => COMMUNITY_POSTS.find((p) => p.id === rid))
+    : COMMUNITY_POSTS.filter((p) => p.categoryId === post.categoryId && p.id !== post.id).slice(0, 2)
+  ).filter((p): p is NonNullable<typeof p> => Boolean(p));
 
-  const likeCount = parseInt(post.likes.replace(",", "")) + (liked ? 1 : 0);
+  const likeCount = parseInt(post.likes.replace(/,/g, "")) + (liked ? 1 : 0);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -118,7 +98,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
         {/* 본문 */}
         <div className="px-4 md:px-6 py-5 space-y-[2px]">
-          {renderContent(post.fullContent)}
+          {renderMarkdown(post.fullContent)}
         </div>
 
         {/* 태그 */}
@@ -137,7 +117,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
         {/* 액션 바 */}
         <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
           <button
-            onClick={() => setLiked(!liked)}
+            onClick={() => toggleLike(post.id)}
             className={`flex items-center gap-[5px] text-[0.82rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
           >
             {liked ? "❤️" : "🤍"} <span>{likeCount.toLocaleString()}</span>
@@ -146,7 +126,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
             💬 <span>{post.comments}</span>
           </button>
           <button
-            onClick={() => setSaved(!saved)}
+            onClick={() => toggleSave(post.id)}
             className={`flex items-center gap-[5px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
           >
             {saved ? "🔖 저장됨" : "🏷️ 저장"}
@@ -167,7 +147,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
       {relatedPosts.length > 0 && (
         <div className="bg-white mt-2 px-4 md:px-6 py-4">
           <h3 className="text-[0.85rem] font-bold mb-3 text-[#888070]">연관 게시글</h3>
-          {relatedPosts.map((related) => related && (
+          {relatedPosts.map((related) => (
             <Link key={related.id} href={`/community/${related.id}`} className="block py-[10px] border-b border-black/[0.04] last:border-0 group">
               <div className="flex items-center gap-2 mb-[2px]">
                 <span className={`text-[0.62rem] px-[6px] py-[1px] rounded-full font-semibold ${related.categoryStyle}`}>

@@ -22,7 +22,7 @@ const NOTIFICATIONS = [
     icon: "❤️",
     iconBg: "bg-[#FBF0EC]",
     title: "내 게시글이 인기글이 됐어요",
-    body: "\"OCBC 은행 계좌 개설 2025 최신 후기\" 가 156명에게 좋아요를 받았습니다.",
+    body: "\"OCBC 은행 계좌 개설 2026 최신 후기\" 가 156명에게 좋아요를 받았습니다.",
     time: "3시간 전",
     isRead: false,
     link: "/community/1",

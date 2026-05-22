@@ -1,41 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import { NEWS_ITEMS } from "@/data/newsItems";
+import { renderMarkdown } from "@/lib/renderMarkdown";
+import { useToggleSet } from "@/lib/storage";
 
 export default function NewsDetailPage({ params }: { params: { id: string } }) {
   const news = NEWS_ITEMS.find((n) => n.id === params.id);
-  const [saved, setSaved] = useState(false);
+  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_news");
 
   if (!news) return notFound();
 
+  const saved = isSaved(news.id);
+
   const related = NEWS_ITEMS.filter((n) => news.relatedIds.includes(n.id));
   const others = NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3);
-
-  const lines = news.fullContent.split("\n").map((line, i) => {
-    if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
-      return <p key={i} className="font-bold text-[0.9rem] mt-5 mb-2 text-[#181614]">{line.replace(/\*\*/g, "")}</p>;
-    }
-    if (line.startsWith("- ")) {
-      return <li key={i} className="text-[0.85rem] text-[#181614] ml-4 list-disc leading-relaxed">{line.slice(2)}</li>;
-    }
-    if (line.startsWith("|") && line.endsWith("|")) {
-      if (line.includes("---")) return null;
-      const cells = line.split("|").filter((c) => c.trim());
-      const nextLine = news.fullContent.split("\n")[i + 1];
-      const isHeader = nextLine?.includes("---");
-      return (
-        <div key={i} className={`flex gap-3 text-[0.82rem] py-[6px] border-b border-black/[0.05] ${isHeader ? "font-bold bg-[#F5F3EE] px-2 rounded-t-lg" : "px-2"}`}>
-          {cells.map((c, j) => <span key={j} className="flex-1 min-w-0">{c.trim()}</span>)}
-        </div>
-      );
-    }
-    if (line.trim() === "") return <br key={i} />;
-    return <p key={i} className="text-[0.85rem] text-[#181614] leading-relaxed">{line}</p>;
-  });
 
   const handleShare = () => {
     if (navigator.share) {
@@ -50,7 +31,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => setSaved(!saved)} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => toggleSave(news.id)} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "🔖" : "🏷️"}
           </button>
         }
@@ -91,7 +72,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
         <div className="h-px bg-black/[0.06] mx-4 md:mx-6 mb-4" />
 
         {/* 본문 */}
-        <div className="px-4 md:px-6 pb-5 space-y-[2px]">{lines}</div>
+        <div className="px-4 md:px-6 pb-5 space-y-[2px]">{renderMarkdown(news.fullContent)}</div>
 
         {/* 원문 링크 */}
         {news.sourceUrl && (
@@ -122,7 +103,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
             ↗ 공유하기
           </button>
           <button
-            onClick={() => setSaved(!saved)}
+            onClick={() => toggleSave(news.id)}
             className={`flex items-center gap-1 text-[0.82rem] ml-auto ${saved ? "text-[#2050A0]" : "text-[#888070]"}`}
           >
             {saved ? "🔖 저장됨" : "🏷️ 저장"}

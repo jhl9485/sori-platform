@@ -17,18 +17,26 @@ export default function SearchPage() {
 
   const q = query.toLowerCase().trim();
 
-  const postResults = COMMUNITY_POSTS.filter(
-    (p) => p.title.includes(q) || p.preview.includes(q) || p.tags.some((t) => t.toLowerCase().includes(q))
-  );
-  const bizResults = BUSINESSES.filter(
-    (b) => b.name.includes(q) || b.category.includes(q) || b.tags.some((t) => t.includes(q))
-  );
-  const jobResults = JOBS.filter(
-    (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
-  );
-  const newsResults = NEWS_ITEMS.filter(
-    (n) => n.title.includes(q) || n.summary.includes(q) || n.category.includes(q)
-  );
+  const postResults = q
+    ? COMMUNITY_POSTS.filter(
+        (p) => p.title.toLowerCase().includes(q) || p.preview.toLowerCase().includes(q) || p.tags.some((t) => t.toLowerCase().includes(q))
+      )
+    : [];
+  const bizResults = q
+    ? BUSINESSES.filter(
+        (b) => b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.tags.some((t) => t.toLowerCase().includes(q)) || b.area.toLowerCase().includes(q)
+      )
+    : [];
+  const jobResults = q
+    ? JOBS.filter(
+        (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
+      )
+    : [];
+  const newsResults = q
+    ? NEWS_ITEMS.filter(
+        (n) => n.title.toLowerCase().includes(q) || n.summary.toLowerCase().includes(q) || n.category.toLowerCase().includes(q)
+      )
+    : [];
 
   const totalCount = postResults.length + bizResults.length + jobResults.length + newsResults.length;
   const hasResults = q.length > 0 && totalCount > 0;

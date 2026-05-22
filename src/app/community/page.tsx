@@ -15,6 +15,24 @@ const NOTICES = [
   { id: "n1", emoji: "⚠️", text: "P1 국제학생 신청 마감 D-4 (5월 25일)", link: "/news/1" },
 ];
 
+// 카테고리별 글 수 (정적 데이터 기반 — 데이터 추가 시 자동 반영)
+const CATEGORY_COUNTS = COMMUNITY_POSTS.reduce<Record<string, number>>((acc, p) => {
+  acc[p.categoryId] = (acc[p.categoryId] || 0) + 1;
+  return acc;
+}, {});
+
+// 인기 태그 (등장 빈도 상위 8개)
+const TOP_TAGS = (() => {
+  const counts: Record<string, number> = {};
+  for (const p of COMMUNITY_POSTS) {
+    for (const t of p.tags) counts[t] = (counts[t] || 0) + 1;
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([t]) => t);
+})();
+
 export default function CommunityPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
@@ -34,10 +52,10 @@ export default function CommunityPage() {
 
   const sorted = [...searched].sort((a, b) => {
     if (feedTab === "인기순") {
-      return parseInt(b.likes.replace(",", "")) - parseInt(a.likes.replace(",", ""));
+      return parseInt(b.likes.replace(/,/g, "")) - parseInt(a.likes.replace(/,/g, ""));
     }
     if (feedTab === "댓글순") {
-      return parseInt(b.comments.replace(",", "")) - parseInt(a.comments.replace(",", ""));
+      return parseInt(b.comments.replace(/,/g, "")) - parseInt(a.comments.replace(/,/g, ""));
     }
     return 0; // 최신순 = 데이터 순서 유지
   });
@@ -104,8 +122,38 @@ export default function CommunityPage() {
 
       {/* 전체 카테고리 탭 */}
       <div className="px-4 md:px-6">
-        <CategoryTabs selected={selectedCategory} onSelect={setSelectedCategory} />
+        <CategoryTabs
+          selected={selectedCategory}
+          onSelect={setSelectedCategory}
+          counts={CATEGORY_COUNTS}
+          totalCount={COMMUNITY_POSTS.length}
+        />
       </div>
+
+      {/* 인기 태그 */}
+      {TOP_TAGS.length > 0 && (
+        <div className="px-4 md:px-6 pb-3">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[0.7rem] font-bold text-[#888070]">🏷️ 인기 태그</span>
+          </div>
+          <div className="flex flex-wrap gap-[5px]">
+            {TOP_TAGS.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSearchQuery(tag)}
+                className={`text-[0.7rem] rounded-full px-[10px] py-[3px] border transition-colors ${
+                  searchQuery === tag
+                    ? "bg-[#D04020] text-white border-[#D04020]"
+                    : "bg-white text-[#888070] border-black/[0.08] hover:border-[#D04020] hover:text-[#D04020]"
+                }`}
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 피드 정렬 탭 */}
       <div className="px-4 md:px-6 mb-3 flex items-center justify-between">
