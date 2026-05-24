@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import ImageUploader from "@/components/shared/ImageUploader";
 
 const DRAFT_KEY = "sori_flea_draft";
 const SAVED_KEY = "sori_user_flea";
@@ -30,6 +31,7 @@ export default function FleaWritePage() {
   const [hydrated, setHydrated] = useState(false);
   const [restored, setRestored] = useState(false);
 
+  const [photos, setPhotos] = useState<string[]>([]);
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -47,7 +49,8 @@ export default function FleaWritePage() {
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const d = JSON.parse(raw);
-        if (d.title || d.description) {
+        if (d.title || d.description || (d.photos && d.photos.length > 0)) {
+          setPhotos(d.photos || []);
           setCategory(d.category || "");
           setTitle(d.title || "");
           setPrice(d.price || "");
@@ -75,12 +78,23 @@ export default function FleaWritePage() {
       localStorage.setItem(
         DRAFT_KEY,
         JSON.stringify({
-          category, title, price, originalPrice, negotiable, condition,
+          photos, category, title, price, originalPrice, negotiable, condition,
           area, canMeet, canDeliver, description,
         })
       );
-    } catch {}
-  }, [hydrated, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description]);
+    } catch (e) {
+      // localStorage 용량 초과 시 사진 빼고 저장
+      try {
+        localStorage.setItem(
+          DRAFT_KEY,
+          JSON.stringify({
+            category, title, price, originalPrice, negotiable, condition,
+            area, canMeet, canDeliver, description,
+          })
+        );
+      } catch {}
+    }
+  }, [hydrated, photos, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description]);
 
   const canSubmit = category && title.trim() && price.trim() && description.trim();
 
@@ -91,6 +105,7 @@ export default function FleaWritePage() {
       const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
       arr.unshift({
         id: `user-flea-${Date.now()}`,
+        photos,
         category, title: title.trim(),
         price: price.trim(), originalPrice: originalPrice.trim() || null,
         negotiable, condition, area,
@@ -105,6 +120,7 @@ export default function FleaWritePage() {
   };
 
   const discardDraft = () => {
+    setPhotos([]);
     setCategory(""); setTitle(""); setPrice(""); setOriginalPrice("");
     setNegotiable(true); setCondition("상태좋음"); setArea("");
     setCanMeet(true); setCanDeliver(false); setDescription("");
@@ -140,24 +156,10 @@ export default function FleaWritePage() {
       )}
 
       <div className="px-4 py-4 space-y-6">
-        {/* 1. 사진 (자리만) */}
+        {/* 1. 사진 */}
         <section>
           <SectionTitle index="1" title="사진" />
-          <div className="grid grid-cols-3 gap-2">
-            {[0, 1, 2].map((i) => (
-              <button
-                key={i}
-                disabled
-                className="aspect-square bg-[#F5F3EE] rounded-[10px] flex flex-col items-center justify-center text-[#C0BBB0] border-2 border-dashed border-black/[0.08]"
-              >
-                <span className="text-2xl">📷</span>
-                <span className="text-[0.62rem] mt-1">{i === 0 ? "준비 중" : ""}</span>
-              </button>
-            ))}
-          </div>
-          <p className="text-[0.68rem] text-[#888070] mt-2">
-            💡 사진 업로드 기능은 곧 추가됩니다.
-          </p>
+          <ImageUploader images={photos} onChange={setPhotos} max={5} />
         </section>
 
         {/* 2. 카테고리 */}

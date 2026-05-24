@@ -1,10 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Comment } from "@/data/communityPosts";
 
 interface Props {
   comments: Comment[];
+  postId?: string;
+}
+
+const STORAGE_KEY = "sori_user_comments";
+
+function readAll(): Record<string, Comment[]> {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeFor(postId: string, comments: Comment[]) {
+  if (typeof window === "undefined") return;
+  try {
+    const all = readAll();
+    all[postId] = comments;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+  } catch {}
 }
 
 function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number }) {
@@ -96,17 +118,26 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
   );
 }
 
-export default function CommentSection({ comments }: Props) {
-  const [list, setList] = useState<Comment[]>(comments);
+export default function CommentSection({ comments, postId }: Props) {
+  // 정적 댓글 + 사용자 추가 댓글 (localStorage) 병합
+  const [userComments, setUserComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [isAnon, setIsAnon] = useState(false);
+
+  useEffect(() => {
+    if (!postId) return;
+    const all = readAll();
+    setUserComments(all[postId] || []);
+  }, [postId]);
+
+  const list = [...comments, ...userComments];
 
   const submitComment = () => {
     const text = newComment.trim();
     if (!text) return;
     const c: Comment = isAnon
       ? {
-          id: `c-${list.length + 1}-${Date.now()}`,
+          id: `c-${Date.now()}`,
           isAnon: true,
           author: "익명",
           avatarChar: "?",
@@ -117,7 +148,7 @@ export default function CommentSection({ comments }: Props) {
           likes: 0,
         }
       : {
-          id: `c-${list.length + 1}-${Date.now()}`,
+          id: `c-${Date.now()}`,
           author: "나",
           avatarChar: "나",
           avatarBg: "#FBF0EC",
@@ -126,7 +157,9 @@ export default function CommentSection({ comments }: Props) {
           time: "방금 전",
           likes: 0,
         };
-    setList([...list, c]);
+    const next = [...userComments, c];
+    setUserComments(next);
+    if (postId) writeFor(postId, next);
     setNewComment("");
   };
 

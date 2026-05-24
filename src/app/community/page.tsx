@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import FavoritesSection from "@/components/community/FavoritesSection";
 import CategoryTabs from "@/components/community/CategoryTabs";
 import CommunityPostCard from "@/components/community/CommunityPostCard";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
+import { useUserPosts } from "@/lib/userContent";
 
 const FEED_TABS = ["최신순", "인기순", "댓글순"] as const;
 type FeedTab = typeof FEED_TABS[number];
@@ -14,12 +15,6 @@ type FeedTab = typeof FEED_TABS[number];
 const NOTICES = [
   { id: "n1", emoji: "⚠️", text: "P1 국제학생 신청 마감 D-4 (5월 25일)", link: "/news/1" },
 ];
-
-// 카테고리별 글 수 (정적 데이터 기반 — 데이터 추가 시 자동 반영)
-const CATEGORY_COUNTS = COMMUNITY_POSTS.reduce<Record<string, number>>((acc, p) => {
-  acc[p.categoryId] = (acc[p.categoryId] || 0) + 1;
-  return acc;
-}, {});
 
 // 인기 태그 (등장 빈도 상위 8개)
 const TOP_TAGS = (() => {
@@ -37,10 +32,21 @@ export default function CommunityPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
   const [searchQuery, setSearchQuery] = useState("");
+  const userPosts = useUserPosts();
+
+  // 사용자 글 + 정적 글 합치기 (사용자 글이 최상단)
+  const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
+
+  const categoryCounts = useMemo(() => {
+    return allPosts.reduce<Record<string, number>>((acc, p) => {
+      acc[p.categoryId] = (acc[p.categoryId] || 0) + 1;
+      return acc;
+    }, {});
+  }, [allPosts]);
 
   const base = selectedCategory === "all"
-    ? COMMUNITY_POSTS
-    : COMMUNITY_POSTS.filter((p) => p.categoryId === selectedCategory);
+    ? allPosts
+    : allPosts.filter((p) => p.categoryId === selectedCategory);
 
   const searched = searchQuery
     ? base.filter((p) =>
@@ -68,7 +74,7 @@ export default function CommunityPage() {
           <div>
             <h1 className="text-[1.2rem] md:text-[1.4rem] font-bold tracking-tight">커뮤니티</h1>
             <p className="text-[0.75rem] text-[#888070] mt-[2px]">
-              싱가포르 한인 자유 게시판 · <span className="font-medium text-[#181614]">{COMMUNITY_POSTS.length}개</span> 게시글
+              싱가포르 한인 자유 게시판 · <span className="font-medium text-[#181614]">{allPosts.length}개</span> 게시글
             </p>
           </div>
           <Link
@@ -125,8 +131,8 @@ export default function CommunityPage() {
         <CategoryTabs
           selected={selectedCategory}
           onSelect={setSelectedCategory}
-          counts={CATEGORY_COUNTS}
-          totalCount={COMMUNITY_POSTS.length}
+          counts={categoryCounts}
+          totalCount={allPosts.length}
         />
       </div>
 
@@ -138,18 +144,14 @@ export default function CommunityPage() {
           </div>
           <div className="flex flex-wrap gap-[5px]">
             {TOP_TAGS.map((tag) => (
-              <button
+              <Link
                 key={tag}
-                onClick={() => setSearchQuery(tag)}
-                className={`text-[0.7rem] rounded-full px-[10px] py-[3px] border transition-colors ${
-                  searchQuery === tag
-                    ? "bg-[#D04020] text-white border-[#D04020]"
-                    : "bg-white text-[#888070] border-black/[0.08] hover:border-[#D04020] hover:text-[#D04020]"
-                }`}
+                href={`/community/tag/${encodeURIComponent(tag)}`}
+                className="text-[0.7rem] rounded-full px-[10px] py-[3px] border bg-white text-[#888070] border-black/[0.08] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
                 style={{ fontFamily: "'IBM Plex Mono', monospace" }}
               >
                 #{tag}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

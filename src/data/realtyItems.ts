@@ -27,6 +27,7 @@ export interface RealtyItem {
   highlights: string[];
   mrt: string;               // 가까운 MRT
   amenities: string[];       // 편의시설
+  photos?: string[];
 }
 
 export const REALTY_CATEGORIES = [

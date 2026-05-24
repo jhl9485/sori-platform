@@ -3,17 +3,21 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
+import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import { REALTY_ITEMS } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
+import { useUserRealty } from "@/lib/userContent";
 
 export default function RealtyDetailPage({ params }: { params: { id: string } }) {
-  const item = REALTY_ITEMS.find((r) => r.id === params.id);
+  const userRealty = useUserRealty();
+  const item = userRealty.find((r) => r.id === params.id) || REALTY_ITEMS.find((r) => r.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_realty");
 
   if (!item) return notFound();
 
   const saved = isSaved(item.id);
-  const others = REALTY_ITEMS.filter((r) => r.id !== item.id && r.deal === item.deal).slice(0, 3);
+  const allItems = [...userRealty, ...REALTY_ITEMS];
+  const others = allItems.filter((r) => r.id !== item.id && r.deal === item.deal).slice(0, 3);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -39,9 +43,15 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
       />
 
       {/* 히어로 */}
-      <div className={`w-full h-[180px] flex items-center justify-center text-[5rem] relative ${item.bg}`}>
-        {item.emoji}
-        <span className="absolute top-3 right-3 bg-white/90 text-[#181614] text-[0.7rem] font-bold px-2 py-1 rounded-full">
+      <div className="relative">
+        <PhotoCarousel
+          photos={item.photos || []}
+          fallbackEmoji={item.emoji}
+          fallbackBg={item.bg}
+          heightClass="h-[260px]"
+          alt={item.title}
+        />
+        <span className="absolute top-3 right-3 bg-white/90 text-[#181614] text-[0.7rem] font-bold px-2 py-1 rounded-full z-10">
           {item.deal}
         </span>
       </div>

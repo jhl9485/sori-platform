@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
+import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import { FLEA_ITEMS } from "@/data/fleaItems";
+import { useUserFlea } from "@/lib/userContent";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -14,7 +16,8 @@ const conditionColor: Record<string, string> = {
 };
 
 export default function FleaDetailPage({ params }: { params: { id: string } }) {
-  const item = FLEA_ITEMS.find((i) => i.id === params.id);
+  const userFlea = useUserFlea();
+  const item = userFlea.find((i) => i.id === params.id) || FLEA_ITEMS.find((i) => i.id === params.id);
   const [liked, setLiked] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -42,10 +45,16 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
       />
 
       {/* 이미지 영역 */}
-      <div className={`w-full h-[240px] flex items-center justify-center text-[6rem] ${item.bg} relative`}>
-        {item.emoji}
+      <div className="relative">
+        <PhotoCarousel
+          photos={item.photos || []}
+          fallbackEmoji={item.emoji}
+          fallbackBg={item.bg}
+          heightClass="h-[280px]"
+          alt={item.title}
+        />
         {item.isUrgent && (
-          <div className="absolute top-3 left-3 bg-[#D04020] text-white text-[0.72rem] font-bold px-3 py-1 rounded-full">
+          <div className="absolute top-3 left-3 bg-[#D04020] text-white text-[0.72rem] font-bold px-3 py-1 rounded-full z-10">
             급처
           </div>
         )}

@@ -20,6 +20,8 @@ export interface FleaItem {
   description: string;
   canDeliver: boolean;
   canMeet: boolean;
+  photos?: string[];
+  negotiable?: boolean;
 }
 
 export const FLEA_CATEGORIES = ["전체", "가전/가구", "의류/잡화", "식품", "도서", "유아용품", "디지털", "기타"];

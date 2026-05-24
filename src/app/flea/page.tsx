@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { FLEA_ITEMS, FLEA_CATEGORIES } from "@/data/fleaItems";
+import { useUserFlea } from "@/lib/userContent";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -15,7 +16,10 @@ const conditionColor: Record<string, string> = {
 export default function FleaPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
   const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
-  const filtered = selectedCat === "전체" ? FLEA_ITEMS : FLEA_ITEMS.filter((i) => i.category === selectedCat);
+  const userFlea = useUserFlea();
+  const allItems = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
+  const filtered = selectedCat === "전체" ? allItems : allItems.filter((i) => i.category === selectedCat);
+  const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
 
   const toggleLike = (id: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -67,9 +71,20 @@ export default function FleaPage() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pb-6">
         {filtered.map((item) => (
           <Link key={item.id} href={`/flea/${item.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-[1px] transition-all">
-            <div className={`w-full h-[110px] flex items-center justify-center text-[3rem] relative ${item.bg}`}>
-              {item.emoji}
-              {item.isUrgent && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급처</span>}
+            <div className={`w-full h-[110px] flex items-center justify-center text-[3rem] relative overflow-hidden ${item.bg}`}>
+              {item.photos && item.photos.length > 0 ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={item.photos[0]} alt={item.title} className="w-full h-full object-cover" />
+              ) : (
+                item.emoji
+              )}
+              {userIds.has(item.id) && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 글</span>}
+              {!userIds.has(item.id) && item.isUrgent && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급처</span>}
+              {item.photos && item.photos.length > 1 && (
+                <span className="absolute bottom-2 left-2 text-[0.6rem] bg-black/60 text-white px-[5px] py-[1px] rounded font-medium">
+                  📷 {item.photos.length}
+                </span>
+              )}
               <button onClick={(e) => toggleLike(item.id, e)} className="absolute bottom-2 right-2 w-6 h-6 bg-white/80 rounded-full flex items-center justify-center text-sm hover:bg-white transition-colors">
                 {likedItems.has(item.id) ? "❤️" : "🤍"}
               </button>

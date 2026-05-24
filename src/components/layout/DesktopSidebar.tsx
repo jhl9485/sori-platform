@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NOTIFICATIONS } from "@/data/notifications";
+import { useUnreadCount } from "@/lib/notifications";
 
 const NAV = [
   { icon: "🏠", label: "홈",         href: "/" },
@@ -21,6 +23,7 @@ const MY_ACTIONS = [
 
 export default function DesktopSidebar() {
   const pathname = usePathname();
+  const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-[240px] bg-[#131211] flex flex-col z-50 select-none">
@@ -73,8 +76,31 @@ export default function DesktopSidebar() {
         })}
       </nav>
 
-      {/* 글쓰기 CTA */}
-      <div className="px-4 pb-4">
+      {/* 알림 + 글쓰기 CTA */}
+      <div className="px-3 pb-3 flex flex-col gap-2">
+        <Link
+          href="/notifications"
+          className={`flex items-center gap-3 px-3 py-[9px] rounded-[10px] transition-all duration-150 group relative ${
+            pathname === "/notifications"
+              ? "bg-white/10 text-white"
+              : "text-white/45 hover:text-white/80 hover:bg-white/[0.05]"
+          }`}
+        >
+          <span className="text-[1.05rem] flex-shrink-0 relative">
+            🔔
+            {unread > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[14px] h-[14px] bg-[#D04020] text-white text-[0.55rem] font-bold rounded-full px-1 flex items-center justify-center leading-none">
+                {unread > 99 ? "99+" : unread}
+              </span>
+            )}
+          </span>
+          <span className="text-[0.85rem] font-medium tracking-tight flex-1">알림</span>
+          {unread > 0 && (
+            <span className="text-[0.65rem] text-[#D04020] font-bold">
+              {unread > 99 ? "99+" : unread}
+            </span>
+          )}
+        </Link>
         <Link
           href="/write"
           className="flex items-center justify-center gap-2 w-full py-[10px] rounded-[10px] bg-[#D04020] text-white text-[0.85rem] font-bold hover:bg-[#B83515] transition-colors"

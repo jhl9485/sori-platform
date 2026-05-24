@@ -4,9 +4,11 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import { JOBS } from "@/data/jobs";
+import { useUserJobs } from "@/lib/userContent";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
-  const job = JOBS.find((j) => j.id === params.id);
+  const userJobs = useUserJobs();
+  const job = userJobs.find((j) => j.id === params.id) || JOBS.find((j) => j.id === params.id);
   const [saved, setSaved] = useState(false);
   const [applied, setApplied] = useState(false);
 

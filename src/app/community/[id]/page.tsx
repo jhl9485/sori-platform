@@ -9,9 +9,11 @@ import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { useToggleSet } from "@/lib/storage";
+import { useUserPosts } from "@/lib/userContent";
 
 export default function PostDetailPage({ params }: { params: { id: string } }) {
-  const post = COMMUNITY_POSTS.find((p) => p.id === params.id);
+  const userPosts = useUserPosts();
+  const post = userPosts.find((p) => p.id === params.id) || COMMUNITY_POSTS.find((p) => p.id === params.id);
   const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_posts");
   const { toggle: markRead } = useToggleSet("sori_read_posts");
@@ -25,15 +27,21 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
   const liked = isLiked(post.id);
   const saved = isSaved(post.id);
+  const allPosts = [...userPosts, ...COMMUNITY_POSTS];
   const comments = SAMPLE_COMMENTS[post.id] || [];
 
   // relatedIds 기반 연관글, 없으면 같은 카테고리에서 표시
   const relatedPosts = (post.relatedIds && post.relatedIds.length > 0
-    ? post.relatedIds.map((rid) => COMMUNITY_POSTS.find((p) => p.id === rid))
-    : COMMUNITY_POSTS.filter((p) => p.categoryId === post.categoryId && p.id !== post.id).slice(0, 2)
+    ? post.relatedIds.map((rid) => allPosts.find((p) => p.id === rid))
+    : allPosts.filter((p) => p.categoryId === post.categoryId && p.id !== post.id).slice(0, 2)
   ).filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   const likeCount = parseInt(post.likes.replace(/,/g, "")) + (liked ? 1 : 0);
+
+  // 이전/다음 글 (현재 글 인덱스 기준)
+  const currentIdx = allPosts.findIndex((p) => p.id === post.id);
+  const prevPost = currentIdx > 0 ? allPosts[currentIdx - 1] : null;
+  const nextPost = currentIdx >= 0 && currentIdx < allPosts.length - 1 ? allPosts[currentIdx + 1] : null;
 
   const handleShare = () => {
     if (navigator.share) {
@@ -104,13 +112,14 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
         {/* 태그 */}
         <div className="px-4 md:px-6 pb-4 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span
+            <Link
               key={tag}
-              className="text-[0.72rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-3 py-[4px] text-[#888070] hover:border-[#D04020] hover:text-[#D04020] cursor-pointer transition-colors"
+              href={`/community/tag/${encodeURIComponent(tag)}`}
+              className="text-[0.72rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-3 py-[4px] text-[#888070] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
               style={{ fontFamily: "'IBM Plex Mono', monospace" }}
             >
               #{tag}
-            </span>
+            </Link>
           ))}
         </div>
 
@@ -140,8 +149,26 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
         </div>
       </article>
 
+      {/* 이전/다음 글 네비게이션 */}
+      {(prevPost || nextPost) && (
+        <div className="bg-white mt-2 grid grid-cols-2 divide-x divide-black/[0.06]">
+          {prevPost ? (
+            <Link href={`/community/${prevPost.id}`} className="px-4 md:px-6 py-4 hover:bg-[#F5F3EE] transition-colors">
+              <div className="text-[0.68rem] text-[#888070] mb-1">← 이전 글</div>
+              <div className="text-[0.78rem] font-medium line-clamp-1">{prevPost.title}</div>
+            </Link>
+          ) : <div className="px-4 md:px-6 py-4 text-[0.7rem] text-[#C0BBB0]">처음 글이에요</div>}
+          {nextPost ? (
+            <Link href={`/community/${nextPost.id}`} className="px-4 md:px-6 py-4 hover:bg-[#F5F3EE] transition-colors text-right">
+              <div className="text-[0.68rem] text-[#888070] mb-1">다음 글 →</div>
+              <div className="text-[0.78rem] font-medium line-clamp-1">{nextPost.title}</div>
+            </Link>
+          ) : <div className="px-4 md:px-6 py-4 text-[0.7rem] text-[#C0BBB0] text-right">마지막 글이에요</div>}
+        </div>
+      )}
+
       {/* 댓글 */}
-      <CommentSection comments={comments} />
+      <CommentSection comments={comments} postId={post.id} />
 
       {/* 연관 게시글 */}
       {relatedPosts.length > 0 && (

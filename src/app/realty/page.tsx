@@ -1,15 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { REALTY_ITEMS, REALTY_CATEGORIES, REALTY_DEALS } from "@/data/realtyItems";
+import { useUserRealty } from "@/lib/userContent";
 
 export default function RealtyPage() {
   const [selectedType, setSelectedType] = useState("all");
   const [selectedDeal, setSelectedDeal] = useState<(typeof REALTY_DEALS)[number]>("전체");
   const [searchQuery, setSearchQuery] = useState("");
+  const userRealty = useUserRealty();
+  const allItems = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
+  const userIds = useMemo(() => new Set(userRealty.map((u) => u.id)), [userRealty]);
 
-  const filtered = REALTY_ITEMS.filter((r) => {
+  const filtered = allItems.filter((r) => {
     if (selectedType !== "all" && r.type !== selectedType) return false;
     if (selectedDeal !== "전체" && r.deal !== selectedDeal) return false;
     if (searchQuery) {
@@ -99,11 +103,26 @@ export default function RealtyPage() {
               href={`/realty/${r.id}`}
               className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all"
             >
-              <div className={`w-full h-[100px] flex items-center justify-center text-[3rem] relative ${r.bg}`}>
-                {r.emoji}
+              <div className={`w-full h-[140px] flex items-center justify-center text-[3rem] relative overflow-hidden ${r.bg}`}>
+                {r.photos && r.photos.length > 0 ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={r.photos[0]} alt={r.title} className="w-full h-full object-cover" />
+                ) : (
+                  r.emoji
+                )}
+                {userIds.has(r.id) && (
+                  <span className="absolute top-2 left-2 bg-[#2B7A50] text-white text-[0.62rem] font-bold px-2 py-[2px] rounded-full">
+                    내 매물
+                  </span>
+                )}
                 <span className="absolute top-2 right-2 bg-white/90 text-[#181614] text-[0.62rem] font-bold px-2 py-[2px] rounded-full">
                   {r.deal}
                 </span>
+                {r.photos && r.photos.length > 1 && (
+                  <span className="absolute bottom-2 right-2 text-[0.62rem] bg-black/60 text-white px-[6px] py-[2px] rounded-full font-medium">
+                    📷 {r.photos.length}
+                  </span>
+                )}
               </div>
               <div className="p-3">
                 <div className="flex items-center gap-2 mb-1">

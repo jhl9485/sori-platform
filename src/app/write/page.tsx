@@ -1,48 +1,68 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { CATEGORIES } from "@/data/categories";
+import type { VisaBadge } from "@/data/communityPosts";
 
 const DRAFT_KEY = "sori_write_draft";
 const POSTS_KEY = "sori_user_posts";
+
+const VISA_BADGES: { id: VisaBadge; label: string; color: string }[] = [
+  { id: null,    label: "표시 안 함", color: "bg-white text-[#888070] border-black/[0.08]" },
+  { id: "EP",    label: "EP",         color: "bg-[#EBF0FB] text-[#2050A0] border-[#2050A0]/30" },
+  { id: "S-Pass", label: "S-Pass",    color: "bg-[#EBF5F0] text-[#2B7A50] border-[#2B7A50]/30" },
+  { id: "DP",    label: "DP",         color: "bg-[#FBF5E8] text-[#B07010] border-[#B07010]/30" },
+  { id: "PR",    label: "PR",         color: "bg-[#F0EDE8] text-[#555] border-black/[0.15]" },
+  { id: "시민권", label: "시민권",      color: "bg-[#181614] text-white border-[#181614]" },
+  { id: "WH",    label: "WH",         color: "bg-[#F5F0FF] text-[#7040C0] border-[#7040C0]/30" },
+];
 
 interface DraftState {
   selectedCat: string;
   title: string;
   content: string;
   isAnon: boolean;
+  tagsInput: string;
+  visaBadge: VisaBadge;
 }
 
-export default function WritePage() {
+function WriteInner() {
   const router = useRouter();
-  const [selectedCat, setSelectedCat] = useState("");
+  const sp = useSearchParams();
+  const presetCat = sp.get("cat") || "";
+
+  const [selectedCat, setSelectedCat] = useState(presetCat);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isAnon, setIsAnon] = useState(false);
+  const [tagsInput, setTagsInput] = useState("");
+  const [visaBadge, setVisaBadge] = useState<VisaBadge>(null);
   const [showCatPicker, setShowCatPicker] = useState(false);
   const [restored, setRestored] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
-  // 진입 시 임시저장 복원
   useEffect(() => {
     try {
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const draft = JSON.parse(raw) as DraftState;
         if (draft.title || draft.content) {
-          setSelectedCat(draft.selectedCat || "");
+          setSelectedCat(draft.selectedCat || presetCat);
           setTitle(draft.title || "");
           setContent(draft.content || "");
           setIsAnon(!!draft.isAnon);
+          setTagsInput(draft.tagsInput || "");
+          setVisaBadge(draft.visaBadge ?? null);
           setRestored(true);
         }
       }
     } catch {}
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // 변경될 때마다 임시저장
   useEffect(() => {
     if (!hydrated) return;
     if (!title && !content && !selectedCat) {
@@ -52,13 +72,23 @@ export default function WritePage() {
     try {
       localStorage.setItem(
         DRAFT_KEY,
-        JSON.stringify({ selectedCat, title, content, isAnon } satisfies DraftState)
+        JSON.stringify({ selectedCat, title, content, isAnon, tagsInput, visaBadge } satisfies DraftState)
       );
     } catch {}
-  }, [selectedCat, title, content, isAnon, hydrated]);
+  }, [selectedCat, title, content, isAnon, tagsInput, visaBadge, hydrated]);
 
   const selectedCatData = CATEGORIES.find((c) => c.id === selectedCat);
   const canSubmit = selectedCat && title.trim().length > 0 && content.trim().length > 0;
+
+  const parseTags = (input: string): string[] => {
+    return input
+      .split(/[,\s#]+/)
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0)
+      .slice(0, 6);
+  };
+
+  const tagsPreview = parseTags(tagsInput);
 
   const submit = () => {
     if (!canSubmit) return;
@@ -71,6 +101,8 @@ export default function WritePage() {
         categoryLabel: selectedCatData?.label || "",
         title: title.trim(),
         content: content.trim(),
+        tags: tagsPreview,
+        visaBadge: isAnon ? null : visaBadge,
         isAnon,
         createdAt: new Date().toISOString(),
       });
@@ -85,6 +117,8 @@ export default function WritePage() {
     setTitle("");
     setContent("");
     setIsAnon(false);
+    setTagsInput("");
+    setVisaBadge(null);
     setRestored(false);
     localStorage.removeItem(DRAFT_KEY);
   };
@@ -93,7 +127,7 @@ export default function WritePage() {
     <div className="max-w-[390px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
-        <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]">✕</button>
+        <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
         <span className="text-[0.9rem] font-bold">글쓰기</span>
         <button
           onClick={submit}
@@ -106,7 +140,6 @@ export default function WritePage() {
         </button>
       </div>
 
-      {/* 임시저장 복원 알림 */}
       {restored && (
         <div className="mx-4 mt-3 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-2 flex items-center gap-2">
           <span className="text-sm">📝</span>
@@ -117,7 +150,7 @@ export default function WritePage() {
         </div>
       )}
 
-      <div className="px-4 py-4">
+      <div className="px-4 py-4 pb-32">
         {/* 카테고리 선택 */}
         <button
           onClick={() => setShowCatPicker(!showCatPicker)}
@@ -129,7 +162,6 @@ export default function WritePage() {
           <span className="text-[#888070] text-sm">{showCatPicker ? "▲" : "▼"}</span>
         </button>
 
-        {/* 카테고리 그리드 */}
         {showCatPicker && (
           <div className="grid grid-cols-4 gap-2 mb-4 p-3 bg-[#F5F3EE] rounded-[12px]">
             {CATEGORIES.map((cat) => (
@@ -159,6 +191,26 @@ export default function WritePage() {
           </div>
         )}
 
+        {/* 비자 배지 (익명 OFF일 때만) */}
+        {!isAnon && (
+          <div className="mb-4">
+            <div className="text-[0.72rem] text-[#888070] mb-2">🏷️ 내 비자 표시 (선택)</div>
+            <div className="flex flex-wrap gap-[5px]">
+              {VISA_BADGES.map((v) => (
+                <button
+                  key={v.label}
+                  onClick={() => setVisaBadge(v.id)}
+                  className={`text-[0.72rem] font-bold rounded-full px-3 py-[4px] border transition-all ${
+                    visaBadge === v.id ? v.color : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
+                  }`}
+                >
+                  {v.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* 제목 */}
         <input
           type="text"
@@ -174,12 +226,36 @@ export default function WritePage() {
           placeholder={`내용을 입력하세요.\n\n싱가포르 생활 정보, 질문, 고민 등 자유롭게 작성해 주세요.\n욕설, 혐오 표현, 스팸은 제재될 수 있습니다.`}
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          rows={12}
+          rows={10}
           className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none placeholder:text-[#C0BBB0] bg-transparent resize-none"
         />
 
-        {/* 글자수 + 자동저장 안내 */}
-        <div className="flex items-center justify-between mt-2">
+        {/* 태그 입력 */}
+        <div className="mt-4 pt-4 border-t border-black/[0.06]">
+          <div className="text-[0.72rem] text-[#888070] mb-2">🏷️ 태그 (쉼표나 공백으로 구분, 최대 6개)</div>
+          <input
+            type="text"
+            value={tagsInput}
+            onChange={(e) => setTagsInput(e.target.value)}
+            placeholder="예: 비자, EP, OCBC, Tanjong-Pagar"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] outline-none placeholder:text-[#C0BBB0]"
+          />
+          {tagsPreview.length > 0 && (
+            <div className="flex flex-wrap gap-[5px] mt-2">
+              {tagsPreview.map((t) => (
+                <span
+                  key={t}
+                  className="text-[0.68rem] bg-[#FBF0EC] text-[#D04020] rounded-full px-2 py-[2px]"
+                  style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                >
+                  #{t}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between mt-3">
           <span className="text-[0.7rem] text-[#C0BBB0]">
             {hydrated && (title || content) ? "💾 자동 저장 중" : ""}
           </span>
@@ -192,9 +268,9 @@ export default function WritePage() {
       {/* 하단 옵션 바 */}
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-white border-t border-black/[0.08] px-4 py-3 flex items-center justify-between z-50">
         <div className="flex items-center gap-3">
-          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg">📷</button>
-          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg">🔗</button>
-          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg">📍</button>
+          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg" aria-label="사진 (준비 중)">📷</button>
+          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg" aria-label="링크 (준비 중)">🔗</button>
+          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg" aria-label="위치 (준비 중)">📍</button>
         </div>
         <button
           onClick={() => setIsAnon(!isAnon)}
@@ -206,8 +282,15 @@ export default function WritePage() {
         </button>
       </div>
 
-      {/* 하단 패딩 */}
       <div className="h-[60px]" />
     </div>
+  );
+}
+
+export default function WritePage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-[#888070]">불러오는 중…</div>}>
+      <WriteInner />
+    </Suspense>
   );
 }

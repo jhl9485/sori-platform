@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import SponsoredJobCard from "@/components/ads/SponsoredJobCard";
+import { useUserJobs } from "@/lib/userContent";
 
 const VISA_FILTERS: { label: string; value: VisaType | "전체" }[] = [
   { label: "전체", value: "전체" },
@@ -27,7 +28,11 @@ export default function JobsPage() {
   const [koreanOnly, setKoreanOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filtered = JOBS.filter((job) => {
+  const userJobs = useUserJobs();
+  const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);
+  const userIds = useMemo(() => new Set(userJobs.map((u) => u.id)), [userJobs]);
+
+  const filtered = allJobs.filter((job) => {
     if (visaFilter !== "전체" && job.visaType !== visaFilter) return false;
     if (typeFilter !== "전체" && job.jobType !== typeFilter) return false;
     if (koreanOnly && !job.koreanRequired) return false;
@@ -105,8 +110,9 @@ export default function JobsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1 flex-wrap">
-                    {job.isNew && <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>}
-                    {job.isUrgent && <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>}
+                    {userIds.has(job.id) && <span className="text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 공고</span>}
+                    {!userIds.has(job.id) && job.isNew && <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>}
+                    {!userIds.has(job.id) && job.isUrgent && <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>}
                   </div>
                   <div className="text-[0.88rem] font-bold mt-[2px] leading-tight">{job.title}</div>
                   <div className="text-[0.75rem] text-[#888070]">{job.company}</div>

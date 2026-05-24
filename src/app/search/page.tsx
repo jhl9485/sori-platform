@@ -1,24 +1,71 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { BUSINESSES } from "@/data/businesses";
 import { JOBS } from "@/data/jobs";
 import { NEWS_ITEMS } from "@/data/newsItems";
+import { REALTY_ITEMS } from "@/data/realtyItems";
+import { useUserPosts, useUserFlea, useUserJobs, useUserRealty } from "@/lib/userContent";
 
-const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스"];
+const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산"];
+const RECENT_KEY = "sori_recent_searches";
+const MAX_RECENT = 6;
 
 const HOT_SEARCHES = ["OCBC 계좌", "EP 비자", "Tanjong Pagar 맛집", "감자탕", "한국어 강사", "콘도 렌트"];
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState("전체");
+  const [recent, setRecent] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(RECENT_KEY);
+      if (raw) setRecent(JSON.parse(raw));
+    } catch {}
+  }, []);
+
+  const pushRecent = (term: string) => {
+    const t = term.trim();
+    if (!t) return;
+    const next = [t, ...recent.filter((r) => r !== t)].slice(0, MAX_RECENT);
+    setRecent(next);
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(next)); } catch {}
+  };
+
+  const removeRecent = (term: string) => {
+    const next = recent.filter((r) => r !== term);
+    setRecent(next);
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(next)); } catch {}
+  };
+
+  const clearRecent = () => {
+    setRecent([]);
+    try { localStorage.removeItem(RECENT_KEY); } catch {}
+  };
+
+  // 검색어가 바뀌면(빈→유효) 최근 검색에 기록 — 디바운스
+  useEffect(() => {
+    if (!query.trim()) return;
+    const timer = setTimeout(() => pushRecent(query), 1500);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const q = query.toLowerCase().trim();
+  const userPosts = useUserPosts();
+  const userFlea = useUserFlea();
+  const userJobs = useUserJobs();
+  const userRealty = useUserRealty();
+
+  const allPosts = [...userPosts, ...COMMUNITY_POSTS];
+  const allJobs = [...userJobs, ...JOBS];
+  const allRealty = [...userRealty, ...REALTY_ITEMS];
 
   const postResults = q
-    ? COMMUNITY_POSTS.filter(
+    ? allPosts.filter(
         (p) => p.title.toLowerCase().includes(q) || p.preview.toLowerCase().includes(q) || p.tags.some((t) => t.toLowerCase().includes(q))
       )
     : [];
@@ -28,7 +75,7 @@ export default function SearchPage() {
       )
     : [];
   const jobResults = q
-    ? JOBS.filter(
+    ? allJobs.filter(
         (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
       )
     : [];
@@ -37,8 +84,18 @@ export default function SearchPage() {
         (n) => n.title.toLowerCase().includes(q) || n.summary.toLowerCase().includes(q) || n.category.toLowerCase().includes(q)
       )
     : [];
+  const realtyResults = q
+    ? allRealty.filter(
+        (r) => r.title.toLowerCase().includes(q) || r.area.toLowerCase().includes(q) || r.mrt.toLowerCase().includes(q) || r.type.toLowerCase().includes(q)
+      )
+    : [];
+  const fleaResults = q
+    ? userFlea.filter(
+        (f) => f.title.toLowerCase().includes(q) || f.category.toLowerCase().includes(q)
+      )
+    : [];
 
-  const totalCount = postResults.length + bizResults.length + jobResults.length + newsResults.length;
+  const totalCount = postResults.length + bizResults.length + jobResults.length + newsResults.length + realtyResults.length + fleaResults.length;
   const hasResults = q.length > 0 && totalCount > 0;
   const noResults = q.length > 0 && totalCount === 0;
 
@@ -89,21 +146,56 @@ export default function SearchPage() {
         )}
       </div>
 
-      {/* 검색 전: 인기 검색어 */}
+      {/* 검색 전: 최근 + 인기 검색어 */}
       {!q && (
-        <div className="px-4 md:px-6 py-5">
-          <h2 className="text-[0.85rem] font-bold text-[#888070] mb-3">인기 검색어</h2>
-          <div className="flex flex-wrap gap-2">
-            {HOT_SEARCHES.map((term, i) => (
-              <button
-                key={term}
-                onClick={() => setQuery(term)}
-                className="flex items-center gap-1 bg-white border border-black/[0.08] rounded-full px-3 py-[6px] text-[0.78rem] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
-              >
-                <span className="text-[#D04020] font-bold text-[0.65rem]">{i + 1}</span>
-                {term}
-              </button>
-            ))}
+        <div className="px-4 md:px-6 py-5 space-y-5">
+          {recent.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-[0.85rem] font-bold text-[#888070]">최근 검색</h2>
+                <button onClick={clearRecent} className="text-[0.72rem] text-[#888070] hover:text-[#D04020]">
+                  전체 삭제
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {recent.map((term) => (
+                  <div
+                    key={term}
+                    className="flex items-center gap-1 bg-[#F5F3EE] border border-black/[0.06] rounded-full pl-3 pr-1 py-[4px] text-[0.78rem]"
+                  >
+                    <button
+                      onClick={() => setQuery(term)}
+                      className="text-[#181614] hover:text-[#D04020] transition-colors"
+                    >
+                      🕐 {term}
+                    </button>
+                    <button
+                      onClick={() => removeRecent(term)}
+                      className="w-5 h-5 flex items-center justify-center text-[#888070] hover:text-[#D04020] text-[0.7rem]"
+                      aria-label={`${term} 삭제`}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div>
+            <h2 className="text-[0.85rem] font-bold text-[#888070] mb-3">🔥 인기 검색어</h2>
+            <div className="flex flex-wrap gap-2">
+              {HOT_SEARCHES.map((term, i) => (
+                <button
+                  key={term}
+                  onClick={() => setQuery(term)}
+                  className="flex items-center gap-1 bg-white border border-black/[0.08] rounded-full px-3 py-[6px] text-[0.78rem] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+                >
+                  <span className="text-[#D04020] font-bold text-[0.65rem]">{i + 1}</span>
+                  {term}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -190,6 +282,52 @@ export default function SearchPage() {
                   <div className="flex-1 min-w-0">
                     <div className="text-[0.85rem] font-medium line-clamp-1">{news.title}</div>
                     <div className="text-[0.72rem] text-[#888070]">{news.category} · {news.time}</div>
+                  </div>
+                </Link>
+              ))}
+            </section>
+          )}
+
+          {/* 부동산 */}
+          {(activeTab === "전체" || activeTab === "부동산") && realtyResults.length > 0 && (
+            <section className="mt-3">
+              <div className="px-4 md:px-6 py-2 bg-[#F5F3EE]">
+                <span className="text-[0.75rem] font-bold text-[#888070]">부동산 {realtyResults.length}개</span>
+              </div>
+              {realtyResults.map((r) => (
+                <Link key={r.id} href={`/realty/${r.id}`} className="flex items-center gap-3 bg-white px-4 md:px-6 py-3 border-b border-black/[0.04] hover:bg-[#F5F3EE] transition-colors">
+                  <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 overflow-hidden ${r.bg}`}>
+                    {r.photos && r.photos.length > 0 ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={r.photos[0]} alt={r.title} className="w-full h-full object-cover" />
+                    ) : r.emoji}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[0.85rem] font-medium line-clamp-1">{r.title}</div>
+                    <div className="text-[0.72rem] text-[#888070]">{r.area} · <span className="text-[#D04020] font-bold">{r.price}</span></div>
+                  </div>
+                </Link>
+              ))}
+            </section>
+          )}
+
+          {/* 벼룩시장 (사용자 글만 검색) */}
+          {(activeTab === "전체") && fleaResults.length > 0 && (
+            <section className="mt-3">
+              <div className="px-4 md:px-6 py-2 bg-[#F5F3EE]">
+                <span className="text-[0.75rem] font-bold text-[#888070]">벼룩시장 {fleaResults.length}개</span>
+              </div>
+              {fleaResults.map((f) => (
+                <Link key={f.id} href={`/flea/${f.id}`} className="flex items-center gap-3 bg-white px-4 md:px-6 py-3 border-b border-black/[0.04] hover:bg-[#F5F3EE] transition-colors">
+                  <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 overflow-hidden ${f.bg}`}>
+                    {f.photos && f.photos.length > 0 ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={f.photos[0]} alt={f.title} className="w-full h-full object-cover" />
+                    ) : f.emoji}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[0.85rem] font-medium line-clamp-1">{f.title}</div>
+                    <div className="text-[0.72rem] text-[#888070]">{f.category} · <span className="text-[#D04020] font-bold">{f.price}</span></div>
                   </div>
                 </Link>
               ))}
