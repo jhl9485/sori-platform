@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
 import SponsoredBizCard from "@/components/ads/SponsoredBizCard";
+import { useUserBiz } from "@/lib/userContent";
 
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
   const [openOnly, setOpenOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const userBiz = useUserBiz();
+  const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
+  const userIds = useMemo(() => new Set(userBiz.map((u) => u.id)), [userBiz]);
 
-  const filtered = BUSINESSES.filter((b) => {
+  const filtered = allBiz.filter((b) => {
     if (selected !== "all" && b.category !== selected) return false;
     if (openOnly && !b.isOpen) return false;
     if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
@@ -26,7 +30,7 @@ export default function BusinessPage() {
 
       {/* 검색 */}
       <div className="pb-3 relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none">🔍</span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
         <input type="text" placeholder="업소명, 카테고리, 지역 검색..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-white border border-black/[0.08] rounded-full py-[10px] pl-10 pr-4 text-[0.85rem] outline-none placeholder:text-[#888070] font-[inherit] focus:border-black/[0.15] transition-colors" />
       </div>
@@ -41,14 +45,22 @@ export default function BusinessPage() {
         ))}
       </div>
 
-      {/* 영업중 필터 */}
-      <div className="flex items-center justify-between pb-4">
+      {/* 영업중 필터 + 등록 */}
+      <div className="flex items-center justify-between pb-4 gap-2">
         <button onClick={() => setOpenOnly(!openOnly)}
           className={`flex items-center gap-1 px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${openOnly ? "bg-[#2B7A50] text-white border-[#2B7A50]" : "bg-white text-[#888070] border-black/[0.08]"}`}>
           <span className={`w-[6px] h-[6px] rounded-full ${openOnly ? "bg-white animate-pulse-dot" : "bg-[#2B7A50]"}`} />
           지금 영업중
         </button>
-        <span className="text-[0.75rem] text-[#888070]"><span className="font-bold text-[#181614]">{filtered.length}개</span> 업소</span>
+        <div className="flex items-center gap-2">
+          <span className="text-[0.75rem] text-[#888070]"><span className="font-bold text-[#181614]">{filtered.length}개</span> 업소</span>
+          <Link
+            href="/business/write"
+            className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
+          >
+            🏪 업소 등록
+          </Link>
+        </div>
       </div>
 
       {/* 업소 목록 — 데스크탑 2~3열 */}
@@ -63,7 +75,15 @@ export default function BusinessPage() {
           <SponsoredBizCard />
           {filtered.map((biz) => (
             <Link key={biz.id} href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
-              <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] ${biz.bg}`}>{biz.emoji}</div>
+              <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] relative overflow-hidden ${biz.bg}`}>
+                {userIds.has(biz.id) && 'photos' in biz && Array.isArray((biz as { photos?: string[] }).photos) && (biz as { photos: string[] }).photos.length > 0 ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={(biz as { photos: string[] }).photos[0]} alt={biz.name} className="w-full h-full object-cover" />
+                ) : biz.emoji}
+                {userIds.has(biz.id) && (
+                  <span className="absolute top-2 left-2 bg-[#2B7A50] text-white text-[0.6rem] font-bold px-[5px] py-[1px] rounded">내 업소</span>
+                )}
+              </div>
               <div className="p-3">
                 <div className="flex items-center justify-between mb-1">
                   <div className="font-bold text-[0.9rem]">{biz.name}</div>
@@ -86,9 +106,13 @@ export default function BusinessPage() {
         </div>
       )}
 
-      <button className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl z-40 hover:bg-[#B83515] hover:scale-105 transition-all">
-        ➕
-      </button>
+      <Link
+        href="/business/write"
+        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        aria-label="업소 등록"
+      >
+        🏪
+      </Link>
     </div>
   );
 }

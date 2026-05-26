@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import FavoritesSection from "@/components/community/FavoritesSection";
 import CategoryTabs from "@/components/community/CategoryTabs";
@@ -32,7 +32,13 @@ export default function CommunityPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const userPosts = useUserPosts();
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(searchQuery), 150);
+    return () => clearTimeout(t);
+  }, [searchQuery]);
 
   // 사용자 글 + 정적 글 합치기 (사용자 글이 최상단)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
@@ -48,13 +54,16 @@ export default function CommunityPage() {
     ? allPosts
     : allPosts.filter((p) => p.categoryId === selectedCategory);
 
-  const searched = searchQuery
-    ? base.filter((p) =>
-        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.preview.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    : base;
+  const q = debouncedSearch.toLowerCase().trim();
+  const searched = useMemo(() => (
+    q
+      ? base.filter((p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.preview.toLowerCase().includes(q) ||
+          p.tags.some((t) => t.toLowerCase().includes(q))
+        )
+      : base
+  ), [q, base]);
 
   const sorted = [...searched].sort((a, b) => {
     if (feedTab === "인기순") {
@@ -101,7 +110,7 @@ export default function CommunityPage() {
 
       {/* 검색 */}
       <div className="px-4 md:px-6 pb-3 relative">
-        <span className="absolute left-7 md:left-9 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none">🔍</span>
+        <span className="absolute left-7 md:left-9 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
         <input
           type="text"
           value={searchQuery}
@@ -198,7 +207,7 @@ export default function CommunityPage() {
       {/* 글쓰기 플로팅 버튼 */}
       <Link
         href="/write"
-        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
       >
         ✏️
       </Link>

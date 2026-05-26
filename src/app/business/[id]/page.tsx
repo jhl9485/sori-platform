@@ -59,19 +59,32 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
 
         {/* 빠른 액션 */}
         <div className="grid grid-cols-3 gap-2 mb-5">
-          {[
-            { icon: "📞", label: "전화하기" },
-            { icon: "🗺️", label: "지도보기" },
-            { icon: "↗", label: "공유하기" },
-          ].map((action) => (
-            <button
-              key={action.label}
-              className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors"
-            >
-              <span className="text-xl">{action.icon}</span>
-              <span className="text-[0.72rem] font-medium text-[#181614]">{action.label}</span>
-            </button>
-          ))}
+          <a
+            href={`tel:${biz.phone.replace(/\s/g, "")}`}
+            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
+          >
+            <span className="text-xl leading-none">📞</span>
+            <span className="text-[0.72rem] font-medium text-[#181614]">전화하기</span>
+          </a>
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${biz.address} Singapore`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
+          >
+            <span className="text-xl leading-none">🗺️</span>
+            <span className="text-[0.72rem] font-medium text-[#181614]">지도보기</span>
+          </a>
+          <button
+            onClick={() => {
+              if (navigator.share) navigator.share({ title: biz.name, url: window.location.href });
+              else { navigator.clipboard.writeText(window.location.href); alert("링크가 복사되었습니다."); }
+            }}
+            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
+          >
+            <span className="text-xl leading-none">↗</span>
+            <span className="text-[0.72rem] font-medium text-[#181614]">공유하기</span>
+          </button>
         </div>
 
         {/* 태그 */}

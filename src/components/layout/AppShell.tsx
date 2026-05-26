@@ -7,7 +7,7 @@ import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
 
 // 사이드바 없이 단독 렌더링할 페이지
-const STANDALONE = ["/demo", "/write", "/realty/write", "/flea/write", "/jobs/write"];
+const STANDALONE = ["/demo", "/write", "/realty/write", "/flea/write", "/jobs/write", "/business/write"];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

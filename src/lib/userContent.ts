@@ -6,6 +6,7 @@ import type { CommunityPost, CommunityCategory, VisaBadge } from "@/data/communi
 import type { FleaItem } from "@/data/fleaItems";
 import type { Job } from "@/data/jobs";
 import type { RealtyItem } from "@/data/realtyItems";
+import type { Business, BizCategory } from "@/data/businesses";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -273,10 +274,65 @@ function useUserItems<TRaw, TOut>(key: string, convert: (raw: TRaw) => TOut): TO
   return items;
 }
 
+// ── 사용자 업소 ──
+interface RawUserBiz {
+  id: string;
+  photos?: string[];
+  category: BizCategory;
+  name: string;
+  area: string;
+  address: string;
+  phone: string;
+  openHours: string;
+  priceRange: string;
+  tags: string[];
+  description: string;
+  fullDescription: string;
+  koreanAvailable?: boolean;
+  createdAt: string;
+}
+
+const BIZ_EMOJI: Record<string, { emoji: string; bg: string }> = {
+  한식:    { emoji: "🍱", bg: "bg-[#FBF0EC]" },
+  뷰티:    { emoji: "💅", bg: "bg-[#EBF0FB]" },
+  마트:    { emoji: "🛒", bg: "bg-[#EBF5F0]" },
+  병원:    { emoji: "🏥", bg: "bg-[#EBF0FB]" },
+  학원:    { emoji: "📚", bg: "bg-[#FBF5E8]" },
+  부동산:  { emoji: "🏠", bg: "bg-[#FBF5E8]" },
+  법무:    { emoji: "⚖️", bg: "bg-[#F0EDE8]" },
+  이사:    { emoji: "📦", bg: "bg-[#FBF5E8]" },
+  카페:    { emoji: "☕", bg: "bg-[#F5F0FF]" },
+  주점:    { emoji: "🍻", bg: "bg-[#FBF0EC]" },
+};
+
+export function userBizToBusiness(p: RawUserBiz): Business {
+  const meta = BIZ_EMOJI[p.category] || { emoji: "🏪", bg: "bg-[#F5F3EE]" };
+  return {
+    id: p.id,
+    name: p.name,
+    category: p.category,
+    emoji: meta.emoji,
+    bg: meta.bg,
+    address: p.address || p.area,
+    area: p.area,
+    rating: 0,
+    reviewCount: 0,
+    isOpen: true,
+    openHours: p.openHours || "미입력",
+    phone: p.phone || "—",
+    tags: p.tags || [],
+    priceRange: p.priceRange || "$$",
+    description: p.description,
+    fullDescription: p.fullDescription || p.description,
+    reviews: [],
+  };
+}
+
 export const useUserPosts = () => useUserItems<RawUserPost, CommunityPost>("sori_user_posts", userPostToCommunityPost);
 export const useUserFlea = () => useUserItems<RawUserFlea, FleaItem>("sori_user_flea", userFleaToFleaItem);
 export const useUserJobs = () => useUserItems<RawUserJob, Job>("sori_user_jobs", userJobToJob);
 export const useUserRealty = () => useUserItems<RawUserRealty, RealtyItem>("sori_user_realty", userRealtyToRealtyItem);
+export const useUserBiz = () => useUserItems<RawUserBiz, Business>("sori_user_biz", userBizToBusiness);
 
 // 사용자 글 ID 집합 (배지 표시용)
 export function useUserIdSet(key: string): Set<string> {

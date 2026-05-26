@@ -24,7 +24,7 @@ export default function DesktopRightPanel() {
 
       {/* 검색 */}
       <div className="relative mt-1">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.88rem] text-[#888070] pointer-events-none">🔍</span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.88rem] text-[#888070] pointer-events-none leading-none">🔍</span>
         <input
           type="text"
           placeholder="검색..."

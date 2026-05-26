@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
+import { useProfile } from "@/lib/profile";
 
 const NAV = [
   { icon: "🏠", label: "홈",         href: "/" },
@@ -24,6 +25,7 @@ const MY_ACTIONS = [
 export default function DesktopSidebar() {
   const pathname = usePathname();
   const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
+  const { profile } = useProfile();
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-[240px] bg-[#131211] flex flex-col z-50 select-none">
@@ -124,11 +126,11 @@ export default function DesktopSidebar() {
           }`}
         >
           <div className="w-7 h-7 rounded-full bg-[#EBF0FB] flex items-center justify-center text-[0.8rem] font-bold text-[#2050A0] flex-shrink-0">
-            김
+            {profile.avatarChar}
           </div>
           <div className="flex flex-col">
-            <span className="text-[0.82rem] font-medium text-white/70">김싱가해</span>
-            <span className="text-[0.65rem] text-white/30">EP 3년차</span>
+            <span className="text-[0.82rem] font-medium text-white/70">{profile.name}</span>
+            <span className="text-[0.65rem] text-white/30">{profile.visa} {profile.yearsInSG}</span>
           </div>
         </Link>
       </div>

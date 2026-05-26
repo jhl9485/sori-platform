@@ -84,7 +84,17 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
               답글
             </button>
           )}
-          <button className="text-[0.72rem] text-[#888070] hover:text-[#D04020]">신고</button>
+          <button
+            onClick={() => {
+              const reason = window.prompt("신고 사유를 적어주세요 (선택)\n\n예: 욕설, 스팸, 음란/혐오, 광고, 허위정보 등");
+              if (reason !== null) {
+                alert("신고가 접수되었습니다. 검토 후 조치하겠습니다.");
+              }
+            }}
+            className="text-[0.72rem] text-[#888070] hover:text-[#D04020]"
+          >
+            신고
+          </button>
         </div>
         {showReply && (
           <div className="mt-2 pl-9">

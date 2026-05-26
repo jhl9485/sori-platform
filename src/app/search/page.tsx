@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { BUSINESSES } from "@/data/businesses";
@@ -17,8 +17,15 @@ const HOT_SEARCHES = ["OCBC 계좌", "EP 비자", "Tanjong Pagar 맛집", "감�
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeTab, setActiveTab] = useState("전체");
   const [recent, setRecent] = useState<string[]>([]);
+
+  // 입력 디바운스 (150ms) — 빠른 타이핑 시 매 키마다 필터링 안 함
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(query), 150);
+    return () => clearTimeout(t);
+  }, [query]);
 
   useEffect(() => {
     try {
@@ -54,46 +61,40 @@ export default function SearchPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  const q = query.toLowerCase().trim();
+  const q = debouncedQuery.toLowerCase().trim();
   const userPosts = useUserPosts();
   const userFlea = useUserFlea();
   const userJobs = useUserJobs();
   const userRealty = useUserRealty();
 
-  const allPosts = [...userPosts, ...COMMUNITY_POSTS];
-  const allJobs = [...userJobs, ...JOBS];
-  const allRealty = [...userRealty, ...REALTY_ITEMS];
+  const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
+  const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);
+  const allRealty = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
 
-  const postResults = q
-    ? allPosts.filter(
-        (p) => p.title.toLowerCase().includes(q) || p.preview.toLowerCase().includes(q) || p.tags.some((t) => t.toLowerCase().includes(q))
-      )
-    : [];
-  const bizResults = q
-    ? BUSINESSES.filter(
-        (b) => b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.tags.some((t) => t.toLowerCase().includes(q)) || b.area.toLowerCase().includes(q)
-      )
-    : [];
-  const jobResults = q
-    ? allJobs.filter(
-        (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
-      )
-    : [];
-  const newsResults = q
-    ? NEWS_ITEMS.filter(
-        (n) => n.title.toLowerCase().includes(q) || n.summary.toLowerCase().includes(q) || n.category.toLowerCase().includes(q)
-      )
-    : [];
-  const realtyResults = q
-    ? allRealty.filter(
-        (r) => r.title.toLowerCase().includes(q) || r.area.toLowerCase().includes(q) || r.mrt.toLowerCase().includes(q) || r.type.toLowerCase().includes(q)
-      )
-    : [];
-  const fleaResults = q
-    ? userFlea.filter(
-        (f) => f.title.toLowerCase().includes(q) || f.category.toLowerCase().includes(q)
-      )
-    : [];
+  const postResults = useMemo(() =>
+    q ? allPosts.filter(
+      (p) => p.title.toLowerCase().includes(q) || p.preview.toLowerCase().includes(q) || p.tags.some((t) => t.toLowerCase().includes(q))
+    ) : [], [q, allPosts]);
+  const bizResults = useMemo(() =>
+    q ? BUSINESSES.filter(
+      (b) => b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.tags.some((t) => t.toLowerCase().includes(q)) || b.area.toLowerCase().includes(q)
+    ) : [], [q]);
+  const jobResults = useMemo(() =>
+    q ? allJobs.filter(
+      (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
+    ) : [], [q, allJobs]);
+  const newsResults = useMemo(() =>
+    q ? NEWS_ITEMS.filter(
+      (n) => n.title.toLowerCase().includes(q) || n.summary.toLowerCase().includes(q) || n.category.toLowerCase().includes(q)
+    ) : [], [q]);
+  const realtyResults = useMemo(() =>
+    q ? allRealty.filter(
+      (r) => r.title.toLowerCase().includes(q) || r.area.toLowerCase().includes(q) || r.mrt.toLowerCase().includes(q) || r.type.toLowerCase().includes(q)
+    ) : [], [q, allRealty]);
+  const fleaResults = useMemo(() =>
+    q ? userFlea.filter(
+      (f) => f.title.toLowerCase().includes(q) || f.category.toLowerCase().includes(q)
+    ) : [], [q, userFlea]);
 
   const totalCount = postResults.length + bizResults.length + jobResults.length + newsResults.length + realtyResults.length + fleaResults.length;
   const hasResults = q.length > 0 && totalCount > 0;
@@ -108,7 +109,7 @@ export default function SearchPage() {
             ←
           </Link>
           <div className="flex-1 relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none">🔍</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
             <input
               type="text"
               autoFocus

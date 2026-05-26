@@ -15,6 +15,7 @@ import {
   useUserRealty,
   removeUserItem,
 } from "@/lib/userContent";
+import { useProfile } from "@/lib/profile";
 
 const TABS = [
   { id: "overview", label: "활동", icon: "📊" },
@@ -38,6 +39,8 @@ function MyPageInner() {
   const tabParam = sp.get("tab");
   const initialTab: TabId = (TABS.find((t) => t.id === tabParam)?.id) || "overview";
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
+  const { profile, setProfile } = useProfile();
+  const [editingProfile, setEditingProfile] = useState(false);
 
   useEffect(() => {
     if (tabParam) {
@@ -99,18 +102,29 @@ function MyPageInner() {
       <div className="bg-[#131211] pt-8 md:pt-10 pb-6 px-4 md:px-6 md:rounded-b-[20px]">
         <div className="flex items-end justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-[#EBF0FB] flex items-center justify-center text-3xl border-2 border-white/20">👤</div>
+            <div className="w-16 h-16 rounded-full bg-[#EBF0FB] flex items-center justify-center text-2xl border-2 border-white/20 font-bold text-[#2050A0]">
+              {profile.avatarChar}
+            </div>
             <div>
-              <div className="text-white font-bold text-[1.05rem]">김싱가해</div>
-              <div className="text-white/50 text-[0.75rem] mt-[2px]">EP 3년차 · Tanjong Pagar</div>
+              <div className="text-white font-bold text-[1.05rem]">{profile.name}</div>
+              <div className="text-white/50 text-[0.75rem] mt-[2px]">{profile.visa} {profile.yearsInSG} · {profile.area}</div>
               <div className="flex items-center gap-2 mt-2">
-                <span className="text-[0.65rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[2px] rounded-full font-medium">EP 비자</span>
+                <span className="text-[0.65rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[2px] rounded-full font-medium">{profile.visa} 비자</span>
                 <span className="text-[0.65rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[2px] rounded-full font-medium">인증회원 ✓</span>
               </div>
             </div>
           </div>
-          <button className="text-white/50 border border-white/20 px-3 py-1 rounded-full text-[0.75rem] hover:border-white/40 transition-colors">편집</button>
+          <button
+            onClick={() => setEditingProfile(true)}
+            className="text-white/50 border border-white/20 px-3 py-1 rounded-full text-[0.75rem] hover:border-white/40 hover:text-white/80 transition-colors"
+          >
+            편집
+          </button>
         </div>
+
+        {editingProfile && (
+          <ProfileEditModal profile={profile} onSave={(p) => { setProfile(p); setEditingProfile(false); }} onClose={() => setEditingProfile(false)} />
+        )}
         <div className="grid grid-cols-4 gap-2 mt-5 bg-white/[0.07] rounded-[12px] p-3">
           <Stat label="작성" value={totalUserWrites} onClick={() => setActiveTab("posts")} />
           <Stat label="저장" value={totalSaved} onClick={() => setActiveTab("saved")} />
@@ -563,28 +577,170 @@ function LikedTab({ posts, helped }: LikedTabProps) {
 }
 
 function SettingsTab() {
+  const handleMenu = (label: string) => {
+    const messages: Record<string, string> = {
+      "알림 설정": "알림 설정\n\n• 댓글 알림: ON\n• 좋아요 알림: ON\n• 채용 추천: ON\n• 마케팅: OFF\n\n(실제 서비스 연동 시 토글로 변경 가능)",
+      "개인정보 보호": "개인정보 보호\n\n• 프로필 공개 범위: 회원에게만\n• 검색 결과 노출: ON\n• 활동 기록 표시: ON\n\n(실제 서비스 연동 시 변경 가능)",
+      "언어 설정": "언어 설정\n\n현재: 한국어\n\n(영어/중국어 지원은 향후 추가 예정)",
+      "앱 정보": "SORI v1.0.0\n\n싱가포르 한인 커뮤니티 플랫폼\n© 2026 SORI\n\n약관 · 개인정보 처리방침은 곧 추가됩니다.",
+      "고객센터": "고객센터\n\n📧 support@sori.sg (가상)\n💬 카카오톡: @sori_sg (가상)\n🕐 평일 10:00 ~ 18:00 SGT",
+    };
+    alert(messages[label] || label);
+  };
+
+  const handleLogout = () => {
+    if (!window.confirm("로그아웃하시겠어요?\n저장된 글·댓글·좋아요는 그대로 유지됩니다.")) return;
+    alert("로그아웃되었습니다.\n(실제 서비스에서는 로그인 화면으로 이동)");
+  };
+
+  const handleClearData = () => {
+    if (!window.confirm("⚠️ 모든 로컬 데이터가 삭제됩니다.\n\n• 내가 쓴 글/매물/공고/벼룩\n• 저장·좋아요·도움됨 표시\n• 임시저장 / 검색 기록 / 알림 읽음 / 프로필\n\n되돌릴 수 없어요. 정말 진행하시겠어요?")) return;
+    if (!window.confirm("정말 확실하신가요? 마지막 확인이에요.")) return;
+    Object.keys(localStorage)
+      .filter((k) => k.startsWith("sori_"))
+      .forEach((k) => localStorage.removeItem(k));
+    alert("모든 로컬 데이터가 초기화되었습니다.");
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="bg-white rounded-[14px] border border-black/[0.08] overflow-hidden">
         {SETTINGS_MENU.map((item, i) => (
           <button
             key={item.label}
+            onClick={() => handleMenu(item.label)}
             className={`w-full px-4 py-4 flex items-center gap-3 hover:bg-[#F5F3EE] transition-colors text-left ${
               i < SETTINGS_MENU.length - 1 ? "border-b border-black/[0.06]" : ""
             }`}
           >
-            <span className="text-lg flex-shrink-0">{item.icon}</span>
+            <span className="text-lg flex-shrink-0 leading-none">{item.icon}</span>
             <span className="flex-1 text-[0.85rem]">{item.label}</span>
             <span className="text-[#C0BBB0] text-sm">›</span>
           </button>
         ))}
       </div>
-      <button className="w-full mt-3 py-3 text-[0.82rem] text-[#D04020] font-medium bg-white rounded-[14px] border border-black/[0.08] hover:bg-[#FBF0EC] transition-colors">
+      <button
+        onClick={handleLogout}
+        className="w-full mt-3 py-3 text-[0.82rem] text-[#D04020] font-medium bg-white rounded-[14px] border border-black/[0.08] hover:bg-[#FBF0EC] transition-colors"
+      >
         로그아웃
+      </button>
+      <button
+        onClick={handleClearData}
+        className="w-full mt-2 py-3 text-[0.78rem] text-[#888070] font-medium bg-white rounded-[14px] border border-black/[0.08] hover:bg-[#F5F3EE] hover:text-[#D04020] transition-colors"
+      >
+        🗑️ 모든 로컬 데이터 초기화
       </button>
       <div className="text-center mt-4 text-[0.65rem] text-[#C0BBB0]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
         SORI v1.0.0 · 싱가포르 한인 플랫폼
       </div>
     </>
+  );
+}
+
+// ── 프로필 편집 모달 ──
+import type { UserProfile } from "@/lib/profile";
+
+function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; onSave: (p: UserProfile) => void; onClose: () => void }) {
+  const [name, setName] = useState(profile.name);
+  const [visa, setVisa] = useState(profile.visa);
+  const [yearsInSG, setYearsInSG] = useState(profile.yearsInSG);
+  const [area, setArea] = useState(profile.area);
+
+  const VISAS = ["EP", "S-Pass", "DP", "PR", "시민권", "WH", "방문"];
+  const AREAS = ["Tanjong Pagar", "Buona Vista", "Orchard", "River Valley", "Clementi", "Bishan", "Marine Parade", "East Coast", "Woodlands", "Bedok", "Marina Bay", "기타"];
+
+  return (
+    <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center px-4" onClick={onClose}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-[16px] w-full max-w-[420px] p-5 max-h-[90vh] overflow-y-auto"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-[1rem] font-bold text-[#181614]">프로필 편집</h2>
+          <button onClick={onClose} className="text-[#888070] hover:text-[#D04020] text-lg leading-none">✕</button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-[0.72rem] text-[#888070] mb-1 block">닉네임</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value.slice(0, 12))}
+              placeholder="닉네임 (최대 12자)"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            />
+          </div>
+
+          <div>
+            <label className="text-[0.72rem] text-[#888070] mb-1 block">비자 상태</label>
+            <div className="flex flex-wrap gap-[5px]">
+              {VISAS.map((v) => (
+                <button
+                  key={v}
+                  onClick={() => setVisa(v)}
+                  className={`text-[0.75rem] rounded-full px-3 py-[5px] border transition-colors ${
+                    visa === v ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
+                  }`}
+                >
+                  {v}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="text-[0.72rem] text-[#888070] mb-1 block">싱가포르 거주 기간</label>
+            <input
+              type="text"
+              value={yearsInSG}
+              onChange={(e) => setYearsInSG(e.target.value)}
+              placeholder="예: 3년차, 6개월차"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            />
+          </div>
+
+          <div>
+            <label className="text-[0.72rem] text-[#888070] mb-1 block">거주 지역</label>
+            <div className="flex flex-wrap gap-[5px]">
+              {AREAS.map((a) => (
+                <button
+                  key={a}
+                  onClick={() => setArea(a)}
+                  className={`text-[0.72rem] rounded-full px-3 py-[4px] border transition-colors ${
+                    area === a ? "bg-[#D04020] text-white border-[#D04020]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
+                  }`}
+                >
+                  {a}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-2 mt-5">
+          <button
+            onClick={onClose}
+            className="flex-1 py-3 rounded-[10px] bg-[#F5F3EE] text-[#888070] text-[0.85rem] font-medium hover:bg-[#F0EDE8] transition-colors"
+          >
+            취소
+          </button>
+          <button
+            onClick={() => onSave({
+              name: name.trim() || profile.name,
+              visa,
+              yearsInSG: yearsInSG.trim() || profile.yearsInSG,
+              area,
+              avatarChar: (name.trim() || profile.name).charAt(0),
+            })}
+            className="flex-1 py-3 rounded-[10px] bg-[#D04020] text-white text-[0.85rem] font-bold hover:bg-[#B83515] transition-colors"
+          >
+            저장
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
