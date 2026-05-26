@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
+import { formatCount } from "@/lib/format";
 
 function isNew(time: string): boolean {
   // "분 전" / "시간 전" / "방금" → 24시간 이내로 간주
@@ -68,9 +69,9 @@ export default function CommunityPostCard({ post }: { post: CommunityPost }) {
       </div>
 
       <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08]">
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">👁 {post.views}</span>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {post.comments}</span>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">❤️ {post.likes}</span>
+        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">👁 {formatCount(post.views)}</span>
+        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {formatCount(post.comments)}</span>
+        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">❤️ {formatCount(post.likes)}</span>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleHelped(post.id); }}
           className={`ml-auto bg-[#F5F3EE] border border-black/[0.08] rounded-lg px-[10px] py-1 text-[0.75rem] font-semibold transition-colors ${helped ? "text-[#2B7A50] border-[#2B7A50]" : "text-[#181614]"}`}

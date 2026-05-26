@@ -652,14 +652,20 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
   const AREAS = ["Tanjong Pagar", "Buona Vista", "Orchard", "River Valley", "Clementi", "Bishan", "Marine Parade", "East Coast", "Woodlands", "Bedok", "Marina Bay", "기타"];
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center px-4" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-[100] bg-black/60 flex items-end sm:items-center justify-center sm:px-4 animate-fade-up"
+      onClick={onClose}
+    >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-[16px] w-full max-w-[420px] p-5 max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-t-[20px] sm:rounded-[16px] w-full sm:max-w-[420px] p-5 max-h-[88vh] overflow-y-auto shadow-[0_-8px_30px_rgba(0,0,0,0.15)] sm:shadow-none"
       >
+        {/* 모바일 grabber */}
+        <div className="sm:hidden w-10 h-1 bg-black/[0.12] rounded-full mx-auto mb-3" />
+
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-[1rem] font-bold text-[#181614]">프로필 편집</h2>
-          <button onClick={onClose} className="text-[#888070] hover:text-[#D04020] text-lg leading-none">✕</button>
+          <button onClick={onClose} className="text-[#888070] hover:text-[#D04020] text-lg leading-none w-8 h-8 flex items-center justify-center -mr-2">✕</button>
         </div>
 
         <div className="space-y-4">

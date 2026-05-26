@@ -19,6 +19,24 @@
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* iOS Safari 입력 줌 방지 (16px 이상 필요) */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  @media (min-width: 768px) {
+    input, textarea, select {
+      font-size: inherit;
+    }
+  }
+
+  /* 게시글·댓글·매물 설명 본문은 선택/복사 가능하게 */
+  article, .select-text, [data-selectable] {
+    -webkit-user-select: text;
+    user-select: text;
   }
 
   ::-webkit-scrollbar {
@@ -64,4 +82,12 @@
 
 .animate-pulse-dot {
   animation: pulse-dot 2s infinite;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

@@ -96,14 +96,14 @@ export default function RealtyPage() {
           <div className="text-[0.85rem] font-medium">조건에 맞는 매물이 없어요</div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 pb-8">
           {filtered.map((r) => (
             <Link
               key={r.id}
               href={`/realty/${r.id}`}
               className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all"
             >
-              <div className={`w-full h-[140px] flex items-center justify-center text-[3rem] relative overflow-hidden ${r.bg}`}>
+              <div className={`w-full h-[220px] sm:h-[140px] flex items-center justify-center text-[4rem] sm:text-[3rem] relative overflow-hidden ${r.bg}`}>
                 {r.photos && r.photos.length > 0 ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={r.photos[0]} alt={r.title} className="w-full h-full object-cover" />
