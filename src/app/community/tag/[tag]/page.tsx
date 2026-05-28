@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import CommunityPostCard from "@/components/community/CommunityPostCard";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
@@ -14,10 +13,6 @@ export default function TagPage({ params }: { params: { tag: string } }) {
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
 
   const matched = allPosts.filter((p) => p.tags.includes(tag));
-
-  if (matched.length === 0 && !COMMUNITY_POSTS.some((p) => p.tags.includes(tag))) {
-    // 사용자 글에도 정적 글에도 없는 태그면 404로 보내도 되지만, 빈 상태도 의미 있음
-  }
 
   // 관련 태그: 같이 등장하는 태그들
   const relatedTags = (() => {

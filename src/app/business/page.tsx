@@ -30,7 +30,7 @@ export default function BusinessPage() {
 
       {/* 검색 */}
       <div className="pb-3 relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
+        <span className="absolute left-3 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
         <input type="text" placeholder="업소명, 카테고리, 지역 검색..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-white border border-black/[0.08] rounded-full py-[10px] pl-10 pr-4 text-[0.85rem] outline-none placeholder:text-[#888070] font-[inherit] focus:border-black/[0.15] transition-colors" />
       </div>

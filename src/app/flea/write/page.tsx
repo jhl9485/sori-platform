@@ -82,7 +82,7 @@ export default function FleaWritePage() {
           area, canMeet, canDeliver, description,
         })
       );
-    } catch (e) {
+    } catch {
       // localStorage 용량 초과 시 사진 빼고 저장
       try {
         localStorage.setItem(
@@ -233,11 +233,11 @@ export default function FleaWritePage() {
             <span className="text-[0.82rem] font-medium">
               💬 가격 협상 가능
             </span>
-            <span className={`w-10 h-6 rounded-full transition-colors relative ${
+            <span className={`inline-block flex-shrink-0 w-10 h-6 rounded-full transition-colors relative ${
               negotiable ? "bg-[#2B7A50]" : "bg-[#C0BBB0]"
             }`}>
-              <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                negotiable ? "translate-x-5" : "translate-x-1"
+              <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                negotiable ? "translate-x-4" : "translate-x-0"
               }`} />
             </span>
           </button>

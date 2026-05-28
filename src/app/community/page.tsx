@@ -110,7 +110,7 @@ export default function CommunityPage() {
 
       {/* 검색 */}
       <div className="px-4 md:px-6 pb-3 relative">
-        <span className="absolute left-7 md:left-9 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
+        <span className="absolute left-7 md:left-9 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
         <input
           type="text"
           value={searchQuery}

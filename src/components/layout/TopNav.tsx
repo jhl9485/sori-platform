@@ -19,7 +19,11 @@ export default function TopNav() {
             aria-label="전체 메뉴 열기"
             className="w-9 h-9 rounded-[8px] flex items-center justify-center hover:bg-black/[0.06] active:scale-90 transition-all"
           >
-            <span className="block w-5 h-[2px] bg-[#181614] relative before:content-[''] before:absolute before:left-0 before:-top-[6px] before:w-5 before:h-[2px] before:bg-[#181614] after:content-[''] after:absolute after:left-0 after:top-[6px] after:w-5 after:h-[2px] after:bg-[#181614]" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#181614" strokeWidth="2.2" strokeLinecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
           </button>
           <Link
             href="/"

@@ -282,11 +282,11 @@ export default function BusinessWritePage() {
               🇰🇷 한국어 상담 가능
               <span className="block text-[0.68rem] text-[#888070] font-normal">한인 사용자에게 노출 우선순위 상승</span>
             </span>
-            <span className={`w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
+            <span className={`inline-block w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
               koreanAvailable ? "bg-[#D04020]" : "bg-[#C0BBB0]"
             }`}>
-              <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                koreanAvailable ? "translate-x-5" : "translate-x-1"
+              <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                koreanAvailable ? "translate-x-4" : "translate-x-0"
               }`} />
             </span>
           </button>

@@ -399,11 +399,11 @@ export default function RealtyWritePage() {
                   EP 상태 변동 시 조기 해지 가능 조항
                 </span>
               </span>
-              <span className={`w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
+              <span className={`inline-block w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
                 diplomaticClause ? "bg-[#2050A0]" : "bg-[#C0BBB0]"
               }`}>
-                <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                  diplomaticClause ? "translate-x-5" : "translate-x-1"
+                <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                  diplomaticClause ? "translate-x-4" : "translate-x-0"
                 }`} />
               </span>
             </button>

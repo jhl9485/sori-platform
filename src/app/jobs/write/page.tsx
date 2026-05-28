@@ -230,11 +230,11 @@ export default function JobsWritePage() {
                 회사에서 EP/S-Pass 등 비자 신청·스폰서 지원
               </span>
             </span>
-            <span className={`w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
+            <span className={`inline-block w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
               visaSponsored ? "bg-[#2050A0]" : "bg-[#C0BBB0]"
             }`}>
-              <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                visaSponsored ? "translate-x-5" : "translate-x-1"
+              <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                visaSponsored ? "translate-x-4" : "translate-x-0"
               }`} />
             </span>
           </button>
@@ -311,11 +311,11 @@ export default function JobsWritePage() {
                 업무에 한국어 사용이 필수인지 여부
               </span>
             </span>
-            <span className={`w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
+            <span className={`inline-block w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
               koreanRequired ? "bg-[#D04020]" : "bg-[#C0BBB0]"
             }`}>
-              <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                koreanRequired ? "translate-x-5" : "translate-x-1"
+              <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                koreanRequired ? "translate-x-4" : "translate-x-0"
               }`} />
             </span>
           </button>

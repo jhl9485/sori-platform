@@ -109,7 +109,7 @@ export default function SearchPage() {
             ←
           </Link>
           <div className="flex-1 relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
+            <span className="absolute left-3 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
             <input
               type="text"
               autoFocus
