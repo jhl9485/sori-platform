@@ -7,6 +7,7 @@ import CategoryTabs from "@/components/community/CategoryTabs";
 import CommunityPostCard from "@/components/community/CommunityPostCard";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { useUserPosts } from "@/lib/userContent";
+import SearchField from "@/components/shared/SearchField";
 
 const FEED_TABS = ["최신순", "인기순", "댓글순"] as const;
 type FeedTab = typeof FEED_TABS[number];
@@ -109,23 +110,8 @@ export default function CommunityPage() {
       ))}
 
       {/* 검색 */}
-      <div className="px-4 md:px-6 pb-3 relative">
-        <span className="absolute left-7 md:left-9 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="커뮤니티 검색..."
-          className="w-full bg-white border border-black/[0.08] rounded-full py-[10px] pl-10 pr-4 text-[0.85rem] outline-none placeholder:text-[#888070] font-[inherit] focus:border-black/[0.15] transition-colors"
-        />
-        {searchQuery && (
-          <button
-            onClick={() => setSearchQuery("")}
-            className="absolute right-7 md:right-9 top-1/2 -translate-y-1/2 text-[#888070] text-sm"
-          >
-            ✕
-          </button>
-        )}
+      <div className="px-4 md:px-6 pb-3">
+        <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="커뮤니티 검색..." />
       </div>
 
       {/* 내 커뮤니티 즐겨찾기 */}
@@ -207,7 +193,7 @@ export default function CommunityPage() {
       {/* 글쓰기 플로팅 버튼 */}
       <Link
         href="/write"
-        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
       >
         ✏️
       </Link>

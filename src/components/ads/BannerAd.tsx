@@ -46,7 +46,8 @@ export default function BannerAd({ index = 0 }: { index?: number }) {
       </div>
       <button
         onClick={() => setDismissed(true)}
-        className="absolute top-3 right-3 text-white/40 hover:text-white/70 transition-colors text-xs"
+        aria-label="광고 닫기"
+        className="absolute top-1 right-1 w-8 h-8 flex items-center justify-center text-white/40 hover:text-white/80 active:scale-90 transition-all text-sm leading-none"
       >
         ✕
       </button>

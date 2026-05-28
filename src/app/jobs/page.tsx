@@ -5,6 +5,7 @@ import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import SponsoredJobCard from "@/components/ads/SponsoredJobCard";
 import { useUserJobs } from "@/lib/userContent";
+import SearchField from "@/components/shared/SearchField";
 
 const VISA_FILTERS: { label: string; value: VisaType | "전체" }[] = [
   { label: "전체", value: "전체" },
@@ -49,10 +50,8 @@ export default function JobsPage() {
       </div>
 
       {/* 검색 */}
-      <div className="pb-3 relative">
-        <span className="absolute left-3 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
-        <input type="text" placeholder="직종, 회사, 기술스택 검색..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-white border border-black/[0.08] rounded-full py-[10px] pl-10 pr-4 text-[0.85rem] outline-none placeholder:text-[#888070] font-[inherit] focus:border-black/[0.15] transition-colors" />
+      <div className="pb-3">
+        <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="직종, 회사, 기술스택 검색..." />
       </div>
 
       {/* 필터 바 */}
@@ -141,7 +140,7 @@ export default function JobsPage() {
 
       <Link
         href="/jobs/write"
-        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#2B7A50] text-white rounded-full shadow-[0_4px_16px_rgba(43,122,80,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#246642] hover:scale-105 transition-all"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#2B7A50] text-white rounded-full shadow-[0_4px_16px_rgba(43,122,80,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#246642] hover:scale-105 transition-all"
         aria-label="공고 등록"
       >
         📋

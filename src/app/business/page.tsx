@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
 import SponsoredBizCard from "@/components/ads/SponsoredBizCard";
 import { useUserBiz } from "@/lib/userContent";
+import SearchField from "@/components/shared/SearchField";
 
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
@@ -29,10 +30,8 @@ export default function BusinessPage() {
       </div>
 
       {/* 검색 */}
-      <div className="pb-3 relative">
-        <span className="absolute left-3 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
-        <input type="text" placeholder="업소명, 카테고리, 지역 검색..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-white border border-black/[0.08] rounded-full py-[10px] pl-10 pr-4 text-[0.85rem] outline-none placeholder:text-[#888070] font-[inherit] focus:border-black/[0.15] transition-colors" />
+      <div className="pb-3">
+        <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="업소명, 카테고리, 지역 검색..." />
       </div>
 
       {/* 카테고리 탭 */}
@@ -78,7 +77,7 @@ export default function BusinessPage() {
               <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] relative overflow-hidden ${biz.bg}`}>
                 {userIds.has(biz.id) && 'photos' in biz && Array.isArray((biz as { photos?: string[] }).photos) && (biz as { photos: string[] }).photos.length > 0 ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={(biz as { photos: string[] }).photos[0]} alt={biz.name} className="w-full h-full object-cover" />
+                  <img src={(biz as { photos: string[] }).photos[0]} alt={biz.name} loading="lazy" className="w-full h-full object-cover" />
                 ) : biz.emoji}
                 {userIds.has(biz.id) && (
                   <span className="absolute top-2 left-2 bg-[#2B7A50] text-white text-[0.6rem] font-bold px-[5px] py-[1px] rounded">내 업소</span>
@@ -108,7 +107,7 @@ export default function BusinessPage() {
 
       <Link
         href="/business/write"
-        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
         aria-label="업소 등록"
       >
         🏪

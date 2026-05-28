@@ -32,7 +32,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* ── 메인 컨텐츠 영역 ── */}
       <div className="md:ml-[240px] xl:mr-[288px]">
-        <div className="pb-[80px] md:pb-10">
+        <div className="pb-[calc(72px+env(safe-area-inset-bottom))] md:pb-10">
           {children}
         </div>
       </div>

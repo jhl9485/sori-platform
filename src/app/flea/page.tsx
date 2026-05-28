@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { FLEA_ITEMS, FLEA_CATEGORIES } from "@/data/fleaItems";
 import { useUserFlea } from "@/lib/userContent";
+import SearchField from "@/components/shared/SearchField";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -15,10 +16,16 @@ const conditionColor: Record<string, string> = {
 
 export default function FleaPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
+  const [searchQuery, setSearchQuery] = useState("");
   const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
   const userFlea = useUserFlea();
   const allItems = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
-  const filtered = selectedCat === "전체" ? allItems : allItems.filter((i) => i.category === selectedCat);
+  const q = searchQuery.toLowerCase().trim();
+  const filtered = allItems.filter((i) => {
+    if (selectedCat !== "전체" && i.category !== selectedCat) return false;
+    if (q && !i.title.toLowerCase().includes(q) && !i.area.toLowerCase().includes(q)) return false;
+    return true;
+  });
   const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
 
   const toggleLike = (id: string, e: React.MouseEvent) => {
@@ -39,9 +46,8 @@ export default function FleaPage() {
       </div>
 
       {/* 검색 */}
-      <div className="pb-3 relative">
-        <span className="absolute left-3 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
-        <input type="text" placeholder="물건 이름 검색..." className="w-full bg-white border border-black/[0.08] rounded-full py-[10px] pl-10 pr-4 text-[0.85rem] outline-none placeholder:text-[#888070] font-[inherit] focus:border-black/[0.15] transition-colors" />
+      <div className="pb-3">
+        <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="물건 이름, 지역 검색..." />
       </div>
 
       {/* 카테고리 */}
@@ -74,7 +80,7 @@ export default function FleaPage() {
             <div className={`w-full h-[110px] flex items-center justify-center text-[3rem] relative overflow-hidden ${item.bg}`}>
               {item.photos && item.photos.length > 0 ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={item.photos[0]} alt={item.title} className="w-full h-full object-cover" />
+                <img src={item.photos[0]} alt={item.title} loading="lazy" className="w-full h-full object-cover" />
               ) : (
                 item.emoji
               )}
@@ -110,7 +116,7 @@ export default function FleaPage() {
 
       <Link
         href="/flea/write"
-        className="fixed bottom-[76px] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
         aria-label="물건 등록"
       >
         📸

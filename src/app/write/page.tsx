@@ -228,6 +228,7 @@ function WriteInner() {
           onChange={(e) => setContent(e.target.value)}
           onFocus={(e) => setTimeout(() => e.target.scrollIntoView({ behavior: "smooth", block: "center" }), 300)}
           rows={10}
+          maxLength={2000}
           className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none placeholder:text-[#C0BBB0] bg-transparent resize-none"
         />
 

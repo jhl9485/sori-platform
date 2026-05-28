@@ -4,7 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { NEWS_ITEMS } from "@/data/newsItems";
 
-const NEWS_CATEGORIES = ["전체", "사회", "경제", "부동산", "날씨/환경", "한인소식", "엔터"];
+// 실제 데이터에 존재하는 카테고리만 동적으로 노출 (빈 결과 방지)
+const NEWS_CATEGORIES = ["전체", ...Array.from(new Set(NEWS_ITEMS.map((n) => n.category)))];
+
+// "2026년 5월 28일" 형식 파싱 → 3일 이내면 NEW
+function isRecentNews(time: string): boolean {
+  const m = time.match(/(\d+)년\s*(\d+)월\s*(\d+)일/);
+  if (!m) return false;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  const diff = (Date.now() - d.getTime()) / 86_400_000;
+  return diff >= 0 && diff <= 3;
+}
 
 export default function NewsPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
@@ -56,6 +66,7 @@ export default function NewsPage() {
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className={`text-[0.65rem] px-2 py-[2px] rounded-full font-semibold ${news.catStyle}`}>{news.category}</span>
                   {news.isBreaking && <span className="text-[0.62rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>속보</span>}
+                  {!news.isBreaking && isRecentNews(news.time) && <span className="text-[0.62rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>}
                   <span className="text-[0.65rem] text-[#888070]">📖 {news.readTime}</span>
                 </div>
                 <div className="text-[0.9rem] font-bold leading-tight mb-1">{news.title}</div>

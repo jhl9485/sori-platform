@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Comment } from "@/data/communityPosts";
+import { useProfile } from "@/lib/profile";
 
 interface Props {
   comments: Comment[];
@@ -130,6 +131,7 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
 
 export default function CommentSection({ comments, postId }: Props) {
   // 정적 댓글 + 사용자 추가 댓글 (localStorage) 병합
+  const { profile } = useProfile();
   const [userComments, setUserComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [isAnon, setIsAnon] = useState(false);
@@ -159,8 +161,8 @@ export default function CommentSection({ comments, postId }: Props) {
         }
       : {
           id: `c-${Date.now()}`,
-          author: "나",
-          avatarChar: "나",
+          author: profile.name,
+          avatarChar: profile.avatarChar,
           avatarBg: "#FBF0EC",
           avatarColor: "#D04020",
           content: text,
@@ -195,7 +197,8 @@ export default function CommentSection({ comments, postId }: Props) {
             onChange={(e) => setNewComment(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") submitComment(); }}
             placeholder="댓글을 입력하세요..."
-            className="flex-1 bg-[#F5F3EE] rounded-full px-4 py-[8px] text-[0.82rem] outline-none"
+            maxLength={500}
+            className="flex-1 bg-[#F5F3EE] rounded-full px-4 py-[8px] text-[0.82rem] outline-none min-w-0"
           />
           <button
             onClick={submitComment}

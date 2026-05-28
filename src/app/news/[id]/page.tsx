@@ -3,6 +3,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
+import CommentSection from "@/components/shared/CommentSection";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { useToggleSet } from "@/lib/storage";
@@ -110,6 +111,9 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           </button>
         </div>
       </article>
+
+      {/* 댓글 */}
+      <CommentSection comments={[]} postId={`news-${news.id}`} />
 
       {/* 관련 기사 */}
       {related.length > 0 && (

@@ -8,6 +8,7 @@ import { JOBS } from "@/data/jobs";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import { REALTY_ITEMS } from "@/data/realtyItems";
 import { useUserPosts, useUserFlea, useUserJobs, useUserRealty } from "@/lib/userContent";
+import SearchField from "@/components/shared/SearchField";
 
 const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산"];
 const RECENT_KEY = "sori_recent_searches";
@@ -108,24 +109,8 @@ export default function SearchPage() {
           <Link href="/" className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/[0.06] transition-colors text-[#181614] flex-shrink-0">
             ←
           </Link>
-          <div className="flex-1 relative">
-            <span className="absolute left-3 inset-y-0 flex items-center text-[0.9rem] text-[#888070] pointer-events-none leading-none">🔍</span>
-            <input
-              type="text"
-              autoFocus
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="검색어를 입력하세요..."
-              className="w-full bg-white border border-black/[0.08] rounded-full py-[9px] pl-10 pr-4 text-[0.85rem] outline-none focus:border-black/[0.15] transition-colors"
-            />
-            {query && (
-              <button
-                onClick={() => setQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888070] text-sm"
-              >
-                ✕
-              </button>
-            )}
+          <div className="flex-1">
+            <SearchField value={query} onChange={setQuery} onClear={() => setQuery("")} placeholder="검색어를 입력하세요..." autoFocus />
           </div>
         </div>
 
@@ -203,10 +188,24 @@ export default function SearchPage() {
 
       {/* 결과 없음 */}
       {noResults && (
-        <div className="flex flex-col items-center justify-center py-20 text-[#888070]">
+        <div className="flex flex-col items-center justify-center py-16 text-[#888070] px-4">
           <div className="text-5xl mb-4">🔍</div>
           <div className="text-[0.9rem] font-medium mb-1">&ldquo;{query}&rdquo; 검색 결과 없음</div>
-          <div className="text-[0.78rem]">다른 키워드로 검색해보세요</div>
+          <div className="text-[0.78rem] mb-6">다른 키워드로 검색해보세요</div>
+          <div className="w-full max-w-[400px]">
+            <div className="text-[0.78rem] font-bold text-[#888070] mb-2 text-center">이런 검색어는 어때요?</div>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {HOT_SEARCHES.map((term) => (
+                <button
+                  key={term}
+                  onClick={() => setQuery(term)}
+                  className="bg-white border border-black/[0.08] rounded-full px-3 py-[6px] text-[0.78rem] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+                >
+                  {term}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
@@ -300,7 +299,7 @@ export default function SearchPage() {
                   <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 overflow-hidden ${r.bg}`}>
                     {r.photos && r.photos.length > 0 ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={r.photos[0]} alt={r.title} className="w-full h-full object-cover" />
+                      <img src={r.photos[0]} alt={r.title} loading="lazy" className="w-full h-full object-cover" />
                     ) : r.emoji}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -323,7 +322,7 @@ export default function SearchPage() {
                   <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 overflow-hidden ${f.bg}`}>
                     {f.photos && f.photos.length > 0 ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={f.photos[0]} alt={f.title} className="w-full h-full object-cover" />
+                      <img src={f.photos[0]} alt={f.title} loading="lazy" className="w-full h-full object-cover" />
                     ) : f.emoji}
                   </div>
                   <div className="flex-1 min-w-0">

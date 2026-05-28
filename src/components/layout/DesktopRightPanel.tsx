@@ -23,14 +23,13 @@ export default function DesktopRightPanel() {
     <aside className="fixed top-0 right-0 h-screen w-[288px] border-l border-black/[0.06] bg-[#F5F3EE] overflow-y-auto flex flex-col gap-4 p-5 scrollbar-hide">
 
       {/* 검색 */}
-      <div className="relative mt-1">
-        <span className="absolute left-3 inset-y-0 flex items-center text-[0.88rem] text-[#888070] pointer-events-none leading-none">🔍</span>
-        <input
-          type="text"
-          placeholder="검색..."
-          className="w-full bg-white border border-black/[0.08] rounded-full py-[8px] pl-9 pr-4 text-[0.82rem] outline-none placeholder:text-[#C0BBB0] focus:border-black/[0.15] transition-colors"
-        />
-      </div>
+      <Link
+        href="/search"
+        className="flex items-center bg-white border border-black/[0.08] rounded-full px-4 py-[8px] mt-1 hover:border-black/[0.15] transition-colors"
+      >
+        <span className="text-[0.88rem] text-[#888070] mr-2 leading-none flex-shrink-0">🔍</span>
+        <span className="text-[0.82rem] text-[#C0BBB0]">검색...</span>
+      </Link>
 
       {/* 실시간 정보 */}
       <div className="bg-white rounded-[14px] border border-black/[0.08] p-4">

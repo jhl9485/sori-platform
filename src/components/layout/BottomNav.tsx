@@ -21,7 +21,8 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/97 backdrop-blur-md border-t border-black/[0.07] z-50 flex items-stretch h-[64px] pb-[env(safe-area-inset-bottom)]">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/97 backdrop-blur-md border-t border-black/[0.07] z-50 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex items-stretch h-[64px]">
       {/* 가로 스크롤 즐겨찾기 영역 */}
       <div className="flex-1 flex items-center overflow-x-auto scrollbar-hide px-1">
         {scrollItems.map((tab) => {
@@ -63,6 +64,7 @@ export default function BottomNav() {
         <span className="text-[1.2rem] leading-none">✏️</span>
         <span className="text-[0.6rem] font-bold">글쓰기</span>
       </Link>
+      </div>
     </div>
   );
 }
