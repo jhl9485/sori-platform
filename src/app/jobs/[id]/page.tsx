@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
+import OwnerActions from "@/components/shared/OwnerActions";
 import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 
@@ -14,6 +15,8 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
 
   if (!job) return notFound();
 
+  const isMine = userJobs.some((j) => j.id === params.id);
+
   return (
     <div className="max-w-[680px] mx-auto">
       <PageHeader
@@ -23,6 +26,16 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           </button>
         }
       />
+
+      {isMine && (
+        <OwnerActions
+          storageKey="sori_user_jobs"
+          itemId={job.id}
+          editHref={`/jobs/write?edit=${job.id}`}
+          backHref="/jobs"
+          label="내 공고"
+        />
+      )}
 
       {/* 상단 회사 정보 */}
       <div className="bg-white px-4 md:px-6 pt-5 pb-4">

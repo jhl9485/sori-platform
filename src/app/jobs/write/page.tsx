@@ -1,11 +1,31 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { JobType, VisaType } from "@/data/jobs";
+import { updateUserItem } from "@/lib/userContent";
 
 const DRAFT_KEY = "sori_jobs_draft";
 const SAVED_KEY = "sori_user_jobs";
+
+interface RawJob {
+  id: string;
+  company: string;
+  title: string;
+  jobType: JobType;
+  visaSponsored: boolean;
+  visaType: VisaType;
+  salary: string;
+  location: string;
+  koreanRequired: boolean;
+  tags: string[];
+  deadline: string;
+  description: string;
+  requirements: string[];
+  preferred: string[];
+  benefits: string[];
+  createdAt: string;
+}
 
 const JOB_TYPES: JobType[] = ["정규직", "계약직", "파트타임", "인턴"];
 const VISA_TYPES: VisaType[] = ["EP", "S-Pass", "WP", "무관"];
@@ -21,8 +41,12 @@ const COMMON_TAGS = [
   "통번역", "교사", "물류", "고객응대", "운전",
 ];
 
-export default function JobsWritePage() {
+function JobsWriteInner() {
   const router = useRouter();
+  const sp = useSearchParams();
+  const editId = sp.get("edit") || "";
+  const isEditMode = !!editId;
+
   const [hydrated, setHydrated] = useState(false);
   const [restored, setRestored] = useState(false);
 
@@ -44,6 +68,37 @@ export default function JobsWritePage() {
 
   useEffect(() => {
     try {
+      if (isEditMode) {
+        const raw = localStorage.getItem(SAVED_KEY);
+        if (raw) {
+          const arr = JSON.parse(raw) as RawJob[];
+          const t = arr.find((x) => x.id === editId);
+          if (t) {
+            setCompany(t.company || "");
+            setTitle(t.title || "");
+            setJobType(t.jobType || "정규직");
+            setVisaSponsored(t.visaSponsored ?? true);
+            setVisaType(t.visaType || "EP");
+            // salary "$min ~ $max" 형태 파싱
+            const m = (t.salary || "").match(/\$([0-9,]+)\s*~\s*\$([0-9,]+)/);
+            if (m) {
+              setSalaryMin(m[1].trim());
+              setSalaryMax(m[2].trim());
+            }
+            setLocation(t.location || "");
+            setKoreanRequired(!!t.koreanRequired);
+            setTags(t.tags || []);
+            setDeadline(t.deadline || "");
+            setDescription(t.description || "");
+            setRequirements((t.requirements || []).join("\n"));
+            setPreferred((t.preferred || []).join("\n"));
+            setBenefits((t.benefits || []).join("\n"));
+          }
+        }
+        setHydrated(true);
+        return;
+      }
+
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const d = JSON.parse(raw);
@@ -68,10 +123,11 @@ export default function JobsWritePage() {
       }
     } catch {}
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || isEditMode) return;
     if (!company && !title && !description) {
       localStorage.removeItem(DRAFT_KEY);
       return;
@@ -86,7 +142,7 @@ export default function JobsWritePage() {
         })
       );
     } catch {}
-  }, [hydrated, company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax,
+  }, [hydrated, isEditMode, company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax,
       location, koreanRequired, tags, deadline, description, requirements, preferred, benefits]);
 
   const canSubmit =
@@ -99,11 +155,9 @@ export default function JobsWritePage() {
 
   const submit = () => {
     if (!canSubmit) return;
-    try {
-      const raw = localStorage.getItem(SAVED_KEY);
-      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
-      arr.unshift({
-        id: `user-job-${Date.now()}`,
+
+    if (isEditMode) {
+      const patch = {
         company: company.trim(), title: title.trim(),
         jobType, visaSponsored, visaType,
         salary: `$${salaryMin.trim()} ~ $${salaryMax.trim()}`,
@@ -113,11 +167,42 @@ export default function JobsWritePage() {
         requirements: requirements.split("\n").map((s) => s.trim()).filter(Boolean),
         preferred: preferred.split("\n").map((s) => s.trim()).filter(Boolean),
         benefits: benefits.split("\n").map((s) => s.trim()).filter(Boolean),
-        createdAt: new Date().toISOString(),
-      });
+      };
+      const ok = updateUserItem<RawJob>(SAVED_KEY, editId, patch);
+      if (!ok) {
+        alert("수정 실패: 공고를 찾을 수 없거나 저장 공간이 부족합니다.");
+        return;
+      }
+      alert("✅ 공고가 수정되었습니다!");
+      router.push(`/jobs/${editId}`);
+      return;
+    }
+
+    const newItem = {
+      id: `user-job-${Date.now()}`,
+      company: company.trim(), title: title.trim(),
+      jobType, visaSponsored, visaType,
+      salary: `$${salaryMin.trim()} ~ $${salaryMax.trim()}`,
+      location: location.trim(), koreanRequired, tags,
+      deadline: deadline.trim(),
+      description: description.trim(),
+      requirements: requirements.split("\n").map((s) => s.trim()).filter(Boolean),
+      preferred: preferred.split("\n").map((s) => s.trim()).filter(Boolean),
+      benefits: benefits.split("\n").map((s) => s.trim()).filter(Boolean),
+      createdAt: new Date().toISOString(),
+    };
+    try {
+      const raw = localStorage.getItem(SAVED_KEY);
+      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
+      arr.unshift(newItem);
       localStorage.setItem(SAVED_KEY, JSON.stringify(arr));
       localStorage.removeItem(DRAFT_KEY);
-    } catch {}
+    } catch (err) {
+      console.error("공고 저장 실패:", err);
+      alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 공고를 삭제 후 다시 시도해주세요.");
+      return;
+    }
+    alert("✅ 공고가 등록되었습니다!");
     router.push("/jobs");
   };
 
@@ -136,7 +221,7 @@ export default function JobsWritePage() {
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
         <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
-        <span className="text-[0.9rem] font-bold">채용 공고 등록</span>
+        <span className="text-[0.9rem] font-bold">{isEditMode ? "공고 수정" : "채용 공고 등록"}</span>
         <button
           onClick={submit}
           disabled={!canSubmit}
@@ -144,7 +229,7 @@ export default function JobsWritePage() {
             canSubmit ? "bg-[#2B7A50] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
         >
-          등록
+          {isEditMode ? "수정" : "등록"}
         </button>
       </div>
 
@@ -419,6 +504,14 @@ export default function JobsWritePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function JobsWritePage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-[#888070]">불러오는 중…</div>}>
+      <JobsWriteInner />
+    </Suspense>
   );
 }
 

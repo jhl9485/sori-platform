@@ -5,9 +5,22 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { CATEGORIES } from "@/data/categories";
 import type { VisaBadge } from "@/data/communityPosts";
+import { updateUserItem } from "@/lib/userContent";
 
 const DRAFT_KEY = "sori_write_draft";
 const POSTS_KEY = "sori_user_posts";
+
+interface RawPost {
+  id: string;
+  categoryId: string;
+  categoryLabel: string;
+  title: string;
+  content: string;
+  tags: string[];
+  visaBadge: VisaBadge;
+  isAnon: boolean;
+  createdAt: string;
+}
 
 const VISA_BADGES: { id: VisaBadge; label: string; color: string }[] = [
   { id: null,    label: "표시 안 함", color: "bg-white text-[#888070] border-black/[0.08]" },
@@ -32,6 +45,8 @@ function WriteInner() {
   const router = useRouter();
   const sp = useSearchParams();
   const presetCat = sp.get("cat") || "";
+  const editId = sp.get("edit") || "";
+  const isEditMode = !!editId;
 
   const [selectedCat, setSelectedCat] = useState(presetCat);
   const [title, setTitle] = useState("");
@@ -45,6 +60,26 @@ function WriteInner() {
 
   useEffect(() => {
     try {
+      // 수정 모드: 기존 글 로드 (draft 무시)
+      if (isEditMode) {
+        const raw = localStorage.getItem(POSTS_KEY);
+        if (raw) {
+          const arr = JSON.parse(raw) as RawPost[];
+          const target = arr.find((p) => p.id === editId);
+          if (target) {
+            setSelectedCat(target.categoryId || "");
+            setTitle(target.title || "");
+            setContent(target.content || "");
+            setIsAnon(!!target.isAnon);
+            setTagsInput((target.tags || []).join(", "));
+            setVisaBadge(target.visaBadge ?? null);
+          }
+        }
+        setHydrated(true);
+        return;
+      }
+
+      // 신규 모드: draft 복원
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const draft = JSON.parse(raw) as DraftState;
@@ -64,7 +99,7 @@ function WriteInner() {
   }, []);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || isEditMode) return; // 수정 모드는 draft 저장 안 함
     if (!title && !content && !selectedCat) {
       localStorage.removeItem(DRAFT_KEY);
       return;
@@ -75,7 +110,7 @@ function WriteInner() {
         JSON.stringify({ selectedCat, title, content, isAnon, tagsInput, visaBadge } satisfies DraftState)
       );
     } catch {}
-  }, [selectedCat, title, content, isAnon, tagsInput, visaBadge, hydrated]);
+  }, [selectedCat, title, content, isAnon, tagsInput, visaBadge, hydrated, isEditMode]);
 
   const selectedCatData = CATEGORIES.find((c) => c.id === selectedCat);
   const canSubmit = selectedCat && title.trim().length > 0 && content.trim().length > 0;
@@ -92,11 +127,9 @@ function WriteInner() {
 
   const submit = () => {
     if (!canSubmit) return;
-    try {
-      const raw = localStorage.getItem(POSTS_KEY);
-      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
-      arr.unshift({
-        id: `user-${Date.now()}`,
+
+    if (isEditMode) {
+      const ok = updateUserItem<RawPost>(POSTS_KEY, editId, {
         categoryId: selectedCat,
         categoryLabel: selectedCatData?.label || "",
         title: title.trim(),
@@ -104,11 +137,39 @@ function WriteInner() {
         tags: tagsPreview,
         visaBadge: isAnon ? null : visaBadge,
         isAnon,
-        createdAt: new Date().toISOString(),
       });
+      if (!ok) {
+        alert("수정 실패: 글을 찾을 수 없어요.");
+        return;
+      }
+      alert("✅ 글이 수정되었습니다!");
+      router.push(`/community/${editId}`);
+      return;
+    }
+
+    const newItem = {
+      id: `user-${Date.now()}`,
+      categoryId: selectedCat,
+      categoryLabel: selectedCatData?.label || "",
+      title: title.trim(),
+      content: content.trim(),
+      tags: tagsPreview,
+      visaBadge: isAnon ? null : visaBadge,
+      isAnon,
+      createdAt: new Date().toISOString(),
+    };
+    try {
+      const raw = localStorage.getItem(POSTS_KEY);
+      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
+      arr.unshift(newItem);
       localStorage.setItem(POSTS_KEY, JSON.stringify(arr));
       localStorage.removeItem(DRAFT_KEY);
-    } catch {}
+    } catch (err) {
+      console.error("글 저장 실패:", err);
+      alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 글을 삭제 후 다시 시도해주세요.");
+      return;
+    }
+    alert("✅ 글이 등록되었습니다!");
     router.push("/community");
   };
 
@@ -128,7 +189,7 @@ function WriteInner() {
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
         <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
-        <span className="text-[0.9rem] font-bold">글쓰기</span>
+        <span className="text-[0.9rem] font-bold">{isEditMode ? "글 수정" : "글쓰기"}</span>
         <button
           onClick={submit}
           disabled={!canSubmit}
@@ -136,7 +197,7 @@ function WriteInner() {
             canSubmit ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
         >
-          등록
+          {isEditMode ? "수정" : "등록"}
         </button>
       </div>
 

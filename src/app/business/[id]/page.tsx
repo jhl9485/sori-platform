@@ -3,17 +3,21 @@
 import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
+import OwnerActions from "@/components/shared/OwnerActions";
 import { BUSINESSES } from "@/data/businesses";
 import { useToggleSet } from "@/lib/storage";
+import { useUserBiz } from "@/lib/userContent";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
-  const biz = BUSINESSES.find((b) => b.id === params.id);
+  const userBiz = useUserBiz();
+  const biz = userBiz.find((b) => b.id === params.id) || BUSINESSES.find((b) => b.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_biz");
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
 
   if (!biz) return notFound();
 
   const saved = isSaved(biz.id);
+  const isMine = userBiz.some((b) => b.id === params.id);
 
   const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(biz.rating));
 
@@ -26,6 +30,17 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           </button>
         }
       />
+
+      {/* 본인 등록 업소면 수정/삭제 진입점 */}
+      {isMine && (
+        <OwnerActions
+          storageKey="sori_user_biz"
+          itemId={biz.id}
+          editHref={`/business/write?edit=${biz.id}`}
+          backHref="/business"
+          label="내 업소"
+        />
+      )}
 
       {/* 히어로 */}
       <div className={`w-full h-[160px] flex items-center justify-center text-[5rem] ${biz.bg}`}>

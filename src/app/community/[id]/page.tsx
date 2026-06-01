@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import CommentSection from "@/components/shared/CommentSection";
+import OwnerActions from "@/components/shared/OwnerActions";
 import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
@@ -27,6 +28,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
   const liked = isLiked(post.id);
   const saved = isSaved(post.id);
+  const isMine = userPosts.some((p) => p.id === post.id);
   const allPosts = [...userPosts, ...COMMUNITY_POSTS];
   const comments = SAMPLE_COMMENTS[post.id] || [];
 
@@ -70,6 +72,16 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
           </div>
         }
       />
+
+      {isMine && (
+        <OwnerActions
+          storageKey="sori_user_posts"
+          itemId={post.id}
+          editHref={`/write?edit=${post.id}`}
+          backHref="/community"
+          label="내 글"
+        />
+      )}
 
       <article className="bg-white">
         {/* 포스트 헤더 */}

@@ -1,12 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
+import { updateUserItem } from "@/lib/userContent";
 import type { FleaStatus } from "@/data/fleaItems";
 
 const DRAFT_KEY = "sori_flea_draft";
 const SAVED_KEY = "sori_user_flea";
+
+interface RawFlea {
+  id: string;
+  category: string;
+  title: string;
+  price: string;
+  originalPrice: string | null;
+  negotiable: boolean;
+  condition: string;
+  area: string;
+  canMeet: boolean;
+  canDeliver: boolean;
+  description: string;
+  status: FleaStatus;
+  photos: string[];
+  createdAt: string;
+}
 
 // 거래 상태는 등록 시 항상 "판매중"으로 시작 — 작성자가 상세 페이지에서 변경
 const DEFAULT_FLEA_STATUS: FleaStatus = "판매중";
@@ -30,8 +48,12 @@ const AREAS = [
   "Woodlands", "Jurong East", "Bedok", "Marina Bay",
 ];
 
-export default function FleaWritePage() {
+function FleaWriteInner() {
   const router = useRouter();
+  const sp = useSearchParams();
+  const editId = sp.get("edit") || "";
+  const isEditMode = !!editId;
+
   const [hydrated, setHydrated] = useState(false);
   const [restored, setRestored] = useState(false);
 
@@ -47,9 +69,32 @@ export default function FleaWritePage() {
   const [canDeliver, setCanDeliver] = useState(false);
   const [description, setDescription] = useState("");
 
-  // 임시저장 복원
+  // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {
     try {
+      if (isEditMode) {
+        const raw = localStorage.getItem(SAVED_KEY);
+        if (raw) {
+          const arr = JSON.parse(raw) as RawFlea[];
+          const target = arr.find((x) => x.id === editId);
+          if (target) {
+            setPhotos(target.photos || []);
+            setCategory(target.category || "");
+            setTitle(target.title || "");
+            setPrice(target.price || "");
+            setOriginalPrice(target.originalPrice || "");
+            setNegotiable(target.negotiable ?? true);
+            setCondition((target.condition as Condition) || "상태좋음");
+            setArea(target.area || "");
+            setCanMeet(target.canMeet ?? true);
+            setCanDeliver(target.canDeliver ?? false);
+            setDescription(target.description || "");
+          }
+        }
+        setHydrated(true);
+        return;
+      }
+
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const d = JSON.parse(raw);
@@ -70,10 +115,11 @@ export default function FleaWritePage() {
       }
     } catch {}
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || isEditMode) return;
     if (!title && !description) {
       localStorage.removeItem(DRAFT_KEY);
       return;
@@ -98,29 +144,73 @@ export default function FleaWritePage() {
         );
       } catch {}
     }
-  }, [hydrated, photos, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description]);
+  }, [hydrated, isEditMode, photos, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description]);
 
   const canSubmit = category && title.trim() && price.trim() && description.trim();
 
   const submit = () => {
     if (!canSubmit) return;
-    try {
-      const raw = localStorage.getItem(SAVED_KEY);
-      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
-      arr.unshift({
-        id: `user-flea-${Date.now()}`,
-        photos,
+
+    if (isEditMode) {
+      const patch = {
         category, title: title.trim(),
         price: price.trim(), originalPrice: originalPrice.trim() || null,
         negotiable, condition, area,
         canMeet, canDeliver,
         description: description.trim(),
-        status: DEFAULT_FLEA_STATUS,
-        createdAt: new Date().toISOString(),
-      });
+      };
+      // 사진 포함 시도, 실패 시 사진 빼고 재시도
+      let ok = updateUserItem<RawFlea>(SAVED_KEY, editId, { ...patch, photos });
+      let savedWithoutPhotos = false;
+      if (!ok) {
+        ok = updateUserItem<RawFlea>(SAVED_KEY, editId, { ...patch, photos: [] });
+        if (ok) savedWithoutPhotos = true;
+      }
+      if (!ok) {
+        alert("수정 실패: 저장 공간이 부족하거나 글을 찾을 수 없어요.");
+        return;
+      }
+      alert(savedWithoutPhotos
+        ? "⚠️ 저장 공간 부족으로 사진 없이 수정됐어요."
+        : "✅ 물건이 수정되었습니다!");
+      router.push(`/flea/${editId}`);
+      return;
+    }
+
+    const base = {
+      id: `user-flea-${Date.now()}`,
+      category, title: title.trim(),
+      price: price.trim(), originalPrice: originalPrice.trim() || null,
+      negotiable, condition, area,
+      canMeet, canDeliver,
+      description: description.trim(),
+      status: DEFAULT_FLEA_STATUS,
+      createdAt: new Date().toISOString(),
+    };
+    let savedWithoutPhotos = false;
+    const tryStore = (photosToSave: string[]) => {
+      const raw = localStorage.getItem(SAVED_KEY);
+      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
+      arr.unshift({ ...base, photos: photosToSave });
       localStorage.setItem(SAVED_KEY, JSON.stringify(arr));
-      localStorage.removeItem(DRAFT_KEY);
-    } catch {}
+    };
+    try {
+      tryStore(photos);
+    } catch {
+      // 용량 초과 — 사진 제외하고 재시도
+      try {
+        tryStore([]);
+        savedWithoutPhotos = true;
+      } catch (err2) {
+        console.error("물건 저장 실패:", err2);
+        alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 물건을 삭제 후 다시 시도해주세요.");
+        return;
+      }
+    }
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+    alert(savedWithoutPhotos
+      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐습니다."
+      : "✅ 물건이 등록되었습니다!");
     router.push("/flea");
   };
 
@@ -138,7 +228,7 @@ export default function FleaWritePage() {
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
         <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
-        <span className="text-[0.9rem] font-bold">중고 물건 등록</span>
+        <span className="text-[0.9rem] font-bold">{isEditMode ? "물건 수정" : "중고 물건 등록"}</span>
         <button
           onClick={submit}
           disabled={!canSubmit}
@@ -146,7 +236,7 @@ export default function FleaWritePage() {
             canSubmit ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
         >
-          등록
+          {isEditMode ? "수정" : "등록"}
         </button>
       </div>
 
@@ -341,6 +431,14 @@ export default function FleaWritePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function FleaWritePage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-[#888070]">불러오는 중…</div>}>
+      <FleaWriteInner />
+    </Suspense>
   );
 }
 

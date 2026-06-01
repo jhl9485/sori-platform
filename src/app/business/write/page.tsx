@@ -1,12 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
+import { updateUserItem } from "@/lib/userContent";
 import type { BizCategory } from "@/data/businesses";
 
 const DRAFT_KEY = "sori_biz_draft";
 const SAVED_KEY = "sori_user_biz";
+
+interface RawBiz {
+  id: string;
+  category: BizCategory;
+  name: string;
+  area: string;
+  address: string;
+  phone: string;
+  openHours: string;
+  priceRange: string;
+  tags: string[];
+  description: string;
+  fullDescription: string;
+  koreanAvailable: boolean;
+  photos: string[];
+  createdAt: string;
+}
 
 const CATEGORIES: { id: BizCategory; icon: string }[] = [
   { id: "한식",   icon: "🍱" },
@@ -34,8 +52,12 @@ const PRICE_RANGES = [
   { id: "$$$$", label: "$$$$", sub: "$80+/인" },
 ];
 
-export default function BusinessWritePage() {
+function BusinessWriteInner() {
   const router = useRouter();
+  const sp = useSearchParams();
+  const editId = sp.get("edit") || "";
+  const isEditMode = !!editId;
+
   const [hydrated, setHydrated] = useState(false);
   const [restored, setRestored] = useState(false);
 
@@ -54,6 +76,30 @@ export default function BusinessWritePage() {
 
   useEffect(() => {
     try {
+      if (isEditMode) {
+        const raw = localStorage.getItem(SAVED_KEY);
+        if (raw) {
+          const arr = JSON.parse(raw) as RawBiz[];
+          const t = arr.find((x) => x.id === editId);
+          if (t) {
+            setPhotos(t.photos || []);
+            setCategory(t.category || "");
+            setName(t.name || "");
+            setArea(t.area || "");
+            setAddress(t.address || "");
+            setPhone(t.phone || "");
+            setOpenHours(t.openHours || "");
+            setPriceRange(t.priceRange || "$$");
+            setTagsInput((t.tags || []).join(", "));
+            setDescription(t.description || "");
+            setFullDescription(t.fullDescription || "");
+            setKoreanAvailable(t.koreanAvailable ?? true);
+          }
+        }
+        setHydrated(true);
+        return;
+      }
+
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const d = JSON.parse(raw);
@@ -75,10 +121,11 @@ export default function BusinessWritePage() {
       }
     } catch {}
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || isEditMode) return;
     if (!name && !description && photos.length === 0) {
       localStorage.removeItem(DRAFT_KEY);
       return;
@@ -96,7 +143,7 @@ export default function BusinessWritePage() {
         }));
       } catch {}
     }
-  }, [hydrated, photos, category, name, area, address, phone, openHours, priceRange, tagsInput, description, fullDescription, koreanAvailable]);
+  }, [hydrated, isEditMode, photos, category, name, area, address, phone, openHours, priceRange, tagsInput, description, fullDescription, koreanAvailable]);
 
   const parseTags = (s: string) => s.split(/[,\s#]+/).map(t => t.trim()).filter(Boolean).slice(0, 6);
   const tags = parseTags(tagsInput);
@@ -105,13 +152,10 @@ export default function BusinessWritePage() {
 
   const submit = () => {
     if (!canSubmit) return;
-    try {
-      const raw = localStorage.getItem(SAVED_KEY);
-      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
-      arr.unshift({
-        id: `user-biz-${Date.now()}`,
-        photos,
-        category, name: name.trim(),
+
+    if (isEditMode) {
+      const patch = {
+        category: category as BizCategory, name: name.trim(),
         area, address: address.trim(),
         phone: phone.trim(),
         openHours: openHours.trim(),
@@ -120,11 +164,60 @@ export default function BusinessWritePage() {
         description: description.trim(),
         fullDescription: fullDescription.trim() || description.trim(),
         koreanAvailable,
-        createdAt: new Date().toISOString(),
-      });
+      };
+      let ok = updateUserItem<RawBiz>(SAVED_KEY, editId, { ...patch, photos });
+      let savedWithoutPhotos = false;
+      if (!ok) {
+        ok = updateUserItem<RawBiz>(SAVED_KEY, editId, { ...patch, photos: [] });
+        if (ok) savedWithoutPhotos = true;
+      }
+      if (!ok) {
+        alert("수정 실패: 저장 공간이 부족하거나 업소를 찾을 수 없어요.");
+        return;
+      }
+      alert(savedWithoutPhotos
+        ? "⚠️ 저장 공간 부족으로 사진 없이 수정됐어요."
+        : "✅ 업소가 수정되었습니다!");
+      router.push(`/business/${editId}`);
+      return;
+    }
+
+    const base = {
+      id: `user-biz-${Date.now()}`,
+      category, name: name.trim(),
+      area, address: address.trim(),
+      phone: phone.trim(),
+      openHours: openHours.trim(),
+      priceRange,
+      tags,
+      description: description.trim(),
+      fullDescription: fullDescription.trim() || description.trim(),
+      koreanAvailable,
+      createdAt: new Date().toISOString(),
+    };
+    let savedWithoutPhotos = false;
+    const tryStore = (photosToSave: string[]) => {
+      const raw = localStorage.getItem(SAVED_KEY);
+      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
+      arr.unshift({ ...base, photos: photosToSave });
       localStorage.setItem(SAVED_KEY, JSON.stringify(arr));
-      localStorage.removeItem(DRAFT_KEY);
-    } catch {}
+    };
+    try {
+      tryStore(photos);
+    } catch {
+      try {
+        tryStore([]);
+        savedWithoutPhotos = true;
+      } catch (err2) {
+        console.error("업소 저장 실패:", err2);
+        alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 업소를 삭제 후 다시 시도해주세요.");
+        return;
+      }
+    }
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+    alert(savedWithoutPhotos
+      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐습니다."
+      : "✅ 업소가 등록되었습니다!");
     router.push("/business");
   };
 
@@ -142,7 +235,7 @@ export default function BusinessWritePage() {
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
         <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
-        <span className="text-[0.9rem] font-bold">한인 업소 등록</span>
+        <span className="text-[0.9rem] font-bold">{isEditMode ? "업소 수정" : "한인 업소 등록"}</span>
         <button
           onClick={submit}
           disabled={!canSubmit}
@@ -150,7 +243,7 @@ export default function BusinessWritePage() {
             canSubmit ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
         >
-          등록
+          {isEditMode ? "수정" : "등록"}
         </button>
       </div>
 
@@ -348,6 +441,14 @@ export default function BusinessWritePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function BusinessWritePage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-[#888070]">불러오는 중…</div>}>
+      <BusinessWriteInner />
+    </Suspense>
   );
 }
 

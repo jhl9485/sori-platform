@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
+import OwnerActions from "@/components/shared/OwnerActions";
 import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
@@ -84,6 +85,17 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           {item.deal}
         </span>
       </div>
+
+      {/* 본인 매물이면 수정/삭제 진입점 */}
+      {isMine && (
+        <OwnerActions
+          storageKey="sori_user_realty"
+          itemId={item.id}
+          editHref={`/realty/write?edit=${item.id}`}
+          backHref="/realty"
+          label="내 매물"
+        />
+      )}
 
       {/* 본인 매물이면 거래 상태 변경 UI */}
       {isMine && (

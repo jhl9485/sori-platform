@@ -1,12 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { RealtyDeal, RealtyType, RealtyRegion, RealtyStatus } from "@/data/realtyItems";
 import ImageUploader from "@/components/shared/ImageUploader";
+import { updateUserItem } from "@/lib/userContent";
 
 const DRAFT_KEY = "sori_realty_draft";
 const SAVED_KEY = "sori_user_realty";
+
+interface RawRealty {
+  id: string;
+  deal: RealtyDeal;
+  type: RealtyType;
+  region: RealtyRegion;
+  status: RealtyStatus;
+  title: string;
+  area: string;
+  address: string;
+  mrt: string;
+  bedrooms: number;
+  bathrooms: number;
+  sizeSqft: string;
+  floor: string;
+  furnished: string;
+  price: string;
+  availableFrom: string;
+  diplomaticClause: boolean;
+  amenities: string[];
+  description: string;
+  photos: string[];
+  createdAt: string;
+}
 
 const DEALS: { id: RealtyDeal; label: string; sub: string }[] = [
   { id: "매매",      label: "매매",     sub: "Sale" },
@@ -28,13 +53,6 @@ const REGIONS: RealtyRegion[] = ["동부", "서부", "남부", "북부", "중부
 // 거래 상태는 등록 시 항상 "가능"으로 시작 — 작성자가 상세 페이지에서 변경
 const DEFAULT_REALTY_STATUS: RealtyStatus = "가능";
 
-// 동/네 추천 (선택은 지역 → 동네 순)
-const AREAS = [
-  "Tanjong Pagar", "Buona Vista", "Orchard", "River Valley",
-  "Clementi", "Bishan", "Marine Parade", "East Coast",
-  "Woodlands", "Jurong East", "Bedok", "Marina Bay",
-];
-
 const FURNISHINGS = ["풀퍼니시", "세미퍼니시", "언퍼니시"] as const;
 type Furnishing = (typeof FURNISHINGS)[number];
 
@@ -44,8 +62,12 @@ const AMENITY_OPTIONS = [
   "공유 사무공간", "키즈룸",
 ];
 
-export default function RealtyWritePage() {
+function RealtyWriteInner() {
   const router = useRouter();
+  const sp = useSearchParams();
+  const editId = sp.get("edit") || "";
+  const isEditMode = !!editId;
+
   const [hydrated, setHydrated] = useState(false);
   const [restored, setRestored] = useState(false);
 
@@ -69,9 +91,39 @@ export default function RealtyWritePage() {
   const [amenities, setAmenities] = useState<string[]>([]);
   const [description, setDescription] = useState("");
 
-  // 임시저장 복원
+  // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {
     try {
+      if (isEditMode) {
+        const raw = localStorage.getItem(SAVED_KEY);
+        if (raw) {
+          const arr = JSON.parse(raw) as RawRealty[];
+          const t = arr.find((x) => x.id === editId);
+          if (t) {
+            setPhotos(t.photos || []);
+            setDeal(t.deal || "");
+            setType(t.type || "");
+            setRegion(t.region || "");
+            setTitle(t.title || "");
+            setArea(t.area || "");
+            setAddress(t.address || "");
+            setMrt(t.mrt || "");
+            setBedrooms(t.bedrooms ?? 1);
+            setBathrooms(t.bathrooms ?? 1);
+            setSizeSqft(t.sizeSqft || "");
+            setFloor(t.floor || "");
+            setFurnished((t.furnished as Furnishing) || "풀퍼니시");
+            setPrice(t.price || "");
+            setAvailableFrom(t.availableFrom || "");
+            setDiplomaticClause(!!t.diplomaticClause);
+            setAmenities(t.amenities || []);
+            setDescription(t.description || "");
+          }
+        }
+        setHydrated(true);
+        return;
+      }
+
       const raw = localStorage.getItem(DRAFT_KEY);
       if (raw) {
         const d = JSON.parse(raw);
@@ -99,11 +151,12 @@ export default function RealtyWritePage() {
       }
     } catch {}
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 자동 임시저장
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || isEditMode) return;
     if (!title && !address && !description) {
       localStorage.removeItem(DRAFT_KEY);
       return;
@@ -131,7 +184,7 @@ export default function RealtyWritePage() {
       } catch {}
     }
   }, [
-    hydrated, photos, deal, type, region, title, area, address, mrt, bedrooms, bathrooms,
+    hydrated, isEditMode, photos, deal, type, region, title, area, address, mrt, bedrooms, bathrooms,
     sizeSqft, floor, furnished, price, availableFrom,
     diplomaticClause, amenities, description,
   ]);
@@ -147,23 +200,66 @@ export default function RealtyWritePage() {
 
   const submit = () => {
     if (!canSubmit) return;
-    try {
-      const raw = localStorage.getItem(SAVED_KEY);
-      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
-      arr.unshift({
-        id: `user-realty-${Date.now()}`,
-        photos,
-        deal, type, region, status: DEFAULT_REALTY_STATUS,
+
+    if (isEditMode) {
+      const patch = {
+        deal: deal as RealtyDeal, type: type as RealtyType, region: region as RealtyRegion,
         title: title.trim(), area, address: address.trim(),
         mrt: mrt.trim(), bedrooms, bathrooms, sizeSqft: sizeSqft.trim(),
         floor: floor.trim(), furnished, price: price.trim(),
         availableFrom, diplomaticClause, amenities,
         description: description.trim(),
-        createdAt: new Date().toISOString(),
-      });
+      };
+      let ok = updateUserItem<RawRealty>(SAVED_KEY, editId, { ...patch, photos });
+      let savedWithoutPhotos = false;
+      if (!ok) {
+        ok = updateUserItem<RawRealty>(SAVED_KEY, editId, { ...patch, photos: [] });
+        if (ok) savedWithoutPhotos = true;
+      }
+      if (!ok) {
+        alert("수정 실패: 저장 공간이 부족하거나 매물을 찾을 수 없어요.");
+        return;
+      }
+      alert(savedWithoutPhotos
+        ? "⚠️ 저장 공간 부족으로 사진 없이 수정됐어요."
+        : "✅ 매물이 수정되었습니다!");
+      router.push(`/realty/${editId}`);
+      return;
+    }
+
+    const base = {
+      id: `user-realty-${Date.now()}`,
+      deal, type, region, status: DEFAULT_REALTY_STATUS,
+      title: title.trim(), area, address: address.trim(),
+      mrt: mrt.trim(), bedrooms, bathrooms, sizeSqft: sizeSqft.trim(),
+      floor: floor.trim(), furnished, price: price.trim(),
+      availableFrom, diplomaticClause, amenities,
+      description: description.trim(),
+      createdAt: new Date().toISOString(),
+    };
+    let savedWithoutPhotos = false;
+    const tryStore = (photosToSave: string[]) => {
+      const raw = localStorage.getItem(SAVED_KEY);
+      const arr = raw ? (JSON.parse(raw) as unknown[]) : [];
+      arr.unshift({ ...base, photos: photosToSave });
       localStorage.setItem(SAVED_KEY, JSON.stringify(arr));
-      localStorage.removeItem(DRAFT_KEY);
-    } catch {}
+    };
+    try {
+      tryStore(photos);
+    } catch {
+      try {
+        tryStore([]);
+        savedWithoutPhotos = true;
+      } catch (err2) {
+        console.error("매물 저장 실패:", err2);
+        alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 매물을 삭제 후 다시 시도해주세요.");
+        return;
+      }
+    }
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+    alert(savedWithoutPhotos
+      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐습니다."
+      : "✅ 매물이 등록되었습니다!");
     router.push("/realty");
   };
 
@@ -183,7 +279,7 @@ export default function RealtyWritePage() {
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
         <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
-        <span className="text-[0.9rem] font-bold">부동산 매물 등록</span>
+        <span className="text-[0.9rem] font-bold">{isEditMode ? "매물 수정" : "부동산 매물 등록"}</span>
         <button
           onClick={submit}
           disabled={!canSubmit}
@@ -191,7 +287,7 @@ export default function RealtyWritePage() {
             canSubmit ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
         >
-          등록
+          {isEditMode ? "수정" : "등록"}
         </button>
       </div>
 
@@ -294,22 +390,13 @@ export default function RealtyWritePage() {
                 </button>
               ))}
             </div>
-            <div className="text-[0.72rem] text-[#888070] mb-1">한인 밀집 지역 추천</div>
-            <div className="flex flex-wrap gap-[5px] mb-3">
-              {AREAS.map((a) => (
-                <button
-                  key={a}
-                  onClick={() => setArea(a)}
-                  className={`text-[0.72rem] rounded-full px-3 py-[5px] border transition-colors ${
-                    area === a
-                      ? "bg-[#181614] text-white border-[#181614]"
-                      : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
-                  }`}
-                >
-                  {a}
-                </button>
-              ))}
-            </div>
+            <input
+              type="text"
+              value={area}
+              onChange={(e) => setArea(e.target.value)}
+              placeholder="🏙 동네 / 지구 (예: Tanjong Pagar)"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+            />
             <input
               type="text"
               value={address}
@@ -491,6 +578,14 @@ export default function RealtyWritePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function RealtyWritePage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-[#888070]">불러오는 중…</div>}>
+      <RealtyWriteInner />
+    </Suspense>
   );
 }
 

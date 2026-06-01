@@ -4,6 +4,7 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
+import OwnerActions from "@/components/shared/OwnerActions";
 import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
 import { useUserFlea, updateUserItem } from "@/lib/userContent";
 
@@ -81,7 +82,18 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         )}
       </div>
 
-      {/* 본인 매물이면 거래 상태 변경 UI */}
+      {/* 본인 물건이면 수정/삭제 진입점 */}
+      {isMine && (
+        <OwnerActions
+          storageKey="sori_user_flea"
+          itemId={item.id}
+          editHref={`/flea/write?edit=${item.id}`}
+          backHref="/flea"
+          label="내 물건"
+        />
+      )}
+
+      {/* 본인 물건이면 거래 상태 변경 UI */}
       {isMine && (
         <div className="bg-[#EBF5F0] border-y border-[#2B7A50]/20 px-4 md:px-6 py-3">
           <div className="text-[0.72rem] font-bold text-[#2B7A50] mb-2">🔑 내 매물 — 거래 상태를 직접 변경할 수 있어요</div>
