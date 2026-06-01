@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/kill-port.cjs 3000",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "kill": "node scripts/kill-port.cjs 3000"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.15.11",
