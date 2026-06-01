@@ -4,17 +4,23 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import OwnerActions from "@/components/shared/OwnerActions";
+import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { BUSINESSES } from "@/data/businesses";
 import { useToggleSet } from "@/lib/storage";
 import { useUserBiz } from "@/lib/userContent";
+import { useHydrated } from "@/lib/hooks";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
+  const hydrated = useHydrated();
   const userBiz = useUserBiz();
   const biz = userBiz.find((b) => b.id === params.id) || BUSINESSES.find((b) => b.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_biz");
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
 
-  if (!biz) return notFound();
+  if (!biz) {
+    if (!hydrated) return <DetailSkeleton />;
+    return notFound();
+  }
 
   const saved = isSaved(biz.id);
   const isMine = userBiz.some((b) => b.id === params.id);

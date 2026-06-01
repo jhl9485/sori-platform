@@ -6,13 +6,16 @@ import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import CommentSection from "@/components/shared/CommentSection";
 import OwnerActions from "@/components/shared/OwnerActions";
+import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { useToggleSet } from "@/lib/storage";
+import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
 
 export default function PostDetailPage({ params }: { params: { id: string } }) {
+  const hydrated = useHydrated();
   const userPosts = useUserPosts();
   const post = userPosts.find((p) => p.id === params.id) || COMMUNITY_POSTS.find((p) => p.id === params.id);
   const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
@@ -24,7 +27,10 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post?.id]);
 
-  if (!post) return notFound();
+  if (!post) {
+    if (!hydrated) return <DetailSkeleton />;
+    return notFound();
+  }
 
   const liked = isLiked(post.id);
   const saved = isSaved(post.id);

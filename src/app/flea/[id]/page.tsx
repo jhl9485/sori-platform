@@ -5,8 +5,10 @@ import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import OwnerActions from "@/components/shared/OwnerActions";
+import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
 import { useUserFlea, updateUserItem } from "@/lib/userContent";
+import { useHydrated } from "@/lib/hooks";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -23,12 +25,16 @@ const FLEA_STATUSES: { id: FleaStatus; label: string; color: string }[] = [
 ];
 
 export default function FleaDetailPage({ params }: { params: { id: string } }) {
+  const hydrated = useHydrated();
   const userFlea = useUserFlea();
   const item = userFlea.find((i) => i.id === params.id) || FLEA_ITEMS.find((i) => i.id === params.id);
   const [liked, setLiked] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
-  if (!item) return notFound();
+  if (!item) {
+    if (!hydrated) return <DetailSkeleton />;
+    return notFound();
+  }
 
   // 본인 글 여부 — 사용자가 직접 등록한 매물만 상태 변경 가능
   const isMine = userFlea.some((i) => i.id === params.id);

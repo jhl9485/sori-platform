@@ -4,16 +4,22 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import OwnerActions from "@/components/shared/OwnerActions";
+import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
+import { useHydrated } from "@/lib/hooks";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
+  const hydrated = useHydrated();
   const userJobs = useUserJobs();
   const job = userJobs.find((j) => j.id === params.id) || JOBS.find((j) => j.id === params.id);
   const [saved, setSaved] = useState(false);
   const [applied, setApplied] = useState(false);
 
-  if (!job) return notFound();
+  if (!job) {
+    if (!hydrated) return <DetailSkeleton />;
+    return notFound();
+  }
 
   const isMine = userJobs.some((j) => j.id === params.id);
 

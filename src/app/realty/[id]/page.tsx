@@ -5,9 +5,11 @@ import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import OwnerActions from "@/components/shared/OwnerActions";
+import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
+import { useHydrated } from "@/lib/hooks";
 
 const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
   { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
@@ -16,11 +18,15 @@ const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
 ];
 
 export default function RealtyDetailPage({ params }: { params: { id: string } }) {
+  const hydrated = useHydrated();
   const userRealty = useUserRealty();
   const item = userRealty.find((r) => r.id === params.id) || REALTY_ITEMS.find((r) => r.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_realty");
 
-  if (!item) return notFound();
+  if (!item) {
+    if (!hydrated) return <DetailSkeleton />;
+    return notFound();
+  }
 
   const saved = isSaved(item.id);
   const allItems = [...userRealty, ...REALTY_ITEMS];
