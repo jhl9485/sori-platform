@@ -22,15 +22,27 @@ export default function LiveBar() {
     let cancelled = false;
 
     const loadFx = async () => {
+      const apply = (krw: number) => {
+        if (cancelled) return;
+        setData((d) => ({ ...d, fx: Math.round(krw), fxLoaded: true, updatedAt: new Date() }));
+      };
+      // 메인: open.er-api.com (CORS OK, 키 불필요, 매일 업데이트)
       try {
-        const r = await fetch("https://api.frankfurter.app/latest?from=SGD&to=KRW", { cache: "no-store" });
-        if (!r.ok) return;
-        const j = await r.json();
-        if (cancelled || !j?.rates?.KRW) return;
-        setData((d) => ({ ...d, fx: Math.round(j.rates.KRW), fxLoaded: true, updatedAt: new Date() }));
-      } catch {
-        if (!cancelled) setData((d) => ({ ...d, fxLoaded: true }));
-      }
+        const r = await fetch("https://open.er-api.com/v6/latest/SGD", { cache: "no-store" });
+        if (r.ok) {
+          const j = await r.json();
+          if (j?.rates?.KRW) { apply(j.rates.KRW); return; }
+        }
+      } catch {}
+      // 폴백: frankfurter.dev (ECB 기반)
+      try {
+        const r = await fetch("https://api.frankfurter.dev/v1/latest?from=SGD&to=KRW", { cache: "no-store" });
+        if (r.ok) {
+          const j = await r.json();
+          if (j?.rates?.KRW) { apply(j.rates.KRW); return; }
+        }
+      } catch {}
+      if (!cancelled) setData((d) => ({ ...d, fxLoaded: true }));
     };
 
     const loadWeather = async () => {
