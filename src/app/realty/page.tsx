@@ -2,24 +2,13 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { REALTY_ITEMS, REALTY_CATEGORIES, REALTY_DEALS } from "@/data/realtyItems";
+import {
+  REALTY_ITEMS, REALTY_CATEGORIES, REALTY_DEALS, REALTY_REGIONS, REALTY_STATUSES,
+  getRegion,
+} from "@/data/realtyItems";
 import { useUserRealty } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 
-// 한인 밀집 지역 (부동산 필터용)
-const REALTY_AREAS = [
-  "전체", "Tanjong Pagar", "Buona Vista", "Orchard", "River Valley",
-  "Clementi", "Bishan", "Marine Parade", "East Coast",
-  "Woodlands", "Jurong East", "Bedok", "기타",
-];
-const REALTY_BEDROOMS = ["전체", "1", "2", "3", "4+"] as const;
-const REALTY_PRICE_RANGES = [
-  { id: "all",  label: "전체" },
-  { id: "0-3000",     label: "~ $3K/월" },
-  { id: "3000-5000",  label: "$3~5K/월" },
-  { id: "5000-7000",  label: "$5~7K/월" },
-  { id: "7000-9999999", label: "$7K+/월" },
-] as const;
 const REALTY_PERIODS = [
   { id: "all", label: "전체" },
   { id: "1w",  label: "1주" },
@@ -27,21 +16,11 @@ const REALTY_PERIODS = [
   { id: "6m",  label: "6개월" },
 ] as const;
 
-function parsePriceNum(s: string): number {
-  // "$4,700/월" → 4700, "$1,850,000" → 1850000 (매매)
-  const m = s.match(/\$?\s*([\d,]+)/);
-  if (!m) return 0;
-  return parseInt(m[1].replace(/,/g, ""), 10) || 0;
-}
-
 function withinPeriod(time: string, period: string): boolean {
   if (period === "all") return true;
-  // time 형식: "2시간 전" / "어제" / "5일 전" / "2026년 5월 25일"
   if (/방금|분 전|시간 전|어제/.test(time)) return true;
   const dayMatch = time.match(/(\d+)일 전/);
-  const days = dayMatch ? parseInt(dayMatch[1], 10) : 0;
-  // 절대 날짜 형식이면 파싱
-  let computedDays = days;
+  let computedDays = dayMatch ? parseInt(dayMatch[1], 10) : 0;
   if (computedDays === 0) {
     const abs = time.match(/(\d{4})년\s*(\d+)월\s*(\d+)일/);
     if (abs) {
@@ -55,12 +34,17 @@ function withinPeriod(time: string, period: string): boolean {
   return true;
 }
 
+const STATUS_STYLE: Record<string, string> = {
+  "가능":   "bg-[#EBF5F0] text-[#2B7A50] border-[#2B7A50]/30",
+  "예약중": "bg-[#FBF5E8] text-[#B07010] border-[#B07010]/30",
+  "완료":   "bg-[#F0EDE8] text-[#888070] border-black/[0.15]",
+};
+
 export default function RealtyPage() {
   const [selectedType, setSelectedType] = useState("all");
   const [selectedDeal, setSelectedDeal] = useState<(typeof REALTY_DEALS)[number]>("전체");
-  const [selectedArea, setSelectedArea] = useState("전체");
-  const [selectedBedrooms, setSelectedBedrooms] = useState<string>("전체");
-  const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
+  const [selectedRegion, setSelectedRegion] = useState<(typeof REALTY_REGIONS)[number]>("전체");
+  const [selectedStatus, setSelectedStatus] = useState<(typeof REALTY_STATUSES)[number]>("전체");
   const [selectedPeriod, setSelectedPeriod] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -71,17 +55,13 @@ export default function RealtyPage() {
   const filtered = allItems.filter((r) => {
     if (selectedType !== "all" && r.type !== selectedType) return false;
     if (selectedDeal !== "전체" && r.deal !== selectedDeal) return false;
-    if (selectedArea !== "전체" && r.area !== selectedArea) return false;
-    if (selectedBedrooms !== "전체") {
-      const want = selectedBedrooms === "4+" ? 4 : parseInt(selectedBedrooms, 10);
-      if (selectedBedrooms === "4+") {
-        if (r.bedrooms < 4) return false;
-      } else if (r.bedrooms !== want) return false;
+    if (selectedRegion !== "전체") {
+      const reg = r.region || getRegion(r.area);
+      if (reg !== selectedRegion) return false;
     }
-    if (selectedPriceRange !== "all" && r.deal !== "매매") {
-      const [lo, hi] = selectedPriceRange.split("-").map(Number);
-      const p = parsePriceNum(r.price);
-      if (p < lo || p > hi) return false;
+    if (selectedStatus !== "전체") {
+      const st = r.status || "가능";
+      if (st !== selectedStatus) return false;
     }
     if (selectedPeriod !== "all" && !withinPeriod(r.time, selectedPeriod)) return false;
     if (searchQuery) {
@@ -93,14 +73,13 @@ export default function RealtyPage() {
   });
 
   const resetFilters = () => {
-    setSelectedType("all"); setSelectedDeal("전체"); setSelectedArea("전체");
-    setSelectedBedrooms("전체"); setSelectedPriceRange("all");
-    setSelectedPeriod("all"); setSearchQuery("");
+    setSelectedType("all"); setSelectedDeal("전체"); setSelectedRegion("전체");
+    setSelectedStatus("전체"); setSelectedPeriod("all"); setSearchQuery("");
   };
   const activeFilterCount =
     (selectedType !== "all" ? 1 : 0) + (selectedDeal !== "전체" ? 1 : 0) +
-    (selectedArea !== "전체" ? 1 : 0) + (selectedBedrooms !== "전체" ? 1 : 0) +
-    (selectedPriceRange !== "all" ? 1 : 0) + (selectedPeriod !== "all" ? 1 : 0);
+    (selectedRegion !== "전체" ? 1 : 0) + (selectedStatus !== "전체" ? 1 : 0) +
+    (selectedPeriod !== "all" ? 1 : 0);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -173,61 +152,41 @@ export default function RealtyPage() {
       {/* 상세 필터 패널 */}
       {showAdvanced && (
         <div className="bg-white border border-black/[0.08] rounded-[12px] p-3 mb-3 space-y-3">
-          {/* 지역구분 */}
+          {/* 지역구분 (동서남북중) */}
           <div>
             <div className="text-[0.7rem] font-bold text-[#888070] mb-[5px]">📍 지역구분</div>
             <div className="flex flex-wrap gap-[5px]">
-              {REALTY_AREAS.map((a) => (
+              {REALTY_REGIONS.map((r) => (
                 <button
-                  key={a}
-                  onClick={() => setSelectedArea(a)}
-                  className={`text-[0.7rem] rounded-full px-[10px] py-[3px] border transition-colors ${
-                    selectedArea === a
+                  key={r}
+                  onClick={() => setSelectedRegion(r)}
+                  className={`text-[0.78rem] font-medium rounded-full px-[14px] py-[5px] border transition-colors ${
+                    selectedRegion === r
                       ? "bg-[#181614] text-white border-[#181614]"
                       : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
                   }`}
                 >
-                  {a}
+                  {r}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* 침실 수 */}
+          {/* 거래 상태 */}
           <div>
-            <div className="text-[0.7rem] font-bold text-[#888070] mb-[5px]">🛏 침실 수</div>
+            <div className="text-[0.7rem] font-bold text-[#888070] mb-[5px]">🚦 거래 상태</div>
             <div className="flex flex-wrap gap-[5px]">
-              {REALTY_BEDROOMS.map((b) => (
+              {REALTY_STATUSES.map((s) => (
                 <button
-                  key={b}
-                  onClick={() => setSelectedBedrooms(b)}
-                  className={`text-[0.72rem] rounded-full px-[12px] py-[4px] border transition-colors ${
-                    selectedBedrooms === b
-                      ? "bg-[#2050A0] text-white border-[#2050A0]"
-                      : "bg-white text-[#888070] border-black/[0.08]"
-                  }`}
-                >
-                  {b}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 가격대 (임대 한정) */}
-          <div>
-            <div className="text-[0.7rem] font-bold text-[#888070] mb-[5px]">💰 임대료 (월세)</div>
-            <div className="flex flex-wrap gap-[5px]">
-              {REALTY_PRICE_RANGES.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => setSelectedPriceRange(p.id)}
-                  className={`text-[0.7rem] rounded-full px-[10px] py-[3px] border transition-colors ${
-                    selectedPriceRange === p.id
+                  key={s}
+                  onClick={() => setSelectedStatus(s)}
+                  className={`text-[0.78rem] font-medium rounded-full px-[14px] py-[5px] border transition-colors ${
+                    selectedStatus === s
                       ? "bg-[#2B7A50] text-white border-[#2B7A50]"
-                      : "bg-white text-[#888070] border-black/[0.08]"
+                      : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
                   }`}
                 >
-                  {p.label}
+                  {s}
                 </button>
               ))}
             </div>
@@ -241,10 +200,10 @@ export default function RealtyPage() {
                 <button
                   key={p.id}
                   onClick={() => setSelectedPeriod(p.id)}
-                  className={`text-[0.7rem] rounded-full px-[10px] py-[3px] border transition-colors ${
+                  className={`text-[0.78rem] font-medium rounded-full px-[14px] py-[5px] border transition-colors ${
                     selectedPeriod === p.id
                       ? "bg-[#B07010] text-white border-[#B07010]"
-                      : "bg-white text-[#888070] border-black/[0.08]"
+                      : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
                   }`}
                 >
                   {p.label}
@@ -296,6 +255,11 @@ export default function RealtyPage() {
                 <span className="absolute top-2 right-2 bg-white/90 text-[#181614] text-[0.62rem] font-bold px-2 py-[2px] rounded-full">
                   {r.deal}
                 </span>
+                {r.status && r.status !== "가능" && (
+                  <span className={`absolute bottom-2 left-2 text-[0.62rem] font-bold px-2 py-[2px] rounded-full border ${STATUS_STYLE[r.status]}`}>
+                    {r.status}
+                  </span>
+                )}
                 {r.photos && r.photos.length > 1 && (
                   <span className="absolute bottom-2 right-2 text-[0.62rem] bg-black/60 text-white px-[6px] py-[2px] rounded-full font-medium">
                     📷 {r.photos.length}

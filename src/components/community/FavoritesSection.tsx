@@ -8,7 +8,7 @@ interface Props {
   selectedId: string;
 }
 
-const MAX_CAT_FAV = 9; // 커뮤니티 카테고리 전체
+const MAX_CAT_FAV = 8; // 커뮤니티 카테고리 즐겨찾기 최대 8개
 
 export default function FavoritesSection({ onSelect, selectedId }: Props) {
   const [favorites, setFavorites] = useState<string[]>(DEFAULT_FAVORITES);

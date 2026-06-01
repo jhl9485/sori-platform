@@ -198,6 +198,8 @@ interface RawUserRealty {
   photos?: string[];
   deal: RealtyItem["deal"];
   type: RealtyItem["type"];
+  region?: NonNullable<RealtyItem["region"]>;
+  status?: NonNullable<RealtyItem["status"]>;
   title: string;
   area: string;
   address: string;
@@ -220,6 +222,7 @@ const REALTY_EMOJI: Record<string, { emoji: string; bg: string }> = {
   HDB: { emoji: "🏢", bg: "bg-[#FBF5E8]" },
   서비스아파트: { emoji: "🏨", bg: "bg-[#FBF0EC]" },
   하우스: { emoji: "🏡", bg: "bg-[#F5F0FF]" },
+  사무실: { emoji: "🏢", bg: "bg-[#F0EDE8]" },
 };
 
 export function userRealtyToRealtyItem(p: RawUserRealty): RealtyItem {
@@ -229,6 +232,8 @@ export function userRealtyToRealtyItem(p: RawUserRealty): RealtyItem {
     id: p.id,
     type: p.type,
     deal: p.deal,
+    region: p.region,
+    status: p.status || "가능",
     emoji: meta.emoji,
     bg: meta.bg,
     title: p.title,

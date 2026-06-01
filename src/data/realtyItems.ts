@@ -1,15 +1,19 @@
-export type RealtyType = "콘도" | "HDB" | "서비스아파트" | "하우스";
-export type RealtyDeal = "임대" | "매매" | "단기임대";
+export type RealtyType = "콘도" | "HDB" | "서비스아파트" | "하우스" | "사무실";
+export type RealtyDeal = "매매" | "룸렌트" | "렌트" | "룸메이트";
+export type RealtyStatus = "가능" | "예약중" | "완료";
+export type RealtyRegion = "동부" | "서부" | "남부" | "북부" | "중부";
 
 export interface RealtyItem {
   id: string;
   type: RealtyType;
   deal: RealtyDeal;
+  status?: RealtyStatus;     // 거래 상태 (기본: 가능)
+  region?: RealtyRegion;     // 동서남북중 5구역
   emoji: string;
   bg: string;
   title: string;
   price: string;             // "$4,500/월" 또는 "$1,850,000"
-  area: string;              // 동네
+  area: string;              // 동네 (Tanjong Pagar 등 그대로 표시)
   address: string;           // 상세 주소
   size: string;              // "92 sqm" / "990 sqft"
   bedrooms: number;
@@ -36,15 +40,38 @@ export const REALTY_CATEGORIES = [
   { id: "HDB",   label: "HDB",    icon: "🏢" },
   { id: "서비스아파트", label: "서비스", icon: "🏨" },
   { id: "하우스", label: "하우스", icon: "🏡" },
+  { id: "사무실", label: "사무실", icon: "🏢" },
 ];
 
-export const REALTY_DEALS = ["전체", "임대", "매매", "단기임대"] as const;
+export const REALTY_DEALS = ["전체", "매매", "룸렌트", "렌트", "룸메이트"] as const;
+export const REALTY_STATUSES = ["전체", "가능", "예약중", "완료"] as const;
+export const REALTY_REGIONS = ["전체", "동부", "서부", "남부", "북부", "중부"] as const;
+
+// 한인 밀집 동네 → 동서남북중 매핑
+export const AREA_TO_REGION: Record<string, RealtyRegion> = {
+  // 동부
+  "Marine Parade": "동부", "East Coast": "동부", "Bedok": "동부", "Tampines": "동부", "Pasir Ris": "동부", "Changi": "동부",
+  // 서부
+  "Clementi": "서부", "Buona Vista": "서부", "Jurong East": "서부", "Jurong West": "서부", "Tuas": "서부", "Pioneer": "서부", "One-North": "서부",
+  // 남부
+  "Tanjong Pagar": "남부", "Marina Bay": "남부", "Sentosa": "남부", "Bukit Merah": "남부", "Telok Blangah": "남부", "Raffles Place": "남부",
+  // 북부
+  "Woodlands": "북부", "Yishun": "북부", "Sembawang": "북부", "Admiralty": "북부",
+  // 중부
+  "Orchard": "중부", "River Valley": "중부", "Bukit Timah": "중부", "Bishan": "중부", "Toa Payoh": "중부", "Novena": "중부", "Bugis": "중부",
+};
+
+export function getRegion(area: string): RealtyRegion | undefined {
+  return AREA_TO_REGION[area];
+}
 
 export const REALTY_ITEMS: RealtyItem[] = [
   {
     id: "1",
     type: "콘도",
-    deal: "임대",
+    deal: "렌트",
+    status: "가능",
+    region: "남부",
     emoji: "🏙️",
     bg: "bg-[#EBF0FB]",
     title: "Tanjong Pagar 한인 밀집 콘도 2BR — Diplomatic Clause 포함",
@@ -79,7 +106,9 @@ export const REALTY_ITEMS: RealtyItem[] = [
   {
     id: "2",
     type: "콘도",
-    deal: "임대",
+    deal: "렌트",
+    status: "예약중",
+    region: "서부",
     emoji: "🌳",
     bg: "bg-[#EBF5F0]",
     title: "Buona Vista 패밀리 콘도 3BR — 한국학교/국제학교 통학권",
@@ -114,7 +143,9 @@ export const REALTY_ITEMS: RealtyItem[] = [
   {
     id: "3",
     type: "HDB",
-    deal: "임대",
+    deal: "렌트",
+    status: "가능",
+    region: "서부",
     emoji: "🏢",
     bg: "bg-[#FBF5E8]",
     title: "Clementi HDB 4-Room — 가성비 최고, EP 가능",
@@ -150,6 +181,8 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
     id: "4",
     type: "콘도",
     deal: "매매",
+    status: "가능",
+    region: "중부",
     emoji: "💎",
     bg: "bg-[#F5F0FF]",
     title: "River Valley 럭셔리 콘도 3BR 매매 — PR 자격 추천",
@@ -184,7 +217,9 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
   {
     id: "5",
     type: "서비스아파트",
-    deal: "단기임대",
+    deal: "룸렌트",
+    status: "완료",
+    region: "중부",
     emoji: "🏨",
     bg: "bg-[#FBF0EC]",
     title: "Orchard 서비스 아파트 1BR — 6개월 단기 (이사 전 임시)",
@@ -220,7 +255,9 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
   {
     id: "6",
     type: "콘도",
-    deal: "임대",
+    deal: "룸메이트",
+    status: "가능",
+    region: "동부",
     emoji: "🌊",
     bg: "bg-[#EBF0FB]",
     title: "East Coast 1BR — 부부/싱글 추천, 신축 콘도",

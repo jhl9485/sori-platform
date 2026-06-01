@@ -37,7 +37,7 @@ export const DEFAULT_FAV_IDS = ["news", "business", "realty", "flea", "jobs", "c
 const STORAGE_KEY = "sori_home_favorites";
 const isBrowser = typeof window !== "undefined";
 
-export const MAX_FAV = 12;
+export const MAX_FAV = 8;
 
 // localStorage에 저장된 id 중 현재 ALL_FAV_ITEMS에 존재하는 것만 살리고,
 // 8개 미만이면 DEFAULT_FAV_IDS에서 누락분을 자동 보충.
