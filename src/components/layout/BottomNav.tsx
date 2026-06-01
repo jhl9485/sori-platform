@@ -1,18 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
 import { useFavorites } from "@/lib/favorites";
 
-export default function BottomNav() {
+function BottomNavInner() {
   const pathname = usePathname();
+  const sp = useSearchParams();
+  const currentCat = sp.get("cat");
   const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
   const { favItems } = useFavorites();
 
-  const isActive = (href: string) =>
-    pathname === href || (href !== "/" && pathname?.startsWith(href));
+  // active 판단: pathname + ?cat= 쿼리까지 정확히 매칭
+  const isActive = (href: string) => {
+    // href 예: "/community?cat=love", "/community", "/realty"
+    const [hPath, hQuery] = href.split("?");
+    if (pathname !== hPath && !(hPath !== "/" && pathname?.startsWith(hPath))) return false;
+    if (hQuery) {
+      // 카테고리 항목은 정확히 그 cat일 때만 활성
+      const wantCat = new URLSearchParams(hQuery).get("cat");
+      return currentCat === wantCat;
+    }
+    // 쿼리 없는 메인 항목 (커뮤니티 메인)은 cat 쿼리가 없을 때만 활성
+    if (hPath === "/community" && currentCat) return false;
+    return true;
+  };
 
   // 가로 슬라이드 항목: 홈 + 즐겨찾기(중복 제거)
   const scrollItems = [
@@ -57,5 +72,13 @@ export default function BottomNav() {
 
       </div>
     </div>
+  );
+}
+
+export default function BottomNav() {
+  return (
+    <Suspense fallback={null}>
+      <BottomNavInner />
+    </Suspense>
   );
 }

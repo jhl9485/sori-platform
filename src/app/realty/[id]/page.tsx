@@ -4,9 +4,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
-import { REALTY_ITEMS } from "@/data/realtyItems";
+import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
-import { useUserRealty } from "@/lib/userContent";
+import { useUserRealty, updateUserItem } from "@/lib/userContent";
+
+const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
+  { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
+  { id: "예약중", label: "예약중", color: "border-[#B07010] bg-[#FBF5E8] text-[#B07010]" },
+  { id: "완료",   label: "완료",   color: "border-[#888070] bg-[#F0EDE8] text-[#888070]" },
+];
 
 export default function RealtyDetailPage({ params }: { params: { id: string } }) {
   const userRealty = useUserRealty();
@@ -18,6 +24,18 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
   const saved = isSaved(item.id);
   const allItems = [...userRealty, ...REALTY_ITEMS];
   const others = allItems.filter((r) => r.id !== item.id && r.deal === item.deal).slice(0, 3);
+
+  // 본인 매물 여부 — 본인만 거래 상태 변경 가능
+  const isMine = userRealty.some((r) => r.id === params.id);
+  const currentStatus: RealtyStatus = item.status || "가능";
+
+  const changeStatus = (next: RealtyStatus) => {
+    if (!isMine) return;
+    if (next === currentStatus) return;
+    if (!confirm(`거래 상태를 "${next}"(으)로 변경하시겠어요?`)) return;
+    const ok = updateUserItem<{ id: string; status?: RealtyStatus }>("sori_user_realty", params.id, { status: next });
+    if (!ok) alert("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
+  };
 
   const handleShare = () => {
     if (navigator.share) {
@@ -66,6 +84,26 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           {item.deal}
         </span>
       </div>
+
+      {/* 본인 매물이면 거래 상태 변경 UI */}
+      {isMine && (
+        <div className="bg-[#EBF5F0] border-y border-[#2B7A50]/20 px-4 md:px-6 py-3">
+          <div className="text-[0.72rem] font-bold text-[#2B7A50] mb-2">🔑 내 매물 — 거래 상태를 직접 변경할 수 있어요</div>
+          <div className="grid grid-cols-3 gap-2">
+            {REALTY_STATUSES.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => changeStatus(s.id)}
+                className={`py-2 rounded-[8px] text-[0.78rem] font-bold border-2 transition-all ${
+                  currentStatus === s.id ? s.color : "border-black/[0.08] bg-white text-[#888070]"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 기본 정보 */}
       <div className="bg-white px-4 md:px-6 py-5">

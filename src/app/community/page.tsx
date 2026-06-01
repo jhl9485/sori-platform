@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import FavoritesSection from "@/components/community/FavoritesSection";
 import CategoryTabs from "@/components/community/CategoryTabs";
 import CommunityPostCard from "@/components/community/CommunityPostCard";
@@ -29,12 +30,19 @@ const TOP_TAGS = (() => {
     .map(([t]) => t);
 })();
 
-export default function CommunityPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+function CommunityPageInner() {
+  const sp = useSearchParams();
+  const catFromQuery = sp.get("cat") || "all";
+  const [selectedCategory, setSelectedCategory] = useState(catFromQuery);
   const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const userPosts = useUserPosts();
+
+  // URL의 ?cat= 쿼리가 바뀌면 카테고리 자동 동기화 (BottomNav에서 클릭 시 즉시 반영)
+  useEffect(() => {
+    setSelectedCategory(catFromQuery);
+  }, [catFromQuery]);
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedSearch(searchQuery), 150);
@@ -199,5 +207,13 @@ export default function CommunityPage() {
         <span className="block leading-none translate-y-[-1px]">✏️</span>
       </Link>
     </div>
+  );
+}
+
+export default function CommunityPage() {
+  return (
+    <Suspense fallback={<div className="max-w-[680px] mx-auto p-6 text-[#888070]">불러오는 중…</div>}>
+      <CommunityPageInner />
+    </Suspense>
   );
 }

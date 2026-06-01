@@ -91,9 +91,8 @@ export default function FleaPage() {
               {/* 상태 배지 (판매중 외) — 좌측 상단 */}
               {isReserved && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold">예약중</span>}
               {isCompleted && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#888070] text-white px-[5px] py-[1px] rounded font-bold">완료</span>}
-              {/* 내 글 / 급처 — 상태 배지 옆 또는 그 자리 */}
+              {/* 내 글 배지 (상태가 판매중일 때만) */}
               {!isReserved && !isCompleted && userIds.has(item.id) && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 글</span>}
-              {!isReserved && !isCompleted && !userIds.has(item.id) && item.isUrgent && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급처</span>}
               {item.photos && item.photos.length > 1 && (
                 <span className="absolute bottom-2 left-2 text-[0.6rem] bg-black/60 text-white px-[5px] py-[1px] rounded font-medium">
                   📷 {item.photos.length}

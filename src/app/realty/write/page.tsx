@@ -25,11 +25,8 @@ const TYPES: { id: RealtyType; label: string; icon: string }[] = [
 
 const REGIONS: RealtyRegion[] = ["동부", "서부", "남부", "북부", "중부"];
 
-const STATUSES: { id: RealtyStatus; label: string; sub: string }[] = [
-  { id: "가능",   label: "가능",   sub: "거래 가능" },
-  { id: "예약중", label: "예약중", sub: "협의 진행" },
-  { id: "완료",   label: "완료",   sub: "거래 종료" },
-];
+// 거래 상태는 등록 시 항상 "가능"으로 시작 — 작성자가 상세 페이지에서 변경
+const DEFAULT_REALTY_STATUS: RealtyStatus = "가능";
 
 // 동/네 추천 (선택은 지역 → 동네 순)
 const AREAS = [
@@ -57,7 +54,6 @@ export default function RealtyWritePage() {
   const [deal, setDeal] = useState<RealtyDeal | "">("");
   const [type, setType] = useState<RealtyType | "">("");
   const [region, setRegion] = useState<RealtyRegion | "">("");
-  const [status, setStatus] = useState<RealtyStatus>("가능");
   const [title, setTitle] = useState("");
   const [area, setArea] = useState("");
   const [address, setAddress] = useState("");
@@ -84,7 +80,6 @@ export default function RealtyWritePage() {
           setDeal(d.deal || "");
           setType(d.type || "");
           setRegion(d.region || "");
-          setStatus(d.status || "가능");
           setTitle(d.title || "");
           setArea(d.area || "");
           setAddress(d.address || "");
@@ -117,7 +112,7 @@ export default function RealtyWritePage() {
       localStorage.setItem(
         DRAFT_KEY,
         JSON.stringify({
-          photos, deal, type, region, status, title, area, address, mrt, bedrooms, bathrooms,
+          photos, deal, type, region, title, area, address, mrt, bedrooms, bathrooms,
           sizeSqft, floor, furnished, price, availableFrom,
           diplomaticClause, amenities, description,
         })
@@ -128,7 +123,7 @@ export default function RealtyWritePage() {
         localStorage.setItem(
           DRAFT_KEY,
           JSON.stringify({
-            deal, type, region, status, title, area, address, mrt, bedrooms, bathrooms,
+            deal, type, region, title, area, address, mrt, bedrooms, bathrooms,
             sizeSqft, floor, furnished, price, availableFrom,
             diplomaticClause, amenities, description,
           })
@@ -136,7 +131,7 @@ export default function RealtyWritePage() {
       } catch {}
     }
   }, [
-    hydrated, photos, deal, type, region, status, title, area, address, mrt, bedrooms, bathrooms,
+    hydrated, photos, deal, type, region, title, area, address, mrt, bedrooms, bathrooms,
     sizeSqft, floor, furnished, price, availableFrom,
     diplomaticClause, amenities, description,
   ]);
@@ -158,7 +153,7 @@ export default function RealtyWritePage() {
       arr.unshift({
         id: `user-realty-${Date.now()}`,
         photos,
-        deal, type, region, status,
+        deal, type, region, status: DEFAULT_REALTY_STATUS,
         title: title.trim(), area, address: address.trim(),
         mrt: mrt.trim(), bedrooms, bathrooms, sizeSqft: sizeSqft.trim(),
         floor: floor.trim(), furnished, price: price.trim(),
@@ -174,7 +169,7 @@ export default function RealtyWritePage() {
 
   const discardDraft = () => {
     setPhotos([]);
-    setDeal(""); setType(""); setRegion(""); setStatus("가능");
+    setDeal(""); setType(""); setRegion("");
     setTitle(""); setArea(""); setAddress("");
     setMrt(""); setBedrooms(1); setBathrooms(1); setSizeSqft(""); setFloor("");
     setFurnished("풀퍼니시"); setPrice(""); setAvailableFrom("");
@@ -278,33 +273,9 @@ export default function RealtyWritePage() {
           </div>
         </section>
 
-        {/* 5. 거래 상태 */}
-        <section>
-          <SectionTitle index="5" title="거래 상태" />
-          <div className="grid grid-cols-3 gap-2">
-            {STATUSES.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setStatus(s.id)}
-                className={`flex flex-col items-center gap-1 py-2 rounded-[10px] border-2 transition-all ${
-                  status === s.id
-                    ? "border-[#2B7A50] bg-[#EBF5F0]"
-                    : "border-black/[0.08] bg-white hover:border-black/[0.15]"
-                }`}
-              >
-                <span className={`text-[0.82rem] font-bold ${status === s.id ? "text-[#2B7A50]" : "text-[#181614]"}`}>
-                  {s.label}
-                </span>
-                <span className="text-[0.6rem] text-[#888070]">{s.sub}</span>
-              </button>
-            ))}
-          </div>
-        </section>
-
-
         {/* 5. 위치 */}
         <section>
-          <SectionTitle index="6" title="위치" required />
+          <SectionTitle index="5" title="위치" required />
           <div className="space-y-2">
             {/* 지역구분 (동서남북중) */}
             <div className="text-[0.72rem] text-[#888070] mb-1">📍 지역구분 (필수)</div>
@@ -361,7 +332,7 @@ export default function RealtyWritePage() {
 
         {/* 6. 기본 스펙 */}
         <section>
-          <SectionTitle index="7" title="기본 스펙" />
+          <SectionTitle index="6" title="기본 스펙" />
           <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="text-[0.7rem] text-[#888070] mb-1 block">🛏 침실</label>
@@ -396,7 +367,7 @@ export default function RealtyWritePage() {
 
         {/* 7. 가구 옵션 */}
         <section>
-          <SectionTitle index="8" title="가구 옵션" />
+          <SectionTitle index="7" title="가구 옵션" />
           <div className="grid grid-cols-3 gap-2">
             {FURNISHINGS.map((f) => (
               <button
@@ -416,7 +387,7 @@ export default function RealtyWritePage() {
 
         {/* 8. 가격 */}
         <section>
-          <SectionTitle index="9" title="가격" required />
+          <SectionTitle index="8" title="가격" required />
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.88rem] font-bold text-[#D04020] pointer-events-none">$</span>
             <input
@@ -434,7 +405,7 @@ export default function RealtyWritePage() {
 
         {/* 9. 입주 가능일 + Diplomatic Clause */}
         <section>
-          <SectionTitle index="10" title="입주 / 계약 조건" />
+          <SectionTitle index="9" title="입주 / 계약 조건" />
           <input
             type="text"
             value={availableFrom}
@@ -470,7 +441,7 @@ export default function RealtyWritePage() {
 
         {/* 10. 단지 편의시설 */}
         <section>
-          <SectionTitle index="11" title="단지 편의시설" />
+          <SectionTitle index="10" title="단지 편의시설" />
           <div className="flex flex-wrap gap-2">
             {AMENITY_OPTIONS.map((a) => {
               const selected = amenities.includes(a);
@@ -493,7 +464,7 @@ export default function RealtyWritePage() {
 
         {/* 11. 매물 설명 */}
         <section>
-          <SectionTitle index="12" title="매물 설명" required />
+          <SectionTitle index="11" title="매물 설명" required />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

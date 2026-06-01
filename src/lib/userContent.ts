@@ -368,3 +368,23 @@ export function removeUserItem(key: string, id: string): void {
     window.dispatchEvent(new StorageEvent("storage", { key }));
   } catch {}
 }
+
+// 사용자 항목의 특정 필드 업데이트 (예: status)
+export function updateUserItem<T extends { id: string }>(
+  key: string,
+  id: string,
+  patch: Partial<T>
+): boolean {
+  if (!isBrowser) return false;
+  try {
+    const arr = readArr<T>(key);
+    const idx = arr.findIndex((x) => x.id === id);
+    if (idx === -1) return false;
+    arr[idx] = { ...arr[idx], ...patch };
+    localStorage.setItem(key, JSON.stringify(arr));
+    window.dispatchEvent(new StorageEvent("storage", { key }));
+    return true;
+  } catch {
+    return false;
+  }
+}

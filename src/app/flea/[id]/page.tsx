@@ -4,8 +4,8 @@ import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
-import { FLEA_ITEMS } from "@/data/fleaItems";
-import { useUserFlea } from "@/lib/userContent";
+import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
+import { useUserFlea, updateUserItem } from "@/lib/userContent";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -15,6 +15,12 @@ const conditionColor: Record<string, string> = {
   "보통": "text-[#888070] bg-[#F0EDE8]",
 };
 
+const FLEA_STATUSES: { id: FleaStatus; label: string; color: string }[] = [
+  { id: "판매중",   label: "판매중",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
+  { id: "예약중",   label: "예약중",   color: "border-[#B07010] bg-[#FBF5E8] text-[#B07010]" },
+  { id: "판매완료", label: "판매완료", color: "border-[#888070] bg-[#F0EDE8] text-[#888070]" },
+];
+
 export default function FleaDetailPage({ params }: { params: { id: string } }) {
   const userFlea = useUserFlea();
   const item = userFlea.find((i) => i.id === params.id) || FLEA_ITEMS.find((i) => i.id === params.id);
@@ -22,6 +28,18 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
   const [chatOpen, setChatOpen] = useState(false);
 
   if (!item) return notFound();
+
+  // 본인 글 여부 — 사용자가 직접 등록한 매물만 상태 변경 가능
+  const isMine = userFlea.some((i) => i.id === params.id);
+  const currentStatus: FleaStatus = item.status || "판매중";
+
+  const changeStatus = (next: FleaStatus) => {
+    if (!isMine) return;
+    if (next === currentStatus) return;
+    if (!confirm(`거래 상태를 "${next}"(으)로 변경하시겠어요?`)) return;
+    const ok = updateUserItem<{ id: string; status?: FleaStatus }>("sori_user_flea", params.id, { status: next });
+    if (!ok) alert("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
+  };
 
   const lines = item.description.split("\n").map((line, i) => {
     if (line.startsWith("**") && line.endsWith("**")) {
@@ -53,12 +71,35 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
           heightClass="h-[280px]"
           alt={item.title}
         />
-        {item.isUrgent && (
-          <div className="absolute top-3 left-3 bg-[#D04020] text-white text-[0.72rem] font-bold px-3 py-1 rounded-full z-10">
-            급처
+        {/* 상태 배지 (판매중 외) */}
+        {currentStatus !== "판매중" && (
+          <div className={`absolute top-3 left-3 text-[0.72rem] font-bold px-3 py-1 rounded-full z-10 ${
+            currentStatus === "예약중" ? "bg-[#B07010] text-white" : "bg-[#888070] text-white"
+          }`}>
+            {currentStatus}
           </div>
         )}
       </div>
+
+      {/* 본인 매물이면 거래 상태 변경 UI */}
+      {isMine && (
+        <div className="bg-[#EBF5F0] border-y border-[#2B7A50]/20 px-4 md:px-6 py-3">
+          <div className="text-[0.72rem] font-bold text-[#2B7A50] mb-2">🔑 내 매물 — 거래 상태를 직접 변경할 수 있어요</div>
+          <div className="grid grid-cols-3 gap-2">
+            {FLEA_STATUSES.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => changeStatus(s.id)}
+                className={`py-2 rounded-[8px] text-[0.78rem] font-bold border-2 transition-all ${
+                  currentStatus === s.id ? s.color : "border-black/[0.08] bg-white text-[#888070]"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 가격 + 제목 */}
       <div className="bg-white px-4 md:px-6 py-5">
