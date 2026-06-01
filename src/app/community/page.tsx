@@ -193,9 +193,10 @@ export default function CommunityPage() {
       {/* 글쓰기 플로팅 버튼 */}
       <Link
         href="/write"
-        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+        aria-label="글쓰기"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] inline-flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
       >
-        ✏️
+        <span className="block leading-none translate-y-[-1px]">✏️</span>
       </Link>
     </div>
   );

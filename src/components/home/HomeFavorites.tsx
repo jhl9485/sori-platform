@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ALL_FAV_ITEMS, useFavorites } from "@/lib/favorites";
+import { ALL_FAV_ITEMS, MAX_FAV, useFavorites } from "@/lib/favorites";
 
 export default function HomeFavorites() {
   const { favIds, favItems, save } = useFavorites();
@@ -13,7 +13,7 @@ export default function HomeFavorites() {
       if (favIds.length <= 1) return;
       save(favIds.filter((f) => f !== id));
     } else {
-      if (favIds.length >= 8) return;
+      if (favIds.length >= MAX_FAV) return;
       save([...favIds, id]);
     }
   };
@@ -25,7 +25,7 @@ export default function HomeFavorites() {
           <div>
             <span className="text-[0.9rem] font-bold">즐겨찾기 편집</span>
             <span className="text-[0.72rem] text-[#888070] ml-2">
-              {favIds.length}/8개 선택
+              {favIds.length}/{MAX_FAV}개 선택
             </span>
           </div>
           <button
@@ -38,7 +38,7 @@ export default function HomeFavorites() {
         <div className="grid grid-cols-4 gap-2">
           {ALL_FAV_ITEMS.map((item) => {
             const selected = favIds.includes(item.id);
-            const maxed = favIds.length >= 8 && !selected;
+            const maxed = favIds.length >= MAX_FAV && !selected;
             return (
               <button
                 key={item.id}
@@ -60,9 +60,9 @@ export default function HomeFavorites() {
             );
           })}
         </div>
-        {favIds.length >= 8 && (
+        {favIds.length >= MAX_FAV && (
           <p className="text-center text-[0.72rem] text-[#888070] mt-3">
-            최대 8개까지 선택 가능합니다
+            최대 {MAX_FAV}개까지 선택 가능합니다
           </p>
         )}
       </div>

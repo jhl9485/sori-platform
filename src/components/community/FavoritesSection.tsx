@@ -8,13 +8,26 @@ interface Props {
   selectedId: string;
 }
 
+const MAX_CAT_FAV = 9; // 커뮤니티 카테고리 전체
+
 export default function FavoritesSection({ onSelect, selectedId }: Props) {
   const [favorites, setFavorites] = useState<string[]>(DEFAULT_FAVORITES);
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("sori_favorites");
-    if (saved) setFavorites(JSON.parse(saved));
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved) as string[];
+        // CATEGORIES에 없는 옛 id 정리 + 부족하면 DEFAULT로 보충
+        const validIds = new Set(CATEGORIES.map((c) => c.id));
+        const valid = parsed.filter((id) => validIds.has(id));
+        if (valid.length === 0) setFavorites(DEFAULT_FAVORITES);
+        else setFavorites(valid.slice(0, MAX_CAT_FAV));
+      } catch {
+        setFavorites(DEFAULT_FAVORITES);
+      }
+    }
   }, []);
 
   const saveFavorites = (ids: string[]) => {
@@ -27,7 +40,7 @@ export default function FavoritesSection({ onSelect, selectedId }: Props) {
       if (favorites.length <= 1) return; // 최소 1개 유지
       saveFavorites(favorites.filter((f) => f !== id));
     } else {
-      if (favorites.length >= 8) return; // 최대 8개
+      if (favorites.length >= MAX_CAT_FAV) return;
       saveFavorites([...favorites, id]);
     }
   };
@@ -40,7 +53,7 @@ export default function FavoritesSection({ onSelect, selectedId }: Props) {
         <div className="flex justify-between items-center mb-3">
           <div>
             <span className="text-[0.9rem] font-bold">내 커뮤니티 편집</span>
-            <span className="text-[0.72rem] text-[#888070] ml-2">최대 8개</span>
+            <span className="text-[0.72rem] text-[#888070] ml-2">{favorites.length}/{MAX_CAT_FAV}개</span>
           </div>
           <button
             onClick={() => setEditing(false)}

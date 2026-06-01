@@ -268,19 +268,26 @@ function WriteInner() {
       </div>
 
       {/* 하단 옵션 바 */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-white border-t border-black/[0.08] px-4 py-3 flex items-center justify-between z-50">
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-white border-t border-black/[0.08] px-4 py-3 flex items-center justify-between z-50 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3">
-          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg" aria-label="사진 (준비 중)">📷</button>
-          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg" aria-label="링크 (준비 중)">🔗</button>
-          <button className="w-8 h-8 flex items-center justify-center text-[#888070] text-lg hover:bg-[#F5F3EE] rounded-lg" aria-label="위치 (준비 중)">📍</button>
+          <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="사진 (준비 중)">
+            <span className="block leading-none">📷</span>
+          </button>
+          <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="링크 (준비 중)">
+            <span className="block leading-none">🔗</span>
+          </button>
+          <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="위치 (준비 중)">
+            <span className="block leading-none">📍</span>
+          </button>
         </div>
         <button
           onClick={() => setIsAnon(!isAnon)}
-          className={`flex items-center gap-2 px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${
+          className={`inline-flex items-center gap-[6px] px-3 h-9 rounded-full text-[0.75rem] font-medium border transition-all leading-none ${
             isAnon ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08]"
           }`}
         >
-          🎭 {isAnon ? "익명 ON" : "익명 OFF"}
+          <span className="leading-none">🎭</span>
+          <span>{isAnon ? "익명 ON" : "익명 OFF"}</span>
         </button>
       </div>
 

@@ -37,11 +37,27 @@ export const DEFAULT_FAV_IDS = ["news", "business", "realty", "flea", "jobs", "c
 const STORAGE_KEY = "sori_home_favorites";
 const isBrowser = typeof window !== "undefined";
 
+export const MAX_FAV = 12;
+
+// localStorage에 저장된 id 중 현재 ALL_FAV_ITEMS에 존재하는 것만 살리고,
+// 8개 미만이면 DEFAULT_FAV_IDS에서 누락분을 자동 보충.
+// (즐겨찾기 항목 id가 바뀌어도 사용자 경험 끊김 없이 마이그레이션)
+function sanitize(ids: string[]): string[] {
+  const validSet = new Set(ALL_FAV_ITEMS.map((i) => i.id));
+  const valid = ids.filter((id) => validSet.has(id));
+  if (valid.length < DEFAULT_FAV_IDS.length) {
+    const missing = DEFAULT_FAV_IDS.filter((id) => !valid.includes(id));
+    return [...valid, ...missing].slice(0, MAX_FAV);
+  }
+  return valid.slice(0, MAX_FAV);
+}
+
 function read(): string[] {
   if (!isBrowser) return DEFAULT_FAV_IDS;
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as string[]) : DEFAULT_FAV_IDS;
+    if (!raw) return DEFAULT_FAV_IDS;
+    return sanitize(JSON.parse(raw) as string[]);
   } catch {
     return DEFAULT_FAV_IDS;
   }
