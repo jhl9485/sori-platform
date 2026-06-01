@@ -39,16 +39,13 @@ const isBrowser = typeof window !== "undefined";
 
 export const MAX_FAV = 8;
 
-// localStorage에 저장된 id 중 현재 ALL_FAV_ITEMS에 존재하는 것만 살리고,
-// 8개 미만이면 DEFAULT_FAV_IDS에서 누락분을 자동 보충.
-// (즐겨찾기 항목 id가 바뀌어도 사용자 경험 끊김 없이 마이그레이션)
+// localStorage에 저장된 id 중 현재 ALL_FAV_ITEMS에 존재하는 것만 유지.
+// (옛 id가 사라져도 사용자가 명시적으로 선택한 항목은 그대로 보존, 자동 보충 X)
 function sanitize(ids: string[]): string[] {
   const validSet = new Set(ALL_FAV_ITEMS.map((i) => i.id));
   const valid = ids.filter((id) => validSet.has(id));
-  if (valid.length < DEFAULT_FAV_IDS.length) {
-    const missing = DEFAULT_FAV_IDS.filter((id) => !valid.includes(id));
-    return [...valid, ...missing].slice(0, MAX_FAV);
-  }
+  // 완전히 비어버린 경우(첫 진입 또는 모든 id가 무효)에만 기본값으로 복귀
+  if (valid.length === 0) return DEFAULT_FAV_IDS;
   return valid.slice(0, MAX_FAV);
 }
 

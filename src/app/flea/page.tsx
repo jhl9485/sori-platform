@@ -75,17 +75,25 @@ export default function FleaPage() {
 
       {/* 그리드 — 모바일 2열, 태블릿 3열, 데스크탑 4열 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pb-6">
-        {filtered.map((item) => (
-          <Link key={item.id} href={`/flea/${item.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-[1px] transition-all">
+        {filtered.map((item) => {
+          const status = item.status || "판매중";
+          const isCompleted = status === "판매완료";
+          const isReserved = status === "예약중";
+          return (
+          <Link key={item.id} href={`/flea/${item.id}`} className={`block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:-translate-y-[1px] transition-all ${isCompleted ? "opacity-60" : ""}`}>
             <div className={`w-full h-[110px] flex items-center justify-center text-[3rem] relative overflow-hidden ${item.bg}`}>
               {item.photos && item.photos.length > 0 ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={item.photos[0]} alt={item.title} loading="lazy" className="w-full h-full object-cover" />
+                <img src={item.photos[0]} alt={item.title} loading="lazy" className={`w-full h-full object-cover ${isCompleted ? "grayscale" : ""}`} />
               ) : (
                 item.emoji
               )}
-              {userIds.has(item.id) && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 글</span>}
-              {!userIds.has(item.id) && item.isUrgent && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급처</span>}
+              {/* 상태 배지 (판매중 외) — 좌측 상단 */}
+              {isReserved && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold">예약중</span>}
+              {isCompleted && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#888070] text-white px-[5px] py-[1px] rounded font-bold">완료</span>}
+              {/* 내 글 / 급처 — 상태 배지 옆 또는 그 자리 */}
+              {!isReserved && !isCompleted && userIds.has(item.id) && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 글</span>}
+              {!isReserved && !isCompleted && !userIds.has(item.id) && item.isUrgent && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급처</span>}
               {item.photos && item.photos.length > 1 && (
                 <span className="absolute bottom-2 left-2 text-[0.6rem] bg-black/60 text-white px-[5px] py-[1px] rounded font-medium">
                   📷 {item.photos.length}
@@ -111,7 +119,8 @@ export default function FleaPage() {
               </div>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
 
       <Link

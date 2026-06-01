@@ -23,7 +23,7 @@ export default function BottomNav() {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/97 backdrop-blur-md border-t border-black/[0.07] z-50 pb-[env(safe-area-inset-bottom)]">
       <div className="flex items-stretch h-[64px]">
-      {/* 가로 스크롤 즐겨찾기 영역 */}
+      {/* 가로 스크롤 즐겨찾기 영역 (글쓰기 버튼 제거됨) */}
       <div className="flex-1 flex items-center overflow-x-auto scrollbar-hide px-1">
         {scrollItems.map((tab) => {
           const active = isActive(tab.href);
@@ -55,15 +55,6 @@ export default function BottomNav() {
         })}
       </div>
 
-      {/* 글쓰기 고정 버튼 (항상 우측) */}
-      <Link
-        href="/write"
-        className="flex-shrink-0 w-[64px] flex flex-col items-center justify-center gap-[3px] border-l border-black/[0.05] bg-[#D04020] text-white active:bg-[#B83515] transition-colors"
-        aria-label="글쓰기"
-      >
-        <span className="text-[1.2rem] leading-none">✏️</span>
-        <span className="text-[0.6rem] font-bold">글쓰기</span>
-      </Link>
       </div>
     </div>
   );

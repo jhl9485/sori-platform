@@ -212,15 +212,29 @@ export default function RealtyWritePage() {
       )}
 
       <div className="px-4 py-4 pb-32 space-y-6">
-        {/* 1. 사진 */}
+        {/* 1. 매물 제목 (최상단) */}
         <section>
-          <SectionTitle index="1" title="사진" />
+          <SectionTitle index="1" title="매물 제목" required />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="예: Tanjong Pagar 신축 2BR — Diplomatic Clause 포함"
+            maxLength={60}
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none placeholder:text-[#C0BBB0]"
+          />
+          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{title.length}/60</div>
+        </section>
+
+        {/* 2. 사진 */}
+        <section>
+          <SectionTitle index="2" title="사진" />
           <ImageUploader images={photos} onChange={setPhotos} max={5} />
         </section>
 
-        {/* 2. 거래 유형 (4종: 매매·룸렌트·렌트·룸메이트) */}
+        {/* 3. 거래 유형 (4종: 매매·룸렌트·렌트·룸메이트) */}
         <section>
-          <SectionTitle index="2" title="거래 유형" required />
+          <SectionTitle index="3" title="거래 유형" required />
           <div className="grid grid-cols-4 gap-2">
             {DEALS.map((d) => (
               <button
@@ -241,9 +255,9 @@ export default function RealtyWritePage() {
           </div>
         </section>
 
-        {/* 3. 주거 타입 (5종: 콘도·HDB·서비스·하우스·사무실) */}
+        {/* 4. 주거 타입 (5종: 콘도·HDB·서비스·하우스·사무실) */}
         <section>
-          <SectionTitle index="3" title="주거 타입" required />
+          <SectionTitle index="4" title="주거 타입" required />
           <div className="grid grid-cols-5 gap-2">
             {TYPES.map((t) => (
               <button
@@ -264,9 +278,9 @@ export default function RealtyWritePage() {
           </div>
         </section>
 
-        {/* 거래 상태 */}
+        {/* 5. 거래 상태 */}
         <section>
-          <SectionTitle index="3-1" title="거래 상태" />
+          <SectionTitle index="5" title="거래 상태" />
           <div className="grid grid-cols-3 gap-2">
             {STATUSES.map((s) => (
               <button
@@ -287,23 +301,10 @@ export default function RealtyWritePage() {
           </div>
         </section>
 
-        {/* 4. 매물 제목 */}
-        <section>
-          <SectionTitle index="4" title="매물 제목" required />
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="예: Tanjong Pagar 신축 2BR — Diplomatic Clause 포함"
-            maxLength={60}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none placeholder:text-[#C0BBB0]"
-          />
-          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{title.length}/60</div>
-        </section>
 
         {/* 5. 위치 */}
         <section>
-          <SectionTitle index="5" title="위치" required />
+          <SectionTitle index="6" title="위치" required />
           <div className="space-y-2">
             {/* 지역구분 (동서남북중) */}
             <div className="text-[0.72rem] text-[#888070] mb-1">📍 지역구분 (필수)</div>
@@ -360,7 +361,7 @@ export default function RealtyWritePage() {
 
         {/* 6. 기본 스펙 */}
         <section>
-          <SectionTitle index="6" title="기본 스펙" />
+          <SectionTitle index="7" title="기본 스펙" />
           <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="text-[0.7rem] text-[#888070] mb-1 block">🛏 침실</label>
@@ -395,7 +396,7 @@ export default function RealtyWritePage() {
 
         {/* 7. 가구 옵션 */}
         <section>
-          <SectionTitle index="7" title="가구 옵션" />
+          <SectionTitle index="8" title="가구 옵션" />
           <div className="grid grid-cols-3 gap-2">
             {FURNISHINGS.map((f) => (
               <button
@@ -415,7 +416,7 @@ export default function RealtyWritePage() {
 
         {/* 8. 가격 */}
         <section>
-          <SectionTitle index="8" title="가격" required />
+          <SectionTitle index="9" title="가격" required />
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.88rem] font-bold text-[#D04020] pointer-events-none">$</span>
             <input
@@ -433,7 +434,7 @@ export default function RealtyWritePage() {
 
         {/* 9. 입주 가능일 + Diplomatic Clause */}
         <section>
-          <SectionTitle index="9" title="입주 / 계약 조건" />
+          <SectionTitle index="10" title="입주 / 계약 조건" />
           <input
             type="text"
             value={availableFrom}
@@ -469,7 +470,7 @@ export default function RealtyWritePage() {
 
         {/* 10. 단지 편의시설 */}
         <section>
-          <SectionTitle index="10" title="단지 편의시설" />
+          <SectionTitle index="11" title="단지 편의시설" />
           <div className="flex flex-wrap gap-2">
             {AMENITY_OPTIONS.map((a) => {
               const selected = amenities.includes(a);
@@ -492,7 +493,7 @@ export default function RealtyWritePage() {
 
         {/* 11. 매물 설명 */}
         <section>
-          <SectionTitle index="11" title="매물 설명" required />
+          <SectionTitle index="12" title="매물 설명" required />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

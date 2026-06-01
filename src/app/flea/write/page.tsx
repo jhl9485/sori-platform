@@ -3,9 +3,16 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
+import type { FleaStatus } from "@/data/fleaItems";
 
 const DRAFT_KEY = "sori_flea_draft";
 const SAVED_KEY = "sori_user_flea";
+
+const STATUSES: { id: FleaStatus; label: string; color: string }[] = [
+  { id: "판매중",   label: "판매중",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
+  { id: "예약중",   label: "예약중",   color: "border-[#B07010] bg-[#FBF5E8] text-[#B07010]" },
+  { id: "판매완료", label: "판매완료", color: "border-[#888070] bg-[#F0EDE8] text-[#888070]" },
+];
 
 const CATEGORIES = [
   { id: "가전/가구", icon: "🛋️" },
@@ -42,6 +49,7 @@ export default function FleaWritePage() {
   const [canMeet, setCanMeet] = useState(true);
   const [canDeliver, setCanDeliver] = useState(false);
   const [description, setDescription] = useState("");
+  const [status, setStatus] = useState<FleaStatus>("판매중");
 
   // 임시저장 복원
   useEffect(() => {
@@ -61,6 +69,7 @@ export default function FleaWritePage() {
           setCanMeet(d.canMeet ?? true);
           setCanDeliver(d.canDeliver ?? false);
           setDescription(d.description || "");
+          setStatus(d.status || "판매중");
           setRestored(true);
         }
       }
@@ -79,7 +88,7 @@ export default function FleaWritePage() {
         DRAFT_KEY,
         JSON.stringify({
           photos, category, title, price, originalPrice, negotiable, condition,
-          area, canMeet, canDeliver, description,
+          area, canMeet, canDeliver, description, status,
         })
       );
     } catch {
@@ -94,7 +103,7 @@ export default function FleaWritePage() {
         );
       } catch {}
     }
-  }, [hydrated, photos, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description]);
+  }, [hydrated, photos, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description, status]);
 
   const canSubmit = category && title.trim() && price.trim() && description.trim();
 
@@ -111,6 +120,7 @@ export default function FleaWritePage() {
         negotiable, condition, area,
         canMeet, canDeliver,
         description: description.trim(),
+        status,
         createdAt: new Date().toISOString(),
       });
       localStorage.setItem(SAVED_KEY, JSON.stringify(arr));
@@ -124,6 +134,7 @@ export default function FleaWritePage() {
     setCategory(""); setTitle(""); setPrice(""); setOriginalPrice("");
     setNegotiable(true); setCondition("상태좋음"); setArea("");
     setCanMeet(true); setCanDeliver(false); setDescription("");
+    setStatus("판매중");
     setRestored(false);
     localStorage.removeItem(DRAFT_KEY);
   };
@@ -258,6 +269,24 @@ export default function FleaWritePage() {
                 }`}
               >
                 {c}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* 5-1. 거래 상태 (버튼식) */}
+        <section>
+          <SectionTitle index="5-1" title="거래 상태" />
+          <div className="grid grid-cols-3 gap-2">
+            {STATUSES.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => setStatus(s.id)}
+                className={`py-3 rounded-[10px] text-[0.82rem] font-bold border-2 transition-all leading-none ${
+                  status === s.id ? s.color : "border-black/[0.08] bg-white text-[#888070]"
+                }`}
+              >
+                {s.label}
               </button>
             ))}
           </div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { CATEGORIES } from "@/data/categories";
 import type { CommunityPost, CommunityCategory, VisaBadge } from "@/data/communityPosts";
-import type { FleaItem } from "@/data/fleaItems";
+import type { FleaItem, FleaStatus } from "@/data/fleaItems";
 import type { Job } from "@/data/jobs";
 import type { RealtyItem } from "@/data/realtyItems";
 import type { Business, BizCategory } from "@/data/businesses";
@@ -102,6 +102,7 @@ interface RawUserFlea {
   canMeet: boolean;
   canDeliver: boolean;
   description: string;
+  status?: FleaStatus;
   createdAt: string;
 }
 
@@ -141,6 +142,7 @@ export function userFleaToFleaItem(p: RawUserFlea): FleaItem {
     canMeet: !!p.canMeet,
     photos: p.photos || [],
     negotiable: p.negotiable,
+    status: p.status || "판매중",
   };
 }
 
