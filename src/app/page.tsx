@@ -6,7 +6,6 @@ import BizSection from "@/components/home/BizSection";
 import CommunityFeed from "@/components/home/CommunityFeed";
 import JobSection from "@/components/home/JobSection";
 import NewsPreview from "@/components/home/NewsPreview";
-import BannerAd from "@/components/ads/BannerAd";
 
 export default function HomePage() {
   return (
@@ -31,16 +30,10 @@ export default function HomePage() {
         <HomeFavorites />
       </div>
 
-      {/* ① 배너형 광고 — 홈 상단 프리미엄 노출 ($300~500/월) */}
-      <BannerAd index={0} />
-
       <OpenNowButton />
 
       {/* Daily 뉴스 */}
       <NewsPreview />
-
-      {/* ② 뉴스 하단 배너 광고 — 카테고리 상단 노출 ($150~250/월) */}
-      <BannerAd index={1} />
 
       {/* 인기 업소 */}
       <BizSection />

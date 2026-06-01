@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import FeedCard from "./FeedCard";
-import NativeFeedAd from "@/components/ads/NativeFeedAd";
 import type { FeedItem } from "@/types/feed";
 
 const tabs = ["전체", "생활정보", "Q&A", "맛집", "취업", "벼룩시장"];
@@ -108,7 +107,6 @@ export default function CommunityFeed() {
         {feedData.map((item, i) => (
           <div key={item.id} style={{ animationDelay: `${i * 0.05}s` }}>
             <FeedCard item={item} />
-            {i === 1 && <div className="mt-[10px]"><NativeFeedAd index={0} /></div>}
           </div>
         ))}
       </div>

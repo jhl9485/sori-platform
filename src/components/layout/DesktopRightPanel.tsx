@@ -1,5 +1,4 @@
 import Link from "next/link";
-import RightPanelAd from "@/components/ads/RightPanelAd";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { JOBS } from "@/data/jobs";
 import { BUSINESSES } from "@/data/businesses";
@@ -52,9 +51,6 @@ export default function DesktopRightPanel() {
           ))}
         </div>
       </div>
-
-      {/* ⑥ 우측 패널 광고 — 데스크탑 사이드바 노출 ($200~400/월) */}
-      <RightPanelAd />
 
       {/* 🔥 인기 게시글 */}
       <div className="bg-white rounded-[14px] border border-black/[0.08] p-4">

@@ -11,10 +11,12 @@ import { useToggleSet } from "@/lib/storage";
 export default function NewsDetailPage({ params }: { params: { id: string } }) {
   const news = NEWS_ITEMS.find((n) => n.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_news");
+  const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_news");
 
   if (!news) return notFound();
 
   const saved = isSaved(news.id);
+  const liked = isLiked(news.id);
 
   const related = NEWS_ITEMS.filter((n) => news.relatedIds.includes(n.id));
   const others = NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3);
@@ -100,6 +102,12 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
 
         {/* 액션 */}
         <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
+          <button
+            onClick={() => toggleLike(news.id)}
+            className={`flex items-center gap-1 text-[0.82rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
+          >
+            {liked ? "❤️ 좋아요" : "🤍 좋아요"}
+          </button>
           <button onClick={handleShare} className="flex items-center gap-1 text-[0.82rem] text-[#888070] hover:text-[#D04020]">
             ↗ 공유하기
           </button>

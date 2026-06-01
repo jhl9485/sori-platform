@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
-import SponsoredJobCard from "@/components/ads/SponsoredJobCard";
 import { useUserJobs } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 
@@ -99,8 +98,6 @@ export default function JobsPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pb-6">
-          {/* ⑤ 스폰서 채용공고 — 상단 고정 노출 ($80~150/월) */}
-          <SponsoredJobCard />
           {filtered.map((job) => (
             <Link key={job.id} href={`/jobs/${job.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-4 cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className="flex items-start gap-3 mb-3">

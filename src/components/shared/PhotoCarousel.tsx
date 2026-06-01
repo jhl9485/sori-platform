@@ -60,6 +60,8 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
       <img
         src={photos[idx]}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover transition-transform duration-150"
         style={{ transform: `translateX(${dragOffset}px)` }}
         draggable={false}

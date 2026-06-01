@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
-import SponsoredBizCard from "@/components/ads/SponsoredBizCard";
 import { useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 
@@ -70,8 +69,6 @@ export default function BusinessPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pb-6">
-          {/* ④ 스폰서 업소 카드 — 최상단 고정 노출 ($150~250/월) */}
-          <SponsoredBizCard />
           {filtered.map((biz) => (
             <Link key={biz.id} href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] relative overflow-hidden ${biz.bg}`}>
