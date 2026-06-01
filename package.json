@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "kill": "node scripts/kill-port.cjs 3000"
+    "kill": "node scripts/kill-port.cjs 3000",
+    "clean": "node scripts/clean.cjs",
+    "fresh": "npm run clean && npm run dev"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.15.11",
