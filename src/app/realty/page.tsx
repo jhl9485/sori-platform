@@ -52,7 +52,7 @@ export default function RealtyPage() {
   const allItems = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
   const userIds = useMemo(() => new Set(userRealty.map((u) => u.id)), [userRealty]);
 
-  const filtered = allItems.filter((r) => {
+  const filtered = useMemo(() => allItems.filter((r) => {
     if (selectedType !== "all" && r.type !== selectedType) return false;
     if (selectedDeal !== "전체" && r.deal !== selectedDeal) return false;
     if (selectedRegion !== "전체") {
@@ -70,7 +70,7 @@ export default function RealtyPage() {
       if (!hay.includes(q)) return false;
     }
     return true;
-  });
+  }), [allItems, selectedType, selectedDeal, selectedRegion, selectedStatus, selectedPeriod, searchQuery]);
 
   const resetFilters = () => {
     setSelectedType("all"); setSelectedDeal("전체"); setSelectedRegion("전체");

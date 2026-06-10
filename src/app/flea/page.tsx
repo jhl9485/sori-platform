@@ -21,11 +21,11 @@ export default function FleaPage() {
   const userFlea = useUserFlea();
   const allItems = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
   const q = searchQuery.toLowerCase().trim();
-  const filtered = allItems.filter((i) => {
+  const filtered = useMemo(() => allItems.filter((i) => {
     if (selectedCat !== "전체" && i.category !== selectedCat) return false;
     if (q && !i.title.toLowerCase().includes(q) && !i.area.toLowerCase().includes(q)) return false;
     return true;
-  });
+  }), [allItems, selectedCat, q]);
   const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
 
   const toggleLike = (id: string, e: React.MouseEvent) => {

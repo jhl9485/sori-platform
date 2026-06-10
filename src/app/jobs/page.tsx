@@ -32,13 +32,13 @@ export default function JobsPage() {
   const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);
   const userIds = useMemo(() => new Set(userJobs.map((u) => u.id)), [userJobs]);
 
-  const filtered = allJobs.filter((job) => {
+  const filtered = useMemo(() => allJobs.filter((job) => {
     if (visaFilter !== "전체" && job.visaType !== visaFilter) return false;
     if (typeFilter !== "전체" && job.jobType !== typeFilter) return false;
     if (koreanOnly && !job.koreanRequired) return false;
     if (searchQuery && !job.title.includes(searchQuery) && !job.company.includes(searchQuery) && !job.tags.some(t => t.includes(searchQuery))) return false;
     return true;
-  });
+  }), [allJobs, visaFilter, typeFilter, koreanOnly, searchQuery]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">

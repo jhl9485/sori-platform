@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Link from "next/link";
 import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
@@ -15,7 +16,7 @@ function isHot(likes: string): boolean {
   return parseInt(likes.replace(/,/g, ""), 10) >= 200;
 }
 
-export default function CommunityPostCard({ post }: { post: CommunityPost }) {
+function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const { has: isHelped, toggle: toggleHelped } = useToggleSet("sori_helped_posts");
   const { has: isRead } = useToggleSet("sori_read_posts");
   const helped = isHelped(post.id);
@@ -82,3 +83,6 @@ export default function CommunityPostCard({ post }: { post: CommunityPost }) {
     </Link>
   );
 }
+
+// post 객체 ref가 같으면 리렌더 회피 (useMemo로 캐싱된 리스트와 함께 사용 시 효과)
+export default memo(CommunityPostCardBase, (prev, next) => prev.post === next.post);

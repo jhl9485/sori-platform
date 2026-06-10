@@ -12,10 +12,13 @@ export default function TagPage({ params }: { params: { tag: string } }) {
   const userPosts = useUserPosts();
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
 
-  const matched = allPosts.filter((p) => p.tags.includes(tag));
+  const matched = useMemo(
+    () => allPosts.filter((p) => p.tags.includes(tag)),
+    [allPosts, tag]
+  );
 
   // 관련 태그: 같이 등장하는 태그들
-  const relatedTags = (() => {
+  const relatedTags = useMemo(() => {
     const counts: Record<string, number> = {};
     for (const p of matched) {
       for (const t of p.tags) {
@@ -26,7 +29,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 6)
       .map(([t]) => t);
-  })();
+  }, [matched, tag]);
 
   return (
     <div className="max-w-[680px] mx-auto">

@@ -59,9 +59,11 @@ function CommunityPageInner() {
     }, {});
   }, [allPosts]);
 
-  const base = selectedCategory === "all"
-    ? allPosts
-    : allPosts.filter((p) => p.categoryId === selectedCategory);
+  const base = useMemo(() => (
+    selectedCategory === "all"
+      ? allPosts
+      : allPosts.filter((p) => p.categoryId === selectedCategory)
+  ), [allPosts, selectedCategory]);
 
   const q = debouncedSearch.toLowerCase().trim();
   const searched = useMemo(() => (
@@ -74,15 +76,16 @@ function CommunityPageInner() {
       : base
   ), [q, base]);
 
-  const sorted = [...searched].sort((a, b) => {
+  const sorted = useMemo(() => {
+    if (feedTab === "최신순") return searched;
+    const arr = [...searched];
     if (feedTab === "인기순") {
-      return parseInt(b.likes.replace(/,/g, "")) - parseInt(a.likes.replace(/,/g, ""));
+      arr.sort((a, b) => parseInt(b.likes.replace(/,/g, "")) - parseInt(a.likes.replace(/,/g, "")));
+    } else if (feedTab === "댓글순") {
+      arr.sort((a, b) => parseInt(b.comments.replace(/,/g, "")) - parseInt(a.comments.replace(/,/g, "")));
     }
-    if (feedTab === "댓글순") {
-      return parseInt(b.comments.replace(/,/g, "")) - parseInt(a.comments.replace(/,/g, ""));
-    }
-    return 0; // 최신순 = 데이터 순서 유지
-  });
+    return arr;
+  }, [searched, feedTab]);
 
   return (
     <div className="max-w-[680px] mx-auto">

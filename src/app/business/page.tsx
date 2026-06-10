@@ -14,12 +14,12 @@ export default function BusinessPage() {
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
   const userIds = useMemo(() => new Set(userBiz.map((u) => u.id)), [userBiz]);
 
-  const filtered = allBiz.filter((b) => {
+  const filtered = useMemo(() => allBiz.filter((b) => {
     if (selected !== "all" && b.category !== selected) return false;
     if (openOnly && !b.isOpen) return false;
     if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
     return true;
-  });
+  }), [allBiz, selected, openOnly, searchQuery]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
