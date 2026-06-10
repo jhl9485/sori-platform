@@ -5,12 +5,14 @@
   "scripts": {
     "predev": "node scripts/kill-port.cjs 3000",
     "dev": "next dev",
+    "prebuild": "node scripts/kill-port.cjs 3000 && node scripts/clean.cjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "kill": "node scripts/kill-port.cjs 3000",
     "clean": "node scripts/clean.cjs",
-    "fresh": "npm run clean && npm run dev"
+    "fresh": "npm run clean && npm run dev",
+    "verify": "node scripts/verify.cjs"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.15.11",
