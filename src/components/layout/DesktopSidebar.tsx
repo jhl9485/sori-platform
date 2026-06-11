@@ -18,7 +18,7 @@ const NAV = [
 
 const MY_ACTIONS = [
   { icon: "📝", label: "내가 쓴 글", href: "/my?tab=posts" },
-  { icon: "💬", label: "내 댓글",    href: "/my?tab=comments" },
+  { icon: "💬", label: "내 댓글",    href: "/my?tab=overview" },
   { icon: "🔖", label: "저장한 글",  href: "/my?tab=saved" },
 ];
 
