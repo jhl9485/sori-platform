@@ -7,13 +7,14 @@ import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
+import { useToggleSet } from "@/lib/storage";
 import { useHydrated } from "@/lib/hooks";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userJobs = useUserJobs();
   const job = userJobs.find((j) => j.id === params.id) || JOBS.find((j) => j.id === params.id);
-  const [saved, setSaved] = useState(false);
+  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_jobs");
   const [applied, setApplied] = useState(false);
 
   if (!job) {
@@ -21,13 +22,14 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
     return notFound();
   }
 
+  const saved = isSaved(job.id);
   const isMine = userJobs.some((j) => j.id === params.id);
 
   return (
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => setSaved(!saved)} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => toggleSave(job.id)} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "🔖" : "🏷️"}
           </button>
         }

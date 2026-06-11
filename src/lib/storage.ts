@@ -18,17 +18,25 @@ function write<T>(key: string, value: T): void {
   if (!isBrowser) return;
   try {
     localStorage.setItem(key, JSON.stringify(value));
+    // 같은 탭의 다른 useToggleSet 인스턴스도 갱신되도록 수동 dispatch
+    // (브라우저는 같은 탭 내 localStorage 변경에 대해 StorageEvent를 자동 발생시키지 않음)
+    window.dispatchEvent(new StorageEvent("storage", { key }));
   } catch {
     // quota exceeded 등 무시
   }
 }
 
 // 단일 boolean (좋아요·저장 등) — id 기반
+// 같은 키를 들고 있는 모든 useToggleSet 인스턴스가 storage 이벤트로 동기화됨
 export function useToggleSet(key: string) {
   const [ids, setIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    setIds(new Set(read<string[]>(key, [])));
+    const refresh = () => setIds(new Set(read<string[]>(key, [])));
+    refresh();
+    const handler = (e: StorageEvent) => { if (e.key === key) refresh(); };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
   }, [key]);
 
   const toggle = useCallback((id: string) => {
@@ -44,26 +52,4 @@ export function useToggleSet(key: string) {
   const has = useCallback((id: string) => ids.has(id), [ids]);
 
   return { has, toggle, ids };
-}
-
-// 단일 값 useState
-export function useLocalStorage<T>(key: string, initial: T) {
-  const [value, setValue] = useState<T>(initial);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setValue(read<T>(key, initial));
-    setHydrated(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
-
-  const setAndStore = useCallback((next: T | ((prev: T) => T)) => {
-    setValue((prev) => {
-      const resolved = typeof next === "function" ? (next as (p: T) => T)(prev) : next;
-      write(key, resolved);
-      return resolved;
-    });
-  }, [key]);
-
-  return [value, setAndStore, hydrated] as const;
 }

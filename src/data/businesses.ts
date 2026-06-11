@@ -30,6 +30,7 @@ export interface Business {
   description: string;
   fullDescription: string;
   reviews: BizReview[];
+  photos?: string[]; // 사용자가 등록한 업소만 가짐. base64 data URL 배열
 }
 
 export const BIZ_CATEGORIES = [

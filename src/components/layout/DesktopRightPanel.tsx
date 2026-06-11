@@ -2,12 +2,7 @@ import Link from "next/link";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { JOBS } from "@/data/jobs";
 import { BUSINESSES } from "@/data/businesses";
-
-const LIVE_INFO = [
-  { icon: "💱", label: "SGD → KRW", value: "₩1,048", sub: "+2원" },
-  { icon: "🌤", label: "싱가포르", value: "34°C", sub: "습도 78%" },
-  { icon: "🚇", label: "MRT", value: "정상운행", sub: "전 노선" },
-];
+import DesktopLiveInfo from "./DesktopLiveInfo";
 
 // 실제 데이터에서 인기/최신 추출 (좋아요·조회수 기준)
 const HOT_POSTS = [...COMMUNITY_POSTS]
@@ -31,26 +26,7 @@ export default function DesktopRightPanel() {
       </Link>
 
       {/* 실시간 정보 */}
-      <div className="bg-white rounded-[14px] border border-black/[0.08] p-4">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[0.78rem] font-bold">실시간 정보</span>
-          <span className="w-[6px] h-[6px] rounded-full bg-[#2B7A50] animate-pulse-dot flex-shrink-0" />
-        </div>
-        <div className="flex flex-col divide-y divide-black/[0.04]">
-          {LIVE_INFO.map((info) => (
-            <div key={info.label} className="flex items-center gap-3 py-[9px] first:pt-0 last:pb-0">
-              <span className="text-lg flex-shrink-0 w-6 text-center">{info.icon}</span>
-              <div className="flex-1 min-w-0">
-                <div className="text-[0.7rem] text-[#888070]">{info.label}</div>
-                <div className="text-[0.85rem] font-bold text-[#181614]">
-                  {info.value}
-                  <span className="text-[0.7rem] text-[#888070] font-normal ml-1">{info.sub}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <DesktopLiveInfo />
 
       {/* 🔥 인기 게시글 */}
       <div className="bg-white rounded-[14px] border border-black/[0.08] p-4">

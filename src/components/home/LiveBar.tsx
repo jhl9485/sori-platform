@@ -1,85 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLiveData } from "@/lib/useLiveData";
 
-interface LiveData {
-  fx?: number;       // SGD → KRW
-  fxLoaded: boolean;
-  temp?: number;     // 싱가포르 °C
-  humidity?: number; // %
-  weatherLoaded: boolean;
-  updatedAt?: Date;
-}
-
-// 외부 API:
-// - 환율: Frankfurter (ECB 기반, CORS OK, 무료, API 키 불필요)
-// - 날씨: Open-Meteo (CORS OK, 무료, API 키 불필요)
-// MRT는 실시간 공개 API 없어 "정상 운행" 기본값 (LTA DataMall은 인증 키 필요)
+// 환율·날씨·MRT 실시간 정보. 데스크탑 우측 패널(DesktopLiveInfo)과 동일 hook 사용.
 export default function LiveBar() {
-  const [data, setData] = useState<LiveData>({ fxLoaded: false, weatherLoaded: false });
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const loadFx = async () => {
-      const apply = (krw: number) => {
-        if (cancelled) return;
-        setData((d) => ({ ...d, fx: Math.round(krw), fxLoaded: true, updatedAt: new Date() }));
-      };
-      // 메인: open.er-api.com (CORS OK, 키 불필요, 매일 업데이트)
-      try {
-        const r = await fetch("https://open.er-api.com/v6/latest/SGD", { cache: "no-store" });
-        if (r.ok) {
-          const j = await r.json();
-          if (j?.rates?.KRW) { apply(j.rates.KRW); return; }
-        }
-      } catch {}
-      // 폴백: frankfurter.dev (ECB 기반)
-      try {
-        const r = await fetch("https://api.frankfurter.dev/v1/latest?from=SGD&to=KRW", { cache: "no-store" });
-        if (r.ok) {
-          const j = await r.json();
-          if (j?.rates?.KRW) { apply(j.rates.KRW); return; }
-        }
-      } catch {}
-      if (!cancelled) setData((d) => ({ ...d, fxLoaded: true }));
-    };
-
-    const loadWeather = async () => {
-      try {
-        const r = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=1.3521&longitude=103.8198&current=temperature_2m,relative_humidity_2m&timezone=Asia%2FSingapore",
-          { cache: "no-store" }
-        );
-        if (!r.ok) return;
-        const j = await r.json();
-        if (cancelled || !j?.current) return;
-        setData((d) => ({
-          ...d,
-          temp: Math.round(j.current.temperature_2m),
-          humidity: Math.round(j.current.relative_humidity_2m),
-          weatherLoaded: true,
-          updatedAt: new Date(),
-        }));
-      } catch {
-        if (!cancelled) setData((d) => ({ ...d, weatherLoaded: true }));
-      }
-    };
-
-    loadFx();
-    loadWeather();
-
-    // 10분마다 갱신
-    const id = setInterval(() => {
-      loadFx();
-      loadWeather();
-    }, 10 * 60 * 1000);
-
-    return () => {
-      cancelled = true;
-      clearInterval(id);
-    };
-  }, []);
+  const data = useLiveData();
 
   const widgets = [
     {

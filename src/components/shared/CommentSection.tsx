@@ -10,6 +10,7 @@ interface Props {
 }
 
 const STORAGE_KEY = "sori_user_comments";
+const REPLIES_KEY = "sori_user_replies"; // Record<parentCommentId, Comment[]>
 
 function readAll(): Record<string, Comment[]> {
   if (typeof window === "undefined") return {};
@@ -30,17 +31,48 @@ function writeFor(postId: string, comments: Comment[]) {
   } catch {}
 }
 
-function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number }) {
+function readAllReplies(): Record<string, Comment[]> {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(REPLIES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeReplies(parentId: string, replies: Comment[]) {
+  if (typeof window === "undefined") return;
+  try {
+    const all = readAllReplies();
+    all[parentId] = replies;
+    localStorage.setItem(REPLIES_KEY, JSON.stringify(all));
+  } catch {}
+}
+
+interface ItemProps {
+  comment: Comment;
+  depth?: number;
+  userReplies: Record<string, Comment[]>;
+  onAddReply: (parentId: string, reply: Comment) => void;
+}
+
+function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps) {
   const [liked, setLiked] = useState(false);
   const [showReply, setShowReply] = useState(false);
-  const [replies, setReplies] = useState<Comment[]>(comment.replies || []);
   const [replyText, setReplyText] = useState("");
+
+  // 정적 답글 + 사용자 답글 병합 (이 댓글 id에 속한 사용자 답글만)
+  const replies = [
+    ...(comment.replies || []),
+    ...(userReplies[comment.id] || []),
+  ];
 
   const submitReply = () => {
     const text = replyText.trim();
     if (!text) return;
     const newReply: Comment = {
-      id: `${comment.id}-r${replies.length + 1}-${Date.now()}`,
+      id: `${comment.id}-r-${Date.now()}`,
       author: "나",
       avatarChar: "나",
       avatarBg: "#FBF0EC",
@@ -49,7 +81,7 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
       time: "방금 전",
       likes: 0,
     };
-    setReplies([...replies, newReply]);
+    onAddReply(comment.id, newReply);
     setReplyText("");
     setShowReply(false);
   };
@@ -123,7 +155,13 @@ function CommentItem({ comment, depth = 0 }: { comment: Comment; depth?: number 
         )}
       </div>
       {replies.map((reply) => (
-        <CommentItem key={reply.id} comment={reply} depth={depth + 1} />
+        <CommentItem
+          key={reply.id}
+          comment={reply}
+          depth={depth + 1}
+          userReplies={userReplies}
+          onAddReply={onAddReply}
+        />
       ))}
     </div>
   );
@@ -133,6 +171,7 @@ export default function CommentSection({ comments, postId }: Props) {
   // 정적 댓글 + 사용자 추가 댓글 (localStorage) 병합
   const { profile } = useProfile();
   const [userComments, setUserComments] = useState<Comment[]>([]);
+  const [userReplies, setUserReplies] = useState<Record<string, Comment[]>>({});
   const [newComment, setNewComment] = useState("");
   const [isAnon, setIsAnon] = useState(false);
 
@@ -140,9 +179,18 @@ export default function CommentSection({ comments, postId }: Props) {
     if (!postId) return;
     const all = readAll();
     setUserComments(all[postId] || []);
+    setUserReplies(readAllReplies());
   }, [postId]);
 
   const list = [...comments, ...userComments];
+
+  const handleAddReply = (parentId: string, reply: Comment) => {
+    setUserReplies((prev) => {
+      const next = { ...prev, [parentId]: [...(prev[parentId] || []), reply] };
+      writeReplies(parentId, next[parentId]);
+      return next;
+    });
+  };
 
   const submitComment = () => {
     const text = newComment.trim();
@@ -220,7 +268,12 @@ export default function CommentSection({ comments, postId }: Props) {
           </div>
         ) : (
           list.map((comment) => (
-            <CommentItem key={comment.id} comment={comment} />
+            <CommentItem
+              key={comment.id}
+              comment={comment}
+              userReplies={userReplies}
+              onAddReply={handleAddReply}
+            />
           ))
         )}
       </div>

@@ -72,9 +72,9 @@ export default function BusinessPage() {
           {filtered.map((biz) => (
             <Link key={biz.id} href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] relative overflow-hidden ${biz.bg}`}>
-                {userIds.has(biz.id) && 'photos' in biz && Array.isArray((biz as { photos?: string[] }).photos) && (biz as { photos: string[] }).photos.length > 0 ? (
+                {biz.photos && biz.photos.length > 0 ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={(biz as { photos: string[] }).photos[0]} alt={biz.name} loading="lazy" className="w-full h-full object-cover" />
+                  <img src={biz.photos[0]} alt={biz.name} loading="lazy" className="w-full h-full object-cover" />
                 ) : biz.emoji}
                 {userIds.has(biz.id) && (
                   <span className="absolute top-2 left-2 bg-[#2B7A50] text-white text-[0.6rem] font-bold px-[5px] py-[1px] rounded">내 업소</span>
