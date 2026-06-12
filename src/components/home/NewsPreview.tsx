@@ -1,10 +1,8 @@
 import Link from "next/link";
+import { NEWS_ITEMS } from "@/data/newsItems";
 
-const NEWS_PREVIEW = [
-  { emoji: "📊", category: "경제", title: "싱가포르 소비자물가 2.3% 상승", time: "오전 8:12" },
-  { emoji: "🌧️", category: "날씨", title: "이번 주말 강한 스콜 예보", time: "오전 7:00", isBreaking: true },
-  { emoji: "🏘️", category: "부동산", title: "콘도 임대료 3개월 연속 하락세", time: "어제" },
-];
+// 실제 뉴스 데이터에서 상위 3개 추출 (정적 import이므로 SSR 시 결정)
+const TOP_NEWS = NEWS_ITEMS.slice(0, 3);
 
 export default function NewsPreview() {
   return (
@@ -19,10 +17,10 @@ export default function NewsPreview() {
         <Link href="/news" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">전체보기</Link>
       </div>
       <div className="flex flex-col gap-2 px-4 md:px-6">
-        {NEWS_PREVIEW.map((news, i) => (
+        {TOP_NEWS.map((news) => (
           <Link
-            href="/news"
-            key={i}
+            href={`/news/${news.id}`}
+            key={news.id}
             className="bg-white rounded-[12px] border border-black/[0.08] px-3 py-[10px] flex items-center gap-3 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:border-black/[0.12] transition-all"
           >
             <span className="text-xl flex-shrink-0">{news.emoji}</span>

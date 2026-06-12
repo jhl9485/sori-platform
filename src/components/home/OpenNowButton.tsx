@@ -1,8 +1,19 @@
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
+import { BUSINESSES } from "@/data/businesses";
+import { useUserBiz } from "@/lib/userContent";
 
 export default function OpenNowButton() {
+  const userBiz = useUserBiz();
+
+  // 사용자 등록 업소 + 정적 데이터 합쳐서 영업중 개수 계산
+  const openCount = useMemo(() => {
+    const merged = [...userBiz, ...BUSINESSES];
+    return merged.filter((b) => b.isOpen).length;
+  }, [userBiz]);
+
   return (
     <Link
       href="/business"
@@ -13,7 +24,7 @@ export default function OpenNowButton() {
         <span className="text-[0.95rem] font-bold tracking-tight">지금 열려있는 한인 업소</span>
       </div>
       <span className="bg-white/20 rounded-lg px-3 py-1 text-[0.82rem] font-semibold group-hover:bg-white/30 transition-colors">
-        47곳 →
+        {openCount}곳 →
       </span>
     </Link>
   );
