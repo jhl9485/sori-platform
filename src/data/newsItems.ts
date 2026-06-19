@@ -59,40 +59,6 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     relatedIds: ["17", "21"],
   },
   {
-    id: "auto-20260620-2",
-    publishedAt: "2026-06-17",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏗️ HDB 6월 BTO 6,952세대 분양 — 신청 6/17~6/24, 시민·PR 대상이라 한인 PR만 해당",
-    summary: "HDB가 6월 BTO 분양에서 Ang Mo Kio·Bishan·Bukit Merah·Sembawang·Woodlands 7개 프로젝트 총 6,952세대를 공급한다. 신청 기간은 6월 17일~24일. Sembawang·Ang Mo Kio 일부(2,520세대)는 입주까지 2년 7개월로 역대 최단 수준. EP/DP 한인은 신청 자격이 없고 PR만 해당.",
-    fullContent: `**2026년 6월 BTO(Build-To-Order) 분양**
-HDB가 6월 분양 회차에서 **7개 프로젝트, 총 6,952세대**를 공급한다고 발표했습니다.
-
-**공급 지역**
-- Ang Mo Kio · Bishan · Bukit Merah · Sembawang · Woodlands
-- 이 중 **Sembawang·Ang Mo Kio 일부(2,520세대)**는 입주까지 **2년 7개월**로, 최근 몇 년 중 가장 빠른 입주 일정
-
-**신청 기간**
-- **2026년 6월 17일~24일**, HDB Flat Portal 온라인 신청
-
-**한인이 알아야 할 점**
-- BTO 신청 자격은 **싱가포르 시민권자(최소 1인 포함) 또는 PR**에게만 있습니다. **EP/DP 비자 한인은 직접 신청 대상이 아닙니다.**
-- PR을 취득한 한인 가정이라면 자격·쿼터(시민-PR 가구 쿼터 등) 조건을 HDB 공식 안내에서 재확인하세요.
-- 신규 공급 확대는 중장기적으로 임대 시장 공급에도 영향을 줄 수 있어, 렌트로 거주하는 한인에게도 참고가 됩니다.
-
-정확한 가격·평형·자격 조건은 아래 출처를 확인하세요.`,
-    source: "HDB · uchify",
-    sources: [
-      { name: "HDB — HDB Launches 6,952 Flats Across 7 Projects in June 2026 BTO Sales Exercise", url: "https://www.hdb.gov.sg/hdb-pulse/news/2026/hdb-launches-6952-flats-across-7-projects-in-june-2026-bto-sales-exercise" },
-      { name: "uchify — HDB BTO June 2026", url: "https://uchify.com/hdb-bto-june-2026/" },
-    ],
-    time: "2026년 6월 17일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🏗️",
-    relatedIds: ["23"],
-  },
-  {
     id: "auto-20260620-3",
     publishedAt: "2026-04-01",
     category: "부동산",
@@ -125,38 +91,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "2분",
     emoji: "📉",
     relatedIds: ["23"],
-  },
-  {
-    id: "auto-20260620-4",
-    publishedAt: "2026-06-17",
-    category: "생활",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🚗 COE 6월 17일 2차 입찰 결과 — Cat A $123,847·Cat B $123,502, 전 카테고리 하락",
-    summary: "6월 17일 마감된 2차 COE 입찰에서 Cat A·B·C·D 프리미엄이 모두 전회比 하락했다(Cat B -$3,487로 최대 하락). Open Category E만 소폭($2) 상승. 6월 4일 1차 입찰(Cat C $94,000 등 고가) 대비로도 전반적으로 진정되는 흐름이다.",
-    fullContent: `**2026년 6월 COE 입찰 결과**
-싱가포르에서 차를 사려면 10년 유효한 차량 권리증(COE)이 필요합니다. 6월 두 차례 입찰 결과입니다.
-
-**1차 입찰 (6월 4일 마감)**
-- Cat A $126,009 · Cat B $126,989 · Cat C $94,000(신고가) · Cat D $10,000 · Cat E $129,000
-
-**2차 입찰 (6월 17일 마감)**
-- Cat A $123,847(-$2,162) · Cat B $123,502(-$3,487, 최대 하락) · Cat C $93,001(-$999) · Cat D $9,989(-$11) · Cat E $129,002(+$2)
-
-**한인 참고**
-- 전 카테고리가 1차보다 낮아지며 다소 진정되는 분위기지만, 여전히 전반적으로 고가 구간입니다.
-- 차량 구매·리스를 고려하는 한인은 다음 입찰(통상 매월 1·3주차 수요일 마감) 전 최신 프리미엄을 확인하세요.
-
-정확한 수치는 아래 출처를 확인하세요.`,
-    source: "Motorist Singapore · SingPromos",
-    sources: [
-      { name: "Motorist — June 2026 COE Results 1st Bidding", url: "https://www.motorist.sg/article/5962/june-2026-coe-results-1st-bidding-the-coe-stallion-was-a-costly-workhorse-again-with-cat-c-premium-at-a-new-peak-of-94k-while-the-car-categories-were-more-or-less-still-expensive" },
-      { name: "SingPromos — COE premiums mostly down after 17 Jun 2026 bidding exercise", url: "https://singpromos.com/news/coe-premiums-mostly-down-after-17-jun-2026-bidding-exercise-303474" },
-    ],
-    time: "2026년 6월 17일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚗",
-    relatedIds: ["25"],
   },
   {
     id: "auto-20260620-5",
