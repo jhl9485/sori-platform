@@ -5,6 +5,7 @@ export interface NewsSource {
 
 export interface NewsItem {
   id: string;
+  publishedAt: string;   // 정렬용 ISO 날짜 "YYYY-MM-DD" — 최신순 정렬 기준
   category: string;
   catStyle: string;
   title: string;
@@ -23,9 +24,10 @@ export interface NewsItem {
 // 실제 출처 기반 싱가포르 뉴스 (2026년 1~6월). 모든 항목은 웹 검색으로 확인한 실제 자료를
 // 한인 커뮤니티에 유용한 정보 위주로 한국어 요약한 것이며, 참고한 출처를 sources[]에 명시한다.
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
-export const NEWS_ITEMS: NewsItem[] = [
+const RAW_NEWS_ITEMS: NewsItem[] = [
   {
     id: "19",
+    publishedAt: "2026-06-19",
     category: "건강",
     catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
     title: "🦟 뎅기열 2026년 주간 최다 발생 — 6월 13일 주 119건, 북부 레드얼럿 클러스터 주의",
@@ -61,6 +63,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "28",
+    publishedAt: "2026-02-26",
     category: "사회",
     catStyle: "bg-[#F5F0FF] text-[#7040C0]",
     title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
@@ -96,6 +99,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "20",
+    publishedAt: "2026-02-12",
     category: "경제",
     catStyle: "bg-[#EBF0FB] text-[#2050A0]",
     title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
@@ -129,6 +133,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "17",
+    publishedAt: "2026-03-03",
     category: "비자/취업",
     catStyle: "bg-[#EBF0FB] text-[#2050A0]",
     title: "💼 EP 최저급여 2027년 $6,000으로 인상 + 'ONE Pass (AI·Tech)' 신설 — Budget 2026 확정",
@@ -164,6 +169,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "21",
+    publishedAt: "2026-02-12",
     category: "비자/취업",
     catStyle: "bg-[#EBF0FB] text-[#2050A0]",
     title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
@@ -199,6 +205,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "26",
+    publishedAt: "2025-12-27",
     category: "교통",
     catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
     title: "🚇 대중교통 요금 5% 인상 (2025년 12월 27일 시행) — 성인 최대 10센트↑, 카드가 현금보다 저렴",
@@ -231,6 +238,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "27",
+    publishedAt: "2026-02-17",
     category: "생활",
     catStyle: "bg-[#F5F0FF] text-[#7040C0]",
     title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
@@ -264,6 +272,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "25",
+    publishedAt: "2026-02-15",
     category: "생활",
     catStyle: "bg-[#FBF5E8] text-[#B07010]",
     title: "🚗 COE(차량 권리증) 2026년 2월 전 카테고리 하락 — Cat B 8.8%↓ $110,890",
@@ -298,6 +307,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "24",
+    publishedAt: "2026-01-01",
     category: "교육",
     catStyle: "bg-[#FBF0EC] text-[#D04020]",
     title: "🏫 정부학교 외국인·PR 학비 2026년 또 인상 — 국제학생 월 최대 $140↑ (1월 시행)",
@@ -333,6 +343,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "23",
+    publishedAt: "2026-02-11",
     category: "부동산",
     catStyle: "bg-[#FBF5E8] text-[#B07010]",
     title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
@@ -370,6 +381,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "22",
+    publishedAt: "2026-01-29",
     category: "경제",
     catStyle: "bg-[#EBF0FB] text-[#2050A0]",
     title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
@@ -404,6 +416,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "30",
+    publishedAt: "2026-01-01",
     category: "경제",
     catStyle: "bg-[#EBF0FB] text-[#2050A0]",
     title: "🍜 GST 9% 유지 & 2026년 생활비 — 호커 한 끼 $4~8, 시민 지원금은 한인에 미적용",
@@ -440,6 +453,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "31",
+    publishedAt: "2026-03-31",
     category: "취업",
     catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
     title: "📈 2026년 1분기 노동시장 — 실업률 2.0%로 안정, 정리해고는 소폭 증가",
@@ -475,6 +489,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: "29",
+    publishedAt: "2026-01-02",
     category: "교통",
     catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
     title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
@@ -504,3 +519,8 @@ export const NEWS_ITEMS: NewsItem[] = [
     relatedIds: ["26"],
   },
 ];
+
+// 최신순(publishedAt 내림차순) 자동 정렬 — 새 뉴스 추가 시 배열 위치와 무관하게 최신이 위로.
+export const NEWS_ITEMS: NewsItem[] = [...RAW_NEWS_ITEMS].sort(
+  (a, b) => b.publishedAt.localeCompare(a.publishedAt)
+);
