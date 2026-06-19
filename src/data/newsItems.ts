@@ -1,3 +1,8 @@
+export interface NewsSource {
+  name: string;   // 예: "CNA", "Straits Times"
+  url: string;    // 원문 기사 링크
+}
+
 export interface NewsItem {
   id: string;
   category: string;
@@ -5,8 +10,9 @@ export interface NewsItem {
   title: string;
   summary: string;
   fullContent: string;
-  source: string;
-  sourceUrl?: string;
+  source: string;        // 대표 출처 라벨 (예: "CNA" 또는 "CNA 외 2곳"). 목록/미리보기용
+  sourceUrl?: string;    // (구) 단일 원문 링크 — 하위호환
+  sources?: NewsSource[]; // (신) 참고한 모든 기사 출처. 여러 기사 종합 요약 시 전부 명시
   time: string;
   isBreaking: boolean;
   readTime: string;

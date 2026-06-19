@@ -18,6 +18,11 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
   const saved = isSaved(news.id);
   const liked = isLiked(news.id);
 
+  // 참고한 모든 출처 목록 (신 sources[] 우선, 없으면 구 source/sourceUrl 폴백)
+  const sourceList = news.sources && news.sources.length > 0
+    ? news.sources
+    : (news.sourceUrl ? [{ name: news.source, url: news.sourceUrl }] : []);
+
   const related = NEWS_ITEMS.filter((n) => news.relatedIds.includes(n.id));
   const others = NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3);
 
@@ -77,26 +82,35 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
         {/* 본문 */}
         <div className="px-4 md:px-6 pb-5 space-y-[2px]">{renderMarkdown(news.fullContent)}</div>
 
-        {/* 원문 링크 */}
-        {news.sourceUrl && (
+        {/* 출처 (참고한 모든 기사) */}
+        {sourceList.length > 0 && (
           <div className="mx-4 md:mx-6 mb-4">
-            <a
-              href={news.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white border border-black/[0.1] rounded-[10px] px-4 py-3 text-[0.82rem] text-[#888070] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
-            >
-              <span className="flex-1">📄 원문 기사 보기 — {news.source}</span>
-              <span>↗</span>
-            </a>
+            <div className="text-[0.7rem] font-bold text-[#888070] mb-2 uppercase tracking-wider">
+              📄 출처 {sourceList.length > 1 ? `(참고 기사 ${sourceList.length}건)` : ""}
+            </div>
+            <div className="flex flex-col gap-2">
+              {sourceList.map((s, i) => (
+                <a
+                  key={`${s.url}-${i}`}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white border border-black/[0.1] rounded-[10px] px-4 py-3 text-[0.82rem] text-[#888070] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+                >
+                  <span className="flex-1 line-clamp-1">{s.name}</span>
+                  <span className="flex-shrink-0">원문 보기 ↗</span>
+                </a>
+              ))}
+            </div>
           </div>
         )}
 
-        {/* AI 번역 고지 */}
+        {/* AI 요약 고지 (정직하게: 여러 출처 종합 요약) */}
         <div className="mx-4 md:mx-6 mb-5 bg-[#EBF0FB] rounded-[10px] p-3 flex items-start gap-2">
           <span className="text-sm flex-shrink-0">🤖</span>
           <p className="text-[0.72rem] text-[#2050A0]">
-            이 기사는 SORI 편집팀이 원문 자료를 바탕으로 한인 커뮤니티에 유용한 정보 위주로 번역·편집했습니다. 원문과 일부 차이가 있을 수 있습니다.
+            이 글은 위 출처의 기사를 바탕으로 한인 커뮤니티에 유용한 정보 위주로 한국어 요약했습니다.
+            정확한 내용은 반드시 원문을 확인해주세요. 요약 과정에서 원문과 차이가 있을 수 있습니다.
           </p>
         </div>
 
