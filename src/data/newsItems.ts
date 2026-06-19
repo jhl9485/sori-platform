@@ -21,7 +21,113 @@ export interface NewsItem {
 }
 
 // 실제 싱가포르 뉴스 (2026년 6월 기준) — 한인 커뮤니티 유용 정보 중심
+// id 17~19: 실제 검색·출처 기반 (2026-06-20 반영). 그 외는 기존 시드 콘텐츠(감사 대상).
 export const NEWS_ITEMS: NewsItem[] = [
+  {
+    id: "19",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 2026년 주간 최다 발생 — 6월 13일 주 119건, 북부 레드얼럿 클러스터 주의",
+    summary: "NEA 집계 기준 6월 13일로 끝나는 주에 뎅기 119건 확진(2026년 주간 최다, 전주比 +39). 누적 약 938건으로 피크 시즌 진입. 6월 15일 기준 활성 클러스터 12곳 중 4곳 레드얼럿. 북부 거주 한인 가정 모기 번식 방지 주의.",
+    fullContent: `**2026년 뎅기열 주간 최다 발생**
+국가환경청(NEA) 집계 기준, 6월 13일로 끝나는 주에 뎅기열 확진이 급증했습니다.
+
+**현황**
+- 해당 주 확진: **119건** (2026년 주간 최다, 전주 대비 +39건)
+- 누적(1/1~6/13): 약 **938건**
+- 피크 시즌(5~10월) 진입
+
+**클러스터 경보 (6월 15일 기준)**
+- 활성 클러스터 **12곳**, 그중 **4곳이 레드얼럿**(10건 이상·확산 가속)
+- 특히 **북부 지역** 주의
+
+**한인 가정 예방 체크리스트**
+- 화분 받침대·에어컨 응결수 받이 고인 물 즉시 제거
+- 발코니 양동이·물통 뒤집어 보관, 배수구 주 1회 청소
+- 고열·심한 두통·관절통 시 GP/폴리클리닉 방문, NS1 검사 요청
+
+실시간 클러스터(빨간 구역)는 NEA myENV 앱·haze.gov.sg에서 확인하세요. 정확한 최신 수치는 아래 출처를 확인해주세요.`,
+    source: "NEA · Medical Daily",
+    sources: [
+      { name: "Medical Daily — Singapore Dengue 2026 (NEA 인용)", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+      { name: "NEA haze.gov.sg", url: "https://www.haze.gov.sg/home" },
+    ],
+    time: "2026년 6월 19일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🦟",
+    relatedIds: ["12", "10"],
+  },
+  {
+    id: "18",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏠 URA Q1 2026 — 민간주택 가격 +0.3%로 둔화, 임대료 안정·공실 6.2%",
+    summary: "URA 1분기 속보치: 민간주택 가격 전분기比 +0.3%(4분기 +0.6%서 둔화). 외곽(OCR) +1.3%로 최대 상승. 임대지수 +0.3%, 공실률 6%→6.2%로 임차인에 유리한 안정세. 상반기 확정 공급 4,575세대.",
+    fullContent: `**URA 2026년 1분기 속보치**
+싱가포르 도시재개발청(URA)이 2026년 1분기 민간 주택 가격·임대 지표 속보치를 발표했습니다.
+
+**가격 동향**
+- 전체 민간주택 가격: 전분기 대비 **+0.3%** (2025년 4분기 +0.6%에서 둔화)
+- 지역별: CCR(도심) +0.4% / RCR(준도심) +0.9% / **OCR(외곽) +1.3%** (최대 상승)
+
+**임대·공급**
+- 임대지수: **+0.3%** QoQ
+- 공실률: 6% → **6.2%** (소폭 상승 = 임차인에 유리한 안정세)
+- 상반기 확정 공급: 4,575세대 (최근 10년 평균 대비 약 +50%)
+
+**한인 임차인 팁**
+- 공실 증가로 렌트 협상 여지 ↑ — 2년 계약 시 인하·조건 협상 시도
+- Diplomatic Clause(조기 해지 조항) 요청 권장
+
+수치는 속보치이며, 확정치·세부 내용은 URA 공식 발표(아래 출처)를 확인하세요.`,
+    source: "URA · StackedHomes",
+    sources: [
+      { name: "URA 보도자료 (pr26-26)", url: "https://www.ura.gov.sg/Corporate/Media-Room/Media-Releases/pr26-26" },
+      { name: "StackedHomes — Q1 2026 분석", url: "https://stackedhomes.com/q1-2026-singapore-private-residential-analysis/" },
+      { name: "PropertyGuru — Q1 2026 가격", url: "https://www.propertyguru.com.sg/property-guides/ura-private-property-prices-q1-2026-pjx-98370" },
+    ],
+    time: "2026년 4월",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏠",
+    relatedIds: ["9", "4"],
+  },
+  {
+    id: "17",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "💼 EP 최저급여 2027년 $6,000으로 인상 + 'ONE Pass (AI·Tech)' 신설 — Budget 2026 확정",
+    summary: "MOM Budget 2026 발표: 일반 EP 최저 월급여 2027년 1월(신규)·2028년 1월(갱신)부터 $5,600→$6,000, 금융권 $6,200→$6,600. 2026년 현재는 아직 $5,600. 2027년 1월 Tech.Pass 대체 'ONE Pass (AI and Tech)' 신설 예정.",
+    fullContent: `**Budget 2026 외국인력 정책 변경**
+싱가포르 인력부(MOM)가 Budget 2026에서 Employment Pass(EP) 등 외국인력 정책 변경을 발표했습니다.
+
+**EP 최저 월급여 인상 (2027~2028 적용)**
+- 일반 업종: $5,600 → **$6,000** (2027년 1월 신규 / 2028년 1월 갱신부터)
+- 금융 서비스업: $6,200 → **$6,600**
+- ※ 2026년 현재는 아직 일반 $5,600 / 금융 $6,200
+
+**ONE Pass (AI and Tech) 신설**
+- 2027년 1월 기존 Tech.Pass를 대체하는 새 트랙 도입 예정
+- AI·테크 인재 유치 강화 목적, 더 유리한 조건 제공 예정
+
+**한인 체크리스트**
+- EP 갱신 예정자는 인상 시점(2028년 갱신)에 맞춰 급여 기준 사전 확인
+- COMPASS 40점 기준은 계속 적용 — 급여가 기준을 간신히 넘으면 사전 자가진단 권장
+
+정확한 기준과 최신 발표는 반드시 MOM 공식 자료(아래 출처)를 확인하세요.`,
+    source: "MOM · Newland Chase",
+    sources: [
+      { name: "MOM 공식 factsheet (2026-03-03)", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
+      { name: "Newland Chase — 외국인력 정책 변경", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
+      { name: "Slasify — SG 취업비자 2026 가이드", url: "https://slasify.com/en/blog/singapore-work-visas-2026-guide" },
+    ],
+    time: "2026년 3월 3일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "💼",
+    relatedIds: ["7"],
+  },
   {
     id: "16",
     category: "문화",
