@@ -26,6 +26,177 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260620-1",
+    publishedAt: "2026-06-15",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 EP COMPASS 갱신 심사 7월 1일부터 강화 — 2023~24년 승인자도 재심사 시 탈락 위험",
+    summary: "2026년 1월 신규 EP 신청부터 적용된 개정 COMPASS 기준(섹터·연령대별 급여 벤치마크, 자격 목록 등)이 7월 1일부터 갱신(renewal) 심사에도 적용된다. 2023~24년 65th 퍼센타일 기준으로 승인됐던 EP도 2026년 갱신 시점 기준 미달 시 점수가 깎여 탈락할 수 있다.",
+    fullContent: `**COMPASS 2단계 — 갱신 심사 적용 (2026년 7월 1일부터)**
+싱가포르 인력부(MOM)의 Employment Pass(EP) COMPASS 프레임워크 개정판이 2026년 1월 1일 신규 신청에 먼저 적용됐고, **7월 1일부터는 갱신 신청**에도 동일하게 적용됩니다.
+
+**무엇이 바뀌었나**
+- **C1 급여 기준**: 섹터·연령대별로 세분화돼, 동일 분야 로컬 PMET 임금의 **65th 퍼센타일**을 기준으로 채점
+- **C2 자격 목록**: 학위 동등 전문자격·상위권 대학 리스트 갱신
+- Shortage Occupation List(부족 직종 목록) 확대(헬스케어 등 신규 직종 추가)
+- 통과 기준선은 여전히 **40점 이상**
+
+**한인 EP 보유자가 챙겨야 할 점**
+- 2023~2024년에 당시 65th 퍼센타일을 통과해 승인받았더라도, **2026년 갱신 시점 기준으로는 미달**할 수 있어 점수가 깎입니다.
+- 본인 EP 만료일이 **2026년 하반기**라면, 고용주(HR)에 COMPASS 점수 사전 점검을 요청하는 것이 안전합니다.
+- 점수가 부족하면 급여 조정, 자격 보완 서류 준비 등을 갱신 신청 전에 검토해야 합니다.
+
+정확한 점수표·기준은 아래 출처(MOM 안내를 다룬 전문 매체)를 확인하세요.`,
+    source: "Human Resources Online · Asanify",
+    sources: [
+      { name: "Human Resources Online — Reminder: Singapore's updated COMPASS rules effective in 2026", url: "https://www.humanresourcesonline.net/reminder-singapore-s-updated-compass-rules-effective-in-2026-for-ep-applications-and-renewals" },
+      { name: "Asanify — Singapore Employment Pass Renewals Digest (Jun 15, 2026)", url: "https://asanify.com/blog/news/singapore-employment-pass-renewals-june-15-2026/" },
+    ],
+    time: "2026년 6월 15일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "📋",
+    relatedIds: ["17", "21"],
+  },
+  {
+    id: "auto-20260620-2",
+    publishedAt: "2026-06-17",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏗️ HDB 6월 BTO 6,952세대 분양 — 신청 6/17~6/24, 시민·PR 대상이라 한인 PR만 해당",
+    summary: "HDB가 6월 BTO 분양에서 Ang Mo Kio·Bishan·Bukit Merah·Sembawang·Woodlands 7개 프로젝트 총 6,952세대를 공급한다. 신청 기간은 6월 17일~24일. Sembawang·Ang Mo Kio 일부(2,520세대)는 입주까지 2년 7개월로 역대 최단 수준. EP/DP 한인은 신청 자격이 없고 PR만 해당.",
+    fullContent: `**2026년 6월 BTO(Build-To-Order) 분양**
+HDB가 6월 분양 회차에서 **7개 프로젝트, 총 6,952세대**를 공급한다고 발표했습니다.
+
+**공급 지역**
+- Ang Mo Kio · Bishan · Bukit Merah · Sembawang · Woodlands
+- 이 중 **Sembawang·Ang Mo Kio 일부(2,520세대)**는 입주까지 **2년 7개월**로, 최근 몇 년 중 가장 빠른 입주 일정
+
+**신청 기간**
+- **2026년 6월 17일~24일**, HDB Flat Portal 온라인 신청
+
+**한인이 알아야 할 점**
+- BTO 신청 자격은 **싱가포르 시민권자(최소 1인 포함) 또는 PR**에게만 있습니다. **EP/DP 비자 한인은 직접 신청 대상이 아닙니다.**
+- PR을 취득한 한인 가정이라면 자격·쿼터(시민-PR 가구 쿼터 등) 조건을 HDB 공식 안내에서 재확인하세요.
+- 신규 공급 확대는 중장기적으로 임대 시장 공급에도 영향을 줄 수 있어, 렌트로 거주하는 한인에게도 참고가 됩니다.
+
+정확한 가격·평형·자격 조건은 아래 출처를 확인하세요.`,
+    source: "HDB · uchify",
+    sources: [
+      { name: "HDB — HDB Launches 6,952 Flats Across 7 Projects in June 2026 BTO Sales Exercise", url: "https://www.hdb.gov.sg/hdb-pulse/news/2026/hdb-launches-6952-flats-across-7-projects-in-june-2026-bto-sales-exercise" },
+      { name: "uchify — HDB BTO June 2026", url: "https://uchify.com/hdb-bto-june-2026/" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏗️",
+    relatedIds: ["23"],
+  },
+  {
+    id: "auto-20260620-3",
+    publishedAt: "2026-04-01",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "📉 HDB 재판매가 7년 만에 첫 하락 — 1분기 -0.1%, 렌트도 소폭 완화세",
+    summary: "HDB 발표 기준 2026년 1분기 재판매가지수가 203.4로 전 분기比 0.1% 하락, 2019년 2분기 이후 약 7년 만의 첫 하락이다. 렌트 지수도 0.1% 내리며 2023년 고점 이후 완만한 하락세가 이어지고 있다(4룸 기준 월세 중간값 약 S$2,600).",
+    fullContent: `**HDB 1분기(Q1) 2026 통계**
+HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
+
+**재판매(Resale) 가격**
+- 재판매가격지수(RPI) **203.4**, 전 분기比 **-0.1%**
+- **2019년 2분기 이후 약 7년 만의 첫 분기 하락**
+
+**임대(Rental) 시장**
+- HDB 렌트 지수도 전 분기比 **-0.1%**, 2023년 고점 이후 완만한 하락세 지속
+- **4룸 기준 월세 중간값 약 S$2,600**
+
+**한인 임차인 참고**
+- 렌트 시장이 과열기를 지나 완만히 안정되는 흐름이라, 계약 갱신·재계약 시 협상 여지가 있을 수 있습니다.
+- 다만 지역·평형별 편차가 크므로, 실제 시세는 HDB·중개사 최신 데이터로 재확인하세요.
+
+정확한 수치는 아래 출처(HDB 통계 기반 보도)를 확인하세요.`,
+    source: "99.co · Mothership",
+    sources: [
+      { name: "99.co — Q1 2026: HDB resale market sees first price decline in 7 years", url: "https://www.99.co/singapore/insider/q1-2026-hdb-resale-market-first-price-decline-in-7-years/" },
+      { name: "Mothership — HDB resale prices fell by 0.1%, private housing prices rose 0.9%, in 1st quarter 2026", url: "https://mothership.sg/2026/04/hdb-ura-real-estate-statistics/" },
+    ],
+    time: "2026년 4월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📉",
+    relatedIds: ["23"],
+  },
+  {
+    id: "auto-20260620-4",
+    publishedAt: "2026-06-17",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🚗 COE 6월 17일 2차 입찰 결과 — Cat A $123,847·Cat B $123,502, 전 카테고리 하락",
+    summary: "6월 17일 마감된 2차 COE 입찰에서 Cat A·B·C·D 프리미엄이 모두 전회比 하락했다(Cat B -$3,487로 최대 하락). Open Category E만 소폭($2) 상승. 6월 4일 1차 입찰(Cat C $94,000 등 고가) 대비로도 전반적으로 진정되는 흐름이다.",
+    fullContent: `**2026년 6월 COE 입찰 결과**
+싱가포르에서 차를 사려면 10년 유효한 차량 권리증(COE)이 필요합니다. 6월 두 차례 입찰 결과입니다.
+
+**1차 입찰 (6월 4일 마감)**
+- Cat A $126,009 · Cat B $126,989 · Cat C $94,000(신고가) · Cat D $10,000 · Cat E $129,000
+
+**2차 입찰 (6월 17일 마감)**
+- Cat A $123,847(-$2,162) · Cat B $123,502(-$3,487, 최대 하락) · Cat C $93,001(-$999) · Cat D $9,989(-$11) · Cat E $129,002(+$2)
+
+**한인 참고**
+- 전 카테고리가 1차보다 낮아지며 다소 진정되는 분위기지만, 여전히 전반적으로 고가 구간입니다.
+- 차량 구매·리스를 고려하는 한인은 다음 입찰(통상 매월 1·3주차 수요일 마감) 전 최신 프리미엄을 확인하세요.
+
+정확한 수치는 아래 출처를 확인하세요.`,
+    source: "Motorist Singapore · SingPromos",
+    sources: [
+      { name: "Motorist — June 2026 COE Results 1st Bidding", url: "https://www.motorist.sg/article/5962/june-2026-coe-results-1st-bidding-the-coe-stallion-was-a-costly-workhorse-again-with-cat-c-premium-at-a-new-peak-of-94k-while-the-car-categories-were-more-or-less-still-expensive" },
+      { name: "SingPromos — COE premiums mostly down after 17 Jun 2026 bidding exercise", url: "https://singpromos.com/news/coe-premiums-mostly-down-after-17-jun-2026-bidding-exercise-303474" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚗",
+    relatedIds: ["25"],
+  },
+  {
+    id: "auto-20260620-5",
+    publishedAt: "2026-06-18",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 일주일 새 사기 경보 2건 — 페이스북 라이브 행운권·시니어 대상 안드로이드 악성코드",
+    summary: "싱가포르 경찰(SPF)이 6월 15일·18일 잇따라 경보를 냈다. ①페북 라이브 행운권/스크래치카드 사기: 5월 20일 이후 33건·손실 최소 S$6만, PayNow QR로 '수수료' 요구. ②시니어 대상 안드로이드 악성코드: 4월 1일 이후 8건·손실 최소 S$6.9만, APK 설치 유도 후 Singpass·ScamShield 삭제·계좌 한도 조작.",
+    fullContent: `**SPF 사기 경보 2건 (2026년 6월)**
+싱가포르 경찰(SPF)이 일주일 사이 신종 사기 경보를 두 건 발표했습니다.
+
+**① 페이스북 라이브 행운권 사기 (6월 15일 발표)**
+- 5월 20일 이후 최소 **33건**, 피해액 최소 **S$6만**
+- 페북 라이브 방송에서 스크래치카드·복권을 판매 → "당첨됐다"며 **PayNow QR(Liquidpay 계좌)**로 '수수료' 등 추가 송금 요구
+- 당첨금이 안 들어오거나 연락이 끊겨야 사기임을 인지
+
+**② 시니어 대상 안드로이드 악성코드 사기 (6월 18일 발표)**
+- 4월 1일 이후 최소 **8건**, 피해액 최소 **S$6.9만**
+- 페북·TikTok의 '시니어 활동' 광고 → 관심 등록 시 WhatsApp으로 연락 → **APK 파일 설치** 유도(활동 목록 확인 명목)
+- 설치 후 **Singpass·ScamShield 앱이 삭제**되거나 **계좌 이체 한도가 무단 변경**된 피해 사례
+
+**한인 가정 주의 팁**
+- 출처 불명 APK 파일은 절대 설치하지 말 것(공식 앱스토어 외 설치 차단 권장)
+- SNS 라이브·광고 경품·당첨 안내는 선입금·수수료 요구 시 사기로 의심
+- 부모님 등 시니어가 방문·체류 중이라면 이 2건을 미리 공유해 주의를 당부할 것
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Lucky Draw Scams Involving Facebook Live", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260615_police_advisory_on_lucky_draw_scams_involving_facebook_live" },
+      { name: "SPF — Police Advisory On Malware-Enabled Scams On Android Devices Targeting Senior Citizens", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260618_police_advisory_on_malware_enabled_scams_on_android_devices_targeting_senior_citizens" },
+    ],
+    time: "2026년 6월 18일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🚨",
+    relatedIds: ["28"],
+  },
+  {
     id: "19",
     publishedAt: "2026-06-19",
     category: "건강",
