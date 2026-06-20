@@ -59,15 +59,14 @@ function BizCard({ biz }: { biz: Business }) {
         <div className="text-[0.82rem] font-bold mb-[2px] line-clamp-1">{biz.name}</div>
         <div className="text-[0.7rem] text-[#888070] mb-[5px] line-clamp-1">{biz.category} · {biz.area}</div>
         <div className="flex items-center gap-1">
-          {biz.rating > 0 && (
+          {biz.rating > 0 ? (
             <>
               <span className="text-[0.7rem] text-[#B07010] font-semibold">★ {biz.rating}</span>
               <span className="text-[0.68rem] text-[#888070]">({biz.reviewCount})</span>
             </>
+          ) : (
+            <span className="text-[0.66rem] text-[#888070]">🆕 신규</span>
           )}
-          <span className={`text-[0.68rem] font-semibold ml-auto ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>
-            {biz.isOpen ? "영업중" : "영업종료"}
-          </span>
         </div>
       </div>
     </Link>

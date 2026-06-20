@@ -66,9 +66,6 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
               {biz.category} · {biz.area} · {biz.priceRange}
             </div>
           </div>
-          <span className={`text-[0.75rem] font-bold flex-shrink-0 mt-1 ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>
-            {biz.isOpen ? "● 영업중" : "○ 영업종료"}
-          </span>
         </div>
 
         {/* 별점 */}
@@ -89,14 +86,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         </div>
 
         {/* 빠른 액션 */}
-        <div className="grid grid-cols-3 gap-2 mb-5">
-          <a
-            href={`tel:${biz.phone.replace(/\s/g, "")}`}
-            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
-          >
-            <span className="text-xl leading-none">📞</span>
-            <span className="text-[0.72rem] font-medium text-[#181614]">전화하기</span>
-          </a>
+        <div className="grid grid-cols-2 gap-2 mb-5">
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${biz.address} Singapore`)}`}
             target="_blank"

@@ -9,7 +9,6 @@ import VerifiedBadge from "@/components/shared/VerifiedBadge";
 
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
-  const [openOnly, setOpenOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const userBiz = useUserBiz();
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
@@ -17,10 +16,9 @@ export default function BusinessPage() {
 
   const filtered = useMemo(() => allBiz.filter((b) => {
     if (selected !== "all" && b.category !== selected) return false;
-    if (openOnly && !b.isOpen) return false;
     if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
     return true;
-  }), [allBiz, selected, openOnly, searchQuery]);
+  }), [allBiz, selected, searchQuery]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -44,22 +42,15 @@ export default function BusinessPage() {
         ))}
       </div>
 
-      {/* 영업중 필터 + 등록 */}
+      {/* 결과 수 + 등록 */}
       <div className="flex items-center justify-between pb-4 gap-2">
-        <button onClick={() => setOpenOnly(!openOnly)}
-          className={`flex items-center gap-1 px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${openOnly ? "bg-[#2B7A50] text-white border-[#2B7A50]" : "bg-white text-[#888070] border-black/[0.08]"}`}>
-          <span className={`w-[6px] h-[6px] rounded-full ${openOnly ? "bg-white animate-pulse-dot" : "bg-[#2B7A50]"}`} />
-          지금 영업중
-        </button>
-        <div className="flex items-center gap-2">
-          <span className="text-[0.75rem] text-[#888070]"><span className="font-bold text-[#181614]">{filtered.length}개</span> 업소</span>
-          <Link
-            href="/business/write"
-            className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
-          >
-            🏪 업소 등록
-          </Link>
-        </div>
+        <span className="text-[0.75rem] text-[#888070]"><span className="font-bold text-[#181614]">{filtered.length}개</span> 업소</span>
+        <Link
+          href="/business/write"
+          className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
+        >
+          🏪 업소 등록
+        </Link>
       </div>
 
       {/* 업소 목록 — 데스크탑 2~3열 */}
@@ -82,12 +73,9 @@ export default function BusinessPage() {
                 )}
               </div>
               <div className="p-3">
-                <div className="flex items-center justify-between mb-1 gap-1">
-                  <div className="flex items-center gap-1 min-w-0">
-                    <span className="font-bold text-[0.9rem] truncate">{biz.name}</span>
-                    {biz.verified && <VerifiedBadge />}
-                  </div>
-                  <span className={`text-[0.7rem] font-semibold flex-shrink-0 ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>{biz.isOpen ? "● 영업중" : "○ 종료"}</span>
+                <div className="flex items-center gap-1 mb-1 min-w-0">
+                  <span className="font-bold text-[0.9rem] truncate">{biz.name}</span>
+                  {biz.verified && <VerifiedBadge />}
                 </div>
                 <div className="text-[0.72rem] text-[#888070] mb-2">{biz.category} · {biz.area} · {biz.priceRange}</div>
                 <div className="flex items-center gap-1 mb-2">

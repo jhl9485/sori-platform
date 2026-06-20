@@ -100,8 +100,7 @@ export default function DesktopRightLists() {
                 <div className="text-[0.68rem] text-[#888070] truncate">{biz.category} · {biz.area}</div>
               </div>
               <div className="flex flex-col items-end flex-shrink-0">
-                {biz.rating > 0 && <span className="text-[0.75rem] font-bold text-[#B07010]">★ {biz.rating}</span>}
-                <span className={`text-[0.62rem] font-medium ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>{biz.isOpen ? "영업중" : "영업종료"}</span>
+                {biz.rating > 0 ? <span className="text-[0.75rem] font-bold text-[#B07010]">★ {biz.rating}</span> : <span className="text-[0.6rem] text-[#888070]">🆕 신규</span>}
               </div>
             </Link>
           ))}
