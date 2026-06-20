@@ -26,6 +26,190 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260619-1",
+    publishedAt: "2026-06-17",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "⚡ 전기요금 7월부터 큰 폭 인상 예고 — 2분기 대비 8.1%↑(2.21센트/kWh), U-Save 환급으로 일부 상쇄",
+    summary: "에너지시장청(EMA) 발표에 따르면 중동 정세발 천연가스 가격 상승 영향으로 2026년 3분기(7~9월) 규제 전기요금이 2분기보다 평균 8.1%(2.21센트/kWh) 오를 전망이다. 1~3월기 대비 4~6월기 인상폭(2.1%·0.56센트)보다 훨씬 크다. 7월 지급되는 U-Save 환급(가구당 S$110~190)이 일부를 상쇄할 예정이다.",
+    fullContent: `**3분기(7~9월) 전기요금 인상 전망**
+에너지시장청(EMA)에 따르면, 중동 정세 불안으로 천연가스 가격이 급등하면서 2026년 7~9월 적용될 규제 전기요금이 직전 분기보다 크게 오를 전망입니다.
+
+**인상 규모**
+- 2026년 4~6월 요금: **27.27센트/kWh(GST 제외) · 29.72센트/kWh(GST 포함)** — 직전 분기比 2.1%(0.56센트) 인상
+- 2026년 7~9월 요금: 직전 분기比 평균 **8.1%(2.21센트/kWh) 인상** 전망 — 훨씬 가파른 인상폭
+- 원인: 중동 정세 불안으로 천연가스 가격 급등. SP그룹은 분기별로 직전 2.5개월 평균 가스가격을 반영해 요금을 산정
+
+**완화 조치**
+- 2026년 7월, 적격 가구에 **U-Save 환급(가구당 S$110~190)** 추가 지급 예정
+
+**한인 가정 참고**
+- 고정요율(fixed-price) 전기 소매 플랜 가입 가구 비율이 2월 36.6%→6월 37.1%로 늘고 있어, 변동요율 부담이 크다면 고정 플랜 비교를 검토할 만합니다.
+- HDB·콘도 가구 모두 여름철(7~9월) 전기 사용량 관리가 필요합니다.
+
+정확한 수치는 EMA·SP그룹 공식 발표 또는 아래 출처를 확인하세요.`,
+    source: "EMA · Mothership",
+    sources: [
+      { name: "Mothership — S'pore electricity tariff expected to rise 'significantly' from July: EMA", url: "https://mothership.sg/2026/06/electricity-tariff-july-2026-expected-rise/" },
+      { name: "Malay Mail — Singapore electricity and gas tariffs to rise from April to June, with steeper hikes likely later in 2026, says Energy Market Authority", url: "https://www.malaymail.com/news/singapore/2026/03/31/singapore-electricity-and-gas-tariffs-to-rise-from-april-to-june-with-steeper-hikes-likely-later-in-2026-says-energy-market-authority/214524" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "⚡",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260619-2",
+    publishedAt: "2026-06-17",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚗 COE 6월 2차 비딩 — 대부분 카테고리 소폭 하락, Cat C $93,001·Cat E $129,002",
+    summary: "6월 17일 마감된 2차 COE 비딩에서 Cat A $123,847, Cat B $123,502, Cat C $93,001, Cat D $9,989로 1차(6월 4일, Cat C $94,000으로 역대 최고치) 대비 대부분 하락했으나 오픈카테고리 E는 $129,002로 거의 변동이 없었다. 학교 방학철 수요 둔화 영향으로 풀이된다.",
+    fullContent: `**2026년 6월 COE 비딩 결과**
+싱가포르 차량 등록증(COE) 6월 비딩이 두 차례 진행됐습니다.
+
+**1차 비딩 (6월 4일 마감)**
+- Cat A(1,600cc 이하) **$126,009** / Cat B(1,600cc 초과) **$126,989** / Cat C(상용차) **$94,000**(역대 최고치) / Cat D(오토바이) **$10,000** / Cat E(오픈) **$129,000**
+
+**2차 비딩 (6월 17일 마감)**
+- Cat A **$123,847**(-$2,162) — 1,768건 응찰/1,251대 배정
+- Cat B **$123,502**(-$3,487) — 1,202건 응찰/883대 배정
+- Cat C **$93,001**(-$999) — 390건 응찰/291대 배정
+- Cat D **$9,989**(-$11) — 615건 응찰/532대 배정
+- Cat E **$129,002**(+$2, 거의 변동없음) — 487건 응찰/262대 배정
+
+**한인 차량 구매자 참고**
+- 학교 방학철 수요 둔화로 대부분 카테고리가 소폭 내렸지만, 여전히 전반적으로 높은 수준입니다.
+- 신차·중고차 구매 계획이 있다면 다음 비딩(통상 매월 첫째·셋째 주 수요일 마감)까지 가격 추이를 지켜보는 것도 방법입니다.
+
+정확한 수치는 LTA 공식 발표 또는 아래 출처(전문매체)를 확인하세요.`,
+    source: "Motorist.sg",
+    sources: [
+      { name: "Motorist.sg — June 2026 COE Results 1st Bidding: Cat C premium at a new peak of $94k", url: "https://www.motorist.sg/article/5962/june-2026-coe-results-1st-bidding-the-coe-stallion-was-a-costly-workhorse-again-with-cat-c-premium-at-a-new-peak-of-94k-while-the-car-categories-were-more-or-less-still-expensive" },
+      { name: "Motorist.sg — June 2026 COE Results 2nd Bidding", url: "https://www.motorist.sg/article/6006/june-2026-coe-results-2nd-bidding-the-coe-horse-was-in-a-school-holiday-mood-and-slowed-down-in-four-of-the-five-categories-while-open-category-e-barely-moved" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚗",
+    relatedIds: ["25"],
+  },
+  {
+    id: "auto-20260619-3",
+    publishedAt: "2026-04-29",
+    category: "교육",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🎒 2026년 P1(초1) 등록 6월 30일 시작 — PR 가정 단계별 일정, 외국인은 5월 의향서 마감으로 이번 회차 신청 불가",
+    summary: "2027년 초1 입학생 대상 등록이 6월 30일~10월 30일 진행된다. 1단계(6/30~7/2)부터 2C 추가단계(8/17~8/18)까지 시민권자·PR이 순차 등록한다. 비PR 외국인 자녀는 시민권자·PR 배정이 끝난 3단계에서만, 그것도 5월 19~25일 사전 '관심 등록'을 마친 경우에만 신청할 수 있는데 이 기간이 이미 지나 이번 회차엔 해당되지 않는다.",
+    fullContent: `**2026년 P1(초등 1학년) 등록 일정 (2027년 1월 입학생 대상)**
+싱가포르 교육부(MOE)가 2026년 Primary 1 등록 일정을 발표했습니다. 전체 등록 기간은 **6월 30일~10월 30일**입니다.
+
+**단계별 일정 (시민권자·PR)**
+- 1단계: 6/30(9am)~7/2(4:30pm) → 결과 7/8
+- 2A단계: 7/9~7/10 → 결과 7/17
+- 2B단계: 7/20~7/21 → 결과 7/27
+- 2C단계: 7/28~7/30 → 결과 8/11
+- 2C 추가단계: 8/17~8/18 → 결과 8/27
+- 대상: 2020년 1월 2일~2021년 1월 1일生 자녀. 전 과정 온라인 진행(학교 방문 등록 없음)
+
+**⚠️ 외국인(비PR) 가정 — 이번 회차는 이미 마감**
+- 비PR 외국인 자녀는 시민권자·PR 배정이 모두 끝난 뒤인 **3단계**에서, 빈자리가 있는 경우에만 등록할 수 있습니다.
+- 3단계 참여 자격을 얻으려면 **5월 19일~25일 사이 온라인 '관심 등록(indication of interest)'**을 먼저 마쳤어야 합니다. 이 기간을 놓쳤다면 이번 회차에는 3단계 등록 자체가 불가능합니다.
+- 자녀가 2027년 초1 입학 대상(2020년生)이고 아직 PR이 아닌 한인 가정이라면, 매년 5월경 열리는 '관심 등록' 기간을 다음 회차에는 놓치지 않도록 미리 챙겨야 합니다.
+
+**PR 가정 참고**
+- 거주지~학교 거리(1km/2km 이내)에 따라 단계 내 우선순위가 갈리므로, 6월 30일 1단계 시작 전 MOE 공식 사이트에서 희망 학교의 작년 커트라인·빈자리 수를 확인해 두는 것을 권장합니다.
+
+정확한 단계별 조건은 MOE 공식 안내(아래 출처)를 확인하세요.`,
+    source: "MOE",
+    sources: [
+      { name: "MOE — 2026 Primary One Registration Exercise", url: "https://www.moe.gov.sg/news/press-releases/20260429-2026-primary-one-registration-exercise" },
+      { name: "MOE — Registration phases and key dates of P1 registration", url: "https://www.moe.gov.sg/primary/p1-registration/registration-phases-key-dates" },
+      { name: "Honeykids Asia — Primary 1 registration phases explained: Key dates for 2026 registration are out!", url: "https://honeykidsasia.com/primary-1-registration-phases-explained/" },
+    ],
+    time: "2026년 4월 29일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🎒",
+    relatedIds: ["24"],
+  },
+  {
+    id: "auto-20260619-4",
+    publishedAt: "2026-03-24",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "👴 정년 64세·재고용 69세로 상향 — 7월 1일 시행, CPF 수령연령(65세)은 변동 없음",
+    summary: "싱가포르 정년이 7월 1일부터 63→64세, 재고용 연령이 68→69세로 오른다. 1962년 7월 1일 이후 출생 시민권자·PR에게 새 정년이, 1957년 7월 1일 이후 출생자에게 새 재고용 연령이 적용된다. CPF 수령 개시 연령(65세)은 이번 변경과 무관하게 그대로 유지된다.",
+    fullContent: `**정년·재고용 연령 상향 (2026년 7월 1일 시행)**
+싱가포르 인력부(MOM) 발표에 따라, 7월 1일부터 정년과 재고용 연령이 각각 1세씩 올라갑니다.
+
+**무엇이 바뀌나**
+- 정년: 63세 → **64세** (1962년 7월 1일 이후 출생 시민권자·PR 적용)
+- 재고용 연령: 68세 → **69세** (1957년 7월 1일 이후 출생자 적용)
+- 2030년까지 정년 65세·재고용 70세로 추가 상향 예정(장기 로드맵)
+
+**CPF는 별도 기준 — 영향 없음**
+- **CPF 수령 개시 연령(65세)은 정년·재고용 연령과 무관한 별도 기준**이라 이번 변경으로 바뀌지 않습니다.
+- 55~60세, 60~65세 구간 CPF 기여율은 2027년부터 단계적으로 추가 인상되는데, 이는 이번 7월 변경과는 별개 일정입니다.
+
+**기업 지원**
+- Senior Employment Credit(고령자 고용지원금)을 2027년 12월까지 연장, 69세 이상 고용 시 최대 7% 임금 지원
+
+**한인 근로자·고용주 참고**
+- 만 63세 정년을 앞두고 있던 시민권자·PR 직원이라면 7월 1일부터 정년이 1년 늘어납니다.
+- 한인 사업장에서 시니어 직원을 고용 중이라면 정년·재고용 규정 갱신 여부를 HR과 점검해야 합니다.
+- EP 등 외국인 근로비자 소지자에게는 이 정년 규정이 직접 적용되지 않지만(외국인 워크패스는 별도 만료·갱신 체계), PR 신분의 시니어 근로자라면 직접 영향을 받습니다.
+
+정확한 적용 대상·시행 세부사항은 MOM 공식 발표(아래 출처)를 확인하세요.`,
+    source: "MOM · L&E Global",
+    sources: [
+      { name: "L&E Global — Singapore: Retirement Age and Re-Employment Age to be Raised on 1 July 2026 and Other Related Changes", url: "https://leglobal.law/2026/03/24/singapore-retirement-age-and-re-employment-age-to-be-raised-on-1-july-2026-and-other-related-changes/" },
+      { name: "Human Resources Online — MOM Committee of Supply 2026: Singapore to raise retirement age to 64 & re-employment age to 69 from 1 July 2026", url: "https://www.humanresourcesonline.net/mom-committee-of-supply-2026-singapore-to-raise-retirement-age-to-64-re-employment-age-to-69-from-1-july-2026" },
+      { name: "CPFB — Does raising the Singapore retirement age affect the CPF payout eligibility age?", url: "https://www.cpf.gov.sg/member/infohub/educational-resources/does-raising-the-singapore-retirement-age-affect-the-cpf-payout-eligibility-age" },
+    ],
+    time: "2026년 3월 24일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "👴",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260619-5",
+    publishedAt: "2026-06-17",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🎫 NDP 2026 입장권 발표 6/15~17 — 시민권자·PR만 신청 가능, '재판매·스캠 주의' 경고",
+    summary: "8월 9일 내셔널 스타디움에서 16년 만에 돌아오는 National Day Parade 2026 입장권 응모(5/23~6/6, 시민권자·PR만 Singpass로 신청) 결과가 6월 15~17일 사이 정부 공식 채널로 통지됐다. 주최 측은 표가 매매 대상이 아니며 재판매·스캠 시도에 단호히 대응하겠다고 경고했다.",
+    fullContent: `**NDP 2026 입장권 발표 (6월 15~17일)**
+8월 9일 National Stadium에서 2016년 이후 처음으로 돌아오는 National Day Parade(NDP) 2026의 입장권 발표가 6월 15~17일 사이 이뤄졌습니다.
+
+**응모·발표 절차**
+- 응모 기간: 5월 23일 정오~6월 6일 정오, **Singpass**로 본인 인증 후 신청(시민권자·PR만 가능)
+- 본 행사(8/9) 또는 프리뷰 공연(7/25, 8/1) 중 선택, 1인당 2·4·6매 신청 가능
+- 발표: 추첨 방식으로 6월 15~17일 사이 정부 공식 채널(gov.sg, 주최 측 승인 이메일)로만 통지
+
+**⚠️ 주의사항**
+- 주최 측은 **티켓 매매·양도가 금지**돼 있으며, **재판매(스캘핑)·사기에 대해 강력 대응**하겠다고 공식 경고했습니다.
+- 공식 채널 외 SNS·메신저로 "당첨됐다"며 금전을 요구하거나 표를 판매한다는 연락은 사기일 가능성이 매우 높습니다.
+
+**한인 가정 참고**
+- 시민권자·PR만 응모할 수 있어 EP 등 외국인 신분이라면 이번 회차는 해당되지 않습니다.
+- PR이고 6/6 마감 전 응모했다면 공식 채널로만 결과를 확인하고, SNS에 떠도는 양도·판매 글은 무시·신고하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Independent · IBTimes SG",
+    sources: [
+      { name: "The Independent Singapore — Singapore National Day Parade 2026: Up to 6 tickets can be applied for via SingPass; organisers warn against scams and scalping", url: "https://theindependent.sg/singapore-national-day-parade-2026-up-to-6-tickets-can-be-applied-for-via-singpass-organisers-warn-against-scams-and-scalping/" },
+      { name: "IBTimes SG — National Day Parade 2026: Singapore Opens NDP Ticket Applications from May 23 to June 6", url: "https://www.ibtimes.sg/national-day-parade-2026-singapore-opens-ndp-ticket-applications-may-23-june-6-heres-how-book-86825" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🎫",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260620-1",
     publishedAt: "2026-06-15",
     category: "비자/취업",
