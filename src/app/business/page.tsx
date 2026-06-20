@@ -46,10 +46,10 @@ export default function BusinessPage() {
       <div className="flex items-center justify-between pb-4 gap-2">
         <span className="text-[0.75rem] text-[#888070]"><span className="font-bold text-[#181614]">{filtered.length}개</span> 업소</span>
         <Link
-          href="/business/write"
+          href="/business/apply"
           className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
         >
-          🏪 업소 등록
+          🏪 업소 등록 신청
         </Link>
       </div>
 
@@ -101,9 +101,9 @@ export default function BusinessPage() {
       )}
 
       <Link
-        href="/business/write"
+        href="/business/apply"
         className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] inline-flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
-        aria-label="업소 등록"
+        aria-label="업소 등록 신청"
       >
         <span className="block leading-none translate-y-[-1px]">🏪</span>
       </Link>
