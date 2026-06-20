@@ -73,13 +73,19 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
 
         {/* 별점 */}
         <div className="flex items-center gap-2 mb-4">
-          <div className="flex">
-            {stars.map((filled, i) => (
-              <span key={i} className={`text-lg ${filled ? "text-[#B07010]" : "text-[#E0DDD8]"}`}>★</span>
-            ))}
-          </div>
-          <span className="text-[0.9rem] font-bold text-[#B07010]">{biz.rating}</span>
-          <span className="text-[0.78rem] text-[#888070]">({biz.reviewCount}개 리뷰)</span>
+          {biz.reviewCount > 0 ? (
+            <>
+              <div className="flex">
+                {stars.map((filled, i) => (
+                  <span key={i} className={`text-lg ${filled ? "text-[#B07010]" : "text-[#E0DDD8]"}`}>★</span>
+                ))}
+              </div>
+              <span className="text-[0.9rem] font-bold text-[#B07010]">{biz.rating}</span>
+              <span className="text-[0.78rem] text-[#888070]">({biz.reviewCount}개 리뷰)</span>
+            </>
+          ) : (
+            <span className="text-[0.8rem] text-[#888070]">🆕 신규 등록 · 아직 리뷰가 없어요</span>
+          )}
         </div>
 
         {/* 빠른 액션 */}
