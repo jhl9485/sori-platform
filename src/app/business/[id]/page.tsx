@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
+import VerifiedBadge from "@/components/shared/VerifiedBadge";
 import { BUSINESSES } from "@/data/businesses";
 import { useToggleSet } from "@/lib/storage";
 import { useUserBiz } from "@/lib/userContent";
@@ -57,7 +58,10 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
       <div className="bg-white px-4 md:px-6 py-5">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div>
-            <h1 className="text-[1.2rem] font-bold">{biz.name}</h1>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-[1.2rem] font-bold">{biz.name}</h1>
+              {biz.verified && <VerifiedBadge size="md" />}
+            </div>
             <div className="text-[0.78rem] text-[#888070] mt-[2px]">
               {biz.category} · {biz.area} · {biz.priceRange}
             </div>

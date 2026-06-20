@@ -331,6 +331,7 @@ export function userBizToBusiness(p: RawUserBiz): Business {
     priceRange: p.priceRange || "$$",
     description: p.description,
     fullDescription: p.fullDescription || p.description,
+    verified: false, // 사용자 등록 업소 — 운영자 검증 전까지 미인증
     reviews: [],
   };
 }

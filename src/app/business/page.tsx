@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import VerifiedBadge from "@/components/shared/VerifiedBadge";
 
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
@@ -81,9 +82,12 @@ export default function BusinessPage() {
                 )}
               </div>
               <div className="p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <div className="font-bold text-[0.9rem]">{biz.name}</div>
-                  <span className={`text-[0.7rem] font-semibold ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>{biz.isOpen ? "● 영업중" : "○ 종료"}</span>
+                <div className="flex items-center justify-between mb-1 gap-1">
+                  <div className="flex items-center gap-1 min-w-0">
+                    <span className="font-bold text-[0.9rem] truncate">{biz.name}</span>
+                    {biz.verified && <VerifiedBadge />}
+                  </div>
+                  <span className={`text-[0.7rem] font-semibold flex-shrink-0 ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>{biz.isOpen ? "● 영업중" : "○ 종료"}</span>
                 </div>
                 <div className="text-[0.72rem] text-[#888070] mb-2">{biz.category} · {biz.area} · {biz.priceRange}</div>
                 <div className="flex items-center gap-1 mb-2">

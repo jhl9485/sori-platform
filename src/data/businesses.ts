@@ -31,6 +31,7 @@ export interface Business {
   fullDescription: string;
   reviews: BizReview[];
   photos?: string[]; // 사용자가 등록한 업소만 가짐. base64 data URL 배열
+  verified?: boolean; // SORI 인증 업소(실제 영업·정보 확인). 시드 업소 기본 true, 사용자 등록 false
 }
 
 export const BIZ_CATEGORIES = [
@@ -47,7 +48,7 @@ export const BIZ_CATEGORIES = [
   { id: "주점",   label: "주점",   icon: "🍻" },
 ];
 
-export const BUSINESSES: Business[] = [
+const RAW_BUSINESSES: Business[] = [
   {
     id: "1",
     name: "강남부식",
@@ -214,3 +215,6 @@ export const BUSINESSES: Business[] = [
     ],
   },
 ];
+
+// 시드 업소는 모두 SORI 인증(운영자 직접 확인) 처리 — 항목에 verified를 명시하면 그 값이 우선
+export const BUSINESSES: Business[] = RAW_BUSINESSES.map((b) => ({ verified: true, ...b }));
