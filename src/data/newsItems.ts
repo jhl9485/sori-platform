@@ -60,42 +60,6 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     relatedIds: [],
   },
   {
-    id: "auto-20260619-2",
-    publishedAt: "2026-06-17",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚗 COE 6월 2차 비딩 — 대부분 카테고리 소폭 하락, Cat C $93,001·Cat E $129,002",
-    summary: "6월 17일 마감된 2차 COE 비딩에서 Cat A $123,847, Cat B $123,502, Cat C $93,001, Cat D $9,989로 1차(6월 4일, Cat C $94,000으로 역대 최고치) 대비 대부분 하락했으나 오픈카테고리 E는 $129,002로 거의 변동이 없었다. 학교 방학철 수요 둔화 영향으로 풀이된다.",
-    fullContent: `**2026년 6월 COE 비딩 결과**
-싱가포르 차량 등록증(COE) 6월 비딩이 두 차례 진행됐습니다.
-
-**1차 비딩 (6월 4일 마감)**
-- Cat A(1,600cc 이하) **$126,009** / Cat B(1,600cc 초과) **$126,989** / Cat C(상용차) **$94,000**(역대 최고치) / Cat D(오토바이) **$10,000** / Cat E(오픈) **$129,000**
-
-**2차 비딩 (6월 17일 마감)**
-- Cat A **$123,847**(-$2,162) — 1,768건 응찰/1,251대 배정
-- Cat B **$123,502**(-$3,487) — 1,202건 응찰/883대 배정
-- Cat C **$93,001**(-$999) — 390건 응찰/291대 배정
-- Cat D **$9,989**(-$11) — 615건 응찰/532대 배정
-- Cat E **$129,002**(+$2, 거의 변동없음) — 487건 응찰/262대 배정
-
-**한인 차량 구매자 참고**
-- 학교 방학철 수요 둔화로 대부분 카테고리가 소폭 내렸지만, 여전히 전반적으로 높은 수준입니다.
-- 신차·중고차 구매 계획이 있다면 다음 비딩(통상 매월 첫째·셋째 주 수요일 마감)까지 가격 추이를 지켜보는 것도 방법입니다.
-
-정확한 수치는 LTA 공식 발표 또는 아래 출처(전문매체)를 확인하세요.`,
-    source: "Motorist.sg",
-    sources: [
-      { name: "Motorist.sg — June 2026 COE Results 1st Bidding: Cat C premium at a new peak of $94k", url: "https://www.motorist.sg/article/5962/june-2026-coe-results-1st-bidding-the-coe-stallion-was-a-costly-workhorse-again-with-cat-c-premium-at-a-new-peak-of-94k-while-the-car-categories-were-more-or-less-still-expensive" },
-      { name: "Motorist.sg — June 2026 COE Results 2nd Bidding", url: "https://www.motorist.sg/article/6006/june-2026-coe-results-2nd-bidding-the-coe-horse-was-in-a-school-holiday-mood-and-slowed-down-in-four-of-the-five-categories-while-open-category-e-barely-moved" },
-    ],
-    time: "2026년 6월 17일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚗",
-    relatedIds: ["25"],
-  },
-  {
     id: "auto-20260619-3",
     publishedAt: "2026-04-29",
     category: "교육",
