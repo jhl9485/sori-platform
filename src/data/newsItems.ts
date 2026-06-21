@@ -26,6 +26,113 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260621-1",
+    publishedAt: "2026-06-17",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏗️ 6월 BTO 6,952세대 분양 — 신청 6/17~24, 비산·우드랜즈 등 5개 지역 7개 프로젝트",
+    summary: "HDB가 6월 BTO(신축 분양) 공고를 통해 비산·앙모키오·부키트메라·셈바왕·우드랜즈 5개 지역 7개 프로젝트 총 6,952세대를 공급한다. 신청은 6월 17일~24일(밤 11:59) 온라인 접수, 결과는 컴퓨터 추첨이다. 신규 BTO는 원칙적으로 싱가포르 시민권자만 단독 신청 가능하며, PR은 시민권자 배우자와 공동 신청(SC/PR 스킴)할 때만 자격이 된다.",
+    fullContent: `**6월 BTO(Build-To-Order) 분양 공고**
+HDB가 2026년 6월 분양 회차로 5개 지역, 7개 프로젝트, 총 **6,952세대**를 공급합니다.
+
+**지역·예상 가격대(4룸 기준)**
+- 비산(Bishan) Lakeview — 약 40년 만의 비산 첫 BTO, 4룸 약 S$640,000~820,000
+- 부키트메라(Bukit Merah) Berlayer Crescent — 4룸 약 S$620,000~780,000
+- 앙모키오(Ang Mo Kio) 2개 프로젝트(Plus 등급) — 4룸 약 S$520,000~640,000
+- 셈바왕(Sembawang) 대규모 2개 프로젝트(Standard 등급) — 4룸 약 S$360,000~500,000
+- 우드랜즈(Woodlands) 640세대 프로젝트(Standard 등급) — 4룸 약 S$380,000~510,000
+- 전체 공급의 약 47%가 Prime, 5%가 Plus, 48%가 Standard 등급으로 분류(등급별로 10년 최소거주기간·보조금 환수 조건이 다름)
+
+**신청 일정**
+- 온라인 신청: **6월 17일~24일 밤 11:59** 마감
+- 결과: 신청 마감 후 최장 약 2개월 내 컴퓨터 추첨 발표
+
+**한인 가정 참고 — PR은 단독 신청 불가**
+- **신축 BTO는 원칙적으로 싱가포르 시민권자만 신청 가능**합니다. PR(영주권자)은 단독으로 신청할 수 없고, **시민권자 배우자와 함께(SC/PR 스킴) 공동 신청**할 때만 자격이 생기며, 이 경우 PR 배우자는 입주 후 일정 기간 내 시민권을 취득해야 하는 조건이 붙습니다.
+- 시민권이 없는 한인 가정(EP/DP/PR 단독)은 이번 회차 신규 BTO 신청이 불가하며, 대신 **HDB 재판매 시장(resale)**을 통한 매입은 PR 취득 후 일정 자격을 충족하면 가능합니다.
+- Enhanced CPF Housing Grant(최대 S$120,000)·Proximity Housing Grant(최대 S$30,000) 등 보조금은 시민권자 대상이라 한인 가정 다수에는 적용되지 않는 경우가 많습니다.
+
+정확한 신청 자격·일정은 HDB 공식 발표(아래 출처)를 확인하세요.`,
+    source: "HDB · RecordBTO",
+    sources: [
+      { name: "HDB — HDB Launches 6,952 Flats Across 7 Projects in June 2026 BTO Sales Exercise", url: "https://www.hdb.gov.sg/hdb-pulse/news/2026/hdb-launches-6952-flats-across-7-projects-in-june-2026-bto-sales-exercise" },
+      { name: "RecordBTO — June 2026 BTO Now Open for Booking: 6,952 Flats Across 7 Projects, Applications Close 24 June", url: "https://recordbto.com/news/june-2026-bto-open-for-booking-6952-flats-7-projects" },
+      { name: "PropertyGuru — June 2026 BTO: Navigating Your Application with a Long-Term View", url: "https://www.propertyguru.com.sg/property-guides/hdb-bto-june-2026-locations-pjx-98315" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏗️",
+    relatedIds: ["auto-20260620-3"],
+  },
+  {
+    id: "auto-20260621-2",
+    publishedAt: "2026-06-18",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🚗 COE 6월 2차 입찰 — Cat A $123,847·Cat B $123,502, 학교방학 영향에 4개 카테고리 하락",
+    summary: "6월 18일 마감된 COE 2차 입찰에서 5개 카테고리 중 4개의 낙찰가가 직전 회차보다 내렸다. Cat A(소형차)는 $2,162 내린 $123,847, Cat B(대형차)는 $3,487 내린 $123,502. 공개 카테고리인 Cat E만 $2 소폭 올라 $129,002에 낙찰됐다.",
+    fullContent: `**COE 6월 2차 입찰 결과 (6월 18일 마감)**
+싱가포르에서 자가용을 사려면 10년간 유효한 차량 권리증(COE)이 별도로 필요합니다. 6월 두 번째 입찰 결과가 나왔습니다.
+
+**카테고리별 낙찰가(직전 1차 입찰 대비)**
+- Cat A(1600cc·130bhp 이하, 전기차 110kW 이하): 1,768건 응모 / 1,251대 배정 → **$123,847** (-$2,162)
+- Cat B(1600cc·130bhp 초과, 전기차 110kW 초과): 1,202건 응모 / 883대 배정 → **$123,502** (-$3,487)
+- Cat C(상용차): 390건 응모 / 291대 배정 → **$93,001** (-$999)
+- Cat D(오토바이): 615건 응모 / 532대 배정 → **$9,989** (-$11)
+- Cat E(공개, 모든 차종 가능): 487건 응모 / 262대 배정 → **$129,002** (+$2)
+
+**한인 참고**
+- 학교 방학 기간이라 수요가 줄어 5개 중 4개 카테고리가 하락했지만, 여전히 COE만 차량 가격에 약 S$9만~13만이 추가로 붙는 구조입니다.
+- 신차 구매를 고려한다면 격주로 발표되는 다음 입찰(7월 첫째 주) 결과까지 지켜보는 것도 방법입니다.
+
+낙찰가는 격주로 바뀌므로 최신 수치는 아래 출처를 확인하세요.`,
+    source: "Motorist · LTA",
+    sources: [
+      { name: "Motorist Singapore — June 2026 COE Results 2nd Bidding", url: "https://www.motorist.sg/article/6006/june-2026-coe-results-2nd-bidding-the-coe-horse-was-in-a-school-holiday-mood-and-slowed-down-in-four-of-the-five-categories-while-open-category-e-barely-moved" },
+      { name: "data.gov.sg — COE Bidding Results / Prices (LTA)", url: "https://data.gov.sg/datasets/d_69b3380ad7e51aff3a7dcc84eba52b8a/view" },
+    ],
+    time: "2026년 6월 18일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚗",
+    relatedIds: ["25"],
+  },
+  {
+    id: "auto-20260621-3",
+    publishedAt: "2026-05-14",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚇 서클선 6단계(CCL6) 7월 12일 개통 — 7/4 무료 시승, 케펠·캔턴먼트·프린스에드워드로드 신설역",
+    summary: "LTA 발표에 따르면 서클선(Circle Line) 6단계 신설역 케펠·캔턴먼트·프린스에드워드로드가 7월 12일부터 정식 개통한다. 개통 전인 7월 4일 오전 9시 30분~밤 9시 무료 시승(public preview)이 열린다. 이번 개통으로 서클선이 하버프론트~마리나베이 구간까지 연결되며 33개 역, 39km 순환선이 완성된다.",
+    fullContent: `**서클선 6단계(CCL6) 개통 — 7월 12일**
+LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개통 일정을 발표했습니다.
+
+**신설역 3곳**
+- 케펠(Keppel), 캔턴먼트(Cantonment), 프린스에드워드로드(Prince Edward Road)
+- 이 3개 역 개통으로 하버프론트(HarbourFront)~마리나베이(Marina Bay) 구간이 연결되며, 서클선이 **33개 역·39km**로 완전한 순환선이 됩니다.
+
+**일정**
+- **7월 4일(토) 오전 9:30~밤 9:00**: 일반 시민 대상 무료 시승(public preview) — 신설 3개 역 구간 자유 이용
+- **7월 12일**: 정식 여객 서비스 개통
+
+**한인 참고**
+- 탄종파가(Tanjong Pagar)·센토사·하버프론트 인근 거주·근무하는 한인이라면 마리나베이·시티홀 등 도심 이동 시간이 단축될 가능성이 큽니다.
+- 7월 4일 무료 시승은 신설 구간만 해당하니, 정식 개통(7/12) 전까지는 환승 경로를 미리 확인해 두는 것이 좋습니다.
+
+세부 시간표·환승 정보는 LTA 공식 발표(아래 출처)를 확인하세요.`,
+    source: "LTA",
+    sources: [
+      { name: "LTA — Circle Line Stage 6 to Open for Public Preview on 4 July 2026", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/5/news-releases/circle-line-stage-6-to-open-for-public-preview-on-4-july-2026.html" },
+      { name: "Land Transport Guru — Circle Line Stage 6 to commence service on 12 Jul 2026", url: "https://landtransportguru.net/circle-line-stage-6-start-service-12jul26/" },
+    ],
+    time: "2026년 5월 14일 발표 · 7월 12일 개통",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚇",
+    relatedIds: ["26"],
+  },
+  {
     id: "auto-20260619-1",
     publishedAt: "2026-06-17",
     category: "생활비",
