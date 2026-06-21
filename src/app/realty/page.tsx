@@ -85,7 +85,7 @@ export default function RealtyPage() {
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
       <div className="pt-4 md:pt-7 pb-4">
         <h1 className="text-[1.2rem] md:text-[1.4rem] font-bold tracking-tight">부동산</h1>
-        <p className="text-[0.75rem] text-[#888070] mt-[2px]">싱가포르 한인 부동산 · 임대/매매 · 한국어 상담 가능</p>
+        <p className="text-[0.75rem] text-[#888070] mt-[2px]">싱가포르 한인 부동산 · 임대/매매</p>
       </div>
 
       {/* 검색 */}
