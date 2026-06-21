@@ -14,9 +14,7 @@ const FEED_TABS = ["최신순", "인기순", "댓글순"] as const;
 type FeedTab = typeof FEED_TABS[number];
 
 // 공지사항 배너 (실제 서비스 시 관리자 설정)
-const NOTICES = [
-  { id: "n1", emoji: "⚠️", text: "P1 국제학생 신청 마감 D-4 (5월 25일)", link: "/news/1" },
-];
+const NOTICES: { id: string; emoji: string; text: string; link: string }[] = [];
 
 // 인기 태그 (등장 빈도 상위 8개)
 const TOP_TAGS = (() => {
