@@ -26,6 +26,199 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260622-1",
+    publishedAt: "2026-04-28",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚆 TEL·DTL 금요일 단축운행·토요일 늦은 개통 — TEL 7/4까지, DTL 7/10~9/5 셔틀버스 운행",
+    summary: "LTA·SBS Transit·SMRT 공동 발표에 따르면 톰슨이스트코스트선(TEL)이 5월 22일~7월 12일 시행 중, 다운타운선(DTL)이 7월 10일~9월 5일 매주 금요일 밤 11시 30분 조기 종료·토요일 오전 8시 30분 늦은 개통된다. TEL 5단계·DTL3 연장 개통 전 최종 통합 시험운행 때문이며, 토요일 늦은 개통 시간대엔 환승역 연계 셔틀버스가 운행된다.",
+    fullContent: `**TEL·DTL 주말 단축운행 (2026년 4~9월)**
+LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다운타운선(DTL) 시운전 관련 운행 조정입니다.
+
+**시행 기간**
+- **TEL**: 5월 22일~7월 4일, 매주 금요일 밤 11시 30분 조기 종료 / 토요일 오전 8시 30분 늦은 개통
+- **DTL**: 7월 10일~9월 5일, 동일하게 금요일 밤 11시 30분 조기 종료 / 토요일 오전 8시 30분 늦은 개통
+
+**이유**
+- TEL 5단계(Xilin·Bedok South·Sungei Bedok)와 DTL3 연장 개통(2026년 하반기 예정)에 앞서, 신규 구간을 기존 노선에 통합하는 최종 시스템 통합 시험운행 필요
+- 야간 시간대 정규 정비시간으로는 부족해 금요일 밤~토요일 아침 운행시간을 늘려 시험
+
+**대체 교통**
+- 토요일 늦은 개통 시간대엔 환승역 연계 셔틀버스 3개 노선 운행(DTL 구간은 부기스·맥퍼슨 환승역 연계)
+
+**한인 참고**
+- 금요일 야간 약속·새벽 귀가, 토요일 오전 일찍 이동 계획이 있다면 해당 기간 TEL·DTL 이용 시 시간을 다시 확인할 것
+- 정확한 적용 구간·셔틀버스 노선은 LTA·SMRT·SBS Transit 공지를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "LTA·SBS Transit·SMRT",
+    sources: [
+      { name: "LTA — Train Service Adjustments along TEL and DTL to Facilitate Rail Expansion Works", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/4/news-releases/train-service-adjustments-tel-and-dtl-to-facilitate-rail-expansion-works.html" },
+      { name: "TheSmartLocal — Train Service Adjustments For TEL & DTL From May To Sep 2026", url: "https://thesmartlocal.com/read/tel-dtl-train-service-adjustments/" },
+    ],
+    time: "2026년 4월 28일 발표",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚆",
+    relatedIds: ["29"],
+  },
+  {
+    id: "auto-20260622-2",
+    publishedAt: "2026-06-10",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "⚠️ ICA 사칭 전화·영상통화 사기 + IRAS '세금 추징' 피싱 메일 — 두 정부기관 동시 경보",
+    summary: "ICA(이민국)는 1월 이후 자신을 ICA 직원이라 사칭하며 전화·영상통화로 '가족이 구금됐다'는 등 협박하는 사기 신고가 잇따른다고 6월 10일 경보했다. 앞서 6월 2일에는 IRAS(국세청)가 '세금 추징·미신고 벌금' 제목의 피싱 이메일을 사칭 발송하는 사기에 대해 경보했다. 두 기관 모두 공식 절차상 은행정보·계좌이체를 요구하지 않는다고 강조했다.",
+    fullContent: `**정부기관 사칭 사기 경보 2건 (2026년 6월)**
+
+**① ICA(이민국) 사칭 전화·영상통화 사기 (6월 10일 경보)**
+- 1월 이후 신고 다수, 사기 유형 2가지
+  1) ICA 직원을 사칭해 전화·영상통화 — ICA 마크를 프로필 사진으로 쓰거나 제복을 입고 영상통화로 신뢰를 유도
+  2) 가족·지인을 사칭 — "당신 또는 가족이 ICA에 구금됐다"며 위조 문서(ICA 마크·직원 서명 위조 포함)까지 제시
+- ICA는 "직원은 절대 은행 로그인 정보를 요구하거나, 계좌이체를 요청하거나, 구금자 석방 명목으로 돈을 요구하지 않는다"고 강조
+- 확인 방법: ICA 공식 피드백 양식 또는 6391-6100 전화
+
+**② IRAS(국세청) '세금 추징' 피싱 메일 (6월 2일 경보)**
+- "Official Notice of Tax Demand & Penalty", "Tax Penalty – Under-declaration of Income" 등 제목의 이메일로 IRAS 사칭
+- "소득을 축소 신고했다"며 벌금 납부·이의신청을 유도하는 의심 링크 포함(피싱 사이트·악성코드 위험)
+- IRAS는 세금 관련 공지를 비보안 이메일로 보내지 않으며, 모든 거래는 Singpass 인증이 필요한 myTax Portal에서만 이뤄진다고 안내
+
+**한인 주의 팁**
+- 영어가 서툴거나 한국 행정 절차에 익숙해 낯선 협박성 전화·영상통화를 받으면 일단 끊고, ICA·IRAS 공식 채널로 직접 확인할 것
+- 이메일 속 링크·첨부파일은 클릭하지 말고, 공식 포털(myTax, ICA 사이트)에 직접 로그인해 확인할 것
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "ICA · IRAS · Malay Mail",
+    sources: [
+      { name: "ICA — Public Advisory on Scam Callers Impersonating as ICA Officers", url: "https://www.ica.gov.sg/news-and-publications/newsroom/media-release/public-advisory-on-scam-callers-impersonating-as-ica-officers" },
+      { name: "Malay Mail — Singapore ICA warns of scammers posing as officers in phone and video impersonation scams", url: "https://www.malaymail.com/news/singapore/2026/06/10/singapore-ica-warns-of-scammers-posing-as-officers-in-phone-and-video-impersonation-scams/223206" },
+      { name: "IRAS — Scam Advisory: Phishing, beware of scam emails", url: "https://www.iras.gov.sg/news-events/announcements/scam-advisory/phishing-beware-of-scam-emails" },
+    ],
+    time: "2026년 6월 2일·10일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "⚠️",
+    relatedIds: ["28"],
+  },
+  {
+    id: "auto-20260622-3",
+    publishedAt: "2026-04-24",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏢 1분기 콘도 렌트·매매가 동반 상승 — 렌트 +0.3%(외곽 OCR +1.0%), 매매가 +0.9%(OCR +2.2%)",
+    summary: "URA(도시재개발청) 발표에 따르면 2026년 1분기 민간주택 렌트지수가 전분기比 0.3% 올랐다(직전 분기는 -0.5%). 외곽지역(OCR)이 +1.0%로 가장 많이 오르고 중심지역(RCR)은 -0.2%로 6분기 연속 상승 후 처음 하락했다. 같은 기간 매매가지수는 +0.9%로 상향 확정(잠정치 +0.3%보다 큼), 공실률은 6.2%로 소폭 상승했다.",
+    fullContent: `**URA 1분기(Q1) 2026 부동산 통계 (4월 24일 발표)**
+도시재개발청(URA)이 발표한 2026년 1분기 민간주택 가격·렌트 지표입니다.
+
+**렌트지수**
+- 전체: 전분기比 **+0.3%** (직전 4분기는 -0.5%)
+- 외곽지역(OCR): **+1.0%**(상승 주도)
+- 중심지역(CCR, 고급): **+0.5%**
+- 도심외곽(RCR, 중급): **-0.2%** — 6분기 연속 상승 후 첫 하락
+- 공실률: **6.2%**(전분기比 +0.2%p)
+
+**매매가지수**
+- 전체: **+0.9%**(잠정치 +0.3%보다 상향 확정)
+- 비단독(콘도 등): +1.3% / 단독주택: -0.4%
+- 1분기 거래량은 전분기比 19.2% 감소(5,413건), 신규분양 31.5% 감소(2,013건) — 설 연휴·분양 물량 감소 영향
+
+**한인 참고**
+- 콘도 임차 중이라면 OCR(외곽) 지역 렌트가 가장 빠르게 오르고 있어 갱신 시 인상 가능성을 염두에 둘 것
+- RCR(중급) 렌트는 6분기 만에 처음 하락해 협상 여지가 있을 수 있음
+- 정확한 지역별·평형별 수치는 URA 공식 발표를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "URA",
+    sources: [
+      { name: "URA — Release of 1st Quarter 2026 real estate statistics (PR26-31)", url: "https://www.ura.gov.sg/Corporate/Media-Room/Media-Releases/pr26-31" },
+      { name: "LittleBigRedDot — URA Q1 2026 Property Statistics: What The 0.9% Private Home Price Rise Means", url: "https://littlebigreddot.com/ura-q1-2026-property-statistics-private-home-prices-guide/" },
+    ],
+    time: "2026년 4월 24일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏢",
+    relatedIds: ["20"],
+  },
+  {
+    id: "auto-20260622-4",
+    publishedAt: "2026-02-26",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "🛂 PR 연 4만명 승인 목표 발표(2026~2030년) — 출산율 0.87 역대 최저, 금융·테크·헬스케어·물류·엔지니어링 우대",
+    summary: "Gan Kim Yong 부총리가 Budget 2026 예산위원회(COS) 토론에서 2026~2030년 연간 PR(영주권) 승인을 약 4만명 규모로 늘릴 계획이라고 밝혔다(2025년 약 3만5천명 대비 증가). 2025년 거주 출생아 수가 역대 최저(약 2만7,500명), 합계출산율 0.87로 더 낮아진 데 따른 대응이며, 금융·테크(AI·퀀텀 포함)·헬스케어·물류·엔지니어링 분야가 우대 대상으로 언급됐다.",
+    fullContent: `**PR(영주권) 연간 승인 목표 상향 — Budget 2026 COS 토론**
+Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에서 발표한 내용입니다.
+
+**핵심 발표**
+- 2026~2030년 연간 PR 승인을 약 **4만명** 규모로 계획 — 2025년(약 3만5천명) 대비 증가
+- Gan 부총리: "향후 5년간 연 약 4만명 PR 승인을 예상한다. 작년 승인한 3만5천명보다 다소 높은 수준"
+
+**배경**
+- 2025년 거주 출생아 수 약 2만7,500명으로 역대 최저
+- 합계출산율(TFR) 0.87로 전년 0.97에서 추가 하락
+- 고령화·생산연령인구 감소에 대한 대응 차원
+
+**우대 산업 분야**
+- 금융, 테크(AI·퀀텀컴퓨팅 포함), 헬스케어, 물류, 엔지니어링
+
+**한인 참고**
+- EP·S Pass로 거주 중 PR을 고려하는 한인이라면, 위 우대 산업군 종사 여부가 승인 가능성에 도움이 될 수 있음
+- 다만 이는 정부의 전체 정책 방향 발표로, 개별 심사 기준·세부 가점 항목은 ICA가 별도 공개하지 않음에 유의
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "population.gov.sg · VisaVerge",
+    sources: [
+      { name: "population.gov.sg — Speech by Deputy Prime Minister Gan Kim Yong, Committee of Supply Debate 2026", url: "https://www.population.gov.sg/speech-by-deputy-prime-minister-gan-kim-yong-committee-of-supply-debate-2026/" },
+      { name: "VisaVerge — Singapore to grant up to 40,000 Permanent Residencies a year, DPM Gan Kim Yong says", url: "https://www.visaverge.com/news/singapore-to-grant-up-to-40000-permanent-residencies-a-year-deputy-pm-gan-kim-yong-says/" },
+    ],
+    time: "2026년 2월 26일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🛂",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260622-5",
+    publishedAt: "2026-05-29",
+    category: "날씨",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🌫️ 엘니뇨 영향 6~10월 연무(헤이즈) 위험 증가 — 기상청 \"1997년급 가능성\", NEA 헤이즈대응팀 가동 대비",
+    summary: "싱가포르 기상청(MSS)은 6~7월 엘니뇨, 7~8월 양(+)의 인도양 다이폴 발생 가능성이 80% 이상이라고 밝혔다. 두 현상이 겹치면 인도네시아·말레이시아 강수량이 줄어 농지·산림 화재가 늘고, 그 연무가 바람을 타고 싱가포르로 유입될 위험이 6~10월 내내 커진다. NEA는 헤이즈대응팀(Haze Task Force)이 대응 준비를 마쳤다고 밝혔다.",
+    fullContent: `**엘니뇨·연무(헤이즈) 위험 전망 (2026년 6~10월)**
+싱가포르 기상청(MSS)·국가환경청(NEA) 발표 내용입니다.
+
+**기후 전망**
+- 6~7월 **엘니뇨** 형성 가능성 80% 이상
+- 7~8월 양(+)의 **인도양 다이폴(IOD)** 동반 발생 가능성
+- 두 현상이 겹치면 싱가포르·주변 지역에 평년보다 덥고 건조한 날씨, 6~8월 강수량은 평년 이하 예상
+
+**연무(헤이즈) 위험**
+- 인도네시아·말레이시아의 강수량 감소로 농지·산림 화재가 늘기 쉬워, 그 연무가 바람을 타고 싱가포르에 유입될 위험이 6~10월 내내 상승
+- MSS·NEA는 올해 건기가 최근 몇 년보다 더 강하고 길게(10월까지) 이어질 수 있다고 전망
+- 참고: 엘니뇨+양의 IOD가 동시에 발생했던 1997년은 싱가포르 기상 관측 사상 가장 건조한 해로 기록
+
+**대응**
+- NEA 산하 헤이즈대응팀(Haze Task Force)이 연무 악화 시 대응계획을 가동할 준비를 마쳤다고 밝힘
+- 외출 계획 시 1시간 단위 PM2.5 수치, 다음날 계획은 24시간 PSI 예보·건강 권고 확인 권장
+
+**한인 가정 참고**
+- 6~10월 사이 외부활동(운동·캠핑·자녀 야외수업 등) 계획 시 NEA 'myENV' 앱 또는 haze.gov.sg에서 PSI·PM2.5를 미리 확인할 것
+- 호흡기 질환자·영유아·노약자가 있는 가정은 N95 마스크·공기청정기를 미리 점검해 두는 것을 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MSS · NEA · The Star",
+    sources: [
+      { name: "The Star — Increased risk of haze in Singapore from June to October due to El Nino, Indian Ocean Dipole", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/05/29/increased-risk-of-haze-in-singapore-from-june-to-october-due-to-el-nino-indian-ocean-dipole" },
+      { name: "NEA — Regional Haze Situation", url: "https://www.nea.gov.sg/corporate-functions/weather/regional-haze-situation" },
+    ],
+    time: "2026년 5월 29일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🌫️",
+    relatedIds: ["19"],
+  },
+  {
     id: "auto-20260621-3",
     publishedAt: "2026-05-14",
     category: "교통",
