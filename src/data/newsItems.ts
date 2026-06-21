@@ -26,79 +26,6 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
-    id: "auto-20260621-1",
-    publishedAt: "2026-06-17",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏗️ 6월 BTO 6,952세대 분양 — 신청 6/17~24, 비산·우드랜즈 등 5개 지역 7개 프로젝트",
-    summary: "HDB가 6월 BTO(신축 분양) 공고를 통해 비산·앙모키오·부키트메라·셈바왕·우드랜즈 5개 지역 7개 프로젝트 총 6,952세대를 공급한다. 신청은 6월 17일~24일(밤 11:59) 온라인 접수, 결과는 컴퓨터 추첨이다. 신규 BTO는 원칙적으로 싱가포르 시민권자만 단독 신청 가능하며, PR은 시민권자 배우자와 공동 신청(SC/PR 스킴)할 때만 자격이 된다.",
-    fullContent: `**6월 BTO(Build-To-Order) 분양 공고**
-HDB가 2026년 6월 분양 회차로 5개 지역, 7개 프로젝트, 총 **6,952세대**를 공급합니다.
-
-**지역·예상 가격대(4룸 기준)**
-- 비산(Bishan) Lakeview — 약 40년 만의 비산 첫 BTO, 4룸 약 S$640,000~820,000
-- 부키트메라(Bukit Merah) Berlayer Crescent — 4룸 약 S$620,000~780,000
-- 앙모키오(Ang Mo Kio) 2개 프로젝트(Plus 등급) — 4룸 약 S$520,000~640,000
-- 셈바왕(Sembawang) 대규모 2개 프로젝트(Standard 등급) — 4룸 약 S$360,000~500,000
-- 우드랜즈(Woodlands) 640세대 프로젝트(Standard 등급) — 4룸 약 S$380,000~510,000
-- 전체 공급의 약 47%가 Prime, 5%가 Plus, 48%가 Standard 등급으로 분류(등급별로 10년 최소거주기간·보조금 환수 조건이 다름)
-
-**신청 일정**
-- 온라인 신청: **6월 17일~24일 밤 11:59** 마감
-- 결과: 신청 마감 후 최장 약 2개월 내 컴퓨터 추첨 발표
-
-**한인 가정 참고 — PR은 단독 신청 불가**
-- **신축 BTO는 원칙적으로 싱가포르 시민권자만 신청 가능**합니다. PR(영주권자)은 단독으로 신청할 수 없고, **시민권자 배우자와 함께(SC/PR 스킴) 공동 신청**할 때만 자격이 생기며, 이 경우 PR 배우자는 입주 후 일정 기간 내 시민권을 취득해야 하는 조건이 붙습니다.
-- 시민권이 없는 한인 가정(EP/DP/PR 단독)은 이번 회차 신규 BTO 신청이 불가하며, 대신 **HDB 재판매 시장(resale)**을 통한 매입은 PR 취득 후 일정 자격을 충족하면 가능합니다.
-- Enhanced CPF Housing Grant(최대 S$120,000)·Proximity Housing Grant(최대 S$30,000) 등 보조금은 시민권자 대상이라 한인 가정 다수에는 적용되지 않는 경우가 많습니다.
-
-정확한 신청 자격·일정은 HDB 공식 발표(아래 출처)를 확인하세요.`,
-    source: "HDB · RecordBTO",
-    sources: [
-      { name: "HDB — HDB Launches 6,952 Flats Across 7 Projects in June 2026 BTO Sales Exercise", url: "https://www.hdb.gov.sg/hdb-pulse/news/2026/hdb-launches-6952-flats-across-7-projects-in-june-2026-bto-sales-exercise" },
-      { name: "RecordBTO — June 2026 BTO Now Open for Booking: 6,952 Flats Across 7 Projects, Applications Close 24 June", url: "https://recordbto.com/news/june-2026-bto-open-for-booking-6952-flats-7-projects" },
-      { name: "PropertyGuru — June 2026 BTO: Navigating Your Application with a Long-Term View", url: "https://www.propertyguru.com.sg/property-guides/hdb-bto-june-2026-locations-pjx-98315" },
-    ],
-    time: "2026년 6월 17일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏗️",
-    relatedIds: ["auto-20260620-3"],
-  },
-  {
-    id: "auto-20260621-2",
-    publishedAt: "2026-06-18",
-    category: "생활",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🚗 COE 6월 2차 입찰 — Cat A $123,847·Cat B $123,502, 학교방학 영향에 4개 카테고리 하락",
-    summary: "6월 18일 마감된 COE 2차 입찰에서 5개 카테고리 중 4개의 낙찰가가 직전 회차보다 내렸다. Cat A(소형차)는 $2,162 내린 $123,847, Cat B(대형차)는 $3,487 내린 $123,502. 공개 카테고리인 Cat E만 $2 소폭 올라 $129,002에 낙찰됐다.",
-    fullContent: `**COE 6월 2차 입찰 결과 (6월 18일 마감)**
-싱가포르에서 자가용을 사려면 10년간 유효한 차량 권리증(COE)이 별도로 필요합니다. 6월 두 번째 입찰 결과가 나왔습니다.
-
-**카테고리별 낙찰가(직전 1차 입찰 대비)**
-- Cat A(1600cc·130bhp 이하, 전기차 110kW 이하): 1,768건 응모 / 1,251대 배정 → **$123,847** (-$2,162)
-- Cat B(1600cc·130bhp 초과, 전기차 110kW 초과): 1,202건 응모 / 883대 배정 → **$123,502** (-$3,487)
-- Cat C(상용차): 390건 응모 / 291대 배정 → **$93,001** (-$999)
-- Cat D(오토바이): 615건 응모 / 532대 배정 → **$9,989** (-$11)
-- Cat E(공개, 모든 차종 가능): 487건 응모 / 262대 배정 → **$129,002** (+$2)
-
-**한인 참고**
-- 학교 방학 기간이라 수요가 줄어 5개 중 4개 카테고리가 하락했지만, 여전히 COE만 차량 가격에 약 S$9만~13만이 추가로 붙는 구조입니다.
-- 신차 구매를 고려한다면 격주로 발표되는 다음 입찰(7월 첫째 주) 결과까지 지켜보는 것도 방법입니다.
-
-낙찰가는 격주로 바뀌므로 최신 수치는 아래 출처를 확인하세요.`,
-    source: "Motorist · LTA",
-    sources: [
-      { name: "Motorist Singapore — June 2026 COE Results 2nd Bidding", url: "https://www.motorist.sg/article/6006/june-2026-coe-results-2nd-bidding-the-coe-horse-was-in-a-school-holiday-mood-and-slowed-down-in-four-of-the-five-categories-while-open-category-e-barely-moved" },
-      { name: "data.gov.sg — COE Bidding Results / Prices (LTA)", url: "https://data.gov.sg/datasets/d_69b3380ad7e51aff3a7dcc84eba52b8a/view" },
-    ],
-    time: "2026년 6월 18일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚗",
-    relatedIds: ["25"],
-  },
-  {
     id: "auto-20260621-3",
     publishedAt: "2026-05-14",
     category: "교통",
@@ -629,41 +556,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "2분",
     emoji: "🧧",
     relatedIds: [],
-  },
-  {
-    id: "25",
-    publishedAt: "2026-02-15",
-    category: "생활",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🚗 COE(차량 권리증) 2026년 2월 전 카테고리 하락 — Cat B 8.8%↓ $110,890",
-    summary: "2026년 2월 첫 입찰서 COE 프리미엄이 전 카테고리 하락. Cat B(대형) -8.8% S$110,890, Cat A(소형) -2.9% S$106,320. 1월 2차 입찰은 Cat A S$109,501·Cat B S$121,634. 2~4월 쿼터 1.489% 감축. 차량 소유는 여전히 고비용.",
-    fullContent: `**COE 동향 (2026년 1~2월)**
-싱가포르에서 차를 사려면 차량 권리증(COE)이 필요하며, 10년간 유효합니다.
-
-**최근 낙찰가**
-- **2026년 2월 1차 입찰**: 전 카테고리 하락
-  - Cat A(소형): -2.9% → **S$106,320**
-  - Cat B(대형): -8.8% → **S$110,890** (최대 낙폭)
-- 2026년 1월 2차 입찰: Cat A S$109,501 / Cat B S$121,634 / Cat E(공개) S$120,891
-
-**쿼터**
-- 2~4월 Cat A·B·E 합산 쿼터 1.489% 감축 (14,094 → 13,884)
-
-**한인 참고**
-- COE만 약 **S$10만 이상** — 차량 총비용은 한국 대비 매우 높음
-- 가족 단위가 아니면 대중교통·Grab이 보통 더 경제적
-
-낙찰가는 격주 변동하니 최신은 아래 출처를 확인하세요.`,
-    source: "LTA · Motorist · Yahoo",
-    sources: [
-      { name: "Motorist — COE 낙찰 결과 2026", url: "https://www.motorist.sg/coe-results" },
-      { name: "Yahoo — 2월 COE 하락", url: "https://www.yahoo.com/news/article/coe-prices-cat-a-premiums-rise-to-109501-as-most-categories-see-drop-090439193.html" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚗",
-    relatedIds: ["26"],
   },
   {
     id: "24",
