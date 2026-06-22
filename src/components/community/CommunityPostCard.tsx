@@ -5,11 +5,15 @@ import Link from "next/link";
 import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
-import { formatCount } from "@/lib/format";
+import { formatCount, timeAgo } from "@/lib/format";
 
-function isNew(time: string): boolean {
-  // "분 전" / "시간 전" / "방금" → 24시간 이내로 간주
-  return /방금|분 전|시간 전/.test(time);
+function isNew(post: CommunityPost): boolean {
+  // createdAt이 있으면 48시간 이내를 NEW로 간주, 없으면 기존 time 문자열로 판단
+  if (post.createdAt) {
+    const diff = Date.now() - new Date(post.createdAt).getTime();
+    return diff >= 0 && diff < 48 * 60 * 60 * 1000;
+  }
+  return /방금|분 전|시간 전/.test(post.time);
 }
 
 function isHot(likes: string): boolean {
@@ -21,8 +25,9 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const { has: isRead } = useToggleSet("sori_read_posts");
   const helped = isHelped(post.id);
   const read = isRead(post.id);
-  const newBadge = isNew(post.time);
+  const newBadge = isNew(post);
   const hotBadge = isHot(post.likes);
+  const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
 
   return (
     <Link href={`/community/${post.id}`} className={`block rounded-[14px] border p-[14px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
@@ -43,14 +48,14 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
               </span>
             )}
           </div>
-          <div className="text-[0.7rem] text-[#888070]">{post.time}</div>
+          <div className="text-[0.7rem] text-[#888070]" suppressHydrationWarning>{displayTime}</div>
         </div>
         <span className={`text-[0.68rem] px-2 py-[3px] rounded-full font-semibold whitespace-nowrap flex-shrink-0 ${post.categoryStyle}`}>
           {post.categoryLabel}
         </span>
       </div>
 
-      <div className={`text-[0.9rem] font-bold mb-1 tracking-tight line-clamp-2 ${read ? "text-[#888070]" : ""}`}>
+      <div className={`text-[0.9rem] font-bold mb-1 tracking-tight line-clamp-2 ${read ? "text-[#888070]" : ""}`} suppressHydrationWarning>
         {newBadge && <span className="inline-block text-[0.58rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold mr-1 align-middle">NEW</span>}
         {hotBadge && <span className="inline-block text-[0.58rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold mr-1 align-middle">🔥 HOT</span>}
         {post.title}

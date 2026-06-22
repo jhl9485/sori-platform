@@ -10,6 +10,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
+import { timeAgo } from "@/lib/format";
 import { useToggleSet } from "@/lib/storage";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
@@ -121,8 +122,8 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
                   </span>
                 )}
               </div>
-              <div className="text-[0.7rem] text-[#888070] mt-[1px]">
-                {post.time} · 조회 {post.views} · 댓글 {post.comments}
+              <div className="text-[0.7rem] text-[#888070] mt-[1px]" suppressHydrationWarning>
+                {post.createdAt ? timeAgo(post.createdAt) : post.time} · 조회 {post.views} · 댓글 {post.comments}
               </div>
             </div>
           </div>
