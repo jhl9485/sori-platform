@@ -26,6 +26,201 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260622-6",
+    publishedAt: "2026-06-22",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 LTA 사칭 피싱 사기 재발 — ERP 미납 문자 클릭 유도, 6월 들어 13건·피해액 7만4천 달러",
+    summary: "싱가포르 경찰(SPF)에 따르면 6월 1일 이후 LTA(육상교통청)를 사칭해 'ERP(혼잡통행료) 미납' 문자로 피싱 링크 클릭을 유도하는 사기가 최소 13건 발생했고 피해액은 7만4천 달러를 넘었다. 가짜 LTA·OneMotoring 페이지에서 차량번호·계좌정보를 입력하게 유도하는 방식이며, 경찰은 실제 LTA 문자에는 결제 링크가 없고 발신자는 'gov.sg'로 표시된다고 안내했다.",
+    fullContent: `**LTA 사칭 피싱 사기 경보 (2026년 6월 22일)**
+싱가포르 경찰(SPF)이 6월 22일 발표한 내용입니다.
+
+**피해 현황**
+- 6월 1일 이후 최소 13건 신고, 피해액 최소 7만4천 달러(S$74,000)
+- 앞서 2월에도 같은 수법(말레이시아 여행객 대상 ERP 문자)으로 최소 10건·2만4천 달러 피해 발생
+
+**수법**
+- LTA를 사칭한 문자메시지로 "ERP(혼잡통행료) 미납, 추가 과태료 부과 전 결제" 안내
+- 문자 속 링크 클릭 시 실제 LTA·OneMotoring과 비슷한 가짜 사이트로 연결
+- 가짜 사이트에서 차량번호, 은행 계좌·카드 정보 등 개인정보 입력 유도
+
+**경찰 안내**
+- LTA가 보내는 미납 요금·도로세 안내 문자에는 결제 링크가 없음
+- 정부 공식 문자는 발신자가 'gov.sg'로 표시되며, 전자고지서는 Singpass 로그인으로만 확인 가능
+- 의심스러운 링크 클릭 금지, 개인정보·계좌정보·OTP를 누구에게도 알려주지 말 것
+
+**한인 참고**
+- 차량을 소유했거나 말레이시아 등 인접국으로 자주 이동하는 한인이라면 특히 주의할 것
+- 'LTA' 명의 문자에 결제 링크가 있다면 클릭하지 말고 OneMotoring 공식 앱·웹사이트에서 직접 확인할 것
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "Yahoo News Singapore — LTA impersonation phishing scams on the rise again, with at least $74,000 lost in 3 weeks", url: "https://sg.news.yahoo.com/lta-impersonation-phishing-scams-rise-125300991.html" },
+    ],
+    time: "2026년 6월 22일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🚨",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260622-7",
+    publishedAt: "2026-06-29",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🛡️ 온라인안전위원회(OSC) 6월 29일 출범 — 온라인 괴롭힘·명예훼손 피해자 신속 구제 절차 신설",
+    summary: "싱가포르 법무부(MinLaw)·디지털개발정보부(MDDI) 발표에 따르면 온라인안전위원회(Online Safety Commission)와 온라인안전(구제 및 책임)법 2025가 6월 29일부터 시행된다. 온라인 괴롭힘·스토킹·명예훼손성 게시물 등 피해를 입은 시민이 위원회를 통해 빠른 구제를 받을 수 있게 되며, 6월 1일부터 위원장 직무대행을 맡은 Francis Ng가 6월 29일 정식 위원장이 된다.",
+    fullContent: `**온라인안전위원회(OSC) 출범 (2026년 6월 29일 시행)**
+법무부(MinLaw)·디지털개발정보부(MDDI)가 공동 발표한 내용입니다.
+
+**시행일**
+- 2026년 6월 29일부터 온라인안전위원회(Online Safety Commission)와 온라인안전(구제 및 책임)법 2025(OSRAA)의 관련 조항 시행
+
+**무엇이 달라지나**
+- 온라인 괴롭힘, 사이버스토킹, 명예훼손성 게시물, 음란합성물(딥페이크) 등 온라인 피해를 입은 사람이 위원회를 통해 콘텐츠 삭제·시정 명령 등 신속한 구제를 요청할 수 있음
+- 위원회는 유해 콘텐츠 게시자, 온라인 공간 운영자, 플랫폼 사업자에게 직접 시정 지시를 내릴 권한을 가짐
+
+**조직**
+- Francis Ng(50)가 6월 1일부터 위원장 직무대행(Commissioner-Designate)을 맡았고, 6월 29일 정식 위원장(Commissioner)으로 취임
+- 법무부 법무정책국장, 검찰청 범죄수사부 부장검사 등을 지낸 25년 경력의 법조인
+
+**한인 참고**
+- 온라인에서 괴롭힘·명예훼손·신상유출(독싱) 피해를 입었다면 6월 29일부터 OSC를 통한 구제 신청이 가능해짐
+- 신청 절차·자격 등 세부 사항은 MinLaw·MDDI 공식 발표를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MinLaw · MDDI",
+    sources: [
+      { name: "MinLaw — Online Safety Commission and Online Safety (Relief and Accountability) Act 2025 to Start on 29 June 2026", url: "https://www.mlaw.gov.sg/online-safety-commission-and-online-safety-relief-and-accountability-act-2025-to-start-on-29-june-2026/" },
+      { name: "MDDI — Online Safety Commission And Online Safety (Relief And Accountability) Act 2025 to start on 29 June 2026", url: "https://www.mddi.gov.sg/newsroom/online-safety-commission-and-online-safety--relief-and-accountability--act-2025-to-start-on-29-june-2026/" },
+    ],
+    time: "2026년 6월 29일 시행 예정(6월 발표)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🛡️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260622-8",
+    publishedAt: "2026-06-15",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "📉 1분기 정리해고 3년래 최고 — 3,830명, 학위소지자·50대 타격 더 커",
+    summary: "MOM(노동부) 1분기 노동시장 보고서(6월 15일 발표)에 따르면 정리해고가 3,830명으로 직전 분기(3,690명)보다 늘어 2023년 3분기 이후 최다를 기록했다. 학위 소지자의 정리해고 비율이 1천명당 2.6명에서 3.1명으로 가장 높게 뛰었고, 50~59세 고령 근로자도 2.8명에서 3.1명으로 올랐다. 다만 전체 고용은 9,400명 늘어 18개 분기 연속 증가했고, 정리해고 후 6개월 내 재취업률도 60.7%로 개선됐다.",
+    fullContent: `**1분기(Q1) 2026 노동시장 보고서 (6월 15일 발표)**
+노동부(MOM)가 발표한 2026년 1분기 노동시장 보고서 내용입니다.
+
+**정리해고**
+- 1분기 정리해고 **3,830명** — 직전 분기(3,690명)보다 증가, 2023년 3분기 이후 최다
+- 주요 사유는 비용절감보다 **조직 재편·구조조정**
+- 제조업·금융서비스업·전문서비스업에서 많이 발생
+
+**계층별 영향**
+- 학위 소지자: 1천명당 정리해고 비율 2.6명 → **3.1명**(전 학력군 중 최고)
+- 50~59세: 2.8명 → **3.1명**
+- 중졸 이하: 0.7명, 디플로마·전문자격: 1.1명
+
+**고용 전체는 견조**
+- 전체 고용 9,400명 증가 — 2021년 4분기 이후 18개 분기 연속 증가
+- 정리해고 후 6개월 내 재취업률 60.7%(직전 57.4%에서 개선)
+- 다만 향후 3개월 내 채용계획이 있는 기업은 5곳 중 2곳 미만
+
+**대체 수단**
+- 정리해고 대신 단축근무·임시휴직을 택한 근로자 1,230명(직전 960명에서 증가)
+
+**한인 참고**
+- EP·S Pass로 금융·전문서비스·제조업에 종사 중이라면 구조조정 영향권에 있을 수 있어 고용 상황을 주시할 것
+- 정리해고 시 통지·보상 등 기본 권리는 MOM 공식 안내를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM",
+    sources: [
+      { name: "Human Resources Online — Retrenchments edged up in Q1, but Singapore's labour market stayed broadly stable, says MOM", url: "https://www.humanresourcesonline.net/retrenchments-edged-up-in-q1-but-singapore-s-labour-market-stayed-broadly-stable-says-mom" },
+      { name: "Malay Mail — Singapore retrenchments rise in Q1 as degree holders and older workers face sharper impact", url: "https://www.malaymail.com/news/singapore/2026/06/15/singapore-retrenchments-rise-in-q1-as-degree-holders-and-older-workers-face-sharper-impact/223883" },
+    ],
+    time: "2026년 6월 15일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📉",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260622-9",
+    publishedAt: "2026-06-16",
+    category: "날씨",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🌩️ 6월 남은 기간 거의 매일 천둥소나기 — NEA \"수마트라 스콜 동반 가능\", 낮 최고 33~34도",
+    summary: "기상청(NEA)이 6월 16일 발표한 기후전망에 따르면 6월 남은 기간 동안 거의 매일 늦은 오전~오후에 국지적 천둥소나기가 예상되며, 일부 날은 새벽~정오 사이 수마트라 스콜(돌풍 동반 비구름대)도 발생할 수 있다. 남서 몬순 영향으로 낮 최고기온은 33~34도로 예상된다.",
+    fullContent: `**6월 후반 날씨 전망 (NEA, 6월 16일 발표)**
+기상청(NEA)이 발표한 2026년 6월 후반 날씨 전망입니다.
+
+**천둥소나기**
+- 6월 남은 기간 거의 매일 늦은 오전~오후, 싱가포르 북부·동부·서부 지역 중심으로 국지적 천둥소나기 예상
+- 광범위한 바람 수렴이 있는 날은 강한 비가 내릴 수 있음
+
+**수마트라 스콜**
+- 일부 날은 새벽~정오 사이 수마트라 스콜(돌풍을 동반한 비구름대) 발생 가능 — 광범위한 비·강풍 동반
+
+**기온**
+- 낮 최고기온 대부분 33~34도
+- 남서 몬순이 6월부터 9월 말까지 이어질 전망(우기철 천둥번개 활동이 전형적으로 잦은 시기)
+
+**한인 참고**
+- 야외활동·통근 시 우산을 휴대하고, 특히 늦은 오전~오후 시간대 갑작스러운 비를 염두에 둘 것
+- 천둥 시 야외 수영장·운동장 이용은 자제하고, 최신 경보는 NEA myENV 앱·weather.gov.sg에서 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA",
+    sources: [
+      { name: "NEA — Thundery Showers Expected On Most Days For The Rest Of June 2026", url: "https://www.nea.gov.sg/media/news/advisories/index/thundery-showers-expected-on-most-days-for-the-rest-of-june-2026" },
+    ],
+    time: "2026년 6월 16일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🌩️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260622-10",
+    publishedAt: "2026-06-27",
+    category: "교육",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🎓 MOE \"PSLE 부담 줄이기\" 공개 논의 시작 — 6월 27일 첫 공개 세션, DSA 제도 개편도 포함",
+    summary: "교육부(MOE)가 PSLE(초등 졸업시험)의 중등 배정 활용 방식과 DSA(직접학교입학) 제도 개편 등을 주제로 한 'Education Conversations' 공개 의견수렴을 시작했다. 4월부터 교육 전문가·학부모·청년 대상 포커스그룹을 진행했고, 6월 27일 Desmond Lee 교육부장관이 직접 이끄는 첫 공개 세션이 열렸다. 논의는 2026~2027년에 걸쳐 계속된다.",
+    fullContent: `**MOE 'Education Conversations' 공개 의견수렴 시작**
+교육부(MOE) 발표 내용입니다.
+
+**배경**
+- PSLE(초등 졸업시험) 성적이 중등학교 배정에 미치는 영향과 '학업 군비경쟁' 우려에 대한 학부모·사회 논쟁이 이어짐에 따라, MOE가 공개 의견수렴 절차를 시작
+
+**진행 방식**
+- 4월부터 교육 전문가·학부모·청년 대상 소규모 포커스그룹 진행
+- 6월 27일(토) Desmond Lee 교육부장관이 이끄는 첫 공개 세션 개최
+- 이후 2026~2027년에 걸쳐 대면·온라인('Education Conversations' 마이크로사이트) 의견수렴 계속
+
+**주요 논의 주제**
+- PSLE를 중등 1학년 배정에 활용하는 방식 등 시험 부담 완화 방안
+- DSA(직접학교입학) 제도 개편 — 학생 역량 개발·선발 방식·접근성 개선
+- 인성·시민교육(CCE)·교내외 활동(CCA) 강화로 가치관·생활역량 함양
+
+**한인 참고**
+- 자녀가 현지 정부학교(특히 초·중등)에 재학 중인 한인 가정은 PSLE·DSA 제도 변화가 입시 전략에 직접 영향을 줄 수 있어 추이를 지켜볼 것
+- 구체적 개편안은 아직 확정되지 않았으며 MOE 공식 발표를 통해 순차적으로 공개될 예정
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOE",
+    sources: [
+      { name: "MOE — Education Conversations", url: "https://www.moe.gov.sg/news/press-releases/20260528-education-conversations" },
+    ],
+    time: "2026년 6월 27일(첫 공개 세션)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🎓",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260622-1",
     publishedAt: "2026-04-28",
     category: "교통",
