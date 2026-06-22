@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { NEWS_ITEMS } from "@/data/newsItems";
+import SearchField from "@/components/shared/SearchField";
 
 // 실제 데이터에 존재하는 카테고리만 동적으로 노출 (빈 결과 방지)
 const NEWS_CATEGORIES = ["전체", ...Array.from(new Set(NEWS_ITEMS.map((n) => n.category)))];
@@ -18,7 +19,13 @@ function isRecentNews(time: string): boolean {
 
 export default function NewsPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
-  const filtered = selectedCat === "전체" ? NEWS_ITEMS : NEWS_ITEMS.filter((n) => n.category === selectedCat);
+  const [searchQuery, setSearchQuery] = useState("");
+  const q = searchQuery.toLowerCase().trim();
+  const filtered = NEWS_ITEMS.filter((n) => {
+    if (selectedCat !== "전체" && n.category !== selectedCat) return false;
+    if (q && !`${n.title} ${n.summary} ${n.category} ${n.source}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
   const today = new Date().toLocaleDateString("ko-KR", { month: "long", day: "numeric", weekday: "short" });
   const breaking = NEWS_ITEMS.find((n) => n.isBreaking);
 
@@ -46,6 +53,11 @@ export default function NewsPage() {
         </Link>
       )}
 
+      {/* 검색 */}
+      <div className="pb-3">
+        <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="뉴스 검색 (제목·내용·카테고리)..." />
+      </div>
+
       {/* 카테고리 탭 */}
       <div className="flex gap-0 pb-4 overflow-x-auto scrollbar-hide">
         {NEWS_CATEGORIES.map((cat) => (
@@ -58,7 +70,12 @@ export default function NewsPage() {
 
       {/* 뉴스 목록 */}
       <div className="flex flex-col gap-3 pb-6">
-        {filtered.map((news) => (
+        {filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
+            <div className="text-4xl mb-3">🔍</div>
+            <div className="text-[0.85rem] font-medium">{searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "뉴스가 없어요"}</div>
+          </div>
+        ) : filtered.map((news) => (
           <Link key={news.id} href={`/news/${news.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-4 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-[10px] bg-[#F5F3EE] flex items-center justify-center text-xl flex-shrink-0">{news.emoji}</div>
