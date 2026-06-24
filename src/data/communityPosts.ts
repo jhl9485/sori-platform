@@ -50,6 +50,67 @@ export interface CommunityPost {
 
 const RAW_COMMUNITY_POSTS: CommunityPost[] = [
   {
+    id: "auto-20260624-1",
+    categoryId: "parenting",
+    categoryLabel: "육아",
+    categoryStyle: "bg-[#FFF0F5] text-[#C04080]",
+    avatarChar: "둘",
+    avatarBg: "#FFF0F5",
+    avatarColor: "#C04080",
+    author: "둘째맘싱가",
+    time: "방금",
+    createdAt: "2026-06-24T09:00:00",
+    title: "콘도 놀이터에서 또래 친구 사귀기, 저희 집 노하우 공유해요",
+    preview: "이사 온 지 얼마 안 됐을 때 아이가 놀이터에서 겉돌아서 걱정했는데, 몇 가지 시도해보니 금방 친해지더라고요.",
+    fullContent: `이사 온 지 두 달쯌 됐을 때까지 아이가 콘도 놀이터에서 또래 친구를 잘 못 사귀어서 걱정이 많았어요. 비슷한 고민 하시는 분들 계실까 해서 저희가 해본 것들 정리해봅니다.
+
+**해본 것들**
+- 같은 시간대에 자주 나가기 (등하원 시간대 말고 오후 5~6시쯤 아이들이 많이 나오더라고요)
+- 작은 간식이나 비눗방울 같은 거 들고 나가서 자연스럽게 나눠주기
+- 다른 부모님들께 먼저 인사하고 짧게 대화 트기 (영어든 한국어든 일단 웃으면서)
+- 콘도 단지 카카오톡/페이스북 그룹 있으면 가입해서 놀이 모임 정보 챙기기
+
+**효과 있었던 점**
+인사를 먼저 건네니 생각보다 다들 친절하게 받아주셨어요. 두세 번 마주치니 아이들도 자연스럽게 같이 놀더라고요. 도서관 스토리타임 같은 무료 프로그램도 또래 만나기 좋았습니다.
+
+처음엔 저도 낯설어서 망설였는데, 먼저 다가가는 게 생각보다 효과가 크더라고요. 비슷한 시기에 이사 오신 분들 힘내세요!`,
+    tags: ["육아", "콘도생활", "아이친구", "정착팁"],
+    views: "23",
+    comments: "1",
+    likes: "4",
+    visaBadge: "DP",
+  },
+  {
+    id: "auto-20260624-2",
+    categoryId: "medical",
+    categoryLabel: "의료",
+    categoryStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    avatarChar: "감",
+    avatarBg: "#EBF0FB",
+    avatarColor: "#2050A0",
+    author: "동네병원초보",
+    time: "30분 전",
+    createdAt: "2026-06-24T08:30:00",
+    title: "감기로 동네 GP 클리닉 처음 가봤는데, 외국인은 비용이 다르다는 걸 몰랐어요",
+    preview: "가벼운 감기로 근처 GP 클리닉 다녀온 후기예요. 비용이 생각보다 차이가 있어서, 미리 알아두면 좋을 것 같아 공유합니다.",
+    fullContent: `며칠 전 가벼운 감기로 처음 동네 GP(일반의) 클리닉에 가봤어요. 별생각 없이 갔다가 수납할 때 살짝 당황했던 경험 공유합니다.
+
+**제 경험**
+진료는 빠르고 친절했어요. 그런데 수납하면서 알게 된 건, 클리닉마다 비용 차이가 꽤 크고 외국인은 로컬 보조금이 적용되지 않는 경우가 많다는 점이었어요. 정확한 금액은 클리닉/보험 조건에 따라 다 다르니 여기서 단정적으로 말씀드리기는 어렵지만, 생각했던 것보다 비용이 더 나왔다는 정도로만 말씀드릴게요.
+
+**다음부터 해보려는 것**
+- 방문 전에 리셉션에 비용 대략 문의해보기
+- 회사/개인 보험 카드 챙겨가서 적용 여부 바로 확인하기
+- 영수증 보험사 청구 가능한지 미리 체크하기
+
+정확한 보조금·비용 기준은 클리닉이나 보험사에 직접 확인하시는 게 제일 정확할 것 같아요. 저처럼 처음 가시는 분들은 미리 한번 전화로 물어보고 가시는 걸 추천드려요!`,
+    tags: ["GP클리닉", "병원", "의료", "외국인생활"],
+    views: "41",
+    comments: "2",
+    likes: "6",
+    visaBadge: "EP",
+  },
+  {
     id: "1",
     categoryId: "life",
     categoryLabel: "생활정보",
@@ -407,6 +468,52 @@ export const COMMUNITY_POSTS: CommunityPost[] = [...RAW_COMMUNITY_POSTS].sort((a
 });
 
 export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
+  "auto-20260624-1": [
+    {
+      id: "c19",
+      author: "이제정착중",
+      avatarChar: "이",
+      avatarBg: "#EBF5F0",
+      avatarColor: "#2B7A50",
+      content: "도서관 스토리타임 진짜 좋아요! 저희도 그걸로 또래 친구 사귀었어요. 혹시 보통 오후 몇 시쯴 나가셨어요?",
+      time: "10분 전",
+      likes: 2,
+    },
+  ],
+  "auto-20260624-2": [
+    {
+      id: "c20",
+      author: "보험가입필수",
+      avatarChar: "보",
+      avatarBg: "#FBF5E8",
+      avatarColor: "#B07010",
+      content: "맞아요, 저도 처음에 모르고 갔다가 놀랐어요. 회사 보험 카드 챙겨가면 그 자리에서 적용 여부 바로 알려주더라고요.",
+      time: "20분 전",
+      likes: 3,
+    },
+    {
+      id: "c21",
+      author: "싱가초보22",
+      avatarChar: "싱",
+      avatarBg: "#EBF0FB",
+      avatarColor: "#2050A0",
+      content: "외국인 보조금 관련해서 정확한 기준이 따로 있나요? 클리닉마다 다르다고 하셔서 헷갈리네요.",
+      time: "12분 전",
+      likes: 1,
+      replies: [
+        {
+          id: "c21r1",
+          author: "동네병원초보",
+          avatarChar: "감",
+          avatarBg: "#EBF0FB",
+          avatarColor: "#2050A0",
+          content: "저도 정확히는 몰라서 보험사랑 클리닉에 직접 물어봤어요. 케이스마다 달라서 일반화하기는 어려운 것 같아요!",
+          time: "5분 전",
+          likes: 2,
+        },
+      ],
+    },
+  ],
   "1": [
     {
       id: "c1",
