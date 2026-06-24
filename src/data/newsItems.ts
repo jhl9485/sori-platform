@@ -26,6 +26,161 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260624-5",
+    publishedAt: "2026-06-24",
+    category: "환경",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🌫️ 동남아 연무 '레드' 경보 — SIIA, 8~9월 '피크 위험기' 경고 (2019년 이후 두 번째 레드 등급)",
+    summary: "싱가포르국제관계연구소(SIIA)가 6월 24일 발표한 'Haze Outlook 2026' 보고서에서 브루나이·인도네시아·말레이시아·싱가포르에 영향을 줄 수 있는 심각한 초국경 연무 위험을 '레드'(고위험)로 평가했다. 2019년 보고서 발간 이후 두 번째 레드 등급(이전은 2023년)이며, 엘니뇨·인도양 다이폴 영향으로 8~9월이 가장 위험한 시기로 지목됐다.",
+    fullContent: `**SIIA 'Haze Outlook 2026' 보고서 발표 (2026년 6월 24일)**
+싱가포르국제관계연구소(SIIA)가 발표한 8번째 연례 동남아 연무 위험 평가 보고서입니다.
+
+**위험 등급**
+- 브루나이·인도네시아·말레이시아·싱가포르 대상 초국경 연무 위험을 **'레드(Red)'(고위험)**로 평가
+- SIIA가 2019년 Haze Outlook 발간 이후 **두 번째** 레드 등급(이전 레드 등급은 2023년)
+
+**피크 위험기**
+- **8~9월**을 가장 위험한 시기로 지목
+- 엘니뇨 및 양의 인도양 다이폴(IOD) 발달이 겹치며 건기가 더 길고 강해질 가능성
+
+**원인**
+- 엘니뇨로 인한 고온·건조한 날씨가 산불·이탄지 화재 위험을 높임
+- 호르무즈 해협 관련 사태로 바이오연료 수요가 늘면서 일부 생산지의 무분별한 토지 개간 유인이 커질 수 있다고 경고
+- 인도네시아는 산불·토지화재 대응을 위한 신규 부처간 조정 데스크를 신설해 대응 중
+
+**한인 참고**
+- 8~9월 사이 PSI(오염지수)가 높아질 경우를 대비해 외출 전 haze.gov.sg에서 1시간 PM2.5·24시간 PSI를 확인하는 습관을 들일 것
+- 호흡기 질환자·어린이·노약자가 있는 가정은 마스크(N95 등)와 공기청정기를 미리 준비해두는 것을 권장
+- 실외 활동(운동회·캠핑 등) 계획 시 8~9월은 대체 일정도 고려할 만함
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SIIA(싱가포르국제관계연구소)",
+    sources: [
+      { name: "SIIA — Haze Outlook 2026 Warns of High Risk of Severe Transboundary Haze Event", url: "https://siiaonline.org/siia-haze-outlook-2026-media-release/" },
+      { name: "Mothership — Rare 'red alert' severe haze warning for S'pore, Aug-Sep 'peak danger period': SIIA", url: "https://mothership.sg/2026/06/haze-outlook-report-2026/" },
+      { name: "The Borneo Post — Southeast Asia on red alert for transboundary haze risk in coming months, says SIIA", url: "https://www.theborneopost.com/2026/06/24/southeast-asia-on-red-alert-for-transboundary-haze-risk-in-coming-months-says-siia/" },
+    ],
+    time: "2026년 6월 24일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🌫️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260624-6",
+    publishedAt: "2026-06-24",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 가자전쟁발 자생적 극단화 — 싱가포르인 2명 ISA 명령(구금·거주제한), 내무부 6월 24일 발표",
+    summary: "싱가포르 내무부(MHA)·내부보안부(ISD)는 6월 24일, 가자전쟁을 계기로 자생적으로 급진화된 싱가포르인 2명에 대한 내부보안법(ISA) 명령을 공개했다. 30세 고객서비스직 남성(타르미지)은 하마스 지시가 있으면 싱가포르 내 공격도 가능하다고 진술해 구금명령(OD)을, 19세 대학생(사이러스)은 복합적 극단주의 성향으로 거주제한명령(RO)을 받았으며 두 명령 모두 3월에 발효됐다. 가자전쟁을 계기로 ISA 조치를 받은 것은 이들이 7·8번째 사례다.",
+    fullContent: `**내부보안법(ISA) 명령 발표 (싱가포르 내무부·ISD, 2026년 6월 24일)**
+
+**대상자**
+- 타르미지 빈 모드 타하(30세, 고객서비스직): 구금명령(Order of Detention)
+- 사이러스 둘카르나인 알샤리아르(19세, 대학생): 거주제한명령(Restriction Order)
+- 두 명령 모두 2026년 3월 발효
+
+**배경**
+- 타르미지: 2023년 10월 하마스의 이스라엘 공격 이후 SNS에서 하마스 선전물에 노출, 무력 사용이 정당하다고 믿게 됐으며 하마스가 지시하면 싱가포르 내에서도 공격을 벌일 수 있다고 진술
+- 사이러스: ISD가 '복합적 극단주의(Composite Violent Extremism, 일명 "샐러드바" 극단주의)'로 분류 — 여러 갈래의(때로 서로 상충하는) 극단주의 사상에 동시에 영향을 받은 사례. 2022년 이슬람 관련 온라인 커뮤니티에 참여하다 반서구·반LGBTQ 콘텐츠에 노출됐고, 2023년 이후 하마스의 민간인 살해를 '지하드'로 정당화하는 발언을 함
+
+**의미**
+- 가자전쟁(2023년 10월 이후)을 계기로 ISA 조치를 받은 싱가포르인은 이들로 7번째·8번째
+
+**한인 참고**
+- 직접적인 피해 위험을 알리는 뉴스는 아니며, 싱가포르 정부가 온라인 극단주의 확산을 적극적으로 감시·대응하고 있다는 점을 보여주는 사례
+- 자녀가 SNS·온라인 커뮤니티에서 특정 이념에 과도하게 몰입하는 정후가 보이면 주의 깊게 살펴볼 필요가 있음
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 내무부(MHA)·ISD",
+    sources: [
+      { name: "MHA — Issuance of Orders Under the Internal Security Act Against Two Self-Radicalised Singaporean Youths", url: "https://www.mha.gov.sg/mediaroom/press-releases/issuance-of-orders-under-the-internal-security-act-against-two-self-radicalised-singaporean-youths/" },
+      { name: "Mothership — 2 self-radicalised S'poreans, aged 19 & 30, issued ISA orders, 1 willing to conduct attacks in S'pore if instructed by Hamas", url: "https://mothership.sg/2026/06/isa-orders-self-radicalisation-19-30/" },
+      { name: "Malay Mail — Two Singaporeans detained under ISA after self-radicalisation linked to Gaza war", url: "https://www.malaymail.com/news/singapore/2026/06/24/two-singaporeans-detained-under-isa-after-self-radicalisation-linked-to-gaza-war/225046" },
+    ],
+    time: "2026년 6월 24일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🚨",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260624-7",
+    publishedAt: "2026-06-18",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💡 7월 전기요금 '대폭' 인상 예고 — 에너지청, 중동 사태發 가스값 급등으로 최대 30% 상승 전망",
+    summary: "싱가포르 에너지청(EMA)이 6월 18일 더 스트레이츠 타임스에 3분기(7~9월) 규제 전기요금이 'significantly'(상당히) 오를 것이라고 확인했다. 현재 요금(GST 포함 kWh당 29.72센트) 대비 분석가들은 최대 30%까지 인상을 전망하며, 원인은 2월 말 이후 이란을 둘러싼 분쟁과 호르무즈 해협 관련 천연가스 가격 급등이다. 정부는 7월 U-Save 리베이트(가구당 110~190달러)로 부담을 일부 완화할 계획이다.",
+    fullContent: `**전기요금 3분기(7~9월) 인상 전망 (에너지청 EMA, 2026년 6월 18일 확인)**
+
+**현황**
+- 에너지청(EMA)이 6월 18일 더 스트레이츠 타임스에 규제 전기요금(가구 62.8%가 적용받는 요금)이 3분기부터 'significantly'(상당히) 오를 것이라 확인
+- 현재(4~6월) 요금: GST 포함 kWh당 **29.72센트**
+- 분석가 전망: 최대 **30%**까지 인상 가능성
+
+**원인**
+- 2월 말 미국·이스라엘의 이란 공습 이후 호르무즈 해협이 사실상 봉쇄되며 천연가스 가격 급등
+- 싱가포르는 발전 연료의 95%를 수입에 의존해 국제 가스값 변동에 취약
+- 요금은 전 분기 첫 2.5개월 평균 연료비로 산정되는 구조라, 최근 미·이란 휴전 합의도 7월 요금에는 반영되지 않음
+
+**정부 지원**
+- 7월 중 U-Save 리베이트(가구당 110~190달러) 및 SCC(관리비) 리베이트 지급 예정
+
+**한인 참고**
+- 7월 1일부터 실제 고지서에 인상분이 반영되므로, 전기 사용량이 많은 가정은 미리 절약 계획을 세워두는 것이 좋음
+- 오픈일렉트리시티마켓(OEM) 고정요금제 계약자는 이번 인상의 직접 영향은 적지만, 계약 갱신 시점에는 새 시세가 반영될 수 있음
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 에너지청(EMA)",
+    sources: [
+      { name: "Mothership — S'pore electricity tariff expected to rise 'significantly' from July: EMA", url: "https://mothership.sg/2026/06/electricity-tariff-july-2026-expected-rise/" },
+      { name: "VnExpress International — Singapore households warned of 'significant' electricity tariff hike in coming months", url: "https://e.vnexpress.net/news/business/economy/singapore-households-warned-of-significant-electricity-tariff-hike-in-coming-months-5087292.html" },
+    ],
+    time: "2026년 6월 18일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "💡",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260624-8",
+    publishedAt: "2026-06-15",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 주간 신규 119건 — 2026년 최고치, 북부 4개 클러스터 '적색경보'",
+    summary: "싱가포르 국가환경청(NEA)에 따르면 6월 13일로 끝난 주에 뎅기열 신규 확진 119건이 보고돼 2026년 최고 주간 기록을 세웠고, 연간 누적은 938건에 달했다. 6월 15일 기준 북부 지역 4개 클러스터(Countryside Rd/Lentor Ave 34건, Jalan Bangau/Jalan Jarak 22건, Neram Rd/Nim Crescent 19건, Lilac Dr/Mimosa Rd 11건)가 '적색경보'(10건 이상·빠른 전파)로 분류됐다.",
+    fullContent: `**뎅기열 확산 현황 (국가환경청 NEA, 2026년 6월 기준)**
+
+**주간·연간 현황**
+- 6월 13일로 끝난 주 신규 확진 **119건** — 전주 대비 39건 증가, 2026년 최고 주간 기록
+- 2026년 연간 누적 확진 **938건**
+- 5월 23일로 끝난 주(53건) 이후 매주 50건 이상이 지속되며 증가세
+
+**적색경보 클러스터 (6월 15일 기준, 모두 싱가포르 북부)**
+- Countryside Road/Lentor Avenue — 34건
+- Jalan Bangau/Jalan Jarak — 22건
+- Neram Road/Nim Crescent — 19건
+- Lilac Drive/Mimosa Road — 11건
+- '적색경보'는 누적 10건 이상이며 빠른 전파가 진행 중인 클러스터를 의미
+
+**한인 참고**
+- 북부(Lentor·Yishun·Springleaf 인근 등) 거주 한인은 집 안팎 고인 물 제거, 모기 기피제 사용 등 개인 방역에 특히 신경 쓸 것
+- 발열·근육통 등 뎅기열 의심 증상이 있으면 즉시 병원에서 검사받을 것을 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA(국가환경청)",
+    sources: [
+      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season, agency warns of rising transmission risk", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
+      { name: "Xinhua — Singapore dengue weekly cases hit 2026 high", url: "https://english.news.cn/20260616/16666162380847008cd20fe9682603b0/c.html" },
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+    ],
+    time: "2026년 6월 15일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260624-1",
     publishedAt: "2026-06-10",
     category: "사회",
