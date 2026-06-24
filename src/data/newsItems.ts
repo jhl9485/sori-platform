@@ -26,6 +26,169 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260624-1",
+    publishedAt: "2026-06-10",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🎫 BTS 콘서트 티켓 사기 주의보 — 6월 1일 이후 62건·6만8천200달러 피해, 12월 'Arirang' 싱가포르 공연 전 회차 매진",
+    summary: "싱가포르 경찰(SPF)에 따르면 6월 1일 이후 BTS 월드투어 'Arirang' 콘서트 티켓 판매 사기가 최소 62건 발생, 피해액이 6만8천200달러를 넘었다. X·인스타그램·캐러셀 등에서 티켓을 판다며 PayNow로 결제를 유도한 뒤 '수수료' 등 추가 송금을 요구하는 수법이다. 해당 콘서트는 12월 17·19·20·22일 내셔널 스타디움에서 열리며, BTS가 완전체로 7년 만에 싱가포르를 찾는 공연으로 전 회차 매진됐다.",
+    fullContent: `**BTS 콘서트 티켓 사기 경보 (싱가포르 경찰, 2026년 6월)**
+싱가포르 경찰(SPF)이 발표한 내용입니다.
+
+**피해 현황**
+- 6월 1일 이후 최소 **62건** 신고, 피해액 최소 **6만8천200달러(S$68,200)**
+
+**수법**
+- X(트위터)·인스타그램·캐러셀 등 SNS에서 "콘서트 티켓 판매" 게시물·DM으로 접근
+- PayNow 또는 QR코드로 결제 유도 → 결제 후 "수수료" 등 명목으로 추가 송금 요구
+- 티켓이 오지 않거나 판매자와 연락이 끊겨야 사기임을 인지
+
+**콘서트 정보(참고)**
+- BTS 월드투어 'Arirang' 싱가포르 공연: 12월 17·19·20·22일, 내셔널 스타디움
+- 완전체로 7년 만의 싱가포르 공연이며, 공식 채널(Ticketmaster) 기준 전 회차 매진
+- Ticketmaster 약관상 리세일 티켓 사용 시 입장이 거부되며 환불도 되지 않음
+
+**경찰 안내**
+- 콘서트 티켓은 공식 판매처(Ticketmaster 등)에서만 구매할 것
+- SNS 개인 판매자에게 선입금하지 말 것, 의심 시 ScamShield 앱 또는 1799 확인
+
+**한인 참고**
+- 싱가포르 거주 한인 팬덤 다수가 이번 공연 티켓을 구하려 SNS 개인거래를 시도할 수 있어 특히 주의가 필요
+- 리세일 티켓은 설령 진짜 티켓이라도 공연장 입장이 거부될 수 있다는 점도 유의할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "SPF — Police Advisory On Scams Involving The Sale Of BTS World Tour 'Arirang' Concert Tickets", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260610_police_advisory_on_scams_involving_the_sale_of_bts_world_tour_arirang_concert_tickets" },
+      { name: "Klook — BTS World Tour 'Arirang' in Singapore", url: "https://www.klook.com/en-US/blog/bts-world-tour-arirang-singapore/" },
+    ],
+    time: "2026년 6월 10일 경보(피해 집계 진행 중)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🎫",
+    relatedIds: ["28"],
+  },
+  {
+    id: "auto-20260624-2",
+    publishedAt: "2026-06-04",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "💰 \"무료 투자강의\" 빙자 사기 — 5월 이후 48건·360만 달러 피해, SNS 광고→ 채팅방 초대 수법",
+    summary: "싱가포르 경찰(SPF)에 따르면 5월 이후 '무료 투자강의'를 빙자한 채팅방 투자 사기가 최소 48건 발생해 피해액이 360만 달러를 넘었다. SNS 광고로 유인해 왓츠앱 채팅방에 초대한 뒤 '멘토'를 자처하는 사기범과 가짜 수익 인증을 보여주는 '회원'들이 투자를 권유하고, 가짜 앱·웹사이트에 투자하게 한 뒤 인출을 막는 수법이다.",
+    fullContent: `**"무료 투자강의" 채팅방 투자 사기 경보 (싱가포르 경찰, 2026년 6월 4일 발표)**
+
+**피해 현황**
+- 5월 이후 최소 **48건** 신고, 피해액 최소 **360만 달러(S$3.6 million)**
+
+**수법**
+- SNS에서 "무료로 투자를 배울 수 있다"는 광고 게시 → 관심 등록 시 왓츠앱 채팅방으로 초대
+- 채팅방 내 '멘토'를 자처하는 인물이 투자 조언·보너스를 제공하며 투자를 유도
+- 다른 '회원'들이 가짜 수익 인증 스크린샷을 공유해 신뢰를 유도
+- 피해자는 사기범이 안내한 가짜 투자 웹사이트나 앱(애플 앱스토어·구글플레이 외 경로 포함)을 통해 자금을 입금
+- 수익을 인출하려 하면 막히거나 사기범과 연락이 끊겨야 사기임을 인지
+
+**경찰 안내**
+- 신원이 확인되지 않은 사람에게 금전·귀중품을 건네지 말 것
+- 투자 회사·상품은 MAS(통화청) 공식 웹사이트에서 등록 여부를 먼저 확인할 것
+
+**한인 참고**
+- SNS에서 '무료 투자 강의' 광고를 보고 단체방에 초대받았다면 투자 권유로 이어지는지 주의할 것
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "SPF — Police Advisory On Investment Scams Involving Chat Groups That Offer Fake Opportunities To Learn Investing", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260604_police_advisory_on_investment_scams_involving_chat_groups" },
+      { name: "The Independent Singapore — SG police report: S$3.6M lost from 'free lessons' investment scams via chat group since May", url: "https://theindependent.sg/sg-police-report-s-3-6m-lost-from-free-lessons-investment-scams-via-chat-group-since-may/" },
+    ],
+    time: "2026년 6월 4일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "💰",
+    relatedIds: ["28"],
+  },
+  {
+    id: "auto-20260624-3",
+    publishedAt: "2026-06-09",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ MS(마이크로소프트) 기술지원 사칭 사기 — 2월 이후 170만 달러 피해, 가짜 '해킹 경고' 팝업→ 가짜 경찰관 연결",
+    summary: "싱가포르 경찰(SPF)·사이버보안청(CSA) 공동 경보에 따르면 2월 이후 마이크로소프트(MS) 기술지원을 사칭한 사기가 최소 10건 발생해 피해액이 170만 달러를 넘었다. 브라우저에 '기기가 해킹됐다'는 가짜 팝업이 뜨고, 안내된 번호로 전화하면 가짜 경찰관에게 연결돼 '자금세탁에 연루됐다'며 계좌이체·원격조종을 요구받는 수법이다.",
+    fullContent: `**MS 기술지원 사칭 사기 공동 경보 (SPF·CSA, 2026년 6월 9일 발표)**
+
+**피해 현황**
+- 2월 이후 최소 **10건** 신고, 피해액 최소 **170만 달러(S$1.7 million)**
+
+**수법**
+- 인터넷 브라우저에 마이크로소프트(MS)를 사칭한 팝업 경고 — "기기가 해킹·손상됐다"는 내용
+- 팝업에 안내된 인터넷전화 번호로 전화하면 "기술지원 담당자"와 연결
+- 이후 "경찰관"을 사칭하는 또 다른 사기범에게 전화가 넘겨지며, 해당 기기가 자금세탁 등 범죄에 연루됐다고 주장
+- 계좌이체, 은행 로그인 정보 제공, 또는 기기 원격조종 허용을 요구
+
+**경찰·CSA 안내**
+- 마이크로소프트는 오류·경고 메시지에 전화번호를 포함하지 않음
+- 팝업에 표시된 번호로 전화하거나 링크·버튼을 클릭하지 말고, 브라우저를 종료할 것
+
+**한인 참고**
+- 평소 사용하는 PC·노트북에 이런 팝업이 뜨면 절대 전화하지 말고 그대로 브라우저를 닫을 것
+- 원격조종 프로그램 설치나 계좌 정보 요구는 모두 사기로 간주할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · CSA",
+    sources: [
+      { name: "SPF — Joint Advisory On Technical Support Scams Involving The Impersonation Of Microsoft", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260609_joint_advisory_on_technical_support_scams_involving_the_impersonation_of_microsoft" },
+      { name: "CSA — Joint Advisory on Technical Support Scams Involving the Impersonation of Microsoft", url: "https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-006/" },
+      { name: "Yahoo News Singapore — At least $1.7m lost since February to scams where fraudsters impersonate Microsoft tech support", url: "https://sg.news.yahoo.com/least-1-7m-lost-since-155000129.html" },
+    ],
+    time: "2026년 6월 9일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🖥️",
+    relatedIds: ["28"],
+  },
+  {
+    id: "auto-20260624-4",
+    publishedAt: "2026-06-22",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "📊 싱가포르 직장 몰입도 14%로 세계 최저권 — 35세 미만은 10%만 \"몰입\", 절반 이상 매일 스트레스",
+    summary: "노동부(MOM) 디네시 바수 다시(Dinesh Vasu Dash) 차관이 6월 22일 발표한 'Singapore Workplace Report 2026'(갤럽 공동조사)에 따르면 싱가포르 직장인 몰입도는 14%로 세계 평균(20%)·동남아 평균(25%)보다 낮았다. 35세 미만 근로자는 10%만 몰입한다고 답해 35세 이상(16%)보다 낮았고, 이들은 매일 스트레스·걱정 등을 더 많이 느낀다고 응답했다. 다만 삶을 긍정적으로 평가하는 비율은 40%로 동남아·세계 평균보다 높았다.",
+    fullContent: `**Singapore Workplace Report 2026 발표 (2026년 6월 22일)**
+노동부(MOM) 디네시 바수 다시 인력담당 정무차관이 갤럽과 공동 조사한 'Singapore Workplace Report 2026' 발표 행사에서 밝힌 내용입니다.
+
+**직장 몰입도**
+- 싱가포르 직장인 몰입도 **14%** — 세계 평균(20%), 동남아 평균(25%)보다 낮음
+- 2019년 이후 낮은 수준에서 큰 변화 없이 정체
+
+**세대별 격차**
+- 35세 미만 근로자: 몰입도 **10%**
+- 35세 이상 근로자: 몰입도 **16%**
+- 35세 미만은 35세 이상보다 매일 스트레스·걱정·분노·슬픔을 더 많이 느낀다고 응답
+
+**삶의 만족도는 양호**
+- "삶을 긍정적으로 평가" 비율 **40%** — 동남아 평균(36%), 세계 평균(34%)보다 높음
+
+**정부 메시지**
+- 차관은 만성적으로 낮은 직장 몰입도가 장기적으로 싱가포르 경제 경쟁력에 "전략적 리스크"가 될 수 있다고 지적
+- 기업에 인적자원 관리를 단순 HR 업무가 아닌 경영 전략 우선순위로 다룰 것을 당부
+
+**한인 참고**
+- 싱가포르에서 취업·이직을 고려 중이라면 전반적인 직장 문화(낮은 몰입도·세대 간 스트레스 격차)를 참고할 만한 자료
+- 회사 선택 시 워라밸·매니지먼트 문화를 면접 단계에서 확인해보는 것을 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Gallup",
+    sources: [
+      { name: "MOM — Keynote Address by MOS Dinesh Vasu Dash at Launch of Singapore Workplace Report 2026", url: "https://www.mom.gov.sg/newsroom/speeches/2026/0622-mos-keynote-address-at-launch-of-singapore-workplace-report-2026" },
+      { name: "Mothership — Only 10% of S'pore employees under 35 feel engaged at work, over half face stress daily: 2026 Gallup report", url: "https://mothership.sg/2026/06/singapore-2026-gallup-report/" },
+    ],
+    time: "2026년 6월 22일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📊",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260622-6",
     publishedAt: "2026-06-22",
     category: "사회",
