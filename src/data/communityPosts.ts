@@ -50,6 +50,62 @@ export interface CommunityPost {
 
 const RAW_COMMUNITY_POSTS: CommunityPost[] = [
   {
+    id: "auto-20260625-1",
+    categoryId: "life",
+    categoryLabel: "생활정보",
+    categoryStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    avatarChar: "헬",
+    avatarBg: "#EBF0FB",
+    avatarColor: "#2050A0",
+    author: "동네헬스다니는중",
+    time: "방금",
+    createdAt: "2026-06-25T09:00:00",
+    title: "동네 헬스장 등록했는데 한국분들이 생각보다 많아서 신기했어요",
+    preview: "이사 온 지 얼마 안 돼서 등록한 헬스장인데, 가보니 한국분들이 꽤 계시더라고요. 비슷한 경험 있으신가요?",
+    fullContent: `이사 온 지 한 달 정도 됐는데, 운동 좀 해야겠다 싶어서 집 근처 헬스장에 등록했어요.
+
+처음엔 로컬분들이나 외국인들만 있을 줄 알았는데, 가서 보니 한국분들이 꽤 보이더라고요. 인사를 나눈 건 아니지만 한국어로 통화하시는 분도 계시고, 같은 시간대에 자주 보이는 분도 있고요.
+
+**등록할 때 참고한 것들**
+- 평일/주말 등록 가격이 달라서 미리 비교해봤어요
+- 1일 체험이나 시범 이용 가능한지 데스크에 물어보고 결정
+- 집-회사 동선상 위치인지가 제일 중요했던 것 같아요
+
+낯선 동네에서 운동하면서 같은 한국분들 보니 괜히 반갑더라고요. 혹시 다니시는 헬스장에서 비슷한 경험 있으신 분 계세요?`,
+    tags: ["헬스장", "운동", "생활정보", "정착"],
+    views: "18",
+    comments: "1",
+    likes: "3",
+  },
+  {
+    id: "auto-20260625-2",
+    categoryId: "love",
+    categoryLabel: "연애",
+    categoryStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    avatarChar: "장",
+    avatarBg: "#F5F0FF",
+    avatarColor: "#7040C0",
+    author: "장거리연애중",
+    time: "1시간 전",
+    createdAt: "2026-06-25T08:00:00",
+    title: "한국-싱가포르 장거리 연애, 시차 때문에 힘드신 분 계세요?",
+    preview: "남자친구는 한국에 있고 저는 싱가포르에 있는데, 시차 때문에 연락 타이밍 맞추기가 생각보다 힘드네요.",
+    fullContent: `싱가포르로 온 지 반년 정도 됐는데, 남자친구는 한국에 그대로 있어서 계속 장거리 연애 중이에요.
+
+시차가 1시간이라 크지 않다고 생각했는데, 막상 지내보니 퇴근 시간이랑 잠자는 시간이 자꾸 어긋나서 연락 타이밍 맞추기가 은근히 피곤하더라고요. 저는 야근하고 와서 지쳐있을 때 상대는 한창 일하고 있고, 제가 막 자려고 할 때 상대가 퇴근해서 연락하고 싶어 하고 그런 식으로요.
+
+**저희가 해보고 있는 것**
+- 매일 정해진 시간보다는, 그날그날 가능한 시간에 짧게라도 연락하기로 룰을 느슨하게 바꿨어요
+- 한 달에 한 번 정도는 화상통화로 길게 얘기하는 시간을 따로 잡아요
+- 서로 바쁜 날엔 "오늘은 바빠서 짧게만"이라고 미리 말해주기
+
+그래도 가끔은 그냥 옆에 있었으면 좋겠다는 생각이 들 때가 있네요. 비슷하게 장거리 연애 중이신 분들, 어떻게 버티고 계신가요?`,
+    tags: ["연애", "장거리연애", "고민", "일상"],
+    views: "31",
+    comments: "3",
+    likes: "7",
+  },
+  {
     id: "auto-20260624-1",
     categoryId: "parenting",
     categoryLabel: "육아",
@@ -468,6 +524,40 @@ export const COMMUNITY_POSTS: CommunityPost[] = [...RAW_COMMUNITY_POSTS].sort((a
 });
 
 export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
+  "auto-20260625-1": [
+    {
+      id: "c22",
+      author: "싱가초보22",
+      avatarChar: "싱",
+      avatarBg: "#EBF0FB",
+      avatarColor: "#2050A0",
+      content: "저도 헬스장 가면 한국분들 자주 보여서 신기했어요! 괜히 더 열심히 운동하게 되더라고요 ㅎㅎ",
+      time: "5분 전",
+      likes: 1,
+    },
+  ],
+  "auto-20260625-2": [
+    {
+      id: "c23",
+      author: "이제정착중",
+      avatarChar: "이",
+      avatarBg: "#EBF5F0",
+      avatarColor: "#2B7A50",
+      content: "1시간 차이도 생각보다 크더라고요 ㅠㅠ 저도 화상통화 시간 따로 정해놓는 게 제일 효과 있었어요.",
+      time: "30분 전",
+      likes: 2,
+    },
+    {
+      id: "c24",
+      author: "박뉴비",
+      avatarChar: "박",
+      avatarBg: "#FBF5E8",
+      avatarColor: "#B07010",
+      content: "공감되네요. 저희는 서로 바쁜 날 미리 말해주는 룰 정한 뒤로 훨씬 편해졌어요. 잘 버티고 계신 것 같아요!",
+      time: "15분 전",
+      likes: 1,
+    },
+  ],
   "auto-20260624-1": [
     {
       id: "c19",
