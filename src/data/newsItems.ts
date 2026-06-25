@@ -26,6 +26,201 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260625-2",
+    publishedAt: "2026-06-15",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📑 EP 갱신도 7월 1일부터 강화된 COMPASS 기준 적용 — S Pass·워크퍼밋 쿼터 기준 LQS도 $1,600→$1,800",
+    summary: "올해 1월 1일부터 신규 취업허가(EP)에 적용된 개정 COMPASS(보완성 평가체계) 기준이 7월 1일부터 '갱신' 신청에도 그대로 적용된다. 갱신을 통과하려면 4개 기본 기준+2개 보너스 기준에서 최소 40점을 받아야 하며, 섹터·연령별 급여 기준표가 올라 예전엔 통과했던 급여로도 미달할 수 있다. 같은 날 S Pass·워크퍼밋 외국인 쿼터 산정 기준인 로컬적격임금(LQS)도 월 S$1,600에서 S$1,800로 오른다.",
+    fullContent: `**EP 갱신 COMPASS 강화 + LQS 인상 (2026년 7월 1일 시행)**
+
+여러 인사·이민 컨설팅사가 노동부(MOM) 공지를 바탕으로 7월 1일 시행 사항을 정리해 안내하고 있습니다.
+
+**EP(취업허가) 갱신**
+- 2026년 1월 1일부터 신규 EP 신청에 적용된 개정 COMPASS 기준이, **7월 1일부터 갱신 신청에도 동일하게 적용**
+- 갱신 통과에는 4개 기본 기준 + 2개 보너스 기준에서 **최소 40점**이 필요
+- 섹터·연령대별 급여 기준표(C1 급여 기준)가 상향돼, 2023~2024년 발급 당시엔 기준을 통과했던 급여라도 **올해 기준으로는 점수 미달**일 수 있음
+- 자격(학위) 인정 목록·우수대학 목록·인력부족직종 목록(SOL)도 갱신됨
+
+**LQS(로컬적격임금) 인상**
+- S Pass·워크퍼밋 외국인 고용 쿼터 산정 시 "로컬 직원 1명"으로 인정되는 최소 월급 기준(LQS)이 **S$1,600 → S$1,800**로 인상
+- MOM은 유예기간을 두지 않으며, 시행일부터 즉시 쿼터에 반영됨
+
+**앞으로 예정된 추가 인상**
+- 2027년 1월 1일부터 EP 최저급여 기준이 다시 올라 비금융 분야 S$6,000, 금융 분야 S$6,600 예정(예고 단계)
+
+**한인 참고**
+- EP로 거주 중이고 올해 하반기 갱신 시점이라면, 현재 급여가 본인 연령대·업종 기준표를 충족하는지 회사 인사팀과 미리 확인할 것
+- 직원을 고용한 한인 사업주는 로컬(시민·PR) 직원 급여가 S$1,800 미만이면 7월부터 외국인 쿼터 계산에서 불리해질 수 있어 사전 점검 필요
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM COMPASS·LQS 안내 종합(인사·이민 컨설팅)",
+    sources: [
+      { name: "Asanify — EOR & Compliance Digest, June 15: Singapore Employment Pass Renewals Tighten", url: "https://asanify.com/blog/news/singapore-employment-pass-renewals-june-15-2026/" },
+      { name: "Singapore Employment Agency — Local Qualifying Salary Rises to S$1,800 from 1 July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+    ],
+    time: "2026년 7월 1일 시행",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📑",
+    relatedIds: ["auto-20260622-4", "auto-20260622-8"],
+  },
+  {
+    id: "auto-20260625-3",
+    publishedAt: "2026-06-23",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📊 5월 물가 1.8%로 둔화 유지 — 식료품·교통비는 더 올라, MAS 연간 전망 1.5~2.5%로 상향",
+    summary: "통화청(MAS)·통상산업부(MTI)가 6월 23일 발표한 5월 소비자물가지수(CPI)에 따르면 연간 물가상승률이 1.8%로 4월과 같은 수준을 유지했다. 시장 예상치(2.0%)보다 낮았고, 근원물가는 1.4%로 예상(1.6%)보다 낮았다. 다만 식료품(1.8%)·교통비(7.4%)는 4월보다 더 올랐고, MAS는 올해 연간 물가 전망을 기존 1.0~2.0%에서 1.5~2.5%로 상향했다.",
+    fullContent: `**5월 소비자물가지수(CPI) 발표 (MAS·MTI, 6월 23일)**
+
+**전체 물가**
+- 5월 CPI 전년比 **+1.8%** — 4월과 동일한 수준, 시장 예상(2.0%)보다 낮음
+- 전월比로는 **+0.7%**
+- 근원물가(주거·개인교통비 제외) 전년比 **+1.4%** — 예상(1.6%)보다 낮음
+
+**품목별**
+- 식료품 **+1.8%**(4월 1.6%보다 상승)
+- 교통 **+7.4%**(4월 7.0%보다 상승)
+- 주거·유틸리티 **+0.2%**(4월과 동일)
+- 서비스 물가는 통신서비스 요금 하락에 힘입어 4월 1.5%→5월 **1.3%**로 둔화
+
+**MAS 연간 전망 상향**
+- MAS는 2026년 근원·전체 물가 전망을 기존 1.0~2.0%에서 **1.5~2.5%**로 상향 조정(4월 통화정책회의)
+
+**한인 참고**
+- 교통비·식료품비 상승이 두드러지는 추세이므로 생활비 계획에 참고할 것
+- SGD 환율·물가 흐름은 한국 송금 타이밍에도 영향을 줄 수 있어 SORI 환율 위젯 등으로 함께 확인 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MAS·MTI",
+    sources: [
+      { name: "CNBC — Singapore inflation holds at 1.8% in May, cooler than expected as services costs ease", url: "https://www.cnbc.com/2026/06/23/singapore-may-inflation-fastest-energy-prices.html" },
+      { name: "Singapore Department of Statistics — Consumer Price Index, Latest News & Data", url: "https://www.singstat.gov.sg/find-data/explore-data-themes/economy-prices/consumer-price-index/latest-news-data" },
+    ],
+    time: "2026년 6월 23일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📊",
+    relatedIds: ["22", "30"],
+  },
+  {
+    id: "auto-20260625-4",
+    publishedAt: "2026-06-16",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 '레드 경보' 클러스터 4곳 — 6월 13일 주간 119건 올해 최다, 욜추캉 일대 집중",
+    summary: "환경청(NEA)에 따르면 6월 13일로 끝난 주에 뎅기열 119건이 신고돼 2026년 들어 주간 최다를 기록했고, 1월 1일~6월 13일 누적 확진자는 약 938명에 달한다. 6월 15일 기준 활성 클러스터는 12곳, 이 중 10건 이상·빠른 확산을 보이는 '레드 경보' 클러스터가 4곳(욜추캉 일대 3곳 포함)으로 늘었다.",
+    fullContent: `**뎅기열 '레드 경보' 클러스터 확산 (NEA, 2026년 6월 중순 기준)**
+
+**주간·누적 확진자**
+- 6월 13일로 끝난 주: 신규 **119건** — 2026년 들어 주간 최다
+- 5월 23일로 끝난 주 이후 매주 50건을 넘는 상승세 지속
+- 1월 1일~6월 13일 누적 약 **938건**
+
+**클러스터 현황(6월 15일 기준)**
+- 활성 클러스터 **12곳**, 이 중 **레드 경보(10건 이상·빠른 확산) 4곳**
+  - Countryside Road/Lentor Avenue — 34건(확산 속도 빠름으로 별도 표시)
+  - Jalan Bangau/Jalan Jarak — 22건(욜추캉 일대)
+  - Neram Road/Nim Crescent — 19건(욜추캉 일대)
+  - Lilac Drive/Mimosa Road — 11건(욜추캉 일대)
+
+**한인 참고**
+- 욜추캉(Yio Chu Kang)·Lentor 인근 거주자는 특히 집·베란다 주변 정체수(고인 물) 제거에 신경 쓸 것
+- 고열·두통·근육통 등 의심 증상 시 빠르게 병원 방문, NEA가 매주 업데이트하는 클러스터 지도(웹사이트)에서 거주지 인근 위험도를 확인할 수 있음
+- 최신 클러스터·건수는 NEA 발표마다 바뀌므로 주기적으로 확인 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA",
+    sources: [
+      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season, agency warns of rising transmission risk", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High As Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+    ],
+    time: "2026년 6월 16일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🦟",
+    relatedIds: ["auto-20260624-5", "auto-20260622-9"],
+  },
+  {
+    id: "auto-20260625-5",
+    publishedAt: "2026-06-18",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🗓️ 2027년 공휴일 확정 — 설 연휴(2/6·2/7)에 대체공휴일 2/8 추가, 3일 연속 휴무",
+    summary: "노동부(MOM)가 6월 18일 발표한 2027년 공휴일 목록에 따르면 법정 공휴일은 11일이며, 설 연휴 둘째 날(2월 7일)이 일요일과 겹쳐 다음날인 2월 8일(월)이 대체공휴일로 추가 지정됐다. 이로써 설 연휴는 토(2/6)~일(2/7)~월(2/8) 3일 연속 휴무가 된다.",
+    fullContent: `**2027년 싱가포르 공휴일 확정 발표 (MOM, 2026년 6월 18일)**
+
+**11개 법정 공휴일**
+- 새해 1월 1일(금)
+- 설날(중국 신년) 2월 6일(토)·2월 7일(일)
+- 하리라야 푸아사 3월 10일(수)
+- 굿프라이데이 3월 26일(금)
+- 근로자의 날 5월 1일(토)
+- 하리라야 하지 5월 17일(월)
+- 부처탄신일(베삭데이) 5월 20일(목)
+- 건국기념일 8월 9일(월)
+- 디파발리 10월 28일(목)
+- 크리스마스 12월 25일(토)
+
+**대체공휴일 추가**
+- 설날 둘째 날(2월 7일)이 일요일과 겹쳐, **2월 8일(월)**이 대체공휴일로 추가 지정
+- 이에 따라 설 연휴는 토(2/6)~일(2/7)~월(2/8) **3일 연속 휴무**
+
+**한인 참고**
+- 설 연휴(2/6~2/8) 등 긴 주말을 활용해 한국 방문·여행 계획을 미리 세워볼 만함
+- 근로기준법(Employment Act) 적용 대상 근로자는 공휴일 근무 시 추가수당 규정을 회사 인사팀에 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM",
+    sources: [
+      { name: "MOM — Public Holidays for 2027", url: "https://www.mom.gov.sg/newsroom/press-releases/2026/0618-public-holidays-for-2027" },
+      { name: "Human Resources Director — Singapore reveals public holidays for 2027", url: "https://www.hcamag.com/asia/specialisation/benefits/singapore-reveals-public-holidays-for-2027/579526" },
+    ],
+    time: "2026년 6월 18일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🗓️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260625-6",
+    publishedAt: "2026-06-05",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏠 HDB 재판매가 5월 +0.3% 반등 — 4월 하락분 일부 회복, 거래량도 10.1%↑",
+    summary: "부동산 플랫폼 99.co의 월간 추정 집계에 따르면 5월 HDB 재판매가격은 전월比 +0.3% 올라 4월의 -0.6% 하락에서 반등했고, 재판매가지수는 208.9로 추정된다. 거래량은 약 2,139건으로 전월比 10.1% 늘었지만 작년 5월보다는 6.3% 적었다. 4룸이 전체 거래의 46.0%로 가장 큰 비중을 차지했다.",
+    fullContent: `**5월 HDB 재판매 시장 동향 (99.co 추정, 6월 5일)**
+
+부동산 플랫폼 99.co가 매매 신고 자료를 바탕으로 추정한 월간 통계입니다(HDB 공식 재판매가지수는 분기 단위로만 발표되며, 2분기 공식 수치는 7월경 나올 예정).
+
+**가격**
+- 5월 재판매가지수(추정) **208.9**, 전월比 **+0.3%**
+- 4월 -0.6% 하락 이후 반등
+- 작년 5월 대비로는 누적 **+0.2%** 수준 — 등락이 서로 상쇄되며 안정세 유지
+
+**거래량**
+- 5월 약 **2,139건** 거래, 전월(1,943건)比 **+10.1%**
+- 다만 작년 5월보다는 **-6.3%**로 여전히 낮은 수준
+- 4룸 **46.0%**, 3룸 24.6%, 5룸 23.4%, 이그제큐티브 6.0% 순
+
+**한인 참고**
+- HDB 재판매 구입은 영주권(PR) 취득 후 **3년 경과 + 가족결합(배우자가 PR인 가구)** 등 자격을 갖춘 경우만 가능 — EP·DP 등 비PR 외국인은 원칙적으로 구입 불가
+- 임차(렌트) 중인 한인이라면 재판매 시장이 큰 변동 없이 안정세라는 점을 갱신 협상 시 참고할 만함
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "99.co",
+    sources: [
+      { name: "99.co — HDB resale prices edge up as transaction volumes rebound in May 2026", url: "https://www.99.co/singapore/insider/hdb-resale-prices-edge-up-as-transaction-volumes-rebound-in-may-2026/" },
+      { name: "HDB — Resale Statistics", url: "https://www.hdb.gov.sg/residential/selling-a-flat/overview/resale-statistics" },
+    ],
+    time: "2026년 6월 5일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏠",
+    relatedIds: ["auto-20260622-3"],
+  },
+  {
     id: "auto-20260625-1",
     publishedAt: "2026-06-25",
     category: "교통",
