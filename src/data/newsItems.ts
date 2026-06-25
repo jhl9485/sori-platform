@@ -26,6 +26,42 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260625-1",
+    publishedAt: "2026-06-25",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "⛴️ HarbourFront 페리·크루즈, '임시 터미널'로 이전 — Batam·Karimun 가는 분들 탑승 장소 변경 주의",
+    summary: "HarbourFront Centre에서 운영되던 국제 페리·크루즈 터미널이 인근에 새로 지은 임시(interim) 터미널로 이전한다. 소유주 Mapletree의 HarbourFront Centre 재개발에 따른 것으로, 2026년 하반기부터 운영되며 2026년 7월 15일 이후 출발하는 여행객은 새 터미널로 직접 가야 한다. Batam·Karimun행 페리 이용객은 탑승 장소를 미리 확인할 필요가 있다.",
+    fullContent: `**HarbourFront 국제 페리·크루즈 터미널 이전 (2026년 하반기)**
+
+HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 터미널이, 바로 옆에 새로 지은 **임시(interim) 터미널**로 옮겨갑니다.
+
+**왜 옮기나**
+- 소유주인 부동산 기업 Mapletree Investments가 HarbourFront Centre를 재개발하기 위함
+- 임시 터미널 공사는 2024년 시작, 2025년 12월 완공 예정
+
+**언제부터**
+- 2026년 하반기부터 임시 터미널에서 운영 시작
+- **2026년 7월 15일 이후 출발하는 여행객은 새(임시) 터미널로 직접** 가도록 안내됨
+
+**한인 참고**
+- HarbourFront에서 **Batam·Karimun**행 페리를 타시는 분들은 7월 중순부터 탑승 장소가 바뀌니, 출발 전 운영사(예매처) 안내를 꼭 확인하세요
+- **Bintan** 등으로 가는 Tanah Merah 페리 터미널, Pasir Panjang 터미널은 이번 이전과 별개로 계속 운영됩니다
+- 정확한 새 터미널 위치·셔틀·체크인 시간은 예매 시 운영사 공지를 확인하는 것이 안전합니다
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Straits Times 외",
+    sources: [
+      { name: "The Straits Times — HarbourFront ferry, cruise operations moving to interim terminal in later half of 2026", url: "https://www.magzter.com/en/stories/newspaper/The-Straits-Times/HARBOURFRONT-FERRY-CRUISE-OPERATIONS-MOVING-TO-INTERIM-TERMINAL-IN-LATER-HALF-OF-2026" },
+      { name: "Singapore Cruise Centre (공식)", url: "https://singaporecruise.com.sg/" },
+    ],
+    time: "2026년 6월 25일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "⛴️",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260624-5",
     publishedAt: "2026-06-24",
     category: "환경",
@@ -140,44 +176,6 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     isBreaking: false,
     readTime: "3분",
     emoji: "💡",
-    relatedIds: [],
-  },
-  {
-    id: "auto-20260624-8",
-    publishedAt: "2026-06-15",
-    category: "건강",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🦟 뎅기열 주간 신규 119건 — 2026년 최고치, 북부 4개 클러스터 '적색경보'",
-    summary: "싱가포르 국가환경청(NEA)에 따르면 6월 13일로 끝난 주에 뎅기열 신규 확진 119건이 보고돼 2026년 최고 주간 기록을 세웠고, 연간 누적은 938건에 달했다. 6월 15일 기준 북부 지역 4개 클러스터(Countryside Rd/Lentor Ave 34건, Jalan Bangau/Jalan Jarak 22건, Neram Rd/Nim Crescent 19건, Lilac Dr/Mimosa Rd 11건)가 '적색경보'(10건 이상·빠른 전파)로 분류됐다.",
-    fullContent: `**뎅기열 확산 현황 (국가환경청 NEA, 2026년 6월 기준)**
-
-**주간·연간 현황**
-- 6월 13일로 끝난 주 신규 확진 **119건** — 전주 대비 39건 증가, 2026년 최고 주간 기록
-- 2026년 연간 누적 확진 **938건**
-- 5월 23일로 끝난 주(53건) 이후 매주 50건 이상이 지속되며 증가세
-
-**적색경보 클러스터 (6월 15일 기준, 모두 싱가포르 북부)**
-- Countryside Road/Lentor Avenue — 34건
-- Jalan Bangau/Jalan Jarak — 22건
-- Neram Road/Nim Crescent — 19건
-- Lilac Drive/Mimosa Road — 11건
-- '적색경보'는 누적 10건 이상이며 빠른 전파가 진행 중인 클러스터를 의미
-
-**한인 참고**
-- 북부(Lentor·Yishun·Springleaf 인근 등) 거주 한인은 집 안팎 고인 물 제거, 모기 기피제 사용 등 개인 방역에 특히 신경 쓸 것
-- 발열·근육통 등 뎅기열 의심 증상이 있으면 즉시 병원에서 검사받을 것을 권장
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "NEA(국가환경청)",
-    sources: [
-      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season, agency warns of rising transmission risk", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
-      { name: "Xinhua — Singapore dengue weekly cases hit 2026 high", url: "https://english.news.cn/20260616/16666162380847008cd20fe9682603b0/c.html" },
-      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
-    ],
-    time: "2026년 6월 15일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🦟",
     relatedIds: [],
   },
   {
