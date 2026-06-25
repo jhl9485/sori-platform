@@ -1477,6 +1477,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
 ];
 
 // 최신순(publishedAt 내림차순) 자동 정렬 — 새 뉴스 추가 시 배열 위치와 무관하게 최신이 위로.
-export const NEWS_ITEMS: NewsItem[] = [...RAW_NEWS_ITEMS].sort(
-  (a, b) => b.publishedAt.localeCompare(a.publishedAt)
-);
+export const NEWS_ITEMS: NewsItem[] = [...RAW_NEWS_ITEMS]
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  .slice(0, 50); // 최신 50건만 노출 (데이터 비대·번들·렌더 비용 관리)
