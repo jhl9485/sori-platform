@@ -26,6 +26,206 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260626-1",
+    publishedAt: "2026-06-23",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📈 5월 소비자물가 1.8%로 안정 — 식비·교통비는 여전히 오름세, MAS·통상산업부 6월 23일 발표",
+    summary: "싱가포르 통화청(MAS)과 통상산업부(MTI)가 6월 23일 발표한 '2026년 5월 소비자물가 동향'에 따르면 5월 전년 동월 대비 소비자물가지수(CPI)는 1.8% 상승해 4월과 같은 수준을 유지했다. 다만 식품(1.8%)과 교통(7.4%) 물가는 4월보다 더 올랐고, 핵심물가(주거·개인교통 제외)도 1.4%로 안정세를 보였다. MAS는 2026년 연간 물가 전망 범위를 기존 1~2%에서 1.5~2.5%로 높여 잡았다.",
+    fullContent: `**'2026년 5월 소비자물가 동향' 발표 (MAS·MTI 공동, 2026년 6월 23일)**
+
+**전체 물가**
+- 5월 전년 동월 대비 소비자물가지수(CPI) +1.8% — 4월과 같은 수준으로 2개월 연속 유지, 시장 예상치(2%대)보다 낮음
+- 전월(4월) 대비로는 +0.7%
+
+**핵심물가(Core Inflation)**
+- 주거비·개인교통비를 제외한 핵심물가는 +1.4% — 시장 예상치(1.6%)보다 낮은 수준에서 안정
+
+**품목별**
+- 식품 물가 +1.8% (4월 +1.6%에서 소폭 상승)
+- 교통 물가 +7.4% (4월 +7.0%에서 상승) — 중동 정세발 유류비 영향 반영
+- 주거·유틸리티 물가는 +0.2%로 변동 없음
+
+**전망**
+- MAS는 2026년 연간 핵심·전체 물가 전망 범위를 기존 1~2%에서 1.5~2.5%로 상향 조정
+
+**한인 참고**
+- 전반적 물가는 안정세지만 식비·교통비 부담은 계속 늘고 있다는 의미이므로, 가계부 관리 시 두 항목을 특히 신경 쓸 필요가 있음
+- 정확한 수치·세부 항목은 MAS·MTI 공동 보도자료 원문에서 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MAS·통상산업부(MTI)",
+    sources: [
+      { name: "MAS — Consumer Price Developments in May 2026", url: "https://www.mas.gov.sg/news/consumer-price-developments/2026/consumer-price-developments-in-may-2026" },
+      { name: "Trading Economics — Singapore Inflation Rate", url: "https://tradingeconomics.com/singapore/inflation-cpi" },
+    ],
+    time: "2026년 6월 23일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📈",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260626-2",
+    publishedAt: "2026-06-22",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "📱 LTA(육상교통청) 사칭 피싱 사기 재유행 — ERP 미납 문자 클릭 주의, 6월 들어 13건·7만4천 달러 피해",
+    summary: "싱가포르 경찰(SPF)이 6월 22일, 육상교통청(LTA)·OneMotoring을 사칭한 피싱 문자 사기가 다시 늘고 있다고 발표했다. 2026년 6월 1일 이후 최소 13건이 신고됐고 피해 금액은 최소 S$74,000이다. 'ERP 미납분이 있다'는 문자의 링크를 클릭하면 가짜 LTA·OneMotoring 사이트로 연결돼 차량번호와 은행·카드 정보를 입력하도록 유도한다.",
+    fullContent: `**싱가포르 경찰(SPF) 발표 (2026년 6월 22일)**
+
+육상교통청(LTA) 또는 OneMotoring을 사칭한 피싱 문자 사기가 다시 늘고 있다고 싱가포르 경찰이 발표했습니다.
+
+**피해 현황**
+- 2026년 6월 1일 이후 최소 13건 신고, 피해 금액 최소 S$74,000
+- 피해자는 문자메시지(SMS)로 "ERP(전자도로통행료) 미납분이 있으니 추가 요금을 피하려면 링크를 클릭해 결제하라"는 안내를 받음
+- 링크를 클릭하면 LTA·OneMotoring 공식 사이트와 매우 비슷하게 만든 가짜(피싱) 사이트로 연결되며, 차량번호와 함께 은행·카드 정보를 입력하도록 유도
+- 피해자들은 은행 계좌에서 무단 거래가 발생한 뒤에야 사기임을 알아차림
+
+**경찰 권고**
+- LTA는 미납 요금·도로세 안내 문자에 결제 링크(OneMotoring 등)를 절대 포함하지 않음 — 문자 속 링크로 결제를 요구받으면 그 자체로 사기로 의심할 것
+- 안내의 진위는 LTA 공식 홈페이지 또는 핫라인(1800-2255-582)으로 직접 확인
+- 사기로 의심되면 ScamShield 핫라인(1799)으로 문의하거나 즉시 경찰에 신고
+
+**한인 참고**
+- 차량을 소유·렌트 중인 분이라면 'ERP 미납' 문자를 받아도 절대 문자 속 링크를 누르지 말고, OneMotoring 앱이나 공식 웹사이트에 직접 접속해 확인하는 습관을 들이세요
+- 은행·카드 정보를 요구하는 링크는 일단 의심하는 것이 안전합니다
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "Singapore Police Force — Police Advisory On Resurgence Of Phishing Scams Involving The Impersonation Of The Land Transport Authority", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260622_police_advisory_on_resurgence_of_phishing_scams_involving_the_impersonation" },
+      { name: "The Star — Land Transport Authority impersonation phishing scams on the rise again in Singapore", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/06/23/land-transport-authority-impersonation-phishing-scams-on-the-rise-again-in-singapore" },
+      { name: "MustShareNews — SPF warns of LTA phishing scams resurfacing, victims lose at least S$74K in total", url: "https://mustsharenews.com/lta-phishing-scams-resurfacing/" },
+    ],
+    time: "2026년 6월 22일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📱",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260626-3",
+    publishedAt: "2026-06-15",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 '레드 얼럿' 클러스터 4곳 — 6월 13일 주간 119명, 2026년 최다… 욜추캉 일대 집중",
+    summary: "싱가포르 국가환경청(NEA)은 6월 15일 기준 활성 뎅기 클러스터 12곳 중 4곳을 '레드 얼럿'(고위험)으로 분류했다고 밝혔다. 6월 13일로 끝난 주간 신규 확진자는 119명으로 2026년 최다치를 기록했으며, 누적 확진자는 938명에 달한다. 레드 얼럿 클러스터 중 3곳이 욜추캉(Yio Chu Kang) 일대에 몰려 있어 모기 번식지 통제가 더 어려운 상황이다.",
+    fullContent: `**NEA 뎅기 클러스터 현황 (2026년 6월 15일 기준)**
+
+**확진자 추이**
+- 2026년 6월 13일로 끝난 주간 신규 확진자 119명 — 2026년 들어 가장 많은 주간 확진자 수
+- 2026년 누적 확진자 938명
+- 5월 23일로 끝난 주 이후 매주 신규 확진자가 50명을 넘는 추세 지속
+
+**레드 얼럿(고위험) 클러스터 4곳** (확진 10명 이상 + 전파 가속 시 지정)
+- Countryside Road/Lentor Avenue — 34명
+- Jalan Bangau/Jalan Jarak — 22명
+- Neram Road/Nim Crescent — 19명
+- Lilac Drive/Mimosa Road — 11명
+- 이 중 3곳이 욜추캉(Yio Chu Kang) 인근에 밀집해 있어, 모기 번식지가 여러 곳에 걸쳐 있을 가능성이 제기됨
+
+**한인 참고**
+- 위 지역(욜추캉/렌토 일대 등) 거주자는 특히 집 안팎 정체된 물 제거, 모기 기피제(DEET 성분) 사용, 저녁 시간 긴 옷 착용 등 개인 방역에 신경 쓸 것
+- NEA 점검 협조 요청 시 적극 협조 권장
+- 정확한 우리 동네 클러스터 현황은 NEA 웹사이트(뎅기 클러스터 지도)에서 실시간 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "국가환경청(NEA)",
+    sources: [
+      { name: "NEA — Dengue Clusters", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-clusters" },
+      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season, agency warns of rising transmission risk", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+    ],
+    time: "2026년 6월 15일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260626-4",
+    publishedAt: "2026-03-03",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "📅 7월 1일부터 정년 64세·재고용 69세로 연장 — 인력부 '2030년까지 65세·70세' 목표",
+    summary: "싱가포르 인력부는 2026년 3월 3일 국회 예산심의(COS)에서 2026년 7월 1일부터 법정 정년을 63세에서 64세로, 재고용 의무 연령을 68세에서 69세로 올린다고 확인했다. 2030년까지 정년 65세·재고용 70세를 목표로 단계적으로 올리는 계획의 일부다. 고용주는 정년에 도달한 직원을 재고용 연령까지 재고용할 법적 의무가 있으며, 정부는 고령 근로자 임금 보조(Senior Employment Credit)를 2027년 12월까지 연장했다.",
+    fullContent: `**정년·재고용 연령 상향 — 2026년 7월 1일 시행**
+
+인력부(MOM) 코 포쿤(Koh Poh Koon) 인력부 정무차관이 2026년 3월 3일 국회 예산심의(Committee of Supply)에서 확인한 내용입니다.
+
+**무엇이 바뀌나**
+- 법정 정년(retirement age): 63세 → **64세**
+- 재고용 의무 연령(re-employment age): 68세 → **69세**
+- 시행일: 2026년 7월 1일
+- 정년 적용 대상: 1962년 7월 1일 이후 출생자, 재고용 적용 대상: 1957년 7월 1일 이후 출생자부터
+
+**고용주 의무**
+- 직원이 법정 정년(64세)에 도달해도 고용주가 임의로 퇴사시킬 수 없고, 재고용 연령(69세)까지 재고용을 제안할 법적 의무가 있음
+
+**정부 지원**
+- 고령 근로자 고용을 지원하는 Senior Employment Credit(SEC)을 2027년 12월까지 연장, 69세 이상 근로자에는 최대 7%의 임금 보조 적용
+- 최종 목표는 2030년까지 정년 65세·재고용 70세
+
+**한인 참고**
+- 싱가포르에서 정년을 앞둔 로컬 직원을 고용 중인 사업주는 7월 1일부터 바뀌는 정년·재고용 의무를 인사 규정에 반영해야 함
+- 영주권자(PR)로 싱가포르에서 장기 근무 중인 분들도 본인의 은퇴 계획에 영향을 줄 수 있는 변화이니 참고할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "인력부(MOM)",
+    sources: [
+      { name: "MOM — Committee of Supply Highlights 2026", url: "https://www.mom.gov.sg/about-us/cos2026" },
+      { name: "Human Resources Online — MOM Committee of Supply 2026: Singapore to raise retirement age to 64 & re-employment age to 69 from 1 July 2026", url: "https://www.humanresourcesonline.net/mom-committee-of-supply-2026-singapore-to-raise-retirement-age-to-64-re-employment-age-to-69-from-1-july-2026" },
+      { name: "L&E Global — Singapore: Retirement Age and Re-Employment Age to be Raised on 1 July 2026 and Other Related Changes", url: "https://leglobal.law/2026/03/24/singapore-retirement-age-and-re-employment-age-to-be-raised-on-1-july-2026-and-other-related-changes/" },
+    ],
+    time: "2026년 7월 1일 시행 (2026년 3월 3일 국회 예산심의 발표)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📅",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260626-5",
+    publishedAt: "2026-02-12",
+    category: "비자",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 D-5, 7월 1일부터 '로컬 적격임금(LQS)' $1,600→$1,800 인상 — S Pass·Work Permit 고용 쿼터에 영향",
+    summary: "2026년 7월 1일부터 외국인 근로자 고용 쿼터 산정 기준이 되는 '로컬 적격임금(Local Qualifying Salary)'이 월 $1,600에서 $1,800로 오른다. 인력부(MOM)에 따르면 이 기준 미달 로컬 직원은 쿼터 산정 시 1인이 아닌 0.5인으로만 인정돼, 직원 임금을 올리지 않은 고용주는 S Pass·Work Permit 갱신·신규 신청에 차질을 겪을 수 있다. 파트타임 최저시급도 $9.00에서 $10.50로 오른다.",
+    fullContent: `**'로컬 적격임금(Local Qualifying Salary, LQS)' 인상 — 2026년 7월 1일 시행**
+
+2026년 2월 12일 예산안에서 발표된 조치로, 시행일이 임박해 다시 한번 정리합니다.
+
+**무엇이 바뀌나**
+- 풀타임 로컬(싱가포르 시민·영주권자) 직원의 LQS가 월 $1,600 → $1,800로 인상
+- 파트타임 직원 최저시급은 $9.00 → $10.50로 인상
+- 시행일: 2026년 7월 1일
+
+**왜 중요한가 (고용주·S Pass/Work Permit 보유자 모두 참고)**
+- LQS는 기업이 외국인 근로자(S Pass·Work Permit) 쿼터를 산정할 때, 로컬 직원 1명을 '풀카운트'로 인정받기 위한 최저 기준
+- 월급이 $1,600~$1,799인 로컬 직원을 7월 1일 전까지 $1,800로 올리지 않으면, 해당 직원은 쿼터 산정 시 '0.5인'으로만 인정 — 즉 회사의 외국인 근로자 고용 가능 인원이 줄어듦
+- 쿼터가 부족해지면 기존 Work Permit 갱신 실패, 신규 S Pass 발급 불가 등의 문제가 생길 수 있음 (기존 패스를 즉시 취소하지는 않음)
+
+**정부 지원**
+- 임금 인상분 일부를 정부가 보전해주는 Progressive Wage Credit Scheme(PWCS)을 통해 2026년 기준 자격 임금 인상분의 30%를 공동 부담
+
+**한인 참고**
+- 싱가포르에서 직원(특히 로컬 직원)을 고용 중인 사업주는 7월 1일 전 급여 조정 여부를 반드시 확인할 것
+- S Pass로 일하고 있거나 채용을 앞둔 분들도, 소속 회사의 쿼터 여유분에 영향을 줄 수 있는 사안이므로 인사팀에 확인해두면 좋음
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "인력부(MOM)",
+    sources: [
+      { name: "MOM — Local Qualifying Salary", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Ministry of Finance — 2026 Budget Statement to be delivered on 12 February 2026", url: "https://www.mof.gov.sg/news-resources/newsroom/2026-budget-statement-to-be-delivered-on-12-february-2026/" },
+      { name: "Mavenside Consulting — LQS Rises to $1,800 in July 2026: Employer Action Guide", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+    ],
+    time: "2026년 7월 1일 시행 (2026년 2월 12일 예산안 발표)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📋",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260625-1",
     publishedAt: "2026-06-25",
     category: "교통",
