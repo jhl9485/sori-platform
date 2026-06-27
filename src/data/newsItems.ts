@@ -26,6 +26,205 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260627-2",
+    publishedAt: "2026-06-27",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "💼 7월 1일부터 '로컬 자격임금' 1,800달러로 인상 — S Pass 쿼터 영향, 내년엔 S Pass 최저임금도 오른다",
+    summary: "인력부(MOM)가 올해 예산안(Budget 2026)에서 발표한 대로 7월 1일부터 로컬 자격임금(LQS·외국인 근로자 쿼터 산정 시 '로컬 1인'으로 인정되는 최저 월급 기준)이 1,600달러에서 1,800달러로 오른다. S Pass 최저자격임금도 2027년 1월 1일 신규 신청부터 일반업종 3,300달러→3,600달러, 금융업 3,800달러→4,000달러로 오를 예정이다. 외국인 직원을 둔 한인 자영업자·고용주는 인건비·쿼터를 미리 점검할 필요가 있다.",
+    fullContent: `**로컬 자격임금(LQS) 인상 — 2026년 7월 1일 시행**
+
+**무엇이 바뀌나**
+- 로컬 자격임금(Local Qualifying Salary): 월 S$1,600 → **S$1,800**
+- 시간당 환산: S$9 → S$10.50
+- LQS는 싱가포르 국민·PR 직원이 외국인 근로자(S Pass·Work Permit) 쿼터 산정 시 '로컬 1인'으로 인정받기 위한 최저 월급 기준
+
+**쿼터 산정 영향 (7월 1일부터)**
+- 월급 S$1,800 이상: 로컬 1.0인으로 인정
+- 월급 S$900~1,800 미만: 0.5인으로 인정
+- 월급 S$900 미만: 인정 안 됨
+- MOM은 별도 유예기간을 두지 않아, 7월 1일부터 즉시 쿼터가 재산정됨
+
+**S Pass 최저자격임금도 곧 오른다 (2027년 1월 1일 신규 신청부터)**
+- 일반업종: S$3,300 → **S$3,600**
+- 금융업: S$3,800 → **S$4,000**
+- 갱신 건에는 2028년 1월 1일부터 적용
+- 연령별로 기준이 높아지는 구조는 유지
+
+**정부 지원**
+- 점진임금크레딧제도(PWCS)를 2026년 강화, 2028년까지 연장해 저임금 로컬 직원 인건비 부담을 일부 보전
+
+**한인 참고**
+- S Pass·Work Permit 외국인 직원을 둔 한인 자영업자·소상공인은 7월 1일 전 로컬 직원 월급이 새 LQS 기준을 충족하는지 미리 확인할 필요가 있음
+- 급여 시스템에 반영이 늦으면 쿼터 초과로 S Pass 갱신이 거부될 수 있음
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM(인력부)",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Singapore Employment Agency — Local Qualifying Salary Rises to S$1,800 from 1 July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+      { name: "Mavenside Consulting — EP & S Pass Salary Increases 2027 Employer Guide", url: "https://www.mavenside.co/blog/ep-s-pass-salary-increases-2027-employer-guide" },
+    ],
+    time: "2026년 7월 1일 시행",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "💼",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260625-2",
+    publishedAt: "2026-06-25",
+    category: "생활",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🏦 모든 HDB 단지 500m 안에 ATM·은행지점 — 은행권, 고령화 사회 대비 20개 정책 발표",
+    summary: "싱가포르은행협회(ABS)가 6월 25일 DBS·OCBC·UOB·NETS와 함께 2027년 말까지 모든 HDB 단지에서 500m 이내에 ATM·은행지점·캐시포인트를 두겠다고 발표했다. '장수사회 은행 서비스(Banking a Longevity Society)' 정책집의 일부로, 노인 인지저하 징후 감지 가이드라인, 사망자 계좌 정리 절차 간소화 등 총 20개 이니셔티브가 포함됐다. 과도기로 2026년 말까지 대중교통역·호커센터·대형마트 인근에도 우선 설치할 계획이다.",
+    fullContent: `**은행권 '장수사회 은행 서비스' 정책 발표 (ABS, 2026년 6월 25일)**
+
+**핵심 — ATM·지점 접근성**
+- DBS·OCBC·UOB·NETS가 **2027년 말까지** 모든 HDB 단지에서 **500m 이내** ATM·은행지점·캐시포인트 확보를 공동 약속
+- 과도기 목표: **2026년 말까지** 대중교통역·호커센터·대형마트 등 주요 생활시설 인근 500m 이내 우선 설치
+
+**그 외 시니어 대상 이니셔티브 (총 20개)**
+- 인지저하 징후를 창구 직원이 알아볼 수 있도록 통합돌봄청(AIC)과 공동 가이드라인을 2026년 말까지 마련
+- 사망 고객의 임의대리권(LPA)·후견·계좌 정리 절차를 2027년 1분기까지 은행 간 표준화해 가족에게 더 명확한 안내 제공
+- 배경: 싱가포르 인구 5명 중 1명이 65세 이상인 '초고령사회' 진입
+
+**한인 참고**
+- 부모님을 모시고 사는 한인 가정이나 시니어 부모를 둔 경우, 디지털뱅킹에 익숙지 않은 어르신의 현금 접근성이 개선되는 정책
+- 부모님 명의 계좌·유고 시 절차가 궁금하다면 2027년 1분기 이후 은행 안내를 참고할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "ABS(싱가포르은행협회)",
+    sources: [
+      { name: "Mothership — All HDB blocks to have ATM, bank branch, or cashpoint within 500m by end-2027: S'pore banks", url: "https://mothership.sg/2026/06/banks-500m-hdb-seniors/" },
+      { name: "Caproasia — Singapore 3 Largest Banks DBS, OCBC & UOB and Payments Group Nets to Increase ATMs, Branches & Cash Points by 2027", url: "https://www.caproasia.com/2026/06/26/singapore-3-largest-banks-dbs-ocbc-uob-and-payments-group-nets-to-1-increase-atms-branches-cash-points-in-singapore-by-2027-to-be-in-500-metres-range-of-every-singapore-public-housing-hdb-blo/" },
+    ],
+    time: "2026년 6월 25일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏦",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260625-3",
+    publishedAt: "2026-06-25",
+    category: "치안",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 통신사 사칭→법무부·MAS 사칭 콜 트랜스퍼 보이스피싱 경보 — 6월 이후 5건, 25만2천 달러 피해",
+    summary: "싱가포르 경찰(SPF)이 6월 25일, 통신사 직원을 사칭해 접근한 뒤 법무부(MinLaw)나 통화청(MAS) 공무원을 사칭하는 사람에게 전화를 돌리는(콜 트랜스퍼) 신종 사기를 경보했다. 6월 1일 이후 최소 5건, 피해액 최소 S$252,000이 발생했으며 일부 피해자는 빚까지 지게 됐다. 경찰은 정부기관이 돈·송금·대출을 절대 요구하지 않는다고 강조했다.",
+    fullContent: `**경찰 사기 경보 (SPF, 2026년 6월 25일)**
+
+**사기 수법 (단계별)**
+1. 통신사 직원을 사칭해 전화 — "본인 명의로 서비스 계약·SIM카드 등록·휴대폰 구매 이력이 있다"고 주장
+2. 전화를 법무부(MinLaw) 또는 통화청(MAS) 공무원을 사칭하는 사람에게 연결(콜 트랜스퍼)
+3. 사칭 공무원이 "범죄에 연루됐다"며 위협하고 송금·대출을 요구
+
+**피해 현황**
+- 2026년 6월 1일 이후 최소 5건, 피해액 최소 **S$252,000**
+- 피해자가 저축을 잃는 데서 끝나지 않고 대출까지 받아 빚을 지게 되는 경우가 있어 특히 위험
+
+**정부기관이 절대 요구하지 않는 것**
+- 현금·명품시계·금·가상자산 이체
+- 대부업체(licensed moneylender)를 통한 대출
+
+**한인 참고**
+- 낯선 번호로 통신사·법무부·MAS를 사칭하는 전화를 받으면 즉시 끊고, ScamShield 앱이나 1799(ScamShield 24시간 헬프라인)로 확인할 것
+- 가족·지인에게도 이 사기 수법을 미리 알려두는 것이 좋음
+- 이미 송금했다면 즉시 은행에 신고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "Singapore Police Force — Police Advisory On Government Officials Impersonation Scams That Involve Obtaining Loans From Licensed Moneylenders", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260625_police_advisory_on_government_officials_impersonation_scams_that_involve_obtaining_loans" },
+    ],
+    time: "2026년 6월 25일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🚨",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260623-1",
+    publishedAt: "2026-06-23",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📈 5월 물가 1.8%·근원물가 1.4% — 예상보단 낮았지만 식료품·교통비는 더 올랐다",
+    summary: "MAS·통상산업부(MTI)가 6월 23일 발표한 5월 소비자물가 자료에 따르면 전년 동월 대비 전체 물가는 1.8%로 4월과 같았고, 시장 예상(2%)보다 낮았다. 임대료·자가용 유지비를 뺀 근원물가도 1.4%로 예상(1.6%)보다 낮았다. 다만 식료품(1.8%)·교통비(7.4%) 물가는 4월보다 더 올랐고, 전월 대비로는 0.7% 상승했다. MAS는 2026년 연간 물가 전망치를 1.5~2.5%로 상향했다.",
+    fullContent: `**5월 소비자물가 발표 (MAS·MTI, 2026년 6월 23일)**
+
+**전체·근원물가**
+- 전년 동월 대비 전체 물가: **1.8%** (4월과 동일, 시장 예상 2%보다 낮음)
+- 근원물가(임대료·자가용 유지비 제외): **1.4%** (시장 예상 1.6%보다 낮음)
+- 전월(4월) 대비: **+0.7%** (4월엔 -0.3%로 하락했다 반등)
+
+**품목별 (전년 동월 대비, 4월→5월)**
+- 식료품: 1.6% → **1.8%**
+- 교통비: 7.0% → **7.4%**
+- 의류·신발: 1.0% → 1.1%
+- 레저·스포츠·문화: 0.9% → 1.3%
+- 정보통신: -0.9% → -2.9%(하락폭 더 커짐)
+
+**전망**
+- MAS는 2026년 연간 핵심·전체 물가 전망치를 기존 1~2%에서 **1.5~2.5%**로 상향
+
+**한인 참고**
+- 교통비·식료품 위주로 체감 물가가 더 오르고 있어, 장보기·외식 지출 비교를 평소보다 신경 쓰는 것이 좋음
+- 구체적인 원/달러·SGD 환율 변동은 본 기사에서 검증되지 않아 별도로 확인 필요
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MAS·MTI",
+    sources: [
+      { name: "CNBC — Singapore inflation holds at 1.8% in May, cooler than expected as services costs ease", url: "https://www.cnbc.com/2026/06/23/singapore-may-inflation-fastest-energy-prices.html" },
+      { name: "MAS — Consumer Price Developments in May 2026 (공식)", url: "https://www.mas.gov.sg/news/consumer-price-developments/2026/consumer-price-developments-in-may-2026" },
+    ],
+    time: "2026년 6월 23일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📈",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260616-1",
+    publishedAt: "2026-06-16",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 '피크 시즌' 진입 — 욜치콴·렌터 일대 레드얼럿 클러스터 4곳, 올해 최다 주간 119건",
+    summary: "국가환경청(NEA)에 따르면 6월 13일로 끝난 주에 뎅기열 119건이 보고돼 2026년 들어 주간 최다를 기록했다(전주 대비 +39건). 6월 15일 기준 활성 클러스터 12곳 중 4곳이 '레드얼럿'(10건 이상)으로 분류됐고, 이 중 3곳이 욜치콴(Yio Chu Kang) 일대에 몰려있다. 1월~6월 13일 누적 환자는 약 938명으로, 싱가포르는 통상 5~10월인 피크 시즌에 들어섰다.",
+    fullContent: `**뎅기열 피크 시즌 진입 (NEA 자료, 2026년 6월 중순 기준)**
+
+**주간·누적 현황**
+- 6월 13일로 끝난 주: **119건** (2026년 들어 최다, 전주 대비 +39건)
+- 1월 1일~6월 13일 누적: 약 **938건**
+
+**레드얼럿 클러스터 (6월 15일 기준, 4곳)**
+- Countryside Road/Lentor Avenue: 34건
+- Jalan Bangau/Jalan Jarak: 22건
+- Neram Road/Nim Crescent: 19건
+- Lilac Drive/Mimosa Road: 11건
+- 이 중 3곳(욜치콴 일대)이 서로 인접해 모기 이동 우려가 제기됨
+
+**시즌 전망**
+- 싱가포르는 통상 5~10월이 뎅기열 피크 시즌
+- NEA는 5월 16일 '2026 전국 뎅기열 예방 캠페인'을 시작하며 경계를 당부한 바 있음
+
+**한인 참고**
+- 욜치콴·렌터·앙모키오 인근 거주자는 집 안 고인 물(화분 받침, 배수구 등)을 제거할 것
+- 야외활동 시 긴 옷, DEET·피카리딘 성분 모기 기피제 사용 권장
+- 발열·근육통 등 의심 증상이 있으면 빨리 병원을 방문하고, NEA 점검원 방문 시 협조할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA(국가환경청)",
+    sources: [
+      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season, agency warns of rising transmission risk", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
+      { name: "NEA — Dengue Cases (공식 데이터)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-cases" },
+    ],
+    time: "2026년 6월 중순(6월 15일 기준)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
     category: "생활",
