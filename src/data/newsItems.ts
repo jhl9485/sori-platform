@@ -26,6 +26,37 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260627-1",
+    publishedAt: "2026-06-27",
+    category: "생활",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🧧 2027년 공휴일 확정 — 설 연휴 2/6~2/8 '3일', 총 11일 (MOM 발표)",
+    summary: "인력부(MOM)가 6월 18일 2027년 법정 공휴일(총 11일)을 발표했다. 설날이 2월 6일(토)·7일(일)인데 둘째 날이 일요일과 겹쳐, 다음 월요일인 2월 8일이 대체공휴일로 지정됐다. 이로써 설 연휴는 토~월 3일 연속 휴무가 된다. 한인 가정의 연휴·여행 계획에 참고.",
+    fullContent: `**2027년 싱가포르 공휴일 (총 11일)**
+인력부(MOM)가 2026년 6월 18일 2027년 법정 공휴일을 발표했습니다. 한인 가정의 연휴·항공권 계획에 미리 참고하세요.
+
+**설날(춘절) 2027**
+- 공식 공휴일: **2월 6일(토)·2월 7일(일)**
+- 둘째 날(2/7)이 **일요일**과 겹쳐, 다음 월요일 **2월 8일(월)이 대체공휴일**로 지정
+- 결과적으로 **2/6(토)~2/8(월) 3일 연속 휴무**
+
+**참고**
+- 설 연휴엔 한국행 항공권 수요·가격이 오르니 미리 예약하면 좋습니다.
+- 일부 한인 업소·마트가 단축영업할 수 있어 방문 전 확인을 권합니다.
+
+정확한 전체 날짜는 아래 MOM 공식 자료를 확인하세요.`,
+    source: "MOM · Mothership",
+    sources: [
+      { name: "MOM — Public Holidays for 2027 (공식)", url: "https://www.mom.gov.sg/newsroom/press-releases/2026/0618-public-holidays-for-2027" },
+      { name: "Mothership — S'pore public holidays 2027", url: "https://mothership.sg/2026/06/singapore-public-holiday-2027/" },
+    ],
+    time: "2026년 6월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🧧",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260625-1",
     publishedAt: "2026-06-25",
     category: "교통",

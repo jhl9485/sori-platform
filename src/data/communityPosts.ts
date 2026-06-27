@@ -50,6 +50,56 @@ export interface CommunityPost {
 
 const RAW_COMMUNITY_POSTS: CommunityPost[] = [
   {
+    id: "auto-20260627-1",
+    categoryId: "food",
+    categoryLabel: "맛집",
+    categoryStyle: "bg-[#FBF0EC] text-[#D04020]",
+    avatarChar: "김",
+    avatarBg: "#FBF0EC",
+    avatarColor: "#D04020",
+    author: "김치찌개급땡김",
+    time: "방금",
+    createdAt: "2026-06-27T19:30:00",
+    title: "갑자기 김치찌개 땡기는데 김치 다들 어디서 사세요?",
+    preview: "퇴근길에 갑자기 김치찌개가 미친듯이 땡기는데 하필 집에 김치가 똑 떨어졌네요ㅠㅠ 다들 김치 어디서 사시나요?",
+    fullContent: `퇴근하고 오는 길에 갑자기 김치찌개가 미친 듯이 땡기는데 하필 집에 김치가 똑 떨어졌네요ㅠㅠ
+
+한인마트 김치는 맛있는데 좀 비싸고, 그렇다고 큰 마트 거는 맛이 어떨지 몰라서요. 다들 김치 보통 어디서 사세요? 아님 그냥 담가 드시나요?ㅎㅎ
+
+아 배고프니까 글이 두서가 없네요ㅋㅋ`,
+    tags: ["김치", "장보기", "맛집"],
+    views: "9",
+    comments: "0",
+    likes: "1",
+  },
+  {
+    id: "auto-20260627-2",
+    categoryId: "anon",
+    categoryLabel: "익명",
+    categoryStyle: "bg-[#F0EDE8] text-[#888070]",
+    avatarChar: "?",
+    avatarBg: "#F0EDE8",
+    avatarColor: "#888070",
+    author: "익명",
+    time: "2시간 전",
+    createdAt: "2026-06-27T17:30:00",
+    title: "EP 갱신 앞두고 괜히 불안한 거... 저만 그런가요ㅠㅠ",
+    preview: "올 하반기에 EP 갱신이 걸려있는데 기준이 좀 바뀐다는 얘기 듣고 괜히 신경쓰이네요. 비슷한 분 계세요?",
+    fullContent: `좀 사소한 고민인데 적어봐요ㅠㅠ
+
+올 하반기에 EP 갱신이 걸려있는데, 요즘 7월부터 갱신 심사 기준이 좀 바뀐다는 얘기를 들어서 괜히 신경쓰이더라구요. 제 급여가 기준을 아주 넉넉하게 넘는 편은 아니라서... 혹시 점수 모자라서 갱신 안 되면 어쩌나 싶고ㅠ 막상 회사에 먼저 물어보기도 좀 그렇구요(괜히 불안해 보일까봐).
+
+일단 정확한 건 회사 HR이랑 MOM 통해서 확인하는 게 맞다고 해서, 다음 주에 조심스럽게 한번 여쭤보려구요. 근데 그 전까지 괜히 머릿속이 복잡하네요ㅋㅋ
+
+비슷하게 갱신 앞두고 계신 분들 있으세요? 다들 보통 만료 몇 달 전부터 준비하시는지도 궁금하구요. 같이 화이팅해요ㅠㅠ`,
+    tags: ["EP", "비자", "고민", "직장"],
+    views: "24",
+    comments: "0",
+    likes: "4",
+    isAnon: true,
+    visaBadge: "EP",
+  },
+  {
     id: "auto-20260625-1",
     categoryId: "life",
     categoryLabel: "생활정보",
