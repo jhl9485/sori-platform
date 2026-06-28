@@ -26,6 +26,207 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260628-1",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "🛂 EP 갱신도 새 COMPASS 기준 적용 — 7월 1일부터, 최저 월급 5,600~6,200달러·SOL 개편",
+    summary: "인력부(MOM)가 2025년 11월 발표한 개편된 COMPASS(취업비자 평가체계) 기준이 신규 신청자에겐 2026년 1월 1일부터, 갱신자에겐 7월 1일부터 적용된다. 일반 업종 최저 월급은 5,600달러, 금융업은 6,200달러이며, 학력 인정 목록과 부족직종목록(SOL)도 함께 개편됐다.",
+    fullContent: `**EP(취업비자) COMPASS 기준 개편 — 갱신자도 7월 1일부터 적용**
+인력부(MOM)가 2025년 11월 발표한 COMPASS(Complementarity Assessment Framework) 개편안이 단계적으로 시행되고 있습니다.
+
+**시행 일정**
+- 신규 EP 신청: 2026년 1월 1일부터 새 기준 적용
+- EP 갱신: **2026년 7월 1일**부터 새 기준 적용 — 곧 갱신을 앞둔 분이라면 직접 영향권에 들어갑니다
+
+**최저 월급(C1 기준)**
+- 일반 업종: 월 **5,600달러**
+- 금융서비스업: 월 **6,200달러**
+- 이 기준은 2026년 말까지 유지되고, 2027년 1월부터 각각 6,000달러·6,600달러로 추가 상향 예정
+
+**학력 인정 목록 갱신**
+- 학력 인정(C2) 점수 산정에 쓰이는 상위권 대학 목록·학위 동등 전문자격 목록이 갱신(2026년 1월 1일부터 적용)
+
+**부족직종목록(SOL) 개편**
+- 헬스케어 분야 일부 직종 추가
+- 사이버 리스크 전문가, 사이버보안 운영 전문가, 프로덕트 매니저(디지털) 등 일부 테크 직종은 SOL에서 제외
+
+**점수 기준**
+- 6개 항목 합산 최소 40점 이상이어야 COMPASS 통과
+
+**한인 참고**
+- EP로 근무 중이며 7월 이후 갱신을 앞둔 분이라면, 본인 월급이 새 최저기준(5,600/6,200달러)을 충족하는지, 학력·직종이 갱신된 목록에 해당하는지 회사 HR과 미리 확인할 것을 권장
+- 정확한 점수 산정 기준은 MOM 공식 COMPASS 페이지에서 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · KPMG",
+    sources: [
+      { name: "Human Resources Online — Reminder: Singapore's updated COMPASS rules effective in 2026 for EP applications and renewals", url: "https://www.humanresourcesonline.net/reminder-singapore-s-updated-compass-rules-effective-in-2026-for-ep-applications-and-renewals" },
+      { name: "KPMG — Singapore: Reminder on COMPASS and Work Pass Updates Effective 1 January 2026", url: "https://kpmg.com/xx/en/our-insights/gms-flash-alert/flash-alert-2025-282.html" },
+      { name: "Envoy Global — Singapore COMPASS Education and Shortage Occupation List 2026", url: "https://www.envoyglobal.com/news-alert/singapore-compass-education-and-shortage-occupation-list-2026/" },
+    ],
+    time: "2026년 7월 1일 시행(갱신 기준)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🛂",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260628-2",
+    publishedAt: "2026-06-23",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📈 5월 물가상승률 1.8%로 둔화세 유지 — 통신비 하락이 교통·식료품비 인상 상쇄",
+    summary: "통화청(MAS)·통상산업부(MTI)가 6월 23일 발표한 자료에 따르면 5월 소비자물가지수(CPI)는 전년 동월 대비 1.8% 올라 4월과 같은 수준을 유지했다(시장 전망 2%보다 낮음). 핵심물가(MAS Core, 자가주거비·자가용 제외)는 1.4%로 시장 전망(1.6%)보다 낮았고, 통신서비스 요금 하락이 교통·식료품비 상승분을 일부 상쇄했다.",
+    fullContent: `**5월 소비자물가 발표 (MAS·MTI, 2026년 6월 23일)**
+통화청(MAS)과 통상산업부(MTI)가 공동 발표한 'Consumer Price Developments in May 2026' 내용입니다.
+
+**헤드라인 물가**
+- 전체 CPI: 전년 동월 대비 **+1.8%** — 4월과 동일한 수준 유지, 시장 전망(2%)보다 낮음
+- 핵심물가(MAS Core Inflation, 자가주거비·자가용 제외): **+1.4%** — 시장 전망(1.6%)보다 낮음
+
+**부문별 동향**
+- 식료품: 전월 1.6%→**1.8%**로 소폭 가속
+- 교통: 전월 7.0%→**7.4%**로 가속(에너지 가격 영향)
+- 주거·유틸리티: **0.2%**로 변동 없음
+- 서비스: 전월 1.5%→**1.3%**로 둔화 — 통신서비스 요금 하락이 주된 요인
+
+**한인 참고**
+- 통신비는 내렸지만 교통·식료품비 상승세가 이어지고 있어, 가계부에서 두 항목의 비중을 점검해볼 만함
+- 정확한 부문별 수치·다음 달 전망은 MAS·MTI 공식 발표를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MAS · MTI",
+    sources: [
+      { name: "MAS — Consumer Price Developments in May 2026", url: "https://www.mas.gov.sg/news/consumer-price-developments/2026/consumer-price-developments-in-may-2026" },
+      { name: "CNBC — Singapore inflation holds at 1.8% in May, cooler than expected as services costs ease", url: "https://www.cnbc.com/2026/06/23/singapore-may-inflation-fastest-energy-prices.html" },
+      { name: "Investing.com — Singapore CPI inflation misses expectations in May as services costs ease", url: "https://www.investing.com/news/economic-indicators/singapore-cpi-inflation-misses-expectations-in-may-as-services-costs-ease-4754635" },
+    ],
+    time: "2026년 6월 23일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📈",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260628-3",
+    publishedAt: "2026-06-16",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 '피크 시즌' 경고 — 6월 13일 주간 119건 '2026년 최다', 레드얼럿 클러스터 4곳",
+    summary: "국가환경청(NEA) 집계에 따르면 6월 7~13일 한 주간 뎅기열 신규 확진이 119건으로 2026년 들어 가장 많았고(직전 주보다 39건 증가), 연초 이후 누적 확진은 938건에 달했다. 전염이 가속화되는 지역에 부여되는 '레드얼럿' 클러스터가 4곳 지정됐으며, 이 중 3곳이 욜추칸(Yio Chu Kang) 인근에 몰려 있다.",
+    fullContent: `**뎅기열 피크 시즌 경고 (NEA 집계 기준 2026년 6월 13일)**
+
+**확진 현황**
+- 6월 7일~13일 주간 신규 확진 **119건** — 2026년 들어 주간 최다, 직전 주(80건)보다 39건 증가
+- 연초 이후 누적 확진 **938건**(6월 13일 기준)
+
+**레드얼럿 클러스터 4곳**
+- Countryside Road/Lentor Avenue (34건)
+- Jalan Bangau/Jalan Jarak (22건)
+- Neram Road/Nim Crescent (19건)
+- Lilac Drive/Mimosa Road (11건)
+- 이 중 3곳이 욜추칸(Yio Chu Kang) 지역에 몰려 있어, 인접 클러스터 간 모기 이동에 따른 확산이 우려됨
+
+**레드얼럿이란**
+- 누적 확진 10건 이상이면서 전염이 가속화되는 지역에 부여되는 최고 경보 등급
+
+**한인 참고**
+- 위 지역(욜추칸 일대 등) 거주·통근자는 모기 기피제 사용·고인물 제거 등 개인 방역에 특히 신경 쓸 것
+- 발열·근육통·발진 등 의심 증상 시 빨리 병원을 찾고, 최신 클러스터 현황은 NEA 'myENV' 앱이나 nea.gov.sg에서 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA · Malay Mail",
+    sources: [
+      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season, agency warns of rising transmission risk", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+      { name: "NEA — Dengue Clusters", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-clusters" },
+    ],
+    time: "2026년 6월 13일 기준(6월 16일 보도)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260628-4",
+    publishedAt: "2026-06-26",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚓 BKE에 새 이동식 단속카메라 — 7월 1일부터 단속 시작, 9km 지점·시속 90km 제한",
+    summary: "교통경찰이 6월 26일 발표한 내용에 따르면, 부킷티마고속도로(BKE) 우드랜즈 방향 9km 지점(Turf Club Avenue 출구 이후)에 새 이동식 속도단속카메라가 설치돼 7월 1일부터 단속을 시작한다. 6월 16일부터 시험·보정을 거쳤으며, 해당 구간은 사고가 잦아 시속 90km 제한 준수가 특히 강조됐다.",
+    fullContent: `**BKE 신규 이동식 단속카메라 (교통경찰, 2026년 6월 26일 발표)**
+
+**설치 위치**
+- 부킷티마고속도로(BKE) 우드랜즈 방향 **9km 지점**, Turf Club Avenue 출구를 지난 구간
+
+**일정**
+- 2026년 6월 16일부터 시험·보정(calibration) 진행
+- **7월 1일부터** 실제 단속(과속 적발) 시작
+
+**왜 설치했나**
+- 해당 구간이 사고가 잦은(accident-prone) 구간으로 알려져 있어, BKE 안전 개선 노력의 일환
+- BKE 속도 제한은 **시속 90km**
+
+**참고 통계**
+- 싱가포르 전체 과속 적발 건수: 2024년 201,358건 → 2025년 253,550건(하루 평균 약 700건)으로 증가
+- 2026년 초 벌점 제도 강화 — 과속 최소 벌점이 4점에서 6점으로 상향
+
+**한인 참고**
+- BKE를 자주 이용(직접 운전·렌터카 등)한다면 7월 1일부터 9km 지점에서 속도를 반드시 90km 이하로 유지할 것
+- 과속 벌점이 강화돼 누적 시 면허 정지 등 불이익이 커질 수 있음에 유의
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 교통경찰(Traffic Police)",
+    sources: [
+      { name: "Malay Mail — Slow down on Singapore's Bukit Timah Expressway: New speed camera will catch you going too fast", url: "https://www.malaymail.com/news/singapore/2026/06/27/slow-down-on-singapores-bukit-timah-expressway-new-speed-camera-will-catch-you-going-too-fast/225418" },
+      { name: "Yahoo News Malaysia — Slow down on Singapore's Bukit Timah Expressway: New speed camera will catch you going too fast", url: "https://malaysia.news.yahoo.com/slow-down-singapore-bukit-timah-054832606.html" },
+    ],
+    time: "2026년 6월 26일 발표 · 7월 1일 단속 시작",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🚓",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260628-5",
+    publishedAt: "2026-06-25",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🎆 NDP 2026 콤바인드리허설 교통통제 — 6/27 1차, 7/4 2차·캘랑 일대 통행 주의",
+    summary: "싱가포르 경찰(SPF)이 6월 25일 발표한 교통안내에 따르면, 8월 9일 내셔널 스타디움에서 열리는 National Day Parade(NDP) 2026을 앞두고 6월 27일 첫 콤바인드리허설(CR1)이 진행돼 캘랑·내셔널 스타디움 일대 도로가 통제됐다. 다음 리허설은 7월 4일(CR2), 이후 7월 25일·8월 1일 프리뷰 공연이 이어지며 비슷한 교통통제가 반복될 전망이다.",
+    fullContent: `**NDP 2026 콤바인드리허설 교통안내 (SPF, 2026년 6월 25일 발표)**
+
+**대상 행사**
+- 8월 9일 내셔널 스타디움에서 열리는 National Day Parade(NDP) 2026을 앞둔 리허설·프리뷰 일정
+
+**일정**
+- 콤바인드리허설 1(CR1): **6월 27일(토)** — 이미 진행됨
+- 콤바인드리허설 2(CR2): **7월 4일(토)**
+- 프리뷰 공연: **7월 25일·8월 1일**
+
+**6/27 CR1 기준 교통통제 내용**
+- 캘랑(Kallang)·내셔널 스타디움 일대 Stadium Drive, Stadium Boulevard, Stadium Walk, Stadium Crescent, Jalan Benaan Kapal 등에서 차량 지연·통제 발생
+- 항공 시범 관련 임시통제구역(TRA) 운영 — TRA2(오후 5~7:30시), TRA1(오후 7:30~9시)
+- 경찰은 대중교통 이용을 권고했고, 통제 구간 불법 주정차 차량은 견인 조치
+
+**한인 참고**
+- 캘랑·내셔널 스타디움·탄종라우 인근 거주자나 그 방향으로 이동할 일이 있다면, 7월 4일·7월 25일·8월 1일에도 비슷한 시간대(오후~밤) 교통통제가 반복될 수 있어 미리 대중교통으로 우회할 것을 권장
+- 정확한 통제 구간·시간은 행사일이 가까워질 때마다 SPF·NDP 공식 발표를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "SPF — Traffic Arrangements For National Day Parade 2026 – Combined Rehearsal 1", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260625_traffic_arrangements_for_national_day_parade_2026_combined_rehearsal_1" },
+      { name: "NDP.gov.sg — Advisories", url: "https://www.ndp.gov.sg/resources/advisories/" },
+    ],
+    time: "2026년 6월 25일 발표(6/27 1차 리허설 시행)",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🎆",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
     category: "생활",
