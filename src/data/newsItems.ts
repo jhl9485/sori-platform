@@ -26,6 +26,214 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260629-1",
+    publishedAt: "2026-06-29",
+    category: "문화",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🎤 7월 K팝 공연 풍년 — 아이린 7/4·EXO 7/24·26·iKON 7/25·마마무 7/31 싱가포르 무대",
+    summary: "7월 4일 레드벨벳 아이린의 첫 솔로 아시아 투어 'I-WILL'을 시작으로, EXO(7/24·26, 7년 만), iKON(7/25), 마마무(7/31)까지 7월 한 달간 대형 K팝 공연이 이어진다. 모두 Ticketmaster(SG)에서 예매 가능하며 일부 공연은 좌석이 빠르게 소진 중이다.",
+    fullContent: `**2026년 7월 싱가포르 K팝 공연 총정리**
+
+이번 7월, 싱가포르에서 대형 K팝 공연 4편이 연달아 열립니다. 한인 팬 분들은 미리 일정과 예매처를 확인하세요.
+
+---
+
+**🎤 IRENE (Red Velvet) — 2026 IRENE ASIA TOUR [I-WILL]**
+- 날짜: **7월 4일(토) 18:00**
+- 장소: The Theatre at Mediacorp
+- 티켓: S$138~S$288 (예매 수수료 별도)
+- 예매: Ticketmaster SG (ticketmaster.sg)
+- 특이사항: 아이린 **생애 첫 솔로 아시아 투어** 싱가포르 정거장. 서울·타이베이·마카오를 거쳐 도착. Theatre at Mediacorp는 소규모 공연장(약 1,700석)이라 아늑한 분위기 기대 가능.
+
+---
+
+**🎤 EXO — EXO PLANET #6 - EXhOrizon in SINGAPORE**
+- 날짜: **7월 24일(금) 20:00 · 7월 26일(일) 18:00** (2회 공연)
+- 장소: Singapore Indoor Stadium
+- 티켓: S$248~S$388 (예매 수수료 별도)
+- 예매: Ticketmaster SG / Live Nation SG
+- 특이사항: EXO **7년 만의 싱가포르 공연**. 당초 1회에서 2회로 확대될 만큼 수요 높음. 일부 구역 매진 진행 중.
+
+---
+
+**🎤 iKON — FOUREVER WORLD TOUR IN SINGAPORE**
+- 날짜: **7월 25일(토) 19:00**
+- 장소: Arena @ EXPO
+- 티켓: S$158~S$338 VVIP (예매 수수료 별도)
+- 예매: Ticketmaster SG
+- 특이사항: JAY·SONG·BOBBY·CHAN 4인이 전역 후 완전체로 재결합. LOVE SCENARIO·KILLING ME·RHYTHM TA 등 히트곡 예정.
+
+---
+
+**🎤 MAMAMOO — 2026 WORLD TOUR <4WARD>**
+- 날짜: **7월 31일(금) 19:30**
+- 장소: Singapore Indoor Stadium
+- 티켓: S$178(제한석)~S$358 VIP (예매 수수료 별도)
+- 예매: Ticketmaster SG (2026년 6월 23일부터 판매)
+- 특이사항: VIP·CAT 1 티켓 구매 시 사운드체크 세션 포함. 포토카드 전 구매자 증정.
+
+---
+
+**한인 참고**
+- 두 공연(EXO 7/26 + iKON 7/25)이 같은 주말에 몰려 있으니 일정 조율 필요
+- Ticketmaster SG에서 전자티켓 발급 — 앱 다운로드 후 입장 QR 미리 저장 권장
+- 7월 4일(IRENE 당일)은 **TEL 금요 단축운행 마지막 주**이므로 귀가 시 대중교통 확인 필요
+- 공연장 주변 택시·Grab 수요 폭증 예상 — 공연 후 30분 이상 여유 두고 배차 요청 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Ticketmaster SG · Live Nation · x-clusive.sg 외",
+    sources: [
+      { name: "x-clusive.sg — IRENE [I-WILL] Singapore", url: "https://x-clusive.sg/events/red-velvet-irene-i-will-singapore/" },
+      { name: "Ticketmaster SG — EXO PLANET #6 Singapore", url: "https://ticketmaster.sg/activity/detail/26sg_exo" },
+      { name: "x-clusive.sg — iKON FOUREVER WORLD TOUR Singapore", url: "https://x-clusive.sg/events/ikon-fourever-world-tour-singapore/" },
+      { name: "x-clusive.sg — MAMAMOO 2026 WORLD TOUR <4WARD> Singapore", url: "https://x-clusive.sg/events/mamamoo-2026-world-tour-4ward-singapore/" },
+      { name: "The Kallang — EXO PLANET #6 Singapore", url: "https://www.thekallang.com.sg/events/exo-planet-6-exhorizon-world-tour" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🎤",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260629-2",
+    publishedAt: "2026-06-29",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🏥 ISP(실손보험) 보험료 13~14% 대폭 인상 + 4월 1일부터 라이더 구조 변경 — 의료비 인플레 16.9%",
+    summary: "2026년 싱가포르 의료비 인플레이션이 16.9%로 급등하면서, Income Insurance가 Preferred·Advantage 기본 플랜 보험료를 평균 13~14% 인상했다. 보건부(MOH)는 4월 1일부터 새 라이더(특약)에 최소 본인부담금 $6,000 상한을 의무화하는 대신, 새 라이더 보험료는 기존 대비 평균 30% 낮아질 전망이다. ⚠️ ISP는 시민·PR 대상이며, EP 비자 한인은 별도 민간 의료보험 확인 필요.",
+    fullContent: `**Integrated Shield Plan(ISP) 보험료 인상 & 라이더 구조 변경 (2026년)**
+
+2026년 싱가포르 의료비 인플레이션이 **16.9%**로 기록적 수준에 달하면서, 민간 의료보험 비용도 크게 오르고 있습니다.
+
+**보험료 인상 현황**
+- **Income Insurance**: Preferred·Advantage 기본 플랜 보험료 **평균 13~14% 인상**
+- **Income Insurance (Basic 플랜)**: 공립병원 입원 커버 중심, 부담 완화 차원에서 **7% 인상** (상대적으로 낮은 폭)
+- **Great Eastern**: 2026년 한 해 기본 플랜 보험료 **동결** 발표
+- 기타 보험사(AIA, Prudential 등)는 개별 조정 중
+
+**MOH 새 라이더 규정 (2026년 4월 1일 시행)**
+- 2026년 4월 1일 이후 판매되는 신규 라이더는 **MOH가 정한 최소 본인부담금을 커버할 수 없음** (즉, 무조건 일부는 본인 부담)
+- **본인부담 상한**: 연간 최소 **S$6,000**으로 상향 (이전에는 더 낮거나 없음)
+- 대신, 새 라이더 보험료는 **기존 풀커버 라이더 대비 평균 30% 저렴**해질 전망
+- 이미 가입된 기존 라이더는 갱신 시점까지 유지, 신규 가입 시부터 새 기준 적용
+
+**왜 이렇게 오르나**
+- 의사 진찰료·입원비·수술비 등 민간 병원 의료비가 지속 상승
+- 과잉 진료·보험 청구 증가로 보험사 손실 확대
+
+**⚠️ 한인 참고 — 비자 종류별 적용 범위**
+- **ISP는 싱가포르 시민권자·영주권자(PR)에게만 가입 자격** 있음 (MediShield Life가 기반)
+- **EP·S Pass·DP 비자 한인 가족**: ISP 가입 불가 → 별도 **민간 의료보험(Private Health Insurance)** 으로 커버 필요
+- 민간 의료보험 보험료도 의료비 인플레 영향으로 갱신 시 오를 수 있으므로, 연간 갱신 시기에 보험증권을 꼭 다시 확인하세요
+- PR을 보유한 한인은 현재 ISP 라이더를 갱신할 때 새 기준 적용 여부를 보험사에 문의하세요
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOH · FSMOne · Rajah & Tann 외",
+    sources: [
+      { name: "MOH — New Requirements for ISP Riders (공식 발표)", url: "https://www.moh.gov.sg/newsroom/new-requirements-for-integrated-shield-plan-riders-to-strengthen-sustainability-of-private-health-insurance-and-address-rising-healthcare-costs/" },
+      { name: "MOH — Measures to Manage ISP Premium Increases", url: "https://www.moh.gov.sg/newsroom/measures-to-manage-increases-to-base-integrated-shield-plan-premiums/" },
+      { name: "FSMOne — Shield Plan & IP Rider Changes: 2026 Update", url: "https://secure.fundsupermart.com/fsmone/article/rcms359880/shield-plan-and-ip-rider-changes-this-is-your-2026-update" },
+      { name: "Rajah & Tann — New ISP Rider Requirements from 1 April 2026", url: "https://www.rajahtannasia.com/viewpoints/new-requirements-for-integrated-shield-plan-riders-take-effect-on-1-april-2026-to-address-rising-healthcare-costs/" },
+    ],
+    time: "2026년 4~6월",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏥",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260629-3",
+    publishedAt: "2026-06-29",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚕 Grab 유류할증료 90센트·플랫폼피 $1.20 — 7월 31일까지 연장, 이란 분쟁發 유가 상승 여파",
+    summary: "Grab이 3~4월부터 부과해온 유류할증료(50센트→90센트)와 GrabCab 미터 요금 인상을, 당초 5월 31일 종료 예정에서 7월 31일까지 연장했다. 플랫폼피도 건당 $0.90에서 $1.20으로 오른 상태이며, 이란 전쟁 여파로 인한 글로벌 유가 상승이 주 원인이다.",
+    fullContent: `**Grab 요금 인상 내역 (2026년 7월 31일까지 유지)**
+
+Grab Singapore가 중동 분쟁(이란 전쟁·호르무즈 해협 관련) 이후 이어진 유가 상승에 대응해 임시 요금 조정을 7월 31일까지 연장했습니다.
+
+**인상 항목 정리**
+
+| 항목 | 변경 전 | 변경 후 | 적용 시점 |
+|------|---------|---------|----------|
+| 유류할증료 (모든 운행) | S$0.50 | **S$0.90** | 2026년 4월 7일~ |
+| 플랫폼피 | S$0.90 | **S$1.20** | 2026년 1월~ |
+| GrabCab 미터 단위요금 | 26센트/구간 | **27센트/구간** | 2026년 3월 30일~ |
+
+**GrabCab 미터 적용 기준 (27센트)**
+- 1km 초과 시: 45초 대기 또는 400m 주행마다
+- 10km 초과 시: 45초 대기 또는 350m 주행마다
+
+**연장 이유**
+- 이란 전쟁 여파로 글로벌 천연가스·유가 상승 지속
+- 운전 기사의 연료비 부담이 여전히 높아 "지속적 지원" 차원
+
+**종료 예정일**
+- **2026년 7월 31일** (이후 상황에 따라 다시 연장 또는 종료 결정 예상)
+
+**한인 참고**
+- 기존 요금 기준으로 예산 짜던 분들은 건당 S$0.30~0.60 추가 예상
+- 출퇴근·장거리 이동이 잦은 분들은 **무제한 플랜(Grab Saver 구독)** 또는 대중교통 조합 이용 고려
+- 유류할증료는 영수증의 "Fuel Surcharge" 항목에서 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Star · Mothership 외",
+    sources: [
+      { name: "The Star — Singapore Grab extends 90-cent fuel surcharge till July 31", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/05/23/singapore-grab-extends-90-cent-fuel-surcharge-higher-grabcab-metered-fares-till-july-31" },
+      { name: "Mothership — Grab to temporarily raise fuel surcharge amid price volatility", url: "https://mothership.sg/2026/03/grab-temporarily-raise-fuel-surcharge-price-volatility/" },
+    ],
+    time: "2026년 5월 23일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚕",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260629-4",
+    publishedAt: "2026-06-29",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📊 5월 소비자물가 +1.8% — 예상(+2.0%) 하회, 근원물가 +1.4% 안정, 교통 +7.4% 두드러져",
+    summary: "MAS·Singstat 발표 2026년 5월 CPI는 전년 동월 대비 1.8% 상승으로 시장 예상(2.0%)을 하회했고, 근원물가(교통·주거 제외)도 1.4%로 예상(1.6%)보다 낮았다. 교통(+7.4%)과 식품(+1.8%)이 상승을 주도했으나 전체 물가는 상대적으로 안정적인 흐름이다. 단, 7월부터 전기요금 급등이 예고돼 3분기 물가 재상승 가능성이 있다.",
+    fullContent: `**2026년 5월 소비자물가(CPI) 발표 (MAS·Singstat 공동 발표)**
+
+싱가포르 통화청(MAS)과 통계청(Singstat)이 발표한 2026년 5월 소비자물가 동향입니다.
+
+**주요 수치**
+- **헤드라인 CPI**: 전년 동월 대비 **+1.8%** (시장 예상 +2.0% 하회, 전월 대비 +0.7%)
+- **근원물가 (Core Inflation)**: 전년 동월 대비 **+1.4%** (시장 예상 1.6% 하회, 4월과 동률)
+- 두 달 연속 같은 수준 유지
+
+**품목별 현황**
+- 🚌 **교통**: **+7.4%** (4월 +7.0%에서 추가 상승, 유류할증료·대중교통 요금 인상 반영)
+- 🍜 **식품**: **+1.8%** (4월 +1.6%에서 소폭 상승)
+- 🏠 **주거·유틸리티**: 전년 대비 +0.2% (안정적)
+
+**향후 전망**
+- 7월 1일부터 전기요금이 크게 오를 것으로 예고됨 → 3분기(7~9월) 물가 **재상승 가능성**
+- MAS는 2026년 근원물가·헤드라인 CPI 전망을 **1.5~2.5%**로 유지
+
+**한인 참고**
+- 당장 체감 물가는 크게 오르지 않았으나, **7월 전기요금 인상** 후 월 고정 지출 상승 예상
+- 생필품·외식비는 비교적 안정적 — 식료품 쇼핑 시 NTUC FairPrice·Giant 프로모션 활용 유효
+- 교통비 부담이 커진 만큼 EZ-Link 카드 사용(현금보다 저렴) 습관화 권장
+- 한국 송금 시점: 물가 안정 속 SGD가 상대적 강세를 유지하므로, 환율 알림 앱(Wise·Instarem)으로 유리한 시점 포착 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MAS · Singstat / Investing.com 외",
+    sources: [
+      { name: "MAS — Consumer Price Developments (공식)", url: "https://www.mas.gov.sg/monetary-policy/consumer-price-developments" },
+      { name: "Singstat — Consumer Price Index (공식 데이터)", url: "https://www.singstat.gov.sg/find-data/explore-data-themes/economy-prices/consumer-price-index/latest-news-data" },
+      { name: "Investing.com — Singapore CPI inflation misses expectations in May", url: "https://www.investing.com/news/economic-indicators/singapore-cpi-inflation-misses-expectations-in-may-as-services-costs-ease-4754635" },
+    ],
+    time: "2026년 6월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📊",
+    relatedIds: ["1374"],
+  },
+  {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
     category: "생활",
