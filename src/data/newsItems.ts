@@ -26,6 +26,182 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260630-1",
+    publishedAt: "2026-06-30",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "⚡ 7~9월 전기요금 17.5%(4.66센트/kWh) 인상 공식 확정 — EMA 6월 30일 발표, 가스 7.1%↑",
+    summary: "에너지시장청(EMA)이 6월 30일 2026년 3분기(7~9월) 전기요금을 전 분기 대비 평균 17.5%(4.66센트/kWh) 인상한다고 공식 확정했다. 가스요금도 7.1% 오른다. 기존 '최대 30%' 예고 대비 17.5%로 확정됐으며, 7월 지급 U-Save 리베이트(가구당 S$110~190)가 일부를 상쇄할 예정이다.",
+    fullContent: `**3분기(7~9월) 전기요금 17.5% 인상 공식 확정 (EMA, 2026년 6월 30일)**
+에너지시장청(EMA)이 오늘(6월 30일) 2026년 3분기(7~9월) 규제 전기요금 인상폭을 공식 확정했습니다.
+
+**인상 규모**
+- 전기요금: 전 분기 대비 평균 **17.5%(4.66센트/kWh)** 인상
+  - 2분기(4~6월) 요금: kWh당 27.27센트(GST 제외) · 29.72센트(GST 포함)
+  - 3분기 새 요금(GST 제외 기준): 27.27 + 4.66 = 약 **31.93센트/kWh** — 정확한 확정 금액은 EMA·SP Group 공식 발표 확인
+- 가스요금: **7.1%** 인상
+
+**원인**
+- 2026년 2월 28일 미국·이스라엘의 이란 공습 이후 호르무즈 해협이 사실상 봉쇄되며 국제 LNG 가격 급등
+- 카타르 등 아시아 주요 LNG 공급처에서 오는 물량에 영향
+- 3분기 요금은 4월 1일~6월 15일 평균 가스가격으로 산정 — 최근 정세 변화는 4분기에나 반영 가능
+
+**완화 조치**
+- 7월 중 U-Save 리베이트(적격 가구당 **S$110~190**) 지급 예정으로 일부 상쇄
+
+**한인 참고**
+- 이전 기사들의 '최대 30%' 예고 대비 17.5%로 확정됐으나, 여전히 상당한 인상폭
+- 7월 청구서부터 반영되므로 에어컨·냉장고 등 전력 다소비 가전 사용량 관리를 권장
+- OEM 고정요금제 계약 중인 가구는 이번 분기 직접 영향은 적으나, 계약 갱신 시 시장 요금 수준을 참고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "EMA · Mothership · The Online Citizen",
+    sources: [
+      { name: "EMA — Would the Electricity Tariff be Much Higher from 1 July - and What are Your Options?", url: "https://www.ema.gov.sg/news-events/news/feature-stories/2026/would-the-electricity-tariff-be-much-higher-from-1-july-and-what-are-your-options" },
+      { name: "Mothership — Electricity tariff to go up 17% for S'pore households from Jul.-Sep. 2026", url: "https://mothership.sg/2026/06/singapore-electricity-tariff-up-july-2026/" },
+      { name: "The Online Citizen — Singapore electricity tariff to rise 17% and gas tariff 7.1% from July to September", url: "https://theonlinecitizen.com/2026/06/30/singapore-electricity-tariff-to-rise-17-and-gas-tariff-7-1-from-july-to-september" },
+    ],
+    time: "2026년 6월 30일 발표 · 7월 1일 시행",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "⚡",
+    relatedIds: ["auto-20260619-1", "auto-20260624-7"],
+  },
+  {
+    id: "auto-20260630-2",
+    publishedAt: "2026-06-25",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "⚠️ '통신사 사칭→정부기관 사칭→대금업자 대출 전달' 신종 사기 — 6월 이후 5건·S$252,000 피해",
+    summary: "경찰(SPF)이 6월 25일 발표한 신종 정부기관 사칭 사기 경보에 따르면 6월 1일 이후 5건이 신고돼 피해액이 S$252,000에 달한다. 통신사 직원 사칭 전화로 시작해 MinLaw·MAS 직원을 사칭한 '수사관'에게 연결 후 '범죄 연루'를 이유로 대금업자(licensed moneylender)에서 대출받아 현금을 건네도록 강요한다. 피해자가 저축을 잃는 것에 그치지 않고 빚까지 지게 되는 이중 피해가 특징이다.",
+    fullContent: `**정부기관 사칭→대금업자 대출 유도 신종 사기 경보 (SPF, 2026년 6월 25일)**
+싱가포르 경찰(SPF)이 6월 25일 발표한 새로운 유형의 정부기관 사칭 사기입니다.
+
+**피해 현황**
+- 2026년 6월 1일 이후 최소 **5건** 신고, 피해액 최소 **S$252,000**
+- 기존 정부기관 사칭 사기와 달리 **저축을 잃는 데 그치지 않고 빚까지 지게 되는** 이중 피해 발생
+
+**수법 (3단계)**
+1. 사기범이 **통신사 직원**을 사칭해 전화 — "당신 명의로 계약 체결·SIM카드 등록이 됐다"고 주장
+2. 전화를 MinLaw(법무부) 또는 MAS(통화청) 직원을 사칭한 '수사관'에게 넘기며 **"자금세탁 등 범죄에 연루됐다"** 고 협박
+3. "수사 과정에서 자금이 필요하다"며 **대금업자(licensed moneylender)에서 대출받아 현금을 지정 계좌에 이체하거나 직접 전달**하도록 강요
+
+**경찰 안내**
+- 싱가포르 정부 기관(MinLaw·MAS 포함)은 절대 다음을 요구하지 않음:
+  - ①돈·고가 시계·금·암호화폐 이체 또는 전달
+  - ②대금업자에서 대출받을 것
+- 의심스러운 전화는 즉시 끊고 공식 채널로 직접 확인할 것
+
+**한인 참고**
+- 갑작스럽게 영어로 '통신사 사칭 전화→수사기관 연결'로 이어지면 즉시 끊을 것
+- '법적 절차를 위해 대출받아 전달하라'는 요구는 100% 사기
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · The Independent Singapore",
+    sources: [
+      { name: "SPF — Police Advisory On Government Officials Impersonation Scams That Involve Obtaining Loans From Licensed Moneylenders", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260625_police_advisory_on_government_officials_impersonation_scams_that_involve_obtaining_loans" },
+      { name: "The Independent Singapore — Attention, new scam!: Fake government officials trick victims into fraud, S$252,000 losses from five reports this month", url: "https://theindependent.sg/attention-new-scam-fake-government-officials-trick-victims-into-fraud-s-252-000-losses-from-five-reports-this-month/" },
+    ],
+    time: "2026년 6월 25일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "⚠️",
+    relatedIds: ["28"],
+  },
+  {
+    id: "auto-20260630-3",
+    publishedAt: "2026-06-30",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "💼 내일(7/1)부터 최저현지급여 S$1,800 시행 — 로컬 직원 월급 미달 시 S Pass 쿼터 즉시 감소",
+    summary: "인력부(MOM) Budget 2026 발표에 따라 7월 1일부터 최저현지급여(LQS·Local Qualifying Salary)가 월 S$1,600에서 S$1,800으로 오른다. 로컬 직원 급여가 S$1,800 미만이면 외국인 인력쿼터 계산 시 1명이 0.5명으로 줄어 S Pass·워크퍼밋 신규·갱신에 직접 영향을 준다. 로컬 직원을 고용 중인 한인 사업주는 오늘(6/30) 내 임금 현황 확인이 필요하다.",
+    fullContent: `**최저현지급여(LQS) 7월 1일부터 S$1,800 시행 — 내일부터 즉시 적용**
+인력부(MOM) Budget 2026 발표 사항으로, 내일(7월 1일)부터 최저현지급여(Local Qualifying Salary, LQS)가 인상됩니다.
+
+**무엇이 바뀌나**
+- 풀타임 로컬(시민권자·PR) 직원 최저현지급여: S$1,600 → **S$1,800/월**
+- 파트타임 로컬 직원: 시간당 S$9 → **S$10.50**
+
+**왜 중요한가 — S Pass·워크퍼밋 쿼터에 직접 영향**
+LQS는 외국인 인력(S Pass·워크퍼밋) 쿼터를 계산할 때 로컬 직원 1명을 '1명'으로 셀 수 있는 최저 급여 기준입니다.
+
+7월 1일부터 적용되는 새 카운팅 기준:
+- 월급 **S$1,800 이상**: 로컬 1.0카운트
+- 월급 S$900 이상 S$1,800 미만: 로컬 **0.5카운트**
+- 월급 S$900 미만: 카운트 없음
+
+기존에 S$1,600~1,799를 받던 로컬 직원을 인상 없이 유지하면, 해당 직원이 1.0카운트 → 0.5카운트로 떨어져 **외국인 인력쿼터가 즉시 줄어들 수 있음**.
+
+**결과**
+- 7월 1일 이후 S Pass·워크퍼밋 신청·갱신은 새 쿼터 기준으로 심사
+- 쿼터 초과 시 MOM이 기존 패스 취소를 지시할 수 있음
+
+**정부 지원**
+- 진보임금크레딧(PWCS, Progressive Wage Credit Scheme): 로컬 저임금 근로자 임금 인상분의 **30%** 공동 부담(2026년 기준), 2028년까지 연장
+
+**한인 참고**
+- 로컬 직원을 고용 중인 한인 사업주라면 오늘(6/30) 내 S$1,600~1,799 구간 직원 급여 현황을 점검하고, S$1,800 인상 여부를 HR·회계사와 협의할 것
+- EP(고용패스) 소지 외국인 근로자에게 LQS는 직접 적용되지 않으나, 고용주의 S Pass·WP 쿼터 감소로 간접 영향이 생길 수 있음
+- 세부 계산 방법은 MOM 공식 페이지(아래 출처)에서 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Mothership",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Mothership — Local qualifying salary for full-time local employees to increase from S$1,600 to S$1,800: Budget 2026", url: "https://mothership.sg/2026/02/budget-2026-local-qualifying-salary-raised/" },
+    ],
+    time: "2026년 6월 30일(내일 7월 1일 시행)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "💼",
+    relatedIds: ["auto-20260620-1", "auto-20260619-4"],
+  },
+  {
+    id: "auto-20260630-4",
+    publishedAt: "2026-06-30",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏠 5월 콘도 렌트 -0.6%·HDB -0.3% 하락 — 4월 최고치 후 완화, 임차인 협상력 개선 중",
+    summary: "99-SRX 렌트 플래시 리포트(2026년 6월 발표 5월 데이터)에 따르면 콘도 렌트가 전월 대비 0.6% 하락했다(4월 사상 최고치 직후). 지역별로는 CCR -0.4%, RCR -0.6%, OCR -1.0%. HDB 렌트도 0.3% 하락(성숙단지 -0.5%, 비성숙단지 +0.2%). 2024~25년 신규 공급 증가로 시장이 집주인 주도에서 균형으로 이동 중이라 임대차 갱신 협상에 유리한 환경이 만들어지고 있다.",
+    fullContent: `**5월 콘도·HDB 렌트 동반 하락 (99-SRX Rental Flash Report, 2026년 6월 발표)**
+99-SRX 렌트 플래시 리포트에 따른 2026년 5월 싱가포르 임대 시장 현황입니다.
+
+**콘도(민간주택) 렌트**
+- 전월 대비 **-0.6%** (4월에 기록한 사상 최고치 직후 하락)
+- 지역별:
+  - CCR(핵심 중심지역): **-0.4%**
+  - RCR(중심지역 외곽): **-0.6%**
+  - OCR(외곽지역): **-1.0%** (가장 큰 폭 하락)
+
+**HDB 렌트**
+- 전월 대비 **-0.3%**
+  - 성숙단지(Mature estates): **-0.5%**
+  - 비성숙단지(Non-mature estates): +0.2%
+- 4룸 기준 월세 중간값: 약 S$2,600
+
+**시장 전망**
+- 99.co 수석 데이터·애널리틱스 책임자: "싱가포르 임대 시장이 집주인 주도 시장에서 균형 잡힌 시장으로 전환 중"
+- 2024~25년 신규 완공 물량 증가와 외국인 고용 수요 안정화가 주요 원인으로 분석
+- 향후 급격한 렌트 재반등보다는 완만한 흐름 예상
+
+**한인 참고**
+- 임대차 갱신을 앞두고 있다면 OCR(외곽) 지역을 중심으로 협상 여지가 커진 점을 활용할 수 있음
+- 다만 지역·평형·건물별 편차가 크므로 실제 계약 전 SRX, HDB(공공) 또는 URA(민간) 최신 시세를 직접 확인할 것
+- 지속적인 하락이 보장되는 것은 아니므로 계약 기간 설정 시 시장 동향을 종합적으로 참고할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "99.co (99-SRX Rental Flash Report)",
+    sources: [
+      { name: "99.co — Condo and HDB rents ease in May 2026 as market moves towards greater balance", url: "https://www.99.co/singapore/insider/condo-hdb-rental-market-may-2026/" },
+    ],
+    time: "2026년 6월 30일(5월 데이터)",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏠",
+    relatedIds: ["auto-20260622-3"],
+  },
+  {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
     category: "생활",
