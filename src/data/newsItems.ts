@@ -26,6 +26,229 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260701-5",
+    publishedAt: "2026-07-01",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏘️ HDB 재판매가 2분기 연속 하락 — Q2 0.3% 추가 하락, 거래량도 10% 감소",
+    summary: "HDB가 7월 1일 발표한 2026년 2분기 재판매가 플래시 추정치에 따르면 재판매 가격지수(RPI)가 전분기 대비 0.3% 하락했다. 1분기(-0.1%)에 이어 2분기 연속 하락으로 약 7년 만에 처음이다. 거래량도 6,268건으로 전년 동기 대비 10.2% 줄었다. 임대를 마치고 재판매 시장을 고려하는 한인들에게 중요한 시장 지표다.",
+    fullContent: `**HDB 재판매가 2분기 연속 하락 (HDB 7월 1일 발표)**
+
+HDB(Housing Development Board)가 7월 1일 발표한 2026년 2분기(4~6월) 재판매 가격 플래시 추정치입니다.
+
+**주요 수치**
+- 2분기 재판매 가격지수(RPI): **전분기 대비 0.3% 하락**
+- 1분기(-0.1%)에 이어 **2분기 연속 하락** — 약 7년 만에 처음
+- 2분기 거래량: **6,268건** — 전년 동기(6,981건) 대비 **10.2% 감소**
+
+**배경**
+- BTO 신규 공급 물량이 제한적인 상황에서도 재판매 수요가 전반적으로 둔화
+- 이자율 환경 및 학교 방학 시즌 등이 Q2 시장 활동에 영향
+
+**한인 참고**
+- HDB 재판매 시장이 2024~2025년 고점 이후 냉각 국면임을 보여주는 공식 지표
+- 재판매 구매를 검토 중인 PR(영주권자) 가정은 가격 협상 여지가 다소 늘어났음을 참고할 것
+- 정확한 지역별·평형별 거래 내역은 HDB 공식 웹사이트(resale portal)에서 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "HDB · Mothership",
+    sources: [
+      { name: "Mothership — HDB resale prices fall for 2nd straight quarter, 0.3% lower compared to Q1 2026", url: "https://mothership.sg/2026/07/hdb-resale-prices-fall-2nd-quarter/" },
+      { name: "99.co — Flash estimates: Private home price growth eases while HDB resale prices extend decline in Q2 2026", url: "https://www.99.co/singapore/insider/ura-hdb-flash-estimates-q2-2026-breakdown/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏘️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260701-4",
+    publishedAt: "2026-07-01",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💡 전기요금 3분기 17% 인상 공식 확정 — 34.78센트/kWh(GST포함), 4인 HDB 월 +17달러",
+    summary: "에너지청(EMA)이 2026년 3분기(7~9월) 규제 전기요금을 GST 포함 kWh당 34.78센트로 확정 발표했다. 전분기(29.72센트) 대비 **17% 인상**으로 최근 수년간 가장 큰 분기 인상폭이다. 4룸 HDB 가구 기준 월 전기료가 약 17.14달러 오를 전망이며, 정부는 7월 중 U-Save 리베이트(가구당 110~190달러)를 지급한다.",
+    fullContent: `**3분기(7~9월) 전기요금 공식 확정 (EMA, 2026년 6월 말 발표)**
+
+에너지청(EMA)이 2026년 3분기 규제 전기요금을 공식 발표했습니다. 기존 예고(6월 18일)보다 인상폭이 다소 낮은 17%로 확정됐습니다.
+
+**확정 요금**
+- **GST 제외**: kWh당 **31.91센트** (전분기 27.27센트 → +4.64센트)
+- **GST 포함(9%)**: kWh당 **34.78센트** (전분기 29.72센트 → +5.06센트)
+- 인상률: **+17%** (GST 제외 기준)
+
+**영향**
+- 4룸 HDB 가구 기준: 월 전기료 약 **+S$17.14** (GST 제외)
+- 전세 가구 등 전기를 직접 계약한 경우 7월 고지서부터 인상분 반영
+
+**인상 이유**
+- 2월 말 이후 중동(이란·호르무즈 해협) 관련 분쟁으로 천연가스 가격 급등
+- 싱가포르 전력의 95% 이상이 천연가스 발전 — 국제 가스 가격 변동에 직접 노출
+- 전기요금은 직전 분기 초 2.5개월 연료비로 산정돼 5월 미·이란 휴전 합의는 미반영
+
+**정부 완화책**
+- 7월 중 **U-Save 리베이트** 지급: 가구당 **S$110~190** (1~2룸: S$190, 3룸: S$160, 4룸: S$130, 5룸 이상: S$110)
+- U-Save는 싱가포르 시민권자·PR 가구에 해당
+
+**한인 참고**
+- 오픈일렉트리시티마켓(OEM) **고정요금제** 계약 가구는 이번 인상의 직접 영향 없음 — 단 계약 만기 후 갱신 시 새 시세 반영 가능성 유의
+- 에어컨·건조기 등 전력 소비가 큰 가전 사용량 조절로 절약 가능
+- 외국인(EP·S Pass)은 U-Save 지급 대상이 아님
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 에너지청(EMA)",
+    sources: [
+      { name: "EMA — Higher Electricity & Town Gas Tariffs for July-September 2026 (공식)", url: "https://www.ema.gov.sg/news-events/news/media-releases/2026/Higher-Electricity-and-Town-Gas-Tariffs-for-July-September-2026" },
+      { name: "EMA — Feature Story: Would the Electricity Tariff be Much Higher from 1 July?", url: "https://www.ema.gov.sg/news-events/news/feature-stories/2026/would-the-electricity-tariff-be-much-higher-from-1-july-and-what-are-your-options" },
+      { name: "GetSolar — Singapore Electricity Tariffs Rise 17% From July 2026", url: "https://getsolar.ai/en-sg/blog/singapore-q3-2026-electricity-tariff-rise" },
+    ],
+    time: "2026년 7월 1일 (3분기 시행)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "💡",
+    relatedIds: ["auto-20260624-7"],
+  },
+  {
+    id: "auto-20260701-3",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 7월 1일부터 LQS S$1,800 시행 — S Pass·워크퍼밋 쿼터 직접 영향, 고용주 즉각 점검 필요",
+    summary: "7월 1일부터 현지 자격 급여(LQS)가 S$1,600에서 S$1,800으로 인상된다. LQS는 회사의 S Pass·워크퍼밋 외국인 고용 쿼터를 계산하는 기준으로, 직원 급여가 S$1,800 미만이면 쿼터 산정 시 절반 점수만 받게 된다. 한인 소규모 사업체 고용주는 이달부터 쿼터가 줄어들 수 있어 즉각적인 급여 조정 여부 검토가 필요하다.",
+    fullContent: `**현지 자격 급여(LQS) S$1,800 시행 (MOM, 2026년 7월 1일)**
+
+인력부(MOM)가 '예산안 2026'에서 예고한 LQS(Local Qualifying Salary) 인상이 7월 1일 공식 시행됩니다.
+
+**변경 내용**
+- 풀타임 직원: **S$1,600 → S$1,800/월**
+- 파트타임 직원: 시간당 **S$9.00 → S$10.50**
+
+**LQS란?**
+- 회사가 S Pass 또는 워크퍼밋 외국인 근로자를 고용할 수 있는 **쿼터(비율)를 계산**할 때 쓰는 기준 급여
+- LQS 이상을 받는 직원 → **1점(Full Count)** 산입
+- LQS 미만을 받는 직원 → **0.5점(Half Count)**만 산입
+- 즉, 현재 S$1,600~S$1,799를 받는 직원을 S$1,800으로 올리지 않으면, 그 직원이 쿼터 계산에서 절반만 인정돼 **S Pass/워크퍼밋 갱신·신규 신청이 거부**될 수 있음
+
+**업종별 S Pass 쿼터 상한**
+- 서비스업: 총 현지 인력의 **10%**
+- 건설·공정·해양·제조업: **15%**
+
+**7월 1일 이후 갱신 심사 시 새 기준 적용**
+- 7월 1일 이후 제출된 모든 S Pass·워크퍼밋 갱신 신청은 새 LQS 기준으로 쿼터 재계산
+- 쿼터 초과 상태로 판정되면 갱신 거부 또는 초과분 취소 지시 가능
+
+**한인 고용주 참고**
+- 직원 급여가 S$1,600~S$1,799 사이라면 7월 1일 이전에 S$1,800으로 인상 조치 필요
+- 관련 서류(급여명세서, MOM 포털)를 통해 쿼터 상태를 즉시 점검할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Mavenside Consulting",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Mavenside Consulting — LQS Rises to $1,800 in July 2026: Employer Action Guide", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+      { name: "Singapore Employment Agency — Local Qualifying Salary Rises to S$1,800 from 1 July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+      { name: "Mothership — Budget 2026: Local Qualifying Salary raised to S$1,800", url: "https://mothership.sg/2026/02/budget-2026-local-qualifying-salary-raised/" },
+    ],
+    time: "2026년 7월 1일 (시행)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "📋",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260701-2",
+    publishedAt: "2026-06-15",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기 2026 최고 기록 경신 — 주간 119건·레드 클러스터 4곳, 북부 지역 특히 주의",
+    summary: "국가환경청(NEA)은 6월 15일 기준 2026년 연간 뎅기 누적 확진 638건을 발표했으며, 6월 13일 종료 주간에만 119건이 집계돼 2026년 최고 주간 기록을 세웠다. 활성 클러스터 12곳 중 10건 이상이 발생한 '레드' 클러스터가 4곳으로, 렌토르·Yio Chu Kang 등 북부 지역에 집중됐다. NEA는 가정 내 고인 물 제거와 방충 처리 철저를 촉구했다.",
+    fullContent: `**뎅기 경보 — 2026년 최고 주간 확진 갱신 (NEA, 2026년 6월 15일 발표)**
+
+국가환경청(NEA)의 최신 뎅기 모니터링 현황입니다.
+
+**최신 수치 (6월 15일 기준)**
+- 2026년 연간 누적 확진: **938건** (1월 1일~6월 13일)
+- 6월 13일 종료 주간: **119건** — 전주(80건) 대비 39건 증가, **2026년 주간 최고치**
+- 현재 활성 클러스터: **12곳**
+
+**레드(Red) 클러스터 4곳 (10건 이상)**
+- Countryside Road / Lentor Avenue: **34건**
+- Jalan Bangau / Jalan Jarak: **22건**
+- Neram Road / Nim Crescent: **19건**
+- Lilac Drive / Mimosa Road: **11건**
+
+**왜 위험한가?**
+- 싱가포르는 현재 **피크 전파 시즌** 진입 단계
+- 이미 연무 경보에서 예고됐던 엘니뇨 고온·건조한 날씨가 모기 번식을 가속
+- 북부 지역(Yio Chu Kang·Lentor) 거주자는 즉각적인 방역 조치 요구됨
+
+**NEA 권고 행동**
+1. 주 1회 이상 가정 내 고인 물(화분 받침·욕실 배수구·에어컨 받침) 확인·제거
+2. 외출 시 긴 소매 착용 + DEET·Picaridin·IR3535 성분 방충제 도포
+3. NEA 직원의 가정 점검 허용
+
+**한인 참고**
+- 뎅기는 치료제가 없어 예방이 최우선 — 발열·두통·관절통·발진 시 즉시 의원 방문
+- Lentor·Yio Chu Kang·Sembawang 지역 거주 한인 가족은 즉시 방역 점검 권장
+- 실시간 클러스터 위치는 NEA 공식 지도(dengue.gov.sg)에서 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA(국가환경청)",
+    sources: [
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+      { name: "NEA — Dengue Clusters Under Surveillance (실시간)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-clusters-under-surveillance" },
+      { name: "NEA — Singapore Enters Peak Dengue Season (공식)", url: "https://www.nea.gov.sg/media/news/news/index/singapore-enters-peak-dengue-season-public-urged-to-stay-vigilant-to-prevent-surge-in-cases" },
+    ],
+    time: "2026년 6월 15일 (지속 갱신 중)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260701-1",
+    publishedAt: "2026-04-25",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚇 다운타운 라인(DTL) 7/10~9/5 금요 밤 조기 종료·토요 늦은 개통 — 대체 셔틀버스 3개 노선 운행",
+    summary: "LTA·SBS Transit이 발표한 바에 따르면 2026년 7월 10일(금)부터 9월 5일(토)까지 매주 금요일 밤 전체 DTL 운행이 오후 11시 30분에 종료되고, 토요일 오전 8시 30분에 재개된다. DTL3e 확장 구간의 최종 통합 시스템 시험을 위한 조치로, 이 시간대 DTL 이용자는 대체 셔틀버스(S41·S42·S43) 또는 타 노선으로 환승해야 한다.",
+    fullContent: `**DTL 운행 시간 조정 (LTA·SBS Transit 공동 발표, 2026년 4월)**
+
+LTA(육상교통청)와 SBS Transit이 발표한 다운타운 라인(DTL) 임시 운행 조정 안내입니다.
+
+**조정 기간 및 시간**
+- 기간: **2026년 7월 10일(금) ~ 9월 5일(토)** (매주 금~토)
+- 금요일 밤: 전체 DTL 운행 **오후 11시 30분 종료** (평소보다 약 30~60분 일찍 종료)
+- 토요일 오전: **오전 8시 30분 재개** (평소는 오전 5시 30분경)
+
+**이유**
+- DTL3e(다운타운 라인 3 확장구간) 신규 역 통합을 위한 **최종 시스템 통합 시험** 진행
+
+**대체 교통편 (토요 오전 5:00~8:30)**
+- **S43**: DTL Bukit Panjang ↔ DTL Bugis 구간, 약 5~10분 간격
+- **S42**: DTL Bugis ↔ DTL Macpherson 구간, 약 5~10분 간격
+- **S41**: DTL Macpherson ↔ DTL Expo 구간, 약 5~10분 간격
+- 환승역(Circle Line·NSL·EWL 등 연결 역)에서 타 노선으로 갈아탈 수도 있음
+
+**한인 참고**
+- Beauty World·Stevens·Downtown·Bugis·Bayfront 등 DTL 역 근처 거주·출퇴근 한인들은 해당 기간 금요 밤 늦은 귀가 및 토요 이른 아침 이동 계획 시 주의
+- Thomson-East Coast Line(TEL)도 같은 기간 일부 조정이 있을 수 있어 LTA 공식 발표를 확인 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "LTA · SBS Transit",
+    sources: [
+      { name: "LTA — Train Service Adjustments along Thomson-East Coast Line and Downtown Line (공식)", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/4/news-releases/train-service-adjustments-tel-and-dtl-to-facilitate-rail-expansion-works.html" },
+      { name: "SBS Transit — Train Service Adjustments along Thomson-East Coast Line and Downtown Line", url: "https://www.sbstransit.com.sg/news/train-service-adjustments-along-thomson-east-coast-line-and-downtown-line-to-facilitate-rail-expansion-works" },
+      { name: "The Smart Local — Train Service Adjustments For TEL & DTL From May To Sep 2026", url: "https://thesmartlocal.com/read/tel-dtl-train-service-adjustments/" },
+    ],
+    time: "2026년 7월 10일~9월 5일 (조정 기간)",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚇",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
     category: "생활",
