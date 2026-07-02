@@ -26,6 +26,201 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260701-1",
+    publishedAt: "2026-07-01",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚇 다운타운라인(DTL) 7/10~9/5 금요일 밤 조기 종료·토요일 늦은 개통 — 셔틀버스 운행",
+    summary: "7월 10일(금)~9월 5일(토) 기간, 매주 금요일 밤 다운타운라인(DTL) 전 구간이 오후 11시 30분에 운행을 종료하고 토요일은 오전 8시 30분에 개통한다. DTL3e 통합 시스템 최종 시험이 목적이며, 토요 조조(5:00~8:30)에는 대체 셔틀버스(S41·S42·S43)가 운행된다. DTL 이용 한인은 금·토 이동 계획에 참고.",
+    fullContent: `**다운타운라인(DTL) 주말 운행 조정 (2026년 7월 10일~9월 5일)**
+철도 확장 공사(DTL3e 통합 시스템 최종 시험)를 위해 매주 금·토 운행 시간이 조정됩니다.
+
+- **매주 금요일**: DTL 전 구간 오후 **11:30 조기 종료**
+- **매주 토요일**: 오전 **8:30 늦은 개통**
+- 토요일 조조(오전 5:00~8:30)에는 **대체 셔틀버스 S41·S42·S43** 운행
+- 적용 기간: **7/10(금)~9/5(토)**
+
+**참고**
+- 금요일 밤 늦게 또는 토요일 아침 일찍 DTL로 이동한다면 대체 교통편을 미리 확인하세요.`,
+    source: "LTA · SBS Transit",
+    sources: [
+      { name: "LTA — TEL·DTL 운행조정 (공식)", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/4/news-releases/train-service-adjustments-tel-and-dtl-to-facilitate-rail-expansion-works.html" },
+      { name: "The Smart Local — TEL/DTL 운행조정 안내", url: "https://thesmartlocal.com/read/tel-dtl-train-service-adjustments/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚇",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260630-2",
+    publishedAt: "2026-06-30",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💡 전기요금 3분기 17% 인상 '확정' — 34.78센트/kWh(GST 포함), 4룸 HDB 월 +약 $17",
+    summary: "에너지시장청(EMA)이 2026년 3분기(7~9월) 규제 전기요금을 전 분기 대비 약 17% 올린 kWh당 34.78센트(GST 포함, GST 전 31.91센트)로 확정했다. 최근 수년 내 최대 분기 인상폭으로, 4룸 HDB 가구 기준 월 약 S$17.14 부담 증가. 중동發 가스값 급등이 원인이며, 7월 U-Save 리베이트(가구당 S$110~190)가 일부를 상쇄한다.",
+    fullContent: `**2026년 3분기 전기요금 인상 확정 (7~9월)**
+에너지시장청(EMA)이 6월 30일 3분기 규제 전기요금을 공식 확정했습니다. (기존 '최대 30% 예고' 기사의 확정 후속)
+
+- 규제 전기요금: **kWh당 34.78센트(GST 포함)** / 31.91센트(GST 전)
+- 전 분기(29.72센트) 대비 **약 +17%** — 최근 수년 내 최대 분기 인상폭
+- **4룸 HDB 기준 월 약 S$17.14 추가** 부담 예상
+- 원인: 중동 사태發 LNG(천연가스) 가격 급등 (3분기 요금은 4~6월 가스가 기준 산정)
+- 7월 지급 **U-Save 리베이트(가구당 S$110~190)**가 일부 상쇄
+
+**참고**
+- 전기 소매플랜(OEM) 이용 중이면 계약 조건에 따라 영향이 다를 수 있습니다.`,
+    source: "EMA · Mothership",
+    sources: [
+      { name: "EMA — 3분기 전기·가스 요금 (공식)", url: "https://www.ema.gov.sg/news-events/news/media-releases/2026/Higher-Electricity-and-Town-Gas-Tariffs-for-July-September-2026" },
+      { name: "Mothership — 전기요금 7월 인상", url: "https://mothership.sg/2026/06/singapore-electricity-tariff-up-july-2026/" },
+    ],
+    time: "2026년 6월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💡",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260630-1",
+    publishedAt: "2026-06-30",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏠 5월 콘도 렌트 -0.6%·HDB -0.3% 하락 — 신규 공급 늘며 임차인 협상력 개선",
+    summary: "99-SRX 렌트 플래시 리포트(6월 발표)에 따르면 5월 콘도 임대료는 전월比 -0.6%(지역별 CCR -0.4%·RCR -0.6%·OCR -1.0%), HDB 임대료는 -0.3%(성숙단지 -0.5%·비성숙 +0.2%) 내렸다. 4룸 HDB 중간 월세는 약 S$2,600. 2024~25년 신규 공급 증가로 시장이 집주인 우위에서 균형으로 이동 중이라, 렌트 계약·재계약 시 임차인 협상 여지가 커졌다.",
+    fullContent: `**5월 임대료 하락 — 임차인에 유리한 흐름**
+99-SRX가 6월 발표한 렌트 플래시 리포트입니다.
+
+- **콘도 임대료**: 전월比 **-0.6%** (CCR -0.4% / RCR -0.6% / OCR -1.0%)
+- **HDB 임대료**: 전월比 **-0.3%** (성숙단지 -0.5% / 비성숙단지 +0.2%)
+- 4룸 HDB 중간 월세 약 **S$2,600**
+- 2024~25년 신규 공급 증가로 시장이 **집주인 우위 → 균형**으로 전환 중
+
+**참고**
+- 렌트 신규·재계약을 앞두고 있다면 협상 여지가 이전보다 커진 편입니다. 단지·지역별 차이가 크니 실제 매물로 비교하세요.`,
+    source: "99.co (SRX)",
+    sources: [
+      { name: "99.co — 콘도·HDB 렌트 (2026년 5월)", url: "https://www.99.co/singapore/insider/condo-hdb-rental-market-may-2026/" },
+    ],
+    time: "2026년 5월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏠",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260629-1",
+    publishedAt: "2026-06-29",
+    category: "문화",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🎤 7월 K팝 공연 풍년 — 아이린 7/4·EXO 7/24·26·iKON 7/25·마마무 7/31 싱가포르 무대",
+    summary: "7월 한 달간 대형 K팝 공연이 몰려 있다. 레드벨벳 아이린 첫 솔로 아시아투어(7/4, The Theatre at Mediacorp), EXO 7년 만의 싱가포르 공연(7/24·26, Singapore Indoor Stadium, 매진), iKON(7/25, Arena @ EXPO), 마마무(7/31, Singapore Indoor Stadium). 예매는 Ticketmaster SG.",
+    fullContent: `**2026년 7월 싱가포르 K팝 공연 일정**
+7월 한 달간 대형 K팝 공연이 연달아 열립니다.
+
+- **아이린(레드벨벳)** — 7/4(금) 오후 6시, The Theatre at Mediacorp / 첫 솔로 아시아투어 'I-WILL', 티켓 약 S$138~288(예매 수수료 별도)
+- **EXO** — 7/24·26, Singapore Indoor Stadium / 'EXhOrizon' 월드투어, 7년 만의 싱가포르 공연 (Ticketmaster 기준 **매진**)
+- **iKON** — 7/25, Arena @ EXPO / 'FOUREVER' 월드투어
+- **마마무** — 7/31, Singapore Indoor Stadium / '4WARD' 월드투어
+
+**참고**
+- 예매는 **Ticketmaster SG**, 공연별로 좌석이 빠르게 소진되니 잔여석·정확한 가격은 공식 티켓 페이지에서 확인하세요.`,
+    source: "(x)clusive · Harper's Bazaar SG · Ticketmaster",
+    sources: [
+      { name: "(x)clusive — 아이린 I-WILL 싱가포르", url: "https://x-clusive.sg/events/red-velvet-irene-i-will-singapore/" },
+      { name: "Harper's Bazaar SG — 2026 K팝 공연 일정", url: "https://www.harpersbazaar.com.sg/lifestyle/kpop-concerts-singapore" },
+      { name: "Ticketmaster SG — EXO", url: "https://ticketmaster.sg/activity/detail/26sg_exo" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🎤",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260629-2",
+    publishedAt: "2026-06-29",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚕 Grab 유류할증료 90센트·플랫폼피 $1.20, 7월 31일까지 연장 — 유가 상승 여파",
+    summary: "Grab이 3~4월부터 부과해온 유류할증료(50→90센트), GrabCab 미터요금 인상(구간당 26→27센트), 플랫폼피($0.90→$1.20)를 당초 5월 31일 종료 예정에서 7월 31일까지 연장했다. 중동 정세發 글로벌 유가 상승이 원인으로, 건당 약 S$0.30~0.60 추가 부담이 예상된다.",
+    fullContent: `**Grab 추가 요금 7월 31일까지 연장**
+글로벌 유가 상승으로 임시 부과되던 추가 요금이 연장됐습니다.
+
+- 유류할증료: **50센트 → 90센트**
+- 플랫폼피: **S$0.90 → S$1.20**
+- GrabCab 미터요금: 구간당 26 → 27센트
+- 적용: 당초 5/31 종료 → **7/31까지 연장**
+- 건당 약 **S$0.30~0.60 추가** 부담 예상
+
+**참고**
+- 정확한 최종 요금은 호출 시 앱에 표시되는 금액을 기준으로 확인하세요.`,
+    source: "The Star · Mothership",
+    sources: [
+      { name: "The Star — Grab 할증료 7/31 연장", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/05/23/singapore-grab-extends-90-cent-fuel-surcharge-higher-grabcab-metered-fares-till-july-31" },
+      { name: "Mothership — Grab 유류할증료", url: "https://mothership.sg/2026/03/grab-temporarily-raise-fuel-surcharge-price-volatility/" },
+    ],
+    time: "2026년 6월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚕",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260628-1",
+    publishedAt: "2026-06-28",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🎆 NDP 2026 리허설 교통통제 — 7/4·7/25·8/1 캘랑 일대 도로 통제 반복 예정",
+    summary: "8월 9일 내셔널 스타디움 National Day Parade(NDP) 2026를 앞두고 콤바인드 리허설·프리뷰 공연 때마다 캘랑·내셔널 스타디움 일대 도로가 통제된다. 6/27 1차 리허설(완료)에 이어 7/4 2차 리허설, 7/25·8/1 프리뷰가 예정돼 유사한 교통통제가 반복될 전망이다. 경찰은 대중교통 이용을 권고했다.",
+    fullContent: `**NDP 2026 리허설·프리뷰 교통통제 안내**
+8월 9일 내셔널 스타디움 NDP 2026을 앞두고 리허설 때마다 캘랑 일대가 통제됩니다.
+
+- 일정: 1차 리허설 6/27(완료) → **2차 리허설 7/4** → **프리뷰 7/25·8/1**
+- 통제 구간: **캘랑·내셔널 스타디움 일대**(Stadium Drive 등), 행사 시간대 도로 통제
+- 경찰은 **대중교통 이용 권고**, 통제 구간 불법 주정차 차량 견인
+
+**참고**
+- 해당 날짜에 캘랑 지역을 지난다면 시간을 여유 있게 두거나 우회하세요. 정확한 통제 구간·시간은 경찰(SPF) 안내를 확인하세요.`,
+    source: "SPF · NDP.gov.sg",
+    sources: [
+      { name: "SPF — NDP 2026 교통안내 (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260625_traffic_arrangements_for_national_day_parade_2026_combined_rehearsal_1" },
+      { name: "NDP.gov.sg — Advisories", url: "https://www.ndp.gov.sg/resources/advisories/" },
+    ],
+    time: "2026년 6월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🎆",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260627-2",
+    publishedAt: "2026-06-27",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "🏦 모든 HDB 단지 500m 내 ATM·은행·캐시포인트 배치 — 은행권, 2027년 말까지 고령화 대비 20개 정책",
+    summary: "싱가포르은행협회(ABS)가 6월 25일 DBS·OCBC·UOB·NETS와 함께 2027년 말까지 모든 HDB 단지 500m 이내에 ATM·은행지점·캐시포인트를 두겠다고 발표했다. '장수사회 은행서비스' 정책집(총 20개 이니셔티브)의 일부로, 노인 인지저하 감지 가이드라인·사망자 계좌정리 간소화 등이 포함된다. 과도기로 2026년 말까지 대중교통역·호커센터·대형마트 인근에 우선 설치한다.",
+    fullContent: `**모든 HDB 단지 500m 내 현금 접근성 확보 (2027년 말 목표)**
+싱가포르은행협회(ABS)가 3대 은행(DBS·OCBC·UOB)·NETS와 함께 6월 25일 발표한 고령화 대비 정책입니다.
+
+- 2027년 말까지 **모든 HDB 단지 반경 500m 내 ATM·은행지점·캐시포인트** 확보
+- 과도기: **2026년 말까지** 대중교통역·호커센터·대형마트 인근 우선 설치
+- '장수사회 은행서비스' 정책집 = 총 **20개 이니셔티브** (노인 인지저하 징후 감지 가이드라인, 사망자 계좌정리 절차 간소화 등 포함)
+
+**참고**
+- 현금 사용이 잦거나 부모님을 모시는 한인 가정에 참고가 됩니다.`,
+    source: "Mothership · Caproasia",
+    sources: [
+      { name: "Mothership — HDB 500m 내 ATM·은행 (2027)", url: "https://mothership.sg/2026/06/banks-500m-hdb-seniors/" },
+    ],
+    time: "2026년 6월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏦",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
     category: "생활",
