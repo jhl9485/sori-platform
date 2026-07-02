@@ -26,6 +26,217 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260702-1",
+    publishedAt: "2026-07-01",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "👴 정년 64세·재고용 69세로 상향 — 7월 1일부터 시행, 2030년 65/70세 목표",
+    summary: "7월 1일부터 법정 정년이 63세→64세, 재고용 의무 연령이 68세→69세로 올라간다(MOM 발표). 1962년 7월 1일 이후 출생 싱가포르 시민·PR에 적용되며, 2030년까지 정년 65세·재고용 70세를 단계적 목표로 한다. CPF 기여율도 55~60세 구간 1.5%p, 60~65세 구간 1%p 동시 인상.",
+    fullContent: `**싱가포르 정년 64세·재고용 69세 — 2026년 7월 1일부터 시행**
+인력부(MOM)가 COS 2026에서 예고한 변경이 7월 1일 발효됐습니다.
+
+**변경 내용**
+- 법정 최소 정년: **63세 → 64세** (1962년 7월 1일 이후 출생자에게 적용)
+- 재고용 의무 연령: **68세 → 69세** (1957년 7월 1일 이후 출생자에게 적용)
+
+**CPF 기여율 인상 (동시 시행)**
+- 55~60세 근로자: 기여율 **+1.5%p** 인상
+- 60~65세 근로자: 기여율 **+1%p** 인상
+
+**고용주 지원**
+- Senior Employment Credit(SEC): 2027년 12월까지 연장. 69세 이상 근로자 임금의 최대 **7% 지원**
+- 직무 재설계 지원금 최대 S$150,000 (고용 지속·업무 조정 목적)
+
+**장기 로드맵**
+- 2030년까지 정년 **65세**, 재고용 **70세** 달성 목표
+
+**한인 참고**
+- EP·S Pass 보유 한인 근로자는 정년 규정에 직접 해당하지 않으나, 현지 시니어 직원이 있는 한인 사업주는 의무 재고용 연령 변화를 HR 정책에 반영해야 합니다.
+- PR 취득 후 장기 거주 한인이라면 CPF 기여율 변화가 적립액에 영향을 줄 수 있으니 CPF 포털에서 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Allen & Gledhill",
+    sources: [
+      { name: "Allen & Gledhill — Retirement and re-employment ages to be raised to 64 and 69 from 1 July 2026", url: "https://www.allenandgledhill.com/sg/publication/articles/32838/retirement-and-re-employment-ages-to-be-raised-to-64-and-69-from-1-july-2026" },
+      { name: "Human Resources Online — MOM COS 2026: Singapore to raise retirement age to 64 & re-employment age to 69", url: "https://www.humanresourcesonline.net/mom-committee-of-supply-2026-singapore-to-raise-retirement-age-to-64-re-employment-age-to-69-from-1-july-2026" },
+      { name: "Rajah & Tann — Singapore will Raise Prescribed Minimum Retirement and Re-employment Age to 64 and 69 from 1 July 2026", url: "https://www.rajahtannasia.com/viewpoints/singapore-will-raise-prescribed-minimum-retirement-and-re-employment-age-to-64-and-69-respectively-from-1-july-2026/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "👴",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260702-2",
+    publishedAt: "2026-07-01",
+    category: "비자",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 LQS S$1,800으로 인상 — 7월 1일부터, 미준수 시 S Pass·WP 쿼터 즉시 감소",
+    summary: "7월 1일부터 Local Qualifying Salary(LQS)가 월 S$1,600→S$1,800으로 오른다. 파트타이머는 시간당 S$9→S$10.50. 인상을 못 맞춘 로컬 직원은 쿼터에서 0.5명으로 처리돼 S Pass·Work Permit 고용 여력이 줄어든다. S Pass 최저 급여는 현행 S$3,300 유지, 2027년 1월 신청분부터 S$3,600으로 오를 예정.",
+    fullContent: `**Local Qualifying Salary(LQS) S$1,800 인상 — 2026년 7월 1일 시행**
+MOM이 Budget 2026에서 예고한 외국인 고용 정책 변화가 7월 1일 발효됐습니다.
+
+**LQS 변경 사항**
+- 풀타임 로컬 근로자 최저 급여: 월 **S$1,600 → S$1,800**
+- 파트타임 로컬 근로자 최저 급여: 시간당 **S$9.00 → S$10.50**
+
+**미준수 시 쿼터 영향**
+- S$1,800 이상 = 쿼터 **1명** 처리 (현행 유지)
+- S$900~S$1,799 = 쿼터 **0.5명** 처리 (쿼터 감소)
+- → 로컬 직원 급여를 인상하지 않으면 S Pass·Work Permit 채용·갱신 여력이 줄어듦
+
+**S Pass 최저 급여 예고**
+- 현행(2026년 7월): S$3,300 (금융업 S$3,800) 유지
+- 2027년 1월 신규 신청부터: **S$3,600** (금융업 S$4,000)
+- 2028년 1월 갱신분부터 동일 기준 적용
+
+**한인 참고**
+- 로컬 직원이 있는 한인 사업주: 해당 직원 급여를 즉시 점검하고 미달 시 조정하거나 쿼터 계획을 재검토하세요.
+- S Pass 보유 한인: 2027년 1월부터 최저 급여 기준이 S$3,600으로 오르니 갱신 전 급여 조건을 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Mothership",
+    sources: [
+      { name: "MOM — Factsheet: Foreign Workforce Policy Announcements at COS 2026", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
+      { name: "Mothership — Budget 2026: Local Qualifying Salary raised to S$1,800", url: "https://mothership.sg/2026/02/budget-2026-local-qualifying-salary-raised/" },
+      { name: "Mavenside — LQS Rises to $1,800 in July 2026: Employer Action Guide", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📋",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260702-3",
+    publishedAt: "2026-07-01",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💰 7월 U-Save·S&CC 리베이트 2배 지급 — 1~2룸 S$190, 4룸 S$150, 100만 가구 전기료 보전",
+    summary: "재무부(MOF)가 7월 전기요금 17% 인상에 대응해 100만 HDB 가구에 U-Save·S&CC 리베이트를 2배 지급한다. 1~2룸 S$190, 4룸 S$150(+ 반달치 S&CC). SP Services 계정에 자동 반영되며 별도 신청 불필요. EP·DP 비자 한인 가구는 수혜 대상이 아닌 경우가 많아 자체 절전 노력이 필요하다.",
+    fullContent: `**7월 2026 U-Save & S&CC 리베이트 2배 지급 (MOF 발표)**
+Q3 전기요금 17% 인상(별도 기사 참고)에 대응해 MOF가 7월 추가 리베이트를 지급합니다.
+
+**지급 금액 (평형별)**
+| 평형 | U-Save 리베이트 | S&CC 리베이트 |
+|------|----------------|--------------|
+| 1~2룸 | S$**190** | **1개월치** |
+| 4룸 | S$**150** | **0.5개월치** |
+- 3룸·5룸·임원형 등 나머지 평형 상세 금액은 MOF 공식 발표 자료 확인
+
+**지급 방식**
+- **자동 반영**: SP Services 계정에 직접 차감 적용, 별도 신청 불필요
+- 7월 청구서에 리베이트가 공제된 금액으로 표시됨
+
+**대상**
+- 싱가포르 시민·PR이 소유·거주하는 HDB 가구 (약 100만 가구)
+- 2채 이상 부동산 소유 가구는 제외
+
+**한인 참고**
+- EP·DP 비자 보유 한인 가구는 원칙적으로 U-Save 수혜 대상이 아닙니다.
+- 전기요금이 월 S$17 이상 오를 수 있으니 에어컨 온도 25°C 유지·대기전력 차단 등 절전을 실천하세요.
+- 시민권자·PR 동거인이 있는 가구는 govbenefits.gov.sg에서 Singpass로 수혜 자격을 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOF · The Independent SG",
+    sources: [
+      { name: "The Independent SG — MOF: More than one million HDB households to receive U-Save and S&CC rebates for July 2026", url: "https://theindependent.sg/mof-more-than-one-million-hdb-households-in-sg-to-receive-u-save-and-service-conservancy-charges-rebates-for-july-2026/" },
+      { name: "ibtimes.sg — Over 1M Singapore HDB Households to Receive Double Utility Rebates in July", url: "https://www.ibtimes.sg/over-1m-singapore-hdb-households-receive-double-utility-rebates-july-88819" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💰",
+    relatedIds: ["auto-20260630-2"],
+  },
+  {
+    id: "auto-20260702-4",
+    publishedAt: "2026-06-15",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 2026년 최다 주간 119명 — 북부 4개 레드 경보 클러스터, 8~9월 더 위험",
+    summary: "NEA에 따르면 6월 13일 마감 주 뎅기열 확진이 119건(2026년 주간 최다)으로 전주 대비 49% 급증했다. 1~6월 13일 누적 938건, 12개 활성 클러스터 중 4곳이 최고 경보인 '레드' 등급(요 추 강 일대 집중). 장마·고온으로 8~9월까지 추가 증가가 우려된다.",
+    fullContent: `**뎅기열 2026년 최다 기록 — 6월 15일 NEA 현황**
+싱가포르에 뎅기열 경보가 높아지고 있습니다. 특히 북부 지역 거주자는 각별히 주의하세요.
+
+**현황 수치**
+- 6월 13일 마감 주간 확진: **119명** (2026년 주간 최다)
+- 직전 주(6월 6일 마감): 80명 → 한 주 만에 **49% 급증**
+- 1월 1일~6월 13일 누적: **938명**
+- 활성 클러스터: 총 12개 (6월 15일 기준)
+
+**레드 경보(Red Alert) 클러스터 4곳**
+- Countryside Road / Lentor Avenue — **34명** (Yio Chu Kang)
+- Jalan Bangau / Jalan Jarak — **22명** (Yio Chu Kang)
+- Neram Road / Nim Crescent — **19명** (Yio Chu Kang)
+- Lilac Drive / Mimosa Road — **11명**
+
+**예방 수칙 (NEA 권고)**
+- 꽃병·물받이·막힌 배수구 등 **고인 물 72시간 이내 제거**
+- 외출 시 **방충망 옷** 또는 **DEET 모기 기피제** 착용
+- 발열·두통·눈 뒤 통증·발진 시 빠른 시일 내 의사 진료
+
+**한인 참고**
+- 북부(Yio Chu Kang·Lentor·Ang Mo Kio 등) 거주 가정은 발코니·화분 받침대 물 고임을 수시로 제거하세요.
+- 뎅기열 의심 증상 시 집에서 쉬지 말고 진료를 통해 혈소판 수치를 확인하는 것이 안전합니다.
+- 최신 클러스터 현황은 NEA 공식 사이트(nea.gov.sg)에서 실시간으로 확인할 수 있습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA · Medical Daily",
+    sources: [
+      { name: "NEA — Dengue Cases 현황 (공식)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-cases" },
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+      { name: "Xinhua — Singapore dengue weekly cases hit 2026 high", url: "https://english.news.cn/20260616/16666162380847008cd20fe9682603b0/c.html" },
+    ],
+    time: "2026년 6월 15일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260702-5",
+    publishedAt: "2026-07-01",
+    category: "치안",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 경찰, 암호화폐 사기 2종 경보 — 허가 서명 악용·FIFA 월드컵 사칭 주의",
+    summary: "싱가포르 경찰(SPF)이 7월 1일 암호화폐 사기 2종에 대한 경보를 발령했다. '허가 서명(permit signature)' 악용 사기는 텔레그램에서 거래처를 사칭해 허가 서명 승인을 유도, 이후 지갑 자산을 무단 탈취하는 수법이다. FIFA 월드컵 2026 관련 사기는 암호화폐로만 결제받는 가짜 티켓 사이트를 통해 입금 후 잠적하는 방식이다.",
+    fullContent: `**SPF 암호화폐 사기 경보 (2026년 7월 1일 발령)**
+싱가포르 경찰이 급증하는 암호화폐 사기 2종을 집중 경보했습니다.
+
+**수법 1 — 허가 서명(Permit Signature) 악용**
+- 텔레그램 등 메시지 앱에서 **거래처·고객으로 위장**한 사기꾼이 접근
+- "서류 검토" 등을 핑계로 지갑에서 '허가 서명(permit signature)' 승인 요청
+- 승인하면 **사기꾼이 이후 추가 승인 없이 지갑에서 무한 인출 가능**해짐
+- 하드웨어 월렛 사용자도 속을 수 있음
+
+**수법 2 — FIFA 월드컵 2026 사칭**
+- 암호화폐(Bitcoin·USDT)로만 결제받는 **가짜 티켓·굿즈 사이트** 운영
+- 입금 직후 사이트 폐쇄, 환불·추적 거의 불가
+
+**SPF 예방 수칙**
+- 낯선 링크·첨부파일은 절대 클릭·실행 금지
+- 지갑 시드 문구(seed phrase)는 **어떤 웹사이트나 앱에도 절대 입력 금지**
+- 암호화폐 거래는 **MAS 허가·규제 서비스 제공자**만 이용
+- 의심 시 ScamShield 헬프라인 **1799** 또는 경찰 핫라인 **1800-255-0000**
+
+**한인 참고**
+- 피해 발생 시 이체 즉시 거래소 고객센터에 연락해 계정 동결을 요청하세요.
+- 블록체인 특성상 이미 이체된 암호화폐 회수는 매우 어렵습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Cryptocurrency Scams Involving Malicious Links And Unauthorised Transactions (2026.07.01)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260701_police_advisory_on_cryptocurrency_scams_involving_malicious_links" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚨",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
     category: "교통",
@@ -1595,110 +1806,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📊",
     relatedIds: ["30", "20"],
-  },
-  {
-    id: "30",
-    publishedAt: "2026-01-01",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🍜 GST 9% 유지 & 2026년 생활비 — 호커 한 끼 $4~8, 시민 지원금은 한인에 미적용",
-    summary: "GST는 2024년 1월 8%→9% 인상 후 2026년 9% 유지. 호커 한 끼 약 S$4~8, 개인 식비 월 S$400~800 수준. 시민 대상 Assurance Package 현금·CDC 바우처 등은 EP/DP 한인에 미적용이라 체감 물가 부담이 상대적으로 큼.",
-    fullContent: `**2026년 GST & 생활비**
-물가에 민감한 한인 가정을 위한 정리입니다.
-
-**GST**
-- 2026년 GST **9%** 유지 (2024년 1월 8%→9% 인상, Budget 2022 2단계 인상의 완료분)
-- S$100 소비당 S$9 부가
-
-**생활비 체감**
-- 호커센터 한 끼 약 **S$4~8**, 개인 식비 월 약 **S$400~800**
-- 매출 S$100만 미만 소규모 호커는 GST 미부과인 경우도 있음
-
-**⚠️ 한인(EP/DP) 입장**
-- 시민·일부 PR 대상 **Assurance Package 현금(S$200~400)·CDC 바우처·U-Save** 등은 **EP/DP 한인 가구에 적용되지 않는 경우가 많음**
-- 따라서 동일 물가라도 지원금 없는 한인의 체감 부담이 상대적으로 큼
-
-**절약 팁**
-- 호커·NTUC FairPrice 앱 할인·직접 픽업(배달비 절감) 활용
-
-정확한 수치는 아래 출처를 확인하세요.`,
-    source: "IRAS 정보 · SmartCalculator",
-    sources: [
-      { name: "GST 9% 2026 안내", url: "https://www.smartcalculator.sg/articles/how-much-gst-singapore-2026" },
-      { name: "yourincomecalculator — GST 9% 영향", url: "https://yourincomecalculator.com/sg/blog/gst-9-percent-singapore-2026-businesses-consumers" },
-    ],
-    time: "2026년 1월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🍜",
-    relatedIds: ["20", "24"],
-  },
-  {
-    id: "31",
-    publishedAt: "2026-03-31",
-    category: "취업",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "📈 2026년 1분기 노동시장 — 실업률 2.0%로 안정, 정리해고는 소폭 증가",
-    summary: "MOM: 2026년 1분기 총고용 +9,400명(18분기 연속 증가), 실업률 2.0%로 낮은 수준 유지. 단 정리해고는 3,690→3,830명으로 소폭 증가(제조·금융·전문서비스 중심). 구인은 여전히 구직 초과(약 1.46배)지만 채용은 신중해지는 분위기.",
-    fullContent: `**2026년 1분기 노동시장 동향 (MOM)**
-한인 구직자·이직 고려자에게 참고가 되는 고용 지표입니다.
-
-**전반적으로 안정**
-- 총고용 **+9,400명** (2021년 말 이후 **18분기 연속 증가**)
-- 실업률 **2.0%** (거주자 2.9%, 시민 3.1%)
-- 구인 약 73,300건, 실업자 1명당 약 **1.46개 일자리**
-
-**주의 신호**
-- 정리해고 **3,690 → 3,830명**(전분기比 소폭 증가), 주로 **제조·금융·전문서비스**
-- 단 해고율은 1,000명당 1.6명으로 비(非)침체 수준
-- 채용·임금 인상 기대는 다소 둔화 — 기업이 신중해지는 분위기
-
-**한인 참고**
-- 전반적으로 견조하나 일부 업종은 채용 보수화 — 이직 시 타이밍·업종 확인
-- EP 신청은 COMPASS·최저급여 기준 동시 충족 필요(관련 기사 참고)
-
-정확한 통계는 아래 MOM 자료를 확인하세요.`,
-    source: "MOM · Human Resources Online",
-    sources: [
-      { name: "Human Resources Online — Q1 노동시장", url: "https://www.humanresourcesonline.net/retrenchments-edged-up-in-q1-but-singapore-s-labour-market-stayed-broadly-stable-says-mom" },
-      { name: "Asian Prime Properties — Q1 2026 고용", url: "https://asianprimeproperties.sg/singapore-employment-growth-q1-2026-labour-market-resilient/" },
-    ],
-    time: "2026년 1분기",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📈",
-    relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: ["26"],
   },
 ];
 
