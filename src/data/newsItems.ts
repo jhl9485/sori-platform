@@ -26,6 +26,200 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260703-1",
+    publishedAt: "2026-07-02",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 마이크로소프트·Crypto.com 사칭 '기술지원 사기' — 5월 이후 30건·100만 달러 피해, SPF 7/2 경보",
+    summary: "싱가포르 경찰(SPF)이 7월 2일, 마이크로소프트와 Crypto.com을 사칭하는 기술지원 사기 경보를 발령했다. 5월 이후 최소 30건·피해액 100만 달러 이상. 인터넷 사용 중 브라우저 전체를 막는 가짜 마이크로소프트 보안경고 팝업이 뜨고, '3'으로 시작하는 싱가포르 8자리 번호로 전화가 걸려오는 수법이다. 가짜 기술지원→가짜 경찰관 순서로 연결되며 원격접근 허용이나 암호화폐 이체를 유도한다.",
+    fullContent: `**마이크로소프트·Crypto.com 사칭 기술지원 사기 경보 (SPF, 2026년 7월 2일)**
+
+**피해 현황**
+- 2026년 5월 이후 최소 **30건** 신고, 피해액 최소 **S$100만(S$1 million)**
+- 암호화폐 이체는 **취소 불가** — 일단 송금하면 회수 거의 불가능
+
+**수법 (3단계)**
+1. 인터넷 사용 중 악성 스크립트로 브라우저 화면이 완전히 잠기고 가짜 **마이크로소프트 보안경고** 메시지 표시
+2. '3'으로 시작하는 싱가포르 8자리 로컬 번호로 전화가 오거나 화면에 표시된 번호로 전화 유도 → 가짜 마이크로소프트 기술지원 직원 연결
+3. 전화를 **가짜 경찰관**에게 돌려 "당신의 컴퓨터가 자금세탁에 이용됐다"고 주장, 원격접근 프로그램 설치 또는 **Crypto.com 계정에서 암호화폐 이체**를 유도
+
+**경찰 안내**
+- 마이크로소프트·Crypto.com 등 정식 기업은 팝업으로 전화번호를 안내하지 않음
+- '3'으로 시작하는 싱가포르 번호로 갑자기 전화가 올 경우 의심할 것
+- 낯선 사람의 요구로 원격접근 프로그램(AnyDesk·TeamViewer 등) 절대 설치 금지
+- 의심 시 ScamShield 앱 또는 **1799** (24시간)
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 경찰(SPF)",
+    sources: [
+      { name: "SPF — Police Advisory On Technical Support Scams Impersonating Microsoft And Crypto.com (2026/07/02)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260702_police_advisory_on_technical_support_scams_impersonating_microsoft_and_crypto_com" },
+      { name: "Yahoo News SG — At least $1 million lost since May in Microsoft, Crypto.com impersonation scams", url: "https://sg.news.yahoo.com/least-1-million-lost-since-150500821.html" },
+    ],
+    time: "2026년 7월 2일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🚨",
+    relatedIds: ["auto-20260624-3"],
+  },
+  {
+    id: "auto-20260703-2",
+    publishedAt: "2026-07-03",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚌 탬파인즈 버스 27개 노선 7/5부터 Go-Ahead Singapore로 이관 — 요금·노선 변동 없음",
+    summary: "탬파인즈 버스 패키지(27개 노선, 4개 환승거점)가 SBS Transit에서 Go-Ahead Singapore로 이관된다. 7월 5일(1차, 14개 노선)과 7월 19일(2차, 나머지 13개 노선) 두 단계로 진행되며, 노선·요금·운행 시간은 변경 없다. 탬파인즈·파야레바·챙이 일대를 이용하는 한인은 운영사 표기 변경에 참고.",
+    fullContent: `**탬파인즈 버스 패키지 이관: SBS Transit → Go-Ahead Singapore**
+LTA가 2025년 9월 발표한 S$6억4천6백만, 10년 계약으로 Go-Ahead Singapore가 탬파인즈 버스 패키지를 인수합니다.
+
+**이관 일정 (2단계)**
+- **1단계 7월 5일(일)**: 노선 10·10e·18·18M·20·31·39·65·129·292·293·298·299·454·646
+  - 탬파인즈 버스환승터미널·탬파인즈 콩코스·탬파인즈 노스 인터체인지
+- **2단계 7월 19일(일)**: 노선 4·19·23·28·29·37·38·47·69·72·81·127·291·296·460
+  - 창이 비즈니스파크 버스 터미널 추가
+
+**핵심**
+- **노선·요금·배차간격 변경 없음** — 탑승 방식도 동일
+- 버스 차량 외관의 운영사 표기가 'Go-Ahead Singapore'로 바뀌는 것이 주요 변화
+- 총 27개 노선, 4개 환승거점 운영 (S$646M, 10년 계약)
+
+**한인 참고**
+- 탬파인즈·파야레바·창이 일대를 이동할 때 이용하는 노선이 포함될 수 있으니, 7/5 이후 버스 브랜드가 달라진 것을 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "LTA · Go-Ahead Singapore",
+    sources: [
+      { name: "LTA — LTA Awards Tampines Bus Package to Go-Ahead Singapore", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2025/9/news-releases/lta-awards-tampines-bus-package-to-go-ahead-singapore.html" },
+      { name: "Go-Ahead Singapore — Transition of the Tampines Bus Package in July 2026", url: "https://go-aheadsingapore.com/2026/transition-of-the-tampines-bus-package-in-july-2026/" },
+      { name: "Must Share News — Go-Ahead S'pore will take over 27 Tampines bus routes from SBS Transit", url: "https://mustsharenews.com/go-ahead-tampines/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚌",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260703-3",
+    publishedAt: "2026-07-01",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 LQS S$1,800 7월 1일부터 실제 발효 — S Pass·워크퍼밋 쿼터 즉시 재산정, 한인 고용주 확인 필수",
+    summary: "예고됐던 현지인 최저 기준 임금(LQS) 인상이 7월 1일부로 실제 발효됐다. 월 S$1,600에서 S$1,800으로 올랐으며, 새 LQS 미충족 현지 직원은 S Pass·워크퍼밋 쿼터 산정 시 0.5명분으로만 집계된다. 7월 1일 이후 제출하는 신청·갱신 모두 즉시 새 기준이 적용돼, 쿼터를 초과한 상태라면 갱신이 거부될 수 있어 한인 고용주는 즉시 점검이 필요하다.",
+    fullContent: `**LQS S$1,800 7월 1일 발효 — S Pass·워크퍼밋 쿼터에 즉시 영향**
+Budget 2026(2026년 예산안)에서 예고됐던 현지인 최저 기준 임금(LQS, Local Qualifying Salary) 인상이 7월 1일부로 공식 발효됐습니다.
+
+**변경 내용**
+- 기존: **S$1,600/월** (시간당 S$9.00)
+- 변경: **S$1,800/월** (시간당 S$10.50) 이상
+
+**쿼터 산정에 미치는 영향**
+- 현지 직원 월급 **S$1,800 이상**: 쿼터 산정 시 **1명분** 집계 (변동 없음)
+- 현지 직원 월급 **S$900 이상~S$1,800 미만**: 쿼터 산정 시 **0.5명분**으로만 집계
+- 기존 기준(S$1,600)은 맞췄으나 S$1,800 미달인 직원(S$1,600~S$1,799 구간)이 있으면 → 쿼터 감소 가능
+
+**즉시 적용**
+- **7월 1일 이후 제출하는 S Pass·워크퍼밋 신청 및 갱신** 모두 새 LQS 기준 적용
+- 쿼터 초과 상태에서 갱신 신청 시 **갱신 거부** 가능, 초과 보유 시 MOM이 취소 지시 가능
+
+**한인 고용주 체크리스트**
+1. 현지 직원 중 월급 S$1,600~S$1,799 구간 직원이 있는지 확인
+2. 있다면 S Pass·워크퍼밋 쿼터가 줄어들었는지 MOM 포털에서 재확인
+3. 쿼터 초과 가능성이 있다면 HR 전문가·노무사와 즉시 상담 권고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Mothership",
+    sources: [
+      { name: "MOM — COS 2026 Foreign Workforce Policy Factsheet (공식)", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
+      { name: "Mothership — Budget 2026: Local Qualifying Salary raised", url: "https://mothership.sg/2026/02/budget-2026-local-qualifying-salary-raised/" },
+      { name: "Singapore Employment Agency — LQS Rises to S$1,800 from 1 July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+    ],
+    time: "2026년 7월 1일 발효",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📋",
+    relatedIds: ["21"],
+  },
+  {
+    id: "auto-20260703-4",
+    publishedAt: "2026-07-03",
+    category: "문화",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🏝️ 센토사·풀라우 브라니 '20년 대개발' 마스터플랜 공개 — 비보시티 전시 7/3~5, 모노레일→트램 교체",
+    summary: "싱가포르관광부가 센토사 섬과 인근 풀라우 브라니(120ha)를 20년에 걸쳐 개발하는 'Greater Sentosa Master Plan(GSMP)'의 세부 계획을 공개했다. 비보시티에서 7월 3~5일 'Your Island. Reimagined.' 전시회가 열리며 AI 인터랙티브 프리뷰와 피드백 접수가 진행된다. 주요 내용은 센토사 익스프레스 모노레일 → 고용량 지상 트램으로 교체, 새 입도 관문 '아일랜드 하트', 해변 업그레이드, 리조트 월드 센토사 2.0 확장 등이다.",
+    fullContent: `**Greater Sentosa Master Plan(GSMP) 공개 전시회 (2026년 7월 3~5일, 비보시티)**
+싱가포르 관광부가 3월 발표한 센토사 대규모 마스터플랜의 세부 내용이 공개됐습니다.
+
+**전시회 안내**
+- 명칭: 'Your Island. Reimagined.'
+- 장소: **비보시티(VivoCity)** → 이후 여러 장소 순회 예정
+- 기간: **7월 3일(목)~5일(토)** — 이번 주말이 첫 전시
+- AI 인터랙티브 프리뷰 체험 가능, 시민·거주민 피드백 수렴
+
+**마스터플랜 주요 내용 (20년 계획)**
+- **풀라우 브라니 통합**: 센토사 바로 옆 120ha 섬을 통합해 개발 면적 대폭 확대
+- **모노레일 → 트램**: 센토사 익스프레스 모노레일을 **고용량 지상 트램**으로 교체; 수상 택시(Water Taxi)도 검토
+- **아일랜드 하트(Island Heart)**: 새로운 주요 입도 관문 (유일한 매립지)
+- **해변 업그레이드**: Siloso·Palawan·Tanjong 비치에 해안보호 시설·새 비치 클럽·트리탑 다이닝 추가
+- **리조트 월드 센토사 2.0**: 워터프론트 라이프스타일 개발, 유니버설 스튜디오 슈퍼닌텐도 월드
+- **임비아 캐노피(Imbiah Canopy)**: 마운트 임비아 언덕 위 힐탑 명소 — 스카이워크·전망대 포함
+- 완성 시 현재 대비 **방문객 2배** 목표
+
+**한인 참고**
+- 마스터플랜은 20년 장기 계획으로, 모든 시설이 단기간에 완성되지는 않습니다.
+- 이번 주말 비보시티 전시(7/3~5)에 방문하면 AI 인터랙티브 프리뷰를 체험하고 의견도 낼 수 있습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "TTG Asia · Mothership",
+    sources: [
+      { name: "TTG Asia — Greater Sentosa Master Plan to transform Singapore's island getaway over two decades (2026/07/03)", url: "https://www.ttgasia.com/2026/07/03/greater-sentosa-master-plan-to-transform-singapores-island-getaway-over-two-decades/" },
+      { name: "Mothership — S'pore saw 16.9 million visitors in 2025, 1st phase of Greater Sentosa Master Plan has begun", url: "https://mothership.sg/2026/03/greater-sentosa-master-plan-alvin-tan/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏝️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260703-5",
+    publishedAt: "2026-07-01",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🛡️ 싱가포르 경찰 '사이버커맨드' 7월 출범 — 200명 규모, 실시간 사기·피싱 인프라 감시",
+    summary: "싱가포르 경찰청(SPF)이 7월 중 사이버 범죄·사기 전담 '사이버커맨드(Cyber Command)'를 정식 출범시킨다. 기존 안티스캠커맨드(Anti-Scam Command)를 통합·확대한 조직으로 200명 규모(향후 400명 목표)이며, 실시간 피싱·사기 인프라 감시 센터를 운용한다. AI 기반 범죄·암호화폐 사기 대응에 특화되며, 2025년 악성코드 피해 시스템이 전년 대비 2배 이상 늘어난 데 따른 대응이다.",
+    fullContent: `**싱가포르 경찰 사이버커맨드(Cyber Command) 7월 공식 출범**
+싱가포르 국가보안부(MHA) 정무차관 고페이밍(Goh Pei Ming)이 2026년 5월 '안티스캠 콘퍼런스 2026'에서 발표한 내용입니다.
+
+**조직 규모**
+- 초기 **200명** (운영·수사·인텔리전스 3개 부서)
+- 향후 **400명** 규모로 확대 계획
+
+**주요 기능**
+- 기존 **Anti-Scam Command 통합·흡수** + 사이버범죄·정보수집 기능 추가
+- **실시간 사이버 작전 센터**: 피싱 캠페인·가짜 웹사이트·악성 전화번호 등 사기 인프라 실시간 탐지·차단
+- AI 기반 온라인 사기, 암호화폐 범죄, 사이버 신디케이트 대응에 특화
+- 싱가포르 경찰과 암호화폐 거래소 협력으로 S$420만 상당 사기 피해 차단 사례
+
+**배경**
+- 싱가포르 사이버 환경 보고서에 따르면 악성코드(피싱·바이러스·랜섬웨어) 피해 시스템이 **2024년 대비 2배 이상 증가**
+
+**한인 참고**
+- 사이버커맨드 출범으로 온라인 사기 신고 및 대응이 한층 체계화될 전망
+- 사기 피해 의심 시 ScamShield 앱 또는 **1799** (24시간 운영)에 신고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Yahoo News SG · Singapore Independent",
+    sources: [
+      { name: "Yahoo News SG — Singapore police to launch dedicated Cyber Command in July to combat online crimes, scams", url: "https://sg.news.yahoo.com/singapore-police-launch-dedicated-cyber-040000927.html" },
+      { name: "Singapore Independent — Singapore police to launch new SPF Cyber Command unit", url: "https://theindependent.sg/singapore-police-to-launch-new-spf-cyber-command-unit-as-ai-powered-scams-and-crypto-fraud-become-increasingly-sophisticated/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🛡️",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
     category: "교통",
@@ -1421,39 +1615,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: ["17"],
   },
   {
-    id: "26",
-    publishedAt: "2025-12-27",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚇 대중교통 요금 5% 인상 (2025년 12월 27일 시행) — 성인 최대 10센트↑, 카드가 현금보다 저렴",
-    summary: "교통위원회(PTC) 2025 요금심사로 12월 27일부터 대중교통 요금 5.0% 인상(최대 허용 14.4%보다 낮음). 성인 버스·MRT 최대 10센트↑, 학생·노인 등 최대 4센트↑. 카드(EZ-Link·SimplyGo·컨택리스)가 현금보다 트립당 약 S$0.22 저렴.",
-    fullContent: `**대중교통 요금 조정 (2025년 12월 27일 시행, 2026년 적용 중)**
-교통위원회(PTC)의 2025 요금심사 결과가 시행됐습니다.
-
-**인상폭**
-- 전체 **5.0% 인상** (최대 허용폭 14.4%보다 크게 낮은 수준)
-- 성인 버스·MRT: 트립당 최대 **10센트** 인상
-- 학생·노인·장애인·Workfare 대상: 최대 4센트 인상
-
-**한인 생활 팁**
-- **카드 결제가 현금보다 트립당 약 S$0.22 저렴** — EZ-Link·SimplyGo·해외 컨택리스 카드 활용
-- 성인 카드 요금은 3.2km 이하 약 S$1.28부터 시작, 장거리 약 S$2.57 수준
-- 정부는 2026년 대중교통에 22억 달러 이상 지원 중
-
-정확한 구간별 요금은 아래 출처(MOT/SimplyGo)를 확인하세요.`,
-    source: "PTC · MOT · TimeOut",
-    sources: [
-      { name: "MOT — 대중교통 지원·요금", url: "https://www.mot.gov.sg/news-resources/newsroom/more-than--2-2-billion-government-support-for-public-transport/" },
-      { name: "SimplyGo — 성인 요금표", url: "https://simplygo.com.sg/travel-fares/adult-fares/" },
-      { name: "TimeOut — 12월 27일 요금 인상", url: "https://www.timeout.com/singapore/news/singapores-public-transport-fares-will-be-increasing-once-again-on-december-27-2025-101525" },
-    ],
-    time: "2025년 12월 27일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚇",
-    relatedIds: ["29"],
-  },
-  {
     id: "27",
     publishedAt: "2026-02-17",
     category: "생활",
@@ -1595,43 +1756,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📊",
     relatedIds: ["30", "20"],
-  },
-  {
-    id: "30",
-    publishedAt: "2026-01-01",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🍜 GST 9% 유지 & 2026년 생활비 — 호커 한 끼 $4~8, 시민 지원금은 한인에 미적용",
-    summary: "GST는 2024년 1월 8%→9% 인상 후 2026년 9% 유지. 호커 한 끼 약 S$4~8, 개인 식비 월 S$400~800 수준. 시민 대상 Assurance Package 현금·CDC 바우처 등은 EP/DP 한인에 미적용이라 체감 물가 부담이 상대적으로 큼.",
-    fullContent: `**2026년 GST & 생활비**
-물가에 민감한 한인 가정을 위한 정리입니다.
-
-**GST**
-- 2026년 GST **9%** 유지 (2024년 1월 8%→9% 인상, Budget 2022 2단계 인상의 완료분)
-- S$100 소비당 S$9 부가
-
-**생활비 체감**
-- 호커센터 한 끼 약 **S$4~8**, 개인 식비 월 약 **S$400~800**
-- 매출 S$100만 미만 소규모 호커는 GST 미부과인 경우도 있음
-
-**⚠️ 한인(EP/DP) 입장**
-- 시민·일부 PR 대상 **Assurance Package 현금(S$200~400)·CDC 바우처·U-Save** 등은 **EP/DP 한인 가구에 적용되지 않는 경우가 많음**
-- 따라서 동일 물가라도 지원금 없는 한인의 체감 부담이 상대적으로 큼
-
-**절약 팁**
-- 호커·NTUC FairPrice 앱 할인·직접 픽업(배달비 절감) 활용
-
-정확한 수치는 아래 출처를 확인하세요.`,
-    source: "IRAS 정보 · SmartCalculator",
-    sources: [
-      { name: "GST 9% 2026 안내", url: "https://www.smartcalculator.sg/articles/how-much-gst-singapore-2026" },
-      { name: "yourincomecalculator — GST 9% 영향", url: "https://yourincomecalculator.com/sg/blog/gst-9-percent-singapore-2026-businesses-consumers" },
-    ],
-    time: "2026년 1월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🍜",
-    relatedIds: ["20", "24"],
   },
   {
     id: "31",
