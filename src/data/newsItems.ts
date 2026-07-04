@@ -26,6 +26,165 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260703-1",
+    publishedAt: "2026-07-03",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🛡️ SPF 사이버커맨드 7/3 창설 — 200명 전담 조직, AI·크립토 사기 통합 대응",
+    summary: "싱가포르 경찰청(SPF)이 7월 3일 사이버범죄·사기 전담 부대 '사이버커맨드(Cyber Command)'를 공식 창설했다. SAC Justin Wong(42세) 지휘 아래 약 200명으로 출범, 향후 400명으로 확대할 예정이다. 기존에 여러 부서에 분산됐던 사이버범죄·안티스캠 역량을 단일 지휘 아래 통합해 전면적·신속한 대응을 목표로 한다.",
+    fullContent: `**SPF 사이버커맨드(Cyber Command) 창설 (2026년 7월 3일)**
+싱가포르 경찰청(SPF) Commissioner How Kwang Hwee가 Police Cantonment Complex에서 진행한 취임식에서 사이버커맨드를 공식 창설했습니다.
+
+**초대 지휘관**
+- Senior Assistant Commissioner(SAC) **Justin Wong Xing Shun**(42세)
+- CAD(상업범죄수사부) 금융수사그룹 부국장 겸직, Bedok Police Division장 등 역임
+
+**규모·임무**
+- 출범 규모: 운영·수사·정보 약 **200명**, 향후 **400명**으로 확대 예정
+- 기존 SPF 각 부서에 분산됐던 사이버범죄·안티스캠 역량을 **단일 지휘 체계** 아래 통합
+- 임무: 온라인 범죄 시도 전면 대응 — 범죄 조직 해체부터 대국민 예방 인식 제고까지
+
+**배경**
+- AI를 활용한 사기, 크립토 사기, 딥페이크 기반 범죄가 급증하면서 전담 통합 조직의 필요성이 커짐
+- 7월 1~2일 연달아 발표된 암호화폐 사기·기술지원 사기 경보와 맥을 같이 하는 조직 대응
+
+**한인 참고**
+- 사이버커맨드 창설로 신고·수사 대응이 빨라질 전망이나, 피해 예방이 가장 중요합니다.
+- 사기 피해 신고: 경찰 비상 **999** / 비긴급 **1800-255-0000** / ScamShield 앱·**1799**
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — SPF Forms New Cyber Command To Prevent, Deter And Disrupt Online Criminal Threats", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260703_spf_forms_new_cyber_command_to_prevent_deter_and_disrupt_online_criminal_threats" },
+      { name: "Yahoo News SG — Singapore police to launch dedicated Cyber Command in July", url: "https://sg.news.yahoo.com/singapore-police-launch-dedicated-cyber-040000927.html" },
+      { name: "The Independent SG — Singapore police to launch new SPF Cyber Command unit", url: "https://theindependent.sg/singapore-police-to-launch-new-spf-cyber-command-unit-as-ai-powered-scams-and-crypto-fraud-become-increasingly-sophisticated/" },
+    ],
+    time: "2026년 7월 3일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🛡️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260702-1",
+    publishedAt: "2026-07-02",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ MS·Crypto.com 사칭 기술지원 사기 경보 — 5월 이후 30건·최소 $100만 피해",
+    summary: "SPF가 7월 2일 발표한 경보에 따르면 5월 이후 마이크로소프트(MS)·Crypto.com을 사칭한 기술지원 사기가 30건 이상 신고돼 피해액이 최소 100만 달러를 넘었다. 브라우저 가짜 팝업이 뜬 뒤 '3'으로 시작하는 8자리 번호로 전화하게 유도, 가짜 기술지원 담당자가 다시 가짜 경찰관에게 연결해 원격 접속 허용·계좌 이체를 요구하는 수법이다.",
+    fullContent: `**MS·Crypto.com 사칭 기술지원 사기 경보 (SPF, 2026년 7월 2일)**
+
+**피해 현황**
+- 5월 이후 최소 **30건** 신고, 피해액 최소 **S$100만**
+
+**수법**
+1. 브라우저에 마이크로소프트 또는 Crypto.com을 사칭한 **가짜 팝업 경고** — "기기가 손상됐다" 등
+2. 팝업에 적힌 번호로 전화 → 특이사항: **'3'으로 시작하는 8자리 번호**를 로컬 번호처럼 사용해 신뢰를 유도
+3. 전화를 받은 '기술지원 담당자'가 다시 **가짜 경찰관에게 연결** — "기기가 자금세탁 범죄에 연루됐다" 주장
+4. 원격 조종 도구 설치 또는 링크 클릭 허용 요구 → 계좌 무단 접근·이체 발생
+
+**경찰 안내**
+- 마이크로소프트·Crypto.com은 팝업이나 경고 메시지에 전화번호를 넣지 않음
+- 팝업 속 번호로 절대 전화하지 말고, 즉시 브라우저를 닫을 것
+- 원격 접속 요청·계좌정보 요구는 모두 사기로 간주할 것
+
+**한인 참고**
+- 크립토 거래소(Crypto.com 등)를 사용하는 한인이라면 특히 주의 — 공식 지원은 공식 앱·웹사이트를 통해서만 접수됩니다.
+- 의심 시 ScamShield 앱 또는 **1799**(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Technical Support Scams Impersonating Microsoft And Crypto.com", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260702_police_advisory_on_technical_support_scams_impersonating_microsoft_and_crypto_com" },
+      { name: "Yahoo News SG — At least $1 million lost since May in Microsoft, Crypto.com impersonation scams", url: "https://sg.news.yahoo.com/least-1-million-lost-since-150500821.html" },
+      { name: "CryptoTimes — Singapore Police Warns of Microsoft, Crypto.com Impersonation Scam", url: "https://www.cryptotimes.io/2026/07/03/singapore-police-warns-of-microsoft-crypto-com-impersonation-scam/" },
+    ],
+    time: "2026년 7월 2일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🖥️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260701-2",
+    publishedAt: "2026-07-01",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🪙 FIFA 월드컵·퍼밋서명 악용 암호화폐 사기 경보 — SPF 7/1, 크립토 지갑 무단 탈취",
+    summary: "SPF가 7월 1일 암호화폐 사기 경보를 발표했다. ① FIFA 2026 테마 — 가짜 공식 티켓 사이트·팬토큰 판매로 크립토 결제 유도 후 잠적. ② 퍼밋 서명 악용 — 텔레그램에서 지인을 사칭한 사기범이 맬웨어 설치를 유도해 '퍼밋 서명'을 허용하게 하면, 이후 피해자 지갑에서 무단 크립토 거래가 가능해지는 수법. 크립토를 보유·거래하는 한인 주의.",
+    fullContent: `**암호화폐 사기 경보 (SPF, 2026년 7월 1일)**
+
+**유형 ① FIFA 2026 테마 사기**
+- 가짜 FIFA 공식 티켓 판매 사이트로 유인 → 비트코인·USDT 등 크립토로 결제 요구 → 티켓 미발송·사이트 폐쇄
+- "공식 월드컵 토큰(World Cup Token)" 또는 특정 팀 팬코인을 공식 인증인 것처럼 판매하는 사기도 보고됨
+
+**유형 ② 퍼밋 서명(Permit Signature) 악용**
+- 텔레그램 등에서 사업 파트너·지인으로 위장한 사기범이 접근
+- 영상통화 링크나 파일 클릭을 유도 → **맬웨어 설치** (소프트웨어 만료 팝업으로 위장)
+- 이후 '퍼밋 서명' 승인 요청 — 이를 허용하면 **온체인 승인 없이도 사기범이 지갑 자금을 무단 인출** 가능 (하드웨어 월렛 사용자도 피해 가능)
+
+**경찰 안내**
+- MAS 등록·규제 암호화폐 서비스 공급자만 이용할 것
+- 시드 구문(Seed Phrase)·비밀키·OTP·인증 코드를 절대 타인에게 공유하지 말 것
+- 출처 불명의 퍼밋 서명 요청은 즉시 거부할 것
+
+**한인 참고**
+- FIFA 2026 관련 크립토 결제 티켓 구매는 사기 가능성이 매우 높습니다.
+- Telegram 비즈니스 지인 사칭 접근 시 링크·파일 클릭 전 상대방 신원을 전화로 먼저 확인하세요.
+- 의심 시 ScamShield 앱 또는 **1799** 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Cryptocurrency Scams Involving Malicious Links And Unauthorised Transactions", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260701_police_advisory_on_cryptocurrency_scams_involving_malicious_links" },
+      { name: "MustShareNews — SPF advises cryptocurrency users to beware of World Cup-related scams", url: "https://mustsharenews.com/spf-world-cup-scams/" },
+      { name: "Fintech Singapore — FIFA Fights Fraud With Blockchain, While Scammers Use Crypto to Steal", url: "https://fintechnews.sg/133423/security/world-cup-crypto-scams/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🪙",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260701-3",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "💼 LQS(로컬 자격급여) $1,800 인상 7/1 시행 — S Pass 쿼터 즉시 영향, 한인 고용주 점검 필요",
+    summary: "7월 1일부터 로컬 자격급여(LQS)가 풀타임 기준 S$1,600→$1,800, 파트타임 $9.00→$10.50/h로 인상됐다. LQS는 S Pass·Work Permit 고용 쿼터 산정 기준으로, 아직 로컬 직원 급여를 올리지 않은 경우 해당 직원이 쿼터에서 0.5명으로 낮아져 외국인 직원 고용 쿼터가 즉시 줄어들 수 있다. 직원을 고용하는 한인 사업주는 급여 조정 여부를 즉각 확인해야 한다.",
+    fullContent: `**LQS(로컬 자격급여) S$1,800 인상 시행 (2026년 7월 1일)**
+인력부(MOM)가 예고한 대로 7월 1일부터 로컬 자격급여(Local Qualifying Salary, LQS)가 인상됐습니다.
+
+**변경 내용**
+- 풀타임 로컬 직원: **S$1,600 → S$1,800/월**
+- 파트타임 로컬 직원: **S$9.00 → S$10.50/시간**
+
+**왜 중요한가 — S Pass·Work Permit 쿼터 직접 영향**
+- LQS는 로컬(시민·PR) 직원이 외국인 직원 고용 쿼터 산정 시 '**1명**'으로 카운트되는 최소 급여 기준
+- 로컬 직원 급여가 **S$900 이상~S$1,799 이하**면 → **0.5명**으로만 산정 (쿼터 반감)
+- 급여를 올리지 않으면: 쿼터 축소 → **S Pass·Work Permit 갱신 거절** 위험, DP 소지자 Letter of Consent(LOC) 무효화 가능
+
+**한인 자영업·고용주 체크리스트**
+1. 로컬 직원 중 **월급 S$1,800 미만**인 직원 즉시 확인
+2. 해당 직원 급여를 S$1,800 이상으로 인상해야 기존 쿼터 유지 가능
+3. S Pass·Work Permit 갱신이 임박했다면 MOM 포털에서 현재 쿼터 잔액 확인
+4. DP(부양가족) 배우자가 LOC로 근무 중이라면 쿼터 변동 시 LOC 무효화 위험
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Mavenside",
+    sources: [
+      { name: "MOM — Work Passes and Permits (공식)", url: "https://www.mom.gov.sg/passes-and-permits" },
+      { name: "Mavenside — LQS Rises to $1,800 in July 2026: Employer Action Guide", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+      { name: "Links International — S Pass & LQS Changes 2026", url: "https://linksinternational.com/en-sg/blog/s-pass-local-qualifying-salary-changes/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💼",
+    relatedIds: ["21"],
+  },
+  {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
     category: "교통",
@@ -1419,39 +1578,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "🪪",
     relatedIds: ["17"],
-  },
-  {
-    id: "26",
-    publishedAt: "2025-12-27",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚇 대중교통 요금 5% 인상 (2025년 12월 27일 시행) — 성인 최대 10센트↑, 카드가 현금보다 저렴",
-    summary: "교통위원회(PTC) 2025 요금심사로 12월 27일부터 대중교통 요금 5.0% 인상(최대 허용 14.4%보다 낮음). 성인 버스·MRT 최대 10센트↑, 학생·노인 등 최대 4센트↑. 카드(EZ-Link·SimplyGo·컨택리스)가 현금보다 트립당 약 S$0.22 저렴.",
-    fullContent: `**대중교통 요금 조정 (2025년 12월 27일 시행, 2026년 적용 중)**
-교통위원회(PTC)의 2025 요금심사 결과가 시행됐습니다.
-
-**인상폭**
-- 전체 **5.0% 인상** (최대 허용폭 14.4%보다 크게 낮은 수준)
-- 성인 버스·MRT: 트립당 최대 **10센트** 인상
-- 학생·노인·장애인·Workfare 대상: 최대 4센트 인상
-
-**한인 생활 팁**
-- **카드 결제가 현금보다 트립당 약 S$0.22 저렴** — EZ-Link·SimplyGo·해외 컨택리스 카드 활용
-- 성인 카드 요금은 3.2km 이하 약 S$1.28부터 시작, 장거리 약 S$2.57 수준
-- 정부는 2026년 대중교통에 22억 달러 이상 지원 중
-
-정확한 구간별 요금은 아래 출처(MOT/SimplyGo)를 확인하세요.`,
-    source: "PTC · MOT · TimeOut",
-    sources: [
-      { name: "MOT — 대중교통 지원·요금", url: "https://www.mot.gov.sg/news-resources/newsroom/more-than--2-2-billion-government-support-for-public-transport/" },
-      { name: "SimplyGo — 성인 요금표", url: "https://simplygo.com.sg/travel-fares/adult-fares/" },
-      { name: "TimeOut — 12월 27일 요금 인상", url: "https://www.timeout.com/singapore/news/singapores-public-transport-fares-will-be-increasing-once-again-on-december-27-2025-101525" },
-    ],
-    time: "2025년 12월 27일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚇",
-    relatedIds: ["29"],
   },
   {
     id: "27",
