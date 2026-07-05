@@ -26,6 +26,157 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260705-4",
+    publishedAt: "2026-07-06",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "🤝 로런스 웡 총리 7/6 자카르타 방문 — 싱가포르-인도네시아 연례 정상회담, 바탐·빈탄 협력 이슈 포함",
+    summary: "로런스 웡(Lawrence Wong) 총리가 7월 6일 인도네시아를 방문해 프라보워(Prabowo) 대통령 주최 연례 싱가포르-인도네시아 정상회담에 참석한다. 두 지도자의 두 번째 공식 회담으로, 바탐·빈탄 산업단지·관광 개발 등 양자 협력이 의제로 포함될 것으로 보인다. 싱가포르 거주 한인에게는 주말 여행지 바탐·빈탄 개발 동향과 Riau Islands 투자 이슈가 간접적 관심사다.",
+    fullContent: `**싱가포르-인도네시아 연례 정상회담 (2026년 7월 6일)**
+로런스 웡(Lawrence Wong) 총리가 7월 6일 자카르타를 방문해 인도네시아 프라보워 수비안토 대통령이 주최하는 연례 싱가포르-인도네시아 정상회담(Leaders' Retreat)에 참석합니다.
+
+**기본 사실**
+- 두 지도자의 **두 번째 공식 정상회담**
+- 자카르타 개최 (인도네시아 측 주최)
+- 매년 양국이 번갈아 주최하는 최고위급 협의 채널
+
+**주요 의제(예상)**
+- 바탐·빈탄 경제특구 협력 및 Riau Islands 개발
+- 양국 공항·항만 연결성 강화
+- 방위·경제 협력 MOU 갱신
+
+**한인 참고**
+- 주말 여행지로 많이 찾는 **바탐·빈탄** 개발 방향에 정상회담 결과가 중장기적으로 영향을 줄 수 있습니다.
+- 바탐 공단(BIIE·Batamindo)에서 사업 중이거나 투자 관심이 있는 한인 비즈니스 관계자는 이번 회담 결과를 주시할 만합니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership",
+    sources: [
+      { name: "Mothership — PM Wong to visit Jakarta for annual S'pore-Indonesia Leaders' Retreat on Jul 6", url: "https://mothership.sg/2026/07/pm-wong-indonesia-leaders-retreat/" },
+    ],
+    time: "2026년 7월 6일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🤝",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260705-3",
+    publishedAt: "2026-07-05",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚌 탐피네스 버스 14개 노선 오늘부터 SBS→Go-Ahead 이관 — 7/19 2단계, 노선·요금·정류장 변화 없음",
+    summary: "7월 5일(일)부터 탐피네스 버스 패키지 1단계로 총 14개 노선이 SBS Transit에서 Go-Ahead Singapore로 운영 이관됐다. 탐피네스·탐피네스 컨코스·탐피네스 노스 버스 인터체인지도 Go-Ahead가 담당한다. 7월 19일 2단계에서 나머지 노선과 창이비즈니스파크 터미널이 추가 이관된다. 노선 번호·요금·정류장은 바뀌지 않는다.",
+    fullContent: `**탐피네스 버스 패키지 운영사 교체 (2026년 7월 5일·19일)**
+LTA가 2025년 9월 발표한 계약(약 S$6.46억)에 따라, 탐피네스 버스 패키지가 SBS Transit에서 Go-Ahead Singapore로 넘어갑니다. 40년 이상 탐피네스를 운영한 SBS Transit이 공식 작별을 고합니다.
+
+**이관 일정**
+- **1단계 (7월 5일, 일요일)**: 총 **14개 노선** — Tampines Bus Interchange·Tampines Concourse Bus Interchange·Tampines North Bus Interchange에서 Go-Ahead 운영 시작
+- **2단계 (7월 19일, 일요일)**: 나머지 노선 이관 + **Changi Business Park Bus Terminal** 추가 이관
+
+**탑승객 영향**
+- **노선 번호 변경 없음**
+- **요금 변경 없음**
+- **정류장 변경 없음**
+- 버스 외관(도색·번호판) 등이 점차 Go-Ahead 브랜드로 교체될 예정이나 서비스 내용은 동일
+
+**한인 참고**
+- 탐피네스(Tampines)·파시리스(Pasir Ris)·창이(Changi) 일대 거주 한인이라면 7월 5일 이후 버스 기사나 차량 외관이 달라 보일 수 있으나 노선·요금에는 변화가 없어 기존대로 이용하면 됩니다.
+- 차기 단계(7/19)에도 이용에는 영향이 없습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Go-Ahead Singapore · LTA",
+    sources: [
+      { name: "Go-Ahead Singapore — Transition of the Tampines Bus Package in July 2026", url: "https://go-aheadsingapore.com/2026/transition-of-the-tampines-bus-package-in-july-2026/" },
+      { name: "Land Transport Guru — Tampines Bus Package Tranche 1 Transfer to Go-Ahead Singapore", url: "https://landtransportguru.net/event/operator-change-tampines-pack-tranche-1/" },
+      { name: "MustShareNews — SBS Transit hands over Tampines to Go-Ahead S'pore after over 40 years", url: "https://mustsharenews.com/go-ahead-spore-tampines/" },
+    ],
+    time: "2026년 7월 5일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚌",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260705-2",
+    publishedAt: "2026-07-02",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ MS·Crypto.com 동시 사칭 기술지원 사기 급증 — 5월 이후 30건·$100만 피해, SPF 7/2 경보",
+    summary: "싱가포르 경찰(SPF)이 7월 2일, 마이크로소프트(MS)와 암호화폐 거래소 Crypto.com을 동시에 사칭하는 기술지원 사기가 급증하고 있다고 경보했다. 5월 이후 최소 30건, 피해액 최소 100만 달러. 브라우저 팝업으로 기기 감염을 경고하거나 Crypto.com 지원팀을 사칭해 계좌 접근권을 탈취하는 두 가지 수법이 기승이다. 6월 9일 MS 단독 경보(피해 170만달러)에 이은 추가 강화 경보다.",
+    fullContent: `**MS·Crypto.com 기술지원 사칭 사기 경보 (SPF, 2026년 7월 2일)**
+싱가포르 경찰(SPF)이 마이크로소프트(MS) 및 암호화폐 거래소 Crypto.com을 동시에 사칭하는 신종 사기를 경보했습니다.
+
+**피해 현황**
+- 5월 이후 최소 **30건** 신고, 피해액 최소 **S$100만**
+
+**수법 A — MS 사칭 (기존 유형 재발)**
+- 브라우저에 "기기가 감염됐다"는 MS 마크 팝업 → 팝업 내 전화번호로 전화하면 가짜 'MS 기술지원' 연결
+- 이후 원격조종 프로그램 설치 또는 계좌 이체 유도
+
+**수법 B — Crypto.com 사칭 (신종)**
+- Crypto.com 이름의 가짜 '고객지원'으로 연락 → 계정 보안을 명목으로 시드 구문(seed phrase)·로그인 정보 요구
+- 정보 탈취 후 보유 암호화폐 전액 인출
+
+**경찰 안내**
+- MS·Crypto.com은 브라우저 팝업이나 문자로 전화번호를 안내하지 않음
+- 원격조종 프로그램 설치·시드 구문 공개 요청은 100% 사기
+- 의심 시 ScamShield 앱 또는 **1799** 확인
+
+**한인 참고**
+- 암호화폐를 Crypto.com 등 거래소에 보관 중이라면, 어떤 경로로도 시드 구문·이메일 비밀번호를 묻는 연락에 응하지 말 것
+- 기존 MS 기술지원 사기(6월 경보)와 합산하면 수법이 진화 중이므로 각별히 주의
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Technical Support Scams Impersonating Microsoft And Crypto.com (2026-07-02)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260702_police_advisory_on_technical_support_scams_impersonating_microsoft_and_crypto_com" },
+    ],
+    time: "2026년 7월 2일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🖥️",
+    relatedIds: ["auto-20260624-3"],
+  },
+  {
+    id: "auto-20260705-1",
+    publishedAt: "2026-07-01",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🪙 암호화폐 지갑 탈취 사기 — 텔레그램 링크 클릭시 악성코드·'사전 승인 서명' 강요, SPF 7/1 경보",
+    summary: "싱가포르 경찰(SPF)이 7월 1일, 텔레그램에서 '클라이언트·사업 파트너'를 사칭해 영상통화 링크를 보낸 뒤 악성코드를 설치하고 암호화폐 지갑 자격증명을 빼앗는 신종 사기에 경보를 발령했다. 사기범은 이후 'permit signature'(향후 거래 사전 승인 기능)에 서명하도록 유도해, 피해자 모르게 지갑에서 자금을 인출한다. 암호화폐 거래·투자 중인 한인이 특히 주의해야 한다.",
+    fullContent: `**암호화폐 지갑 탈취 사기 경보 (SPF, 2026년 7월 1일)**
+싱가포르 경찰(SPF)이 텔레그램을 통한 신종 암호화폐 사기에 대해 경보를 발령했습니다.
+
+**수법**
+1. 텔레그램에서 '클라이언트' 또는 '사업 파트너'를 자처하는 사기범이 접근
+2. 영상통화를 제안하며 **웹브라우저로 접속하는 링크**를 전송
+3. 링크 클릭 시 "소프트웨어 구성 요소가 만료됐다"는 가짜 팝업 → **악성코드(malware) 설치**
+4. 악성코드가 암호화폐 지갑 자격증명(wallet credentials)을 모니터링·탈취
+5. 이후 사기범은 피해자에게 **"permit signature"**(미래 거래에 대한 사전 승인 기능)에 서명하도록 유도
+6. 서명 후에는 피해자의 추가 승인 없이 사기범이 지갑에서 자유롭게 자금 인출 가능
+
+**경찰 안내**
+- 출처 불명의 링크는 클릭하지 말 것, 특히 영상통화 초대 형태의 링크 주의
+- 어떤 이유로도 지갑 연결 요청·permit signature에 서명하지 말 것
+- 의심 시 ScamShield 앱 또는 **1799** 확인
+
+**한인 참고**
+- 암호화폐 투자·거래가 활발한 한인이라면, 텔레그램에서 만난 '비즈니스 파트너'가 보내는 외부 링크는 절대 클릭하지 말 것
+- 하드웨어 지갑 사용자도 permit signature 요청은 사기임을 인지할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Cryptocurrency Scams Involving Malicious Links And Unauthorised Transactions (2026-07-01)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260701_police_advisory_on_cryptocurrency_scams_involving_malicious_links" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🪙",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
     category: "교통",
@@ -1419,39 +1570,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "🪪",
     relatedIds: ["17"],
-  },
-  {
-    id: "26",
-    publishedAt: "2025-12-27",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚇 대중교통 요금 5% 인상 (2025년 12월 27일 시행) — 성인 최대 10센트↑, 카드가 현금보다 저렴",
-    summary: "교통위원회(PTC) 2025 요금심사로 12월 27일부터 대중교통 요금 5.0% 인상(최대 허용 14.4%보다 낮음). 성인 버스·MRT 최대 10센트↑, 학생·노인 등 최대 4센트↑. 카드(EZ-Link·SimplyGo·컨택리스)가 현금보다 트립당 약 S$0.22 저렴.",
-    fullContent: `**대중교통 요금 조정 (2025년 12월 27일 시행, 2026년 적용 중)**
-교통위원회(PTC)의 2025 요금심사 결과가 시행됐습니다.
-
-**인상폭**
-- 전체 **5.0% 인상** (최대 허용폭 14.4%보다 크게 낮은 수준)
-- 성인 버스·MRT: 트립당 최대 **10센트** 인상
-- 학생·노인·장애인·Workfare 대상: 최대 4센트 인상
-
-**한인 생활 팁**
-- **카드 결제가 현금보다 트립당 약 S$0.22 저렴** — EZ-Link·SimplyGo·해외 컨택리스 카드 활용
-- 성인 카드 요금은 3.2km 이하 약 S$1.28부터 시작, 장거리 약 S$2.57 수준
-- 정부는 2026년 대중교통에 22억 달러 이상 지원 중
-
-정확한 구간별 요금은 아래 출처(MOT/SimplyGo)를 확인하세요.`,
-    source: "PTC · MOT · TimeOut",
-    sources: [
-      { name: "MOT — 대중교통 지원·요금", url: "https://www.mot.gov.sg/news-resources/newsroom/more-than--2-2-billion-government-support-for-public-transport/" },
-      { name: "SimplyGo — 성인 요금표", url: "https://simplygo.com.sg/travel-fares/adult-fares/" },
-      { name: "TimeOut — 12월 27일 요금 인상", url: "https://www.timeout.com/singapore/news/singapores-public-transport-fares-will-be-increasing-once-again-on-december-27-2025-101525" },
-    ],
-    time: "2025년 12월 27일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚇",
-    relatedIds: ["29"],
   },
   {
     id: "27",
