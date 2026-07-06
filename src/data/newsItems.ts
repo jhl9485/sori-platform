@@ -26,6 +26,91 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260705-1",
+    publishedAt: "2026-07-05",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚌 탐피네스 버스, SBS → Go-Ahead로 이관 — 7/5 1단계·7/19 2단계, 노선·요금 변동 없음",
+    summary: "탐피네스 버스 패키지가 SBS Transit에서 Go-Ahead Singapore로 이관된다(5년 계약). 1단계는 7월 5일(일) 14개 노선(10·10e·18·18M·20·31·39·65·129·292·293·298·299·454·646), 2단계는 7월 19일(일) 잔여 노선이 넘어간다. 노선번호·요금·정류장은 그대로 유지돼 이용객 입장에서 바뀌는 건 운영사뿐이다.",
+    fullContent: `**탐피네스 버스 운영사 이관 (SBS Transit → Go-Ahead Singapore)**
+LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead로 넘어갑니다.
+
+- **1단계 7/5(일)**: 14개 노선 (10·10e·18·18M·20·31·39·65·129·292·293·298·299·454·646)
+- **2단계 7/19(일)**: 잔여 노선 + 창이비즈니스파크 버스터미널
+- 앵커 인터체인지: 탐피네스·탐피네스 컨코스·탐피네스 노스(7/5부터), 창이비즈니스파크(7/19부터)
+- **노선번호·요금·정류장 변동 없음** — 체감 변화는 운영사(버스 도색·기사 소속)뿐
+
+**참고**
+- 탐피네스·파시르리스 쪽 한인이라면 버스 색이 바뀌어도 같은 번호·같은 요금이니 그대로 이용하시면 됩니다.`,
+    source: "LTA · Go-Ahead Singapore",
+    sources: [
+      { name: "LTA — 탐피네스 버스 패키지 Go-Ahead 발주 (공식)", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2025/9/news-releases/lta-awards-tampines-bus-package-to-go-ahead-singapore.html" },
+      { name: "Go-Ahead Singapore — 2026년 7월 이관 안내", url: "https://go-aheadsingapore.com/2026/transition-of-the-tampines-bus-package-in-july-2026/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚌",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260703-1",
+    publishedAt: "2026-07-03",
+    category: "생활",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🏝️ '그레이터 센토사' 20년 대개발 마스터플랜 공개 — 센토사+풀라우 브라니 통합, 모노레일→트램 교체",
+    summary: "센토사개발청(SDC)이 센토사와 풀라우 브라니를 통합해 레저 면적을 약 2배로 넓히는 장기 마스터플랜 '그레이터 센토사'를 공개했다. 현 센토사 익스프레스 모노레일은 지상형 고용량 트램(People Mover System)으로 교체돼, 본토·브라니·센토사를 잇는 '아일랜드 하트' 교통 허브와 연결된다. 새 명소는 2030년대 초부터 순차 개장 예정. 계획을 소개하는 'Your Island. Reimagined.' 순회 전시가 7월 3~5일 비보시티에서 시작됐다.",
+    fullContent: `**그레이터 센토사 마스터플랜 (Greater Sentosa Master Plan)**
+센토사개발청(SDC)이 향후 약 20년에 걸친 센토사 재개발 청사진을 공개했습니다.
+
+- **센토사 + 풀라우 브라니 통합** — 섬 레저 면적 약 2배 확대
+- **교통**: 현 센토사 익스프레스 모노레일 → 지상형 고용량 트램(People Mover System)으로 교체. 본토·브라니·센토사를 잇는 '아일랜드 하트(Island Heart)' 교통 허브 신설, 워터택시도 검토
+- **새 명소**: 2030년대 초부터 순차 개장 예정 (RWS 확장·슈퍼닌텐도월드 등 포함)
+- **전시**: 'Your Island. Reimagined.' 순회 전시 — 비보시티 7/3~5 시작 → 우리탐피네스허브(7/22~27) → 주롱포인트(8/19~23) → 워터웨이포인트(9/23~27) → 10월 센토사
+
+**참고**
+- 아이와 센토사 자주 가는 한인 가정이라면 앞으로 몇 년간 공사·동선 변화가 있을 수 있어 방문 전 확인하면 좋아요.`,
+    source: "TTG Asia · Yahoo SG · SDC",
+    sources: [
+      { name: "TTG Asia — 그레이터 센토사 마스터플랜", url: "https://www.ttgasia.com/2026/07/03/greater-sentosa-master-plan-to-transform-singapores-island-getaway-over-two-decades/" },
+      { name: "Yahoo SG — 마스터플랜 공개, 2030년대 초 개장", url: "https://sg.news.yahoo.com/master-plan-greater-sentosa-unveiled-023000300.html" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏝️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260702-1",
+    publishedAt: "2026-07-02",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💰 7월 U-Save 리베이트 '2배' 지급 — 최대 S$190, 100만+ HDB 가구 자동 반영",
+    summary: "재무부(MOF)가 2026년 7월 GSTV U-Save 리베이트를 평소의 2배로 지급한다. 1~2룸 최대 S$190 등 평형별 차등이며, 100만 가구 이상이 대상. S&CC(관리비) 리베이트도 최대 1개월분 함께 지급된다. 7월 전기요금 인상(3분기 +17%) 부담을 덜기 위한 조치로, U-Save는 SP Services 계정에, S&CC는 타운카운슬 계정에 자동 반영돼 별도 신청이 필요 없다.",
+    fullContent: `**2026년 7월 U-Save·S&CC 리베이트 (2배 지급)**
+재무부(MOF)가 7월 전기요금 인상에 대응해 GSTV(소비세바우처) 리베이트를 확대 지급합니다.
+
+- **U-Save 리베이트: 평소의 2배**, 1~2룸 **최대 S$190** (평형이 클수록 차등)
+- **S&CC(관리비) 리베이트: 최대 1개월분** (평형별 차등)
+- 대상: **100만 가구 이상**의 싱가포르 시민 HDB 가구
+- **자동 반영** — U-Save는 SP Services 전기·수도 계정, S&CC는 타운카운슬 계정에 직접 입금 (별도 신청 불필요)
+- FY2026 전체로는 U-Save 최대 S$570·S&CC 최대 3.5개월분
+
+**참고**
+- 리베이트는 **시민 소유 HDB 가구** 대상입니다. EP·DP 등으로 임차 거주 중이면 직접 대상이 아닐 수 있어요.`,
+    source: "MOF (공식)",
+    sources: [
+      { name: "MOF — 7월 U-Save·S&CC 리베이트 (공식)", url: "https://www.mof.gov.sg/news-resources/newsroom/more-than-1-million-singaporean-hdb-households-to-benefit-from-s-cc-rebates-and-double-of-the-regular-u-save-rebates-in-jul-2026/" },
+      { name: "Human Resources Online — 7월 리베이트 2배", url: "https://www.humanresourcesonline.net/eligible-singaporean-hdb-households-to-receive-double-gstv-u-save-and-s-cc-rebates-in-july-2026" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💰",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
     category: "교통",
