@@ -8,6 +8,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import { useToggleSet } from "@/lib/storage";
+import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
@@ -15,6 +16,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
   const userJobs = useUserJobs();
   const job = userJobs.find((j) => j.id === params.id) || JOBS.find((j) => j.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_jobs");
+  const gate = useAuthGate();
   const [applied, setApplied] = useState(false);
 
   if (!job) {
@@ -29,7 +31,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => toggleSave(job.id)} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(job.id); }} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "🔖" : "🏷️"}
           </button>
         }

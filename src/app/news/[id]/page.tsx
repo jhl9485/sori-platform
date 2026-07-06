@@ -7,11 +7,13 @@ import CommentSection from "@/components/shared/CommentSection";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { useToggleSet } from "@/lib/storage";
+import { useAuthGate } from "@/lib/auth";
 
 export default function NewsDetailPage({ params }: { params: { id: string } }) {
   const news = NEWS_ITEMS.find((n) => n.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_news");
   const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_news");
+  const gate = useAuthGate();
 
   if (!news) return notFound();
 
@@ -39,7 +41,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => toggleSave(news.id)} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(news.id); }} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "🔖" : "🏷️"}
           </button>
         }
@@ -126,7 +128,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
             ↗ 공유하기
           </button>
           <button
-            onClick={() => toggleSave(news.id)}
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(news.id); }}
             className={`flex items-center gap-1 text-[0.82rem] ml-auto ${saved ? "text-[#2050A0]" : "text-[#888070]"}`}
           >
             {saved ? "🔖 저장됨" : "🏷️ 저장"}

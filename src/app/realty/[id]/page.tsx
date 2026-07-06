@@ -8,6 +8,7 @@ import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
+import { useAuthGate } from "@/lib/auth";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 
@@ -22,6 +23,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
   const userRealty = useUserRealty();
   const item = userRealty.find((r) => r.id === params.id) || REALTY_ITEMS.find((r) => r.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_realty");
+  const gate = useAuthGate();
 
   if (!item) {
     if (!hydrated) return <DetailSkeleton />;
@@ -69,7 +71,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
       <PageHeader
         right={
           <button
-            onClick={() => toggleSave(item.id)}
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(item.id); }}
             className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}
             aria-label="저장"
           >

@@ -12,6 +12,7 @@ import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { timeAgo } from "@/lib/format";
 import { useToggleSet } from "@/lib/storage";
+import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
 
@@ -22,6 +23,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
   const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_posts");
   const { toggle: markRead } = useToggleSet("sori_read_posts");
+  const gate = useAuthGate();
 
   useEffect(() => {
     if (post) markRead(post.id);
@@ -162,7 +164,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
             💬 <span>{post.comments}</span>
           </button>
           <button
-            onClick={() => toggleSave(post.id)}
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(post.id); }}
             className={`flex items-center gap-[5px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
           >
             {saved ? "🔖 저장됨" : "🏷️ 저장"}

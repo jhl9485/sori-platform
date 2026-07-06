@@ -8,6 +8,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
 import { BUSINESSES } from "@/data/businesses";
 import { useToggleSet } from "@/lib/storage";
+import { useAuthGate } from "@/lib/auth";
 import { useUserBiz } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 
@@ -16,6 +17,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
   const userBiz = useUserBiz();
   const biz = userBiz.find((b) => b.id === params.id) || BUSINESSES.find((b) => b.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_biz");
+  const gate = useAuthGate();
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
 
   if (!biz) {
@@ -32,7 +34,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => toggleSave(biz.id)} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(biz.id); }} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "❤️" : "🤍"}
           </button>
         }

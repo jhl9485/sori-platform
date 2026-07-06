@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { Comment } from "@/data/communityPosts";
 import { useProfile } from "@/lib/profile";
+import { useAuth, useAuthGate, isLoggedIn } from "@/lib/auth";
 
 interface Props {
   comments: Comment[];
@@ -61,6 +63,7 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
   const [liked, setLiked] = useState(false);
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const gate = useAuthGate();
 
   // 정적 답글 + 사용자 답글 병합 (이 댓글 id에 속한 사용자 답글만)
   const replies = [
@@ -69,6 +72,7 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
   ];
 
   const submitReply = () => {
+    if (!isLoggedIn()) return;
     const text = replyText.trim();
     if (!text) return;
     const newReply: Comment = {
@@ -111,7 +115,7 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
           </button>
           {depth === 0 && (
             <button
-              onClick={() => setShowReply(!showReply)}
+              onClick={() => { if (gate("답글은 로그인 후 남길 수 있어요.")) setShowReply(!showReply); }}
               className="text-[0.72rem] text-[#888070] hover:text-[#181614]"
             >
               답글
@@ -170,6 +174,7 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
 export default function CommentSection({ comments, postId }: Props) {
   // 정적 댓글 + 사용자 추가 댓글 (localStorage) 병합
   const { profile } = useProfile();
+  const { isAuthed, hydrated } = useAuth();
   const [userComments, setUserComments] = useState<Comment[]>([]);
   const [userReplies, setUserReplies] = useState<Record<string, Comment[]>>({});
   const [newComment, setNewComment] = useState("");
@@ -193,6 +198,7 @@ export default function CommentSection({ comments, postId }: Props) {
   };
 
   const submitComment = () => {
+    if (!isLoggedIn()) return;
     const text = newComment.trim();
     if (!text) return;
     const c: Comment = isAnon
@@ -229,35 +235,46 @@ export default function CommentSection({ comments, postId }: Props) {
       <div className="px-4 md:px-6 py-4 border-b border-black/[0.06]">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-[0.78rem] font-bold">댓글 {list.length}개</span>
-          <button
-            onClick={() => setIsAnon(!isAnon)}
-            className={`ml-auto text-[0.7rem] px-2 py-[3px] rounded-full border transition-colors ${
-              isAnon ? "bg-[#181614] text-white border-[#181614]" : "text-[#888070] border-black/[0.1]"
-            }`}
-          >
-            🎭 {isAnon ? "익명 ON" : "익명 OFF"}
-          </button>
+          {(isAuthed || !hydrated) && (
+            <button
+              onClick={() => setIsAnon(!isAnon)}
+              className={`ml-auto text-[0.7rem] px-2 py-[3px] rounded-full border transition-colors ${
+                isAnon ? "bg-[#181614] text-white border-[#181614]" : "text-[#888070] border-black/[0.1]"
+              }`}
+            >
+              🎭 {isAnon ? "익명 ON" : "익명 OFF"}
+            </button>
+          )}
         </div>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            onKeyDown={(e) => { if (e.key === "Enter") submitComment(); }}
-            placeholder="댓글을 입력하세요..."
-            maxLength={500}
-            className="flex-1 bg-[#F5F3EE] rounded-full px-4 py-[8px] text-[0.82rem] outline-none min-w-0"
-          />
-          <button
-            onClick={submitComment}
-            disabled={!newComment.trim()}
-            className={`px-4 py-[8px] rounded-full text-[0.78rem] font-bold transition-colors ${
-              newComment.trim() ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"
-            }`}
+        {hydrated && !isAuthed ? (
+          <Link
+            href="/login"
+            className="flex items-center justify-center gap-2 w-full bg-[#F5F3EE] rounded-full px-4 py-[10px] text-[0.82rem] text-[#888070] hover:bg-[#EFEBE3] transition-colors"
           >
-            등록
-          </button>
-        </div>
+            🔒 로그인하고 댓글 남기기
+          </Link>
+        ) : (
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              onKeyDown={(e) => { if (e.key === "Enter") submitComment(); }}
+              placeholder="댓글을 입력하세요..."
+              maxLength={500}
+              className="flex-1 bg-[#F5F3EE] rounded-full px-4 py-[8px] text-[0.82rem] outline-none min-w-0"
+            />
+            <button
+              onClick={submitComment}
+              disabled={!newComment.trim()}
+              className={`px-4 py-[8px] rounded-full text-[0.78rem] font-bold transition-colors ${
+                newComment.trim() ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"
+              }`}
+            >
+              등록
+            </button>
+          </div>
+        )}
       </div>
 
       {/* 댓글 목록 */}

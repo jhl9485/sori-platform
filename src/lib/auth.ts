@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 // ⚠️ MVP 목(mock) 인증: 백엔드가 없으므로 실제 비밀번호 검증은 하지 않는다.
 // 로그인/가입 상태와 기본 계정 정보만 localStorage에 저장한다.
@@ -75,4 +76,26 @@ export function useAuth() {
   }, []);
 
   return { account, isAuthed: account.loggedIn, hydrated, signup, login, logout };
+}
+
+// 동기적으로 로그인 여부 확인 (클릭 시점 등, 훅 하이드레이션과 무관하게 정확)
+export function isLoggedIn(): boolean {
+  if (typeof window === "undefined") return false;
+  return read().loggedIn;
+}
+
+// 로그인 게이트: 게스트면 확인창을 띄우고 로그인 페이지로 안내한다.
+// 진행 가능하면 true, 막혔으면 false 반환.
+export function useAuthGate() {
+  const router = useRouter();
+  return useCallback(
+    (message = "로그인이 필요한 기능이에요.") => {
+      if (isLoggedIn()) return true;
+      if (window.confirm(`${message}\n\n로그인 페이지로 이동할까요?`)) {
+        router.push("/login");
+      }
+      return false;
+    },
+    [router]
+  );
 }
