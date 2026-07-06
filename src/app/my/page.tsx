@@ -41,6 +41,7 @@ function MyPageInner() {
   const initialTab: TabId = (TABS.find((t) => t.id === tabParam)?.id) || "overview";
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
   const { profile, setProfile } = useProfile();
+  const { isAuthed } = useAuth();
   const [editingProfile, setEditingProfile] = useState(false);
 
   useEffect(() => {
@@ -102,25 +103,47 @@ function MyPageInner() {
       {/* 프로필 헤더 */}
       <div className="bg-[#131211] pt-8 md:pt-10 pb-6 px-4 md:px-6 md:rounded-b-[20px]">
         <div className="flex items-end justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-[#EBF0FB] flex items-center justify-center text-2xl border-2 border-white/20 font-bold text-[#2050A0]">
-              {profile.avatarChar}
-            </div>
-            <div>
-              <div className="text-white font-bold text-[1.05rem]">{profile.name}</div>
-              <div className="text-white/50 text-[0.75rem] mt-[2px]">{profile.visa} {profile.yearsInSG} · {profile.area}</div>
-              <div className="flex items-center gap-2 mt-2">
-                <span className="text-[0.65rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[2px] rounded-full font-medium">{profile.visa} 비자</span>
-                <span className="text-[0.65rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[2px] rounded-full font-medium">인증회원 ✓</span>
+          {isAuthed ? (
+            <>
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-[#EBF0FB] flex items-center justify-center text-2xl border-2 border-white/20 font-bold text-[#2050A0]">
+                  {profile.avatarChar}
+                </div>
+                <div>
+                  <div className="text-white font-bold text-[1.05rem]">{profile.name}</div>
+                  <div className="text-white/50 text-[0.75rem] mt-[2px]">{profile.visa} {profile.yearsInSG} · {profile.area}</div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-[0.65rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[2px] rounded-full font-medium">{profile.visa} 비자</span>
+                    <span className="text-[0.65rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[2px] rounded-full font-medium">인증회원 ✓</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <button
-            onClick={() => setEditingProfile(true)}
-            className="text-white/50 border border-white/20 px-3 py-1 rounded-full text-[0.75rem] hover:border-white/40 hover:text-white/80 transition-colors"
-          >
-            편집
-          </button>
+              <button
+                onClick={() => setEditingProfile(true)}
+                className="text-white/50 border border-white/20 px-3 py-1 rounded-full text-[0.75rem] hover:border-white/40 hover:text-white/80 transition-colors"
+              >
+                편집
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-2xl border-2 border-white/20 text-white/60">
+                  👤
+                </div>
+                <div>
+                  <div className="text-white font-bold text-[1.05rem]">게스트</div>
+                  <div className="text-white/50 text-[0.75rem] mt-[2px] max-w-[180px]">로그인하면 내 글·저장·프로필이 유지돼요</div>
+                </div>
+              </div>
+              <Link
+                href="/login"
+                className="bg-[#D04020] text-white px-4 py-1.5 rounded-full text-[0.78rem] font-semibold hover:bg-[#B83818] transition-colors whitespace-nowrap"
+              >
+                로그인
+              </Link>
+            </>
+          )}
         </div>
 
         {editingProfile && (

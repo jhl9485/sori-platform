@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
 import { useProfile } from "@/lib/profile";
+import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { icon: "🏠", label: "홈",         href: "/" },
@@ -26,6 +27,7 @@ export default function DesktopSidebar() {
   const pathname = usePathname();
   const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
   const { profile } = useProfile();
+  const { isAuthed } = useAuth();
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-[240px] bg-[#131211] flex flex-col z-50 select-none">
@@ -115,27 +117,46 @@ export default function DesktopSidebar() {
       {/* 구분선 */}
       <div className="h-px bg-white/[0.06] mx-4" />
 
-      {/* MY 프로필 */}
+      {/* MY 프로필 / 로그인 */}
       <div className="px-3 pt-3">
-        <Link
-          href="/my"
-          className={`flex items-center gap-3 px-3 py-[9px] rounded-[10px] transition-all duration-150 ${
-            pathname === "/my"
-              ? "bg-white/10 text-white"
-              : "text-white/45 hover:text-white/80 hover:bg-white/[0.05]"
-          }`}
-        >
-          <div className="w-7 h-7 rounded-full bg-[#EBF0FB] flex items-center justify-center text-[0.8rem] font-bold text-[#2050A0] flex-shrink-0">
-            {profile.avatarChar}
+        {isAuthed ? (
+          <Link
+            href="/my"
+            className={`flex items-center gap-3 px-3 py-[9px] rounded-[10px] transition-all duration-150 ${
+              pathname === "/my"
+                ? "bg-white/10 text-white"
+                : "text-white/45 hover:text-white/80 hover:bg-white/[0.05]"
+            }`}
+          >
+            <div className="w-7 h-7 rounded-full bg-[#EBF0FB] flex items-center justify-center text-[0.8rem] font-bold text-[#2050A0] flex-shrink-0">
+              {profile.avatarChar}
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[0.82rem] font-medium text-white/70">{profile.name}</span>
+              <span className="text-[0.65rem] text-white/30">{profile.visa} {profile.yearsInSG}</span>
+            </div>
+          </Link>
+        ) : (
+          <div className="flex flex-col gap-1.5">
+            <Link
+              href="/login"
+              className="flex items-center justify-center gap-2 w-full py-[9px] rounded-[10px] bg-white/10 text-white/90 text-[0.82rem] font-semibold hover:bg-white/[0.15] transition-colors"
+            >
+              <span className="text-[0.95rem] leading-none">👤</span>
+              <span>로그인</span>
+            </Link>
+            <Link
+              href="/signup"
+              className="text-center text-[0.72rem] text-white/35 hover:text-white/70 transition-colors py-0.5"
+            >
+              회원가입
+            </Link>
           </div>
-          <div className="flex flex-col">
-            <span className="text-[0.82rem] font-medium text-white/70">{profile.name}</span>
-            <span className="text-[0.65rem] text-white/30">{profile.visa} {profile.yearsInSG}</span>
-          </div>
-        </Link>
+        )}
       </div>
 
-      {/* MY 빠른 액션 */}
+      {/* MY 빠른 액션 (로그인 시에만) */}
+      {isAuthed && (
       <div className="px-4 pb-4 pt-2 grid grid-cols-3 gap-1">
         {MY_ACTIONS.map((act) => (
           <Link
@@ -150,6 +171,7 @@ export default function DesktopSidebar() {
           </Link>
         ))}
       </div>
+      )}
     </aside>
   );
 }

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
 import { useProfile } from "@/lib/profile";
+import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { icon: "🏠", label: "홈",         href: "/" },
@@ -32,6 +33,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
   const pathname = usePathname();
   const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
   const { profile } = useProfile();
+  const { isAuthed } = useAuth();
 
   // 라우트가 바뀌면 자동으로 닫힘
   useEffect(() => {
@@ -163,35 +165,57 @@ export default function MobileDrawer({ open, onClose }: Props) {
 
         <div className="h-px bg-white/[0.06] mx-4 mb-3" />
 
-        {/* 프로필 */}
-        <Link
-          href="/my"
-          onClick={onClose}
-          className="flex items-center gap-3 mx-3 mb-2 px-3 py-[10px] rounded-[10px] hover:bg-white/[0.05] transition-colors"
-        >
-          <div className="w-8 h-8 rounded-full bg-[#EBF0FB] flex items-center justify-center text-[0.85rem] font-bold text-[#2050A0] flex-shrink-0">
-            {profile.avatarChar}
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[0.85rem] font-medium text-white/85 truncate">{profile.name}</div>
-            <div className="text-[0.65rem] text-white/35">{profile.visa} {profile.yearsInSG}</div>
-          </div>
-          <span className="text-white/30 text-sm">›</span>
-        </Link>
-
-        <div className="px-3 pb-5 grid grid-cols-3 gap-1">
-          {MY_ACTIONS.map((act) => (
+        {/* 프로필 / 로그인 */}
+        {isAuthed ? (
+          <>
             <Link
-              key={act.label}
-              href={act.href}
+              href="/my"
               onClick={onClose}
-              className="flex flex-col items-center gap-1 py-2 rounded-[8px] hover:bg-white/[0.05] transition-colors"
+              className="flex items-center gap-3 mx-3 mb-2 px-3 py-[10px] rounded-[10px] hover:bg-white/[0.05] transition-colors"
             >
-              <span className="text-base leading-none">{act.icon}</span>
-              <span className="text-[0.62rem] text-white/45 text-center">{act.label}</span>
+              <div className="w-8 h-8 rounded-full bg-[#EBF0FB] flex items-center justify-center text-[0.85rem] font-bold text-[#2050A0] flex-shrink-0">
+                {profile.avatarChar}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.85rem] font-medium text-white/85 truncate">{profile.name}</div>
+                <div className="text-[0.65rem] text-white/35">{profile.visa} {profile.yearsInSG}</div>
+              </div>
+              <span className="text-white/30 text-sm">›</span>
             </Link>
-          ))}
-        </div>
+
+            <div className="px-3 pb-5 grid grid-cols-3 gap-1">
+              {MY_ACTIONS.map((act) => (
+                <Link
+                  key={act.label}
+                  href={act.href}
+                  onClick={onClose}
+                  className="flex flex-col items-center gap-1 py-2 rounded-[8px] hover:bg-white/[0.05] transition-colors"
+                >
+                  <span className="text-base leading-none">{act.icon}</span>
+                  <span className="text-[0.62rem] text-white/45 text-center">{act.label}</span>
+                </Link>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="px-3 pb-5 flex flex-col gap-2">
+            <Link
+              href="/login"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 w-full py-[11px] rounded-[10px] bg-white/10 text-white text-[0.88rem] font-semibold hover:bg-white/[0.15] transition-colors"
+            >
+              <span className="leading-none">👤</span>
+              <span>로그인</span>
+            </Link>
+            <Link
+              href="/signup"
+              onClick={onClose}
+              className="text-center text-[0.76rem] text-white/40 hover:text-white/75 transition-colors py-0.5"
+            >
+              회원가입
+            </Link>
+          </div>
+        )}
       </aside>
     </>
   );
