@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState, useEffect } from "react";
+import { Suspense, useMemo, useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
@@ -576,10 +576,72 @@ function LikedTab({ posts, helped }: LikedTabProps) {
   );
 }
 
+// 알림 설정 항목 (채용 추천 제거 · 뉴스 업데이트 추가)
+type NotifKey = "comment" | "like" | "news" | "marketing";
+const NOTIF_ITEMS: { key: NotifKey; icon: string; label: string; desc: string }[] = [
+  { key: "comment",   icon: "💬", label: "댓글 알림",     desc: "내 글에 댓글이 달리면 알려드려요" },
+  { key: "like",      icon: "❤️", label: "좋아요 알림",   desc: "내 글·댓글에 좋아요가 눌리면 알려드려요" },
+  { key: "news",      icon: "📰", label: "뉴스 업데이트", desc: "새 뉴스가 올라오면 알려드려요" },
+  { key: "marketing", icon: "📢", label: "마케팅·이벤트", desc: "혜택·이벤트 소식을 받아요" },
+];
+const NOTIF_DEFAULT: Record<NotifKey, boolean> = { comment: true, like: true, news: true, marketing: false };
+const NOTIF_KEY = "sori_notif_settings";
+
+function useNotifSettings() {
+  const [settings, setSettings] = useState<Record<NotifKey, boolean>>(NOTIF_DEFAULT);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(NOTIF_KEY);
+      if (raw) setSettings({ ...NOTIF_DEFAULT, ...JSON.parse(raw) });
+    } catch { /* 파싱 실패 시 기본값 유지 */ }
+  }, []);
+
+  const save = useCallback((next: Record<NotifKey, boolean>) => {
+    setSettings(next);
+    try { localStorage.setItem(NOTIF_KEY, JSON.stringify(next)); } catch { /* quota 등 무시 */ }
+  }, []);
+
+  const setOne = useCallback((key: NotifKey, val: boolean) => {
+    setSettings((prev) => {
+      const next = { ...prev, [key]: val };
+      try { localStorage.setItem(NOTIF_KEY, JSON.stringify(next)); } catch { /* 무시 */ }
+      return next;
+    });
+  }, []);
+
+  const setAll = useCallback((val: boolean) => {
+    save(NOTIF_ITEMS.reduce((acc, it) => { acc[it.key] = val; return acc; }, {} as Record<NotifKey, boolean>));
+  }, [save]);
+
+  return { settings, setOne, setAll };
+}
+
+function ToggleSwitch({ on, onChange, label }: { on: boolean; onChange: () => void; label: string }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label={label}
+      onClick={onChange}
+      className={`relative w-[46px] h-[26px] rounded-full transition-colors flex-shrink-0 ${on ? "bg-[#D04020]" : "bg-[#D8D3C8]"}`}
+    >
+      <span
+        className={`absolute top-[3px] left-[3px] w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${on ? "translate-x-5" : ""}`}
+      />
+    </button>
+  );
+}
+
 function SettingsTab() {
+  const [notifOpen, setNotifOpen] = useState(false);
+  const { settings, setOne, setAll } = useNotifSettings();
+  const allOn = NOTIF_ITEMS.every((it) => settings[it.key]);
+
   const handleMenu = (label: string) => {
+    if (label === "알림 설정") { setNotifOpen(true); return; }
     const messages: Record<string, string> = {
-      "알림 설정": "알림 설정\n\n• 댓글 알림: ON\n• 좋아요 알림: ON\n• 채용 추천: ON\n• 마케팅: OFF\n\n(실제 서비스 연동 시 토글로 변경 가능)",
       "개인정보 보호": "개인정보 보호\n\n• 프로필 공개 범위: 회원에게만\n• 검색 결과 노출: ON\n• 활동 기록 표시: ON\n\n(실제 서비스 연동 시 변경 가능)",
       "언어 설정": "언어 설정\n\n현재: 한국어\n\n(영어/중국어 지원은 향후 추가 예정)",
       "앱 정보": "SORI v1.0.0\n\n싱가포르 한인 커뮤니티 플랫폼\n© 2026 SORI\n\n약관 · 개인정보 처리방침은 곧 추가됩니다.",
@@ -635,6 +697,58 @@ function SettingsTab() {
       <div className="text-center mt-4 text-[0.65rem] text-[#C0BBB0]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
         SORI v1.0.0 · 싱가포르 한인 플랫폼
       </div>
+
+      {notifOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 sm:p-4"
+          onClick={() => setNotifOpen(false)}
+        >
+          <div
+            className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-4 py-3.5 border-b border-black/[0.06]">
+              <span className="text-[0.95rem] font-semibold flex items-center gap-2">🔔 알림 설정</span>
+              <button
+                onClick={() => setNotifOpen(false)}
+                aria-label="닫기"
+                className="text-[#888070] hover:text-[#181614] text-lg leading-none px-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* 전체 on/off */}
+            <div className="flex items-center gap-3 px-4 py-3.5 bg-[#F5F3EE] border-b border-black/[0.06]">
+              <span className="text-lg leading-none">🔔</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.85rem] font-semibold">전체 알림</div>
+                <div className="text-[0.72rem] text-[#888070]">모든 알림을 한 번에 켜고 끕니다</div>
+              </div>
+              <ToggleSwitch on={allOn} onChange={() => setAll(!allOn)} label="전체 알림" />
+            </div>
+
+            {/* 개별 항목 */}
+            {NOTIF_ITEMS.map((it, i) => (
+              <div
+                key={it.key}
+                className={`flex items-center gap-3 px-4 py-3.5 ${i < NOTIF_ITEMS.length - 1 ? "border-b border-black/[0.05]" : ""}`}
+              >
+                <span className="text-lg leading-none">{it.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[0.85rem]">{it.label}</div>
+                  <div className="text-[0.72rem] text-[#888070]">{it.desc}</div>
+                </div>
+                <ToggleSwitch on={settings[it.key]} onChange={() => setOne(it.key, !settings[it.key])} label={it.label} />
+              </div>
+            ))}
+
+            <div className="px-4 py-3 text-center text-[0.68rem] text-[#C0BBB0]">
+              설정은 이 기기에 저장돼요. (실제 푸시 발송은 백엔드 연동 후 지원)
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
