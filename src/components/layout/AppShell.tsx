@@ -10,7 +10,7 @@ import LoginRequired from "@/components/shared/LoginRequired";
 import { useAuth } from "@/lib/auth";
 
 // 사이드바 없이 단독 렌더링할 페이지
-const STANDALONE = ["/demo", "/write", "/realty/write", "/flea/write", "/jobs/write", "/business/write", "/login", "/signup"];
+const STANDALONE = ["/demo", "/write", "/realty/write", "/flea/write", "/jobs/write", "/business/write", "/login", "/signup", "/terms", "/privacy"];
 
 // 로그인해야 접근 가능한 글쓰기 페이지 (게스트 차단)
 const WRITE_ROUTES = ["/write", "/realty/write", "/flea/write", "/jobs/write", "/business/write"];

@@ -22,6 +22,7 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [showPw, setShowPw] = useState(false);
   const [visa, setVisa] = useState("EP");
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState("");
@@ -105,7 +106,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-[0.78rem] text-[#888070] mb-1.5">비밀번호</label>
               <input
-                type="password"
+                type={showPw ? "text" : "password"}
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -119,7 +120,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-[0.78rem] text-[#888070] mb-1.5">비밀번호 확인</label>
               <input
-                type="password"
+                type={showPw ? "text" : "password"}
                 value={confirm}
                 onChange={(e) => {
                   setConfirm(e.target.value);
@@ -131,6 +132,14 @@ export default function SignupPage() {
               />
             </div>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setShowPw((v) => !v)}
+            className="text-[0.72rem] text-[#888070] hover:text-[#181614] -mt-1 self-start"
+          >
+            {showPw ? "🙈 비밀번호 숨기기" : "👁️ 비밀번호 표시"}
+          </button>
 
           <div>
             <label className="block text-[0.78rem] text-[#888070] mb-1.5">비자 상태</label>
@@ -158,11 +167,32 @@ export default function SignupPage() {
               className="mt-0.5 accent-[#D04020] w-4 h-4"
             />
             <span className="text-[0.76rem] text-[#888070] leading-snug">
-              이용약관 및 개인정보 처리방침에 동의합니다.
+              <Link
+                href="/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[#D04020] underline"
+              >
+                이용약관
+              </Link>{" "}
+              및{" "}
+              <Link
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[#D04020] underline"
+              >
+                개인정보 처리방침
+              </Link>
+              에 동의합니다.
             </span>
           </label>
 
-          {error && <p className="text-[0.78rem] text-[#D04020]">{error}</p>}
+          {error && (
+            <p className="text-[0.78rem] text-[#D04020] bg-[#FBF0EC] rounded-[8px] px-3 py-2">⚠️ {error}</p>
+          )}
 
           <button
             type="submit"

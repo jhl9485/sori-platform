@@ -14,6 +14,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -67,20 +68,32 @@ export default function LoginPage() {
 
           <div>
             <label className="block text-[0.78rem] text-[#888070] mb-1.5">비밀번호</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError("");
-              }}
-              placeholder="비밀번호"
-              className={INPUT_CLS}
-              autoComplete="current-password"
-            />
+            <div className="relative">
+              <input
+                type={showPw ? "text" : "password"}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+                placeholder="비밀번호"
+                className={INPUT_CLS + " pr-11"}
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw((v) => !v)}
+                aria-label={showPw ? "비밀번호 숨기기" : "비밀번호 표시"}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[0.9rem] leading-none"
+              >
+                {showPw ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
 
-          {error && <p className="text-[0.78rem] text-[#D04020]">{error}</p>}
+          {error && (
+            <p className="text-[0.78rem] text-[#D04020] bg-[#FBF0EC] rounded-[8px] px-3 py-2">⚠️ {error}</p>
+          )}
 
           <button
             type="submit"

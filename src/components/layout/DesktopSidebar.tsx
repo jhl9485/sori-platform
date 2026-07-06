@@ -27,7 +27,7 @@ export default function DesktopSidebar() {
   const pathname = usePathname();
   const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
   const { profile } = useProfile();
-  const { isAuthed } = useAuth();
+  const { isAuthed, hydrated } = useAuth();
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-[240px] bg-[#131211] flex flex-col z-50 select-none">
@@ -119,7 +119,9 @@ export default function DesktopSidebar() {
 
       {/* MY 프로필 / 로그인 */}
       <div className="px-3 pt-3">
-        {isAuthed ? (
+        {!hydrated ? (
+          <div className="h-[46px] rounded-[10px] bg-white/[0.05] animate-pulse" />
+        ) : isAuthed ? (
           <Link
             href="/my"
             className={`flex items-center gap-3 px-3 py-[9px] rounded-[10px] transition-all duration-150 ${

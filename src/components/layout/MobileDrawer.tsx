@@ -33,7 +33,7 @@ export default function MobileDrawer({ open, onClose }: Props) {
   const pathname = usePathname();
   const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
   const { profile } = useProfile();
-  const { isAuthed } = useAuth();
+  const { isAuthed, hydrated } = useAuth();
 
   // 라우트가 바뀌면 자동으로 닫힘
   useEffect(() => {
@@ -166,7 +166,9 @@ export default function MobileDrawer({ open, onClose }: Props) {
         <div className="h-px bg-white/[0.06] mx-4 mb-3" />
 
         {/* 프로필 / 로그인 */}
-        {isAuthed ? (
+        {!hydrated ? (
+          <div className="mx-3 mb-5 h-[46px] rounded-[10px] bg-white/[0.05] animate-pulse" />
+        ) : isAuthed ? (
           <>
             <Link
               href="/my"

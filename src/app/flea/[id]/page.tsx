@@ -168,8 +168,8 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
               {item.sellerSince}년부터 · 거래 {item.sellerDeals}건
             </div>
           </div>
-          <div className="text-[0.72rem] text-[#2B7A50] font-medium bg-[#EBF5F0] px-2 py-1 rounded-full">
-            인증회원
+          <div className="text-[0.72rem] text-[#888070] font-medium bg-[#F0EDE8] px-2 py-1 rounded-full">
+            회원
           </div>
         </div>
       </div>

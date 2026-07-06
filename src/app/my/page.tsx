@@ -41,7 +41,7 @@ function MyPageInner() {
   const initialTab: TabId = (TABS.find((t) => t.id === tabParam)?.id) || "overview";
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
   const { profile, setProfile } = useProfile();
-  const { isAuthed } = useAuth();
+  const { isAuthed, hydrated } = useAuth();
   const [editingProfile, setEditingProfile] = useState(false);
 
   useEffect(() => {
@@ -103,7 +103,15 @@ function MyPageInner() {
       {/* 프로필 헤더 */}
       <div className="bg-[#131211] pt-8 md:pt-10 pb-6 px-4 md:px-6 md:rounded-b-[20px]">
         <div className="flex items-end justify-between">
-          {isAuthed ? (
+          {!hydrated ? (
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-white/10 border-2 border-white/20 animate-pulse" />
+              <div className="space-y-2">
+                <div className="h-4 w-28 bg-white/10 rounded animate-pulse" />
+                <div className="h-3 w-40 bg-white/10 rounded animate-pulse" />
+              </div>
+            </div>
+          ) : isAuthed ? (
             <>
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-[#EBF0FB] flex items-center justify-center text-2xl border-2 border-white/20 font-bold text-[#2050A0]">
@@ -114,7 +122,7 @@ function MyPageInner() {
                   <div className="text-white/50 text-[0.75rem] mt-[2px]">{profile.visa} {profile.yearsInSG} · {profile.area}</div>
                   <div className="flex items-center gap-2 mt-2">
                     <span className="text-[0.65rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[2px] rounded-full font-medium">{profile.visa} 비자</span>
-                    <span className="text-[0.65rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[2px] rounded-full font-medium">인증회원 ✓</span>
+                    <span className="text-[0.65rem] bg-[#F0EDE8] text-[#888070] px-2 py-[2px] rounded-full font-medium">SORI 회원</span>
                   </div>
                 </div>
               </div>
