@@ -8,7 +8,7 @@ import BottomNav from "./BottomNav";
 import ScrollToTop from "@/components/shared/ScrollToTop";
 
 // 사이드바 없이 단독 렌더링할 페이지
-const STANDALONE = ["/demo", "/write", "/realty/write", "/flea/write", "/jobs/write", "/business/write"];
+const STANDALONE = ["/demo", "/write", "/realty/write", "/flea/write", "/jobs/write", "/business/write", "/login", "/signup"];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

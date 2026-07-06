@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useMemo, useState, useEffect, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { NEWS_ITEMS } from "@/data/newsItems";
@@ -16,6 +16,7 @@ import {
   removeUserItem,
 } from "@/lib/userContent";
 import { useProfile } from "@/lib/profile";
+import { useAuth } from "@/lib/auth";
 
 const TABS = [
   { id: "overview", label: "활동", icon: "📊" },
@@ -635,6 +636,8 @@ function ToggleSwitch({ on, onChange, label }: { on: boolean; onChange: () => vo
 }
 
 function SettingsTab() {
+  const router = useRouter();
+  const { logout } = useAuth();
   const [notifOpen, setNotifOpen] = useState(false);
   const { settings, setOne, setAll } = useNotifSettings();
   const allOn = NOTIF_ITEMS.every((it) => settings[it.key]);
@@ -652,7 +655,8 @@ function SettingsTab() {
 
   const handleLogout = () => {
     if (!window.confirm("로그아웃하시겠어요?\n저장된 글·댓글·좋아요는 그대로 유지됩니다.")) return;
-    alert("로그아웃되었습니다.\n(실제 서비스에서는 로그인 화면으로 이동)");
+    logout();
+    router.push("/login");
   };
 
   const handleClearData = () => {
