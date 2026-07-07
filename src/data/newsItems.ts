@@ -26,6 +26,222 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260707-1",
+    publishedAt: "2026-07-07",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기 절정 시즌 진입 — 6월 주간 최다 119건·요추청 레드얼럿, 7~8월이 피크",
+    summary: "NEA에 따르면 6월 13일 마감 주에 주간 119건(2026년 최다)을 기록하며 연간 누적 938건에 달했다. 요추청(Yio Chu Kang) 일대에 다수 레드얼럿 클러스터가 집중돼 있으며, 싱가포르 뎅기는 통상 7~8월에 절정을 이룬다. 거주 한인들은 고인 물 제거·기피제 사용 등 예방을 강화해야 할 시점이다.",
+    fullContent: `**2026년 뎅기 주의보 — 절정 시즌 진입 (7~8월)**
+NEA(국가환경청) 최신 집계 기준 뎅기 동향입니다.
+
+**현황 (2026년 6월 13일 기준)**
+- **주간 최고 발생건수**: 119건 (6월 13일 마감 주, 2026년 최고 기록)
+- **연간 누적**: 938건
+- 5월 23일 이후 매주 50건 이상 지속
+- **레드얼럿 클러스터**: 요추청(Yio Chu Kang) 일대에 다수 집중 — 같은 주거 환경 내 이집트숲모기 다중 번식 가능성
+
+**시즌 전망**
+- 싱가포르 뎅기는 통상 4월부터 증가 → **7~8월 절정** → 9~10월 감소
+- 올해는 예년보다 일찍 상승세가 시작돼 7월 이후 추가 증가 가능성
+
+**⚠️ 한인 예방 수칙**
+- 집 안팎 고인 물 제거 (화분 받침대·에어컨 물받이·물통 등) — NEA 10분 모기 점검 습관화
+- 외출 시 긴 소매·긴 바지 착용, DEET·Picaridin 성분 기피제 사용
+- 39도 이상 발열 + 극심한 두통·눈 통증·근육통이 3일 이상 지속되면 즉시 병원 방문
+- NEA 앱(myENV) 또는 nea.gov.sg/dengue에서 집 주변 클러스터 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Medical Daily · NEA",
+    sources: [
+      { name: "Medical Daily — Singapore Dengue Cases Hit 2026 High as Red-Alert Clusters Spread Across Northern Neighborhoods", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+      { name: "NEA — Dengue Cases (공식 통계)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-cases" },
+      { name: "NEA — Dengue Clusters (공식 지도)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-clusters" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260707-2",
+    publishedAt: "2026-07-06",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📈 STI 5,342 마감 사상 최고가 경신 — 금융주 주도, 7월 첫째 주 +1% 상승",
+    summary: "7월 6일(월) 스트레이츠 타임스 인덱스(STI)가 전거래일 대비 82.43포인트(+1.57%) 오른 5,342.24로 마감하며 사상 최고가를 경신했다. 7월 3일 마감 주간에도 약 1% 상승해 연일 최고가 행진을 이어갔다. DBS·OCBC·UOB 등 은행주가 상승을 이끌었으나, 30개 구성 종목 전반에 걸친 균형 상승이 아닌 소수 대형주 집중 현상이라는 분석도 나온다.",
+    fullContent: `**STI 사상 최고가 경신 (2026년 7월 6일)**
+싱가포르 대표 주가지수인 스트레이츠 타임스 인덱스(STI)가 연일 최고가를 갱신하고 있습니다.
+
+**7월 6일(월) 마감**
+- STI 종가: **5,342.24** (전거래일 대비 +82.43pt, **+1.57%**)
+- 사상 최고 수준 기록
+
+**최근 흐름**
+- 7월 3일 마감 주간: **약 +1%** 상승
+- STI가 5,000포인트를 처음 돌파한 이후 지속 상승 중
+
+**주도 섹터 및 특이사항**
+- DBS·OCBC·UOB 등 **금융(은행)주**가 상승 주도
+- 단, 30개 구성 종목 전반의 균형 상승이 아닌 **소수 대형주 집중** 현상 — 쏠림 유의 필요
+
+**배경**
+- 싱가포르의 안정적 금융 허브 위상 및 글로벌 자금 유입 지속
+- 동남아 증시 중 싱가포르 상대적 강세 유지
+
+**⚠️ 한인 투자자 팁**
+- 최고가 구간에서는 추격 매수보다 분산 투자·장기 보유 전략이 일반적으로 권장됩니다.
+- 투자 결정 전 반드시 공인 투자 자문사에 확인하세요.
+- 환율(SGD/KRW) 변동도 함께 확인하면 실질 수익 판단에 도움이 됩니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Yahoo Finance SG · SIAS",
+    sources: [
+      { name: "Yahoo Finance — STI (^STI) 최신 시세", url: "https://sg.finance.yahoo.com/quote/%5ESTI/" },
+      { name: "SIAS — Banks continued to power the STI to new high, but gains not broad-based", url: "https://sias.org.sg/latest-updates/banks-continued-to-power-the-sti-to-new-high-but-gains-not-broad-based/" },
+      { name: "nakitte.com — Straits Times Index Gains About 1% in Week Ended July 3", url: "https://www.nakitte.com/briefs/sti-2026-07-06/" },
+    ],
+    time: "2026년 7월 6일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📈",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260707-3",
+    publishedAt: "2026-07-04",
+    category: "행사",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🌸 싱가포르 가든 페스티벌 7/4~12 — 8m 꽃 롤러코스터·해바라기 500송이·난초쇼, 마켓 무료",
+    summary: "10회를 맞은 싱가포르 가든 페스티벌(SGF 2026)이 7월 4~12일 가든스 바이 더 베이에서 열린다. 테마 '블룸의 카니발'로 8m 높이 꽃 롤러코스터, 500여 송이 해바라기 밭, 동남아오키드협회와 함께하는 희귀 난초 품평회 등이 주요 볼거리다. 식물·원예 용품 90개 업체가 참가하는 마켓플레이스는 무료 입장이다.",
+    fullContent: `**싱가포르 가든 페스티벌 2026 — Carnival of Blooms**
+NParks(국가공원청) 주관 가든 페스티벌이 올해로 10회를 맞이합니다.
+
+**행사 개요**
+- **일정**: 2026년 7월 4일(토) ~ 12일(일)
+- **장소**: 가든스 바이 더 베이 (Gardens by the Bay)
+- **테마**: Carnival of Blooms — 쇼 가든 All-Stars Edition
+- **운영 시간**: 오전 10시 ~ 오후 10시 (마지막 입장 오후 9시 30분)
+- **플라워 돔**: 오전 9시 ~ 오후 9시 (마지막 입장 오후 8시 30분)
+- **마켓플레이스**: 오전 10시 ~ 오후 8시, **무료 입장** (식물·원예 용품·희귀식물 등 90개 업체)
+
+**주요 볼거리**
+- **꽃 롤러코스터(Floral Roller Coaster)**: 더 메도우 입구에 설치된 8m 높이 대형 설치물 — 열대 식물이 롤러코스터 트랙을 따라 흐르는 꽃 물결
+- **해바라기 밭**: 10여 품종 500송이 이상, 연노랑부터 황금 오렌지까지
+- **난초 품평회(Singapore Orchid Show)**: 동남아오키드협회(OSSA)와 협업, 희귀·수상 난초 품종 전시
+
+**⚠️ 한인 나들이 팁**
+- 마켓플레이스는 무료이므로 가볍게 둘러보기 좋습니다.
+- 메인 페스티벌 입장권은 가든스 바이 더 베이 공식 홈페이지 또는 현장에서 구매 가능합니다.
+- 주말은 혼잡 예상, 평일(7/7~11) 방문을 권장합니다.
+- 어린 자녀 동반 시 야외 공간이 넓으니 오전 개장 직후 방문하면 쾌적합니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · NParks · MustShareNews",
+    sources: [
+      { name: "Mothership — S'pore Garden Festival 2026 market place returns with 90 vendors", url: "https://mothership.sg/2026/07/singapore-garden-festival-2026/" },
+      { name: "NParks / SGF — Show Info (공식)", url: "https://sgf.nparks.gov.sg/about/show-info/" },
+      { name: "MustShareNews — SGF 2026 has giant swings, misty orchid tunnel & floral roller coaster", url: "https://mustsharenews.com/singapore-garden-festival/" },
+      { name: "thenewageparents.com — Singapore Garden Festival 4–12 July 2026", url: "https://thenewageparents.com/singapore-garden-festival/" },
+    ],
+    time: "2026년 7월 4~12일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🌸",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260707-4",
+    publishedAt: "2026-07-01",
+    category: "디지털·보안",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🔑 Singpass 패스키 7/1 출시 — 아이폰 먼저, 피싱 가짜 사이트에선 작동 안 해",
+    summary: "GovTech가 7월 1일(수)부터 Singpass 앱에 패스키(Passkey) 로그인을 도입했다. 1단계로 아이폰 사용자부터 적용되며 안드로이드·PC 브라우저는 추후 확대된다. 패스키는 공식 Singpass 도메인에만 연동돼 피싱 가짜 사이트에서는 작동하지 않아 스미싱·피싱 피해를 원천 차단할 수 있다. 얼굴·지문 인식 또는 6자리 앱 비밀번호로 잠금 해제한다.",
+    fullContent: `**Singpass 패스키 로그인 출시 (2026년 7월 1일)**
+GovTech(정부기술청)가 Singpass 앱에 패스키 로그인을 도입하며 피싱 방지 보안을 강화했습니다.
+
+**출시 개요**
+- **1단계 대상**: 아이폰(iPhone) Singpass 앱 사용자 (7월 1일 오전 10시부터 설정 가능)
+- **추후 확대**: 안드로이드, PC 웹 브라우저(다음 단계 예정)
+- **잠금 해제**: 얼굴 인식, 지문 인식, 또는 6자리 Singpass 앱 비밀번호
+
+**핵심 보안 원리**
+- 패스키는 **공식 Singpass 로그인 도메인에만 연동** → 피싱(가짜) 사이트에서는 작동 불가
+- 기존 비밀번호·OTP와 달리 재사용 가능한 인증 정보가 남지 않아 탈취해도 무효
+- 피싱은 싱가포르 두 번째로 흔한 사기 유형이며 연간 피해액 S$4,000만에 달해 도입된 조치
+
+**Singpass 현황**
+- 월간 활성 이용자: 450만 명+
+- 월간 거래 건수: 4,100만 건+
+- 연동 서비스: 정부·민간 2,700여 개
+
+**⚠️ 한인 팁**
+- 아이폰 Singpass 앱 사용자라면 앱 설정 메뉴에서 패스키를 지금 활성화해보세요.
+- Singpass 로그인 요구 링크를 받았을 때 패스키가 작동하지 않으면 **가짜 사이트**일 가능성이 높습니다.
+- 안드로이드 사용자는 추후 업데이트 공지를 기다리세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · Biometric Update · Computer Weekly",
+    sources: [
+      { name: "Mothership — Singpass launches iPhone passkey logins from Jul. 1", url: "https://mothership.sg/2026/06/singpass-launch-passkey-login/" },
+      { name: "Biometric Update — Singapore adds passkeys to Singpass in phishing crackdown", url: "https://www.biometricupdate.com/202607/singapore-adds-passkeys-to-singpass-in-phishing-crackdown" },
+      { name: "Computer Weekly — Singpass to roll out passkeys in fight against phishing scams", url: "https://www.computerweekly.com/news/366645129/Singpass-to-roll-out-passkeys-in-fight-against-phishing-scams" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🔑",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260707-5",
+    publishedAt: "2026-07-01",
+    category: "고용·비자",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 7/1부터 내국인 기준임금(LQS) S$1,800 — S Pass 쿼터 영향, 한인 고용주 체크 필수",
+    summary: "7월 1일(수)부터 싱가포르 내국인 최저 기준임금(LQS)이 월 S$1,600에서 S$1,800으로 인상됐다. LQS는 외국인 고용 쿼터 산정 기준으로, S$1,800 미만 내국인 직원은 쿼터 기여분이 1.0에서 0.5로 줄어 S Pass·워크퍼밋 쿼터에 영향을 준다. 한인이 운영하는 사업체는 S Pass 갱신 전 내국인 임금을 즉시 점검해야 한다.",
+    fullContent: `**내국인 기준임금(LQS) S$1,800 인상 (2026년 7월 1일 시행)**
+MOM이 Budget 2026 발표에 따라 7월 1일부터 LQS를 인상했습니다.
+
+**변경 내용**
+- **LQS**: 월 **S$1,600 → S$1,800** (2026년 7월 1일부터)
+- LQS는 내국인(시민권자·PR) 직원이 S Pass·워크퍼밋 고용 쿼터에서 '1명'으로 계산되기 위한 최소 급여
+
+**쿼터 기여분 변화**
+- S$1,800 이상 → **1.0** (전체 1명으로 계산)
+- S$900 이상~S$1,800 미만 → **0.5** (반 명으로 계산)
+- S$900 미만 → **0** (쿼터 미산정)
+
+**영향**
+- S$1,600~1,799를 받던 내국인 직원이 있는 사업체는 7월 1일 이후 해당 직원의 쿼터 기여분이 **1.0 → 0.5**로 감소
+- S Pass·워크퍼밋 쿼터가 줄어 **갱신이 거부될 수 있음**
+- 정부는 저임금 내국인 임금 인상을 지원하는 PWCS(진보임금크레딧제도)를 2028년까지 연장·강화
+
+**S Pass 최저 급여 (참고 — LQS와 별개)**
+- 현재 신규 신청: S$3,300 (금융업 S$3,800)
+- 2027년 1월부터 신규 신청: S$3,600 (금융업 S$4,000)으로 추가 인상 예정
+
+**⚠️ 한인 고용주 팁**
+- 사업체에 내국인 직원이 있다면 현재 급여가 S$1,800 이상인지 즉시 확인하세요.
+- S Pass 보유 외국인 직원 갱신 전 쿼터 여유분을 반드시 재검토하세요.
+- 문의: MOM 고용주 포털(mom.gov.sg) 또는 1800-333-3333
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM (공식) · Mothership",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Mothership — Local Qualifying Salary raised, Budget 2026", url: "https://mothership.sg/2026/02/budget-2026-local-qualifying-salary-raised/" },
+      { name: "Singapore Employment Agency — LQS S$1,800 from July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+      { name: "MOM — COS 2026 Foreign Workforce Policy Factsheet (공식 PDF)", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📋",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
     category: "안전",
