@@ -26,6 +26,177 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260708-1",
+    publishedAt: "2026-07-07",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🏦 ASC·5개 은행 합동 2개월 작전 — 600건 이상 차단·S$3,800만 손실 예방 (7/7 발표)",
+    summary: "싱가포르 경찰청 반사기센터(ASC)가 DBS·UOB·OCBC·스탠다드차타드·GXS은행과 5~6월 두 달간 RPA(로봇프로세스자동화) 기술을 활용해 600건 이상의 진행 중인 사기를 차단하고 S$3,800만 이상의 잠재 피해를 막았다고 7월 7일 발표했다. 잠재 피해자 3,300명 이상에게 3,800건 이상의 SMS 경보를 발송해 사전에 차단한 것이 핵심이다.",
+    fullContent: `**ASC·5개 은행 합동 작전 결과 (2026년 7월 7일 발표)**
+싱가포르 경찰청(SPF) 사이버사령부 반사기센터(Anti-Scam Centre, ASC)가 7월 7일 발표한 내용입니다.
+
+**작전 개요**
+- **기간**: 2026년 5월 1일~6월 30일 (2개월)
+- **협력 은행**: DBS, UOB, OCBC, Standard Chartered Bank, GXS Bank (5곳)
+- **기술**: 로봇프로세스자동화(RPA) 활용, 은행과 ASC 간 신속 정보 교환
+
+**성과**
+- 진행 중인 사기 **600건 이상** 차단
+- 잠재 피해자 **3,300명 이상**에게 **3,800건 이상의 SMS 경보** 발송
+- 예방된 잠재 손실: **S$3,800만(S$38 million) 이상**
+
+**주요 사기 유형**
+- 정부기관 사칭 사기, 투자 사기, 취업 사기, 전자상거래 사기, 임대 사기
+
+**역대 합동 작전 성과 (참고)**
+- 2026년 3월: 300건+·S$2,400만 예방
+- 2026년 5월: 500건+·S$3,300만 예방
+- 이번(7월): 600건+·S$3,800만 예방 — 매 작전마다 차단 규모 증가
+
+**한인 팁**
+- 은행이나 경찰청 명의의 "귀하의 계좌가 사기에 연루됐다"는 전화·문자는 사기 가능성이 높으니 즉시 끊고 공식 번호로 재확인
+- 의심 시 1799(안티스캠 핫라인) 또는 ScamShield 앱 이용
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · Fintech News SG",
+    sources: [
+      { name: "SPF — Anti-Scam Centre And Five Banks Collaborate To Foil Over 600 Scam Attempts (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260707_anti_scam_centre_and_five_banks_collaborate_to_foil_over_600_scam_attempts" },
+      { name: "Fintech News Singapore — Five Banks, Singapore Anti-Scam Centre Avert S$38 Million in Scam Losses", url: "https://fintechnews.sg/134107/security/singapore-anti-scam-centre/" },
+    ],
+    time: "2026년 7월 7일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏦",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260708-2",
+    publishedAt: "2026-07-02",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ MS·Crypto.com 사칭 신종 복합 사기 — 5월 이후 30건·S$100만 피해, '3'으로 시작 번호 주의",
+    summary: "싱가포르 경찰청(SPF)이 7월 2일, 마이크로소프트(MS)와 암호화폐 거래소 Crypto.com을 동시에 사칭하는 신종 기술지원 사기를 경보했다. 5월 이후 최소 30건·S$100만 이상의 피해가 발생했다. 브라우저에 가짜 MS 보안 경고가 뜨고, '3'으로 시작하는 8자리 번호로 전화하면 사칭 담당자가 암호화폐 지갑 접근 권한을 탈취하는 수법이다.",
+    fullContent: `**MS·Crypto.com 사칭 기술지원 사기 경보 (SPF, 2026년 7월 2일)**
+6월 9일 MS 단독 사칭 경보(S$170만 피해)에 이은 신종 복합형 경보입니다.
+
+**피해 현황**
+- 2026년 5월 이후 최소 **30건** 신고
+- 피해액 최소 **S$100만(S$1 million)**
+
+**수법**
+1. 인터넷 브라우저에 MS 사칭 가짜 보안 경고 팝업 발생 ("기기 해킹 감지" 등)
+2. 팝업 속 **'3'으로 시작하는 8자리 전화번호** 클릭/전화 유도
+3. 사칭 기술지원 담당자가 기기 원격 접근·정보 제공 요구
+4. 이후 **Crypto.com 지원팀** 사칭 2차 사기범에게 연결 → 암호화폐 지갑 시드구문·비밀키 탈취, 취소 불가 이체 유도
+
+**경찰 당부**
+- MS는 보안 경고에 전화번호를 포함하지 않음 — 팝업 속 번호로 절대 전화하지 말 것
+- 암호화폐 지갑 시드구문·비밀키는 누구와도 공유하지 말 것
+- '3'으로 시작하는 8자리 번호는 VoIP 번호로, 공식 기업 지원번호가 아님
+- 의심 팝업 발생 시 브라우저를 즉시 닫고, ScamShield 앱 또는 1799 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · Yahoo News SG",
+    sources: [
+      { name: "SPF — Police Advisory On Technical Support Scams Impersonating Microsoft And Crypto.com (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260702_police_advisory_on_technical_support_scams_impersonating_microsoft_and_crypto_com" },
+      { name: "Yahoo News Singapore — At least $1 million lost since May in Microsoft, Crypto.com impersonation scams", url: "https://sg.news.yahoo.com/least-1-million-lost-since-150500821.html" },
+    ],
+    time: "2026년 7월 2일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🖥️",
+    relatedIds: ["auto-20260624-3"],
+  },
+  {
+    id: "auto-20260708-3",
+    publishedAt: "2026-07-04",
+    category: "문화",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🌸 싱가포르 가든 페스티벌 2026 — 7/4~12 가든스바이더베이, '블룸 카니발' 10주년 (진행 중)",
+    summary: "싱가포르 가든 페스티벌(SGF) 10주년 에디션이 '블룸 카니발(Carnival of Blooms)' 테마로 7월 4~12일 가든스바이더베이에서 열리고 있다. 역대 Best of Show 수상 디자이너 8팀의 Show Gardens, 세계 플로럴 챔피언십, 싱가포르 오키드 쇼 등이 진행 중이며, 12일 일요일까지다. 입장료: 싱가포르 주민 성인 S$12·어린이 S$8, 비주민 성인 S$24.",
+    fullContent: `**싱가포르 가든 페스티벌 2026 (Singapore Garden Festival 2026)**
+10주년 에디션이 지금 진행 중입니다.
+
+**기본 정보**
+- **날짜**: 2026년 7월 4일(토)~12일(일) ← 현재 진행 중, **이번 주말(7/12)이 마지막**
+- **장소**: 가든스바이더베이(Gardens by the Bay)
+- **운영시간**: 오전 10시~밤 10시 (입장 마감 9:30pm), 플라워돔 오전 9시~밤 9시
+- **주제**: Carnival of Blooms (10주년 에디션)
+- MarketPlace(무료 입장) 오전 10시~오후 8시
+
+**주요 프로그램**
+- **Show Gardens — All-Stars Edition**: 역대 Best of Show 수상 정원 디자이너 8팀 재참가, Pinnacle Award 경합
+- **Floral Windows to the World Championship**: 국제 플로럴 마스터 토너먼트
+- **Singapore Orchid Show**: 희귀·수상 난초 전시 (싱가포르 난초협회 OSSEA 공동 주관)
+- **MarketPlace**: 식물·원예용품·소품 판매 (무료 입장)
+
+**입장료**
+- 싱가포르 주민: 성인 S$12 / 경로(60세+)·어린이(3~12세) S$8
+- 비주민: 성인 S$24 / 어린이(3~12세) S$15
+
+**한인 팁**
+- 가든스바이더베이 야외 공간은 무료이나 Show Gardens·플라워돔 내부 행사는 유료 티켓 필요
+- 주말 붐빔 → 온라인 사전 구매 권장
+- 7월 12일(일) 마감이므로 이번 주말이 마지막 기회
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NParks SGF (공식) · Timeout SG · Little Day Out",
+    sources: [
+      { name: "Singapore Garden Festival 2026 — Show Info (공식)", url: "https://sgf.nparks.gov.sg/about/show-info/" },
+      { name: "Timeout Singapore — See spectacular floral displays at SG Garden Festival 2026", url: "https://www.timeout.com/singapore/things-to-do/sg-garden-festival-2026" },
+      { name: "Little Day Out — Singapore Garden Festival 2026 (4 to 12 July)", url: "https://www.littledayout.com/singapore-garden-festival/" },
+    ],
+    time: "2026년 7월 4~12일 (진행 중)",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🌸",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260708-4",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "👷 LQS S$1,800 인상 7/1 시행 — S Pass·Work Permit 쿼터에 영향, 사업주 즉시 확인 필요",
+    summary: "로컬자격급여(LQS)가 7월 1일부터 S$1,600에서 S$1,800으로 올랐다. LQS는 S Pass·Work Permit 쿼터 산정 기준으로, 로컬 직원 급여가 S$1,600~S$1,799 구간이면 해당 직원이 쿼터 1명이 아닌 0.5명으로 산정돼 한인 자영업자·중소기업 고용주의 외국인 고용 가능 인원이 줄어들 수 있다. 기한 내 조치를 못 했다면 S Pass 갱신 실패 위험이 있다.",
+    fullContent: `**LQS(로컬자격급여) S$1,800 인상 시행 (2026년 7월 1일)**
+Budget 2026 발표 사항이 7월 1일부터 시행됐습니다. 외국인 직원을 고용 중인 한인 사업주는 즉시 확인이 필요합니다.
+
+**무엇이 바뀌었나**
+- LQS: **S$1,600 → S$1,800** (2026년 7월 1일 시행)
+
+**S Pass·Work Permit 쿼터에 미치는 영향**
+- 로컬 직원이 S$1,800 이상 → 쿼터 **1명 카운트** (변동 없음)
+- 로컬 직원이 S$900~S$1,799 구간 → 쿼터 **0.5명 카운트**
+- **→ 기존 S$1,600~S$1,799 구간 직원을 7/1 전 S$1,800으로 올리지 않았다면, 해당 직원이 0.5명으로 줄어 S Pass·Work Permit 쿼터 감소**
+
+**실질 결과**
+- 쿼터 감소 → S Pass 갱신 신청 실패, LoC(의존자 취업허가) 무효화 위험
+- 쿼터 부족 상태가 지속되면 기존 S Pass 직원이 법적 위반 상태에 놓일 수 있음
+
+**고용주 체크리스트**
+- S$1,600~S$1,799 로컬 직원 급여를 S$1,800으로 인상했는지 확인
+- MOM 포털에서 현재 S Pass·Work Permit 쿼터 잔여분 재확인
+- 쿼터 감소가 예상된다면 노동법 전문 컨설턴트와 조기 상담 권장
+
+**참고**
+- 파트타임(주 35시간 미만) 직원은 별도 기준 적용
+- 서비스업 S Pass 쿼터: 총 인력의 10% / 제조업: 15%
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM (공식) · Mothership · Singapore Employment Agency",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Mothership — Local Qualifying Salary for full-time local employees to increase from S$1,600 to S$1,800: Budget 2026", url: "https://mothership.sg/2026/02/budget-2026-local-qualifying-salary-raised/" },
+      { name: "Singapore Employment Agency — Local Qualifying Salary Rises to S$1,800 from 1 July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+    ],
+    time: "2026년 7월 1일 시행",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "👷",
+    relatedIds: ["auto-20260620-1"],
+  },
+  {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
     category: "안전",
@@ -1603,42 +1774,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: ["21", "20"],
   },
   {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
-
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
     id: "27",
     publishedAt: "2026-02-17",
     category: "생활",
@@ -1671,79 +1806,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "2분",
     emoji: "🧧",
     relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
   },
   {
     id: "31",
@@ -1780,37 +1842,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📈",
     relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
   },
 ];
 
