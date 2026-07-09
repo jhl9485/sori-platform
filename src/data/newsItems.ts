@@ -26,6 +26,220 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260709-1",
+    publishedAt: "2026-07-09",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💵 8월 GSTV 캐시 최대 S$850 — 150만 명 대상, 7월 14일까지 신청해야 8월 수령",
+    summary: "재무부(MOF)가 7월 9일 발표: 2025년 과세소득 S$39,000 이하·1주택 이하 소유 21세 이상 시민 약 150만 명에게 8월에 GSTV 캐시 최대 S$850 지급. 거주지 연간가치(AV) S$21,000 이하 → S$850, S$21,001~S$31,000 → S$450. 7월 14일까지 신규 신청, PayNow를 7월 28일까지 연동하면 8월 7일 선지급. 고령 시민 71만 명은 MediSave S$150~S$450 추가 지원.",
+    fullContent: `**2026년 8월 GSTV 캐시 지급 안내 (MOF 7월 9일 발표)**
+
+재무부(MOF)가 7월 9일 소비세 바우처(GST Voucher, GSTV) 캐시 지급 일정을 공식 발표했습니다.
+
+**대상자 및 금액**
+- **대상**: 2026년 기준 21세 이상 싱가포르 시민, 2025년 과세소득 S$39,000 이하, 1주택 이하 소유자
+- **지급액 (2024년 12월 31일 기준 거주지 연간가치AV 기준)**:
+  - AV **S$21,000 이하** → **S$850**
+  - AV **S$21,001~S$31,000** → **S$450**
+- 수혜 예상 인원: **약 150만 명**
+
+**MediSave 추가 지원 (고령 시민)**
+- 대상: 약 **71만 명**의 고령 싱가포르 시민
+- 지급액: 연령·AV에 따라 **S$150~S$450**
+- 지급 시기: 2026년 8월
+
+**수령 방법 및 주요 마감일**
+- 이미 신청 완료된 경우: 8월부터 **자동 지급**
+- 신규 신청 마감: **2026년 7월 14일(화)** — 이 날까지 신청해야 8월 수령 가능
+- PayNow 연동 마감: **2026년 7월 28일(화)** — NRIC을 PayNow에 연결하면 **8월 7일 선지급**
+- 자격 확인·신청: govbenefits.gov.sg (Singpass 로그인 필요)
+
+**한인 참고**
+- GSTV 캐시는 **싱가포르 시민** 대상입니다. EP·S패스·DP 등 외국인 신분은 해당되지 않습니다.
+- 시민권을 취득한 한인이라면 govbenefits.gov.sg에서 Singpass로 자격을 확인하세요.
+- 신청 마감이 **7월 14일**로 매우 임박해 있으니 조기 확인 권장합니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOF (공식) · Mothership",
+    sources: [
+      { name: "MOF — 1.5M adult Singaporeans to receive up to $850 GSTV Cash in August 2026 (공식)", url: "https://www.mof.gov.sg/news-resources/newsroom/1-5-million-adult-singaporeans-to-receive-up-to--850-in--gstv---cash-and-710-000-singaporean-seniors-to-receive-up-to--450-medisave-top-up-in-august-2026/" },
+      { name: "Mothership — 1.5 million S'poreans to get up to S$850 cash in Aug. 2026 under GST Voucher scheme", url: "https://mothership.sg/2026/07/gst-voucher-850-cash-august-2026/" },
+    ],
+    time: "2026년 7월 9일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💵",
+    relatedIds: ["auto-20260702-1"],
+  },
+  {
+    id: "auto-20260709-2",
+    publishedAt: "2026-07-01",
+    category: "비자·취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "👔 7/1부터 LQS S$1,800 시행 — S패스·워크퍼밋 쿼터 기준 변경, 한국인 고용주 즉시 확인",
+    summary: "7월 1일부터 싱가포르 로컬 기준 급여(LQS)가 S$1,600에서 S$1,800으로 인상됐다. 고용주가 외국인(S패스·워크퍼밋) 쿼터 계산 시 현지 직원을 '1명 full count'하려면 이제 월 S$1,800 이상을 지급해야 한다. S$900~S$1,799 구간은 0.5명으로만 산정. 시급 기준 S$9→S$10.50. 7월 1일 이후 접수된 갱신 신청은 새 기준 즉시 적용—쿼터 초과 시 갱신 거절 가능하므로 한국인 사업주는 직원 급여 현황을 즉시 점검해야 한다.",
+    fullContent: `**LQS(로컬 기준 급여) 2026년 7월 1일부로 S$1,800 시행**
+
+싱가포르 인력부(MOM)가 정한 LQS(Local Qualifying Salary)가 7월 1일부로 상향됩니다. LQS는 고용주가 외국인(S패스·워크퍼밋) 고용 쿼터를 산정할 때 현지 직원을 몇 명으로 세는지 결정하는 최저 기준입니다.
+
+**변경 내용 (7월 1일 시행)**
+- 전일제 기준(월): S$1,600 → **S$1,800**
+- 시간제 기준(시): S$9.00 → **S$10.50**
+
+**쿼터 산정 방식**
+- 로컬 직원 급여 **S$1,800 이상**: 1명으로 full 산정
+- 로컬 직원 급여 **S$900~S$1,799**: 0.5명으로만 산정
+- 로컬 직원 급여 **S$900 미만**: 쿼터 산정에서 제외
+
+**S패스 쿼터 한도 (변경 없음)**
+- 서비스업: 전체 인력의 **10%**
+- 제조·건설·해양·공정 등: **15%**
+
+**영향 및 주의 사항**
+- 7월 1일 이후 접수되는 S패스·워크퍼밋 **갱신 신청은 새 기준 즉시 적용**
+- 급여 미조정 상태로 갱신 시 쿼터 초과 판정 → **갱신 거절** 가능
+- 한국인 사업주는 현지 직원 급여 현황 즉시 점검 권고
+
+**한인 취업자 참고**
+- EP(고용 패스)·S패스 소지자 본인의 최저 급여 기준(EP S$5,600 / S패스 S$3,300)은 이번 LQS 변경과 **별개**입니다.
+- LQS는 현지 직원 급여에만 적용되는 쿼터 계산 기준입니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM (공식) · Mavenside Consulting",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Mavenside Consulting — LQS Rises to $1,800 in July 2026: Employer Action Guide", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+      { name: "Links International — S Pass & LQS Changes 2026", url: "https://linksinternational.com/en-sg/blog/s-pass-local-qualifying-salary-changes/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "👔",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260709-3",
+    publishedAt: "2026-07-08",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚀 교통부, 5년간 S$8억 연구·혁신 투자 확정 — 자율주행·디지털 트윈·택시기사 경력 지원",
+    summary: "싱가포르 의회가 7월 7~8일 미래 교통 동의안을 7시간 논의한 뒤 교통부(MOT)가 향후 5년간 S$8억(이전 주기 대비 2배↑) 연구·혁신 투자를 확정했다. 이 중 S$5억3000만이 자율주행 시스템·디지털 트윈 기술에 집중 배정. 기술 전환으로 영향받는 택시·PHV 운전기사를 위한 경력 지원 프로그램도 신설된다.",
+    fullContent: `**싱가포르 교통부 S$8억 연구·혁신 투자 확정 (2026년 7월 8일)**
+
+싱가포르 의회가 7월 7~8일 '미래 교통 동의안(Future of Transport Motion)'을 논의한 뒤 교통부(MOT)가 대규모 투자 계획을 발표했습니다.
+
+**핵심 발표 내용**
+- **총 투자 규모**: 향후 **5년간 S$8억(S$800 million)** — 이전 주기 대비 2배 이상
+- **집중 투자 분야**: 이 중 **S$5억3000만(S$530 million)**을 두 핵심 기술에 집중 배분:
+  - **자율주행 시스템(Autonomous Systems)**
+  - **디지털 트윈(Digital Twins)** — 교통 네트워크 실시간 시뮬레이션
+- **신규 경력 지원**: 택시·개인운전서비스(PHV/PHD) 기사 대상 경력 전환 프로그램 신설
+
+**의회 논의 주요 이슈**
+- 항공·해운·육상 교통 통합 **디지털 물류 시스템** 구축
+- AI 기반 '디지털 브레인(국가 물류 제어 타워)' — 항만·공항·도로·창고·통관 일괄 조율
+- 기술 전환 속 **교통 종사자 보호·재교육** 방안
+
+**한인 참고**
+- 단기적으로 일상 교통에 큰 변화는 없으나, 향후 자율주행버스·스마트 물류 등이 순차 도입될 예정입니다.
+- 택시·그랩 이용 한인은 PHV 기사 지원 강화로 서비스 개선이 기대됩니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOT (공식) · Malay Mail",
+    sources: [
+      { name: "MOT — S$800 Million Committed to Research and Innovation for Transport and Connectivity (공식)", url: "https://www.mot.gov.sg/news-resources/newsroom/s-800-million-committed-to-research-and-innovation-for-transport-and-connectivity-over-next-five-years-/" },
+      { name: "Malay Mail — Singapore Parliament backs AI-driven transport future amid global uncertainties (2026-07-08)", url: "https://www.malaymail.com/news/singapore/2026/07/08/singapore-parliament-backs-ai-driven-transport-future-amid-global-uncertainties/226831" },
+    ],
+    time: "2026년 7월 8일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚀",
+    relatedIds: ["auto-20260701-1"],
+  },
+  {
+    id: "auto-20260709-4",
+    publishedAt: "2026-07-09",
+    category: "안전·사기",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚔 말레이시아 남성 2명 정부기관 사칭 사기로 7/9 법원 출두 — 싱-말 국제 공조 체포",
+    summary: "SPF 사이버수사대가 말레이시아 경찰과 공조해 38세·44세 말레이시아 남성 2명을 7월 6~7일 현지 체포, 7월 8일 싱가포르로 호송했다. 두 사람은 싱가포르 거주자를 표적으로 한 정부기관 사칭 사기 공모 혐의로 7월 9일 법원에서 형법 제420조(사기)로 기소됐으며, 유죄 시 최대 징역 10년.",
+    fullContent: `**말레이시아 남성 2명 정부기관 사칭 사기 기소 (2026년 7월 9일)**
+
+싱가포르 경찰청(SPF) 사이버수사대(Cyber Command)가 말레이시아 경찰과 국제 공조로 사칭 사기 혐의자 2명을 체포·이송했습니다.
+
+**사건 개요**
+- **피의자**: 말레이시아 남성 2명 (38세, 44세)
+- **혐의**: 싱가포르 거주자를 겨냥한 정부기관 사칭 사기(Government Official Impersonation Scam) 공모
+- **죄목**: 형사공모·사기 (싱가포르 형법 제420조)
+- **최대 형량**: 징역 10년 + 벌금
+
+**체포·이송 경위**
+- 싱가포르 법원 발부 체포영장에 따라 말레이시아 당국이 **7월 6~7일** 현지 체포
+- SPF 사이버수사대가 **7월 8일** 두 사람을 싱가포르로 직접 호송
+- **7월 9일** 싱가포르 법원에서 기소
+
+**정부기관 사칭 사기 주의 사항**
+- 경찰·이민청(ICA)·MAS·CPF 직원을 사칭해 "계좌 조사", "불법 자금 연루" 등으로 접근
+- 피해자에게 자금 이체, 개인정보 제공, Singpass 접근권 요구하는 경우 모두 사기
+- **실제 정부기관은 전화·문자로 즉각적인 이체나 Singpass 접근을 요구하지 않음**
+
+**신고 방법**
+- 안티사기 핫라인: **1799** (24시간)
+- ScamShield 앱으로 신고·차단
+- 긴급 상황: **999**
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF Cyber Command · Mothership",
+    sources: [
+      { name: "Mothership — 2 M'sian men, aged 38 & 44, brought to S'pore for suspected govt official impersonation scams", url: "https://mothership.sg/2026/07/two-malaysian-men-brought-singapore-government-impersonation-scam/" },
+      { name: "Singapore Uncensored — 2 M'sian Men Brought Back to S'pore Over Suspected Govt Official Impersonation Scams", url: "https://singaporeuncensored.com/2-msian-men-brought-back-to-spore-over-suspected-govt-official-impersonation-scams/" },
+    ],
+    time: "2026년 7월 9일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚔",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260709-5",
+    publishedAt: "2026-07-09",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 피크 시즌 7월 진입 — 6월 주간 최고 119건, Yio Chu Kang 일대 적색경보 주의",
+    summary: "싱가포르 뎅기열 최성수기(5~10월)가 7월 절정으로 접어들고 있다. 확인된 최근 수치는 6월 13일 마감 주 119건(2026년 주간 최고치, 전 주 대비 +39건). 6월 중순 기준 활성 클러스터 12개·적색경보 클러스터 4개가 Yio Chu Kang 일대에 집중. 올해 주요 혈청형 DENV-2. 7월은 역사적으로 연간 발생 최고점 — 야외 활동·고인물 관리 각별 주의.",
+    fullContent: `**싱가포르 뎅기열 피크 시즌 주의 (2026년 7월)**
+
+싱가포르 국립환경청(NEA)에 따르면 2026년 뎅기열이 5월부터 증가세를 보이며 7월 절정으로 진행 중입니다.
+
+**확인된 최근 수치 (⚠️ 최신 수치는 NEA 공식 사이트 실시간 확인 필요)**
+- 6월 13일 마감 주: **119건** — 2026년 주간 최고치 (전 주 대비 +39건)
+- 6월 중순 기준: 활성 클러스터 **12개**, 적색경보(10건 이상) 클러스터 **4개**
+- 집중 지역: **Yio Chu Kang** 일대 복수 클러스터 밀집
+- 2026년 주요 혈청형: **DENV-2**
+
+**NEA 활동**
+- 국가 뎅기열 예방 캠페인 2026(National Dengue Prevention Campaign 2026) 시행 중
+- 현재 활성 클러스터 현황: NEA 공식 페이지(nea.gov.sg/dengue-zika/dengue/dengue-clusters) 실시간 확인 가능
+
+**한인 생활 수칙**
+- 야외활동 시 긴 소매·바지 착용, DEET 함유 방충제 사용
+- 집 안팎 **고인물 철저 제거**: 화분 받침대·에어컨 배수 트레이·양동이·쓰레기통 뚜껑 주 1회 이상 점검
+- 증상(고열·심한 두통·관절·근육통·발진) 시 즉시 GP 방문 — **아스피린·이부프로펜 복용 금지** (혈소판 감소 악화)
+- 자녀 학교 귀가 후 모기 물린 곳 확인, 야외 수업 시 방충제 지참
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA (공식) · Malay Mail",
+    sources: [
+      { name: "NEA — Dengue Cases (공식)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-cases" },
+      { name: "Malay Mail — Singapore dengue cases climb to 119 in peak season (2026-06-16)", url: "https://www.malaymail.com/news/singapore/2026/06/16/singapore-dengue-cases-climb-to-119-in-peak-season-agency-warns-of-rising-transmission-risk/224014" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
     category: "안전",
