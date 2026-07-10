@@ -26,6 +26,189 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260710-1",
+    publishedAt: "2026-07-07",
+    category: "안전",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🏦 ASC+5개 은행 합동 RPA 작전 — 2개월간 600건+ 사기 차단·S$3,800만 손실 방지 (7/7 발표)",
+    summary: "싱가포르 경찰청 안티사기센터(ASC)가 DBS·UOB·OCBC·스탠다드차타드·GXS 5개 은행과 5~6월 두 달간 로봇프로세스자동화(RPA)를 활용한 합동 작전을 벌여 600건 이상의 사기 시도를 차단하고 S$3,800만 이상의 잠재 손실을 막았다고 7월 7일 발표했다. 위험 고객 3,300명 이상에게 3,800건 이상의 SMS 경보가 발송됐으며, 정부기관 사칭·투자·취업·전자상거래·임대 사기가 주요 유형이었다.",
+    fullContent: `**ASC+5개 은행 합동 RPA 작전 (2026년 7월 7일 발표)**
+싱가포르 경찰청 사이버수사대 산하 안티사기센터(ASC)가 5개 은행과의 합동 작전 결과를 발표했습니다.
+
+**작전 개요**
+- **기간**: 2026년 5월 1일~6월 30일 (2개월)
+- **협력 은행**: DBS, UOB, OCBC, Standard Chartered Bank, GXS Bank (5곳)
+- **핵심 기술**: 로봇프로세스자동화(RPA) — 사기 의심 거래 자동 탐지·차단
+
+**성과**
+- 사기 시도 **600건 이상** 차단
+- 잠재 손실 **S$3,800만(S$38 million) 이상** 방지
+- **3,300명 이상** 위험 고객에게 **3,800건 이상** SMS 경보 발송
+
+**주요 사기 유형**
+- 정부기관 사칭 사기 (Government Official Impersonation)
+- 투자 사기 (Investment Scams)
+- 취업 사기 (Job Scams)
+- 전자상거래 사기 (E-Commerce Scams)
+- 임대 사기 (Rental Scams)
+
+**한인 참고 팁**
+- 은행에서 갑자기 "계좌 이상·의심 거래"를 이유로 확인 전화·SMS가 온다면 카드 뒷면 번호나 공식 앱을 통해 직접 확인
+- 투자·취업 명목의 이체 요청은 반드시 공식 채널로 검증
+- 의심 시 ScamShield 앱 또는 1799(24시간 안티사기 핫라인) 신고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · Fintech Singapore",
+    sources: [
+      { name: "SPF — Anti-Scam Centre And Five Banks Collaborate To Foil Over 600 Scam Attempts And Averted Over $38 Million In Potential Losses (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260707_anti_scam_centre_and_five_banks_collaborate_to_foil_over_600_scam_attempts" },
+      { name: "Fintech Singapore — Five Banks, Singapore Anti-Scam Centre Avert S$38 Million in Scam Losses", url: "https://fintechnews.sg/134107/security/singapore-anti-scam-centre/" },
+    ],
+    time: "2026년 7월 7일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏦",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260710-2",
+    publishedAt: "2026-07-01",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "⚽ SPF, FIFA 월드컵 악용 암호화폐 사기 4종 경보 — 가짜 티켓·팬코인·맬웨어·딥페이크 (7/1 발표)",
+    summary: "싱가포르 경찰청(SPF)이 7월 1일 FIFA 월드컵 2026을 악용한 암호화폐 사기 4가지를 경보했다. ①가짜 티켓·굿즈 판매 사이트(암호화폐 결제 후 미배송), ②가짜 팬·공식 코인 펌프앤덤프, ③텔레그램 통해 '퍼밋 서명' 맬웨어 링크 클릭 유도 후 지갑 무단 인출, ④딥페이크 활용 사기 플랫폼 홍보. MAS 등록 거래소 이용과 하드웨어 지갑 보관을 권고했다.",
+    fullContent: `**FIFA 월드컵 암호화폐 사기 경보 (SPF, 2026년 7월 1일)**
+2026 FIFA 월드컵(북중미 개최)을 악용한 암호화폐 사기 수법이 기승을 부리고 있습니다.
+
+**주요 사기 유형 4가지**
+
+**① 가짜 티켓·굿즈 판매 사이트**
+- 월드컵 티켓·공식 상품을 파는 것처럼 꾸민 사이트에서 Bitcoin·USDT 등 암호화폐 결제 유도
+- 결제 후 티켓·상품 미배송, 사이트 폐쇄 후 잠적 → 환불 불가
+
+**② 가짜 팬 코인·공식 토큰 펌프앤덤프**
+- '공식 월드컵 토큰' 또는 팀 연계 팬 코인을 허위로 공식·팀 연계인 것처럼 마케팅
+- 인위적으로 가격을 올린 뒤(pump) 사기범이 일괄 매도(dump) → 투자자 손실
+
+**③ 텔레그램 맬웨어 + 퍼밋 서명 탈취**
+- 텔레그램에서 클라이언트·파트너인 척 접근 후 영상통화 링크 클릭 유도 → 맬웨어 설치
+- '퍼밋 서명(permit signature)' 승인을 유도해 지갑 내 미래 거래를 사전 허가하게 함 → 하드웨어 지갑도 피해 가능
+
+**④ 딥페이크 선수·셀럽 이용 피싱**
+- 무료 중계 스트리밍 사이트로 유인 → 피싱
+- 선수·유명인 딥페이크 영상으로 사기 플랫폼 홍보
+
+**SPF 권고**
+- 암호화폐는 **MAS 등록·규제 거래소**에서만 거래
+- 중요 자산은 **하드웨어 지갑** 보관
+- 낯선 텔레그램 링크 클릭·서명 요청 거부
+- 의심 시 ScamShield 앱 또는 1799 신고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · MustShareNews",
+    sources: [
+      { name: "SPF — Police Advisory On Cryptocurrency Scams Involving Malicious Links And Unauthorised Transactions (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260701_police_advisory_on_cryptocurrency_scams_involving_malicious_links" },
+      { name: "MustShareNews — SPF advises cryptocurrency users to beware of World Cup-related scams", url: "https://mustsharenews.com/spf-world-cup-scams/" },
+      { name: "Yahoo News Singapore — Beware of cryptocurrency scams involving World Cup tickets and merchandise", url: "https://sg.news.yahoo.com/beware-cryptocurrency-scams-involving-world-081000636.html" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "⚽",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260710-3",
+    publishedAt: "2026-07-01",
+    category: "안전",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🪪 카루셀 취업 사기→싱패스 계정 탈취 — 5명 체포·피해자 26명 (7/1~2 발표)",
+    summary: "싱가포르 경찰청(SPF) 안티사기커맨드·경찰정보국이 7월 1일 카루셀 구인광고를 이용해 구직자 싱패스 계정을 탈취하는 사기 관련 5명(17세 여성 1명, 22~29세 남성 4명)을 체포했다. 3~5월 사이 피해 신고 26건으로, 구직자들이 NRIC 사본 제공과 싱패스 연락처 변경을 유도당한 뒤 탈취된 계정이 금융기관·통신사 계좌 개설에 악용됐다. 해외 사기 조직과의 공모가 확인됐다.",
+    fullContent: `**카루셀 취업 사기→싱패스 탈취 체포 (SPF, 2026년 7월 1~2일 발표)**
+싱가포르 경찰청(SPF) 안티사기커맨드·경찰정보국이 합동 수사로 5명을 체포했습니다.
+
+**사건 개요**
+- 피해 기간: **2026년 3월~5월**
+- 피해 신고: **26건**
+- 플랫폼: **Carousell** 허위 구인 광고
+
+**사기 수법 (단계별)**
+1. 카루셀에 가짜 채용 공고 게시 → 구직자에게 접근
+2. 지원자에게 **NRIC(신분증) 사본** 제공 요구
+3. 싱패스 계정 등록 **휴대폰 번호·이메일 주소 변경** 유도 (사기범이 계정 통제권 획득)
+4. 탈취된 싱패스 계정으로 **금융기관·통신사에 계좌·서비스 무단 개설** (피해자 모르게)
+5. 개설 후 당일 싱패스 통제권은 피해자에게 반환 — 즉각 인지 어려운 구조
+
+**해외 조직 연루**
+- 예비 수사 결과 피의자들이 **해외 사기 조직**과 공모해 금융기관 계좌를 확보하려 한 것으로 파악
+
+**체포 및 기소**
+- 체포: 7월 1일, 17세 여성 1명 + 22~29세 남성 4명
+- 기소: 남성 4명은 7월 2일 법원 출두, **컴퓨터오용방지법(CMA) 제8B(1)(a)조** 위반 혐의
+- 17세 여성: 수사 계속 중
+
+**한인 구직자 주의 팁**
+- 카루셀 구인 광고에서 NRIC·여권 사본 제출이나 싱패스 정보 변경을 요구하면 즉시 거절할 것
+- 정식 채용이라면 MyCareersFuture 등 공식 구직 포털 또는 회사 공식 사이트를 통해 지원할 것
+- 싱패스 계정 이상(로그인 불가·모르는 기기 연동)을 발견하면 Singpass 앱 → '내 계정' → 신고 또는 1799
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · MustShareNews",
+    sources: [
+      { name: "SPF — Five Persons Arrested For Fraudulently Obtaining Singpass Accounts In A Series Of Job Scams (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260701_five_persons_arrested_for_fraudulently_obtaining_singpass_accounts" },
+      { name: "MustShareNews — 4 men & teen girl arrested over Carousell job scams, 26 victims had Singpass accounts taken over", url: "https://mustsharenews.com/singpass-job-scams/" },
+    ],
+    time: "2026년 7월 1~2일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🪪",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260710-4",
+    publishedAt: "2026-07-02",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ Microsoft+Crypto.com 동시 사칭 기술지원 사기 — 5월 이후 30건+·S$100만+ 피해, 신종 경보 (7/2)",
+    summary: "싱가포르 경찰청(SPF)이 7월 2일 마이크로소프트와 Crypto.com을 동시에 사칭하는 신종 기술지원 사기를 경보했다. 5월 이후 30건 이상 신고, S$100만 이상 피해. 브라우저 가짜 MS 보안경고 팝업 → MS 기술지원 사칭 전화 → Crypto.com 직원 사칭으로 전환해 암호화폐 이체를 요구하는 3단계 수법이다. 기존 MS 단독 사칭(6월 경보)에 Crypto.com 사칭이 추가된 최신 변형이다.",
+    fullContent: `**Microsoft+Crypto.com 동시 사칭 기술지원 사기 (SPF, 2026년 7월 2일 경보)**
+싱가포르 경찰청이 기존 MS 단독 사칭에 Crypto.com 사칭이 추가된 신종 변형을 경보했습니다.
+
+**피해 현황 (2026년 7월 2일 기준)**
+- 2026년 5월 이후 최소 **30건** 신고
+- 피해액 최소 **S$100만(S$1 million) 이상**
+
+**3단계 사기 수법**
+1. **1단계 — 가짜 MS 보안 팝업**: 브라우저에 "기기가 해킹됐다" 내용의 마이크로소프트 사칭 팝업 → 팝업 내 전화번호로 연락 유도
+2. **2단계 — MS 기술지원 사칭**: 전화 연결 시 MS 직원을 사칭해 "기기에 악성코드" 등을 주장하며 신뢰 확보
+3. **3단계 — Crypto.com 직원 사칭**: 통화가 Crypto.com 고객지원 사칭 인물로 전환 → 계정 해킹·자금세탁 연루 주장 → 암호화폐 이체 요구
+
+**기존(6월) 경보와 차이점**
+- 6월 9일 경보(SPF·CSA): MS 단독 사칭 → 가짜 경찰관 연결, 2월 이후 10건·S$170만
+- 이번(7월 2일): MS + **Crypto.com 병용** 사칭 → 암호화폐 직접 탈취, 5월 이후 30건+·S$100만+
+
+**경찰 안내**
+- MS는 오류 팝업에 전화번호를 포함하지 않음 → 팝업에 표시된 번호로 절대 연락 금지
+- Crypto.com·거래소는 먼저 전화해 암호화폐 이동을 요구하지 않음
+- 브라우저 팝업 발생 시 팝업 내 버튼·번호 이용 금지, 브라우저 즉시 종료
+
+**한인 참고 팁**
+- 브라우저에 MS·은행·거래소 사칭 팝업이 뜨면 전화하지 말고 그냥 창을 닫을 것
+- 암호화폐 이체를 요구하는 '기술지원' 전화는 전부 사기로 간주할 것
+- 의심 시 ScamShield 앱 또는 1799(안티사기 핫라인)
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · CryptoTimes",
+    sources: [
+      { name: "SPF — Police Advisory On Technical Support Scams Impersonating Microsoft And Crypto.com (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260702_police_advisory_on_technical_support_scams_impersonating_microsoft_and_crypto_com" },
+      { name: "CryptoTimes — Singapore Police Warns of Microsoft, Crypto.com Impersonation Scam", url: "https://www.cryptotimes.io/2026/07/03/singapore-police-warns-of-microsoft-crypto-com-impersonation-scam/" },
+    ],
+    time: "2026년 7월 2일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🖥️",
+    relatedIds: ["auto-20260624-3"],
+  },
+  {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
     category: "안전",
@@ -1533,40 +1716,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: ["17"],
   },
   {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
     id: "17",
     publishedAt: "2026-03-03",
     category: "비자/취업",
@@ -1673,79 +1822,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: [],
   },
   {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
-  {
     id: "31",
     publishedAt: "2026-03-31",
     category: "취업",
@@ -1780,37 +1856,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📈",
     relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
   },
 ];
 
