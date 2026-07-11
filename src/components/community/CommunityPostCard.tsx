@@ -6,7 +6,7 @@ import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
 import { formatCount, timeAgo } from "@/lib/format";
-import { baseCommentCount } from "@/lib/comments";
+import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 
 function isNew(post: CommunityPost): boolean {
   // createdAt이 있으면 48시간 이내를 NEW로 간주, 없으면 기존 time 문자열로 판단
@@ -29,8 +29,9 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const newBadge = isNew(post);
   const hotBadge = isHot(post.likes);
   const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
+  const userCommentCounts = useUserCommentCounts();
   const likeCount = parseInt(post.likes.replace(/,/g, ""), 10) + (liked ? 1 : 0);
-  const commentCount = baseCommentCount(post.id);
+  const commentCount = realCommentCount(post.id, userCommentCounts);
 
   return (
     <Link href={`/community/${post.id}`} className={`block rounded-[14px] border p-[14px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
@@ -90,15 +91,15 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
       </div>
 
       <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08]">
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">👁 {formatCount(post.views)}</span>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {commentCount}</span>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleLike(post.id); }}
-          className={`ml-auto flex items-center gap-[4px] text-[0.78rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
+          className={`flex items-center gap-[4px] text-[0.78rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
           aria-label="좋아요"
         >
           {liked ? "❤️" : "🤍"} {likeCount.toLocaleString()}
         </button>
+        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">👁 {formatCount(post.views)}</span>
+        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {commentCount}</span>
       </div>
     </Link>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense } from "react";
+import { useState, useMemo, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import FavoritesSection from "@/components/community/FavoritesSection";
@@ -50,10 +50,47 @@ function CommunityPageInner() {
     return () => clearTimeout(t);
   }, [searchQuery]);
 
-  // 필터/정렬/검색이 바뀌면 '더 보기' 개수 초기화
+  // 필터/정렬/검색이 바뀌면 '더 보기' 개수 초기화 + 맨 위로 (첫 마운트는 건너뜀 → 뒤로가기 복원 유지)
+  const skipReset = useRef(true);
   useEffect(() => {
+    if (skipReset.current) { skipReset.current = false; return; }
     setVisibleCount(10);
+    window.scrollTo(0, 0);
   }, [selectedCategory, debouncedSearch, feedTab]);
+
+  // 뒤로가기 복원: 마운트 시 저장해둔 스크롤 위치·더보기 개수 복원
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("sori_community_feed");
+      if (!raw) return;
+      const s = JSON.parse(raw);
+      const currentKey = `${selectedCategory}|${debouncedSearch}|${feedTab}`;
+      if (s.key === currentKey) {
+        if (typeof s.visibleCount === "number") setVisibleCount(Math.max(10, s.visibleCount));
+        const y = s.y || 0;
+        const restore = () => window.scrollTo(0, y);
+        requestAnimationFrame(() => requestAnimationFrame(restore));
+        setTimeout(restore, 90);
+      }
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 스크롤/더보기 상태 저장 (뒤로가기 복원용)
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>;
+    const save = () => {
+      try {
+        sessionStorage.setItem(
+          "sori_community_feed",
+          JSON.stringify({ y: window.scrollY, visibleCount, key: `${selectedCategory}|${debouncedSearch}|${feedTab}` })
+        );
+      } catch {}
+    };
+    const onScroll = () => { clearTimeout(t); t = setTimeout(save, 100); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); clearTimeout(t); };
+  }, [visibleCount, selectedCategory, debouncedSearch, feedTab]);
 
   // 사용자 글 + 정적 글 합치기 (사용자 글이 최상단)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);

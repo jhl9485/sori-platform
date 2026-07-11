@@ -10,7 +10,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
-import { timeAgo } from "@/lib/format";
+import { timeAgo, formatCount } from "@/lib/format";
 import { useToggleSet } from "@/lib/storage";
 import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
@@ -136,7 +136,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
                 )}
               </div>
               <div className="text-[0.7rem] text-[#888070] mt-[1px]" suppressHydrationWarning>
-                {post.createdAt ? timeAgo(post.createdAt) : post.time} · 조회 {post.views} · 댓글 {realCommentCount(post.id, userCommentCounts)}
+                {post.createdAt ? timeAgo(post.createdAt) : post.time} · 조회 {formatCount(post.views)} · 댓글 {realCommentCount(post.id, userCommentCounts)}
               </div>
             </div>
           </div>
@@ -186,9 +186,12 @@ export default function CommunityDetailClient({ params }: { params: { id: string
           >
             {liked ? "❤️" : "🤍"} <span>{likeCount.toLocaleString()}</span>
           </button>
-          <button className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
-            💬 <span>{post.comments}</span>
-          </button>
+          <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
+            👁 <span>{formatCount(post.views)}</span>
+          </span>
+          <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
+            💬 <span>{realCommentCount(post.id, userCommentCounts)}</span>
+          </span>
           <button
             onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(post.id); }}
             className={`flex items-center gap-[5px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
