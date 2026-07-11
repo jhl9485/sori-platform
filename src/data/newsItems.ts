@@ -26,6 +26,202 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260711-1",
+    publishedAt: "2026-07-07",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚖 택시·플라이어 기사 AV 전환 지원 — 직업전환 프로그램 신설, 최대 S$1,600 훈련비 지원",
+    summary: "교통부(MOT)가 7월 7일 발표: 택시·플라이어(PHV) 기사가 자율주행차(AV) 전문가 또는 버스 기사로 전직할 수 있는 직업전환 프로그램(CCP)을 3분기부터 도입한다. 개별 훈련 수강 시 시간당 S$20(최대 80시간, 최대 S$1,600) 인센티브도 신설. 고용주는 재교육 기간 급여의 최대 90%를 지원받는다. SNEF가 운영하고 Grab이 훈련을 제공한다.",
+    fullContent: `**택시·플라이어(PHV) 기사 자율주행차(AV) 전환 지원 패키지 (2026년 7월 7일 발표)**
+교통부(MOT)·인력부(MOM)·NTUC가 공동으로 AV 전환 지원 패키지를 발표했습니다.
+
+**직업전환 프로그램(CCP) 2종**
+- **AV 전문가 CCP**: 3분기부터 SNEF 운영, Grab이 훈련 제공. 안전 운행원(Safety Operator)·원격 운행원(Remote Operator)·차량 관제(Fleet Management) 등 AV 분야 직종 취업을 위한 기술·운영 역량 교육
+- **버스 기사 CCP**: 훈련생에게 먼저 고용 후 현장 재교육 (Employment before training)
+
+**훈련 인센티브 (3개년 파일럿)**
+- 2027년 1월부터 SWDA 지원 과정 약 2,000개 중 선택 수강 가능
+- 훈련 시간당 **S$20**, 최대 **80시간 = 최대 S$1,600** 지원
+- 차량 렌트비·훈련 중 수입 손실 등 비용 보전 목적
+
+**고용주 지원**
+- 재교육 기간 급여의 **최대 90%** 정부 지원
+
+**한인 참고**
+- 택시·플라이어 앱으로 부업 또는 주업으로 운행 중인 한인이라면 이 패키지를 통해 AV 산업 직종으로 이직을 모색해볼 수 있습니다.
+- 자세한 신청 방법은 SWDA(www.swda.gov.sg) 또는 WSG(www.wsg.gov.sg)에서 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOT (공식) · The Independent SG",
+    sources: [
+      { name: "MOT — More Options for Taxi and Private Hire Car Drivers (공식)", url: "https://www.mot.gov.sg/news-resources/newsroom/-more-options-for-taxi-and-private-hire-car-drivers-as-singapore-prepares-for-the-future-of-mobility/" },
+      { name: "The Independent SG — AV specialist CCP, S$1,600 incentives", url: "https://theindependent.sg/new-av-specialist-career-conversion-programme-up-to-s-1-600-in-training-incentives-to-help-taxi-and-private-hire-drivers-through-av-transition/" },
+      { name: "NTUC — Government introduces new driver transition package", url: "https://www.ntuc.org.sg/uportal/news/Government-introduces-new-driver-transition-package-to-support-Singapores-autonomous-vehicle-future/" },
+    ],
+    time: "2026년 7월 7일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚖",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260711-2",
+    publishedAt: "2026-07-01",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏘️ Q2 2026 부동산 플래시 — HDB 재판매 2분기 연속 하락(-0.3%), 민간주택 +0.5%",
+    summary: "7월 1일 HDB·URA 플래시 추정치: HDB 재판매가지수 Q2에 0.3% 하락(2019년 이후 처음으로 2분기 연속 하락), Q2 거래량 6,268건으로 전년 동기 대비 10.2% 감소. 민간주택 가격은 0.5% 상승(Q1 +0.9%에서 둔화). CCR(도심 핵심)은 2% 올랐으나 RCR(-1.4%)·OCR(-0.2%)은 하락했다.",
+    fullContent: `**Q2 2026 부동산 시장 플래시 추정치 (HDB·URA, 2026년 7월 1일 발표)**
+
+**HDB 재판매 시장**
+- 재판매가지수(RPI): Q2 **-0.3%** (Q1 -0.1%에 이어 2분기 연속 하락 — 2019년 이후 처음)
+- Q2 거래량: **6,268건** (전년 동기 6,981건 대비 **-10.2%**)
+- 시장 분위기: 취업시장 불확실성으로 매수자들이 호가를 낮추는 경향, BTO 분양 기다리는 수요 이탈로 거래 부진
+
+**민간주택 시장 (URA)**
+- 전체 민간주택 가격지수: Q2 **+0.5%** (Q1 +0.9%에서 둔화)
+- CCR(도심 핵심 지역): **+2.0%** (Q1 +0.6%에서 가속)
+- RCR(나머지 중앙 지역): **-1.4%** (Q1 +0.8%에서 하락 전환)
+- OCR(중앙 외 지역): **-0.2%** (Q1 +2.2%에서 하락 전환)
+
+**한인 참고**
+- HDB 재판매 시장 조정은 전세(렌트) 협상력에도 영향을 줄 수 있습니다. 재판매 가격 하락 시 임대료도 함께 약세를 보이는 경향이 있습니다.
+- 외국인(EP 소지자 포함) 민간주택 구매 시 여전히 ABSD 60%가 적용됩니다.
+- 최종 수치는 7월 말 URA·HDB 공식 2분기 발표에서 확정됩니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "HDB · URA (공식) · Mothership",
+    sources: [
+      { name: "Mothership — HDB resale prices fall 2nd straight quarter", url: "https://mothership.sg/2026/07/hdb-resale-prices-fall-2nd-quarter/" },
+      { name: "Malay Mail — HDB resale dip, private home prices rise 0.5%", url: "https://www.malaymail.com/news/singapore/2026/07/01/singapore-hdb-resale-prices-dip-for-second-quarter-as-private-home-prices-rise-05pc/225962" },
+      { name: "99.co — URA HDB flash estimates Q2 2026", url: "https://www.99.co/singapore/insider/ura-hdb-flash-estimates-q2-2026-breakdown/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏘️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260711-3",
+    publishedAt: "2026-07-03",
+    category: "안전",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🛡️ SPF 사이버사령부 공식 출범 (7/3) — 200명 규모로 온라인 사기·사이버범죄 통합 대응",
+    summary: "싱가포르 경찰청(SPF)이 7월 3일 사이버사령부(Cyber Command)를 공식 출범시켰다. 사령관은 저스틴 웡 수석경무관(SAC Justin Wong). 200명 규모로 시작해 400명으로 확대 예정. 기존 사기·사이버범죄 대응 조직을 통합해 수사·위협 추적·첩보·공공 인식 제고를 한곳에서 담당하며, FBI 등 해외 수사기관과도 협력한다.",
+    fullContent: `**SPF 사이버사령부(Cyber Command) 공식 출범 (2026년 7월 3일)**
+싱가포르 경찰청(SPF)이 경찰 수장 주재 취임식과 함께 사이버사령부를 출범시켰습니다.
+
+**개요**
+- **출범일**: 2026년 7월 3일 (Police Cantonment Complex 취임식)
+- **사령관**: Senior Assistant Commissioner of Police (SAC) Justin Wong Xing Shun (42세)
+- **초기 규모**: 약 **200명** (수사·작전·첩보 분야 제복·민간 전문 인력)
+- **목표 규모**: 약 **400명**으로 단계적 확대 예정
+
+**주요 역할**
+- 사기·사이버범죄 수사
+- 사이버 위협 추적(Cyber-threat hunting)
+- 범죄 조직 해체
+- 공공 인식 제고 캠페인
+- FBI·호주 NSW 경찰 등 **국제 수사기관과 협력**
+
+**한인 주의 팁**
+- 사이버사령부 출범으로 온라인 사기 적발 및 계정 동결이 더 빠르게 진행될 수 있습니다.
+- 개인 암호화폐·인터넷뱅킹 계정 보안에 각별히 주의하세요.
+- 의심스러운 연락은 1799(Anti-Scam Hotline) 또는 ScamShield 앱으로 신고하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · Yahoo SG",
+    sources: [
+      { name: "SPF — SPF Forms New Cyber Command (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260703_spf_forms_new_cyber_command_to_prevent_deter_and_disrupt_online_criminal_threats" },
+      { name: "Yahoo News SG — Singapore police launch dedicated Cyber Command", url: "https://sg.news.yahoo.com/singapore-police-launch-dedicated-cyber-040000927.html" },
+      { name: "Connected to India — Singapore Police Force sets up new Cyber Command", url: "https://www.connectedtoindia.com/singapore-police-force-sets-up-new-cyber-command-to-combat-online-scams-threats/" },
+    ],
+    time: "2026년 7월 3일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🛡️",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260711-4",
+    publishedAt: "2026-07-01",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "⚖️ 엔비디아 칩 밀수 사기 — S$5,500만 굿클래스방갈로 압류·법인 최초 기소",
+    summary: "싱가포르 경찰이 미국 수출통제 우회 엔비디아 서버 밀수 사기 사건 관련, Chee Hoon Avenue 소재 굿클래스방갈로(GCB, 약 S$5,500만)와 은행 예금 약 S$100만을 처분 금지 조치했다. 피의자 Alan Wei는 범죄수익 약 S$3,800만 포함 S$5,500만으로 GCB를 매입한 자금세탁 혐의로 추가 기소됐다. Dell·ASUS·Super Micro Computer를 속인 혐의로 3개 법인도 추가 기소 — 이 수사에서 법인이 기소된 첫 사례다.",
+    fullContent: `**엔비디아 칩 이동(밀수) 사건 — GCB 압류 및 법인 최초 기소 (2026년 7월 1일)**
+
+**사건 배경**
+- 피의자 Aaron Woon Guo Jie, Alan Wei Zhaolun, 중국 국적 Li Ming은 2025년 2월 최초 사기(허위 진술) 혐의로 기소
+- 혐의: 2023년 11월~2025년 2월, Dell·Super Micro Computer·ASUS에 서버 구매 시 최종 사용자를 허위 진술해 미국 수출통제(Export Controls)를 우회
+- 2026년 4월: Aperia Group CFO Jenny Lim도 Wei·Woon과 공모한 혐의로 추가 기소
+
+**7월 신규 조치**
+- 경찰, **Chee Hoon Avenue 소재 GCB(굿클래스방갈로)** 및 은행 예금 약 **S$100만** 처분 금지(Bar on Disposal) 명령
+- GCB 감정가: 약 **S$5,500만 (약 US$4,240만)**
+- Alan Wei Zhaolun: **자금세탁 추가 혐의** — 범죄수익 약 S$3,800만 포함 S$5,500만을 GCB 구입에 전환했다는 혐의
+
+**법인 최초 기소**
+- Luxuriate Your Life 포함 **3개 법인**이 허위 진술 사기 혐의로 기소 — **이 수사에서 법인이 기소된 첫 번째 사례**
+
+**한인 주의**
+- 이 사건은 미국 수출 제한 대상 품목(서버·첨단 반도체 등) 거래 시 허위 서류 제출이 싱가포르에서도 형사 처벌 대상임을 보여줍니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Malay Mail · Mothership · SCMP",
+    sources: [
+      { name: "Malay Mail — Singapore seizes S$55m GCB in Nvidia chip probe", url: "https://www.malaymail.com/news/singapore/2026/07/01/singapore-seizes-s55m-good-class-bungalow-and-s1m-in-bank-funds-in-widening-nvidia-chip-probe/225955" },
+      { name: "Mothership — Police seize S$55m GCB linked to Nvidia chips fraud", url: "https://mothership.sg/2026/07/good-class-bungalow-seized-nvidia-chips-fraud-case/" },
+      { name: "SCMP — Singapore seizes US$42.4m bungalow linked to Nvidia chip fraud", url: "https://www.scmp.com/news/asia/southeast-asia/article/3359020/singapore-seizes-us424-million-bungalow-linked-nvidia-chip-fraud" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "⚖️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260711-5",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "💼 7월 1일부터 LQS S$1,800 발효 — S Pass·Work Permit 쿼터 산정 기준 변경",
+    summary: "7월 1일부터 로컬 자격급여(LQS, Local Qualifying Salary)가 월 S$1,600에서 S$1,800으로 인상됐다. 시간급은 S$9에서 S$10.50으로 상향. LQS는 S Pass·Work Permit 외국인 고용 쿼터 산정 시 '로컬 1인'으로 카운팅되기 위한 최저 기준이다. 기준 미달 직원은 0.5인으로만 계산돼 사업주의 외국인 고용 여력이 줄어든다.",
+    fullContent: `**로컬 자격급여(LQS) S$1,800 인상 — 2026년 7월 1일 발효 (MOM)**
+
+**변경 내용**
+- **LQS(풀타임 기준)**: 월 S$1,600 → **S$1,800**
+- **시간급 LQS**: S$9/시간 → **S$10.50/시간**
+- 발효일: **2026년 7월 1일**
+
+**LQS가 무엇인가?**
+LQS는 싱가포르 시민·PR 직원이 회사의 **S Pass·Work Permit 외국인 고용 쿼터** 산정에 '1인'으로 카운팅되기 위한 최저 월급여 기준입니다.
+
+**쿼터 카운팅 규칙 (7월 1일 이후)**
+- 월 S$1,800 이상: **1.0인 카운팅**
+- 월 S$900 이상 ~ S$1,800 미만: **0.5인 카운팅**
+- 월 S$900 미만: 카운팅 안 됨
+
+**사업주 유의사항**
+- LQS 미달 직원이 있으면 쿼터가 줄어 **기존 S Pass·Work Permit 갱신이 어려워질 수 있습니다**
+- 특히 음식점·소매·서비스업 등 한인 자영업자는 직원 급여 재검토 권장
+- 대상 직원 급여를 S$1,800 이상으로 인상하거나, 쿼터 내 외국인 인원을 조정하는 방향으로 대응 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM (공식)",
+    sources: [
+      { name: "MOM — Local Qualifying Salary (공식)", url: "https://www.mom.gov.sg/employment-practices/progressive-wage-model/local-qualifying-salary" },
+      { name: "Mavenside Consulting — LQS Rises to $1,800 in July 2026", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+      { name: "Singapore Employment Agency — LQS S$1,800 from July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💼",
+    relatedIds: ["21"],
+  },
+  {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
     category: "안전",
@@ -1015,7 +1211,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     isBreaking: false,
     readTime: "2분",
     emoji: "🚆",
-    relatedIds: ["29"],
+    relatedIds: [],
   },
   {
     id: "auto-20260622-2",
@@ -1093,7 +1289,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     isBreaking: false,
     readTime: "3분",
     emoji: "🏢",
-    relatedIds: ["20"],
+    relatedIds: [],
   },
   {
     id: "auto-20260622-4",
@@ -1420,7 +1616,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     isBreaking: false,
     readTime: "2분",
     emoji: "📉",
-    relatedIds: ["23"],
+    relatedIds: [],
   },
   {
     id: "auto-20260620-5",
@@ -1533,40 +1729,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: ["17"],
   },
   {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
     id: "17",
     publishedAt: "2026-03-03",
     category: "비자/취업",
@@ -1600,7 +1762,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     isBreaking: false,
     readTime: "3분",
     emoji: "💼",
-    relatedIds: ["21", "20"],
+    relatedIds: ["21"],
   },
   {
     id: "21",
@@ -1673,79 +1835,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: [],
   },
   {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
-  {
     id: "31",
     publishedAt: "2026-03-31",
     category: "취업",
@@ -1780,37 +1869,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📈",
     relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
   },
 ];
 
