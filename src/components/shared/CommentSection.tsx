@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Comment } from "@/data/communityPosts";
 import { useProfile } from "@/lib/profile";
 import { useAuth, useAuthGate, isLoggedIn } from "@/lib/auth";
+import { useToggleSet } from "@/lib/storage";
 
 interface Props {
   comments: Comment[];
@@ -30,6 +31,7 @@ function writeFor(postId: string, comments: Comment[]) {
     const all = readAll();
     all[postId] = comments;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+    window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
   } catch {}
 }
 
@@ -55,15 +57,24 @@ function writeReplies(parentId: string, replies: Comment[]) {
 interface ItemProps {
   comment: Comment;
   depth?: number;
+  parentId: string | null; // 이 댓글이 답글이면 부모 댓글 id, 최상위면 null
   userReplies: Record<string, Comment[]>;
+  ownIds: Set<string>;
   onAddReply: (parentId: string, reply: Comment) => void;
+  onEdit: (id: string, parentId: string | null, content: string) => void;
+  onDelete: (id: string, parentId: string | null) => void;
 }
 
-function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps) {
-  const [liked, setLiked] = useState(false);
+function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddReply, onEdit, onDelete }: ItemProps) {
+  const { has: isCommentLiked, toggle: toggleCommentLike } = useToggleSet("sori_comment_likes");
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [editText, setEditText] = useState(comment.content);
   const gate = useAuthGate();
+
+  const liked = isCommentLiked(comment.id);
+  const isOwn = ownIds.has(comment.id);
 
   // 정적 답글 + 사용자 답글 병합 (이 댓글 id에 속한 사용자 답글만)
   const replies = [
@@ -90,8 +101,15 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
     setShowReply(false);
   };
 
+  const saveEdit = () => {
+    const text = editText.trim();
+    if (!text) return;
+    onEdit(comment.id, parentId, text);
+    setEditing(false);
+  };
+
   return (
-    <div className={depth > 0 ? "ml-8 border-l-2 border-black/[0.05] pl-3" : ""}>
+    <div className={depth > 0 ? "ml-7 border-l-2 border-black/[0.05] pl-3" : ""}>
       <div className="py-3">
         <div className="flex items-center gap-2 mb-1">
           <div
@@ -105,34 +123,83 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
             <span className="text-[0.68rem] text-[#888070] ml-2">{comment.time}</span>
           </div>
         </div>
-        <p className="text-[0.82rem] text-[#181614] leading-relaxed mb-2 pl-9">{comment.content}</p>
-        <div className="flex items-center gap-3 pl-9">
-          <button
-            onClick={() => setLiked(!liked)}
-            className={`flex items-center gap-1 text-[0.72rem] transition-colors ${liked ? "text-[#D04020]" : "text-[#888070]"}`}
-          >
-            {liked ? "❤️" : "🤍"} {comment.likes + (liked ? 1 : 0)}
-          </button>
-          {depth === 0 && (
+
+        {editing ? (
+          <div className="pl-9 mb-2">
+            <textarea
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              rows={2}
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] outline-none resize-none"
+              autoFocus
+            />
+            <div className="flex gap-2 mt-1">
+              <button
+                onClick={saveEdit}
+                disabled={!editText.trim()}
+                className={`px-3 py-[5px] rounded-full text-[0.72rem] font-medium ${editText.trim() ? "bg-[#181614] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"}`}
+              >
+                저장
+              </button>
+              <button
+                onClick={() => { setEditText(comment.content); setEditing(false); }}
+                className="px-3 py-[5px] rounded-full text-[0.72rem] text-[#888070] hover:text-[#181614]"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="text-[0.82rem] text-[#181614] leading-relaxed mb-2 pl-9 whitespace-pre-wrap">{comment.content}</p>
+        )}
+
+        {!editing && (
+          <div className="flex items-center gap-3 pl-9">
             <button
-              onClick={() => { if (gate("답글은 로그인 후 남길 수 있어요.")) setShowReply(!showReply); }}
-              className="text-[0.72rem] text-[#888070] hover:text-[#181614]"
+              onClick={() => toggleCommentLike(comment.id)}
+              className={`flex items-center gap-1 text-[0.72rem] transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
             >
-              답글
+              {liked ? "❤️" : "🤍"} {comment.likes + (liked ? 1 : 0)}
             </button>
-          )}
-          <button
-            onClick={() => {
-              const reason = window.prompt("신고 사유를 적어주세요 (선택)\n\n예: 욕설, 스팸, 음란/혐오, 광고, 허위정보 등");
-              if (reason !== null) {
-                alert("신고가 접수되었습니다. 검토 후 조치하겠습니다.");
-              }
-            }}
-            className="text-[0.72rem] text-[#888070] hover:text-[#D04020]"
-          >
-            신고
-          </button>
-        </div>
+            {depth < 2 && (
+              <button
+                onClick={() => { if (gate("답글은 로그인 후 남길 수 있어요.")) setShowReply(!showReply); }}
+                className="text-[0.72rem] text-[#888070] hover:text-[#181614]"
+              >
+                답글
+              </button>
+            )}
+            {isOwn ? (
+              <>
+                <button
+                  onClick={() => { setEditText(comment.content); setEditing(true); }}
+                  className="text-[0.72rem] text-[#888070] hover:text-[#181614]"
+                >
+                  수정
+                </button>
+                <button
+                  onClick={() => { if (window.confirm("이 댓글을 삭제할까요?")) onDelete(comment.id, parentId); }}
+                  className="text-[0.72rem] text-[#888070] hover:text-[#D04020]"
+                >
+                  삭제
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  const reason = window.prompt("신고 사유를 적어주세요 (선택)\n\n예: 욕설, 스팸, 음란/혐오, 광고, 허위정보 등");
+                  if (reason !== null) {
+                    alert("신고가 접수되었습니다. 검토 후 조치하겠습니다.");
+                  }
+                }}
+                className="text-[0.72rem] text-[#888070] hover:text-[#D04020]"
+              >
+                신고
+              </button>
+            )}
+          </div>
+        )}
+
         {showReply && (
           <div className="mt-2 pl-9">
             <div className="flex gap-2">
@@ -163,8 +230,12 @@ function CommentItem({ comment, depth = 0, userReplies, onAddReply }: ItemProps)
           key={reply.id}
           comment={reply}
           depth={depth + 1}
+          parentId={comment.id}
           userReplies={userReplies}
+          ownIds={ownIds}
           onAddReply={onAddReply}
+          onEdit={onEdit}
+          onDelete={onDelete}
         />
       ))}
     </div>
@@ -179,6 +250,7 @@ export default function CommentSection({ comments, postId }: Props) {
   const [userReplies, setUserReplies] = useState<Record<string, Comment[]>>({});
   const [newComment, setNewComment] = useState("");
   const [isAnon, setIsAnon] = useState(false);
+  const [sortBy, setSortBy] = useState<"등록순" | "인기순">("등록순");
 
   useEffect(() => {
     if (!postId) return;
@@ -188,6 +260,13 @@ export default function CommentSection({ comments, postId }: Props) {
   }, [postId]);
 
   const list = [...comments, ...userComments];
+  const displayList = sortBy === "인기순" ? [...list].sort((a, b) => b.likes - a.likes) : list;
+
+  // 내가 쓴 댓글·답글 id 집합 (수정/삭제 노출용)
+  const ownIds = new Set<string>([
+    ...userComments.map((c) => c.id),
+    ...Object.values(userReplies).flat().map((r) => r.id),
+  ]);
 
   const handleAddReply = (parentId: string, reply: Comment) => {
     setUserReplies((prev) => {
@@ -195,6 +274,40 @@ export default function CommentSection({ comments, postId }: Props) {
       writeReplies(parentId, next[parentId]);
       return next;
     });
+  };
+
+  const handleEdit = (id: string, parentId: string | null, content: string) => {
+    if (parentId === null) {
+      setUserComments((prev) => {
+        const next = prev.map((c) => (c.id === id ? { ...c, content } : c));
+        if (postId) writeFor(postId, next);
+        return next;
+      });
+    } else {
+      setUserReplies((prev) => {
+        const arr = (prev[parentId] || []).map((r) => (r.id === id ? { ...r, content } : r));
+        const next = { ...prev, [parentId]: arr };
+        writeReplies(parentId, arr);
+        return next;
+      });
+    }
+  };
+
+  const handleDelete = (id: string, parentId: string | null) => {
+    if (parentId === null) {
+      setUserComments((prev) => {
+        const next = prev.filter((c) => c.id !== id);
+        if (postId) writeFor(postId, next);
+        return next;
+      });
+    } else {
+      setUserReplies((prev) => {
+        const arr = (prev[parentId] || []).filter((r) => r.id !== id);
+        const next = { ...prev, [parentId]: arr };
+        writeReplies(parentId, arr);
+        return next;
+      });
+    }
   };
 
   const submitComment = () => {
@@ -235,6 +348,21 @@ export default function CommentSection({ comments, postId }: Props) {
       <div className="px-4 md:px-6 py-4 border-b border-black/[0.06]">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-[0.78rem] font-bold">댓글 {list.length}개</span>
+          {list.length > 1 && (
+            <div className="flex gap-1 ml-1">
+              {(["등록순", "인기순"] as const).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSortBy(s)}
+                  className={`text-[0.68rem] px-2 py-[2px] rounded-full transition-colors ${
+                    sortBy === s ? "bg-[#F0EDE8] text-[#181614] font-semibold" : "text-[#888070]"
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
           {(isAuthed || !hydrated) && (
             <button
               onClick={() => setIsAnon(!isAnon)}
@@ -279,17 +407,21 @@ export default function CommentSection({ comments, postId }: Props) {
 
       {/* 댓글 목록 */}
       <div className="px-4 md:px-6 divide-y divide-black/[0.04]">
-        {list.length === 0 ? (
+        {displayList.length === 0 ? (
           <div className="py-10 text-center text-[#888070] text-[0.82rem]">
             첫 댓글을 남겨보세요 💬
           </div>
         ) : (
-          list.map((comment) => (
+          displayList.map((comment) => (
             <CommentItem
               key={comment.id}
               comment={comment}
+              parentId={null}
               userReplies={userReplies}
+              ownIds={ownIds}
               onAddReply={handleAddReply}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
             />
           ))
         )}

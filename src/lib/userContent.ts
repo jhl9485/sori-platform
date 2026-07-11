@@ -45,6 +45,7 @@ interface RawUserPost {
   tags?: string[];
   visaBadge?: VisaBadge;
   isAnon?: boolean;
+  images?: string[];
   createdAt: string;
 }
 
@@ -85,6 +86,7 @@ export function userPostToCommunityPost(p: RawUserPost): CommunityPost {
     likes: "0",
     visaBadge: anon ? null : (p.visaBadge ?? undefined),
     isAnon: anon,
+    images: p.images || [],
   };
 }
 

@@ -9,6 +9,7 @@ import CommunityPostCard from "@/components/community/CommunityPostCard";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { useUserPosts } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 
 const FEED_TABS = ["최신순", "인기순", "댓글순"] as const;
 type FeedTab = typeof FEED_TABS[number];
@@ -35,7 +36,9 @@ function CommunityPageInner() {
   const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [visibleCount, setVisibleCount] = useState(10);
   const userPosts = useUserPosts();
+  const userCommentCounts = useUserCommentCounts();
 
   // URL의 ?cat= 쿼리가 바뀌면 카테고리 자동 동기화 (BottomNav에서 클릭 시 즉시 반영)
   useEffect(() => {
@@ -46,6 +49,11 @@ function CommunityPageInner() {
     const t = setTimeout(() => setDebouncedSearch(searchQuery), 150);
     return () => clearTimeout(t);
   }, [searchQuery]);
+
+  // 필터/정렬/검색이 바뀌면 '더 보기' 개수 초기화
+  useEffect(() => {
+    setVisibleCount(10);
+  }, [selectedCategory, debouncedSearch, feedTab]);
 
   // 사용자 글 + 정적 글 합치기 (사용자 글이 최상단)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
@@ -69,6 +77,7 @@ function CommunityPageInner() {
       ? base.filter((p) =>
           p.title.toLowerCase().includes(q) ||
           p.preview.toLowerCase().includes(q) ||
+          p.fullContent.toLowerCase().includes(q) ||
           p.tags.some((t) => t.toLowerCase().includes(q))
         )
       : base
@@ -80,10 +89,10 @@ function CommunityPageInner() {
     if (feedTab === "인기순") {
       arr.sort((a, b) => parseInt(b.likes.replace(/,/g, "")) - parseInt(a.likes.replace(/,/g, "")));
     } else if (feedTab === "댓글순") {
-      arr.sort((a, b) => parseInt(b.comments.replace(/,/g, "")) - parseInt(a.comments.replace(/,/g, "")));
+      arr.sort((a, b) => realCommentCount(b.id, userCommentCounts) - realCommentCount(a.id, userCommentCounts));
     }
     return arr;
-  }, [searched, feedTab]);
+  }, [searched, feedTab, userCommentCounts]);
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -185,17 +194,38 @@ function CommunityPageInner() {
       <div className="px-4 md:px-6 pb-6 flex flex-col gap-3">
         {sorted.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
-            <div className="text-4xl mb-3">📭</div>
-            <div className="text-[0.85rem] font-medium">
-              {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "아직 게시글이 없어요"}
+            <div className="text-4xl mb-3">{searchQuery ? "🔎" : "✏️"}</div>
+            <div className="text-[0.85rem] font-medium mb-1">
+              {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "이 카테고리엔 아직 글이 없어요"}
             </div>
+            {!searchQuery && (
+              <>
+                <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 글을 남겨서 이야기를 시작해보세요!</div>
+                <Link
+                  href={selectedCategory === "all" ? "/write" : `/write?cat=${selectedCategory}`}
+                  className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
+                >
+                  ✏️ 첫 글 쓰기
+                </Link>
+              </>
+            )}
           </div>
         ) : (
-          sorted.map((post, i) => (
-            <div key={post.id} style={{ animationDelay: `${i * 0.04}s` }}>
-              <CommunityPostCard post={post} />
-            </div>
-          ))
+          <>
+            {sorted.slice(0, visibleCount).map((post, i) => (
+              <div key={post.id} style={{ animationDelay: `${i * 0.04}s` }}>
+                <CommunityPostCard post={post} />
+              </div>
+            ))}
+            {sorted.length > visibleCount && (
+              <button
+                onClick={() => setVisibleCount((v) => v + 10)}
+                className="mt-1 py-3 rounded-[12px] border border-black/[0.1] bg-white text-[0.85rem] font-semibold text-[#181614] hover:bg-[#F5F3EE] transition-colors"
+              >
+                더 보기 ({sorted.length - visibleCount}개 남음)
+              </button>
+            )}
+          </>
         )}
       </div>
 

@@ -6,6 +6,7 @@ import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
 import { formatCount, timeAgo } from "@/lib/format";
+import { baseCommentCount } from "@/lib/comments";
 
 function isNew(post: CommunityPost): boolean {
   // createdAt이 있으면 48시간 이내를 NEW로 간주, 없으면 기존 time 문자열로 판단
@@ -21,13 +22,15 @@ function isHot(likes: string): boolean {
 }
 
 function CommunityPostCardBase({ post }: { post: CommunityPost }) {
-  const { has: isHelped, toggle: toggleHelped } = useToggleSet("sori_helped_posts");
+  const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
   const { has: isRead } = useToggleSet("sori_read_posts");
-  const helped = isHelped(post.id);
+  const liked = isLiked(post.id);
   const read = isRead(post.id);
   const newBadge = isNew(post);
   const hotBadge = isHot(post.likes);
   const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
+  const likeCount = parseInt(post.likes.replace(/,/g, ""), 10) + (liked ? 1 : 0);
+  const commentCount = baseCommentCount(post.id);
 
   return (
     <Link href={`/community/${post.id}`} className={`block rounded-[14px] border p-[14px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
@@ -62,6 +65,18 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
       </div>
       <div className="text-[0.8rem] text-[#888070] leading-[1.5] mb-[10px] line-clamp-2">{post.preview}</div>
 
+      {post.images && post.images.length > 0 && (
+        <div className="relative mb-[10px] rounded-[10px] overflow-hidden border border-black/[0.06]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={post.images[0]} alt="" className="w-full max-h-52 object-cover" />
+          {post.images.length > 1 && (
+            <span className="absolute bottom-1.5 right-1.5 bg-black/60 text-white text-[0.62rem] font-semibold px-1.5 py-[1px] rounded-full">
+              📷 {post.images.length}
+            </span>
+          )}
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-[5px] mb-2">
         {post.tags.slice(0, 4).map((tag) => (
           <span
@@ -76,13 +91,13 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
 
       <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08]">
         <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">👁 {formatCount(post.views)}</span>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {formatCount(post.comments)}</span>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">❤️ {formatCount(post.likes)}</span>
+        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {commentCount}</span>
         <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleHelped(post.id); }}
-          className={`ml-auto bg-[#F5F3EE] border border-black/[0.08] rounded-lg px-[10px] py-1 text-[0.75rem] font-semibold transition-colors ${helped ? "text-[#2B7A50] border-[#2B7A50]" : "text-[#181614]"}`}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleLike(post.id); }}
+          className={`ml-auto flex items-center gap-[4px] text-[0.78rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
+          aria-label="좋아요"
         >
-          {helped ? "✓ 도움됨" : "👍 도움돼요"}
+          {liked ? "❤️" : "🤍"} {likeCount.toLocaleString()}
         </button>
       </div>
     </Link>

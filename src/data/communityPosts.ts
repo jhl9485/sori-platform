@@ -46,6 +46,7 @@ export interface CommunityPost {
   visaBadge?: VisaBadge;
   isPinned?: boolean;
   relatedIds?: string[];
+  images?: string[]; // 첨부 사진(data URL). 사용자 작성 글에서 사용.
 }
 
 const RAW_COMMUNITY_POSTS: CommunityPost[] = [
@@ -696,6 +697,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
   ],
   "1": [
     {
+      id: "c25",
+      author: "요즘정착러",
+      avatarChar: "요",
+      avatarBg: "#EBF5F0",
+      avatarColor: "#2B7A50",
+      content: "저는 UOB로 했는데 여권이랑 렌트 계약서로 바로 됐어요. 은행마다 요구 서류가 조금씩 다르더라구요!",
+      time: "방금 전",
+      likes: 2,
+    },
+    {
       id: "c1",
       author: "이은행맨",
       avatarChar: "이",
@@ -752,6 +763,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
   ],
   "2": [
     {
+      id: "c26",
+      author: "감자탕러버",
+      avatarChar: "감",
+      avatarBg: "#FBF0EC",
+      avatarColor: "#D04020",
+      content: "여기 진짜 궁금했는데 후기 감사해요! 이번 주말에 가봐야겠어요ㅎㅎ 근처에 주차는 되나요?",
+      time: "방금 전",
+      likes: 1,
+    },
+    {
       id: "c4",
       author: "한배고파",
       avatarChar: "한",
@@ -785,6 +806,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
     },
   ],
   "3": [
+    {
+      id: "c27",
+      author: "이직고민중",
+      avatarChar: "이",
+      avatarBg: "#EBF0FB",
+      avatarColor: "#2050A0",
+      content: "축하드려요!! 저도 준비 중인데 포트폴리오는 영어로 정리하셨어요? 팁 있으면 궁금해요.",
+      time: "10분 전",
+      likes: 3,
+    },
     {
       id: "c6",
       author: "개발자최",
@@ -830,6 +861,17 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
   ],
   "4": [
     {
+      id: "c28",
+      isAnon: true,
+      author: "익명",
+      avatarChar: "?",
+      avatarBg: "#F0EDE8",
+      avatarColor: "#888070",
+      content: "너무 공감돼요ㅠㅠ 저도 비슷해서 결국 팀 옮겼는데 훨씬 나아졌어요. 힘내세요.",
+      time: "방금 전",
+      likes: 5,
+    },
+    {
       id: "c9",
       isAnon: true,
       author: "익명",
@@ -852,6 +894,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
     },
   ],
   "5": [
+    {
+      id: "c29",
+      author: "ETF입문",
+      avatarChar: "E",
+      avatarBg: "#EBF5F0",
+      avatarColor: "#2B7A50",
+      content: "정리 감사합니다! 혹시 SRS로 산 ETF는 배당 재투자 어떻게 하세요? 수동으로 사야 하나요?",
+      time: "1시간 전",
+      likes: 2,
+    },
     {
       id: "c11",
       author: "재테크왕",
@@ -887,6 +939,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
   ],
   "6": [
     {
+      id: "c30",
+      author: "렌트협상도전",
+      avatarChar: "렌",
+      avatarBg: "#FBF5E8",
+      avatarColor: "#B07010",
+      content: "오 이메일 문구 그대로 써봐야겠어요. 재계약 앞두고 있는데 용기 났어요 감사합니다!",
+      time: "30분 전",
+      likes: 4,
+    },
+    {
       id: "c13",
       author: "콘도이사중",
       avatarChar: "콘",
@@ -908,6 +970,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
     },
   ],
   "7": [
+    {
+      id: "c31",
+      author: "같이갱신",
+      avatarChar: "갱",
+      avatarBg: "#EBF5F0",
+      avatarColor: "#2B7A50",
+      content: "저도 이번에 갱신인데 미리 자가진단 해보니 마음이 좀 놓이더라구요. 같이 화이팅해요!",
+      time: "2시간 전",
+      likes: 3,
+    },
     {
       id: "c15",
       author: "EP갱신예정",
@@ -942,6 +1014,16 @@ export const SAMPLE_COMMENTS: Record<string, Comment[]> = {
     },
   ],
   "8": [
+    {
+      id: "c32",
+      author: "한식그리운날",
+      avatarChar: "한",
+      avatarBg: "#FBF0EC",
+      avatarColor: "#D04020",
+      content: "이 리스트 저장해둡니다ㅠㅠ 사진만 봐도 벌써 배고프네요. 좋은 정보 감사해요!",
+      time: "방금 전",
+      likes: 2,
+    },
     {
       id: "c17",
       author: "싱가맛집러",

@@ -15,6 +15,7 @@ import { useToggleSet } from "@/lib/storage";
 import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
+import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 
 export default function CommunityDetailClient({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -24,6 +25,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_posts");
   const { toggle: markRead } = useToggleSet("sori_read_posts");
   const gate = useAuthGate();
+  const userCommentCounts = useUserCommentCounts();
 
   useEffect(() => {
     if (post) markRead(post.id);
@@ -117,7 +119,16 @@ export default function CommunityDetailClient({ params }: { params: { id: string
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-[0.82rem] font-semibold">{post.author}</span>
+                {post.isAnon ? (
+                  <span className="text-[0.82rem] font-semibold">{post.author}</span>
+                ) : (
+                  <Link
+                    href={`/community/author/${encodeURIComponent(post.author)}`}
+                    className="text-[0.82rem] font-semibold hover:text-[#D04020] hover:underline transition-colors"
+                  >
+                    {post.author}
+                  </Link>
+                )}
                 {post.visaBadge && (
                   <span className={`text-[0.62rem] px-[6px] py-[1px] rounded font-bold ${VISA_BADGE_STYLE[post.visaBadge]}`}>
                     {post.visaBadge}
@@ -125,7 +136,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
                 )}
               </div>
               <div className="text-[0.7rem] text-[#888070] mt-[1px]" suppressHydrationWarning>
-                {post.createdAt ? timeAgo(post.createdAt) : post.time} · 조회 {post.views} · 댓글 {post.comments}
+                {post.createdAt ? timeAgo(post.createdAt) : post.time} · 조회 {post.views} · 댓글 {realCommentCount(post.id, userCommentCounts)}
               </div>
             </div>
           </div>
@@ -137,6 +148,21 @@ export default function CommunityDetailClient({ params }: { params: { id: string
         <div className="px-4 md:px-6 py-5 space-y-[2px]">
           {renderMarkdown(post.fullContent)}
         </div>
+
+        {/* 첨부 사진 */}
+        {post.images && post.images.length > 0 && (
+          <div className="px-4 md:px-6 pb-2 flex flex-col gap-2">
+            {post.images.map((src, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={i}
+                src={src}
+                alt={`사진 ${i + 1}`}
+                className="w-full rounded-[12px] border border-black/[0.06]"
+              />
+            ))}
+          </div>
+        )}
 
         {/* 태그 */}
         <div className="px-4 md:px-6 pb-4 flex flex-wrap gap-2">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { CATEGORIES } from "@/data/categories";
@@ -19,6 +19,7 @@ interface RawPost {
   tags: string[];
   visaBadge: VisaBadge;
   isAnon: boolean;
+  images: string[];
   createdAt: string;
 }
 
@@ -39,6 +40,35 @@ interface DraftState {
   isAnon: boolean;
   tagsInput: string;
   visaBadge: VisaBadge;
+  images: string[];
+}
+
+// 이미지 파일을 축소·압축해 data URL로 변환 (localStorage 용량 절약)
+async function compressImage(file: File, maxDim = 1000, quality = 0.7): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("read error"));
+    reader.onload = () => {
+      const img = new window.Image();
+      img.onerror = () => reject(new Error("image error"));
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          if (width >= height) { height = Math.round((height * maxDim) / width); width = maxDim; }
+          else { width = Math.round((width * maxDim) / height); height = maxDim; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) { reject(new Error("no ctx")); return; }
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.src = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 function WriteInner() {
@@ -54,6 +84,8 @@ function WriteInner() {
   const [isAnon, setIsAnon] = useState(false);
   const [tagsInput, setTagsInput] = useState("");
   const [visaBadge, setVisaBadge] = useState<VisaBadge>(null);
+  const [images, setImages] = useState<string[]>([]);
+  const fileRef = useRef<HTMLInputElement>(null);
   const [showCatPicker, setShowCatPicker] = useState(false);
   const [restored, setRestored] = useState(false);
   const [hydrated, setHydrated] = useState(false);
@@ -73,6 +105,7 @@ function WriteInner() {
             setIsAnon(!!target.isAnon);
             setTagsInput((target.tags || []).join(", "));
             setVisaBadge(target.visaBadge ?? null);
+            setImages(target.images || []);
           }
         }
         setHydrated(true);
@@ -90,6 +123,7 @@ function WriteInner() {
           setIsAnon(!!draft.isAnon);
           setTagsInput(draft.tagsInput || "");
           setVisaBadge(draft.visaBadge ?? null);
+          setImages(draft.images || []);
           setRestored(true);
         }
       }
@@ -107,10 +141,10 @@ function WriteInner() {
     try {
       localStorage.setItem(
         DRAFT_KEY,
-        JSON.stringify({ selectedCat, title, content, isAnon, tagsInput, visaBadge } satisfies DraftState)
+        JSON.stringify({ selectedCat, title, content, isAnon, tagsInput, visaBadge, images } satisfies DraftState)
       );
     } catch {}
-  }, [selectedCat, title, content, isAnon, tagsInput, visaBadge, hydrated, isEditMode]);
+  }, [selectedCat, title, content, isAnon, tagsInput, visaBadge, images, hydrated, isEditMode]);
 
   const selectedCatData = CATEGORIES.find((c) => c.id === selectedCat);
   const canSubmit = selectedCat && title.trim().length > 0 && content.trim().length > 0;
@@ -125,6 +159,20 @@ function WriteInner() {
 
   const tagsPreview = parseTags(tagsInput);
 
+  const onPickImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    const room = Math.max(0, 4 - images.length);
+    const picked = files.slice(0, room);
+    const urls: string[] = [];
+    for (const f of picked) {
+      if (!f.type.startsWith("image/")) continue;
+      try { urls.push(await compressImage(f)); } catch { /* 변환 실패 무시 */ }
+    }
+    if (urls.length) setImages((prev) => [...prev, ...urls].slice(0, 4));
+    if (fileRef.current) fileRef.current.value = "";
+  };
+
   const submit = () => {
     if (!canSubmit) return;
 
@@ -137,6 +185,7 @@ function WriteInner() {
         tags: tagsPreview,
         visaBadge: isAnon ? null : visaBadge,
         isAnon,
+        images,
       });
       if (!ok) {
         alert("수정 실패: 글을 찾을 수 없어요.");
@@ -156,6 +205,7 @@ function WriteInner() {
       tags: tagsPreview,
       visaBadge: isAnon ? null : visaBadge,
       isAnon,
+      images,
       createdAt: new Date().toISOString(),
     };
     try {
@@ -318,6 +368,26 @@ function WriteInner() {
           )}
         </div>
 
+        {images.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-3">
+            {images.map((src, i) => (
+              <div key={i} className="relative w-20 h-20 rounded-[10px] overflow-hidden border border-black/[0.08]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt={`첨부 사진 ${i + 1}`} className="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
+                  className="absolute top-0.5 right-0.5 w-5 h-5 rounded-full bg-black/60 text-white text-[0.7rem] leading-none flex items-center justify-center"
+                  aria-label="사진 삭제"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+        <input ref={fileRef} type="file" accept="image/*" multiple onChange={onPickImages} className="hidden" />
+
         <div className="flex items-center justify-between mt-3">
           <span className="text-[0.7rem] text-[#C0BBB0]">
             {hydrated && (title || content) ? "💾 자동 저장 중" : ""}
@@ -331,8 +401,19 @@ function WriteInner() {
       {/* 하단 옵션 바 */}
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-white border-t border-black/[0.08] px-4 py-3 flex items-center justify-between z-50 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3">
-          <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="사진 (준비 중)">
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            disabled={images.length >= 4}
+            className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors disabled:opacity-40 relative"
+            aria-label="사진 첨부"
+          >
             <span className="block leading-none">📷</span>
+            {images.length > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[15px] h-[15px] bg-[#D04020] text-white text-[0.55rem] font-bold rounded-full px-1 flex items-center justify-center leading-none">
+                {images.length}
+              </span>
+            )}
           </button>
           <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="링크 (준비 중)">
             <span className="block leading-none">🔗</span>
