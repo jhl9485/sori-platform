@@ -26,6 +26,94 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260712-1",
+    publishedAt: "2026-07-07",
+    category: "생활",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🔑 Singpass '패스키' 로그인 도입 — 아이폰 먼저(7/1), 피싱 가짜 사이트에선 작동 안 함",
+    summary: "정부기술청(GovTech)이 7월 1일부터 Singpass 앱에 비밀번호 없이 지문·얼굴인식(또는 6자리 앱 암호)으로 로그인하는 '패스키'를 도입했다. 1단계로 아이폰 사용자부터 적용되며 안드로이드·PC 브라우저는 이후 단계로 확대된다. 패스키는 기기에 종속되고 공식 Singpass 도메인에만 연동돼, 가짜 로그인 페이지 같은 피싱 사이트에서는 작동하지 않아 스미싱·피싱 피해를 원천 차단한다.",
+    fullContent: `**Singpass 패스키 로그인 (2026년 7월 1일 도입)**
+정부기술청(GovTech)이 Singpass에 '패스키(passkey)' 로그인을 도입했습니다.
+
+- **방식**: 비밀번호 대신 기기의 지문·얼굴인식 또는 6자리 앱 암호로 로그인
+- **적용 순서**: 1단계 **아이폰 사용자**부터 → 안드로이드·PC 브라우저는 이후 단계
+- **피싱 차단**: 패스키는 사용자의 기기에 종속되고 **공식 Singpass 도메인에만 연동**돼, 가짜 로그인 페이지 등 피싱 사이트에서는 작동하지 않음
+- 클라우드로 전송·공유되지 않아 유출 위험이 낮음
+
+**참고**
+- 싱가포르에서 피싱은 두 번째로 흔한 사기 유형으로 피해가 커, 정부가 이를 줄이려는 조치입니다.
+- 설정은 Singpass 앱에서 직접 하며, 지원 여부·방법은 앱 안내를 확인하세요.`,
+    source: "Mothership · Computer Weekly",
+    sources: [
+      { name: "Mothership — Singpass 아이폰 패스키 (7/1)", url: "https://mothership.sg/2026/06/singpass-launch-passkey-login/" },
+      { name: "Computer Weekly — Singpass passkeys vs phishing", url: "https://www.computerweekly.com/news/366645129/Singpass-to-roll-out-passkeys-in-fight-against-phishing-scams" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🔑",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260712-2",
+    publishedAt: "2026-07-07",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚖 택시·PHV 기사 '자율주행 전환' 지원 — 훈련비 최대 S$1,600, 3분기부터",
+    summary: "교통부(MOT)가 7월 7일 자율주행차(AV) 확대에 대비해 택시·PHV(플라이어) 기사의 직업 전환을 돕는 프로그램을 발표했다. 'AV 전문가'나 버스기사로 전환하는 직업전환프로그램(CCP)과, 개별 교육 수강 시 시간당 S$20(최대 80시간, 1인 최대 S$1,600) 훈련 인센티브가 신설된다. 약 2,000개 SkillsFuture 지원 과정에서 고를 수 있으며, 2026년 3분기부터 시작해 2027년 1월부터 3년간 시범 운영된다. MOM·NTUC·Grab·ComfortDelGro가 함께 마련했다.",
+    fullContent: `**택시·PHV 기사 자율주행(AV) 전환 지원 (MOT 7월 7일 발표)**
+자율주행차 확대에 대비해 택시·플라이어(PHV) 기사의 직업 전환을 돕는 지원책입니다.
+
+- **직업전환프로그램(CCP)**: 'AV 전문가' 또는 버스기사로 전환하는 경로
+- **훈련 인센티브**: 개별 교육 수강 시 **시간당 S$20**, 시범기간 최대 80시간 → **1인당 최대 S$1,600** (렌트비·훈련 중 소득 보전 목적)
+- **과정**: 약 2,000개 SkillsFuture(SWDA) 지원 과정 중 선택
+- **일정**: 2026년 **3분기 시작**, 2027년 1월부터 3년간 시범 운영
+- **협력**: 인력부(MOM)·노총(NTUC)·Grab·ComfortDelGro
+
+**참고**
+- 싱가포르에서 택시·PHV로 일하는 한인 기사에게 도움이 될 수 있는 제도입니다. 신청 요건은 공식 안내를 확인하세요.`,
+    source: "MOT · The Independent SG",
+    sources: [
+      { name: "MOT — 택시·PHV 기사 지원 (공식)", url: "https://www.mot.gov.sg/news-resources/newsroom/-more-options-for-taxi-and-private-hire-car-drivers-as-singapore-prepares-for-the-future-of-mobility/" },
+      { name: "The Independent SG — AV 전환 훈련 인센티브", url: "https://theindependent.sg/new-av-specialist-career-conversion-programme-up-to-s-1-600-in-training-incentives-to-help-taxi-and-private-hire-drivers-through-av-transition/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚖",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260712-3",
+    publishedAt: "2026-07-01",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏘️ HDB 재판매가 Q2 -0.3% '2분기 연속 하락'(7년 만) — 민간주택은 +0.5%로 둔화",
+    summary: "HDB·URA가 7월 1일 발표한 2026년 2분기 플래시 추정치에 따르면, HDB 재판매가격지수가 전분기 대비 -0.3% 내리며 1분기(-0.1%)에 이어 약 7년 만에 처음으로 2분기 연속 하락했다. 민간주택 가격은 +0.5%로 1분기(+0.9%)보다 상승세가 둔화됐고, 비(非)단독주택은 -0.1%로 소폭 하락(RCR -1.4%, CCR +2.0%). 실수요·임차인에게는 협상 여지가 커지는 흐름이다.",
+    fullContent: `**2026년 2분기 주택가격 플래시 (HDB·URA, 7월 1일)**
+
+**HDB 재판매**
+- 재판매가격지수 전분기 대비 **-0.3%** (1분기 -0.1%에 이어 **2분기 연속 하락**, 약 7년 만)
+
+**민간주택 (URA)**
+- 전체 **+0.5%** — 1분기(+0.9%)보다 상승세 둔화
+- 비단독주택 **-0.1%** (RCR -1.4% / CCR +2.0%)
+
+**참고**
+- 플래시(잠정) 추정치로, 확정치는 이후 발표됩니다.
+- 재판매·렌트를 앞둔 한인에게는 협상 여지가 이전보다 커진 편입니다. 단지·지역별 차이가 크니 실제 매물로 비교하세요.`,
+    source: "99.co · URA/HDB",
+    sources: [
+      { name: "99.co — Q2 2026 HDB·URA 플래시", url: "https://www.99.co/singapore/insider/ura-hdb-flash-estimates-q2-2026-breakdown/" },
+      { name: "Yahoo — HDB 2분기 연속 하락·민간 +0.5%", url: "https://malaysia.news.yahoo.com/singapore-hdb-resale-prices-dip-090809669.html" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏘️",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
     category: "안전",
