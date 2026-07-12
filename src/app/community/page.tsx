@@ -50,47 +50,59 @@ function CommunityPageInner() {
     return () => clearTimeout(t);
   }, [searchQuery]);
 
-  // 필터/정렬/검색이 바뀌면 '더 보기' 개수 초기화 + 맨 위로 (첫 마운트는 건너뜀 → 뒤로가기 복원 유지)
-  const skipReset = useRef(true);
+  // 복원 완료 여부 (완료 전엔 리셋/저장을 억제해 복원값이 덮어써지지 않게)
+  const restoredRef = useRef(false);
+
+  // 마운트 시: 이전에 보던 카테고리·정렬·더보기·스크롤 복원 (뒤로가기 대응)
   useEffect(() => {
-    if (skipReset.current) { skipReset.current = false; return; }
+    try {
+      const raw = sessionStorage.getItem("sori_community_feed");
+      if (raw) {
+        const s = JSON.parse(raw);
+        // URL에 ?cat=이 명시돼 있으면 그것을 우선, 없으면 이전에 보던 카테고리 복원
+        const cat = catFromQuery !== "all" ? catFromQuery : (s.cat || "all");
+        if (cat && cat !== "all") setSelectedCategory(cat);
+        if (s.feedTab && s.feedTab !== "최신순") setFeedTab(s.feedTab);
+        const wasSearching = !!(s.search && String(s.search).trim());
+        const sameCat = cat === (s.cat || "all");
+        if (!wasSearching && sameCat) {
+          if (typeof s.visibleCount === "number") setVisibleCount(Math.max(10, s.visibleCount));
+          const y = s.y || 0;
+          const doScroll = () => window.scrollTo(0, y);
+          requestAnimationFrame(() => requestAnimationFrame(doScroll));
+          setTimeout(doScroll, 90);
+        }
+      }
+    } catch {}
+    const id = setTimeout(() => { restoredRef.current = true; }, 130);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 사용자가 카테고리/정렬/검색을 바꾸면 더보기 초기화 + 맨 위로 (복원 완료 후에만)
+  useEffect(() => {
+    if (!restoredRef.current) return;
     setVisibleCount(10);
     window.scrollTo(0, 0);
   }, [selectedCategory, debouncedSearch, feedTab]);
 
-  // 뒤로가기 복원: 마운트 시 저장해둔 스크롤 위치·더보기 개수 복원
+  // 현재 뷰 상태(카테고리·정렬·검색·더보기·스크롤) 저장 — 뒤로가기 복원용
   useEffect(() => {
-    try {
-      const raw = sessionStorage.getItem("sori_community_feed");
-      if (!raw) return;
-      const s = JSON.parse(raw);
-      const currentKey = `${selectedCategory}|${debouncedSearch}|${feedTab}`;
-      if (s.key === currentKey) {
-        if (typeof s.visibleCount === "number") setVisibleCount(Math.max(10, s.visibleCount));
-        const y = s.y || 0;
-        const restore = () => window.scrollTo(0, y);
-        requestAnimationFrame(() => requestAnimationFrame(restore));
-        setTimeout(restore, 90);
-      }
-    } catch {}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // 스크롤/더보기 상태 저장 (뒤로가기 복원용)
-  useEffect(() => {
-    let t: ReturnType<typeof setTimeout>;
     const save = () => {
+      if (!restoredRef.current) return;
       try {
         sessionStorage.setItem(
           "sori_community_feed",
-          JSON.stringify({ y: window.scrollY, visibleCount, key: `${selectedCategory}|${debouncedSearch}|${feedTab}` })
+          JSON.stringify({ y: window.scrollY, visibleCount, cat: selectedCategory, feedTab, search: debouncedSearch })
         );
       } catch {}
     };
+    save();
+    let t: ReturnType<typeof setTimeout>;
     const onScroll = () => { clearTimeout(t); t = setTimeout(save, 100); };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => { window.removeEventListener("scroll", onScroll); clearTimeout(t); };
-  }, [visibleCount, selectedCategory, debouncedSearch, feedTab]);
+  }, [visibleCount, selectedCategory, feedTab, debouncedSearch]);
 
   // 사용자 글 + 정적 글 합치기 (사용자 글이 최상단)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);

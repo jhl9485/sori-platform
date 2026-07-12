@@ -90,16 +90,23 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
         ))}
       </div>
 
-      <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08]">
+      <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08] text-[0.75rem]">
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleLike(post.id); }}
-          className={`flex items-center gap-[4px] text-[0.78rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
+          className={`flex items-center gap-[4px] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
           aria-label="좋아요"
         >
-          {liked ? "❤️" : "🤍"} {likeCount.toLocaleString()}
+          <span className="text-[0.9rem] leading-none">{liked ? "❤️" : "🤍"}</span>
+          <span className="leading-none">{likeCount.toLocaleString()}</span>
         </button>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">👁 {formatCount(post.views)}</span>
-        <span className="flex items-center gap-[3px] text-[0.75rem] text-[#888070]">💬 {commentCount}</span>
+        <span className="flex items-center gap-[4px] text-[#888070]">
+          <span className="text-[0.9rem] leading-none">👁</span>
+          <span className="leading-none">{formatCount(post.views)}</span>
+        </span>
+        <span className="flex items-center gap-[4px] text-[#888070]">
+          <span className="text-[0.9rem] leading-none">💬</span>
+          <span className="leading-none">{commentCount}</span>
+        </span>
       </div>
     </Link>
   );

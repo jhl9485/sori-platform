@@ -184,13 +184,16 @@ export default function CommunityDetailClient({ params }: { params: { id: string
             onClick={() => toggleLike(post.id)}
             className={`flex items-center gap-[5px] text-[0.82rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
           >
-            {liked ? "❤️" : "🤍"} <span>{likeCount.toLocaleString()}</span>
+            <span className="text-[1rem] leading-none">{liked ? "❤️" : "🤍"}</span>
+            <span className="leading-none">{likeCount.toLocaleString()}</span>
           </button>
           <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
-            👁 <span>{formatCount(post.views)}</span>
+            <span className="text-[1rem] leading-none">👁</span>
+            <span className="leading-none">{formatCount(post.views)}</span>
           </span>
           <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
-            💬 <span>{realCommentCount(post.id, userCommentCounts)}</span>
+            <span className="text-[1rem] leading-none">💬</span>
+            <span className="leading-none">{realCommentCount(post.id, userCommentCounts)}</span>
           </span>
           <button
             onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(post.id); }}
