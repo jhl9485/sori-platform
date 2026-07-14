@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { CATEGORIES } from "@/data/categories";
 import type { VisaBadge } from "@/data/communityPosts";
 import { updateUserItem } from "@/lib/userContent";
+import { toast, confirmDialog } from "@/components/shared/Feedback";
 
 const DRAFT_KEY = "sori_write_draft";
 const POSTS_KEY = "sori_user_posts";
@@ -188,10 +189,10 @@ function WriteInner() {
         images,
       });
       if (!ok) {
-        alert("수정 실패: 글을 찾을 수 없어요.");
+        toast("수정 실패: 글을 찾을 수 없어요.");
         return;
       }
-      alert("✅ 글이 수정되었습니다!");
+      toast("✅ 글이 수정되었어요!");
       router.push(`/community/${editId}`);
       return;
     }
@@ -216,10 +217,10 @@ function WriteInner() {
       localStorage.removeItem(DRAFT_KEY);
     } catch (err) {
       console.error("글 저장 실패:", err);
-      alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 글을 삭제 후 다시 시도해주세요.");
+      toast("등록 실패: 저장 공간이 부족해요. 옛 글을 지운 뒤 다시 시도해주세요.");
       return;
     }
-    alert("✅ 글이 등록되었습니다!");
+    toast("✅ 글이 등록되었어요!");
     router.push("/community");
   };
 
@@ -278,9 +279,9 @@ function WriteInner() {
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => {
+                onClick={async () => {
                   if (cat.locked) {
-                    if (window.confirm("성인 게시판입니다. 계속하시겠습니까?")) {
+                    if (await confirmDialog({ message: "성인 게시판입니다.\n계속하시겠어요?", confirmText: "계속" })) {
                       setSelectedCat(cat.id);
                       setShowCatPicker(false);
                     }

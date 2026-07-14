@@ -16,6 +16,7 @@ import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
+import { toast, confirmDialog } from "@/components/shared/Feedback";
 
 export default function CommunityDetailClient({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -49,7 +50,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
       navigator.share({ title: post.title, url: window.location.href });
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert("링크가 복사되었습니다.");
+      toast("링크가 복사되었어요.");
     }
   };
 
@@ -60,9 +61,8 @@ export default function CommunityDetailClient({ params }: { params: { id: string
           <div className="flex gap-3 items-center">
             <button onClick={handleShare} className="text-[0.75rem] text-[#888070] hover:text-[#181614]">↗ 공유</button>
             <button
-              onClick={() => {
-                const r = window.prompt("신고 사유를 적어주세요 (선택)");
-                if (r !== null) alert("신고가 접수되었습니다.");
+              onClick={async () => {
+                if (await confirmDialog({ message: "이 글을 신고할까요?\n부적절한 내용은 검토 후 조치됩니다.", confirmText: "신고" })) toast("신고가 접수되었어요. 검토 후 조치할게요.");
               }}
               className="text-[0.75rem] text-[#888070] hover:text-[#D04020]"
             >

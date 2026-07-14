@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Comment } from "@/data/communityPosts";
 import { useProfile } from "@/lib/profile";
 import { useAuth, useAuthGate, isLoggedIn } from "@/lib/auth";
 import { useToggleSet } from "@/lib/storage";
+import { relativeTime } from "@/lib/userContent";
+import { toast, confirmDialog } from "@/components/shared/Feedback";
 
 interface Props {
   comments: Comment[];
@@ -54,18 +56,71 @@ function writeReplies(parentId: string, replies: Comment[]) {
   } catch {}
 }
 
+function displayTime(c: Comment): string {
+  return c.createdAt ? relativeTime(c.createdAt) : c.time;
+}
+
+// 자동 높이 조절 입력창 (여러 줄 지원)
+function AutoTextarea({
+  value,
+  onChange,
+  placeholder,
+  maxLength,
+  className,
+  autoFocus,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  maxLength?: number;
+  className?: string;
+  autoFocus?: boolean;
+}) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (el) {
+      el.style.height = "auto";
+      el.style.height = Math.min(el.scrollHeight, 120) + "px";
+    }
+  }, [value]);
+  return (
+    <textarea
+      ref={ref}
+      rows={1}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      maxLength={maxLength}
+      autoFocus={autoFocus}
+      className={className}
+    />
+  );
+}
+
 interface ItemProps {
   comment: Comment;
   depth?: number;
-  parentId: string | null; // 이 댓글이 답글이면 부모 댓글 id, 최상위면 null
+  parentId: string | null; // 답글이면 부모 댓글 id, 최상위면 null
   userReplies: Record<string, Comment[]>;
   ownIds: Set<string>;
+  highlightId: string | null;
   onAddReply: (parentId: string, reply: Comment) => void;
   onEdit: (id: string, parentId: string | null, content: string) => void;
   onDelete: (id: string, parentId: string | null) => void;
 }
 
-function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddReply, onEdit, onDelete }: ItemProps) {
+function CommentItem({
+  comment,
+  depth = 0,
+  parentId,
+  userReplies,
+  ownIds,
+  highlightId,
+  onAddReply,
+  onEdit,
+  onDelete,
+}: ItemProps) {
   const { has: isCommentLiked, toggle: toggleCommentLike } = useToggleSet("sori_comment_likes");
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState("");
@@ -75,8 +130,8 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
 
   const liked = isCommentLiked(comment.id);
   const isOwn = ownIds.has(comment.id);
+  const highlighted = highlightId === comment.id;
 
-  // 정적 답글 + 사용자 답글 병합 (이 댓글 id에 속한 사용자 답글만)
   const replies = [
     ...(comment.replies || []),
     ...(userReplies[comment.id] || []),
@@ -94,6 +149,7 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
       avatarColor: "#D04020",
       content: text,
       time: "방금 전",
+      createdAt: new Date().toISOString(),
       likes: 0,
     };
     onAddReply(comment.id, newReply);
@@ -110,7 +166,10 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
 
   return (
     <div className={depth > 0 ? "ml-7 border-l-2 border-black/[0.05] pl-3" : ""}>
-      <div className="py-3">
+      <div
+        id={`comment-${comment.id}`}
+        className={`py-3 -mx-2 px-2 rounded-[10px] transition-colors duration-500 ${highlighted ? "bg-[#FFF6E9]" : ""}`}
+      >
         <div className="flex items-center gap-2 mb-1">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-[0.8rem] font-bold flex-shrink-0"
@@ -120,17 +179,19 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
           </div>
           <div className="flex-1 min-w-0">
             <span className="text-[0.78rem] font-semibold">{comment.author}</span>
-            <span className="text-[0.68rem] text-[#888070] ml-2">{comment.time}</span>
+            {isOwn && (
+              <span className="text-[0.58rem] bg-[#FBF0EC] text-[#D04020] px-[5px] py-[1px] rounded font-bold ml-1 align-middle">나</span>
+            )}
+            <span className="text-[0.68rem] text-[#888070] ml-2" suppressHydrationWarning>{displayTime(comment)}</span>
           </div>
         </div>
 
         {editing ? (
           <div className="pl-9 mb-2">
-            <textarea
+            <AutoTextarea
               value={editText}
-              onChange={(e) => setEditText(e.target.value)}
-              rows={2}
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] outline-none resize-none"
+              onChange={setEditText}
+              className="w-full bg-[#F5F3EE] rounded-[12px] px-3 py-2 text-[0.82rem] outline-none resize-none leading-relaxed"
               autoFocus
             />
             <div className="flex gap-2 mt-1">
@@ -154,17 +215,17 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
         )}
 
         {!editing && (
-          <div className="flex items-center gap-3 pl-9">
+          <div className="flex items-center gap-2 pl-9">
             <button
               onClick={() => toggleCommentLike(comment.id)}
-              className={`flex items-center gap-1 text-[0.72rem] transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
+              className={`flex items-center gap-1 text-[0.72rem] px-1.5 py-1 -ml-1.5 rounded transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
             >
               {liked ? "❤️" : "🤍"} {comment.likes + (liked ? 1 : 0)}
             </button>
             {depth < 2 && (
               <button
                 onClick={() => { if (gate("답글은 로그인 후 남길 수 있어요.")) setShowReply(!showReply); }}
-                className="text-[0.72rem] text-[#888070] hover:text-[#181614]"
+                className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-1.5 py-1 rounded"
               >
                 답글
               </button>
@@ -173,26 +234,21 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
               <>
                 <button
                   onClick={() => { setEditText(comment.content); setEditing(true); }}
-                  className="text-[0.72rem] text-[#888070] hover:text-[#181614]"
+                  className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-1.5 py-1 rounded"
                 >
                   수정
                 </button>
                 <button
-                  onClick={() => { if (window.confirm("이 댓글을 삭제할까요?")) onDelete(comment.id, parentId); }}
-                  className="text-[0.72rem] text-[#888070] hover:text-[#D04020]"
+                  onClick={async () => { if (await confirmDialog({ message: "이 댓글을 삭제할까요?", confirmText: "삭제", danger: true })) onDelete(comment.id, parentId); }}
+                  className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-1.5 py-1 rounded"
                 >
                   삭제
                 </button>
               </>
             ) : (
               <button
-                onClick={() => {
-                  const reason = window.prompt("신고 사유를 적어주세요 (선택)\n\n예: 욕설, 스팸, 음란/혐오, 광고, 허위정보 등");
-                  if (reason !== null) {
-                    alert("신고가 접수되었습니다. 검토 후 조치하겠습니다.");
-                  }
-                }}
-                className="text-[0.72rem] text-[#888070] hover:text-[#D04020]"
+                onClick={async () => { if (await confirmDialog({ message: "이 댓글을 신고할까요?\n부적절한 내용은 검토 후 조치됩니다.", confirmText: "신고" })) toast("신고가 접수되었어요. 검토 후 조치할게요."); }}
+                className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-1.5 py-1 rounded"
               >
                 신고
               </button>
@@ -202,20 +258,18 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
 
         {showReply && (
           <div className="mt-2 pl-9">
-            <div className="flex gap-2">
-              <input
-                type="text"
+            <div className="flex gap-2 items-end">
+              <AutoTextarea
                 value={replyText}
-                onChange={(e) => setReplyText(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter") submitReply(); }}
+                onChange={setReplyText}
                 placeholder="답글을 입력하세요..."
-                className="flex-1 bg-[#F5F3EE] rounded-full px-3 py-[6px] text-[0.78rem] outline-none"
+                className="flex-1 bg-[#F5F3EE] rounded-[16px] px-3 py-[7px] text-[0.78rem] outline-none resize-none leading-relaxed"
                 autoFocus
               />
               <button
                 onClick={submitReply}
                 disabled={!replyText.trim()}
-                className={`px-3 py-[6px] rounded-full text-[0.75rem] font-medium ${
+                className={`px-3 py-[7px] rounded-full text-[0.75rem] font-medium shrink-0 ${
                   replyText.trim() ? "bg-[#181614] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"
                 }`}
               >
@@ -233,6 +287,7 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
           parentId={comment.id}
           userReplies={userReplies}
           ownIds={ownIds}
+          highlightId={highlightId}
           onAddReply={onAddReply}
           onEdit={onEdit}
           onDelete={onDelete}
@@ -243,7 +298,6 @@ function CommentItem({ comment, depth = 0, parentId, userReplies, ownIds, onAddR
 }
 
 export default function CommentSection({ comments, postId }: Props) {
-  // 정적 댓글 + 사용자 추가 댓글 (localStorage) 병합
   const { profile } = useProfile();
   const { isAuthed, hydrated } = useAuth();
   const [userComments, setUserComments] = useState<Comment[]>([]);
@@ -251,6 +305,7 @@ export default function CommentSection({ comments, postId }: Props) {
   const [newComment, setNewComment] = useState("");
   const [isAnon, setIsAnon] = useState(false);
   const [sortBy, setSortBy] = useState<"등록순" | "인기순">("등록순");
+  const [highlightId, setHighlightId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!postId) return;
@@ -262,11 +317,19 @@ export default function CommentSection({ comments, postId }: Props) {
   const list = [...comments, ...userComments];
   const displayList = sortBy === "인기순" ? [...list].sort((a, b) => b.likes - a.likes) : list;
 
-  // 내가 쓴 댓글·답글 id 집합 (수정/삭제 노출용)
   const ownIds = new Set<string>([
     ...userComments.map((c) => c.id),
     ...Object.values(userReplies).flat().map((r) => r.id),
   ]);
+
+  // 새로 단 댓글/답글로 스크롤 + 잠깐 강조
+  const flashTo = (id: string) => {
+    setHighlightId(id);
+    setTimeout(() => {
+      document.getElementById(`comment-${id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 60);
+    setTimeout(() => setHighlightId((cur) => (cur === id ? null : cur)), 2200);
+  };
 
   const handleAddReply = (parentId: string, reply: Comment) => {
     setUserReplies((prev) => {
@@ -274,6 +337,7 @@ export default function CommentSection({ comments, postId }: Props) {
       writeReplies(parentId, next[parentId]);
       return next;
     });
+    flashTo(reply.id);
   };
 
   const handleEdit = (id: string, parentId: string | null, content: string) => {
@@ -308,6 +372,7 @@ export default function CommentSection({ comments, postId }: Props) {
         return next;
       });
     }
+    toast("댓글을 삭제했어요.");
   };
 
   const submitComment = () => {
@@ -324,6 +389,7 @@ export default function CommentSection({ comments, postId }: Props) {
           avatarColor: "#888070",
           content: text,
           time: "방금 전",
+          createdAt: new Date().toISOString(),
           likes: 0,
         }
       : {
@@ -334,12 +400,14 @@ export default function CommentSection({ comments, postId }: Props) {
           avatarColor: "#D04020",
           content: text,
           time: "방금 전",
+          createdAt: new Date().toISOString(),
           likes: 0,
         };
     const next = [...userComments, c];
     setUserComments(next);
     if (postId) writeFor(postId, next);
     setNewComment("");
+    flashTo(c.id);
   };
 
   return (
@@ -382,20 +450,18 @@ export default function CommentSection({ comments, postId }: Props) {
             🔒 로그인하고 댓글 남기기
           </Link>
         ) : (
-          <div className="flex gap-2">
-            <input
-              type="text"
+          <div className="flex gap-2 items-end">
+            <AutoTextarea
               value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              onKeyDown={(e) => { if (e.key === "Enter") submitComment(); }}
+              onChange={setNewComment}
               placeholder="댓글을 입력하세요..."
               maxLength={500}
-              className="flex-1 bg-[#F5F3EE] rounded-full px-4 py-[8px] text-[0.82rem] outline-none min-w-0"
+              className="flex-1 bg-[#F5F3EE] rounded-[18px] px-4 py-[9px] text-[0.82rem] outline-none min-w-0 resize-none leading-relaxed"
             />
             <button
               onClick={submitComment}
               disabled={!newComment.trim()}
-              className={`px-4 py-[8px] rounded-full text-[0.78rem] font-bold transition-colors ${
+              className={`px-4 py-[9px] rounded-full text-[0.78rem] font-bold shrink-0 transition-colors ${
                 newComment.trim() ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#C0BBB0]"
               }`}
             >
@@ -419,6 +485,7 @@ export default function CommentSection({ comments, postId }: Props) {
               parentId={null}
               userReplies={userReplies}
               ownIds={ownIds}
+              highlightId={highlightId}
               onAddReply={handleAddReply}
               onEdit={handleEdit}
               onDelete={handleDelete}

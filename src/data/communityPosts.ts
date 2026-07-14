@@ -19,6 +19,7 @@ export interface Comment {
   avatarColor: string;
   content: string;
   time: string;
+  createdAt?: string; // ISO. 있으면 화면에서 상대시간으로 자동 계산(사용자 작성 댓글에서 사용)
   likes: number;
   isAnon?: boolean;
   replies?: Comment[];
