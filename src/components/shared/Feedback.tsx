@@ -48,6 +48,7 @@ interface ConfirmOpts {
   confirmText?: string;
   cancelText?: string;
   danger?: boolean;
+  alertOnly?: boolean; // true면 '확인' 버튼만 (정보 알림용)
 }
 
 let confirmResolver: ((v: boolean) => void) | null = null;
@@ -58,6 +59,11 @@ export function confirmDialog(opts: ConfirmOpts): Promise<boolean> {
     confirmResolver = resolve;
     window.dispatchEvent(new CustomEvent("sori-confirm", { detail: opts }));
   });
+}
+
+// 정보성 알림 (확인 버튼 하나) — 브라우저 alert 대체
+export function alertDialog(message: string, title?: string): Promise<boolean> {
+  return confirmDialog({ message, title, confirmText: "확인", alertOnly: true });
 }
 
 export function ConfirmHost() {
@@ -85,15 +91,17 @@ export function ConfirmHost() {
           <div className="text-[0.85rem] text-[#3A3630] leading-relaxed whitespace-pre-wrap">{opts.message}</div>
         </div>
         <div className="flex border-t border-black/[0.07]">
-          <button
-            onClick={() => close(false)}
-            className="flex-1 py-3 text-[0.85rem] text-[#888070] hover:bg-[#F5F3EE] transition-colors"
-          >
-            {opts.cancelText || "취소"}
-          </button>
+          {!opts.alertOnly && (
+            <button
+              onClick={() => close(false)}
+              className="flex-1 py-3 text-[0.85rem] text-[#888070] hover:bg-[#F5F3EE] transition-colors"
+            >
+              {opts.cancelText || "취소"}
+            </button>
+          )}
           <button
             onClick={() => close(true)}
-            className={`flex-1 py-3 text-[0.85rem] font-semibold border-l border-black/[0.07] transition-colors ${
+            className={`flex-1 py-3 text-[0.85rem] font-semibold transition-colors ${!opts.alertOnly ? "border-l border-black/[0.07]" : ""} ${
               opts.danger ? "text-[#D04020] hover:bg-[#FBF0EC]" : "text-[#2050A0] hover:bg-[#EBF0FB]"
             }`}
           >

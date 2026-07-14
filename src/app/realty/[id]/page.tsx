@@ -9,6 +9,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
 import { useAuthGate } from "@/lib/auth";
+import { toast, confirmDialog, alertDialog } from "@/components/shared/Feedback";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 
@@ -38,12 +39,13 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
   const isMine = userRealty.some((r) => r.id === params.id);
   const currentStatus: RealtyStatus = item.status || "가능";
 
-  const changeStatus = (next: RealtyStatus) => {
+  const changeStatus = async (next: RealtyStatus) => {
     if (!isMine) return;
     if (next === currentStatus) return;
-    if (!confirm(`거래 상태를 "${next}"(으)로 변경하시겠어요?`)) return;
+    if (!(await confirmDialog({ message: `거래 상태를 "${next}"(으)로 변경할까요?`, confirmText: "변경" }))) return;
     const ok = updateUserItem<{ id: string; status?: RealtyStatus }>("sori_user_realty", params.id, { status: next });
-    if (!ok) alert("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
+    if (!ok) toast("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
+    else toast(`거래 상태를 '${next}'(으)로 변경했어요.`);
   };
 
   const handleShare = () => {
@@ -51,13 +53,15 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
       navigator.share({ title: item.title, url: window.location.href });
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert("링크가 복사되었습니다.");
+      toast("링크가 복사되었어요.");
     }
   };
 
   const handleContact = () => {
-    const msg = `중개사: ${item.agent}\n매물: ${item.title}\n\n실제 서비스에서는 중개사에게 메시지 보내기 또는 전화 연결됩니다.\n(현재는 데모이며 연락처는 가상입니다)`;
-    alert(msg);
+    alertDialog(
+      `중개사: ${item.agent}\n매물: ${item.title}\n\n실제 서비스에서는 중개사에게 메시지 보내기 또는 전화가 연결돼요.\n(현재는 데모이며 연락처는 가상입니다)`,
+      "중개사에게 연락"
+    );
   };
 
   const handleMap = () => {
@@ -71,7 +75,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
       <PageHeader
         right={
           <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(item.id); }}
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(item.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
             className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}
             aria-label="저장"
           >

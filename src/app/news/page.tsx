@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import SearchField from "@/components/shared/SearchField";
@@ -20,6 +21,10 @@ function isRecentNews(time: string): boolean {
 export default function NewsPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
+  useListRestore("sori_list_news", { selectedCat, searchQuery }, (s) => {
+    setSelectedCat(s.selectedCat);
+    setSearchQuery(s.searchQuery);
+  });
   const q = searchQuery.toLowerCase().trim();
   const filtered = NEWS_ITEMS.filter((n) => {
     if (selectedCat !== "전체" && n.category !== selectedCat) return false;

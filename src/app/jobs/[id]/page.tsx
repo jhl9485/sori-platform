@@ -9,6 +9,7 @@ import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import { useToggleSet } from "@/lib/storage";
 import { useAuthGate } from "@/lib/auth";
+import { toast } from "@/components/shared/Feedback";
 import { useHydrated } from "@/lib/hooks";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
@@ -31,7 +32,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(job.id); }} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(job.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "🔖" : "🏷️"}
           </button>
         }

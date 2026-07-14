@@ -32,6 +32,7 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
   const router = useRouter();
   const [pop, setPop] = useState(false);
+  const [imgBroken, setImgBroken] = useState(false);
   const userCommentCounts = useUserCommentCounts();
   const likeCount = parseInt(post.likes.replace(/,/g, ""), 10) + (liked ? 1 : 0);
   const commentCount = realCommentCount(post.id, userCommentCounts);
@@ -72,10 +73,10 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
       </div>
       <div className="text-[0.8rem] text-[#888070] leading-[1.5] mb-[10px] line-clamp-2">{post.preview}</div>
 
-      {post.images && post.images.length > 0 && (
+      {post.images && post.images.length > 0 && !imgBroken && (
         <div className="relative mb-[10px] rounded-[10px] overflow-hidden border border-black/[0.06]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={post.images[0]} alt="" className="w-full max-h-52 object-cover" />
+          <img src={post.images[0]} alt="" onError={() => setImgBroken(true)} className="w-full max-h-52 object-cover" />
           {post.images.length > 1 && (
             <span className="absolute bottom-1.5 right-1.5 bg-black/60 text-white text-[0.62rem] font-semibold px-1.5 py-[1px] rounded-full">
               📷 {post.images.length}

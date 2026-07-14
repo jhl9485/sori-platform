@@ -9,6 +9,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
 import { useUserFlea, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
+import { toast, confirmDialog } from "@/components/shared/Feedback";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -40,12 +41,13 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
   const isMine = userFlea.some((i) => i.id === params.id);
   const currentStatus: FleaStatus = item.status || "판매중";
 
-  const changeStatus = (next: FleaStatus) => {
+  const changeStatus = async (next: FleaStatus) => {
     if (!isMine) return;
     if (next === currentStatus) return;
-    if (!confirm(`거래 상태를 "${next}"(으)로 변경하시겠어요?`)) return;
+    if (!(await confirmDialog({ message: `거래 상태를 "${next}"(으)로 변경할까요?`, confirmText: "변경" }))) return;
     const ok = updateUserItem<{ id: string; status?: FleaStatus }>("sori_user_flea", params.id, { status: next });
-    if (!ok) alert("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
+    if (!ok) toast("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
+    else toast(`거래 상태를 '${next}'(으)로 변경했어요.`);
   };
 
   const lines = item.description.split("\n").map((line, i) => {

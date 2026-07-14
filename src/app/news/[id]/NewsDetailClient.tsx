@@ -42,7 +42,7 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(news.id); }} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(news.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {saved ? "🔖" : "🏷️"}
           </button>
         }
@@ -129,7 +129,7 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
             ↗ 공유하기
           </button>
           <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(news.id); }}
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(news.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
             className={`flex items-center gap-1 text-[0.82rem] ml-auto ${saved ? "text-[#2050A0]" : "text-[#888070]"}`}
           >
             {saved ? "🔖 저장됨" : "🏷️ 저장"}

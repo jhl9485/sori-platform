@@ -1,6 +1,7 @@
 "use client";
 
 import { CATEGORIES } from "@/data/categories";
+import { confirmDialog } from "@/components/shared/Feedback";
 
 interface Props {
   selected: string;
@@ -12,9 +13,9 @@ interface Props {
 export default function CategoryTabs({ selected, onSelect, counts, totalCount }: Props) {
   const allTabs = [{ id: "all", label: "전체", locked: false }, ...CATEGORIES];
 
-  const handleClick = (id: string, locked?: boolean) => {
+  const handleClick = async (id: string, locked?: boolean) => {
     if (locked) {
-      if (window.confirm("성인 콘텐츠입니다. 계속하시겠습니까?")) {
+      if (await confirmDialog({ message: "성인 콘텐츠입니다.\n계속하시겠어요?", confirmText: "계속" })) {
         onSelect(id);
       }
       return;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
@@ -27,6 +28,12 @@ export default function JobsPage() {
   const [typeFilter, setTypeFilter] = useState<JobType | "전체">("전체");
   const [koreanOnly, setKoreanOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  useListRestore("sori_list_jobs", { visaFilter, typeFilter, koreanOnly, searchQuery }, (s) => {
+    setVisaFilter(s.visaFilter);
+    setTypeFilter(s.typeFilter);
+    setKoreanOnly(s.koreanOnly);
+    setSearchQuery(s.searchQuery);
+  });
 
   const userJobs = useUserJobs();
   const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);

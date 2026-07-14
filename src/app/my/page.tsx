@@ -17,6 +17,7 @@ import {
 } from "@/lib/userContent";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
+import { toast, confirmDialog, alertDialog } from "@/components/shared/Feedback";
 
 const TABS = [
   { id: "overview", label: "활동", icon: "📊" },
@@ -681,23 +682,30 @@ function SettingsTab() {
       "앱 정보": "SORI v1.0.0\n\n싱가포르 한인 커뮤니티 플랫폼\n© 2026 SORI\n\n약관 · 개인정보 처리방침은 곧 추가됩니다.",
       "고객센터": "고객센터\n\n📧 support@sori.sg (가상)\n💬 카카오톡: @sori_sg (가상)\n🕐 평일 10:00 ~ 18:00 SGT",
     };
-    alert(messages[label] || label);
+    alertDialog(messages[label] || label);
   };
 
-  const handleLogout = () => {
-    if (!window.confirm("로그아웃하시겠어요?\n저장된 글·댓글·좋아요는 그대로 유지됩니다.")) return;
+  const handleLogout = async () => {
+    const ok = await confirmDialog({ message: "로그아웃하시겠어요?\n저장된 글·댓글·좋아요는 그대로 유지됩니다.", confirmText: "로그아웃" });
+    if (!ok) return;
     logout();
     router.push("/login");
   };
 
-  const handleClearData = () => {
-    if (!window.confirm("⚠️ 모든 로컬 데이터가 삭제됩니다.\n\n• 내가 쓴 글/매물/공고/벼룩\n• 저장·좋아요·도움됨 표시\n• 임시저장 / 검색 기록 / 알림 읽음 / 프로필\n\n되돌릴 수 없어요. 정말 진행하시겠어요?")) return;
-    if (!window.confirm("정말 확실하신가요? 마지막 확인이에요.")) return;
+  const handleClearData = async () => {
+    const ok1 = await confirmDialog({
+      message: "⚠️ 모든 로컬 데이터가 삭제됩니다.\n\n• 내가 쓴 글/매물/공고/벼룩\n• 저장·좋아요 표시\n• 임시저장 / 검색 기록 / 알림 읽음 / 프로필\n\n되돌릴 수 없어요. 정말 진행할까요?",
+      confirmText: "삭제",
+      danger: true,
+    });
+    if (!ok1) return;
+    const ok2 = await confirmDialog({ message: "정말 확실하신가요?\n마지막 확인이에요.", confirmText: "삭제", danger: true });
+    if (!ok2) return;
     Object.keys(localStorage)
       .filter((k) => k.startsWith("sori_"))
       .forEach((k) => localStorage.removeItem(k));
-    alert("모든 로컬 데이터가 초기화되었습니다.");
-    window.location.reload();
+    toast("모든 로컬 데이터가 초기화되었어요.");
+    setTimeout(() => window.location.reload(), 500);
   };
 
   return (

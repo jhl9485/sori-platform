@@ -17,8 +17,9 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
   const [dragOffset, setDragOffset] = useState(0);
+  const [broken, setBroken] = useState(false);
 
-  if (!photos || photos.length === 0) {
+  if (!photos || photos.length === 0 || broken) {
     return (
       <div className={`w-full ${heightClass} flex items-center justify-center text-[5rem] leading-none ${fallbackBg}`}>
         {fallbackEmoji}
@@ -62,6 +63,7 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
         alt={alt}
         loading="lazy"
         decoding="async"
+        onError={() => setBroken(true)}
         className="w-full h-full object-cover transition-transform duration-150"
         style={{ transform: `translateX(${dragOffset}px)` }}
         draggable={false}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import { FLEA_ITEMS, FLEA_CATEGORIES } from "@/data/fleaItems";
 import { useUserFlea } from "@/lib/userContent";
@@ -18,6 +19,10 @@ export default function FleaPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
   const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
+  useListRestore("sori_list_flea", { selectedCat, searchQuery }, (s) => {
+    setSelectedCat(s.selectedCat);
+    setSearchQuery(s.searchQuery);
+  });
   const userFlea = useUserFlea();
   const allItems = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
   const q = searchQuery.toLowerCase().trim();

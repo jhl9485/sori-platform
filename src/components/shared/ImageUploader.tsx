@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { toast } from "@/components/shared/Feedback";
 
 interface Props {
   images: string[];               // base64 data URL 배열
@@ -52,7 +53,7 @@ export default function ImageUploader({ images, onChange, max = DEFAULT_MAX }: P
       onChange([...images, ...newDataUrls]);
     } catch (err) {
       console.error(err);
-      alert("이미지를 불러오는 데 문제가 생겼어요. 다른 파일로 시도해주세요.");
+      toast("이미지를 불러오는 데 문제가 생겼어요. 다른 파일로 시도해주세요.");
     }
   };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import {
   REALTY_ITEMS, REALTY_CATEGORIES, REALTY_DEALS, REALTY_REGIONS, REALTY_STATUSES,
@@ -48,6 +49,19 @@ export default function RealtyPage() {
   const [selectedPeriod, setSelectedPeriod] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
+  useListRestore(
+    "sori_list_realty",
+    { selectedType, selectedDeal, selectedRegion, selectedStatus, selectedPeriod, searchQuery, showAdvanced },
+    (s) => {
+      setSelectedType(s.selectedType);
+      setSelectedDeal(s.selectedDeal);
+      setSelectedRegion(s.selectedRegion);
+      setSelectedStatus(s.selectedStatus);
+      setSelectedPeriod(s.selectedPeriod);
+      setSearchQuery(s.searchQuery);
+      setShowAdvanced(s.showAdvanced);
+    }
+  );
   const userRealty = useUserRealty();
   const allItems = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
   const userIds = useMemo(() => new Set(userRealty.map((u) => u.id)), [userRealty]);

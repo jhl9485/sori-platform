@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
@@ -10,6 +11,10 @@ import VerifiedBadge from "@/components/shared/VerifiedBadge";
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  useListRestore("sori_list_business", { selected, searchQuery }, (s) => {
+    setSelected(s.selected);
+    setSearchQuery(s.searchQuery);
+  });
   const userBiz = useUserBiz();
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
   const userIds = useMemo(() => new Set(userBiz.map((u) => u.id)), [userBiz]);

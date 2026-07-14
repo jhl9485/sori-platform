@@ -149,6 +149,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
                 key={i}
                 src={src}
                 alt={`사진 ${i + 1}`}
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 className="w-full rounded-[12px] border border-black/[0.06]"
               />
             ))}
