@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
@@ -16,7 +16,7 @@ import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
-import { toast, confirmDialog } from "@/components/shared/Feedback";
+import { toast, reportDialog } from "@/components/shared/Feedback";
 
 export default function CommunityDetailClient({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -27,6 +27,8 @@ export default function CommunityDetailClient({ params }: { params: { id: string
   const { toggle: markRead } = useToggleSet("sori_read_posts");
   const gate = useAuthGate();
   const userCommentCounts = useUserCommentCounts();
+  const [likePop, setLikePop] = useState(false);
+  const [savePop, setSavePop] = useState(false);
 
   useEffect(() => {
     if (post) markRead(post.id);
@@ -47,7 +49,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
 
   const handleShare = () => {
     if (navigator.share) {
-      navigator.share({ title: post.title, url: window.location.href });
+      navigator.share({ title: post.title, text: post.preview, url: window.location.href });
     } else {
       navigator.clipboard.writeText(window.location.href);
       toast("링크가 복사되었어요.");
@@ -61,9 +63,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
           <div className="flex gap-3 items-center">
             <button onClick={handleShare} className="text-[0.75rem] text-[#888070] hover:text-[#181614]">↗ 공유</button>
             <button
-              onClick={async () => {
-                if (await confirmDialog({ message: "이 글을 신고할까요?\n부적절한 내용은 검토 후 조치됩니다.", confirmText: "신고" })) toast("신고가 접수되었어요. 검토 후 조치할게요.");
-              }}
+              onClick={async () => { const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
               className="text-[0.75rem] text-[#888070] hover:text-[#D04020]"
             >
               신고
@@ -86,9 +86,12 @@ export default function CommunityDetailClient({ params }: { params: { id: string
         {/* 포스트 헤더 */}
         <div className="px-4 md:px-6 pt-5 pb-4">
           <div className="flex items-center gap-2 mb-3 flex-wrap">
-            <span className={`text-[0.7rem] px-2 py-[3px] rounded-full font-semibold ${post.categoryStyle}`}>
+            <Link
+              href={`/community?cat=${post.categoryId}`}
+              className={`text-[0.7rem] px-2 py-[3px] rounded-full font-semibold transition-transform active:scale-95 ${post.categoryStyle}`}
+            >
               {post.categoryLabel}
-            </span>
+            </Link>
             {post.isPinned && (
               <span className="text-[0.65rem] bg-[#FBF5E8] text-[#B07010] px-2 py-[2px] rounded-full font-semibold">
                 📌 공지
@@ -169,10 +172,10 @@ export default function CommunityDetailClient({ params }: { params: { id: string
         {/* 액션 바 */}
         <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
           <button
-            onClick={() => toggleLike(post.id)}
+            onClick={() => { toggleLike(post.id); setLikePop(true); setTimeout(() => setLikePop(false), 260); }}
             className={`flex items-center gap-[5px] text-[0.82rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
           >
-            <span className="text-[1rem] leading-none">{liked ? "❤️" : "🤍"}</span>
+            <span className={`text-[1rem] leading-none transition-transform duration-200 ${likePop ? "scale-[1.35]" : "scale-100"}`}>{liked ? "❤️" : "🤍"}</span>
             <span className="leading-none">{likeCount.toLocaleString()}</span>
           </button>
           <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
@@ -184,10 +187,10 @@ export default function CommunityDetailClient({ params }: { params: { id: string
             <span className="leading-none">{realCommentCount(post.id, userCommentCounts)}</span>
           </span>
           <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) toggleSave(post.id); }}
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(post.id); setSavePop(true); setTimeout(() => setSavePop(false), 260); } }}
             className={`flex items-center gap-[5px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
           >
-            {saved ? "🔖 저장됨" : "🏷️ 저장"}
+            <span className={`inline-block transition-transform duration-200 ${savePop ? "scale-[1.3]" : "scale-100"}`}>{saved ? "🔖" : "🏷️"}</span> {saved ? "저장됨" : "저장"}
           </button>
           <button
             onClick={handleShare}

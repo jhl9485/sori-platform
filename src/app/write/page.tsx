@@ -330,8 +330,9 @@ function WriteInner() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           maxLength={50}
-          className="w-full text-[1rem] font-bold border-b border-black/[0.08] pb-3 mb-4 outline-none placeholder:text-[#C0BBB0] bg-transparent"
+          className="w-full text-[1rem] font-bold border-b border-black/[0.08] pb-2 outline-none placeholder:text-[#C0BBB0] bg-transparent"
         />
+        <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1 mb-3">{title.length}/50</div>
 
         {/* 본문 */}
         <textarea
@@ -343,6 +344,9 @@ function WriteInner() {
           maxLength={2000}
           className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none placeholder:text-[#C0BBB0] bg-transparent resize-none"
         />
+        <div className="mt-2 text-[0.68rem] text-[#C0BBB0] leading-relaxed">
+          💡 줄바꿈·빈 줄이 그대로 반영돼요. <span className="font-semibold">**글자**</span>로 굵게, 줄 앞에 <span className="font-semibold">- </span>를 붙이면 목록이 돼요.
+        </div>
 
         {/* 태그 입력 */}
         <div className="mt-4 pt-4 border-t border-black/[0.06]">

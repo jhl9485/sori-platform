@@ -7,7 +7,7 @@ import { useProfile } from "@/lib/profile";
 import { useAuth, useAuthGate, isLoggedIn } from "@/lib/auth";
 import { useToggleSet } from "@/lib/storage";
 import { relativeTime } from "@/lib/userContent";
-import { toast, confirmDialog } from "@/components/shared/Feedback";
+import { toast, confirmDialog, reportDialog } from "@/components/shared/Feedback";
 
 interface Props {
   comments: Comment[];
@@ -225,7 +225,7 @@ function CommentItem({
             {depth < 2 && (
               <button
                 onClick={() => { if (gate("답글은 로그인 후 남길 수 있어요.")) setShowReply(!showReply); }}
-                className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-1.5 py-1 rounded"
+                className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-2 py-1.5 rounded"
               >
                 답글
               </button>
@@ -234,21 +234,21 @@ function CommentItem({
               <>
                 <button
                   onClick={() => { setEditText(comment.content); setEditing(true); }}
-                  className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-1.5 py-1 rounded"
+                  className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-2 py-1.5 rounded"
                 >
                   수정
                 </button>
                 <button
                   onClick={async () => { if (await confirmDialog({ message: "이 댓글을 삭제할까요?", confirmText: "삭제", danger: true })) onDelete(comment.id, parentId); }}
-                  className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-1.5 py-1 rounded"
+                  className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-2 py-1.5 rounded"
                 >
                   삭제
                 </button>
               </>
             ) : (
               <button
-                onClick={async () => { if (await confirmDialog({ message: "이 댓글을 신고할까요?\n부적절한 내용은 검토 후 조치됩니다.", confirmText: "신고" })) toast("신고가 접수되었어요. 검토 후 조치할게요."); }}
-                className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-1.5 py-1 rounded"
+                onClick={async () => { const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
+                className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-2 py-1.5 rounded"
               >
                 신고
               </button>
@@ -306,6 +306,7 @@ export default function CommentSection({ comments, postId }: Props) {
   const [isAnon, setIsAnon] = useState(false);
   const [sortBy, setSortBy] = useState<"등록순" | "인기순">("등록순");
   const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     if (!postId) return;
@@ -324,6 +325,7 @@ export default function CommentSection({ comments, postId }: Props) {
 
   // 새로 단 댓글/답글로 스크롤 + 잠깐 강조
   const flashTo = (id: string) => {
+    setShowAll(true); // 새 댓글이 접힌 목록에 가려지지 않게
     setHighlightId(id);
     setTimeout(() => {
       document.getElementById(`comment-${id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -478,7 +480,7 @@ export default function CommentSection({ comments, postId }: Props) {
             첫 댓글을 남겨보세요 💬
           </div>
         ) : (
-          displayList.map((comment) => (
+          (showAll ? displayList : displayList.slice(0, 5)).map((comment) => (
             <CommentItem
               key={comment.id}
               comment={comment}
@@ -493,6 +495,14 @@ export default function CommentSection({ comments, postId }: Props) {
           ))
         )}
       </div>
+      {!showAll && displayList.length > 5 && (
+        <button
+          onClick={() => setShowAll(true)}
+          className="w-full py-3 text-[0.82rem] font-medium text-[#888070] hover:bg-[#F5F3EE] border-t border-black/[0.05] transition-colors"
+        >
+          댓글 {displayList.length - 5}개 더 보기 ▾
+        </button>
+      )}
     </div>
   );
 }

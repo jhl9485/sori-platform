@@ -8,6 +8,7 @@ import { NEWS_ITEMS } from "@/data/newsItems";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { useToggleSet } from "@/lib/storage";
 import { useAuthGate } from "@/lib/auth";
+import { toast } from "@/components/shared/Feedback";
 
 export default function NewsDetailClient({ params }: { params: { id: string } }) {
   const news = NEWS_ITEMS.find((n) => n.id === params.id);
@@ -30,10 +31,10 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
 
   const handleShare = () => {
     if (navigator.share) {
-      navigator.share({ title: news.title, url: window.location.href });
+      navigator.share({ title: news.title, text: news.summary, url: window.location.href });
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert("링크가 복사되었습니다.");
+      toast("링크가 복사되었어요.");
     }
   };
 

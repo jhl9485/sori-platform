@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
-import { ToastHost, ConfirmHost } from "@/components/shared/Feedback";
+import { ToastHost, ConfirmHost, ReportHost } from "@/components/shared/Feedback";
 
 // ⚠️ 실제 배포 도메인으로 교체 필요 (환경변수 NEXT_PUBLIC_SITE_URL 권장)
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sori-platform.netlify.app";
@@ -54,6 +54,7 @@ export default function RootLayout({
         <AppShell>{children}</AppShell>
         <ToastHost />
         <ConfirmHost />
+        <ReportHost />
       </body>
     </html>
   );

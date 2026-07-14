@@ -1,7 +1,8 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
@@ -29,6 +30,8 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const newBadge = isNew(post);
   const hotBadge = isHot(post.likes);
   const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
+  const router = useRouter();
+  const [pop, setPop] = useState(false);
   const userCommentCounts = useUserCommentCounts();
   const likeCount = parseInt(post.likes.replace(/,/g, ""), 10) + (liked ? 1 : 0);
   const commentCount = realCommentCount(post.id, userCommentCounts);
@@ -54,9 +57,12 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
           </div>
           <div className="text-[0.7rem] text-[#888070]" suppressHydrationWarning>{displayTime}</div>
         </div>
-        <span className={`text-[0.68rem] px-2 py-[3px] rounded-full font-semibold whitespace-nowrap flex-shrink-0 ${post.categoryStyle}`}>
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/community?cat=${post.categoryId}`); }}
+          className={`text-[0.68rem] px-2 py-[3px] rounded-full font-semibold whitespace-nowrap flex-shrink-0 transition-transform active:scale-95 ${post.categoryStyle}`}
+        >
           {post.categoryLabel}
-        </span>
+        </button>
       </div>
 
       <div className={`text-[0.9rem] font-bold mb-1 tracking-tight line-clamp-2 ${read ? "text-[#888070]" : ""}`} suppressHydrationWarning>
@@ -92,11 +98,11 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
 
       <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08] text-[0.75rem]">
         <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleLike(post.id); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleLike(post.id); setPop(true); setTimeout(() => setPop(false), 260); }}
           className={`flex items-center gap-[4px] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
           aria-label="좋아요"
         >
-          <span className="text-[0.9rem] leading-none">{liked ? "❤️" : "🤍"}</span>
+          <span className={`text-[0.9rem] leading-none transition-transform duration-200 ${pop ? "scale-[1.35]" : "scale-100"}`}>{liked ? "❤️" : "🤍"}</span>
           <span className="leading-none">{likeCount.toLocaleString()}</span>
         </button>
         <span className="flex items-center gap-[4px] text-[#888070]">

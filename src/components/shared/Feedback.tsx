@@ -104,3 +104,61 @@ export function ConfirmHost() {
     </div>
   );
 }
+
+// ─────────── Report (신고 사유 선택) ───────────
+const REPORT_REASONS = ["욕설·비방", "스팸·광고", "음란·혐오", "허위 정보", "기타"];
+let reportResolver: ((v: string | null) => void) | null = null;
+
+export function reportDialog(): Promise<string | null> {
+  if (typeof window === "undefined") return Promise.resolve(null);
+  return new Promise((resolve) => {
+    reportResolver = resolve;
+    window.dispatchEvent(new CustomEvent("sori-report"));
+  });
+}
+
+export function ReportHost() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const h = () => setOpen(true);
+    window.addEventListener("sori-report", h);
+    return () => window.removeEventListener("sori-report", h);
+  }, []);
+
+  const pick = (reason: string | null) => {
+    setOpen(false);
+    reportResolver?.(reason);
+    reportResolver = null;
+  };
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-[130] flex items-end sm:items-center justify-center bg-black/40 sm:px-6" onClick={() => pick(null)}>
+      <div className="w-full sm:max-w-[320px] bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <div className="px-5 pt-4 pb-2 text-center">
+          <div className="text-[0.95rem] font-bold">신고 사유를 선택해 주세요</div>
+          <div className="text-[0.72rem] text-[#888070] mt-1">선택하면 접수되고, 검토 후 조치됩니다.</div>
+        </div>
+        <div>
+          {REPORT_REASONS.map((r) => (
+            <button
+              key={r}
+              onClick={() => pick(r)}
+              className="w-full px-5 py-3 text-[0.85rem] text-center hover:bg-[#F5F3EE] transition-colors border-t border-black/[0.05]"
+            >
+              {r}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={() => pick(null)}
+          className="w-full px-5 py-3 text-[0.85rem] font-medium text-[#888070] border-t border-black/[0.08] hover:bg-[#F5F3EE] transition-colors"
+        >
+          취소
+        </button>
+      </div>
+    </div>
+  );
+}
