@@ -28,11 +28,13 @@ export default function JobsPage() {
   const [typeFilter, setTypeFilter] = useState<JobType | "전체">("전체");
   const [koreanOnly, setKoreanOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  useListRestore("sori_list_jobs", { visaFilter, typeFilter, koreanOnly, searchQuery }, (s) => {
+  const [visibleCount, setVisibleCount] = useState(12);
+  useListRestore("sori_list_jobs", { visaFilter, typeFilter, koreanOnly, searchQuery, visibleCount }, (s) => {
     setVisaFilter(s.visaFilter);
     setTypeFilter(s.typeFilter);
     setKoreanOnly(s.koreanOnly);
     setSearchQuery(s.searchQuery);
+    setVisibleCount(s.visibleCount);
   });
 
   const userJobs = useUserJobs();
@@ -105,7 +107,7 @@ export default function JobsPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pb-6">
-          {filtered.map((job) => (
+          {filtered.slice(0, visibleCount).map((job) => (
             <Link key={job.id} href={`/jobs/${job.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-4 cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className="flex items-start gap-3 mb-3">
                 <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 ${job.companyBg}`}>
@@ -140,6 +142,15 @@ export default function JobsPage() {
             </Link>
           ))}
         </div>
+      )}
+
+      {filtered.length > visibleCount && (
+        <button
+          onClick={() => setVisibleCount((v) => v + 12)}
+          className="w-full mb-6 py-3 rounded-[12px] border border-black/[0.1] bg-white text-[0.85rem] font-semibold text-[#181614] hover:bg-[#F5F3EE] transition-colors"
+        >
+          더 보기 ({filtered.length - visibleCount}개 남음)
+        </button>
       )}
 
       <Link

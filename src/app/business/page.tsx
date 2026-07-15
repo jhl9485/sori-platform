@@ -11,9 +11,11 @@ import VerifiedBadge from "@/components/shared/VerifiedBadge";
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  useListRestore("sori_list_business", { selected, searchQuery }, (s) => {
+  const [visibleCount, setVisibleCount] = useState(12);
+  useListRestore("sori_list_business", { selected, searchQuery, visibleCount }, (s) => {
     setSelected(s.selected);
     setSearchQuery(s.searchQuery);
+    setVisibleCount(s.visibleCount);
   });
   const userBiz = useUserBiz();
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
@@ -66,7 +68,7 @@ export default function BusinessPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pb-6">
-          {filtered.map((biz) => (
+          {filtered.slice(0, visibleCount).map((biz) => (
             <Link key={biz.id} href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
               <div className={`w-full h-[80px] flex items-center justify-center text-[2.5rem] relative overflow-hidden ${biz.bg}`}>
                 {biz.photos && biz.photos.length > 0 ? (
@@ -103,6 +105,15 @@ export default function BusinessPage() {
             </Link>
           ))}
         </div>
+      )}
+
+      {filtered.length > visibleCount && (
+        <button
+          onClick={() => setVisibleCount((v) => v + 12)}
+          className="w-full mb-6 py-3 rounded-[12px] border border-black/[0.1] bg-white text-[0.85rem] font-semibold text-[#181614] hover:bg-[#F5F3EE] transition-colors"
+        >
+          더 보기 ({filtered.length - visibleCount}개 남음)
+        </button>
       )}
 
       <Link

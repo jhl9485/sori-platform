@@ -19,9 +19,11 @@ export default function FleaPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
   const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
-  useListRestore("sori_list_flea", { selectedCat, searchQuery }, (s) => {
+  const [visibleCount, setVisibleCount] = useState(12);
+  useListRestore("sori_list_flea", { selectedCat, searchQuery, visibleCount }, (s) => {
     setSelectedCat(s.selectedCat);
     setSearchQuery(s.searchQuery);
+    setVisibleCount(s.visibleCount);
   });
   const userFlea = useUserFlea();
   const allItems = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
@@ -80,7 +82,7 @@ export default function FleaPage() {
 
       {/* 그리드 — 모바일 2열, 태블릿 3열, 데스크탑 4열 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pb-6">
-        {filtered.map((item) => {
+        {filtered.slice(0, visibleCount).map((item) => {
           const status = item.status || "판매중";
           const isCompleted = status === "판매완료";
           const isReserved = status === "예약중";
@@ -126,6 +128,15 @@ export default function FleaPage() {
           );
         })}
       </div>
+
+      {filtered.length > visibleCount && (
+        <button
+          onClick={() => setVisibleCount((v) => v + 12)}
+          className="w-full mb-6 py-3 rounded-[12px] border border-black/[0.1] bg-white text-[0.85rem] font-semibold text-[#181614] hover:bg-[#F5F3EE] transition-colors"
+        >
+          더 보기 ({filtered.length - visibleCount}개 남음)
+        </button>
+      )}
 
       <Link
         href="/flea/write"

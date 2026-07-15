@@ -49,9 +49,10 @@ export default function RealtyPage() {
   const [selectedPeriod, setSelectedPeriod] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
   useListRestore(
     "sori_list_realty",
-    { selectedType, selectedDeal, selectedRegion, selectedStatus, selectedPeriod, searchQuery, showAdvanced },
+    { selectedType, selectedDeal, selectedRegion, selectedStatus, selectedPeriod, searchQuery, showAdvanced, visibleCount },
     (s) => {
       setSelectedType(s.selectedType);
       setSelectedDeal(s.selectedDeal);
@@ -60,6 +61,7 @@ export default function RealtyPage() {
       setSelectedPeriod(s.selectedPeriod);
       setSearchQuery(s.searchQuery);
       setShowAdvanced(s.showAdvanced);
+      setVisibleCount(s.visibleCount);
     }
   );
   const userRealty = useUserRealty();
@@ -248,7 +250,7 @@ export default function RealtyPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 pb-8">
-          {filtered.map((r) => (
+          {filtered.slice(0, visibleCount).map((r) => (
             <Link
               key={r.id}
               href={`/realty/${r.id}`}
@@ -320,6 +322,15 @@ export default function RealtyPage() {
             </Link>
           ))}
         </div>
+      )}
+
+      {filtered.length > visibleCount && (
+        <button
+          onClick={() => setVisibleCount((v) => v + 12)}
+          className="w-full mb-6 py-3 rounded-[12px] border border-black/[0.1] bg-white text-[0.85rem] font-semibold text-[#181614] hover:bg-[#F5F3EE] transition-colors"
+        >
+          더 보기 ({filtered.length - visibleCount}개 남음)
+        </button>
       )}
 
       <Link
