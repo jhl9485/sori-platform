@@ -26,9 +26,10 @@ export default function OwnerActions({ storageKey, itemId, editHref, backHref }:
       danger: true,
     });
     if (!ok) return;
-    removeUserItem(storageKey, itemId);
     toast("🗑️ 삭제되었어요.");
     router.push(backHref);
+    // 상세 페이지가 먼저 목록으로 벗어난 뒤 삭제 → 삭제 순간 '페이지를 찾을 수 없어요'가 뜨는 것 방지
+    setTimeout(() => removeUserItem(storageKey, itemId), 150);
   };
 
   return (

@@ -258,7 +258,7 @@ function RealtyWriteInner() {
       }
     }
     try { localStorage.removeItem(DRAFT_KEY); } catch {}
-    alert(savedWithoutPhotos
+    toast(savedWithoutPhotos
       ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐습니다."
       : "✅ 매물이 등록되었습니다!");
     router.push("/realty");

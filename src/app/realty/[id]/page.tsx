@@ -58,23 +58,23 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
   };
 
 
-  const handleMap = () => {
-    const query = encodeURIComponent(`${item.address || item.area} Singapore`);
-    const url = `https://www.google.com/maps/search/?api=1&query=${query}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(item.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
-            className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}
-            aria-label="저장"
-          >
-            {saved ? "❤️" : "🤍"}
-          </button>
+          <div className="flex items-center gap-3">
+            <button onClick={handleShare} aria-label="공유" className="text-[0.78rem] text-[#888070] hover:text-[#181614]">
+              ↗ 공유
+            </button>
+            <button
+              onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(item.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
+              className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}
+              aria-label="저장"
+            >
+              {saved ? "❤️" : "🤍"}
+            </button>
+          </div>
         }
       />
 
@@ -139,24 +139,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         <div className="text-[1.6rem] font-extrabold text-[#D04020] mb-1">{item.price}</div>
         <div className="text-[0.78rem] text-[#888070] mb-4">
           📍 {item.area} · 🚇 {item.mrt}
-        </div>
-
-        {/* 빠른 액션 */}
-        <div className="grid grid-cols-2 gap-2 mb-5">
-          <button
-            onClick={handleShare}
-            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
-          >
-            <span className="text-xl leading-none">↗</span>
-            <span className="text-[0.72rem] font-medium text-[#181614]">공유</span>
-          </button>
-          <button
-            onClick={handleMap}
-            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
-          >
-            <span className="text-xl leading-none">🗺️</span>
-            <span className="text-[0.72rem] font-medium text-[#181614]">지도</span>
-          </button>
         </div>
 
         {/* 핵심 스펙 */}

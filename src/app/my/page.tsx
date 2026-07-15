@@ -782,7 +782,7 @@ function SettingsTab() {
           onClick={() => setNotifOpen(false)}
         >
           <div
-            className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl"
+            className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden overflow-y-auto max-h-[88vh] shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-4 py-3.5 border-b border-black/[0.06]">
@@ -834,7 +834,7 @@ function SettingsTab() {
           onClick={() => setPrivacyOpen(false)}
         >
           <div
-            className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl"
+            className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden overflow-y-auto max-h-[88vh] shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-4 py-3.5 border-b border-black/[0.06]">
