@@ -667,17 +667,52 @@ function ToggleSwitch({ on, onChange, label }: { on: boolean; onChange: () => vo
   );
 }
 
+// 개인정보 보호 설정 (실제 서비스 연동 시 이 값으로 공개 범위·검색 노출·활동 표시가 결정됨)
+type Visibility = "public" | "members" | "private";
+interface PrivacyState {
+  visibility: Visibility;
+  searchable: boolean;
+  activity: boolean;
+}
+const PRIVACY_KEY = "sori_privacy_settings";
+const PRIVACY_DEFAULT: PrivacyState = { visibility: "members", searchable: true, activity: true };
+const VISIBILITY_OPTS: { id: Visibility; label: string; desc: string }[] = [
+  { id: "public", label: "전체 공개", desc: "로그인하지 않은 사람도 내 프로필을 볼 수 있어요." },
+  { id: "members", label: "회원에게만", desc: "SORI 회원만 내 프로필을 볼 수 있어요." },
+  { id: "private", label: "비공개", desc: "아무도 내 프로필을 볼 수 없어요. (글에는 닉네임만 표시)" },
+];
+
+function usePrivacySettings() {
+  const [privacy, setPrivacy] = useState<PrivacyState>(PRIVACY_DEFAULT);
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(PRIVACY_KEY);
+      if (raw) setPrivacy({ ...PRIVACY_DEFAULT, ...JSON.parse(raw) });
+    } catch { /* 기본값 유지 */ }
+  }, []);
+  const update = useCallback((patch: Partial<PrivacyState>) => {
+    setPrivacy((prev) => {
+      const next = { ...prev, ...patch };
+      try { localStorage.setItem(PRIVACY_KEY, JSON.stringify(next)); } catch { /* 무시 */ }
+      return next;
+    });
+  }, []);
+  return { privacy, update };
+}
+
 function SettingsTab() {
   const router = useRouter();
   const { logout } = useAuth();
   const [notifOpen, setNotifOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
   const { settings, setOne, setAll } = useNotifSettings();
+  const { privacy, update: updatePrivacy } = usePrivacySettings();
   const allOn = NOTIF_ITEMS.every((it) => settings[it.key]);
 
   const handleMenu = (label: string) => {
     if (label === "알림 설정") { setNotifOpen(true); return; }
+    if (label === "개인정보 보호") { setPrivacyOpen(true); return; }
     const messages: Record<string, string> = {
-      "개인정보 보호": "개인정보 보호\n\n• 프로필 공개 범위: 회원에게만\n• 검색 결과 노출: ON\n• 활동 기록 표시: ON\n\n(실제 서비스 연동 시 변경 가능)",
       "언어 설정": "언어 설정\n\n현재: 한국어\n\n(영어/중국어 지원은 향후 추가 예정)",
       "앱 정보": "SORI v1.0.0\n\n싱가포르 한인 커뮤니티 플랫폼\n© 2026 SORI\n\n약관 · 개인정보 처리방침은 곧 추가됩니다.",
       "고객센터": "고객센터\n\n📧 support@sori.sg (가상)\n💬 카카오톡: @sori_sg (가상)\n🕐 평일 10:00 ~ 18:00 SGT",
@@ -788,6 +823,74 @@ function SettingsTab() {
 
             <div className="px-4 py-3 text-center text-[0.68rem] text-[#C0BBB0]">
               설정은 이 기기에 저장돼요. (실제 푸시 발송은 백엔드 연동 후 지원)
+            </div>
+          </div>
+        </div>
+      )}
+
+      {privacyOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 sm:p-4"
+          onClick={() => setPrivacyOpen(false)}
+        >
+          <div
+            className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-4 py-3.5 border-b border-black/[0.06]">
+              <span className="text-[0.95rem] font-semibold flex items-center gap-2">🔒 개인정보 보호</span>
+              <button
+                onClick={() => setPrivacyOpen(false)}
+                aria-label="닫기"
+                className="text-[#888070] hover:text-[#181614] text-lg leading-none px-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* 프로필 공개 범위 */}
+            <div className="px-4 py-3.5 border-b border-black/[0.06]">
+              <div className="text-[0.85rem] font-semibold mb-2">프로필 공개 범위</div>
+              <div className="flex gap-1 bg-[#F5F3EE] rounded-full p-1 mb-2">
+                {VISIBILITY_OPTS.map((o) => (
+                  <button
+                    key={o.id}
+                    onClick={() => updatePrivacy({ visibility: o.id })}
+                    className={`flex-1 py-1.5 rounded-full text-[0.75rem] font-medium transition-colors ${
+                      privacy.visibility === o.id ? "bg-white text-[#181614] shadow-sm" : "text-[#888070]"
+                    }`}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+              <div className="text-[0.72rem] text-[#888070]">
+                {VISIBILITY_OPTS.find((o) => o.id === privacy.visibility)?.desc}
+              </div>
+            </div>
+
+            {/* 검색 결과 노출 */}
+            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-black/[0.05]">
+              <span className="text-lg leading-none">🔍</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.85rem]">검색 결과 노출</div>
+                <div className="text-[0.72rem] text-[#888070]">다른 사람이 검색으로 내 프로필·글을 찾을 수 있어요</div>
+              </div>
+              <ToggleSwitch on={privacy.searchable} onChange={() => updatePrivacy({ searchable: !privacy.searchable })} label="검색 결과 노출" />
+            </div>
+
+            {/* 활동 기록 표시 */}
+            <div className="flex items-center gap-3 px-4 py-3.5">
+              <span className="text-lg leading-none">📋</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.85rem]">활동 기록 표시</div>
+                <div className="text-[0.72rem] text-[#888070]">내 프로필에 최근 작성 글·댓글을 보여줘요</div>
+              </div>
+              <ToggleSwitch on={privacy.activity} onChange={() => updatePrivacy({ activity: !privacy.activity })} label="활동 기록 표시" />
+            </div>
+
+            <div className="px-4 py-3 text-center text-[0.68rem] text-[#C0BBB0]">
+              설정은 이 기기에 저장돼요. (실제 반영은 백엔드 연동 후 지원)
             </div>
           </div>
         </div>

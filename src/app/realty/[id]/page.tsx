@@ -9,7 +9,7 @@ import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
 import { useToggleSet } from "@/lib/storage";
 import { useAuthGate } from "@/lib/auth";
-import { toast, confirmDialog, alertDialog } from "@/components/shared/Feedback";
+import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 
@@ -57,12 +57,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
     }
   };
 
-  const handleContact = () => {
-    alertDialog(
-      `중개사: ${item.agent}\n매물: ${item.title}\n\n실제 서비스에서는 중개사에게 메시지 보내기 또는 전화가 연결돼요.\n(현재는 데모이며 연락처는 가상입니다)`,
-      "중개사에게 연락"
-    );
-  };
 
   const handleMap = () => {
     const query = encodeURIComponent(`${item.address || item.area} Singapore`);
@@ -148,20 +142,13 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         </div>
 
         {/* 빠른 액션 */}
-        <div className="grid grid-cols-3 gap-2 mb-5">
+        <div className="grid grid-cols-2 gap-2 mb-5">
           <button
             onClick={handleShare}
             className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
           >
             <span className="text-xl leading-none">↗</span>
             <span className="text-[0.72rem] font-medium text-[#181614]">공유</span>
-          </button>
-          <button
-            onClick={handleContact}
-            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
-          >
-            <span className="text-xl leading-none">📞</span>
-            <span className="text-[0.72rem] font-medium text-[#181614]">중개사 연락</span>
           </button>
           <button
             onClick={handleMap}
