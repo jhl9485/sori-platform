@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "@/components/shared/Feedback";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -170,10 +171,10 @@ function JobsWriteInner() {
       };
       const ok = updateUserItem<RawJob>(SAVED_KEY, editId, patch);
       if (!ok) {
-        alert("수정 실패: 공고를 찾을 수 없거나 저장 공간이 부족합니다.");
+        toast("수정 실패: 공고를 찾을 수 없거나 저장 공간이 부족합니다.");
         return;
       }
-      alert("✅ 공고가 수정되었습니다!");
+      toast("✅ 공고가 수정되었습니다!");
       router.push(`/jobs/${editId}`);
       return;
     }
@@ -199,7 +200,7 @@ function JobsWriteInner() {
       localStorage.removeItem(DRAFT_KEY);
     } catch (err) {
       console.error("공고 저장 실패:", err);
-      alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 공고를 삭제 후 다시 시도해주세요.");
+      toast("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 공고를 삭제 후 다시 시도해주세요.");
       return;
     }
     alert("✅ 공고가 등록되었습니다!");

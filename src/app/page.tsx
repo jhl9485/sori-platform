@@ -1,4 +1,5 @@
 import HomeFavorites from "@/components/home/HomeFavorites";
+import HomeGreeting from "@/components/home/HomeGreeting";
 import SearchBar from "@/components/home/SearchBar";
 import LiveBar from "@/components/home/LiveBar";
 import OpenNowButton from "@/components/home/OpenNowButton";
@@ -25,8 +26,11 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* 인사 + 첫 방문 온보딩 */}
+      <HomeGreeting />
+
       {/* 즐겨찾기 */}
-      <div className="px-4 md:px-6 pt-4 md:pt-0">
+      <div className="px-4 md:px-6 pt-1 md:pt-0">
         <HomeFavorites />
       </div>
 

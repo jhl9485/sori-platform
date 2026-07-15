@@ -76,7 +76,7 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
       {post.images && post.images.length > 0 && !imgBroken && (
         <div className="relative mb-[10px] rounded-[10px] overflow-hidden border border-black/[0.06]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={post.images[0]} alt="" onError={() => setImgBroken(true)} className="w-full max-h-52 object-cover" />
+          <img src={post.images[0]} alt={`${post.title} 첨부 사진`} onError={() => setImgBroken(true)} className="w-full max-h-52 object-cover" />
           {post.images.length > 1 && (
             <span className="absolute bottom-1.5 right-1.5 bg-black/60 text-white text-[0.62rem] font-semibold px-1.5 py-[1px] rounded-full">
               📷 {post.images.length}

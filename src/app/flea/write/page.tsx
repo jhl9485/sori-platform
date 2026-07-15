@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "@/components/shared/Feedback";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -167,10 +168,10 @@ function FleaWriteInner() {
         if (ok) savedWithoutPhotos = true;
       }
       if (!ok) {
-        alert("수정 실패: 저장 공간이 부족하거나 글을 찾을 수 없어요.");
+        toast("수정 실패: 저장 공간이 부족하거나 글을 찾을 수 없어요.");
         return;
       }
-      alert(savedWithoutPhotos
+      toast(savedWithoutPhotos
         ? "⚠️ 저장 공간 부족으로 사진 없이 수정됐어요."
         : "✅ 물건이 수정되었습니다!");
       router.push(`/flea/${editId}`);
@@ -203,7 +204,7 @@ function FleaWriteInner() {
         savedWithoutPhotos = true;
       } catch (err2) {
         console.error("물건 저장 실패:", err2);
-        alert("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 물건을 삭제 후 다시 시도해주세요.");
+        toast("등록 실패: 저장 공간이 부족합니다.\n마이페이지에서 옛 물건을 삭제 후 다시 시도해주세요.");
         return;
       }
     }
