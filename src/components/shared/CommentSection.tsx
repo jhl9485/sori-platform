@@ -247,7 +247,7 @@ function CommentItem({
               </>
             ) : (
               <button
-                onClick={async () => { const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
+                onClick={async () => { if (!gate("신고는 로그인 후 이용할 수 있어요.")) return; const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
                 className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-2 py-1.5 rounded"
               >
                 신고

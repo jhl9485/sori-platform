@@ -18,6 +18,7 @@ import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 import { toast, reportDialog } from "@/components/shared/Feedback";
 import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
+import { useAuthGate } from "@/lib/auth";
 
 export default function CommunityDetailClient({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -25,6 +26,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
   const post = userPosts.find((p) => p.id === params.id) || COMMUNITY_POSTS.find((p) => p.id === params.id);
   const { toggle: markRead } = useToggleSet("sori_read_posts");
   const userCommentCounts = useUserCommentCounts();
+  const gate = useAuthGate();
   useMarkViewed(VIEW_KEY.community, post?.id);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
       <PageHeader
         right={
           <button
-            onClick={async () => { const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
+            onClick={async () => { if (!gate("신고는 로그인 후 이용할 수 있어요.")) return; const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
             className="text-[0.75rem] text-[#888070] hover:text-[#D04020]"
           >
             신고

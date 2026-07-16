@@ -152,7 +152,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           </div>
         </div>
 
-        {/* 입주 가능일 + 중개사 */}
+        {/* 입주 가능일 + 주소 (중개사 정보는 표시하지 않음) */}
         <div className="divide-y divide-black/[0.05]">
           <div className="flex justify-between py-3">
             <span className="text-[0.78rem] text-[#888070]">📅 입주 가능</span>
@@ -161,12 +161,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           <div className="flex justify-between py-3">
             <span className="text-[0.78rem] text-[#888070]">📍 주소</span>
             <span className="text-[0.82rem] font-medium text-right">{item.address}</span>
-          </div>
-          <div className="flex justify-between py-3">
-            <span className="text-[0.78rem] text-[#888070]">
-              {item.agentBadge === "집주인 직거래" ? "👤 직거래" : "🏢 중개사"}
-            </span>
-            <span className="text-[0.82rem] font-medium">{item.agent}</span>
           </div>
           {exactTime(resolveISO(item.createdAt, item.time)) && (
             <div className="flex justify-between py-3">

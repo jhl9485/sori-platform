@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { confirmDialog } from "@/components/shared/Feedback";
 
 // ⚠️ MVP 목(mock) 인증: 백엔드가 없으므로 실제 비밀번호 검증은 하지 않는다.
 // 로그인/가입 상태와 기본 계정 정보만 localStorage에 저장한다.
@@ -84,16 +85,24 @@ export function isLoggedIn(): boolean {
   return read().loggedIn;
 }
 
-// 로그인 게이트: 게스트면 확인창을 띄우고 로그인 페이지로 안내한다.
-// 진행 가능하면 true, 막혔으면 false 반환.
+// 로그인 게이트: 게스트면 인앱 확인 모달을 띄우고 로그인 페이지로 안내한다.
+// 진행 가능하면 true(로그인 상태), 막혔으면 false 반환.
+// 모달은 비동기지만 게스트는 어차피 false(진행 불가)이므로, 모달 표시는 fire-and-forget으로 두고
+// 즉시 false를 반환한다. 호출부는 기존처럼 동기 boolean으로 사용할 수 있다.
+// (예전엔 window.confirm 브라우저 기본 팝업이라 디자인이 튀었다 → 인앱 모달로 통일)
 export function useAuthGate() {
   const router = useRouter();
   return useCallback(
     (message = "로그인이 필요한 기능이에요.") => {
       if (isLoggedIn()) return true;
-      if (window.confirm(`${message}\n\n로그인 페이지로 이동할까요?`)) {
-        router.push("/login");
-      }
+      void confirmDialog({
+        title: "로그인이 필요해요",
+        message,
+        confirmText: "로그인",
+        cancelText: "취소",
+      }).then((ok) => {
+        if (ok) router.push("/login");
+      });
       return false;
     },
     [router]
