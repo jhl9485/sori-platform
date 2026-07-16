@@ -5,6 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 import type { BizCategory } from "@/data/businesses";
 
 const DRAFT_KEY = "sori_biz_draft";
@@ -28,7 +29,7 @@ interface RawBiz {
 }
 
 const CATEGORIES: { id: BizCategory; icon: string }[] = [
-  { id: "한식",   icon: "🍱" },
+  { id: "식당",   icon: "🍱" },
   { id: "뷰티",   icon: "💅" },
   { id: "마트",   icon: "🛒" },
   { id: "병원",   icon: "🏥" },
@@ -38,6 +39,7 @@ const CATEGORIES: { id: BizCategory; icon: string }[] = [
   { id: "이사",   icon: "📦" },
   { id: "카페",   icon: "☕" },
   { id: "주점",   icon: "🍻" },
+  { id: "종교",   icon: "⛪" },
 ];
 
 const AREAS = [
@@ -73,6 +75,7 @@ function BusinessWriteInner() {
   const [tagsInput, setTagsInput] = useState("");
   const [description, setDescription] = useState("");
   const [fullDescription, setFullDescription] = useState("");
+  useUnsavedGuard(!!(name || description));
   const [koreanAvailable, setKoreanAvailable] = useState(true);
 
   useEffect(() => {

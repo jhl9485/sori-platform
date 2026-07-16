@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { RealtyDeal, RealtyType, RealtyRegion, RealtyStatus } from "@/data/realtyItems";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 
 const DRAFT_KEY = "sori_realty_draft";
 const SAVED_KEY = "sori_user_realty";
@@ -91,6 +92,7 @@ function RealtyWriteInner() {
   const [diplomaticClause, setDiplomaticClause] = useState(false);
   const [amenities, setAmenities] = useState<string[]>([]);
   const [description, setDescription] = useState("");
+  useUnsavedGuard(!!(title || description));
 
   // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {

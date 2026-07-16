@@ -6,7 +6,8 @@ import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
-import { cardTime, resolveISO } from "@/lib/format";
+import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
+import { isJobClosed, isJobExpired, salaryText } from "@/lib/jobStatus";
 
 const VISA_FILTERS: { label: string; value: VisaType | "전체" }[] = [
   { label: "전체", value: "전체" },
@@ -41,11 +42,12 @@ export default function JobsPage() {
   const userIds = useMemo(() => new Set(userJobs.map((u) => u.id)), [userJobs]);
 
   const filtered = useMemo(() => allJobs.filter((job) => {
+    if (isJobExpired(job.deadline)) return false; // 마감 후 6개월 지난 공고는 숨김
     if (visaFilter !== "전체" && job.visaType !== visaFilter) return false;
     if (typeFilter !== "전체" && job.jobType !== typeFilter) return false;
     if (searchQuery && !job.title.includes(searchQuery) && !job.company.includes(searchQuery) && !job.tags.some(t => t.includes(searchQuery))) return false;
     return true;
-  }), [allJobs, visaFilter, typeFilter, searchQuery]);
+  }).sort((a, b) => timeSortKey(b.createdAt, b.postedAt) - timeSortKey(a.createdAt, a.postedAt)), [allJobs, visaFilter, typeFilter, searchQuery]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -101,17 +103,20 @@ export default function JobsPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pb-6">
-          {filtered.slice(0, visibleCount).map((job) => (
-            <Link key={job.id} href={`/jobs/${job.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-4 cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all">
+          {filtered.slice(0, visibleCount).map((job) => {
+            const closed = isJobClosed(job.deadline);
+            return (
+            <Link key={job.id} href={`/jobs/${job.id}`} className={`block bg-white rounded-[14px] border border-black/[0.08] p-4 cursor-pointer hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)] hover:-translate-y-[1px] transition-all ${closed ? "opacity-60" : ""}`}>
               <div className="flex items-start gap-3 mb-3">
                 <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 ${job.companyBg}`}>
                   {job.companyIcon}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1 flex-wrap">
+                    {closed && <span className="text-[0.6rem] bg-[#888070] text-white px-[5px] py-[1px] rounded font-bold">마감</span>}
                     {userIds.has(job.id) && <span className="text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 공고</span>}
-                    {!userIds.has(job.id) && job.isNew && <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>}
-                    {!userIds.has(job.id) && job.isUrgent && <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>}
+                    {!closed && !userIds.has(job.id) && job.isNew && <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>}
+                    {!closed && !userIds.has(job.id) && job.isUrgent && <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>}
                   </div>
                   <div className="text-[0.88rem] font-bold mt-[2px] leading-tight">{job.title}</div>
                   <div className="text-[0.75rem] text-[#888070]">{job.company}</div>
@@ -120,7 +125,7 @@ export default function JobsPage() {
               <div className="flex flex-wrap gap-[6px] mb-3">
                 <span className="text-[0.72rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[3px] rounded-full font-medium">{job.visaSponsored ? `${job.visaType} 스폰서` : job.visaType}</span>
                 <span className="text-[0.72rem] bg-[#F0EDE8] text-[#888070] px-2 py-[3px] rounded-full">{job.jobType}</span>
-                <span className="text-[0.72rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[3px] rounded-full font-medium">💰 {job.salary}</span>
+                <span className="text-[0.72rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[3px] rounded-full font-medium">💰 {salaryText(job.salary)}</span>
               </div>
               <div className="flex flex-wrap gap-1 mb-3">
                 {job.tags.map((tag) => <span key={tag} className="text-[0.68rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-2 py-[2px] text-[#888070]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{tag}</span>)}
@@ -132,7 +137,8 @@ export default function JobsPage() {
                 <span className="text-[0.7rem] text-[#888070]" suppressHydrationWarning>{cardTime(resolveISO(job.createdAt, job.postedAt)) || job.postedAt}</span>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       )}
 

@@ -1,4 +1,4 @@
-export type BizCategory = "한식" | "뷰티" | "마트" | "병원" | "학원" | "부동산" | "법무" | "이사" | "카페" | "주점";
+export type BizCategory = "식당" | "뷰티" | "마트" | "병원" | "학원" | "부동산" | "법무" | "이사" | "카페" | "주점" | "종교";
 
 export interface BizReview {
   id: string;
@@ -42,7 +42,7 @@ export interface Business {
 
 export const BIZ_CATEGORIES = [
   { id: "all",    label: "전체",   icon: "🏪" },
-  { id: "한식",   label: "한식",   icon: "🍱" },
+  { id: "식당",   label: "식당",   icon: "🍱" },
   { id: "뷰티",   label: "뷰티",   icon: "💅" },
   { id: "마트",   label: "마트",   icon: "🛒" },
   { id: "병원",   label: "병원",   icon: "🏥" },
@@ -52,6 +52,7 @@ export const BIZ_CATEGORIES = [
   { id: "이사",   label: "이사",   icon: "📦" },
   { id: "카페",   label: "카페",   icon: "☕" },
   { id: "주점",   label: "주점",   icon: "🍻" },
+  { id: "종교",   label: "종교",   icon: "⛪" },
 ];
 
 // 실제 싱가포르 한인 업소 (2026-06 웹 리서치 기반). 연락처·주소는 웹 검색으로 확인했으나
@@ -62,7 +63,7 @@ const RAW_BUSINESSES: Business[] = [
   {
     id: "1",
     name: "구이가 (Guiga Korean BBQ)",
-    category: "한식",
+    category: "식당",
     emoji: "🍱",
     bg: "bg-[#FBF0EC]",
     address: "134 Tanjong Pagar Road, Singapore 088538",
@@ -82,7 +83,7 @@ const RAW_BUSINESSES: Business[] = [
   {
     id: "2",
     name: "차림 (Charim Korean BBQ)",
-    category: "한식",
+    category: "식당",
     emoji: "🍖",
     bg: "bg-[#FBF0EC]",
     address: "Tanjong Pagar Road 일대 (정확한 호수 확인 필요)",
@@ -102,7 +103,7 @@ const RAW_BUSINESSES: Business[] = [
   {
     id: "3",
     name: "2박1일 소주방 (2D1N Soju Bang)",
-    category: "한식",
+    category: "식당",
     emoji: "🥩",
     bg: "bg-[#FBF0EC]",
     address: "Tanjong Pagar 일대 (확인 필요)",

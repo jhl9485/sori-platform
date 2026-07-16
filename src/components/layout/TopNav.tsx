@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
+import { useLiveNotifications } from "@/lib/liveNotifications";
 import MobileDrawer from "./MobileDrawer";
 
 export default function TopNav() {
-  const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
+  const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (

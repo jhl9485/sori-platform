@@ -96,6 +96,14 @@ export function cardTime(iso: string | null | undefined): string {
   return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())}`;
 }
 
+// 최신순 정렬 키(ms). createdAt 우선, 없으면 시드 문자열 변환. 못 구하면 0(맨 뒤로).
+export function timeSortKey(createdAt: string | undefined, time: string | undefined): number {
+  const iso = resolveISO(createdAt, time);
+  if (!iso) return 0;
+  const t = new Date(iso).getTime();
+  return Number.isNaN(t) ? 0 : t;
+}
+
 // 상세용: 항상 정확한 날짜와 시간 (YYYY.MM.DD HH:MM).
 export function exactTime(iso: string | null | undefined): string {
   if (!iso) return "";

@@ -66,7 +66,21 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         <span className="absolute top-3 right-3 bg-white/90 text-[#181614] text-[0.7rem] font-bold px-2 py-1 rounded-full z-10">
           {item.deal}
         </span>
+        {/* 거래완료면 이미지를 흐리게 덮어 확실히 구분 */}
+        {currentStatus === "완료" && (
+          <div className="absolute inset-0 bg-white/55 z-10 flex items-center justify-center">
+            <span className="bg-[#181614]/85 text-white text-[0.95rem] font-bold px-5 py-2 rounded-full">거래완료</span>
+          </div>
+        )}
       </div>
+
+      {/* 거래완료 안내 배너 */}
+      {currentStatus === "완료" && (
+        <div className="bg-[#F0EDE8] border-y border-[#888070]/25 px-4 md:px-6 py-3 flex items-center gap-2">
+          <span className="text-base">✅</span>
+          <span className="text-[0.82rem] font-bold text-[#888070]">이미 거래완료된 매물이에요</span>
+        </div>
+      )}
 
       {/* 본인 매물이면 수정/삭제 진입점 */}
       {isMine && (

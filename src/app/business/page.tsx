@@ -24,11 +24,22 @@ export default function BusinessPage() {
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
   const userIds = useMemo(() => new Set(userBiz.map((u) => u.id)), [userBiz]);
 
-  const filtered = useMemo(() => allBiz.filter((b) => {
-    if (selected !== "all" && b.category !== selected) return false;
-    if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
-    return true;
-  }), [allBiz, selected, searchQuery]);
+  const filtered = useMemo(() => {
+    // 업소는 '최신순'이 무의미한 디렉토리 → 내 업소 먼저 → 인증 → 리뷰 많은 순 → 가나다순
+    const rank = (b: typeof allBiz[number]) =>
+      (userIds.has(b.id) ? 1000 : 0) + (b.verified ? 100 : 0);
+    return allBiz.filter((b) => {
+      if (selected !== "all" && b.category !== selected) return false;
+      if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
+      return true;
+    }).sort((a, b) => {
+      const r = rank(b) - rank(a);
+      if (r !== 0) return r;
+      const rev = (b.reviewCount || 0) - (a.reviewCount || 0);
+      if (rev !== 0) return rev;
+      return a.name.localeCompare(b.name, "ko");
+    });
+  }, [allBiz, selected, searchQuery, userIds]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">

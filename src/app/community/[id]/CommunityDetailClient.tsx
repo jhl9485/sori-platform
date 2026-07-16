@@ -132,9 +132,11 @@ export default function CommunityDetailClient({ params }: { params: { id: string
               <img
                 key={i}
                 src={src}
-                alt={`사진 ${i + 1}`}
+                alt={`${post.title} 첨부 사진 ${i + 1}`}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                className="w-full rounded-[12px] border border-black/[0.06]"
+                className="w-full rounded-[12px] border border-black/[0.06] bg-[#F5F3EE]"
               />
             ))}
           </div>

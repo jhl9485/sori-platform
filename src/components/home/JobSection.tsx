@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { JOBS, type Job } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
+import { salaryText } from "@/lib/jobStatus";
 
 // 사용자 등록 공고 + 정적 공고 통합, 최신 3개 노출
 export default function JobSection() {
@@ -53,7 +54,7 @@ function JobCard({ job }: { job: Job }) {
           {job.visaSponsored ? `${job.visaType} 스폰서` : job.visaType}
         </span>
         <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#F5F3EE] text-[#888070] border-black/[0.08]">
-          {job.salary}
+          {salaryText(job.salary)}
         </span>
       </div>
     </Link>

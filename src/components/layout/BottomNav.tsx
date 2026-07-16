@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
+import { useLiveNotifications } from "@/lib/liveNotifications";
 import { useFavorites } from "@/lib/favorites";
 
 function BottomNavInner() {
   const pathname = usePathname();
   const sp = useSearchParams();
   const currentCat = sp.get("cat");
-  const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
+  const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const { favItems } = useFavorites();
 
   // active 판단: pathname + ?cat= 쿼리까지 정확히 매칭

@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
+import { useLiveNotifications } from "@/lib/liveNotifications";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
 
@@ -25,7 +25,7 @@ const MY_ACTIONS = [
 
 export default function DesktopSidebar() {
   const pathname = usePathname();
-  const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
+  const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const { profile } = useProfile();
   const { isAuthed, hydrated } = useAuth();
 

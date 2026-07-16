@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
-import { NOTIFICATIONS } from "@/data/notifications";
 import { useReadNotifications } from "@/lib/notifications";
+import { useLiveNotifications } from "@/lib/liveNotifications";
 
 export default function NotificationsPage() {
   const { read, markRead, markAllRead } = useReadNotifications();
+  const NOTIFICATIONS = useLiveNotifications();
   const unread = NOTIFICATIONS.filter((n) => !read.has(n.id));
   const unreadCount = unread.length;
 
@@ -27,9 +28,12 @@ export default function NotificationsPage() {
       />
 
       {NOTIFICATIONS.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-[#888070]">
+        <div className="flex flex-col items-center justify-center py-20 px-8 text-center text-[#888070]">
           <div className="text-5xl mb-4">🔔</div>
-          <div className="text-[0.9rem] font-medium">알림이 없습니다</div>
+          <div className="text-[0.9rem] font-medium mb-1">아직 알림이 없어요</div>
+          <div className="text-[0.78rem] leading-relaxed">
+            내 글에 댓글이 달리거나, 저장한 공고가 마감되거나, 저장한 매물이 거래완료되면 여기에 알려드려요.
+          </div>
         </div>
       ) : (
         <div className="divide-y divide-black/[0.05]">

@@ -7,7 +7,8 @@ import { BUSINESSES } from "@/data/businesses";
 import { JOBS } from "@/data/jobs";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import { REALTY_ITEMS } from "@/data/realtyItems";
-import { useUserPosts, useUserFlea, useUserJobs, useUserRealty } from "@/lib/userContent";
+import { FLEA_ITEMS } from "@/data/fleaItems";
+import { useUserPosts, useUserFlea, useUserJobs, useUserRealty, useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 
 const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산"];
@@ -67,19 +68,22 @@ export default function SearchPage() {
   const userFlea = useUserFlea();
   const userJobs = useUserJobs();
   const userRealty = useUserRealty();
+  const userBiz = useUserBiz();
 
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
   const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);
   const allRealty = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
+  const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
+  const allFlea = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
 
   const postResults = useMemo(() =>
     q ? allPosts.filter(
       (p) => p.title.toLowerCase().includes(q) || p.preview.toLowerCase().includes(q) || p.tags.some((t) => t.toLowerCase().includes(q))
     ) : [], [q, allPosts]);
   const bizResults = useMemo(() =>
-    q ? BUSINESSES.filter(
+    q ? allBiz.filter(
       (b) => b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.tags.some((t) => t.toLowerCase().includes(q)) || b.area.toLowerCase().includes(q)
-    ) : [], [q]);
+    ) : [], [q, allBiz]);
   const jobResults = useMemo(() =>
     q ? allJobs.filter(
       (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
@@ -93,9 +97,9 @@ export default function SearchPage() {
       (r) => r.title.toLowerCase().includes(q) || r.area.toLowerCase().includes(q) || r.mrt.toLowerCase().includes(q) || r.type.toLowerCase().includes(q)
     ) : [], [q, allRealty]);
   const fleaResults = useMemo(() =>
-    q ? userFlea.filter(
-      (f) => f.title.toLowerCase().includes(q) || f.category.toLowerCase().includes(q)
-    ) : [], [q, userFlea]);
+    q ? allFlea.filter(
+      (f) => f.title.toLowerCase().includes(q) || f.category.toLowerCase().includes(q) || f.area.toLowerCase().includes(q) || f.location.toLowerCase().includes(q)
+    ) : [], [q, allFlea]);
 
   const totalCount = postResults.length + bizResults.length + jobResults.length + newsResults.length + realtyResults.length + fleaResults.length;
   const hasResults = q.length > 0 && totalCount > 0;
@@ -311,7 +315,7 @@ export default function SearchPage() {
             </section>
           )}
 
-          {/* 벼룩시장 (사용자 글만 검색) */}
+          {/* 벼룩시장 */}
           {(activeTab === "전체") && fleaResults.length > 0 && (
             <section className="mt-3">
               <div className="px-4 md:px-6 py-2 bg-[#F5F3EE]">

@@ -11,7 +11,7 @@ import { useUserRealty } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
-import { cardTime, resolveISO } from "@/lib/format";
+import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
 
 const REALTY_PERIODS = [
   { id: "all", label: "전체" },
@@ -89,7 +89,7 @@ export default function RealtyPage() {
       if (!hay.includes(q)) return false;
     }
     return true;
-  }), [allItems, selectedType, selectedDeal, selectedRegion, selectedStatus, selectedPeriod, searchQuery]);
+  }).sort((a, b) => timeSortKey(b.createdAt, b.time) - timeSortKey(a.createdAt, a.time)), [allItems, selectedType, selectedDeal, selectedRegion, selectedStatus, selectedPeriod, searchQuery]);
 
   const resetFilters = () => {
     setSelectedType("all"); setSelectedDeal("전체"); setSelectedRegion("전체");

@@ -5,6 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 import type { FleaStatus } from "@/data/fleaItems";
 
 const DRAFT_KEY = "sori_flea_draft";
@@ -69,6 +70,7 @@ function FleaWriteInner() {
   const [canMeet, setCanMeet] = useState(true);
   const [canDeliver, setCanDeliver] = useState(false);
   const [description, setDescription] = useState("");
+  useUnsavedGuard(!!(title || description));
 
   // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {

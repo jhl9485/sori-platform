@@ -76,15 +76,27 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
           heightClass="h-[280px]"
           alt={item.title}
         />
-        {/* 상태 배지 (판매중 외) */}
-        {currentStatus !== "판매중" && (
-          <div className={`absolute top-3 left-3 text-[0.72rem] font-bold px-3 py-1 rounded-full z-10 ${
-            currentStatus === "예약중" ? "bg-[#B07010] text-white" : "bg-[#888070] text-white"
-          }`}>
-            {currentStatus}
+        {/* 판매완료면 이미지를 흐리게 덮어 확실히 구분 */}
+        {currentStatus === "판매완료" && (
+          <div className="absolute inset-0 bg-white/55 z-10 flex items-center justify-center">
+            <span className="bg-[#181614]/85 text-white text-[0.95rem] font-bold px-5 py-2 rounded-full">판매완료</span>
+          </div>
+        )}
+        {/* 예약중 배지 */}
+        {currentStatus === "예약중" && (
+          <div className="absolute top-3 left-3 text-[0.72rem] font-bold px-3 py-1 rounded-full z-10 bg-[#B07010] text-white">
+            예약중
           </div>
         )}
       </div>
+
+      {/* 판매완료 안내 배너 */}
+      {currentStatus === "판매완료" && (
+        <div className="bg-[#F0EDE8] border-y border-[#888070]/25 px-4 md:px-6 py-3 flex items-center gap-2">
+          <span className="text-base">✅</span>
+          <span className="text-[0.82rem] font-bold text-[#888070]">이미 판매완료된 물건이에요</span>
+        </div>
+      )}
 
       {/* 본인 물건이면 수정/삭제 진입점 */}
       {isMine && (

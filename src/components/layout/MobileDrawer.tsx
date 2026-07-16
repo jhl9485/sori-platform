@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NOTIFICATIONS } from "@/data/notifications";
 import { useUnreadCount } from "@/lib/notifications";
+import { useLiveNotifications } from "@/lib/liveNotifications";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
 
@@ -31,7 +31,7 @@ interface Props {
 
 export default function MobileDrawer({ open, onClose }: Props) {
   const pathname = usePathname();
-  const unread = useUnreadCount(NOTIFICATIONS.map((n) => n.id));
+  const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const { profile } = useProfile();
   const { isAuthed, hydrated } = useAuth();
 

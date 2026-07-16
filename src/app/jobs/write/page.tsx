@@ -5,6 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { JobType, VisaType } from "@/data/jobs";
 import { updateUserItem } from "@/lib/userContent";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 
 const DRAFT_KEY = "sori_jobs_draft";
 const SAVED_KEY = "sori_user_jobs";
@@ -52,6 +53,7 @@ function JobsWriteInner() {
   const [visaType, setVisaType] = useState<VisaType>("EP");
   const [salaryMin, setSalaryMin] = useState("");
   const [salaryMax, setSalaryMax] = useState("");
+  const [salaryNego, setSalaryNego] = useState(false); // 연봉 협의(비공개)
   const [location, setLocation] = useState("");
   const [tagsText, setTagsText] = useState("");
   const [contact, setContact] = useState("");
@@ -74,11 +76,13 @@ function JobsWriteInner() {
             setJobType(t.jobType || "정규직");
             setVisaSponsored(t.visaSponsored ?? true);
             setVisaType(t.visaType || "EP");
-            // salary "$min ~ $max" 형태 파싱
+            // salary "$min ~ $max" 형태 파싱. "협의"면 협의 토글 켬.
             const m = (t.salary || "").match(/\$([0-9,]+)\s*~\s*\$([0-9,]+)/);
             if (m) {
               setSalaryMin(m[1].trim());
               setSalaryMax(m[2].trim());
+            } else if ((t.salary || "").trim() === "협의") {
+              setSalaryNego(true);
             }
             setLocation(t.location || "");
             setTagsText((t.tags || []).join(", "));
@@ -105,6 +109,7 @@ function JobsWriteInner() {
           setVisaType(d.visaType || "EP");
           setSalaryMin(d.salaryMin || "");
           setSalaryMax(d.salaryMax || "");
+          setSalaryNego(!!d.salaryNego);
           setLocation(d.location || "");
           setTagsText(d.tagsText || "");
           setContact(d.contact || "");
@@ -131,18 +136,26 @@ function JobsWriteInner() {
       localStorage.setItem(
         DRAFT_KEY,
         JSON.stringify({
-          company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax,
+          company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax, salaryNego,
           location, tagsText, contact, deadline, description,
           requirements, preferred, benefits,
         })
       );
     } catch {}
-  }, [hydrated, isEditMode, company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax,
+  }, [hydrated, isEditMode, company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax, salaryNego,
       location, tagsText, contact, deadline, description, requirements, preferred, benefits]);
 
+  // 작성 중 내용이 있으면 새로고침·창닫기 시 경고
+  useUnsavedGuard(!!(company || title || description));
+
+  // 연봉은 선택. 협의를 켜거나 비워두면 "협의"로 저장(화면엔 '연봉 협의'로 표시).
+  const salaryValue =
+    salaryNego || (!salaryMin.trim() && !salaryMax.trim())
+      ? "협의"
+      : `$${salaryMin.trim()} ~ $${salaryMax.trim()}`;
+
   const canSubmit =
-    company.trim() && title.trim() && location.trim() && description.trim() &&
-    salaryMin.trim() && salaryMax.trim() && contact.trim();
+    company.trim() && title.trim() && location.trim() && description.trim() && contact.trim();
 
   // "React, Python, 회계" → ["React", "Python", "회계"] (쉼표·줄바꿈 모두 허용)
   const parsedTags = tagsText.split(/[,\n]/).map((s) => s.trim()).filter(Boolean);
@@ -154,7 +167,7 @@ function JobsWriteInner() {
       const patch = {
         company: company.trim(), title: title.trim(),
         jobType, visaSponsored, visaType,
-        salary: `$${salaryMin.trim()} ~ $${salaryMax.trim()}`,
+        salary: salaryValue,
         location: location.trim(), tags: parsedTags, contact: contact.trim(),
         deadline: deadline.trim(),
         description: description.trim(),
@@ -176,7 +189,7 @@ function JobsWriteInner() {
       id: `user-job-${Date.now()}`,
       company: company.trim(), title: title.trim(),
       jobType, visaSponsored, visaType,
-      salary: `$${salaryMin.trim()} ~ $${salaryMax.trim()}`,
+      salary: salaryValue,
       location: location.trim(), tags: parsedTags, contact: contact.trim(),
       deadline: deadline.trim(),
       description: description.trim(),
@@ -203,7 +216,7 @@ function JobsWriteInner() {
   const discardDraft = () => {
     setCompany(""); setTitle(""); setJobType("정규직");
     setVisaSponsored(true); setVisaType("EP");
-    setSalaryMin(""); setSalaryMax(""); setLocation("");
+    setSalaryMin(""); setSalaryMax(""); setSalaryNego(false); setLocation("");
     setTagsText(""); setContact(""); setDeadline("");
     setDescription(""); setRequirements(""); setPreferred(""); setBenefits("");
     setRestored(false);
@@ -319,17 +332,18 @@ function JobsWriteInner() {
           </button>
         </section>
 
-        {/* 4. 급여 */}
+        {/* 4. 연봉 (선택) */}
         <section>
-          <SectionTitle index="4" title="월 급여 (SGD)" required />
-          <div className="flex items-center gap-2">
+          <SectionTitle index="4" title="연봉 (SGD, 선택)" />
+          <div className={`flex items-center gap-2 transition-opacity ${salaryNego ? "opacity-40 pointer-events-none" : ""}`}>
             <div className="relative flex-1">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.85rem] font-bold text-[#D04020] pointer-events-none">$</span>
               <input
                 type="text"
                 value={salaryMin}
                 onChange={(e) => setSalaryMin(e.target.value)}
-                placeholder="최소 (6,000)"
+                disabled={salaryNego}
+                placeholder="최소 (72,000)"
                 className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-3 py-3 text-[0.88rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
               />
             </div>
@@ -340,13 +354,23 @@ function JobsWriteInner() {
                 type="text"
                 value={salaryMax}
                 onChange={(e) => setSalaryMax(e.target.value)}
-                placeholder="최대 (9,000)"
+                disabled={salaryNego}
+                placeholder="최대 (108,000)"
                 className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-3 py-3 text-[0.88rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
               />
             </div>
           </div>
+          <button
+            type="button"
+            onClick={() => setSalaryNego((v) => !v)}
+            className={`mt-2 inline-flex items-center gap-1.5 text-[0.78rem] font-medium px-3 py-2 rounded-[10px] border-2 transition-all ${
+              salaryNego ? "border-[#D04020] bg-[#FBF0EC] text-[#D04020]" : "border-black/[0.08] bg-white text-[#888070]"
+            }`}
+          >
+            {salaryNego ? "✓ " : ""}🔒 연봉 비공개 · 협의
+          </button>
           <p className="text-[0.68rem] text-[#888070] mt-1">
-            💡 2026년 EP 최저 기준은 SGD 6,000 (금융권 6,600)입니다.
+            연봉은 안 적어도 돼요. 비워두거나 &lsquo;협의&rsquo;를 켜면 &lsquo;연봉 협의&rsquo;로 표시돼요.
           </p>
         </section>
 
@@ -424,6 +448,9 @@ function JobsWriteInner() {
             placeholder="예: 2026-06-30 또는 채용시까지"
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
           />
+          <p className="text-[0.68rem] text-[#888070] mt-1">
+            📅 날짜를 적으면 그날 이후 &lsquo;마감&rsquo;으로 표시되고, <b>마감 6개월 뒤 목록에서 자동으로 사라져요.</b> 비워두거나 &lsquo;채용시까지&rsquo;로 적으면 계속 노출돼요.
+          </p>
         </section>
 
         {/* 9. 직무 설명 */}

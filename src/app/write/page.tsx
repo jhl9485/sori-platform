@@ -7,6 +7,7 @@ import { CATEGORIES } from "@/data/categories";
 import type { VisaBadge } from "@/data/communityPosts";
 import { updateUserItem } from "@/lib/userContent";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 
 const DRAFT_KEY = "sori_write_draft";
 const POSTS_KEY = "sori_user_posts";
@@ -82,6 +83,7 @@ function WriteInner() {
   const [selectedCat, setSelectedCat] = useState(presetCat);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  useUnsavedGuard(!!(title || content));
   const [isAnon, setIsAnon] = useState(false);
   const [tagsInput, setTagsInput] = useState("");
   const [visaBadge, setVisaBadge] = useState<VisaBadge>(null);

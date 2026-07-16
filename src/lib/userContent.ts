@@ -305,7 +305,7 @@ interface RawUserBiz {
 }
 
 const BIZ_EMOJI: Record<string, { emoji: string; bg: string }> = {
-  한식:    { emoji: "🍱", bg: "bg-[#FBF0EC]" },
+  식당:    { emoji: "🍱", bg: "bg-[#FBF0EC]" },
   뷰티:    { emoji: "💅", bg: "bg-[#EBF0FB]" },
   마트:    { emoji: "🛒", bg: "bg-[#EBF5F0]" },
   병원:    { emoji: "🏥", bg: "bg-[#EBF0FB]" },
@@ -315,6 +315,7 @@ const BIZ_EMOJI: Record<string, { emoji: string; bg: string }> = {
   이사:    { emoji: "📦", bg: "bg-[#FBF5E8]" },
   카페:    { emoji: "☕", bg: "bg-[#F5F0FF]" },
   주점:    { emoji: "🍻", bg: "bg-[#FBF0EC]" },
+  종교:    { emoji: "⛪", bg: "bg-[#EBF0FB]" },
 };
 
 export function userBizToBusiness(p: RawUserBiz): Business {

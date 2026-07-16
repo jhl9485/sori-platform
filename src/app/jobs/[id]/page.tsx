@@ -12,6 +12,7 @@ import JobContact from "@/components/jobs/JobContact";
 import JobQuestions from "@/components/jobs/JobQuestions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 import { exactTime, resolveISO } from "@/lib/format";
+import { isJobClosed, salaryText } from "@/lib/jobStatus";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -27,6 +28,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
   // 사용자가 직접 올린 공고인지 = 답변할 작성자가 존재하는지
   const isUserJob = userJobs.some((j) => j.id === params.id);
   const isMine = isUserJob;
+  const closed = isJobClosed(job.deadline);
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -41,6 +43,14 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           backHref="/jobs"
           label="내 공고"
         />
+      )}
+
+      {/* 마감된 공고 안내 배너 */}
+      {closed && (
+        <div className="bg-[#F0EDE8] border-y border-[#888070]/25 px-4 md:px-6 py-3 flex items-center gap-2">
+          <span className="text-base">🔒</span>
+          <span className="text-[0.82rem] font-bold text-[#888070]">마감된 공고예요 · 지원을 받지 않아요</span>
+        </div>
       )}
 
       {/* 상단 회사 정보 */}
@@ -69,7 +79,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
             {job.visaSponsored ? `${job.visaType} 스폰서` : job.visaType}
           </span>
           <span className="text-[0.75rem] bg-[#EBF5F0] text-[#2B7A50] px-3 py-[5px] rounded-full font-medium">
-            💰 {job.salary}
+            💰 {salaryText(job.salary)}
           </span>
           <span className="text-[0.75rem] bg-[#F0EDE8] text-[#888070] px-3 py-[5px] rounded-full">
             {job.jobType}

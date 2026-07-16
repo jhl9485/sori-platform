@@ -9,7 +9,7 @@ import SearchField from "@/components/shared/SearchField";
 import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 import { useToggleSet } from "@/lib/storage";
-import { cardTime, resolveISO } from "@/lib/format";
+import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -36,7 +36,7 @@ export default function FleaPage() {
     if (selectedCat !== "전체" && i.category !== selectedCat) return false;
     if (q && !i.title.toLowerCase().includes(q) && !i.area.toLowerCase().includes(q)) return false;
     return true;
-  }), [allItems, selectedCat, q]);
+  }).sort((a, b) => timeSortKey(b.createdAt, b.time) - timeSortKey(a.createdAt, a.time)), [allItems, selectedCat, q]);
   const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
 
   const handleLike = (id: string, e: React.MouseEvent) => {
