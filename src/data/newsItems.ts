@@ -26,6 +26,221 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260716-1",
+    publishedAt: "2026-07-15",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "✈️ SIA·스쿠트 중동 노선 재차 취소 — 두바이 10/24까지·제다 7/27까지, 호르무즈 재봉쇄",
+    summary: "싱가포르항공(SIA)이 7월 15일 두바이 노선(SQ494/SQ495) 취소를 10월 24일까지 연장했다. 스쿠트도 제다 노선(TR796/TR797)을 7월 27일까지 취소한다. 미국이 이란을 3차 공습한 뒤 이란이 호르무즈 해협을 재봉쇄하며 중동 정세가 다시 악화됐기 때문이다. 해당 항공편 예약자는 사용하지 않은 구간에 대해 전액 환불 또는 대체편 재예약을 신청할 수 있다.",
+    fullContent: `**SIA·스쿠트 중동 노선 취소 (2026년 7월 15일 업데이트)**
+싱가포르항공(SIA)과 스쿠트가 7월 15일 중동 노선 취소를 업데이트했습니다.
+
+**취소 노선**
+- **싱가포르항공**: SQ494(싱가포르→두바이)·SQ495(두바이→싱가포르) **10월 24일까지** 연장 취소
+- **스쿠트**: TR796(싱가포르→제다)·TR797(제다→싱가포르) **7월 27일까지** 취소
+
+**배경**
+- 미국이 이란을 3차 공습(7월 14일 밤)한 뒤 이란이 호르무즈 해협을 재봉쇄했다고 선언
+- 6월에 성립된 미·이란 잠정 휴전이 사실상 파기되며 중동 항공 상황이 재차 불안정해짐
+- SIA는 당초 두바이 노선을 5월, 8월 등으로 재개 예정이었으나 계속 연장됨
+
+**탑승객 옵션**
+- 취소 항공편 예약자: 사용하지 않은 구간에 대해 **전액 환불** 또는 대체편 **재예약** 가능
+- SIA: 싱가포르항공 공식 사이트 또는 예약처 문의
+- 스쿠트: 스쿠트 공식 사이트 또는 예약처 문의
+
+**참고**
+- 두바이·제다 경유 노선도 영향받을 수 있으니 출발 전 항공사 최신 공지를 확인하세요.
+- SIA 두바이 노선(SQ494/SQ495)은 2월 말 첫 중단 이후 약 8개월간 단항 상태가 됩니다(10/25 재개 예정).
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Star · Yahoo News SG · Mainly Miles",
+    sources: [
+      { name: "The Star — Singapore Airlines, Scoot cancel flights to Middle East as conflict escalates (7/15)", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/07/15/singapore-airlines-scoot-cancel-flights-to-middle-east-as-conflict-escalates" },
+      { name: "Yahoo News SG — SIA, Scoot cancel flights to Middle East as conflict escalates", url: "https://sg.news.yahoo.com/sia-scoot-cancel-flights-middle-101500728.html" },
+      { name: "Mainly Miles — SIA axes Dubai till late October, cuts Riyadh (7/16)", url: "https://mainlymiles.com/2026/07/16/singapore-airlines-axes-dubai-till-late-october-cuts-riyadh-to-3x-weekly-december-launch/" },
+    ],
+    time: "2026년 7월 15일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "✈️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260716-2",
+    publishedAt: "2026-07-15",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "⛴️ HarbourFront 페리 터미널 이전 완료 — 7/15부터 신주소 5 HarbourFront Ave, 바탐·카리문 이용객 주의",
+    summary: "싱가포르크루즈센터(SCC) HarbourFront 터미널이 7월 15일부로 신규 건물(5 HarbourFront Avenue, S099549)로 완전 이전됐다. 7월 7일 먼저 이전한 Batam Fast Ferry에 이어 Sindo·Horizon·Majestic·Indo Falcon 등 나머지 페리사와 크루즈 운항이 7월 15일 신터미널로 합류했다. 노선·요금·시간표는 변동 없으며, HarbourFront MRT역에서 연결 보행로로 이어지는 붉은 테라코타 건물이다.",
+    fullContent: `**HarbourFront 신규 페리·크루즈 터미널 완전 이전 (2026년 7월 15일)**
+싱가포르크루즈센터(SCC)의 HarbourFront 터미널이 신규 건물로 완전히 이전됐습니다.
+
+**이전 완료 일정**
+- **7/7 (1단계)**: Batam Fast Ferry 먼저 신터미널 운영 시작
+- **7/15 (2단계)**: Sindo Ferry, Horizon Fast Ferry, Majestic Fast Ferry, Indo Falcon Shipping, 크루즈 운항 이전 완료
+
+**신터미널 정보**
+- **주소**: **5 HarbourFront Avenue, Singapore 099549** (붉은 테라코타 건물, HarbourFront Tower 2 뒤편)
+- 기존 터미널에서 약 **70m** 거리
+- **HarbourFront MRT역**에서 연결 보행로(셔틀 통로) 이용 가능, VivoCity와도 연결
+
+**운항 노선 (변동 없음)**
+- 바탐: Batam Centre·Harbour Bay·Sekupang·Gold Coast(Bengkong)
+- 카리문: Tanjung Balai Karimun (90분 소요)
+- 요금·시간표 동일 유지
+
+**주요 시설**
+- 셀프 체크인 키오스크, 안면 인식 생체정보 이민 심사
+- 기도실·수유실·휠체어 접근 시설, 편의점·식음료·환전소·EV 충전소
+
+**참고**
+- 바탐이나 카리문으로 페리를 이용하실 한인은 기존 터미널 위치가 아닌 **신주소(5 HarbourFront Avenue)**로 가세요.
+- 정확한 탑승 절차 및 변경 사항은 이용 페리사 공지 또는 SCC 공식 웹사이트를 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · The Smart Local · SCC",
+    sources: [
+      { name: "Mothership — New Harbourfront ferry terminal to open in July (6월 발표)", url: "https://mothership.sg/2026/06/new-harbourfront-ferry-terminal-july/" },
+      { name: "The Smart Local — Singapore Cruise Centre (HarbourFront) Terminal Opens July 2026", url: "https://thesmartlocal.com/read/harbourfront-ferry-terminal/" },
+      { name: "Singapore Cruise Centre (공식) — HarbourFront Passenger Terminal", url: "https://singaporecruise.com.sg/terminal/harbourfront-passenger-terminal/" },
+    ],
+    time: "2026년 7월 15일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "⛴️",
+    relatedIds: ["auto-20260625-1"],
+  },
+  {
+    id: "auto-20260716-3",
+    publishedAt: "2026-07-16",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "🛂 7/1부터 EP 갱신 전부 COMPASS 심사·LQS S$1,800 인상 — 한인 EP 소지자 갱신 전 반드시 점검",
+    summary: "7월 1일부터 취업비자(EP) 갱신 시에도 예외 없이 COMPASS 심사(최소 40점)가 적용된다. 기존에는 신규 신청에만 적용됐으나, 이제 모든 갱신도 2026년 1월 기준 급여 퍼센타일과 자격 목록으로 재평가된다. 동시에 현지인 고용 최저임금(LQS)도 S$1,600 → S$1,800으로 인상됐다. COMPASS 면제 기준(고정 월급 S$22,500 이상)은 그대로다.",
+    fullContent: `**EP 갱신 COMPASS 전면 적용 + LQS 인상 (2026년 7월 1일 시행)**
+인력부(MOM)가 7월 1일부터 취업비자(EP) 갱신 절차를 변경했습니다.
+
+**핵심 변경 사항**
+
+**① EP 갱신 전부 COMPASS 적용 (7/1~)**
+- 기존: 신규 EP 신청에만 COMPASS 심사 필요
+- 변경: **모든 EP 갱신**도 COMPASS 기준으로 재평가 (7/1부터)
+- 최소 합격 점수: **40점** (4개 필수 항목 + 2개 보너스 항목)
+- 2026년 1월 기준 새 급여 퍼센타일 벤치마크·자격 인정 목록·부족직종 목록(SOL) 적용
+- 2년 전 COMPASS를 통과했더라도, 현재 급여나 팀 내 현지인 고용 비율이 새 기준 미달이면 갱신 거부 가능
+- **COMPASS 면제 기준**: 고정 월급 **S$22,500 이상**은 심사 없이 통과
+
+**② 현지인 고용 최저임금(LQS) 인상 (7/1~)**
+- S$1,600/월 → **S$1,800**/월 인상
+- LQS 미충족 현지 직원은 S Pass·Work Permit 쿼터 산정에서 제외(고용주의 외국인 고용 쿼터 감소 가능)
+
+**2026년 S Pass 최저 급여 (1/1부터 적용, 참고)**
+- 일반 업종: **S$3,300**/월 / 금융서비스 업종: **S$3,800**/월
+
+**한인 참고**
+- EP 갱신 시기가 다가오는 분은 고용주 HR과 함께 현재 급여·자격·팀 현지인 비율이 2026년 COMPASS 기준을 충족하는지 미리 확인하세요.
+- MOM EP e-Adviser(ep.mom.gov.sg)에서 사전 자가 점검이 가능합니다.
+- S Pass 보유자도 급여가 현행 최저 기준(S$3,300/S$3,800) 이상인지 확인이 필요합니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Asanify · HRO",
+    sources: [
+      { name: "MOM — Employment Pass 공식 안내", url: "https://www.mom.gov.sg/passes-and-permits/employment-pass/eligibility" },
+      { name: "Asanify — Singapore's COMPASS Work Pass Rules Now Cover Every Renewal (7/16)", url: "https://asanify.com/blog/news/singapore-compass-work-pass-july-16-2026/" },
+      { name: "Human Resources Online — Reminder: Singapore's updated COMPASS rules effective in 2026", url: "https://www.humanresourcesonline.net/reminder-singapore-s-updated-compass-rules-effective-in-2026-for-ep-applications-and-renewals" },
+      { name: "Link International — S Pass & LQS Changes 2026", url: "https://linksinternational.com/blog/singapore-s-pass-local-qualifying-salary-changes/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🛂",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260716-4",
+    publishedAt: "2026-07-07",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🏦 안티스캠센터·5개 은행 2개월 합동작전 — 600건+ 차단·S$3,800만 잠재 피해 예방",
+    summary: "싱가포르 경찰청(SPF) 안티스캠센터(ASC)와 DBS·UOB·OCBC·스탠다드차타드·GXS 5개 은행이 5월 1일~6월 30일 로봇 프로세스 자동화(RPA) 기술로 합동 작전을 벌여 사기 시도 600건 이상을 차단했다. 3,300명 이상의 잠재 피해자에게 SMS 경보 3,800건 이상을 발송해 S$3,800만 이상의 피해를 막았다. 정부기관 사칭·투자·취업·전자상거래·임대 사기가 주요 유형이었다.",
+    fullContent: `**안티스캠센터(ASC)·5개 은행 합동 사기 차단 작전 결과 (2026년 7월 7일 발표)**
+싱가포르 경찰청(SPF) 안티스캠센터가 7월 7일 합동 작전 결과를 발표했습니다.
+
+**작전 개요**
+- **기간**: 2026년 5월 1일~6월 30일 (2개월)
+- **참여 은행**: DBS · UOB · OCBC · Standard Chartered Bank · GXS (5개)
+- **기술**: 로봇 프로세스 자동화(RPA) 활용 — 잠재 피해자 계좌를 신속히 감지해 알림 발송
+
+**성과**
+- 사기 시도 **600건 이상** 차단
+- 잠재 피해자 **3,300명 이상**에게 SMS 경보 **3,800건 이상** 발송
+- 잠재 피해액 **S$3,800만(S$38 million) 이상** 예방
+
+**주요 사기 유형**
+- 정부기관 사칭 사기 / 투자 사기 / 취업 사기 / 전자상거래 사기 / 임대 사기
+
+**참고**
+- 은행 앱이나 문자에서 갑자기 '의심 거래 알림'이 오면 응하기 전 은행 공식 번호로 직접 확인하세요.
+- 낯선 사람의 투자·취업 제안이나 정부기관 사칭 전화는 일단 끊고 ScamShield 앱 또는 1799(안티스캠 핫라인)로 신고하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식) · Fintech Singapore",
+    sources: [
+      { name: "SPF — Anti-Scam Centre And Five Banks Collaborate To Foil Over 600 Scam Attempts (공식, 7/7)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260707_anti_scam_centre_and_five_banks_collaborate_to_foil_over_600_scam_attempts" },
+      { name: "Fintech Singapore — Five Banks, Singapore Anti-Scam Centre Avert S$38 Million in Scam Losses", url: "https://fintechnews.sg/134107/security/singapore-anti-scam-centre/" },
+    ],
+    time: "2026년 7월 7일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏦",
+    relatedIds: ["auto-20260706-2"],
+  },
+  {
+    id: "auto-20260716-5",
+    publishedAt: "2026-07-16",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기 피크 시즌 한복판 + 7월 강수 평년 이하 — 6월 중순 연간 최고 주간 감염자·클러스터 12개",
+    summary: "싱가포르가 전통적 뎅기 피크 시즌(5~10월) 한복판에 있다. 6월 중순 주간 감염자가 2026년 연간 최고치를 기록했으며, 레드알림 클러스터(10건 이상) 4개를 포함해 12개 클러스터가 활성화됐다. NEA의 7월 상반기 날씨 전망은 강수량 평년 이하·최고기온 33~34도·남서몬순 지속으로, 고인 물이 줄지 않는 조건이어서 모기 번식 위험이 높다. 집안 고인 물 점검을 1주 1회 반드시 해야 한다.",
+    fullContent: `**뎅기 주의·7월 날씨 전망 (NEA 2026)**
+
+**뎅기 현황**
+- 싱가포르는 현재 전통적 **뎅기 피크 시즌(5~10월)** 한복판
+- 6월 중순 기준: 주간 감염자 수 **2026년 연간 최고치** 기록 (신화통신, 6월 16일 보도)
+- 활성 클러스터 **12개** (이 중 레드알림 클러스터 **4개** — 각 10건 이상)
+- NEA는 5월 16일 공식 피크 시즌 주의보를 선포하고 'National Dengue Prevention Campaign 2026'을 시작
+
+**7월 날씨 전망 (NEA 7월 상반기 예보)**
+- 강수량: **평년 이하** (대부분 지역) — 건조한 날씨로 고인 물이 증발하지 않아 모기 번식 위험 지속
+- 최고기온: **33~34°C** (구름 적은 날 34°C 초과 가능)
+- **남서몬순** 지속 (6~9월), 늦은 오전~오후 국지성 천둥소나기 수 차례 예상
+
+**⚠️ 뎅기 예방 'B-L-O-C-K' 체크리스트**
+- **B**reak — 화분 받침 속 굳은 흙 파헤치기
+- **L**ift — 화분 받침·접시 들어올려 고인 물 비우기
+- **O**verturn — 양동이·빈 그릇·화분 뒤집어두기
+- **C**hange — 꽃병·반려식물 물 매주 교체
+- **K**eep — 지붕 홈통·배수구 막힘 없이 유지
+
+**증상·대처**
+- 뎅기 주요 증상: 갑작스러운 고열(39~40°C), 심한 두통·눈 뒤 통증, 근육·관절통, 발진
+- 증상 발생 시 즉시 의원·병원 방문(조기 치료가 중요)
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA · 신화통신",
+    sources: [
+      { name: "NEA — Singapore Enters Peak Dengue Season; Public Urged To Stay Vigilant (공식)", url: "https://www.nea.gov.sg/media/news/news/index/singapore-enters-peak-dengue-season-public-urged-to-stay-vigilant-to-prevent-surge-in-cases" },
+      { name: "Xinhua — Singapore dengue weekly cases hit 2026 high (6/16)", url: "https://english.news.cn/20260616/16666162380847008cd20fe9682603b0/c.html" },
+      { name: "NEA — Dengue Cases & Clusters (실시간)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-cases" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🦟",
+    relatedIds: ["auto-20260622-9"],
+  },
+  {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
     category: "생활",
