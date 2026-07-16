@@ -6,7 +6,7 @@ import type { CommunityPost, CommunityCategory, VisaBadge } from "@/data/communi
 import type { FleaItem, FleaStatus } from "@/data/fleaItems";
 import type { Job } from "@/data/jobs";
 import type { RealtyItem } from "@/data/realtyItems";
-import type { Business, BizCategory } from "@/data/businesses";
+import type { Business, BizCategory, BizCuisine } from "@/data/businesses";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -291,6 +291,7 @@ interface RawUserBiz {
   id: string;
   photos?: string[];
   category: BizCategory;
+  cuisine?: BizCuisine;
   name: string;
   area: string;
   address: string;
@@ -324,6 +325,7 @@ export function userBizToBusiness(p: RawUserBiz): Business {
     id: p.id,
     name: p.name,
     category: p.category,
+    cuisine: p.cuisine,
     emoji: meta.emoji,
     bg: meta.bg,
     address: p.address || p.area,

@@ -35,6 +35,8 @@ const SETTINGS_MENU = [
   { icon: "🔔", label: "알림 설정" },
   { icon: "🔒", label: "개인정보 보호" },
   { icon: "🌐", label: "언어 설정" },
+  { icon: "📄", label: "이용약관" },
+  { icon: "🛡️", label: "개인정보 처리방침" },
   { icon: "📱", label: "앱 정보" },
   { icon: "🆘", label: "고객센터" },
 ];
@@ -761,9 +763,11 @@ function SettingsTab() {
   const handleMenu = (label: string) => {
     if (label === "알림 설정") { setNotifOpen(true); return; }
     if (label === "개인정보 보호") { setPrivacyOpen(true); return; }
+    if (label === "이용약관") { router.push("/terms"); return; }
+    if (label === "개인정보 처리방침") { router.push("/privacy"); return; }
     const messages: Record<string, string> = {
       "언어 설정": "언어 설정\n\n현재: 한국어\n\n(영어/중국어 지원은 향후 추가 예정)",
-      "앱 정보": "SORI v1.0.0\n\n싱가포르 한인 커뮤니티 플랫폼\n© 2026 SORI\n\n약관 · 개인정보 처리방침은 곧 추가됩니다.",
+      "앱 정보": "SORI v1.0.0\n\n싱가포르 한인 커뮤니티 플랫폼\n© 2026 SORI",
       "고객센터": "고객센터\n\n📧 support@sori.sg (가상)\n💬 카카오톡: @sori_sg (가상)\n🕐 평일 10:00 ~ 18:00 SGT",
     };
     alertDialog(messages[label] || label);

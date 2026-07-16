@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
-import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
+import { BUSINESSES, BIZ_CATEGORIES, BIZ_CUISINES } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
@@ -13,10 +13,12 @@ import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
+  const [cuisine, setCuisine] = useState("all"); // 식당 하위 필터
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(12);
-  useListRestore("sori_list_business", { selected, searchQuery, visibleCount }, (s) => {
+  useListRestore("sori_list_business", { selected, cuisine, searchQuery, visibleCount }, (s) => {
     setSelected(s.selected);
+    setCuisine(s.cuisine ?? "all");
     setSearchQuery(s.searchQuery);
     setVisibleCount(s.visibleCount);
   });
@@ -30,6 +32,7 @@ export default function BusinessPage() {
       (userIds.has(b.id) ? 1000 : 0) + (b.verified ? 100 : 0);
     return allBiz.filter((b) => {
       if (selected !== "all" && b.category !== selected) return false;
+      if (selected === "식당" && cuisine !== "all" && b.cuisine !== cuisine) return false;
       if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
       return true;
     }).sort((a, b) => {
@@ -39,7 +42,7 @@ export default function BusinessPage() {
       if (rev !== 0) return rev;
       return a.name.localeCompare(b.name, "ko");
     });
-  }, [allBiz, selected, searchQuery, userIds]);
+  }, [allBiz, selected, cuisine, searchQuery, userIds]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -56,12 +59,28 @@ export default function BusinessPage() {
       {/* 카테고리 탭 */}
       <div className="flex gap-2 pb-3 overflow-x-auto scrollbar-hide">
         {BIZ_CATEGORIES.map((cat) => (
-          <button key={cat.id} onClick={() => setSelected(cat.id)}
+          <button key={cat.id} onClick={() => { setSelected(cat.id); setCuisine("all"); }}
             className={`flex-shrink-0 flex items-center gap-1 px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${selected === cat.id ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
             {cat.icon} {cat.label}
           </button>
         ))}
       </div>
+
+      {/* 식당 하위 필터 (음식 종류) — 식당 카테고리일 때만 */}
+      {selected === "식당" && (
+        <div className="flex gap-2 pb-3 overflow-x-auto scrollbar-hide">
+          <button onClick={() => setCuisine("all")}
+            className={`flex-shrink-0 px-3 py-[4px] rounded-full text-[0.72rem] font-medium border transition-all ${cuisine === "all" ? "bg-[#D04020] text-white border-[#D04020]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
+            전체
+          </button>
+          {BIZ_CUISINES.map((c) => (
+            <button key={c} onClick={() => setCuisine(c)}
+              className={`flex-shrink-0 px-3 py-[4px] rounded-full text-[0.72rem] font-medium border transition-all ${cuisine === c ? "bg-[#D04020] text-white border-[#D04020]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
+              {c}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* 결과 수 + 등록 */}
       <div className="flex items-center justify-between pb-4 gap-2">
@@ -98,7 +117,7 @@ export default function BusinessPage() {
                   <span className="font-bold text-[0.9rem] truncate">{biz.name}</span>
                   {biz.verified && <VerifiedBadge />}
                 </div>
-                <div className="text-[0.72rem] text-[#888070] mb-2">{biz.category} · {biz.area} · {biz.priceRange}</div>
+                <div className="text-[0.72rem] text-[#888070] mb-2">{biz.category}{biz.cuisine ? ` · ${biz.cuisine}` : ""} · {biz.area} · {biz.priceRange}</div>
                 <div className="flex items-center gap-1 mb-2">
                   <BizReviewCount bizId={biz.id} seed={biz.reviewCount} />
                 </div>

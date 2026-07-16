@@ -6,7 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
 import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
-import type { BizCategory } from "@/data/businesses";
+import type { BizCategory, BizCuisine } from "@/data/businesses";
+import { BIZ_CUISINES } from "@/data/businesses";
 
 const DRAFT_KEY = "sori_biz_draft";
 const SAVED_KEY = "sori_user_biz";
@@ -14,6 +15,7 @@ const SAVED_KEY = "sori_user_biz";
 interface RawBiz {
   id: string;
   category: BizCategory;
+  cuisine?: BizCuisine;
   name: string;
   area: string;
   address: string;
@@ -66,6 +68,7 @@ function BusinessWriteInner() {
 
   const [photos, setPhotos] = useState<string[]>([]);
   const [category, setCategory] = useState<BizCategory | "">("");
+  const [cuisine, setCuisine] = useState<BizCuisine | "">("");
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
   const [address, setAddress] = useState("");
@@ -88,6 +91,7 @@ function BusinessWriteInner() {
           if (t) {
             setPhotos(t.photos || []);
             setCategory(t.category || "");
+            setCuisine(t.cuisine || "");
             setName(t.name || "");
             setArea(t.area || "");
             setAddress(t.address || "");
@@ -110,6 +114,7 @@ function BusinessWriteInner() {
         if (d.name || d.description || (d.photos && d.photos.length > 0)) {
           setPhotos(d.photos || []);
           setCategory(d.category || "");
+          setCuisine(d.cuisine || "");
           setName(d.name || "");
           setArea(d.area || "");
           setAddress(d.address || "");
@@ -136,21 +141,24 @@ function BusinessWriteInner() {
     }
     try {
       localStorage.setItem(DRAFT_KEY, JSON.stringify({
-        photos, category, name, area, address, phone, openHours,
+        photos, category, cuisine, name, area, address, phone, openHours,
         priceRange, tagsInput, description, fullDescription, koreanAvailable,
       }));
     } catch {
       try {
         localStorage.setItem(DRAFT_KEY, JSON.stringify({
-          category, name, area, address, phone, openHours,
+          category, cuisine, name, area, address, phone, openHours,
           priceRange, tagsInput, description, fullDescription, koreanAvailable,
         }));
       } catch {}
     }
-  }, [hydrated, isEditMode, photos, category, name, area, address, phone, openHours, priceRange, tagsInput, description, fullDescription, koreanAvailable]);
+  }, [hydrated, isEditMode, photos, category, cuisine, name, area, address, phone, openHours, priceRange, tagsInput, description, fullDescription, koreanAvailable]);
 
   const parseTags = (s: string) => s.split(/[,\s#]+/).map(t => t.trim()).filter(Boolean).slice(0, 6);
   const tags = parseTags(tagsInput);
+
+  // 음식 종류는 '식당'일 때만 저장한다
+  const cuisineValue = category === "식당" ? (cuisine || undefined) : undefined;
 
   const canSubmit = category && name.trim() && area && description.trim();
 
@@ -159,7 +167,7 @@ function BusinessWriteInner() {
 
     if (isEditMode) {
       const patch = {
-        category: category as BizCategory, name: name.trim(),
+        category: category as BizCategory, cuisine: cuisineValue, name: name.trim(),
         area, address: address.trim(),
         phone: phone.trim(),
         openHours: openHours.trim(),
@@ -188,7 +196,7 @@ function BusinessWriteInner() {
 
     const base = {
       id: `user-biz-${Date.now()}`,
-      category, name: name.trim(),
+      category, cuisine: cuisineValue, name: name.trim(),
       area, address: address.trim(),
       phone: phone.trim(),
       openHours: openHours.trim(),
@@ -287,6 +295,27 @@ function BusinessWriteInner() {
               </button>
             ))}
           </div>
+
+          {/* 식당이면 음식 종류 선택 (선택) */}
+          {category === "식당" && (
+            <div className="mt-3">
+              <div className="text-[0.75rem] font-medium text-[#888070] mb-2">음식 종류 <span className="text-[#C0BBB0]">(선택)</span></div>
+              <div className="flex flex-wrap gap-2">
+                {BIZ_CUISINES.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => setCuisine((prev) => (prev === c ? "" : c))}
+                    className={`px-3 py-[6px] rounded-full text-[0.75rem] font-medium border-2 transition-all ${
+                      cuisine === c ? "border-[#D04020] bg-[#FBF0EC] text-[#D04020]" : "border-black/[0.08] bg-white text-[#888070]"
+                    }`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         {/* 3. 업소명 */}

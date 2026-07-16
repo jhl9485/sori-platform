@@ -422,12 +422,6 @@ function WriteInner() {
               </span>
             )}
           </button>
-          <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="링크 (준비 중)">
-            <span className="block leading-none">🔗</span>
-          </button>
-          <button className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors" aria-label="위치 (준비 중)">
-            <span className="block leading-none">📍</span>
-          </button>
         </div>
         <button
           onClick={() => setIsAnon(!isAnon)}

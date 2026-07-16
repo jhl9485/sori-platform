@@ -1,5 +1,9 @@
 export type BizCategory = "식당" | "뷰티" | "마트" | "병원" | "학원" | "부동산" | "법무" | "이사" | "카페" | "주점" | "종교";
 
+// 식당 하위 분류(음식 종류). '식당' 카테고리에서만 쓰인다.
+export type BizCuisine = "한식" | "일식" | "중식" | "양식" | "분식" | "치킨" | "고깃집" | "기타";
+export const BIZ_CUISINES: BizCuisine[] = ["한식", "일식", "중식", "양식", "분식", "치킨", "고깃집", "기타"];
+
 export interface BizReview {
   id: string;
   author: string;
@@ -18,6 +22,7 @@ export interface Business {
   id: string;
   name: string;
   category: BizCategory;
+  cuisine?: BizCuisine; // 식당일 때만 사용하는 음식 종류
   emoji: string;
   bg: string;
   address: string;
@@ -64,6 +69,7 @@ const RAW_BUSINESSES: Business[] = [
     id: "1",
     name: "구이가 (Guiga Korean BBQ)",
     category: "식당",
+    cuisine: "고깃집",
     emoji: "🍱",
     bg: "bg-[#FBF0EC]",
     address: "134 Tanjong Pagar Road, Singapore 088538",
@@ -84,6 +90,7 @@ const RAW_BUSINESSES: Business[] = [
     id: "2",
     name: "차림 (Charim Korean BBQ)",
     category: "식당",
+    cuisine: "고깃집",
     emoji: "🍖",
     bg: "bg-[#FBF0EC]",
     address: "Tanjong Pagar Road 일대 (정확한 호수 확인 필요)",
@@ -104,6 +111,7 @@ const RAW_BUSINESSES: Business[] = [
     id: "3",
     name: "2박1일 소주방 (2D1N Soju Bang)",
     category: "식당",
+    cuisine: "고깃집",
     emoji: "🥩",
     bg: "bg-[#FBF0EC]",
     address: "Tanjong Pagar 일대 (확인 필요)",

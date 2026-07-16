@@ -60,7 +60,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
               {biz.verified && <VerifiedBadge size="md" />}
             </div>
             <div className="text-[0.78rem] text-[#888070] mt-[2px]">
-              {biz.category} · {biz.area} · {biz.priceRange}
+              {biz.category}{biz.cuisine ? ` · ${biz.cuisine}` : ""} · {biz.area} · {biz.priceRange}
             </div>
           </div>
         </div>
