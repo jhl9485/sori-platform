@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
-import { formatCount, timeAgo } from "@/lib/format";
+import { timeAgo } from "@/lib/format";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
+import MetricRow from "@/components/shared/MetricRow";
 
 function isNew(post: CommunityPost): boolean {
   // createdAt이 있으면 48시간 이내를 NEW로 간주, 없으면 기존 time 문자열로 판단
@@ -23,18 +24,14 @@ function isHot(likes: string): boolean {
 }
 
 function CommunityPostCardBase({ post }: { post: CommunityPost }) {
-  const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
   const { has: isRead } = useToggleSet("sori_read_posts");
-  const liked = isLiked(post.id);
   const read = isRead(post.id);
   const newBadge = isNew(post);
   const hotBadge = isHot(post.likes);
   const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
   const router = useRouter();
-  const [pop, setPop] = useState(false);
   const [imgBroken, setImgBroken] = useState(false);
   const userCommentCounts = useUserCommentCounts();
-  const likeCount = parseInt(post.likes.replace(/,/g, ""), 10) + (liked ? 1 : 0);
   const commentCount = realCommentCount(post.id, userCommentCounts);
 
   return (
@@ -97,23 +94,14 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
         ))}
       </div>
 
-      <div className="flex gap-3 items-center pt-2 border-t border-black/[0.08] text-[0.75rem]">
-        <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleLike(post.id); setPop(true); setTimeout(() => setPop(false), 260); }}
-          className={`flex items-center gap-[4px] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
-          aria-label="좋아요"
-        >
-          <span className={`text-[0.9rem] leading-none transition-transform duration-200 ${pop ? "scale-[1.35]" : "scale-100"}`}>{liked ? "❤️" : "🤍"}</span>
-          <span className="leading-none">{likeCount.toLocaleString()}</span>
-        </button>
-        <span className="flex items-center gap-[4px] text-[#888070]">
-          <span className="text-[0.9rem] leading-none">👁</span>
-          <span className="leading-none">{formatCount(post.views)}</span>
-        </span>
-        <span className="flex items-center gap-[4px] text-[#888070]">
-          <span className="text-[0.9rem] leading-none">💬</span>
-          <span className="leading-none">{commentCount}</span>
-        </span>
+      <div className="pt-2 border-t border-black/[0.08]">
+        <MetricRow
+          likeKey="sori_liked_posts"
+          id={post.id}
+          seedLikes={post.likes}
+          seedViews={post.views}
+          comments={commentCount}
+        />
       </div>
     </Link>
   );

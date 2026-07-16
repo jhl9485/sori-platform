@@ -36,17 +36,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
 
   return (
     <div className="max-w-[680px] mx-auto">
-      <PageHeader
-        right={
-          <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(biz.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
-            className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#2050A0]" : "text-[#C0BBB0]"}`}
-            aria-label="저장"
-          >
-            {saved ? "🔖" : "🏷️"}
-          </button>
-        }
-      />
+      <PageHeader />
 
       {/* 본인 등록 업소면 수정/삭제 진입점 */}
       {isMine && (
@@ -95,16 +85,24 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           )}
         </div>
 
-        {/* 좋아요 · 조회수 — 목록 카드와 같은 숫자 */}
-        <MetricRow
-          likeKey={LIKE_KEY.biz}
-          viewKey={VIEW_KEY.biz}
-          id={biz.id}
-          seedLikes={biz.likes ?? 0}
-          seedViews={biz.views ?? 0}
-          variant="detail"
-          className="mb-4"
-        />
+        {/* 액션 바 — 좋아요·조회수와 저장을 한 줄에 (커뮤니티 상세와 동일한 배치) */}
+        <div className="flex items-center gap-4 mb-4">
+          <MetricRow
+            likeKey={LIKE_KEY.biz}
+            viewKey={VIEW_KEY.biz}
+            id={biz.id}
+            seedLikes={biz.likes ?? 0}
+            seedViews={biz.views ?? 0}
+            variant="detail"
+          />
+          <button
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(biz.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
+            className={`flex items-center gap-[3px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
+          >
+            <span className="text-[1.1em] leading-none -translate-y-[0.5px]">{saved ? "🔖" : "🏷️"}</span>
+            <span className="leading-none">{saved ? "저장됨" : "저장"}</span>
+          </button>
+        </div>
 
         {/* 빠른 액션 */}
         <div className="grid grid-cols-2 gap-2 mb-5">

@@ -17,17 +17,16 @@ import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 import { toast, reportDialog } from "@/components/shared/Feedback";
+import MetricRow from "@/components/shared/MetricRow";
 
 export default function CommunityDetailClient({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userPosts = useUserPosts();
   const post = userPosts.find((p) => p.id === params.id) || COMMUNITY_POSTS.find((p) => p.id === params.id);
-  const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_posts");
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_posts");
   const { toggle: markRead } = useToggleSet("sori_read_posts");
   const gate = useAuthGate();
   const userCommentCounts = useUserCommentCounts();
-  const [likePop, setLikePop] = useState(false);
   const [savePop, setSavePop] = useState(false);
 
   useEffect(() => {
@@ -40,12 +39,9 @@ export default function CommunityDetailClient({ params }: { params: { id: string
     return notFound();
   }
 
-  const liked = isLiked(post.id);
   const saved = isSaved(post.id);
   const isMine = userPosts.some((p) => p.id === post.id);
   const comments = SAMPLE_COMMENTS[post.id] || [];
-
-  const likeCount = parseInt(post.likes.replace(/,/g, "")) + (liked ? 1 : 0);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -172,21 +168,14 @@ export default function CommunityDetailClient({ params }: { params: { id: string
 
         {/* 액션 바 */}
         <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
-          <button
-            onClick={() => { toggleLike(post.id); setLikePop(true); setTimeout(() => setLikePop(false), 260); }}
-            className={`flex items-center gap-[5px] text-[0.82rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
-          >
-            <span className={`text-[1rem] leading-none transition-transform duration-200 ${likePop ? "scale-[1.35]" : "scale-100"}`}>{liked ? "❤️" : "🤍"}</span>
-            <span className="leading-none">{likeCount.toLocaleString()}</span>
-          </button>
-          <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
-            <span className="text-[1rem] leading-none">👁</span>
-            <span className="leading-none">{formatCount(post.views)}</span>
-          </span>
-          <span className="flex items-center gap-[5px] text-[0.82rem] text-[#888070]">
-            <span className="text-[1rem] leading-none">💬</span>
-            <span className="leading-none">{realCommentCount(post.id, userCommentCounts)}</span>
-          </span>
+          <MetricRow
+            likeKey="sori_liked_posts"
+            id={post.id}
+            seedLikes={post.likes}
+            seedViews={post.views}
+            comments={realCommentCount(post.id, userCommentCounts)}
+            variant="detail"
+          />
           <button
             onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(post.id); setSavePop(true); setTimeout(() => setSavePop(false), 260); } }}
             className={`flex items-center gap-[5px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}

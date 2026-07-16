@@ -69,13 +69,8 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="max-w-[680px] mx-auto">
-      <PageHeader
-        right={
-          <button onClick={() => toggleLike(item.id)} aria-label="좋아요" className={`text-xl transition-transform active:scale-90 ${liked ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
-            {liked ? "❤️" : "🤍"}
-          </button>
-        }
-      />
+      {/* 좋아요는 지표 줄과 하단 버튼에 있으므로 헤더에는 두지 않는다 */}
+      <PageHeader />
 
       {/* 이미지 영역 */}
       <div className="relative">

@@ -39,14 +39,16 @@ export function useToggleSet(key: string) {
     return () => window.removeEventListener("storage", handler);
   }, [key]);
 
+  // 저장(localStorage 쓰기 + storage 이벤트 발송)은 setIds 업데이터 "밖"에서 한다.
+  // 업데이터 안에서 이벤트를 쏘면 렌더 도중 다른 인스턴스의 setState가 연쇄로 일어나고,
+  // StrictMode에선 업데이터가 두 번 호출돼 쓰기·이벤트가 중복된다 → 클릭 반응이 느려짐.
+  // prev 대신 localStorage를 직접 읽으므로 하이드레이션 전 호출에도 기존 기록이 안전하다.
   const toggle = useCallback((id: string) => {
-    setIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      write(key, Array.from(next));
-      return next;
-    });
+    const next = new Set(read<string[]>(key, []));
+    if (next.has(id)) next.delete(id);
+    else next.add(id);
+    write(key, Array.from(next));
+    setIds(next);
   }, [key]);
 
   // 이미 있으면 아무것도 하지 않는 멱등 추가 (조회수 집계처럼 "1회만" 기록할 때 사용).
