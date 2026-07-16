@@ -12,6 +12,8 @@ import { useAuthGate } from "@/lib/auth";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY, useMarkViewed } from "@/lib/metrics";
 
 const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
   { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
@@ -25,6 +27,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
   const item = userRealty.find((r) => r.id === params.id) || REALTY_ITEMS.find((r) => r.id === params.id);
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_realty");
   const gate = useAuthGate();
+  useMarkViewed(VIEW_KEY.realty, item?.id);
 
   if (!item) {
     if (!hydrated) return <DetailSkeleton />;
@@ -69,10 +72,10 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
             </button>
             <button
               onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(item.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
-              className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}
+              className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#2050A0]" : "text-[#C0BBB0]"}`}
               aria-label="저장"
             >
-              {saved ? "❤️" : "🤍"}
+              {saved ? "🔖" : "🏷️"}
             </button>
           </div>
         }
@@ -137,9 +140,20 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         </div>
         <h1 className="text-[1.15rem] font-bold leading-snug mb-2">{item.title}</h1>
         <div className="text-[1.6rem] font-extrabold text-[#D04020] mb-1">{item.price}</div>
-        <div className="text-[0.78rem] text-[#888070] mb-4">
+        <div className="text-[0.78rem] text-[#888070] mb-3">
           📍 {item.area} · 🚇 {item.mrt}
         </div>
+
+        {/* 좋아요 · 조회수 — 목록 카드와 같은 숫자 */}
+        <MetricRow
+          likeKey={LIKE_KEY.realty}
+          viewKey={VIEW_KEY.realty}
+          id={item.id}
+          seedLikes={item.likes}
+          seedViews={item.views}
+          variant="detail"
+          className="mb-4"
+        />
 
         {/* 핵심 스펙 */}
         <div className="grid grid-cols-2 gap-3 mb-5">

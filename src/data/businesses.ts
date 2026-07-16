@@ -32,6 +32,10 @@ export interface Business {
   reviews: BizReview[];
   photos?: string[]; // 사용자가 등록한 업소만 가짐. base64 data URL 배열
   verified?: boolean; // SORI 인증 업소(실제 영업·정보 확인). 시드 업소 기본 true, 사용자 등록 false
+  // 좋아요·조회수 시드. 업소는 실존 업체라 가짜 수치를 넣지 않는다(리뷰와 같은 원칙) →
+  // 값을 비워 두고 0에서 시작해 실제 사용자 행동만 집계한다. 백엔드 연동 시 서버 값이 들어올 자리.
+  likes?: number;
+  views?: number;
 }
 
 export const BIZ_CATEGORIES = [

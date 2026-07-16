@@ -10,6 +10,9 @@ import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
 import { useUserFlea, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
+import { useToggleSet } from "@/lib/storage";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY, useMarkViewed } from "@/lib/metrics";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -29,13 +32,16 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userFlea = useUserFlea();
   const item = userFlea.find((i) => i.id === params.id) || FLEA_ITEMS.find((i) => i.id === params.id);
-  const [liked, setLiked] = useState(false);
+  const { has: isLiked, toggle: toggleLike } = useToggleSet(LIKE_KEY.flea);
   const [chatOpen, setChatOpen] = useState(false);
+  useMarkViewed(VIEW_KEY.flea, item?.id);
 
   if (!item) {
     if (!hydrated) return <DetailSkeleton />;
     return notFound();
   }
+
+  const liked = isLiked(item.id);
 
   // 본인 글 여부 — 사용자가 직접 등록한 매물만 상태 변경 가능
   const isMine = userFlea.some((i) => i.id === params.id);
@@ -65,7 +71,7 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => setLiked(!liked)} className={`text-xl ${liked ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
+          <button onClick={() => toggleLike(item.id)} aria-label="좋아요" className={`text-xl transition-transform active:scale-90 ${liked ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
             {liked ? "❤️" : "🤍"}
           </button>
         }
@@ -142,9 +148,18 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         <div className="flex items-center gap-3 text-[0.72rem] text-[#888070] mt-3">
           <span>📍 {item.location}</span>
           <span>{item.time}</span>
-          <span>❤️ {item.likes + (liked ? 1 : 0)}</span>
-          <span>👁 {item.views}</span>
         </div>
+
+        {/* 좋아요 · 조회수 — 목록 카드와 같은 숫자 */}
+        <MetricRow
+          likeKey={LIKE_KEY.flea}
+          viewKey={VIEW_KEY.flea}
+          id={item.id}
+          seedLikes={item.likes}
+          seedViews={item.views}
+          variant="detail"
+          className="mt-3"
+        />
 
         {/* 거래 방법 */}
         <div className="flex gap-2 mt-3">
@@ -194,7 +209,8 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
       {/* 하단 버튼 */}
       <div className="sticky bottom-[80px] md:bottom-0 bg-white border-t border-black/[0.07] px-4 md:px-6 py-3 flex gap-2">
         <button
-          onClick={() => setLiked(!liked)}
+          onClick={() => toggleLike(item.id)}
+          aria-label="좋아요"
           className={`w-12 h-12 flex items-center justify-center border rounded-[10px] text-xl transition-colors ${
             liked ? "border-[#D04020] bg-[#FBF0EC]" : "border-black/[0.1]"
           }`}

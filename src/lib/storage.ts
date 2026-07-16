@@ -49,7 +49,18 @@ export function useToggleSet(key: string) {
     });
   }, [key]);
 
+  // 이미 있으면 아무것도 하지 않는 멱등 추가 (조회수 집계처럼 "1회만" 기록할 때 사용).
+  // prev 상태 대신 localStorage를 직접 읽는다 — 마운트 직후(하이드레이션 전)에 호출돼도
+  // 빈 초기 상태로 기존 기록을 덮어쓰지 않게 하기 위함.
+  const add = useCallback((id: string) => {
+    const cur = new Set(read<string[]>(key, []));
+    if (cur.has(id)) return;
+    cur.add(id);
+    write(key, Array.from(cur));
+    setIds(cur);
+  }, [key]);
+
   const has = useCallback((id: string) => ids.has(id), [ids]);
 
-  return { has, toggle, ids };
+  return { has, toggle, add, ids };
 }

@@ -9,6 +9,8 @@ import {
 } from "@/data/realtyItems";
 import { useUserRealty } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 const REALTY_PERIODS = [
   { id: "all", label: "전체" },
@@ -309,14 +311,19 @@ export default function RealtyPage() {
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between pt-2 border-t border-black/[0.06]">
-                  <span className="text-[0.65rem] text-[#888070]">
+                <div className="flex items-center justify-between gap-2 pt-2 border-t border-black/[0.06]">
+                  <span className="text-[0.65rem] text-[#888070] truncate">
                     {r.agentBadge === "집주인 직거래" ? "👤 " : "🏢 "}
                     {r.agent}
                   </span>
-                  <span className="text-[0.65rem] text-[#888070]">
-                    👁 {r.views} · ❤ {r.likes}
-                  </span>
+                  <MetricRow
+                    likeKey={LIKE_KEY.realty}
+                    viewKey={VIEW_KEY.realty}
+                    id={r.id}
+                    seedLikes={r.likes}
+                    seedViews={r.views}
+                    className="flex-shrink-0"
+                  />
                 </div>
               </div>
             </Link>

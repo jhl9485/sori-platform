@@ -6,6 +6,9 @@ import Link from "next/link";
 import { FLEA_ITEMS, FLEA_CATEGORIES } from "@/data/fleaItems";
 import { useUserFlea } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
+import { useToggleSet } from "@/lib/storage";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -18,7 +21,7 @@ const conditionColor: Record<string, string> = {
 export default function FleaPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
-  const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
+  const { has: isLiked, toggle: toggleLike } = useToggleSet(LIKE_KEY.flea);
   const [visibleCount, setVisibleCount] = useState(12);
   useListRestore("sori_list_flea", { selectedCat, searchQuery, visibleCount }, (s) => {
     setSelectedCat(s.selectedCat);
@@ -35,14 +38,10 @@ export default function FleaPage() {
   }), [allItems, selectedCat, q]);
   const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
 
-  const toggleLike = (id: string, e: React.MouseEvent) => {
+  const handleLike = (id: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setLikedItems((prev) => {
-      const n = new Set(prev);
-      if (n.has(id)) { n.delete(id); } else { n.add(id); }
-      return n;
-    });
+    toggleLike(id);
   };
 
   return (
@@ -105,8 +104,8 @@ export default function FleaPage() {
                   📷 {item.photos.length}
                 </span>
               )}
-              <button onClick={(e) => toggleLike(item.id, e)} className="absolute bottom-2 right-2 w-6 h-6 bg-white/80 rounded-full flex items-center justify-center text-sm hover:bg-white transition-colors">
-                {likedItems.has(item.id) ? "❤️" : "🤍"}
+              <button onClick={(e) => handleLike(item.id, e)} aria-label="좋아요" className="absolute bottom-2 right-2 w-6 h-6 bg-white/80 rounded-full flex items-center justify-center text-sm hover:bg-white transition-colors">
+                {isLiked(item.id) ? "❤️" : "🤍"}
               </button>
             </div>
             <div className="p-2">
@@ -119,9 +118,16 @@ export default function FleaPage() {
                 <span className={`text-[0.63rem] px-[5px] py-[1px] rounded font-medium ${conditionColor[item.condition] || "text-[#888070] bg-[#F0EDE8]"}`}>{item.condition}</span>
                 <span className="text-[0.63rem] text-[#888070]">📍{item.area}</span>
               </div>
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-[0.63rem] text-[#888070]">{item.time}</span>
-                <span className="text-[0.63rem] text-[#888070]">❤️ {item.likes + (likedItems.has(item.id) ? 1 : 0)}</span>
+              <div className="flex items-center justify-between gap-1 mt-1">
+                <span className="text-[0.63rem] text-[#888070] truncate">{item.time}</span>
+                <MetricRow
+                  likeKey={LIKE_KEY.flea}
+                  viewKey={VIEW_KEY.flea}
+                  id={item.id}
+                  seedLikes={item.likes}
+                  seedViews={item.views}
+                  className="flex-shrink-0"
+                />
               </div>
             </div>
           </Link>

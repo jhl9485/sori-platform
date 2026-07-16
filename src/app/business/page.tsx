@@ -7,6 +7,8 @@ import { BUSINESSES, BIZ_CATEGORIES } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 export default function BusinessPage() {
   const [selected, setSelected] = useState("all");
@@ -100,7 +102,17 @@ export default function BusinessPage() {
                   {biz.tags.slice(0, 3).map((tag) => <span key={tag} className="text-[0.65rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-2 py-[1px] text-[#888070]">{tag}</span>)}
                 </div>
                 <div className="bg-[#F5F3EE] rounded-lg p-2 text-[0.72rem] text-[#888070] line-clamp-1">💬 &ldquo;{biz.description}&rdquo;</div>
-                <div className="mt-2 text-[0.7rem] text-[#888070]">🕐 {biz.openHours}</div>
+                <div className="mt-2 flex items-center justify-between gap-2">
+                  <span className="text-[0.7rem] text-[#888070] truncate">🕐 {biz.openHours}</span>
+                  <MetricRow
+                    likeKey={LIKE_KEY.biz}
+                    viewKey={VIEW_KEY.biz}
+                    id={biz.id}
+                    seedLikes={biz.likes ?? 0}
+                    seedViews={biz.views ?? 0}
+                    className="flex-shrink-0"
+                  />
+                </div>
               </div>
             </Link>
           ))}

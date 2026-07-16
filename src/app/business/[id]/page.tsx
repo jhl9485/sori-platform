@@ -12,6 +12,8 @@ import { useAuthGate } from "@/lib/auth";
 import { toast } from "@/components/shared/Feedback";
 import { useUserBiz } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -20,6 +22,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
   const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_biz");
   const gate = useAuthGate();
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
+  useMarkViewed(VIEW_KEY.biz, biz?.id);
 
   if (!biz) {
     if (!hydrated) return <DetailSkeleton />;
@@ -35,8 +38,12 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
     <div className="max-w-[680px] mx-auto">
       <PageHeader
         right={
-          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(biz.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
-            {saved ? "❤️" : "🤍"}
+          <button
+            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(biz.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
+            className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#2050A0]" : "text-[#C0BBB0]"}`}
+            aria-label="저장"
+          >
+            {saved ? "🔖" : "🏷️"}
           </button>
         }
       />
@@ -87,6 +94,17 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
             <span className="text-[0.8rem] text-[#888070]">🆕 신규 등록 · 아직 리뷰가 없어요</span>
           )}
         </div>
+
+        {/* 좋아요 · 조회수 — 목록 카드와 같은 숫자 */}
+        <MetricRow
+          likeKey={LIKE_KEY.biz}
+          viewKey={VIEW_KEY.biz}
+          id={biz.id}
+          seedLikes={biz.likes ?? 0}
+          seedViews={biz.views ?? 0}
+          variant="detail"
+          className="mb-4"
+        />
 
         {/* 빠른 액션 */}
         <div className="grid grid-cols-2 gap-2 mb-5">
