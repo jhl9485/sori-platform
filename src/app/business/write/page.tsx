@@ -75,7 +75,7 @@ function BusinessWriteInner() {
   const [tagsInput, setTagsInput] = useState("");
   const [description, setDescription] = useState("");
   const [fullDescription, setFullDescription] = useState("");
-  useUnsavedGuard(!!(name || description));
+  const confirmLeave = useUnsavedGuard(!!(name || description));
   const [koreanAvailable, setKoreanAvailable] = useState(true);
 
   useEffect(() => {
@@ -238,7 +238,7 @@ function BusinessWriteInner() {
     <div className="max-w-[480px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
-        <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
+        <button onClick={async () => { if (await confirmLeave()) router.back(); }} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
         <span className="text-[0.9rem] font-bold">{isEditMode ? "업소 수정" : "한인 업소 등록"}</span>
         <button
           onClick={submit}

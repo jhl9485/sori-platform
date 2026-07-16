@@ -83,7 +83,7 @@ function WriteInner() {
   const [selectedCat, setSelectedCat] = useState(presetCat);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  useUnsavedGuard(!!(title || content));
+  const confirmLeave = useUnsavedGuard(!!(title || content));
   const [isAnon, setIsAnon] = useState(false);
   const [tagsInput, setTagsInput] = useState("");
   const [visaBadge, setVisaBadge] = useState<VisaBadge>(null);
@@ -241,7 +241,7 @@ function WriteInner() {
     <div className="max-w-[390px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
-        <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
+        <button onClick={async () => { if (await confirmLeave()) router.back(); }} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
         <span className="text-[0.9rem] font-bold">{isEditMode ? "글 수정" : "글쓰기"}</span>
         <button
           onClick={submit}

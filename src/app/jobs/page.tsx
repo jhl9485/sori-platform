@@ -85,7 +85,6 @@ export default function JobsPage() {
           <span className="font-bold text-[#181614]">{filtered.length}개</span> 공고
         </span>
         <div className="flex items-center gap-2">
-          <button className="text-[0.75rem] text-[#888070]">최신순 ▾</button>
           <Link
             href="/jobs/write"
             className="bg-[#2B7A50] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#246642] transition-colors flex items-center gap-1"

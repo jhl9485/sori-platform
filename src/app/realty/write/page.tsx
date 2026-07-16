@@ -92,7 +92,7 @@ function RealtyWriteInner() {
   const [diplomaticClause, setDiplomaticClause] = useState(false);
   const [amenities, setAmenities] = useState<string[]>([]);
   const [description, setDescription] = useState("");
-  useUnsavedGuard(!!(title || description));
+  const confirmLeave = useUnsavedGuard(!!(title || description));
 
   // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {
@@ -281,7 +281,7 @@ function RealtyWriteInner() {
     <div className="max-w-[480px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
-        <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
+        <button onClick={async () => { if (await confirmLeave()) router.back(); }} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
         <span className="text-[0.9rem] font-bold">{isEditMode ? "매물 수정" : "부동산 매물 등록"}</span>
         <button
           onClick={submit}

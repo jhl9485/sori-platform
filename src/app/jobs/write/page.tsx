@@ -146,7 +146,7 @@ function JobsWriteInner() {
       location, tagsText, contact, deadline, description, requirements, preferred, benefits]);
 
   // 작성 중 내용이 있으면 새로고침·창닫기 시 경고
-  useUnsavedGuard(!!(company || title || description));
+  const confirmLeave = useUnsavedGuard(!!(company || title || description));
 
   // 연봉은 선택. 협의를 켜거나 비워두면 "협의"로 저장(화면엔 '연봉 협의'로 표시).
   const salaryValue =
@@ -227,7 +227,7 @@ function JobsWriteInner() {
     <div className="max-w-[480px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
-        <button onClick={() => router.back()} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
+        <button onClick={async () => { if (await confirmLeave()) router.back(); }} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
         <span className="text-[0.9rem] font-bold">{isEditMode ? "공고 수정" : "채용 공고 등록"}</span>
         <button
           onClick={submit}
