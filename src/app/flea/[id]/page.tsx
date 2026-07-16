@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
@@ -10,7 +9,6 @@ import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
 import { useUserFlea, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
-import { useToggleSet } from "@/lib/storage";
 import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
@@ -32,16 +30,12 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userFlea = useUserFlea();
   const item = userFlea.find((i) => i.id === params.id) || FLEA_ITEMS.find((i) => i.id === params.id);
-  const { has: isLiked, toggle: toggleLike } = useToggleSet(LIKE_KEY.flea);
-  const [chatOpen, setChatOpen] = useState(false);
   useMarkViewed(VIEW_KEY.flea, item?.id);
 
   if (!item) {
     if (!hydrated) return <DetailSkeleton />;
     return notFound();
   }
-
-  const liked = isLiked(item.id);
 
   // 본인 글 여부 — 사용자가 직접 등록한 매물만 상태 변경 가능
   const isMine = userFlea.some((i) => i.id === params.id);
@@ -169,26 +163,7 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* 판매자 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-4">
-        <h2 className="text-[0.85rem] font-bold mb-3">판매자 정보</h2>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#F5F3EE] flex items-center justify-center text-xl">
-            👤
-          </div>
-          <div className="flex-1">
-            <div className="text-[0.85rem] font-semibold">{item.seller}</div>
-            <div className="text-[0.7rem] text-[#888070]">
-              {item.sellerSince}년부터 · 거래 {item.sellerDeals}건
-            </div>
-          </div>
-          <div className="text-[0.72rem] text-[#888070] font-medium bg-[#F0EDE8] px-2 py-1 rounded-full">
-            회원
-          </div>
-        </div>
-      </div>
-
-      {/* 상품 설명 */}
+      {/* 상품 설명 — 연락 방법도 판매자가 여기에 함께 적는다 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
         <h2 className="text-[0.85rem] font-bold mb-3">상품 설명</h2>
         <div className="space-y-[2px]">{lines}</div>
@@ -203,36 +178,8 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         </p>
       </div>
 
-      {/* 하단 버튼 */}
-      <div className="sticky bottom-[80px] md:bottom-0 bg-white border-t border-black/[0.07] px-4 md:px-6 py-3 flex gap-2">
-        <button
-          onClick={() => toggleLike(item.id)}
-          aria-label="좋아요"
-          className={`w-12 h-12 flex items-center justify-center border rounded-[10px] text-xl transition-colors ${
-            liked ? "border-[#D04020] bg-[#FBF0EC]" : "border-black/[0.1]"
-          }`}
-        >
-          {liked ? "❤️" : "🤍"}
-        </button>
-        <button
-          onClick={() => setChatOpen(true)}
-          className="flex-1 py-3 bg-[#D04020] text-white rounded-[12px] font-bold text-[0.9rem] hover:bg-[#B83515] transition-colors"
-        >
-          💬 채팅으로 문의하기
-        </button>
-      </div>
-
-      {chatOpen && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-end justify-center" onClick={() => setChatOpen(false)}>
-          <div className="bg-white w-full max-w-[390px] rounded-t-[20px] p-6" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-[1rem] font-bold mb-2">채팅 기능 준비 중</h3>
-            <p className="text-[0.82rem] text-[#888070]">곧 실시간 채팅 기능이 추가됩니다. 현재는 게시글 댓글로 문의해주세요.</p>
-            <button onClick={() => setChatOpen(false)} className="mt-4 w-full py-3 bg-[#181614] text-white rounded-[12px] font-bold">
-              확인
-            </button>
-          </div>
-        </div>
-      )}
+      {/* 하단 채팅 버튼은 채팅 기능이 없어 제거했다.
+          좋아요는 위 액션 바에, 연락 방법은 상품 설명에 판매자가 직접 적는다. */}
 
       <div className="h-4" />
     </div>

@@ -158,8 +158,8 @@ interface RawUserJob {
   visaType: Job["visaType"];
   salary: string;
   location: string;
-  koreanRequired: boolean;
   tags: string[];
+  contact: string;
   deadline: string;
   description: string;
   requirements: string[];
@@ -181,12 +181,11 @@ export function userJobToJob(p: RawUserJob): Job {
     visaSponsored: p.visaSponsored,
     visaType: p.visaType,
     jobType: p.jobType,
-    koreanRequired: p.koreanRequired,
     tags: p.tags || [],
+    contact: p.contact || "",
     postedAt: relativeTime(p.createdAt),
     deadline: p.deadline || "채용시까지",
     views: 1,
-    applicants: 0,
     isNew: true,
     isUrgent: false,
     description: p.description,

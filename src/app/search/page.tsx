@@ -242,7 +242,7 @@ export default function SearchPage() {
                   <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center text-xl flex-shrink-0 ${biz.bg}`}>{biz.emoji}</div>
                   <div className="flex-1 min-w-0">
                     <div className="text-[0.85rem] font-medium">{biz.name}</div>
-                    <div className="text-[0.72rem] text-[#888070]">{biz.category} · {biz.area} · ★ {biz.rating}</div>
+                    <div className="text-[0.72rem] text-[#888070]">{biz.category} · {biz.area}</div>
                   </div>
                   <span className={`text-[0.7rem] font-semibold flex-shrink-0 ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>
                     {biz.isOpen ? "영업중" : "영업종료"}

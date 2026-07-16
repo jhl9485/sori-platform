@@ -408,14 +408,17 @@ function FleaWriteInner() {
 
         {/* 8. 설명 */}
         <section>
-          <SectionTitle index="8" title="상품 설명" required />
+          <SectionTitle index="8" title="상품 설명과 연락 방법" required />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            rows={8}
-            placeholder={`상품 상태, 사용 기간, 구매 시기 등 자세히 적어주세요.\n\n예시:\n- 모델: Daikin FTKF25D\n- 사용 기간: 약 2년\n- 정상 작동 확인, 외관 스크래치 없음\n- 분리 비용 별도 협의 가능`}
+            rows={9}
+            placeholder={`상품 상태, 사용 기간, 구매 시기와 함께 연락받을 방법을 적어주세요.\n\n예시:\n- 모델: Daikin FTKF25D\n- 사용 기간: 약 2년\n- 정상 작동 확인, 외관 스크래치 없음\n- 분리 비용 별도 협의 가능\n- 연락처: 왓츠앱 / 카톡ID / 번호`}
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
           />
+          <p className="text-[0.68rem] text-[#888070] mt-1">
+            💬 SORI에는 아직 채팅이 없어요. 연락받을 방법(왓츠앱·카톡ID·번호)을 꼭 남겨주세요.
+          </p>
           <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{description.length} / 2000</div>
         </section>
 

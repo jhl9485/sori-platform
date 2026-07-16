@@ -52,11 +52,6 @@ function JobCard({ job }: { job: Job }) {
         <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#EBF0FB] text-[#2050A0] border-[rgba(32,80,160,0.15)]">
           {job.visaSponsored ? `${job.visaType} 스폰서` : job.visaType}
         </span>
-        {job.koreanRequired && (
-          <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#FBF0EC] text-[#D04020] border-[rgba(208,64,32,0.15)]">
-            한국어 必
-          </span>
-        )}
         <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#F5F3EE] text-[#888070] border-black/[0.08]">
           {job.salary}
         </span>

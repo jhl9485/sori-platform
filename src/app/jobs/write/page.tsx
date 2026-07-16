@@ -18,8 +18,8 @@ interface RawJob {
   visaType: VisaType;
   salary: string;
   location: string;
-  koreanRequired: boolean;
   tags: string[];
+  contact: string;
   deadline: string;
   description: string;
   requirements: string[];
@@ -34,12 +34,6 @@ const VISA_TYPES: VisaType[] = ["EP", "S-Pass", "WP", "무관"];
 const COMMON_AREAS = [
   "One-North", "Tanjong Pagar", "Raffles Place", "Marina Bay", "Orchard",
   "Bugis", "Jurong East", "Buona Vista", "Changi", "재택근무 가능",
-];
-
-const COMMON_TAGS = [
-  "React", "Python", "Java", "TypeScript", "AWS",
-  "회계", "마케팅", "디자인", "영업", "한식 조리",
-  "통번역", "교사", "물류", "고객응대", "운전",
 ];
 
 function JobsWriteInner() {
@@ -59,8 +53,8 @@ function JobsWriteInner() {
   const [salaryMin, setSalaryMin] = useState("");
   const [salaryMax, setSalaryMax] = useState("");
   const [location, setLocation] = useState("");
-  const [koreanRequired, setKoreanRequired] = useState(false);
-  const [tags, setTags] = useState<string[]>([]);
+  const [tagsText, setTagsText] = useState("");
+  const [contact, setContact] = useState("");
   const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
   const [requirements, setRequirements] = useState("");
@@ -87,8 +81,8 @@ function JobsWriteInner() {
               setSalaryMax(m[2].trim());
             }
             setLocation(t.location || "");
-            setKoreanRequired(!!t.koreanRequired);
-            setTags(t.tags || []);
+            setTagsText((t.tags || []).join(", "));
+            setContact(t.contact || "");
             setDeadline(t.deadline || "");
             setDescription(t.description || "");
             setRequirements((t.requirements || []).join("\n"));
@@ -112,8 +106,8 @@ function JobsWriteInner() {
           setSalaryMin(d.salaryMin || "");
           setSalaryMax(d.salaryMax || "");
           setLocation(d.location || "");
-          setKoreanRequired(!!d.koreanRequired);
-          setTags(d.tags || []);
+          setTagsText(d.tagsText || "");
+          setContact(d.contact || "");
           setDeadline(d.deadline || "");
           setDescription(d.description || "");
           setRequirements(d.requirements || "");
@@ -138,21 +132,20 @@ function JobsWriteInner() {
         DRAFT_KEY,
         JSON.stringify({
           company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax,
-          location, koreanRequired, tags, deadline, description,
+          location, tagsText, contact, deadline, description,
           requirements, preferred, benefits,
         })
       );
     } catch {}
   }, [hydrated, isEditMode, company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax,
-      location, koreanRequired, tags, deadline, description, requirements, preferred, benefits]);
+      location, tagsText, contact, deadline, description, requirements, preferred, benefits]);
 
   const canSubmit =
     company.trim() && title.trim() && location.trim() && description.trim() &&
-    salaryMin.trim() && salaryMax.trim();
+    salaryMin.trim() && salaryMax.trim() && contact.trim();
 
-  const toggleTag = (t: string) => {
-    setTags((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
-  };
+  // "React, Python, 회계" → ["React", "Python", "회계"] (쉼표·줄바꿈 모두 허용)
+  const parsedTags = tagsText.split(/[,\n]/).map((s) => s.trim()).filter(Boolean);
 
   const submit = () => {
     if (!canSubmit) return;
@@ -162,7 +155,7 @@ function JobsWriteInner() {
         company: company.trim(), title: title.trim(),
         jobType, visaSponsored, visaType,
         salary: `$${salaryMin.trim()} ~ $${salaryMax.trim()}`,
-        location: location.trim(), koreanRequired, tags,
+        location: location.trim(), tags: parsedTags, contact: contact.trim(),
         deadline: deadline.trim(),
         description: description.trim(),
         requirements: requirements.split("\n").map((s) => s.trim()).filter(Boolean),
@@ -184,7 +177,7 @@ function JobsWriteInner() {
       company: company.trim(), title: title.trim(),
       jobType, visaSponsored, visaType,
       salary: `$${salaryMin.trim()} ~ $${salaryMax.trim()}`,
-      location: location.trim(), koreanRequired, tags,
+      location: location.trim(), tags: parsedTags, contact: contact.trim(),
       deadline: deadline.trim(),
       description: description.trim(),
       requirements: requirements.split("\n").map((s) => s.trim()).filter(Boolean),
@@ -211,7 +204,7 @@ function JobsWriteInner() {
     setCompany(""); setTitle(""); setJobType("정규직");
     setVisaSponsored(true); setVisaType("EP");
     setSalaryMin(""); setSalaryMax(""); setLocation("");
-    setKoreanRequired(false); setTags([]); setDeadline("");
+    setTagsText(""); setContact(""); setDeadline("");
     setDescription(""); setRequirements(""); setPreferred(""); setBenefits("");
     setRestored(false);
     localStorage.removeItem(DRAFT_KEY);
@@ -380,56 +373,45 @@ function JobsWriteInner() {
           </div>
         </section>
 
-        {/* 6. 한국어 */}
+        {/* 6. 기술/직무 키워드 — 직접 입력 */}
         <section>
-          <SectionTitle index="6" title="한국어 필수 여부" />
-          <button
-            onClick={() => setKoreanRequired(!koreanRequired)}
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-[10px] border-2 transition-all ${
-              koreanRequired
-                ? "border-[#D04020] bg-[#FBF0EC]"
-                : "border-black/[0.08] bg-white"
-            }`}
-          >
-            <span className="text-[0.82rem] font-medium text-left flex-1">
-              🇰🇷 한국어 필수
-              <span className="block text-[0.68rem] text-[#888070] font-normal">
-                업무에 한국어 사용이 필수인지 여부
-              </span>
-            </span>
-            <span className={`inline-block w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
-              koreanRequired ? "bg-[#D04020]" : "bg-[#C0BBB0]"
-            }`}>
-              <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
-                koreanRequired ? "translate-x-4" : "translate-x-0"
-              }`} />
-            </span>
-          </button>
-        </section>
-
-        {/* 7. 기술/직무 키워드 */}
-        <section>
-          <SectionTitle index="7" title="기술 / 직무 키워드" />
-          <div className="flex flex-wrap gap-2 mb-2">
-            {COMMON_TAGS.map((t) => {
-              const sel = tags.includes(t);
-              return (
-                <button
-                  key={t}
-                  onClick={() => toggleTag(t)}
-                  className={`text-[0.72rem] rounded-full px-3 py-[5px] border transition-colors ${
-                    sel
-                      ? "bg-[#181614] text-white border-[#181614]"
-                      : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
-                  }`}
+          <SectionTitle index="6" title="기술 / 직무 키워드" />
+          <input
+            type="text"
+            value={tagsText}
+            onChange={(e) => setTagsText(e.target.value)}
+            placeholder="예: React, 회계, 한식 조리"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+          />
+          <p className="text-[0.68rem] text-[#888070] mt-1">쉼표(,)로 구분해서 자유롭게 적어주세요.</p>
+          {parsedTags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2">
+              {parsedTags.map((t, i) => (
+                <span
+                  key={`${t}-${i}`}
+                  className="text-[0.68rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-2 py-[2px] text-[#888070]"
                   style={{ fontFamily: "'IBM Plex Mono', monospace" }}
                 >
-                  {sel ? "✓ " : ""}{t}
-                </button>
-              );
-            })}
-          </div>
-          <p className="text-[0.68rem] text-[#888070]">자유롭게 여러 개 선택할 수 있어요.</p>
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* 7. 담당자 연락처 */}
+        <section>
+          <SectionTitle index="7" title="담당자 연락처" required />
+          <input
+            type="text"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            placeholder="예: hr@company.com 또는 +65 9123 4567"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+          />
+          <p className="text-[0.68rem] text-[#888070] mt-1">
+            🔒 지원자가 연락할 이메일 또는 전화번호예요. 스팸을 막기 위해 <b>로그인한 사용자에게만</b> 보여요.
+          </p>
         </section>
 
         {/* 8. 마감일 */}

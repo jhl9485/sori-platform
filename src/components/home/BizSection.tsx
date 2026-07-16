@@ -4,18 +4,16 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { BUSINESSES, type Business } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
+import BizReviewCount from "@/components/business/BizReviewCount";
 
-// 사용자 등록 업소 + 정적 데이터 통합 후 평점·리뷰 기준 상위 4개 노출
+// 사용자 등록 업소 + 정적 데이터 통합 후 리뷰 수 기준 상위 4개 노출
 export default function BizSection() {
   const userBiz = useUserBiz();
 
   const featured = useMemo(() => {
     const merged = [...userBiz, ...BUSINESSES];
-    // 사용자 등록 업소는 평점 0이라 정적 데이터보다 뒤로 가지만,
-    // "내 업소" 배지로 구분되어 표시
-    return [...merged]
-      .sort((a, b) => (b.rating || 0) * 100 + (b.reviewCount || 0) - ((a.rating || 0) * 100 + (a.reviewCount || 0)))
-      .slice(0, 4);
+    // 별점은 쓰지 않으므로 리뷰 수로만 정렬한다
+    return [...merged].sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0)).slice(0, 4);
   }, [userBiz]);
 
   return (
@@ -59,14 +57,7 @@ function BizCard({ biz }: { biz: Business }) {
         <div className="text-[0.82rem] font-bold mb-[2px] line-clamp-1">{biz.name}</div>
         <div className="text-[0.7rem] text-[#888070] mb-[5px] line-clamp-1">{biz.category} · {biz.area}</div>
         <div className="flex items-center gap-1">
-          {biz.rating > 0 ? (
-            <>
-              <span className="text-[0.7rem] text-[#B07010] font-semibold">★ {biz.rating}</span>
-              <span className="text-[0.68rem] text-[#888070]">({biz.reviewCount})</span>
-            </>
-          ) : (
-            <span className="text-[0.66rem] text-[#888070]">🆕 신규</span>
-          )}
+          <BizReviewCount bizId={biz.id} seed={biz.reviewCount} />
         </div>
       </div>
     </Link>

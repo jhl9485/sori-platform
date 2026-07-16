@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
 import OwnerActions from "@/components/shared/OwnerActions";
@@ -9,13 +8,14 @@ import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import DetailActions from "@/components/shared/DetailActions";
+import JobContact from "@/components/jobs/JobContact";
+import JobQuestions from "@/components/jobs/JobQuestions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userJobs = useUserJobs();
   const job = userJobs.find((j) => j.id === params.id) || JOBS.find((j) => j.id === params.id);
-  const [applied, setApplied] = useState(false);
   useMarkViewed(VIEW_KEY.jobs, job?.id);
 
   if (!job) {
@@ -23,7 +23,9 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
     return notFound();
   }
 
-  const isMine = userJobs.some((j) => j.id === params.id);
+  // 사용자가 직접 올린 공고인지 = 답변할 작성자가 존재하는지
+  const isUserJob = userJobs.some((j) => j.id === params.id);
+  const isMine = isUserJob;
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -71,17 +73,11 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           <span className="text-[0.75rem] bg-[#F0EDE8] text-[#888070] px-3 py-[5px] rounded-full">
             {job.jobType}
           </span>
-          {job.koreanRequired && (
-            <span className="text-[0.75rem] bg-[#FBF0EC] text-[#D04020] px-3 py-[5px] rounded-full font-medium">
-              🇰🇷 한국어 필수
-            </span>
-          )}
         </div>
 
         {/* 메타 정보 — 조회수는 아래 액션 바에 있으므로 여기서는 뺀다 */}
         <div className="flex items-center gap-4 text-[0.72rem] text-[#888070]">
           <span>📍 {job.location}</span>
-          <span>👤 {job.applicants}명 지원</span>
         </div>
 
         {/* 액션 바 — 모든 카테고리 공통 배치 */}
@@ -156,19 +152,11 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
         <div className="text-[0.7rem] text-[#888070]">게시: {job.postedAt}</div>
       </div>
 
-      {/* 지원하기 버튼 (하단 고정) */}
-      <div className="sticky bottom-[80px] md:bottom-0 bg-white border-t border-black/[0.07] px-4 md:px-6 py-3">
-        <button
-          onClick={() => setApplied(!applied)}
-          className={`w-full py-[13px] rounded-[12px] text-[0.9rem] font-bold transition-all ${
-            applied
-              ? "bg-[#EBF5F0] text-[#2B7A50] border border-[#2B7A50]"
-              : "bg-[#D04020] text-white hover:bg-[#B83515]"
-          }`}
-        >
-          {applied ? "✓ 지원 완료" : "지원하기"}
-        </button>
-      </div>
+      {/* 질문하기 — 사용자가 직접 올린 공고만 (시드 공고는 답변할 작성자가 없음) */}
+      {isMine || isUserJob ? <JobQuestions jobId={job.id} isOwner={isMine} /> : null}
+
+      {/* 담당자 연락처 — 맨 아래 */}
+      <JobContact contact={job.contact} />
 
       <div className="h-4" />
     </div>

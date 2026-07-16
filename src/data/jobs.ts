@@ -13,12 +13,13 @@ export interface Job {
   visaSponsored: boolean;
   visaType: VisaType;
   jobType: JobType;
-  koreanRequired: boolean;
   tags: string[];
   postedAt: string;
   deadline: string;
   views: number;
-  applicants: number;
+  /** 담당자 연락처(이메일 또는 전화번호). 상세 맨 아래에 로그인한 사용자에게만 노출.
+   *  시드 공고는 실제 채용 담당자 연락처를 알 수 없어 비워둔다(지어내지 않는다). */
+  contact?: string;
   isNew: boolean;
   isUrgent: boolean;
   description: string;
@@ -40,12 +41,10 @@ export const JOBS: Job[] = [
     visaSponsored: true,
     visaType: "EP",
     jobType: "정규직",
-    koreanRequired: false,
     tags: ["React Native", "iOS", "Android", "TypeScript"],
     postedAt: "1시간 전",
     deadline: "2026-06-30",
     views: 1240,
-    applicants: 34,
     isNew: true,
     isUrgent: false,
     description: "글로벌 모바일 앱 개발팀에서 함께 할 시니어 개발자를 찾습니다. APAC 리전 사용자를 위한 모바일 애플리케이션 개발 및 최적화를 담당합니다.",
@@ -82,12 +81,10 @@ export const JOBS: Job[] = [
     visaSponsored: true,
     visaType: "S-Pass",
     jobType: "정규직",
-    koreanRequired: true,
     tags: ["한식", "조리사", "요리"],
     postedAt: "5시간 전",
     deadline: "2026-06-10",
     views: 543,
-    applicants: 8,
     isNew: false,
     isUrgent: true,
     description: "싱가포르 최대 한식 레스토랑 체인에서 열정 있는 조리사를 모집합니다. 한국 정통 맛을 싱가포르에서 선보일 분을 찾습니다.",
@@ -122,12 +119,10 @@ export const JOBS: Job[] = [
     visaSponsored: true,
     visaType: "EP",
     jobType: "정규직",
-    koreanRequired: true,
     tags: ["Finance", "Bloomberg", "Excel", "CFA"],
     postedAt: "2일 전",
     deadline: "2026-06-20",
     views: 934,
-    applicants: 23,
     isNew: false,
     isUrgent: false,
     description: "하나은행 싱가포르 지점 리테일/기업금융 부서에서 재무 분석 업무를 담당할 분을 모집합니다. 한-싱 비즈니스 네트워크를 활용한 기업금융 지원 업무입니다.",

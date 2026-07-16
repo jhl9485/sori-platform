@@ -551,7 +551,7 @@ function SavedTab({ posts, news, biz, realty, flea, jobs }: SavedTabProps) {
               key={b.id}
               href={`/business/${b.id}`}
               title={b.name}
-              sub={`${b.category} · ${b.area} · ★ ${b.rating}`}
+              sub={`${b.category} · ${b.area}`}
               badge={b.isOpen ? "영업중" : "종료"}
             />
           ))}

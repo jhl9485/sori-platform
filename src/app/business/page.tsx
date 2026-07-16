@@ -8,6 +8,7 @@ import { useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
 import MetricRow from "@/components/shared/MetricRow";
+import BizReviewCount from "@/components/business/BizReviewCount";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 export default function BusinessPage() {
@@ -88,15 +89,7 @@ export default function BusinessPage() {
                 </div>
                 <div className="text-[0.72rem] text-[#888070] mb-2">{biz.category} · {biz.area} · {biz.priceRange}</div>
                 <div className="flex items-center gap-1 mb-2">
-                  {biz.reviewCount > 0 ? (
-                    <>
-                      <span className="text-[#B07010] text-[0.75rem]">{"★".repeat(Math.round(biz.rating))}</span>
-                      <span className="text-[0.75rem] font-bold text-[#B07010]">{biz.rating}</span>
-                      <span className="text-[0.7rem] text-[#888070]">({biz.reviewCount})</span>
-                    </>
-                  ) : (
-                    <span className="text-[0.68rem] text-[#888070]">🆕 신규 · 리뷰 준비중</span>
-                  )}
+                  <BizReviewCount bizId={biz.id} seed={biz.reviewCount} />
                 </div>
                 <div className="flex flex-wrap gap-1 mb-2">
                   {biz.tags.slice(0, 3).map((tag) => <span key={tag} className="text-[0.65rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-2 py-[1px] text-[#888070]">{tag}</span>)}

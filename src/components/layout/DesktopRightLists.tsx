@@ -6,6 +6,7 @@ import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { JOBS } from "@/data/jobs";
 import { BUSINESSES } from "@/data/businesses";
 import { useUserPosts, useUserJobs, useUserBiz } from "@/lib/userContent";
+import BizReviewCount from "@/components/business/BizReviewCount";
 
 /**
  * 데스크탑 우측 패널의 인기 게시글 / 채용 / 업소 리스트.
@@ -27,10 +28,8 @@ export default function DesktopRightLists() {
 
   const bizPreview = useMemo(() => {
     const merged = [...userBiz, ...BUSINESSES];
-    // 평점·리뷰 기준 상위 노출 (사용자 업소는 평점 0이라 뒤로 가지만 "내 업소" 배지로 노출)
-    return [...merged]
-      .sort((a, b) => (b.rating || 0) * 100 + (b.reviewCount || 0) - ((a.rating || 0) * 100 + (a.reviewCount || 0)))
-      .slice(0, 3);
+    // 별점은 쓰지 않으므로 리뷰 수로만 정렬한다
+    return [...merged].sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0)).slice(0, 3);
   }, [userBiz]);
 
   return (
@@ -100,7 +99,7 @@ export default function DesktopRightLists() {
                 <div className="text-[0.68rem] text-[#888070] truncate">{biz.category} · {biz.area}</div>
               </div>
               <div className="flex flex-col items-end flex-shrink-0">
-                {biz.rating > 0 ? <span className="text-[0.75rem] font-bold text-[#B07010]">★ {biz.rating}</span> : <span className="text-[0.6rem] text-[#888070]">🆕 신규</span>}
+                <BizReviewCount bizId={biz.id} seed={biz.reviewCount} />
               </div>
             </Link>
           ))}

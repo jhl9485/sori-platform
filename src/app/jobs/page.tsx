@@ -26,13 +26,11 @@ const TYPE_FILTERS: { label: string; value: JobType | "전체" }[] = [
 export default function JobsPage() {
   const [visaFilter, setVisaFilter] = useState<VisaType | "전체">("전체");
   const [typeFilter, setTypeFilter] = useState<JobType | "전체">("전체");
-  const [koreanOnly, setKoreanOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(12);
-  useListRestore("sori_list_jobs", { visaFilter, typeFilter, koreanOnly, searchQuery, visibleCount }, (s) => {
+  useListRestore("sori_list_jobs", { visaFilter, typeFilter, searchQuery, visibleCount }, (s) => {
     setVisaFilter(s.visaFilter);
     setTypeFilter(s.typeFilter);
-    setKoreanOnly(s.koreanOnly);
     setSearchQuery(s.searchQuery);
     setVisibleCount(s.visibleCount);
   });
@@ -44,10 +42,9 @@ export default function JobsPage() {
   const filtered = useMemo(() => allJobs.filter((job) => {
     if (visaFilter !== "전체" && job.visaType !== visaFilter) return false;
     if (typeFilter !== "전체" && job.jobType !== typeFilter) return false;
-    if (koreanOnly && !job.koreanRequired) return false;
     if (searchQuery && !job.title.includes(searchQuery) && !job.company.includes(searchQuery) && !job.tags.some(t => t.includes(searchQuery))) return false;
     return true;
-  }), [allJobs, visaFilter, typeFilter, koreanOnly, searchQuery]);
+  }), [allJobs, visaFilter, typeFilter, searchQuery]);
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -77,10 +74,6 @@ export default function JobsPage() {
             {f.label}
           </button>
         ))}
-        <button onClick={() => setKoreanOnly(!koreanOnly)}
-          className={`px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${koreanOnly ? "bg-[#D04020] text-white border-[#D04020]" : "bg-white text-[#888070] border-black/[0.08]"}`}>
-          🇰🇷 한국어 필수
-        </button>
       </div>
 
       {/* 결과 수 + 등록 */}
@@ -126,7 +119,6 @@ export default function JobsPage() {
               <div className="flex flex-wrap gap-[6px] mb-3">
                 <span className="text-[0.72rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[3px] rounded-full font-medium">{job.visaSponsored ? `${job.visaType} 스폰서` : job.visaType}</span>
                 <span className="text-[0.72rem] bg-[#F0EDE8] text-[#888070] px-2 py-[3px] rounded-full">{job.jobType}</span>
-                {job.koreanRequired && <span className="text-[0.72rem] bg-[#FBF0EC] text-[#D04020] px-2 py-[3px] rounded-full font-medium">🇰🇷 한국어 필수</span>}
                 <span className="text-[0.72rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[3px] rounded-full font-medium">💰 {job.salary}</span>
               </div>
               <div className="flex flex-wrap gap-1 mb-3">
@@ -135,7 +127,6 @@ export default function JobsPage() {
               <div className="flex items-center justify-between pt-2 border-t border-black/[0.06]">
                 <div className="flex items-center gap-3 text-[0.72rem] text-[#888070]">
                   <span>📍 {job.location}</span>
-                  <span>👤 {job.applicants}명</span>
                 </div>
                 <span className="text-[0.7rem] text-[#888070]">{job.postedAt}</span>
               </div>

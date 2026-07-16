@@ -20,8 +20,6 @@ export default function SponsoredBizCard() {
         <div className="text-[0.82rem] font-bold mb-[2px]">박앤리 이민법무법인</div>
         <div className="text-[0.7rem] text-[#888070] mb-[5px]">법무 · Raffles Place</div>
         <div className="flex items-center gap-1 mb-2">
-          <span className="text-[0.7rem] text-[#B07010] font-semibold">★ 4.9</span>
-          <span className="text-[0.68rem] text-[#888070]">(48)</span>
           <span className="text-[0.68rem] font-semibold text-[#2B7A50] ml-auto">영업중</span>
         </div>
         <div className="bg-[#FBF0EC] rounded-lg p-2 text-[0.72rem] text-[#D04020] font-medium">

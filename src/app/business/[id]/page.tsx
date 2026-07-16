@@ -10,6 +10,9 @@ import { BUSINESSES } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import DetailActions from "@/components/shared/DetailActions";
+import BizReviewCount from "@/components/business/BizReviewCount";
+import BizReviewSection from "@/components/business/BizReviewSection";
+import { useBizReviewCount } from "@/lib/reviews";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
@@ -18,6 +21,8 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
   const biz = userBiz.find((b) => b.id === params.id) || BUSINESSES.find((b) => b.id === params.id);
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
   useMarkViewed(VIEW_KEY.biz, biz?.id);
+  // 탭 라벨도 내가 쓴 리뷰를 포함한 실제 개수로 (카드·상세와 숫자 일치)
+  const reviewCount = useBizReviewCount(params.id, biz?.reviewCount ?? 0);
 
   if (!biz) {
     if (!hydrated) return <DetailSkeleton />;
@@ -25,8 +30,6 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
   }
 
   const isMine = userBiz.some((b) => b.id === params.id);
-
-  const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(biz.rating));
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -62,21 +65,9 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           </div>
         </div>
 
-        {/* 별점 */}
+        {/* 리뷰 수 (별점은 받지 않으므로 ★ 표시 없음) */}
         <div className="flex items-center gap-2 mb-4">
-          {biz.reviewCount > 0 ? (
-            <>
-              <div className="flex">
-                {stars.map((filled, i) => (
-                  <span key={i} className={`text-lg ${filled ? "text-[#B07010]" : "text-[#E0DDD8]"}`}>★</span>
-                ))}
-              </div>
-              <span className="text-[0.9rem] font-bold text-[#B07010]">{biz.rating}</span>
-              <span className="text-[0.78rem] text-[#888070]">({biz.reviewCount}개 리뷰)</span>
-            </>
-          ) : (
-            <span className="text-[0.8rem] text-[#888070]">🆕 신규 등록 · 아직 리뷰가 없어요</span>
-          )}
+          <BizReviewCount bizId={biz.id} seed={biz.reviewCount} size="detail" />
         </div>
 
         {/* 액션 바 — 모든 카테고리 공통 배치 */}
@@ -123,7 +114,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
               activeTab === tab ? "text-[#D04020] border-b-2 border-[#D04020]" : "text-[#888070]"
             }`}
           >
-            {tab === "info" ? "상세정보" : `리뷰 ${biz.reviewCount}`}
+            {tab === "info" ? "상세정보" : `리뷰 ${reviewCount}`}
           </button>
         ))}
       </div>
@@ -155,40 +146,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           </div>
         </div>
       ) : (
-        <div className="bg-white">
-          {/* 리뷰 작성 버튼 */}
-          <div className="px-4 md:px-6 py-4 border-b border-black/[0.06]">
-            <button className="w-full py-3 border-2 border-dashed border-black/[0.12] rounded-[12px] text-[0.82rem] text-[#888070] hover:border-[#D04020] hover:text-[#D04020] transition-colors">
-              ✍️ 리뷰 작성하기
-            </button>
-          </div>
-
-          {/* 리뷰 목록 */}
-          <div className="divide-y divide-black/[0.05]">
-            {biz.reviews.map((review) => (
-              <div key={review.id} className="px-4 md:px-6 py-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-[0.85rem] font-bold"
-                    style={{ background: review.avatarBg, color: review.avatarColor }}
-                  >
-                    {review.avatarChar}
-                  </div>
-                  <div>
-                    <div className="text-[0.8rem] font-semibold">{review.author}</div>
-                    <div className="flex items-center gap-1">
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <span key={i} className={`text-sm ${i < review.rating ? "text-[#B07010]" : "text-[#E0DDD8]"}`}>★</span>
-                      ))}
-                      <span className="text-[0.68rem] text-[#888070] ml-1">{review.time}</span>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-[0.82rem] text-[#181614] leading-relaxed">{review.content}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <BizReviewSection bizId={biz.id} seedReviews={biz.reviews} />
       )}
 
       <div className="h-4" />

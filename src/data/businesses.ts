@@ -6,7 +6,9 @@ export interface BizReview {
   avatarChar: string;
   avatarBg: string;
   avatarColor: string;
-  rating: number;
+  /** 별점은 현재 받지 않는다(실존 업소에 근거 없는 평점을 붙이지 않기 위함).
+   *  나중에 별점을 도입할 때 바로 쓸 수 있도록 필드만 남겨둔다. */
+  rating?: number;
   content: string;
   time: string;
   images?: string[];
