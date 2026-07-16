@@ -6,7 +6,7 @@ import { formatCount } from "@/lib/format";
 
 // 데이터마다 타입이 다르다 — 커뮤니티는 "1,203" 같은 문자열, 벼룩·부동산은 숫자.
 // 양쪽 다 받아서 숫자로 맞춘다.
-type Count = number | string | undefined;
+export type Count = number | string | undefined;
 
 function toNum(v: Count): number {
   if (v === undefined) return 0;

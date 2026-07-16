@@ -7,20 +7,15 @@ import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
 import { BUSINESSES } from "@/data/businesses";
-import { useToggleSet } from "@/lib/storage";
-import { useAuthGate } from "@/lib/auth";
-import { toast } from "@/components/shared/Feedback";
 import { useUserBiz } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
-import MetricRow from "@/components/shared/MetricRow";
-import { LIKE_KEY, VIEW_KEY, useMarkViewed } from "@/lib/metrics";
+import DetailActions from "@/components/shared/DetailActions";
+import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userBiz = useUserBiz();
   const biz = userBiz.find((b) => b.id === params.id) || BUSINESSES.find((b) => b.id === params.id);
-  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_biz");
-  const gate = useAuthGate();
   const [activeTab, setActiveTab] = useState<"info" | "review">("info");
   useMarkViewed(VIEW_KEY.biz, biz?.id);
 
@@ -29,7 +24,6 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
     return notFound();
   }
 
-  const saved = isSaved(biz.id);
   const isMine = userBiz.some((b) => b.id === params.id);
 
   const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(biz.rating));
@@ -85,47 +79,29 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           )}
         </div>
 
-        {/* 액션 바 — 좋아요·조회수와 저장을 한 줄에 (커뮤니티 상세와 동일한 배치) */}
-        <div className="flex items-center gap-4 mb-4">
-          <MetricRow
-            likeKey={LIKE_KEY.biz}
-            viewKey={VIEW_KEY.biz}
-            id={biz.id}
-            seedLikes={biz.likes ?? 0}
-            seedViews={biz.views ?? 0}
-            variant="detail"
-          />
-          <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(biz.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
-            className={`flex items-center gap-[3px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
-          >
-            <span className="text-[1.1em] leading-none -translate-y-[0.5px]">{saved ? "🔖" : "🏷️"}</span>
-            <span className="leading-none">{saved ? "저장됨" : "저장"}</span>
-          </button>
-        </div>
+        {/* 액션 바 — 모든 카테고리 공통 배치 */}
+        <DetailActions
+          id={biz.id}
+          likeKey={LIKE_KEY.biz}
+          viewKey={VIEW_KEY.biz}
+          saveKey={SAVE_KEY.biz}
+          seedLikes={biz.likes ?? 0}
+          seedViews={biz.views ?? 0}
+          shareTitle={biz.name}
+          shareText={biz.description}
+          className="mb-4"
+        />
 
-        {/* 빠른 액션 */}
-        <div className="grid grid-cols-2 gap-2 mb-5">
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${biz.address} Singapore`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
-          >
-            <span className="text-xl leading-none">🗺️</span>
-            <span className="text-[0.72rem] font-medium text-[#181614]">지도보기</span>
-          </a>
-          <button
-            onClick={() => {
-              if (navigator.share) navigator.share({ title: biz.name, url: window.location.href });
-              else { navigator.clipboard.writeText(window.location.href); toast("링크가 복사되었어요."); }
-            }}
-            className="flex flex-col items-center gap-1 py-3 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
-          >
-            <span className="text-xl leading-none">↗</span>
-            <span className="text-[0.72rem] font-medium text-[#181614]">공유하기</span>
-          </button>
-        </div>
+        {/* 빠른 액션 — 공유는 액션 바로 옮겼으므로 지도만 남긴다 */}
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${biz.address} Singapore`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 py-3 mb-5 bg-[#F5F3EE] rounded-[12px] hover:bg-[#F0EDE8] transition-colors active:scale-95"
+        >
+          <span className="text-base leading-none">🗺️</span>
+          <span className="text-[0.78rem] font-medium text-[#181614]">지도보기</span>
+        </a>
 
         {/* 태그 */}
         <div className="flex flex-wrap gap-2">

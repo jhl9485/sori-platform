@@ -7,7 +7,10 @@ import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import { BUSINESSES } from "@/data/businesses";
 import { REALTY_ITEMS } from "@/data/realtyItems";
+import { FLEA_ITEMS } from "@/data/fleaItems";
+import { JOBS } from "@/data/jobs";
 import { useToggleSet } from "@/lib/storage";
+import { SAVE_KEY } from "@/lib/metrics";
 import {
   useUserPosts,
   useUserFlea,
@@ -59,16 +62,20 @@ function MyPageInner() {
   const userRealty = useUserRealty();
 
   // 저장/좋아요/도움됨 ID 집합
-  const { ids: savedPostIds } = useToggleSet("sori_saved_posts");
-  const { ids: savedNewsIds } = useToggleSet("sori_saved_news");
-  const { ids: savedBizIds } = useToggleSet("sori_saved_biz");
-  const { ids: savedRealtyIds } = useToggleSet("sori_saved_realty");
+  const { ids: savedPostIds } = useToggleSet(SAVE_KEY.community);
+  const { ids: savedNewsIds } = useToggleSet(SAVE_KEY.news);
+  const { ids: savedBizIds } = useToggleSet(SAVE_KEY.biz);
+  const { ids: savedRealtyIds } = useToggleSet(SAVE_KEY.realty);
+  const { ids: savedFleaIds } = useToggleSet(SAVE_KEY.flea);
+  const { ids: savedJobIds } = useToggleSet(SAVE_KEY.jobs);
   const { ids: likedPostIds } = useToggleSet("sori_liked_posts");
   const { ids: helpedPostIds } = useToggleSet("sori_helped_posts");
 
   // 저장된 항목 실제 객체 조회 (사용자 글 + 정적 데이터)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
   const allRealty = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
+  const allFlea = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
+  const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);
 
   const savedPosts = useMemo(
     () => allPosts.filter((p) => savedPostIds.has(p.id)),
@@ -86,6 +93,14 @@ function MyPageInner() {
     () => allRealty.filter((r) => savedRealtyIds.has(r.id)),
     [allRealty, savedRealtyIds]
   );
+  const savedFlea = useMemo(
+    () => allFlea.filter((f) => savedFleaIds.has(f.id)),
+    [allFlea, savedFleaIds]
+  );
+  const savedJobs = useMemo(
+    () => allJobs.filter((j) => savedJobIds.has(j.id)),
+    [allJobs, savedJobIds]
+  );
 
   const likedPosts = useMemo(
     () => allPosts.filter((p) => likedPostIds.has(p.id)),
@@ -96,7 +111,7 @@ function MyPageInner() {
     [allPosts, helpedPostIds]
   );
 
-  const totalSaved = savedPosts.length + savedNews.length + savedBiz.length + savedRealty.length;
+  const totalSaved = savedPosts.length + savedNews.length + savedBiz.length + savedRealty.length + savedFlea.length + savedJobs.length;
   const totalUserWrites = userPosts.length + userFlea.length + userJobs.length + userRealty.length;
 
   return (
@@ -214,6 +229,8 @@ function MyPageInner() {
             news={savedNews}
             biz={savedBiz}
             realty={savedRealty}
+            flea={savedFlea}
+            jobs={savedJobs}
           />
         )}
 
@@ -477,10 +494,12 @@ interface SavedTabProps {
   news: typeof NEWS_ITEMS;
   biz: typeof BUSINESSES;
   realty: ReturnType<typeof useUserRealty>;
+  flea: ReturnType<typeof useUserFlea>;
+  jobs: ReturnType<typeof useUserJobs>;
 }
 
-function SavedTab({ posts, news, biz, realty }: SavedTabProps) {
-  const total = posts.length + news.length + biz.length + realty.length;
+function SavedTab({ posts, news, biz, realty, flea, jobs }: SavedTabProps) {
+  const total = posts.length + news.length + biz.length + realty.length + flea.length + jobs.length;
   if (total === 0) {
     return (
       <EmptyState
@@ -549,6 +568,36 @@ function SavedTab({ posts, news, biz, realty }: SavedTabProps) {
               title={r.title}
               sub={`${r.type} · ${r.area} · ${r.price}`}
               badge={r.deal}
+            />
+          ))}
+        </section>
+      )}
+
+      {flea.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="🛍️ 벼룩시장" count={flea.length} />
+          {flea.map((f) => (
+            <ListLink
+              key={f.id}
+              href={`/flea/${f.id}`}
+              title={f.title}
+              sub={`${f.category} · ${f.area} · ${f.price}`}
+              badge={f.status || "판매중"}
+            />
+          ))}
+        </section>
+      )}
+
+      {jobs.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="💼 채용 공고" count={jobs.length} />
+          {jobs.map((j) => (
+            <ListLink
+              key={j.id}
+              href={`/jobs/${j.id}`}
+              title={j.title}
+              sub={`${j.company} · ${j.location} · ${j.salary}`}
+              badge={j.jobType}
             />
           ))}
         </section>

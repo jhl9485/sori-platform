@@ -7,36 +7,28 @@ import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { JOBS } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
-import { useToggleSet } from "@/lib/storage";
-import { useAuthGate } from "@/lib/auth";
-import { toast } from "@/components/shared/Feedback";
 import { useHydrated } from "@/lib/hooks";
+import DetailActions from "@/components/shared/DetailActions";
+import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userJobs = useUserJobs();
   const job = userJobs.find((j) => j.id === params.id) || JOBS.find((j) => j.id === params.id);
-  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_jobs");
-  const gate = useAuthGate();
   const [applied, setApplied] = useState(false);
+  useMarkViewed(VIEW_KEY.jobs, job?.id);
 
   if (!job) {
     if (!hydrated) return <DetailSkeleton />;
     return notFound();
   }
 
-  const saved = isSaved(job.id);
   const isMine = userJobs.some((j) => j.id === params.id);
 
   return (
     <div className="max-w-[680px] mx-auto">
-      <PageHeader
-        right={
-          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(job.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }} className={`text-xl transition-transform active:scale-90 ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
-            {saved ? "🔖" : "🏷️"}
-          </button>
-        }
-      />
+      {/* 저장·공유는 아래 액션 바에 있으므로 헤더에는 두지 않는다 */}
+      <PageHeader />
 
       {isMine && (
         <OwnerActions
@@ -86,12 +78,23 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           )}
         </div>
 
-        {/* 메타 정보 */}
+        {/* 메타 정보 — 조회수는 아래 액션 바에 있으므로 여기서는 뺀다 */}
         <div className="flex items-center gap-4 text-[0.72rem] text-[#888070]">
           <span>📍 {job.location}</span>
-          <span>👁 조회 {job.views.toLocaleString()}</span>
           <span>👤 {job.applicants}명 지원</span>
         </div>
+
+        {/* 액션 바 — 모든 카테고리 공통 배치 */}
+        <DetailActions
+          id={job.id}
+          likeKey={LIKE_KEY.jobs}
+          viewKey={VIEW_KEY.jobs}
+          saveKey={SAVE_KEY.jobs}
+          seedViews={job.views}
+          shareTitle={job.title}
+          shareText={`${job.company} · ${job.salary}`}
+          className="mt-4"
+        />
       </div>
 
       {/* 회사 소개 */}

@@ -6,20 +6,14 @@ import PageHeader from "@/components/shared/PageHeader";
 import CommentSection from "@/components/shared/CommentSection";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import { renderMarkdown } from "@/lib/renderMarkdown";
-import { useToggleSet } from "@/lib/storage";
-import { useAuthGate } from "@/lib/auth";
-import { toast } from "@/components/shared/Feedback";
+import DetailActions from "@/components/shared/DetailActions";
+import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function NewsDetailClient({ params }: { params: { id: string } }) {
   const news = NEWS_ITEMS.find((n) => n.id === params.id);
-  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_news");
-  const { has: isLiked, toggle: toggleLike } = useToggleSet("sori_liked_news");
-  const gate = useAuthGate();
+  useMarkViewed(VIEW_KEY.news, news?.id);
 
   if (!news) return notFound();
-
-  const saved = isSaved(news.id);
-  const liked = isLiked(news.id);
 
   // 참고한 모든 출처 목록 (신 sources[] 우선, 없으면 구 source/sourceUrl 폴백)
   const sourceList = news.sources && news.sources.length > 0
@@ -29,24 +23,10 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
   const related = NEWS_ITEMS.filter((n) => news.relatedIds.includes(n.id));
   const others = NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3);
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({ title: news.title, text: news.summary, url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast("링크가 복사되었어요.");
-    }
-  };
-
   return (
     <div className="max-w-[680px] mx-auto">
-      <PageHeader
-        right={
-          <button onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(news.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }} className={`text-xl ${saved ? "text-[#D04020]" : "text-[#C0BBB0]"}`}>
-            {saved ? "🔖" : "🏷️"}
-          </button>
-        }
-      />
+      {/* 저장·공유는 아래 액션 바에 있으므로 헤더에는 두지 않는다 */}
+      <PageHeader />
 
       <article className="bg-white">
         {/* 헤더 */}
@@ -67,10 +47,8 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
               <span>·</span>
               <span>{news.time}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span>📖 {news.readTime}</span>
-              <button onClick={handleShare} className="hover:text-[#181614]">↗ 공유</button>
-            </div>
+            {/* 공유는 아래 액션 바에 있으므로 여기서는 뺀다 */}
+            <span>📖 {news.readTime}</span>
           </div>
         </div>
 
@@ -117,24 +95,16 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
           </p>
         </div>
 
-        {/* 액션 */}
-        <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
-          <button
-            onClick={() => toggleLike(news.id)}
-            className={`flex items-center gap-1 text-[0.82rem] font-medium transition-colors ${liked ? "text-[#D04020]" : "text-[#888070] hover:text-[#D04020]"}`}
-          >
-            {liked ? "❤️ 좋아요" : "🤍 좋아요"}
-          </button>
-          <button onClick={handleShare} className="flex items-center gap-1 text-[0.82rem] text-[#888070] hover:text-[#D04020]">
-            ↗ 공유하기
-          </button>
-          <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(news.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
-            className={`flex items-center gap-1 text-[0.82rem] ml-auto ${saved ? "text-[#2050A0]" : "text-[#888070]"}`}
-          >
-            {saved ? "🔖 저장됨" : "🏷️ 저장"}
-          </button>
-        </div>
+        {/* 액션 바 — 모든 카테고리 공통 배치 */}
+        <DetailActions
+          id={news.id}
+          likeKey={LIKE_KEY.news}
+          viewKey={VIEW_KEY.news}
+          saveKey={SAVE_KEY.news}
+          shareTitle={news.title}
+          shareText={news.summary}
+          className="px-4 md:px-6 py-3 border-t border-black/[0.06]"
+        />
       </article>
 
       {/* 댓글 */}

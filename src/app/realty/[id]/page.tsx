@@ -7,13 +7,11 @@ import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
-import { useToggleSet } from "@/lib/storage";
-import { useAuthGate } from "@/lib/auth";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
-import MetricRow from "@/components/shared/MetricRow";
-import { LIKE_KEY, VIEW_KEY, useMarkViewed } from "@/lib/metrics";
+import DetailActions from "@/components/shared/DetailActions";
+import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
   { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
@@ -25,8 +23,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
   const hydrated = useHydrated();
   const userRealty = useUserRealty();
   const item = userRealty.find((r) => r.id === params.id) || REALTY_ITEMS.find((r) => r.id === params.id);
-  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_realty");
-  const gate = useAuthGate();
   useMarkViewed(VIEW_KEY.realty, item?.id);
 
   if (!item) {
@@ -34,7 +30,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
     return notFound();
   }
 
-  const saved = isSaved(item.id);
   const allItems = [...userRealty, ...REALTY_ITEMS];
   const others = allItems.filter((r) => r.id !== item.id && r.deal === item.deal).slice(0, 3);
 
@@ -51,26 +46,12 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
     else toast(`거래 상태를 '${next}'(으)로 변경했어요.`);
   };
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({ title: item.title, url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast("링크가 복사되었어요.");
-    }
-  };
-
 
 
   return (
     <div className="max-w-[680px] mx-auto">
-      <PageHeader
-        right={
-          <button onClick={handleShare} aria-label="공유" className="text-[0.78rem] text-[#888070] hover:text-[#181614]">
-            ↗ 공유
-          </button>
-        }
-      />
+      {/* 공유는 아래 액션 바에 있으므로 헤더에는 두지 않는다 */}
+      <PageHeader />
 
       {/* 히어로 */}
       <div className="relative">
@@ -135,24 +116,18 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           📍 {item.area} · 🚇 {item.mrt}
         </div>
 
-        {/* 액션 바 — 좋아요·조회수와 저장을 한 줄에 (커뮤니티 상세와 동일한 배치) */}
-        <div className="flex items-center gap-4 mb-4">
-          <MetricRow
-            likeKey={LIKE_KEY.realty}
-            viewKey={VIEW_KEY.realty}
-            id={item.id}
-            seedLikes={item.likes}
-            seedViews={item.views}
-            variant="detail"
-          />
-          <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(item.id); toast(saved ? "저장을 해제했어요." : "🔖 저장했어요."); } }}
-            className={`flex items-center gap-[3px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
-          >
-            <span className="text-[1.1em] leading-none -translate-y-[0.5px]">{saved ? "🔖" : "🏷️"}</span>
-            <span className="leading-none">{saved ? "저장됨" : "저장"}</span>
-          </button>
-        </div>
+        {/* 액션 바 — 모든 카테고리 공통 배치 */}
+        <DetailActions
+          id={item.id}
+          likeKey={LIKE_KEY.realty}
+          viewKey={VIEW_KEY.realty}
+          saveKey={SAVE_KEY.realty}
+          seedLikes={item.likes}
+          seedViews={item.views}
+          shareTitle={item.title}
+          shareText={`${item.price} · ${item.area}`}
+          className="mb-4"
+        />
 
         {/* 핵심 스펙 */}
         <div className="grid grid-cols-2 gap-3 mb-5">

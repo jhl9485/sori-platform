@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
@@ -12,22 +12,20 @@ import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { timeAgo, formatCount } from "@/lib/format";
 import { useToggleSet } from "@/lib/storage";
-import { useAuthGate } from "@/lib/auth";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 import { toast, reportDialog } from "@/components/shared/Feedback";
-import MetricRow from "@/components/shared/MetricRow";
+import DetailActions from "@/components/shared/DetailActions";
+import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 export default function CommunityDetailClient({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
   const userPosts = useUserPosts();
   const post = userPosts.find((p) => p.id === params.id) || COMMUNITY_POSTS.find((p) => p.id === params.id);
-  const { has: isSaved, toggle: toggleSave } = useToggleSet("sori_saved_posts");
   const { toggle: markRead } = useToggleSet("sori_read_posts");
-  const gate = useAuthGate();
   const userCommentCounts = useUserCommentCounts();
-  const [savePop, setSavePop] = useState(false);
+  useMarkViewed(VIEW_KEY.community, post?.id);
 
   useEffect(() => {
     if (post) markRead(post.id);
@@ -39,32 +37,20 @@ export default function CommunityDetailClient({ params }: { params: { id: string
     return notFound();
   }
 
-  const saved = isSaved(post.id);
   const isMine = userPosts.some((p) => p.id === post.id);
   const comments = SAMPLE_COMMENTS[post.id] || [];
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({ title: post.title, text: post.preview, url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast("링크가 복사되었어요.");
-    }
-  };
-
   return (
     <div className="max-w-[680px] mx-auto">
+      {/* 공유는 아래 액션 바에 있으므로 헤더에는 신고만 둔다 */}
       <PageHeader
         right={
-          <div className="flex gap-3 items-center">
-            <button onClick={handleShare} className="text-[0.75rem] text-[#888070] hover:text-[#181614]">↗ 공유</button>
-            <button
-              onClick={async () => { const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
-              className="text-[0.75rem] text-[#888070] hover:text-[#D04020]"
-            >
-              신고
-            </button>
-          </div>
+          <button
+            onClick={async () => { const reason = await reportDialog(); if (reason) toast(`신고가 접수되었어요 (${reason}). 검토 후 조치할게요.`); }}
+            className="text-[0.75rem] text-[#888070] hover:text-[#D04020]"
+          >
+            신고
+          </button>
         }
       />
 
@@ -167,28 +153,18 @@ export default function CommunityDetailClient({ params }: { params: { id: string
         </div>
 
         {/* 액션 바 */}
-        <div className="px-4 md:px-6 py-3 border-t border-black/[0.06] flex items-center gap-4">
-          <MetricRow
-            likeKey="sori_liked_posts"
-            id={post.id}
-            seedLikes={post.likes}
-            seedViews={post.views}
-            comments={realCommentCount(post.id, userCommentCounts)}
-            variant="detail"
-          />
-          <button
-            onClick={() => { if (gate("저장은 로그인 후 이용할 수 있어요.")) { toggleSave(post.id); setSavePop(true); setTimeout(() => setSavePop(false), 260); } }}
-            className={`flex items-center gap-[5px] text-[0.82rem] ml-auto transition-colors ${saved ? "text-[#2050A0]" : "text-[#888070] hover:text-[#2050A0]"}`}
-          >
-            <span className={`inline-block transition-transform duration-200 ${savePop ? "scale-[1.3]" : "scale-100"}`}>{saved ? "🔖" : "🏷️"}</span> {saved ? "저장됨" : "저장"}
-          </button>
-          <button
-            onClick={handleShare}
-            className="flex items-center gap-[5px] text-[0.82rem] text-[#888070] hover:text-[#181614]"
-          >
-            ↗ 공유
-          </button>
-        </div>
+        <DetailActions
+          id={post.id}
+          likeKey={LIKE_KEY.community}
+          viewKey={VIEW_KEY.community}
+          saveKey={SAVE_KEY.community}
+          seedLikes={post.likes}
+          seedViews={post.views}
+          comments={realCommentCount(post.id, userCommentCounts)}
+          shareTitle={post.title}
+          shareText={post.preview}
+          className="px-4 md:px-6 py-3 border-t border-black/[0.06]"
+        />
       </article>
 
       {/* 댓글 */}

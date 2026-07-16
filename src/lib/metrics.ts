@@ -3,17 +3,34 @@
 import { useEffect } from "react";
 import { useToggleSet } from "@/lib/storage";
 
-// 좋아요·조회수 localStorage 키 (카드와 상세가 반드시 같은 키를 써야 숫자가 일치한다)
+// 좋아요·조회수·저장 localStorage 키.
+// 카드와 상세가 반드시 같은 키를 써야 숫자가 일치하므로 키는 여기서만 정의한다.
+// (community/news 키는 기존 데이터를 유지하려고 예전 이름을 그대로 쓴다)
 export const LIKE_KEY = {
+  community: "sori_liked_posts",
+  news: "sori_liked_news",
   biz: "sori_liked_biz",
   flea: "sori_liked_flea",
   realty: "sori_liked_realty",
+  jobs: "sori_liked_jobs",
 } as const;
 
 export const VIEW_KEY = {
+  community: "sori_viewed_posts",
+  news: "sori_viewed_news",
   biz: "sori_viewed_biz",
   flea: "sori_viewed_flea",
   realty: "sori_viewed_realty",
+  jobs: "sori_viewed_jobs",
+} as const;
+
+export const SAVE_KEY = {
+  community: "sori_saved_posts",
+  news: "sori_saved_news",
+  biz: "sori_saved_biz",
+  flea: "sori_saved_flea",
+  realty: "sori_saved_realty",
+  jobs: "sori_saved_jobs",
 } as const;
 
 /**

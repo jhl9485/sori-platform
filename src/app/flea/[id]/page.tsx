@@ -11,8 +11,8 @@ import { useUserFlea, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useToggleSet } from "@/lib/storage";
-import MetricRow from "@/components/shared/MetricRow";
-import { LIKE_KEY, VIEW_KEY, useMarkViewed } from "@/lib/metrics";
+import DetailActions from "@/components/shared/DetailActions";
+import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -145,14 +145,16 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
           <span>{item.time}</span>
         </div>
 
-        {/* 좋아요 · 조회수 — 목록 카드와 같은 숫자 */}
-        <MetricRow
+        {/* 액션 바 — 모든 카테고리 공통 배치 */}
+        <DetailActions
+          id={item.id}
           likeKey={LIKE_KEY.flea}
           viewKey={VIEW_KEY.flea}
-          id={item.id}
+          saveKey={SAVE_KEY.flea}
           seedLikes={item.likes}
           seedViews={item.views}
-          variant="detail"
+          shareTitle={item.title}
+          shareText={`${item.price} · ${item.location}`}
           className="mt-3"
         />
 
