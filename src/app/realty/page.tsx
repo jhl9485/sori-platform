@@ -315,18 +315,13 @@ export default function RealtyPage() {
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between gap-2 pt-2 border-t border-black/[0.06]">
-                  <span className="text-[0.65rem] text-[#888070] truncate">
-                    {r.agentBadge === "집주인 직거래" ? "👤 " : "🏢 "}
-                    {r.agent}
-                  </span>
+                <div className="flex items-center justify-end pt-2 border-t border-black/[0.06]">
                   <MetricRow
                     likeKey={LIKE_KEY.realty}
                     viewKey={VIEW_KEY.realty}
                     id={r.id}
                     seedLikes={r.likes}
                     seedViews={r.views}
-                    className="flex-shrink-0"
                   />
                 </div>
               </div>
