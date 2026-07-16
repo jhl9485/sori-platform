@@ -61,6 +61,14 @@ export function addReview(bizId: string, review: BizReview): void {
   write(map);
 }
 
+export function updateReview(bizId: string, reviewId: string, content: string): void {
+  const map = read();
+  map[bizId] = (map[bizId] ?? []).map((r) =>
+    r.id === reviewId ? { ...r, content, time: new Date().toISOString() } : r
+  );
+  write(map);
+}
+
 export function removeReview(bizId: string, reviewId: string): void {
   const map = read();
   const next = (map[bizId] ?? []).filter((r) => r.id !== reviewId);

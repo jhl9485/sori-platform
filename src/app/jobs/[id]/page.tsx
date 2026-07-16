@@ -11,6 +11,7 @@ import DetailActions from "@/components/shared/DetailActions";
 import JobContact from "@/components/jobs/JobContact";
 import JobQuestions from "@/components/jobs/JobQuestions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
+import { exactTime, resolveISO } from "@/lib/format";
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -149,7 +150,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           <div className="text-[0.7rem] text-[#888070]">지원 마감일</div>
           <div className="text-[0.85rem] font-bold text-[#D04020]">{job.deadline}</div>
         </div>
-        <div className="text-[0.7rem] text-[#888070]">게시: {job.postedAt}</div>
+        <div className="text-[0.7rem] text-[#888070]" suppressHydrationWarning>게시: {exactTime(resolveISO(job.createdAt, job.postedAt)) || job.postedAt}</div>
       </div>
 
       {/* 질문하기 — 사용자가 직접 올린 공고만 (시드 공고는 답변할 작성자가 없음) */}

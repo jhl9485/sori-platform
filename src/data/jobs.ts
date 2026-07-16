@@ -26,6 +26,7 @@ export interface Job {
   requirements: string[];
   preferred: string[];
   benefits: string[];
+  createdAt?: string; // ISO. 사용자 등록 공고가 가짐(시드는 postedAt 문자열을 변환해서 사용)
 }
 
 export const JOBS: Job[] = [

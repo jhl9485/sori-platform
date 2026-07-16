@@ -87,6 +87,7 @@ export function userPostToCommunityPost(p: RawUserPost): CommunityPost {
     visaBadge: anon ? null : (p.visaBadge ?? undefined),
     isAnon: anon,
     images: p.images || [],
+    createdAt: p.createdAt,
   };
 }
 
@@ -131,6 +132,7 @@ export function userFleaToFleaItem(p: RawUserFlea): FleaItem {
     location: p.area || "협의",
     area: p.area || "협의",
     time: relativeTime(p.createdAt),
+    createdAt: p.createdAt,
     condition: (p.condition as FleaItem["condition"]) || "상태좋음",
     isUrgent: false,
     likes: 0,
@@ -192,6 +194,7 @@ export function userJobToJob(p: RawUserJob): Job {
     requirements: p.requirements || [],
     preferred: p.preferred || [],
     benefits: p.benefits || [],
+    createdAt: p.createdAt,
   };
 }
 
@@ -259,6 +262,7 @@ export function userRealtyToRealtyItem(p: RawUserRealty): RealtyItem {
     mrt: p.mrt || "—",
     amenities: p.amenities || [],
     photos: p.photos || [],
+    createdAt: p.createdAt,
   };
 }
 

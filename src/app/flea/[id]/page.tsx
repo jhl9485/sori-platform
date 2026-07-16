@@ -11,6 +11,7 @@ import { useHydrated } from "@/lib/hooks";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
+import { exactTime, resolveISO } from "@/lib/format";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -136,7 +137,7 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         {/* 메타 */}
         <div className="flex items-center gap-3 text-[0.72rem] text-[#888070] mt-3">
           <span>📍 {item.location}</span>
-          <span>{item.time}</span>
+          <span suppressHydrationWarning>{exactTime(resolveISO(item.createdAt, item.time)) || item.time}</span>
         </div>
 
         {/* 액션 바 — 모든 카테고리 공통 배치 */}

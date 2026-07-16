@@ -32,6 +32,7 @@ export interface RealtyItem {
   mrt: string;               // 가까운 MRT
   amenities: string[];       // 편의시설
   photos?: string[];
+  createdAt?: string;        // ISO. 사용자 등록 매물이 가짐(시드는 time 문자열을 변환해서 사용)
 }
 
 export const REALTY_CATEGORIES = [

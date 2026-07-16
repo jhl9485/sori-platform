@@ -6,6 +6,7 @@ import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import { cardTime, resolveISO } from "@/lib/format";
 
 const VISA_FILTERS: { label: string; value: VisaType | "전체" }[] = [
   { label: "전체", value: "전체" },
@@ -128,7 +129,7 @@ export default function JobsPage() {
                 <div className="flex items-center gap-3 text-[0.72rem] text-[#888070]">
                   <span>📍 {job.location}</span>
                 </div>
-                <span className="text-[0.7rem] text-[#888070]">{job.postedAt}</span>
+                <span className="text-[0.7rem] text-[#888070]" suppressHydrationWarning>{cardTime(resolveISO(job.createdAt, job.postedAt)) || job.postedAt}</span>
               </div>
             </Link>
           ))}

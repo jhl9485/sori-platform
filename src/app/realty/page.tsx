@@ -11,6 +11,7 @@ import { useUserRealty } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
+import { cardTime, resolveISO } from "@/lib/format";
 
 const REALTY_PERIODS = [
   { id: "all", label: "전체" },
@@ -300,7 +301,10 @@ export default function RealtyPage() {
                 <div className="text-[0.72rem] text-[#888070] mb-2">
                   📍 {r.area} · {r.size}
                 </div>
-                <div className="text-[0.7rem] text-[#888070] mb-2">🚇 {r.mrt}</div>
+                <div className="text-[0.7rem] text-[#888070] mb-2 flex items-center justify-between gap-1">
+                  <span className="truncate">🚇 {r.mrt}</span>
+                  <span className="flex-shrink-0" suppressHydrationWarning>{cardTime(resolveISO(r.createdAt, r.time))}</span>
+                </div>
                 <div className="flex flex-wrap gap-1 mb-2">
                   {r.highlights.slice(0, 3).map((h) => (
                     <span

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { BizReview } from "@/data/businesses";
-import { useUserReviews, addReview, removeReview } from "@/lib/reviews";
+import { useUserReviews, addReview, removeReview, updateReview } from "@/lib/reviews";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
 import { useAuthGate } from "@/lib/auth";
@@ -28,6 +28,8 @@ export default function BizReviewSection({
   const gate = useAuthGate();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState("");
 
   const myReviews = reviewMap[bizId] ?? [];
   const myIds = new Set(myReviews.map((r) => r.id));
@@ -64,6 +66,20 @@ export default function BizReviewSection({
     if (!ok) return;
     removeReview(bizId, reviewId);
     toast("🗑️ 리뷰를 삭제했어요.");
+  };
+
+  const startEdit = (reviewId: string, content: string) => {
+    setEditingId(reviewId);
+    setEditText(content);
+  };
+
+  const handleUpdate = (reviewId: string) => {
+    const content = editText.trim();
+    if (!content) return;
+    updateReview(bizId, reviewId, content);
+    setEditingId(null);
+    setEditText("");
+    toast("✏️ 리뷰를 수정했어요.");
   };
 
   return (
@@ -143,16 +159,51 @@ export default function BizReviewSection({
                       {mine ? relativeTime(review.time) : review.time}
                     </div>
                   </div>
-                  {mine && (
-                    <button
-                      onClick={() => handleDelete(review.id)}
-                      className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-2 py-1 rounded-lg hover:bg-[#F5F3EE] transition-colors flex-shrink-0"
-                    >
-                      삭제
-                    </button>
+                  {mine && editingId !== review.id && (
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <button
+                        onClick={() => startEdit(review.id, review.content)}
+                        className="text-[0.72rem] text-[#888070] hover:text-[#181614] px-2 py-1 rounded-lg hover:bg-[#F5F3EE] transition-colors"
+                      >
+                        수정
+                      </button>
+                      <button
+                        onClick={() => handleDelete(review.id)}
+                        className="text-[0.72rem] text-[#888070] hover:text-[#D04020] px-2 py-1 rounded-lg hover:bg-[#F5F3EE] transition-colors"
+                      >
+                        삭제
+                      </button>
+                    </div>
                   )}
                 </div>
-                <p className="text-[0.82rem] text-[#181614] leading-relaxed whitespace-pre-line">{review.content}</p>
+                {mine && editingId === review.id ? (
+                  <div>
+                    <textarea
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value.slice(0, MAX))}
+                      rows={4}
+                      autoFocus
+                      className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+                    />
+                    <div className="flex items-center justify-end gap-2 mt-2">
+                      <button
+                        onClick={() => { setEditingId(null); setEditText(""); }}
+                        className="px-3 py-1.5 rounded-[8px] text-[0.78rem] font-medium text-[#888070] hover:bg-[#F5F3EE] transition-colors"
+                      >
+                        취소
+                      </button>
+                      <button
+                        onClick={() => handleUpdate(review.id)}
+                        disabled={!editText.trim()}
+                        className="px-4 py-1.5 rounded-[8px] text-[0.78rem] font-bold text-white bg-[#D04020] hover:bg-[#B83515] disabled:bg-[#C0BBB0] disabled:cursor-not-allowed transition-colors"
+                      >
+                        수정 완료
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-[0.82rem] text-[#181614] leading-relaxed whitespace-pre-line">{review.content}</p>
+                )}
               </div>
             );
           })}

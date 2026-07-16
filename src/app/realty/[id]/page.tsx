@@ -12,6 +12,7 @@ import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
+import { exactTime, resolveISO } from "@/lib/format";
 
 const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
   { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
@@ -167,6 +168,12 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
             </span>
             <span className="text-[0.82rem] font-medium">{item.agent}</span>
           </div>
+          {exactTime(resolveISO(item.createdAt, item.time)) && (
+            <div className="flex justify-between py-3">
+              <span className="text-[0.78rem] text-[#888070]">🕐 등록</span>
+              <span className="text-[0.82rem] font-medium" suppressHydrationWarning>{exactTime(resolveISO(item.createdAt, item.time))}</span>
+            </div>
+          )}
         </div>
       </div>
 

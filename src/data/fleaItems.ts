@@ -25,6 +25,7 @@ export interface FleaItem {
   photos?: string[];
   negotiable?: boolean;
   status?: FleaStatus;
+  createdAt?: string; // ISO. 사용자 등록 물건이 가짐(시드는 time 문자열을 변환해서 사용)
 }
 
 export const FLEA_CATEGORIES = ["전체", "가전/가구", "의류/잡화", "식품", "도서", "유아용품", "디지털", "기타"];

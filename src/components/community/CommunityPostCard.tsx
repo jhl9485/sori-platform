@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import type { CommunityPost } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { useToggleSet } from "@/lib/storage";
-import { timeAgo } from "@/lib/format";
+import { cardTime, resolveISO } from "@/lib/format";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 import MetricRow from "@/components/shared/MetricRow";
 
@@ -28,7 +28,7 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const read = isRead(post.id);
   const newBadge = isNew(post);
   const hotBadge = isHot(post.likes);
-  const displayTime = post.createdAt ? timeAgo(post.createdAt) : post.time;
+  const displayTime = cardTime(resolveISO(post.createdAt, post.time)) || post.time;
   const router = useRouter();
   const [imgBroken, setImgBroken] = useState(false);
   const userCommentCounts = useUserCommentCounts();

@@ -9,6 +9,7 @@ import SearchField from "@/components/shared/SearchField";
 import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 import { useToggleSet } from "@/lib/storage";
+import { cardTime, resolveISO } from "@/lib/format";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -119,7 +120,7 @@ export default function FleaPage() {
                 <span className="text-[0.63rem] text-[#888070]">📍{item.area}</span>
               </div>
               <div className="flex items-center justify-between gap-1 mt-1">
-                <span className="text-[0.63rem] text-[#888070] truncate">{item.time}</span>
+                <span className="text-[0.63rem] text-[#888070] truncate" suppressHydrationWarning>{cardTime(resolveISO(item.createdAt, item.time)) || item.time}</span>
                 <MetricRow
                   likeKey={LIKE_KEY.flea}
                   viewKey={VIEW_KEY.flea}
