@@ -27,9 +27,8 @@ export default function DesktopRightLists() {
   const jobsPreview = useMemo(() => [...userJobs, ...JOBS].slice(0, 3), [userJobs]);
 
   const bizPreview = useMemo(() => {
-    const merged = [...userBiz, ...BUSINESSES];
-    // 별점은 쓰지 않으므로 리뷰 수로만 정렬한다
-    return [...merged].sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0)).slice(0, 3);
+    // 최근 등록순(사용자 업소 → 시드). 업소가 쌓이면(약 50개↑) 조회수순으로 변경 예정.
+    return [...userBiz, ...BUSINESSES].slice(0, 3);
   }, [userBiz]);
 
   return (
@@ -82,7 +81,7 @@ export default function DesktopRightLists() {
       {/* 인기 업소 */}
       <div className="bg-white rounded-[14px] border border-black/[0.08] p-4">
         <div className="flex justify-between items-center mb-3">
-          <span className="text-[0.78rem] font-bold">인기 한인 업소</span>
+          <span className="text-[0.78rem] font-bold">새로 등록된 한인 업소</span>
           <Link href="/business" className="text-[0.7rem] text-[#D04020] hover:underline">전체보기</Link>
         </div>
         <div className="flex flex-col divide-y divide-black/[0.04]">

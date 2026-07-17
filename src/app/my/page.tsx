@@ -16,6 +16,7 @@ import {
   useUserFlea,
   useUserJobs,
   useUserRealty,
+  useUserBiz,
   removeUserItem,
 } from "@/lib/userContent";
 import { useProfile } from "@/lib/profile";
@@ -62,6 +63,7 @@ function MyPageInner() {
   const userFlea = useUserFlea();
   const userJobs = useUserJobs();
   const userRealty = useUserRealty();
+  const userBiz = useUserBiz();
 
   // 저장/좋아요/도움됨 ID 집합
   const { ids: savedPostIds } = useToggleSet(SAVE_KEY.community);
@@ -71,13 +73,13 @@ function MyPageInner() {
   const { ids: savedFleaIds } = useToggleSet(SAVE_KEY.flea);
   const { ids: savedJobIds } = useToggleSet(SAVE_KEY.jobs);
   const { ids: likedPostIds } = useToggleSet("sori_liked_posts");
-  const { ids: helpedPostIds } = useToggleSet("sori_helped_posts");
 
   // 저장된 항목 실제 객체 조회 (사용자 글 + 정적 데이터)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
   const allRealty = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
   const allFlea = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
   const allJobs = useMemo(() => [...userJobs, ...JOBS], [userJobs]);
+  const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
 
   const savedPosts = useMemo(
     () => allPosts.filter((p) => savedPostIds.has(p.id)),
@@ -88,8 +90,8 @@ function MyPageInner() {
     [savedNewsIds]
   );
   const savedBiz = useMemo(
-    () => BUSINESSES.filter((b) => savedBizIds.has(b.id)),
-    [savedBizIds]
+    () => allBiz.filter((b) => savedBizIds.has(b.id)),
+    [allBiz, savedBizIds]
   );
   const savedRealty = useMemo(
     () => allRealty.filter((r) => savedRealtyIds.has(r.id)),
@@ -107,10 +109,6 @@ function MyPageInner() {
   const likedPosts = useMemo(
     () => allPosts.filter((p) => likedPostIds.has(p.id)),
     [allPosts, likedPostIds]
-  );
-  const helpedPosts = useMemo(
-    () => allPosts.filter((p) => helpedPostIds.has(p.id)),
-    [allPosts, helpedPostIds]
   );
 
   const totalSaved = savedPosts.length + savedNews.length + savedBiz.length + savedRealty.length + savedFlea.length + savedJobs.length;
@@ -175,11 +173,10 @@ function MyPageInner() {
         {editingProfile && (
           <ProfileEditModal profile={profile} onSave={(p) => { setProfile(p); setEditingProfile(false); }} onClose={() => setEditingProfile(false)} />
         )}
-        <div className="grid grid-cols-4 gap-2 mt-5 bg-white/[0.07] rounded-[12px] p-3">
+        <div className="grid grid-cols-3 gap-2 mt-5 bg-white/[0.07] rounded-[12px] p-3">
           <Stat label="작성" value={totalUserWrites} onClick={() => setActiveTab("posts")} />
           <Stat label="저장" value={totalSaved} onClick={() => setActiveTab("saved")} />
           <Stat label="좋아요" value={likedPostIds.size} onClick={() => setActiveTab("liked")} />
-          <Stat label="도움됨" value={helpedPostIds.size} />
         </div>
       </div>
 
@@ -211,7 +208,6 @@ function MyPageInner() {
             userRealtyCount={userRealty.length}
             savedCount={totalSaved}
             likedCount={likedPostIds.size}
-            helpedCount={helpedPostIds.size}
             onSelectTab={setActiveTab}
           />
         )}
@@ -237,7 +233,7 @@ function MyPageInner() {
         )}
 
         {activeTab === "liked" && (
-          <LikedTab posts={likedPosts} helped={helpedPosts} />
+          <LikedTab posts={likedPosts} />
         )}
 
         {activeTab === "settings" && <SettingsTab />}
@@ -322,7 +318,6 @@ interface OverviewProps {
   userRealtyCount: number;
   savedCount: number;
   likedCount: number;
-  helpedCount: number;
   onSelectTab: (id: TabId) => void;
 }
 
@@ -364,16 +359,6 @@ function OverviewTab(props: OverviewProps) {
           <Link href="/jobs/write" className="px-4 py-3 bg-white hover:bg-[#F5F3EE] transition-colors flex items-center gap-2 text-[0.82rem]">💼 채용 공고</Link>
         </div>
       </div>
-
-      {props.helpedCount > 0 && (
-        <div className="bg-[#EBF5F0] rounded-[12px] p-4 flex items-center gap-3">
-          <span className="text-2xl">👍</span>
-          <div>
-            <div className="text-[0.85rem] font-bold text-[#2B7A50]">{props.helpedCount}개의 글에 도움됨 표시</div>
-            <div className="text-[0.7rem] text-[#2B7A50]/80 mt-[2px]">좋은 글을 알아봐 주셔서 감사해요!</div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
@@ -610,15 +595,14 @@ function SavedTab({ posts, news, biz, realty, flea, jobs }: SavedTabProps) {
 
 interface LikedTabProps {
   posts: ReturnType<typeof useUserPosts>;
-  helped: ReturnType<typeof useUserPosts>;
 }
 
-function LikedTab({ posts, helped }: LikedTabProps) {
-  if (posts.length === 0 && helped.length === 0) {
+function LikedTab({ posts }: LikedTabProps) {
+  if (posts.length === 0) {
     return (
       <EmptyState
         icon="❤️"
-        text="좋아요/도움됨 표시한 글이 없어요"
+        text="좋아요 표시한 글이 없어요"
         ctaText="커뮤니티 보러가기"
         ctaHref="/community"
       />
@@ -627,35 +611,18 @@ function LikedTab({ posts, helped }: LikedTabProps) {
 
   return (
     <div className="space-y-5">
-      {posts.length > 0 && (
-        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
-          <SectionHeader title="❤️ 좋아요한 글" count={posts.length} />
-          {posts.map((p) => (
-            <ListLink
-              key={p.id}
-              href={`/community/${p.id}`}
-              title={p.title}
-              sub={`${p.categoryLabel} · 좋아요 ${p.likes}`}
-              badge={p.time}
-            />
-          ))}
-        </section>
-      )}
-
-      {helped.length > 0 && (
-        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
-          <SectionHeader title="👍 도움됨" count={helped.length} />
-          {helped.map((p) => (
-            <ListLink
-              key={p.id}
-              href={`/community/${p.id}`}
-              title={p.title}
-              sub={`${p.categoryLabel}`}
-              badge={p.time}
-            />
-          ))}
-        </section>
-      )}
+      <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+        <SectionHeader title="❤️ 좋아요한 글" count={posts.length} />
+        {posts.map((p) => (
+          <ListLink
+            key={p.id}
+            href={`/community/${p.id}`}
+            title={p.title}
+            sub={`${p.categoryLabel} · 좋아요 ${p.likes}`}
+            badge={p.time}
+          />
+        ))}
+      </section>
     </div>
   );
 }

@@ -6,20 +6,21 @@ import { BUSINESSES, type Business } from "@/data/businesses";
 import { useUserBiz } from "@/lib/userContent";
 import BizReviewCount from "@/components/business/BizReviewCount";
 
-// 사용자 등록 업소 + 정적 데이터 통합 후 리뷰 수 기준 상위 4개 노출
+// 홈 노출 정책: 지금은 '최근 등록순'. 업소가 충분히 쌓이면(약 50개↑) 조회수순으로 바꾼다.
+// (아직 리뷰·조회 데이터가 거의 없어 '인기순'이 무의미하므로 최근 등록을 먼저 보여준다.)
 export default function BizSection() {
   const userBiz = useUserBiz();
 
   const featured = useMemo(() => {
-    const merged = [...userBiz, ...BUSINESSES];
-    // 별점은 쓰지 않으므로 리뷰 수로만 정렬한다
-    return [...merged].sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0)).slice(0, 4);
+    // [...userBiz, ...BUSINESSES]는 이미 '최근 등록 사용자 업소 → 시드' 순서라
+    // 별도 정렬 없이 상위 4개가 곧 최근 등록순이다.
+    return [...userBiz, ...BUSINESSES].slice(0, 4);
   }, [userBiz]);
 
   return (
     <section className="mb-6">
       <div className="flex justify-between items-center px-4 md:px-6 pb-3">
-        <h2 className="text-[1rem] font-bold tracking-tight">인기 한인 업소</h2>
+        <h2 className="text-[1rem] font-bold tracking-tight">새로 등록된 한인 업소</h2>
         <Link href="/business" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">전체보기</Link>
       </div>
 

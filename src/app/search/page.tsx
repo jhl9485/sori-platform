@@ -11,7 +11,7 @@ import { FLEA_ITEMS } from "@/data/fleaItems";
 import { useUserPosts, useUserFlea, useUserJobs, useUserRealty, useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 
-const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산"];
+const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산", "벼룩"];
 const RECENT_KEY = "sori_recent_searches";
 const MAX_RECENT = 6;
 
@@ -104,6 +104,18 @@ export default function SearchPage() {
   const totalCount = postResults.length + bizResults.length + jobResults.length + newsResults.length + realtyResults.length + fleaResults.length;
   const hasResults = q.length > 0 && totalCount > 0;
   const noResults = q.length > 0 && totalCount === 0;
+
+  // 탭별 결과 수 — 특정 탭이 비었을 때 안내를 띄우기 위함
+  const tabCount: Record<string, number> = {
+    "전체": totalCount,
+    "커뮤니티": postResults.length,
+    "업소": bizResults.length,
+    "채용": jobResults.length,
+    "뉴스": newsResults.length,
+    "부동산": realtyResults.length,
+    "벼룩": fleaResults.length,
+  };
+  const activeTabEmpty = hasResults && (tabCount[activeTab] ?? 0) === 0;
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -314,7 +326,7 @@ export default function SearchPage() {
           )}
 
           {/* 벼룩시장 */}
-          {(activeTab === "전체") && fleaResults.length > 0 && (
+          {(activeTab === "전체" || activeTab === "벼룩") && fleaResults.length > 0 && (
             <section className="mt-3">
               <div className="px-4 md:px-6 py-2 bg-[#F5F3EE]">
                 <span className="text-[0.75rem] font-bold text-[#888070]">벼룩시장 {fleaResults.length}개</span>
@@ -334,6 +346,17 @@ export default function SearchPage() {
                 </Link>
               ))}
             </section>
+          )}
+
+          {/* 다른 탭엔 결과가 있지만 지금 탭만 비었을 때 */}
+          {activeTabEmpty && (
+            <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
+              <div className="text-3xl mb-2">🔎</div>
+              <div className="text-[0.85rem] font-medium">이 카테고리엔 &ldquo;{query}&rdquo; 결과가 없어요</div>
+              <button onClick={() => setActiveTab("전체")} className="mt-3 text-[0.8rem] text-[#D04020] font-semibold hover:underline">
+                전체 결과 보기 →
+              </button>
+            </div>
           )}
         </div>
       )}

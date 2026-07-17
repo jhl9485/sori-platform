@@ -5,6 +5,8 @@ import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import SearchField from "@/components/shared/SearchField";
+import { useToggleSet } from "@/lib/storage";
+import { VIEW_KEY } from "@/lib/metrics";
 
 // 실제 데이터에 존재하는 카테고리만 동적으로 노출 (빈 결과 방지)
 const NEWS_CATEGORIES = ["전체", ...Array.from(new Set(NEWS_ITEMS.map((n) => n.category)))];
@@ -25,6 +27,8 @@ export default function NewsPage() {
     setSelectedCat(s.selectedCat);
     setSearchQuery(s.searchQuery);
   });
+  // 뉴스 상세를 열면 useMarkViewed가 sori_viewed_news에 기록 → 목록에서 '읽음'으로 흐림
+  const { has: isRead } = useToggleSet(VIEW_KEY.news);
   const q = searchQuery.toLowerCase().trim();
   const filtered = NEWS_ITEMS.filter((n) => {
     if (selectedCat !== "전체" && n.category !== selectedCat) return false;
@@ -80,8 +84,10 @@ export default function NewsPage() {
             <div className="text-4xl mb-3">🔍</div>
             <div className="text-[0.85rem] font-medium">{searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "뉴스가 없어요"}</div>
           </div>
-        ) : filtered.map((news) => (
-          <Link key={news.id} href={`/news/${news.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] p-4 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all">
+        ) : filtered.map((news) => {
+          const read = isRead(news.id);
+          return (
+          <Link key={news.id} href={`/news/${news.id}`} className={`block rounded-[14px] border p-4 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:-translate-y-[1px] transition-all ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-[10px] bg-[#F5F3EE] flex items-center justify-center text-xl flex-shrink-0">{news.emoji}</div>
               <div className="flex-1 min-w-0">
@@ -89,9 +95,10 @@ export default function NewsPage() {
                   <span className={`text-[0.65rem] px-2 py-[2px] rounded-full font-semibold ${news.catStyle}`}>{news.category}</span>
                   {news.isBreaking && <span className="text-[0.62rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>속보</span>}
                   {!news.isBreaking && isRecentNews(news.time) && <span className="text-[0.62rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>}
+                  {read && <span className="text-[0.62rem] text-[#888070]">읽음</span>}
                   <span className="text-[0.65rem] text-[#888070]">📖 {news.readTime}</span>
                 </div>
-                <div className="text-[0.9rem] font-bold leading-tight mb-1">{news.title}</div>
+                <div className={`text-[0.9rem] font-bold leading-tight mb-1 ${read ? "text-[#888070]" : ""}`}>{news.title}</div>
                 <div className="text-[0.78rem] text-[#888070] line-clamp-2 leading-relaxed mb-2">{news.summary}</div>
                 <div className="flex items-center justify-between">
                   <span className="text-[0.68rem] text-[#888070]">{news.source}</span>
@@ -100,7 +107,8 @@ export default function NewsPage() {
               </div>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
