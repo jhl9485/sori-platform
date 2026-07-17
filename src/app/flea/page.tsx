@@ -81,6 +81,14 @@ export default function FleaPage() {
       </div>
 
       {/* 그리드 — 모바일 2열, 태블릿 3열, 데스크탑 4열 */}
+      {filtered.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
+          <div className="text-4xl mb-3">🛍️</div>
+          <div className="text-[0.85rem] font-medium">
+            {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "이 카테고리엔 아직 물건이 없어요"}
+          </div>
+        </div>
+      ) : (
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pb-6">
         {filtered.slice(0, visibleCount).map((item) => {
           const status = item.status || "판매중";
@@ -135,6 +143,7 @@ export default function FleaPage() {
           );
         })}
       </div>
+      )}
 
       {filtered.length > visibleCount && (
         <button
