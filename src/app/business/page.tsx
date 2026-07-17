@@ -86,10 +86,10 @@ export default function BusinessPage() {
       <div className="flex items-center justify-between pb-4 gap-2">
         <span className="text-[0.75rem] text-[#888070]"><span className="font-bold text-[#181614]">{filtered.length}개</span> 업소</span>
         <Link
-          href="/business/apply"
+          href="/business/write"
           className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
         >
-          🏪 업소 등록 신청
+          🏪 업소 등록
         </Link>
       </div>
 
@@ -115,7 +115,9 @@ export default function BusinessPage() {
               <div className="p-3">
                 <div className="flex items-center gap-1 mb-1 min-w-0">
                   <span className="font-bold text-[0.9rem] truncate">{biz.name}</span>
-                  {biz.verified && <VerifiedBadge />}
+                  {biz.verified
+                    ? <VerifiedBadge />
+                    : <span className="flex-shrink-0 text-[0.58rem] bg-[#F0EDE8] text-[#888070] px-[5px] py-[1px] rounded font-medium">미인증</span>}
                 </div>
                 <div className="text-[0.72rem] text-[#888070] mb-2">{biz.category}{biz.cuisine ? ` · ${biz.cuisine}` : ""} · {biz.area} · {biz.priceRange}</div>
                 <div className="flex items-center gap-1 mb-2">
@@ -152,9 +154,9 @@ export default function BusinessPage() {
       )}
 
       <Link
-        href="/business/apply"
+        href="/business/write"
         className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] inline-flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
-        aria-label="업소 등록 신청"
+        aria-label="업소 등록"
       >
         <span className="block leading-none translate-y-[-1px]">🏪</span>
       </Link>

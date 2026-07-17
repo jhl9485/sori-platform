@@ -51,13 +51,25 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         {biz.emoji}
       </div>
 
+      {/* 미인증 업소 안내 */}
+      {!biz.verified && (
+        <div className="bg-[#FBF5E8] border-y border-[#E8D090] px-4 md:px-6 py-3 flex items-start gap-2">
+          <span className="text-base flex-shrink-0">ℹ️</span>
+          <p className="text-[0.76rem] text-[#B07010] leading-relaxed">
+            아직 SORI가 확인하지 않은 <b>미인증 업소</b>예요. 정보가 정확하지 않을 수 있으니 방문·이용 전 직접 확인해 주세요.
+          </p>
+        </div>
+      )}
+
       {/* 기본 정보 */}
       <div className="bg-white px-4 md:px-6 py-5">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-[1.2rem] font-bold">{biz.name}</h1>
-              {biz.verified && <VerifiedBadge size="md" />}
+              {biz.verified
+                ? <VerifiedBadge size="md" />
+                : <span className="text-[0.62rem] bg-[#F0EDE8] text-[#888070] px-[6px] py-[2px] rounded font-medium">미인증</span>}
             </div>
             <div className="text-[0.78rem] text-[#888070] mt-[2px]">
               {biz.category}{biz.cuisine ? ` · ${biz.cuisine}` : ""} · {biz.area} · {biz.priceRange}

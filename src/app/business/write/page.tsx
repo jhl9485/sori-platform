@@ -268,6 +268,20 @@ function BusinessWriteInner() {
       )}
 
       <div className="px-4 py-4 pb-32 space-y-6">
+        {/* 등록 정책 사전 안내 (신규 등록일 때만) */}
+        {!isEditMode && (
+          <div className="bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[12px] p-4">
+            <div className="text-[0.85rem] font-bold text-[#2050A0] mb-1">🔎 등록 전 안내</div>
+            <p className="text-[0.78rem] text-[#2050A0]/90 leading-relaxed">
+              지금은 누구나 업소를 등록하실 수 있어요. 등록하시면 먼저 <strong>&lsquo;미인증&rsquo; 상태로 바로 게시</strong>되고,
+              이후 <strong>운영자가 실제 영업·정보를 확인한 곳에는 ✓ SORI 인증</strong>을 달아 드려요.
+              <br /><br />
+              커뮤니티가 자리를 잡으면, 앞으로는 <strong>신청서(구글폼)를 통해 검증된 업소만 등록</strong>하는 방식으로 바뀔 예정이에요.
+              한인분들이 믿고 찾을 수 있는 업소록을 함께 만들어가요. 🙏
+            </p>
+          </div>
+        )}
+
         {/* 1. 사진 */}
         <section>
           <SectionTitle index="1" title="사진" />

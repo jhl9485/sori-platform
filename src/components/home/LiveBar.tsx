@@ -20,12 +20,7 @@ export default function LiveBar() {
       value: data.temp !== undefined ? `${data.temp}°C` : data.weatherLoaded ? "—" : "···",
       sub: data.humidity !== undefined ? `습도 ${data.humidity}%` : "불러오는 중",
     },
-    {
-      bg: "bg-[#EBF5F0]",
-      label: "MRT",
-      value: "정상운행",
-      sub: "전 노선",
-    },
+    // MRT 위젯은 실제 운행 상태를 가져오지 못해(항상 '정상운행' 고정) 잘못된 정보라 제거함.
   ];
 
   return (
