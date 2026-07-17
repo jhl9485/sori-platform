@@ -9,6 +9,7 @@ import SearchField from "@/components/shared/SearchField";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
 import MetricRow from "@/components/shared/MetricRow";
 import BizReviewCount from "@/components/business/BizReviewCount";
+import ScrollRow from "@/components/shared/ScrollRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 export default function BusinessPage() {
@@ -57,18 +58,18 @@ export default function BusinessPage() {
       </div>
 
       {/* 카테고리 탭 */}
-      <div className="flex gap-2 pb-3 overflow-x-auto scrollbar-hide">
+      <ScrollRow className="gap-2 pb-3">
         {BIZ_CATEGORIES.map((cat) => (
           <button key={cat.id} onClick={() => { setSelected(cat.id); setCuisine("all"); }}
             className={`flex-shrink-0 flex items-center gap-1 px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${selected === cat.id ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
             {cat.icon} {cat.label}
           </button>
         ))}
-      </div>
+      </ScrollRow>
 
       {/* 식당 하위 필터 (음식 종류) — 식당 카테고리일 때만 */}
       {selected === "식당" && (
-        <div className="flex gap-2 pb-3 overflow-x-auto scrollbar-hide">
+        <ScrollRow className="gap-2 pb-3">
           <button onClick={() => setCuisine("all")}
             className={`flex-shrink-0 px-3 py-[4px] rounded-full text-[0.72rem] font-medium border transition-all ${cuisine === "all" ? "bg-[#D04020] text-white border-[#D04020]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
             전체
@@ -79,7 +80,7 @@ export default function BusinessPage() {
               {c}
             </button>
           ))}
-        </div>
+        </ScrollRow>
       )}
 
       {/* 결과 수 + 등록 */}

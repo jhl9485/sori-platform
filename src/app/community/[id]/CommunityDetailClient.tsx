@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import CommentSection from "@/components/shared/CommentSection";
 import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
+import Lightbox from "@/components/shared/Lightbox";
 import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
@@ -27,6 +28,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
   const { toggle: markRead } = useToggleSet("sori_read_posts");
   const userCommentCounts = useUserCommentCounts();
   const gate = useAuthGate();
+  const [zoomIndex, setZoomIndex] = useState<number | null>(null);
   useMarkViewed(VIEW_KEY.community, post?.id);
 
   useEffect(() => {
@@ -136,7 +138,8 @@ export default function CommunityDetailClient({ params }: { params: { id: string
                 loading="lazy"
                 decoding="async"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                className="w-full rounded-[12px] border border-black/[0.06] bg-[#F5F3EE]"
+                onClick={() => setZoomIndex(i)}
+                className="w-full rounded-[12px] border border-black/[0.06] bg-[#F5F3EE] cursor-zoom-in"
               />
             ))}
           </div>
@@ -175,6 +178,10 @@ export default function CommunityDetailClient({ params }: { params: { id: string
       <CommentSection comments={comments} postId={post.id} />
 
       <div className="h-4" />
+
+      {zoomIndex !== null && post.images && (
+        <Lightbox photos={post.images} startIndex={zoomIndex} alt={post.title} onClose={() => setZoomIndex(null)} />
+      )}
     </div>
   );
 }

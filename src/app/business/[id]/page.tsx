@@ -14,6 +14,9 @@ import BizReviewCount from "@/components/business/BizReviewCount";
 import BizReviewSection from "@/components/business/BizReviewSection";
 import { useBizReviewCount } from "@/lib/reviews";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
+import { isRealValue, telHref, urlHref, prettyUrl } from "@/lib/contact";
+import { toast } from "@/components/shared/Feedback";
+import Linkify from "@/components/shared/Linkify";
 
 export default function BusinessDetailPage({ params }: { params: { id: string } }) {
   const hydrated = useHydrated();
@@ -136,25 +139,66 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           {/* 설명 */}
           <h3 className="text-[0.88rem] font-bold mb-2">업소 소개</h3>
           <p className="text-[0.82rem] text-[#181614] leading-relaxed whitespace-pre-line mb-5">
-            {biz.fullDescription}
+            <Linkify text={biz.fullDescription} />
           </p>
 
           {/* 기본 정보 테이블 */}
           <h3 className="text-[0.88rem] font-bold mb-3">기본 정보</h3>
           <div className="divide-y divide-black/[0.05]">
-            {[
-              { icon: "📍", label: "주소", value: biz.address },
-              { icon: "🕐", label: "영업시간", value: biz.openHours },
-              { icon: "📞", label: "전화번호", value: biz.phone },
-            ].map((item) => (
-              <div key={item.label} className="flex gap-3 py-3">
-                <span className="text-base flex-shrink-0 w-6 text-center">{item.icon}</span>
-                <div className="flex-1">
-                  <div className="text-[0.72rem] text-[#888070] mb-[2px]">{item.label}</div>
-                  <div className="text-[0.82rem] text-[#181614]">{item.value}</div>
+            {/* 주소 — 탭하면 복사 */}
+            <div className="flex gap-3 py-3">
+              <span className="text-base flex-shrink-0 w-6 text-center">📍</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.72rem] text-[#888070] mb-[2px]">주소</div>
+                {isRealValue(biz.address) ? (
+                  <button
+                    onClick={() => { navigator.clipboard?.writeText(biz.address); toast("주소를 복사했어요."); }}
+                    className="text-[0.82rem] text-[#181614] text-left hover:text-[#D04020] transition-colors"
+                  >
+                    {biz.address} <span className="text-[0.72rem] text-[#888070]">📋 복사</span>
+                  </button>
+                ) : (
+                  <div className="text-[0.82rem] text-[#888070]">{biz.address}</div>
+                )}
+              </div>
+            </div>
+
+            {/* 영업시간 */}
+            <div className="flex gap-3 py-3">
+              <span className="text-base flex-shrink-0 w-6 text-center">🕐</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.72rem] text-[#888070] mb-[2px]">영업시간</div>
+                <div className="text-[0.82rem] text-[#181614]">{biz.openHours}</div>
+              </div>
+            </div>
+
+            {/* 전화 — 탭하면 전화 걸기 */}
+            <div className="flex gap-3 py-3">
+              <span className="text-base flex-shrink-0 w-6 text-center">📞</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-[0.72rem] text-[#888070] mb-[2px]">전화번호</div>
+                {isRealValue(biz.phone) ? (
+                  <a href={telHref(biz.phone)} className="text-[0.82rem] text-[#2050A0] hover:text-[#D04020] transition-colors">
+                    {biz.phone} <span className="text-[0.72rem] text-[#888070]">📞 전화걸기</span>
+                  </a>
+                ) : (
+                  <div className="text-[0.82rem] text-[#888070]">{biz.phone}</div>
+                )}
+              </div>
+            </div>
+
+            {/* 홈페이지·SNS (있을 때만) */}
+            {isRealValue(biz.website) && (
+              <div className="flex gap-3 py-3">
+                <span className="text-base flex-shrink-0 w-6 text-center">🔗</span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[0.72rem] text-[#888070] mb-[2px]">홈페이지 · SNS</div>
+                  <a href={urlHref(biz.website!)} target="_blank" rel="noopener noreferrer" className="text-[0.82rem] text-[#2050A0] hover:text-[#D04020] transition-colors break-all">
+                    {prettyUrl(biz.website!)}
+                  </a>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       ) : (

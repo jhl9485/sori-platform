@@ -32,6 +32,7 @@ export interface Business {
   isOpen: boolean;
   openHours: string;
   phone: string;
+  website?: string; // 홈페이지·SNS 링크 (선택). 없으면 상세에 표시 안 함
   tags: string[];
   priceRange: string;
   description: string;

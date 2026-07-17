@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Lightbox from "@/components/shared/Lightbox";
 
 interface Props {
   photos: string[];
@@ -16,8 +17,10 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
   const [idx, setIdx] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
+  const didSwipe = useRef(false); // 스와이프 직후엔 클릭(확대)을 무시
   const [dragOffset, setDragOffset] = useState(0);
   const [broken, setBroken] = useState(false);
+  const [zoom, setZoom] = useState(false);
 
   if (!photos || photos.length === 0 || broken) {
     return (
@@ -33,6 +36,7 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     touchDeltaX.current = 0;
+    didSwipe.current = false;
   };
   const onTouchMove = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
@@ -47,7 +51,13 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
     touchStartX.current = null;
     touchDeltaX.current = 0;
     if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+    didSwipe.current = true; // 스와이프였음 → 뒤이어 발생하는 click(확대) 무시
     if (dx > 0) prev(); else next();
+  };
+
+  const handleImageClick = () => {
+    if (didSwipe.current) { didSwipe.current = false; return; }
+    setZoom(true);
   };
 
   return (
@@ -64,7 +74,8 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
         loading="lazy"
         decoding="async"
         onError={() => setBroken(true)}
-        className="w-full h-full object-cover transition-transform duration-150"
+        onClick={handleImageClick}
+        className="w-full h-full object-cover transition-transform duration-150 cursor-zoom-in"
         style={{ transform: `translateX(${dragOffset}px)` }}
         draggable={false}
       />
@@ -107,6 +118,10 @@ export default function PhotoCarousel({ photos, fallbackEmoji, fallbackBg, heigh
             ← 좌우 스와이프 →
           </div>
         </>
+      )}
+
+      {zoom && (
+        <Lightbox photos={photos} startIndex={idx} alt={alt} onClose={() => setZoom(false)} />
       )}
     </div>
   );

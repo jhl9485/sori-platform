@@ -248,9 +248,7 @@ export default function SearchPage() {
                     <div className="text-[0.85rem] font-medium">{biz.name}</div>
                     <div className="text-[0.72rem] text-[#888070]">{biz.category} · {biz.area}</div>
                   </div>
-                  <span className={`text-[0.7rem] font-semibold flex-shrink-0 ${biz.isOpen ? "text-[#2B7A50]" : "text-[#888070]"}`}>
-                    {biz.isOpen ? "영업중" : "영업종료"}
-                  </span>
+                  {biz.verified && <span className="text-[0.62rem] font-bold text-[#2B7A50] bg-[#EBF5F0] px-[6px] py-[2px] rounded flex-shrink-0">✓ 인증</span>}
                 </Link>
               ))}
             </section>

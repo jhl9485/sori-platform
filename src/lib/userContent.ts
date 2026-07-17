@@ -296,6 +296,7 @@ interface RawUserBiz {
   area: string;
   address: string;
   phone: string;
+  website?: string;
   openHours: string;
   priceRange: string;
   tags: string[];
@@ -335,6 +336,7 @@ export function userBizToBusiness(p: RawUserBiz): Business {
     isOpen: true,
     openHours: p.openHours || "미입력",
     phone: p.phone || "—",
+    website: p.website,
     tags: p.tags || [],
     priceRange: p.priceRange || "$$",
     description: p.description,

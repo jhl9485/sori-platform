@@ -20,6 +20,7 @@ interface RawBiz {
   area: string;
   address: string;
   phone: string;
+  website?: string;
   openHours: string;
   priceRange: string;
   tags: string[];
@@ -73,6 +74,7 @@ function BusinessWriteInner() {
   const [area, setArea] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const [website, setWebsite] = useState("");
   const [openHours, setOpenHours] = useState("");
   const [priceRange, setPriceRange] = useState("$$");
   const [tagsInput, setTagsInput] = useState("");
@@ -96,6 +98,7 @@ function BusinessWriteInner() {
             setArea(t.area || "");
             setAddress(t.address || "");
             setPhone(t.phone || "");
+            setWebsite(t.website || "");
             setOpenHours(t.openHours || "");
             setPriceRange(t.priceRange || "$$");
             setTagsInput((t.tags || []).join(", "));
@@ -119,6 +122,7 @@ function BusinessWriteInner() {
           setArea(d.area || "");
           setAddress(d.address || "");
           setPhone(d.phone || "");
+          setWebsite(d.website || "");
           setOpenHours(d.openHours || "");
           setPriceRange(d.priceRange || "$$");
           setTagsInput(d.tagsInput || "");
@@ -141,18 +145,18 @@ function BusinessWriteInner() {
     }
     try {
       localStorage.setItem(DRAFT_KEY, JSON.stringify({
-        photos, category, cuisine, name, area, address, phone, openHours,
+        photos, category, cuisine, name, area, address, phone, website, openHours,
         priceRange, tagsInput, description, fullDescription, koreanAvailable,
       }));
     } catch {
       try {
         localStorage.setItem(DRAFT_KEY, JSON.stringify({
-          category, cuisine, name, area, address, phone, openHours,
+          category, cuisine, name, area, address, phone, website, openHours,
           priceRange, tagsInput, description, fullDescription, koreanAvailable,
         }));
       } catch {}
     }
-  }, [hydrated, isEditMode, photos, category, cuisine, name, area, address, phone, openHours, priceRange, tagsInput, description, fullDescription, koreanAvailable]);
+  }, [hydrated, isEditMode, photos, category, cuisine, name, area, address, phone, website, openHours, priceRange, tagsInput, description, fullDescription, koreanAvailable]);
 
   const parseTags = (s: string) => s.split(/[,\s#]+/).map(t => t.trim()).filter(Boolean).slice(0, 6);
   const tags = parseTags(tagsInput);
@@ -170,6 +174,7 @@ function BusinessWriteInner() {
         category: category as BizCategory, cuisine: cuisineValue, name: name.trim(),
         area, address: address.trim(),
         phone: phone.trim(),
+        website: website.trim(),
         openHours: openHours.trim(),
         priceRange,
         tags,
@@ -199,6 +204,7 @@ function BusinessWriteInner() {
       category, cuisine: cuisineValue, name: name.trim(),
       area, address: address.trim(),
       phone: phone.trim(),
+      website: website.trim(),
       openHours: openHours.trim(),
       priceRange,
       tags,
@@ -235,7 +241,7 @@ function BusinessWriteInner() {
 
   const discardDraft = () => {
     setPhotos([]); setCategory(""); setName(""); setArea("");
-    setAddress(""); setPhone(""); setOpenHours("");
+    setAddress(""); setPhone(""); setWebsite(""); setOpenHours("");
     setPriceRange("$$"); setTagsInput(""); setDescription("");
     setFullDescription(""); setKoreanAvailable(true);
     setRestored(false);
@@ -385,8 +391,17 @@ function BusinessWriteInner() {
             value={openHours}
             onChange={(e) => setOpenHours(e.target.value)}
             placeholder="🕐 영업시간 (예: 11:00 - 22:00)"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+          />
+          <input
+            type="text"
+            inputMode="url"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            placeholder="🔗 홈페이지·SNS 링크 (선택, 예: instagram.com/...)"
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
           />
+          <p className="text-[0.68rem] text-[#888070] mt-1">홈페이지·인스타·카톡 등 링크가 있으면 적어주세요. 없으면 비워두면 돼요.</p>
         </section>
 
         {/* 6. 가격대 */}

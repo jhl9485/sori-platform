@@ -10,6 +10,7 @@ import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 import { useToggleSet } from "@/lib/storage";
 import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
+import ScrollRow from "@/components/shared/ScrollRow";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -58,14 +59,14 @@ export default function FleaPage() {
       </div>
 
       {/* 카테고리 */}
-      <div className="flex gap-2 pb-4 overflow-x-auto scrollbar-hide">
+      <ScrollRow className="gap-2 pb-4">
         {FLEA_CATEGORIES.map((cat) => (
           <button key={cat} onClick={() => setSelectedCat(cat)}
             className={`flex-shrink-0 px-3 py-[5px] rounded-full text-[0.75rem] font-medium border transition-all ${selectedCat === cat ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
             {cat}
           </button>
         ))}
-      </div>
+      </ScrollRow>
 
       {/* 결과 수 + 등록 버튼 */}
       <div className="flex items-center justify-between pb-3">

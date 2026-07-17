@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from "react";
+import Linkify from "@/components/shared/Linkify";
 
 export function renderMarkdown(fullContent: string): ReactNode {
   const allLines = fullContent.split("\n");
@@ -13,7 +14,7 @@ export function renderMarkdown(fullContent: string): ReactNode {
     if (line.startsWith("- ")) {
       return (
         <li key={i} className="text-[0.85rem] text-[#181614] leading-relaxed ml-4 list-disc">
-          {line.slice(2)}
+          <Linkify text={line.slice(2)} />
         </li>
       );
     }
@@ -37,7 +38,7 @@ export function renderMarkdown(fullContent: string): ReactNode {
     if (line.trim() === "") return <br key={i} />;
     return (
       <p key={i} className="text-[0.85rem] text-[#181614] leading-relaxed">
-        {line}
+        <Linkify text={line} />
       </p>
     );
   }).map((node, i) => <Fragment key={i}>{node}</Fragment>);

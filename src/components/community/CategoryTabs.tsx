@@ -2,6 +2,7 @@
 
 import { CATEGORIES } from "@/data/categories";
 import { confirmDialog } from "@/components/shared/Feedback";
+import ScrollRow from "@/components/shared/ScrollRow";
 
 interface Props {
   selected: string;
@@ -24,7 +25,7 @@ export default function CategoryTabs({ selected, onSelect, counts, totalCount }:
   };
 
   return (
-    <div className="flex gap-0 px-4 pb-3 overflow-x-auto scrollbar-hide">
+    <ScrollRow className="gap-0 px-4 pb-3">
       {allTabs.map((tab) => {
         const count = tab.id === "all" ? totalCount : counts?.[tab.id];
         const isActive = selected === tab.id;
@@ -45,6 +46,6 @@ export default function CategoryTabs({ selected, onSelect, counts, totalCount }:
           </button>
         );
       })}
-    </div>
+    </ScrollRow>
   );
 }
