@@ -26,6 +26,201 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260723-1",
+    publishedAt: "2026-07-22",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🏛️ 싱가포르 내각 개편 — 재스민 라우 인력부 장관대행·제프리 시오 교통부 장관 (7/27 발효)",
+    summary: "PM 로렌스 Wong이 7월 22일 내각 개편을 발표했다. 재스민 라우가 탄 시렝 전 장관의 뒤를 이어 인력부(MOM) 장관대행을 맡는다(7/27 발효). 제프리 시오는 교통부 장관 겸 재무부 2차 장관, 응 치멩은 PMO 장관으로 복귀. 무역산업부(MTI)는 10월 1일부터 '에너지·무역·산업부(METI)'로 개명. 인력부 수장 교체는 EP·S Pass 정책 방향에 영향을 줄 수 있어 주목된다.",
+    fullContent: `**싱가포르 내각 개편 (2026년 7월 22일 발표, 7월 27일 발효)**
+PM 로렌스 Wong이 7월 22일 내각 및 기타 정무직 변경을 발표했습니다.
+
+**한인 커뮤니티 주목: 인력부(MOM) 장관 교체**
+- **재스민 라우(Jasmin Lau)** → 인력부(MOM) **장관대행** + 디지털개발정보부 정무차관 (7/27 발효)
+- 전임 **탄 시렝(Tan See Leng)** → 에너지·무역·산업부(METI) 장관(에너지·산업 담당)으로 이동
+
+**주요 인사 변경**
+- **제프리 시오(Jeffrey Siow)**: 교통부 장관 + 재무부 2차 장관
+- **데이비드 네오(David Neo)**: 문화·지역사회·청소년부 장관 + 교육부 2차 장관
+- **심 앤(Sim Ann)**: 외교부 2차 장관 + 내무부 2차 장관
+- **응 치멩(Ng Chee Meng)**: 총리실(PMO) 장관으로 복귀
+
+**부처 개명**
+- 무역산업부(MTI) → **에너지·무역·산업부(Ministry of Energy, Trade and Industry, METI)** — **2026년 10월 1일**부터
+
+**한인 참고**
+- 인력부(MOM) 수장이 바뀌면 EP·S Pass·고용정책 방향에 변화가 있을 수 있습니다. 당분간 주요 MOM 발표를 모니터링하세요.
+- 공식 발효일은 2026년 7월 27일이며, 일부 임명은 다른 날짜에 적용될 수 있습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "PMO · Mothership",
+    sources: [
+      { name: "PMO — Cabinet Changes Jul 2026 (공식)", url: "https://www.pmo.gov.sg/newsroom/changes-to-cabinet-and-other-appointments-and-the-renaming-of-the-ministry-of-trade-and-industry-jul-2026/" },
+      { name: "Mothership — S'pore Cabinet Reshuffle 2026: All changes at a glance", url: "https://mothership.sg/2026/07/singapore-cabinet-reshuffle-2026/" },
+      { name: "The Star — PM Wong unveils new Singapore Cabinet (7/22)", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/07/22/pm-wong-unveils-new-singapore-cabinet-appoints-first-term-politicians-to-larger-roles" },
+    ],
+    time: "2026년 7월 22일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🏛️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260723-2",
+    publishedAt: "2026-07-21",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚗 불법 국경간 차량공유 단속 강화 — 한 달 새 16명 적발·차량 압수, 최대 S$3,000 벌금",
+    summary: "LTA(육상교통청)가 7월 21일 불법 국경간 차량공유 서비스 기사 16명을 한 달 만에 적발·차량 압수했다고 발표했다. 2025년 7월 이후 현재까지 5,000대 이상 점검, 222대가 압수됐다. 무허가 차량공유 서비스 제공 시 최대 S$3,000 벌금 또는 징역 6개월에 처해질 수 있다.",
+    fullContent: `**불법 국경간 차량공유 서비스 단속 (LTA, 2026년 7월 21일 발표)**
+LTA와 교통부 정무장관 Sun Xueling이 7월 21일 최근 한 달간의 단속 결과를 발표했습니다.
+
+**단속 결과**
+- 최근 1개월: 불법 국경간 차량공유 기사 **16명 적발**, 차량 전량 **압수**
+- 2025년 7월 이후 누계: **5,000대 이상 점검, 222대 압수**
+
+**단속 방식**
+- 시민·업계 단체(국가개인고용차량협회·택시협회) 신고를 바탕으로 LTA 단속반이 육상 통관소 및 시내에서 점검
+
+**처벌**
+- 유죄 판결 시: **벌금 최대 S$3,000 또는 징역 6개월** (또는 병과), 차량 압수
+
+**한인 참고**
+- 싱가포르↔말레이시아 간 이동 시 Grab·Gojek·Ryde 등 LTA 허가 플랫폼을 이용하세요.
+- 비공인 채널(카카오톡 단체방, SNS 모집 등)을 통한 합승·대리운전 서비스 제공 및 이용은 단속 대상이 될 수 있습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · MustShareNews",
+    sources: [
+      { name: "Mothership — 16 drivers caught in 1 month for illegal cross-border ride-hailing (7/21)", url: "https://mothership.sg/2026/07/illegal-cross-border-caught-singapore/" },
+      { name: "MustShareNews — 16 More Illegal Cross-Border Ride-Hailing Drivers Caught By LTA", url: "https://mustsharenews.com/drivers-caught-tip-offs/" },
+    ],
+    time: "2026년 7월 21일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚗",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260723-3",
+    publishedAt: "2026-07-12",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🔵 서클라인(CCL) 7/12 완전 개통 — 켑펠·캔턴먼트·프린스에드워드로드 3역 추가, 39km 33개역 완성",
+    summary: "7월 12일 서클라인(CCL) 6단계 신규 3개역(Keppel·Cantonment·Prince Edward Road)이 정식 개통됐다. HarbourFront역과 Marina Bay역 사이의 마지막 구간이 연결되며 CCL이 39km·33개역·12개 환승역의 완전한 원형 노선으로 완성됐다. 7월 4일에는 무료 퍼블릭 프리뷰(오전 9:30~오후 9시)가 열렸다.",
+    fullContent: `**서클라인(Circle Line) 6단계(CCL6) 정식 개통 (2026년 7월 12일)**
+LTA와 SMRT가 7월 12일 서클라인 6단계를 정식 개통했습니다.
+
+**신규 개통역 (3곳)**
+- **Keppel** (CC29)
+- **Cantonment** (CC30)
+- **Prince Edward Road** (CC31)
+
+**완성된 서클라인 현황**
+- HarbourFront역과 Marina Bay역 사이 마지막 구간 연결 → **완전한 원형(Circle) 완성**
+- 전체: **39km, 33개역, 12개 환승역** (모든 기존 MRT 노선과 연결)
+- Kim Chuan Depot 연장 구간도 7월 12일부터 운영
+
+**일정**
+- 7월 4일(금): 퍼블릭 프리뷰 — 3개 신규역 무료 탑승 (오전 9:30~오후 9:00)
+- 7월 12일(일): 정식 여객 운행 시작
+
+**한인 참고**
+- Tanjong Pagar·Keppel·Harbourfront 방면 이동 시 새로운 경로 옵션이 생겼습니다.
+- 새 역 주변(Keppel·Cantonment·Prince Edward Road 일대) 식당·오피스 방문 시 MRT 직접 접근이 가능해졌습니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "LTA · SGTrains",
+    sources: [
+      { name: "LTA — CCL Stage 6 Public Preview on 4 July 2026 (공식)", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/5/news-releases/circle-line-stage-6-to-open-for-public-preview-on-4-july-2026.html" },
+      { name: "SGTrains — Singapore's Circle Line goes full circle; CCL6 opens on Jul 12 (7/12)", url: "https://blog.sgtrains.com/2026/07/singapores-circle-line-has-finally-gone-full-circle-three-new-ccl6-stations-open-on-jul-12-2026/" },
+    ],
+    time: "2026년 7월 12일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🔵",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260723-4",
+    publishedAt: "2026-07-07",
+    category: "안전",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🏦 ASC·5대 은행 합동 작전 — 사기 600건+ 차단·S$3,800만 피해 예방 (5~6월 RPA 합동)",
+    summary: "SPF 안티사기센터(ASC)가 5~6월 두 달간 DBS·UOB·OCBC·스탠다드차타드·GXS 5개 은행과 RPA 자동화 기술 기반 합동 작전을 벌여 사기 600건 이상을 차단하고 S$3,800만 이상의 잠재 피해를 예방했다고 7월 7일 발표했다. 3,800건 이상의 SMS 경보가 3,300명 이상의 잠재 피해자에게 발송됐다. 주요 유형은 정부기관 사칭·투자·취업·전자상거래·임대 사기다.",
+    fullContent: `**ASC·5대 은행 합동 반사기 작전 (2026년 7월 7일 발표)**
+SPF(싱가포르 경찰) 산하 안티사기센터(ASC)가 5~6월 진행한 합동 작전 결과를 발표했습니다.
+
+**작전 개요**
+- **기간**: 2026년 5월 1일~6월 30일 (2개월)
+- **참여 은행 5곳**: DBS, UOB, OCBC, Standard Chartered Bank, GXS
+- **기술**: RPA(Robotic Process Automation) — 은행-ASC 간 실시간 정보 교환·신속 개입
+
+**성과**
+- 사기 시도 **600건 이상** 차단
+- 잠재 피해 예방 금액: **S$3,800만(S$38 million) 이상**
+- SMS 경보 **3,800건 이상** 발송 → 잠재 피해자 **3,300명 이상** 사전 경고
+
+**주요 사기 유형 (이번 작전 포착)**
+- 정부기관 사칭 사기 / 투자 사기 / 취업 사기 / 전자상거래 사기 / 임대 사기
+
+**한인 참고**
+- 싱가포르 은행에서 "계좌 이상·수사 협조" 메시지가 오면 즉시 거래를 멈추고 은행 공식 번호로 직접 전화해 확인하세요.
+- 경찰·MAS·CPF는 전화나 메신저로 암호화폐 이체·계좌이체를 요구하지 않습니다.
+- 사기 신고: **1799**(AntiScam Hotline) 또는 **ScamShield 앱**
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · Fintech Singapore",
+    sources: [
+      { name: "SPF — ASC And Five Banks Averted Over $38M in Potential Scam Losses (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260707_anti_scam_centre_and_five_banks_collaborate_to_foil_over_600_scam_attempts" },
+      { name: "Fintech Singapore — Five Banks, Singapore Anti-Scam Centre Avert S$38 Million", url: "https://fintechnews.sg/134107/security/singapore-anti-scam-centre/" },
+    ],
+    time: "2026년 7월 7일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏦",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260723-5",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 EP COMPASS 갱신 기준·LQS 7월 1일 업데이트 — 로컬 자격 급여 S$1,600→S$1,800",
+    summary: "7월 1일부터 고용주가 WP·S Pass 외국인 직원 쿼터를 계산할 때 기준이 되는 로컬 자격 급여(LQS)가 S$1,600에서 S$1,800으로 올랐다. 또한 1월부터 신규 EP 신청에 적용됐던 업데이트된 COMPASS 기준이 7월 1일부로 EP 갱신에도 적용된다. EP 갱신을 앞둔 한인, 직원을 고용 중인 한인 사업주 모두 새 기준을 확인해야 한다.",
+    fullContent: `**EP COMPASS·로컬 자격 급여(LQS) 업데이트 (2026년 7월 1일 시행)**
+싱가포르 인력부(MOM)의 외국인 인력 정책이 7월 1일부로 업데이트됐습니다.
+
+**① 로컬 자격 급여(LQS) 인상**
+- **S$1,600 → S$1,800/월** (2026년 7월 1일 시행)
+- LQS는 사업주가 WP·S Pass 외국인 직원을 고용할 때 쿼터 계산 기준으로 사용하는 최저 내국인·PR 급여 기준
+- LQS 인상으로 일부 업종·규모 사업장의 쿼터 산정 방식이 변경될 수 있음
+
+**② EP COMPASS 갱신 적용 개시**
+- 2026년 1월부터 신규 EP 신청에 적용됐던 업데이트된 COMPASS 기준이, **7월 1일부터 EP 갱신에도 적용**
+- COMPASS 40점 이상 충족 필요: 개인 요소(C1 급여 분위·C2 자격·C3 다양성·C4 지원자 현황) + 고용주 요소(C5 부족 직종·C6 지역 인재 지원) 합산
+
+**한인 참고**
+- **EP 갱신 예정자**: 현재 급여·고용주 COMPASS 점수를 MOM 공식 COMPASS 계산기에서 미리 점검하세요 (mom.gov.sg)
+- **WP·S Pass 직원 고용 한인 사업주**: LQS 인상으로 쿼터가 변동될 수 있으니 MOM 포털에서 확인하세요.
+- EP 최저 급여 기준(S$5,600/월, 금융업 S$6,200/월)은 별도 기준으로 유지됩니다.
+
+⚠️ LQS S$1,800 수치는 복수의 전문 자문사(KPMG, Mavenside Consulting 등)에서 확인됐습니다. 최종 확인은 MOM 공식 사이트를 이용하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mavenside Consulting · KPMG",
+    sources: [
+      { name: "Mavenside Consulting — LQS Rises to $1,800 in July 2026: Employer Action Guide", url: "https://www.mavenside.co/blog/local-qualifying-salary-1800-july-2026-employer-guide" },
+      { name: "KPMG Flash Alert — Singapore COMPASS and Work Pass Updates (2025-282)", url: "https://kpmg.com/xx/en/our-insights/gms-flash-alert/flash-alert-2025-282.html" },
+      { name: "MOM — S Pass eligibility (공식)", url: "https://www.mom.gov.sg/passes-and-permits/s-pass/eligibility" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "📋",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
     category: "생활",
