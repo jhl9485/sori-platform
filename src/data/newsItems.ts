@@ -26,6 +26,202 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260715-1",
+    publishedAt: "2026-07-15",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "⛴️ 새 하버프론트 페리 터미널 전면 개장(7/15) — 신도·인도팔콘·허라이즌 이전 완료, 약 70m 위치 변경",
+    summary: "7월 15일부로 싱가포르 크루즈센터(SCC) 내 새 하버프론트 페리 터미널이 전면 개장했다. 1단계(7/7) 바탐 패스트페리에 이어 허라이즌·마제스틱·신도 페리·인도팔콘과 크루즈 운영까지 모두 이전 완료. 주소는 5 HarbourFront Avenue, Singapore 099549로 기존 대비 약 70m 이동. 노선·일정은 변경 없으며 생체인식 여권심사대와 셀프 키오스크가 새로 설치됐다.",
+    fullContent: `**새 하버프론트 페리 터미널 전면 개장 (2026년 7월 15일)**
+
+**이전 일정**
+- 1단계(7월 7일): 바탐 패스트페리(Batam Fast Ferry) 이전
+- 2단계(7월 15일): 허라이즌 패스트페리(Horizon Fast Ferry), 마제스틱 패스트페리(Majestic Fast Ferry), 신도 페리(Sindo Ferry), 인도 팔콘(Indo Falcon Shipping and Travel) + 크루즈 운영 전면 이전
+
+**새 터미널 정보**
+- 주소: **5 HarbourFront Avenue, Singapore 099549** (Singapore Cruise Centre 내)
+- 기존 터미널 대비 약 **70m** 이동
+
+**시설 개선**
+- 생체인식 여권 자동심사대(biometric passport clearance)
+- 셀프 서비스 키오스크 신설
+
+**한인 참고**
+- 바탐·빈탄 인도네시아 페리 이용 시 새 터미널 위치 확인 필요
+- 노선·시간표는 변경 없음, 운항사 공식 사이트에서 예약 시 주소 재확인 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · Sindo Ferry · The Smart Local",
+    sources: [
+      { name: "Mothership — 새 하버프론트 페리 터미널 7월 개장", url: "https://mothership.sg/2026/06/new-harbourfront-ferry-terminal-july/" },
+      { name: "Sindo Ferry — 터미널 이전 공지", url: "https://www.sindoferry.com.sg/announcement-terminal-relocation" },
+      { name: "The Smart Local — 하버프론트 페리 터미널", url: "https://thesmartlocal.com/read/harbourfront-ferry-terminal/" },
+    ],
+    time: "2026년 7월 15일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "⛴️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260715-2",
+    publishedAt: "2026-07-15",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏢 6월 신규 민간주택 분양 156건 — 2년래 최저, 사상 첫 '신규 물량 0' 기록",
+    summary: "URA가 7월 15일 발표한 6월 신규 민간주택 판매 실적은 156건(2024년 2월 이후 2년 최저). 전월比 -65.1%(5월 447건), 전년比 -42.6%. 개발업체가 단 한 채도 새로 분양하지 않은 2007년 이후 사상 첫 달이 됐다. 중반기 방학 시즌이 주된 원인이며, 7월 반등이 예상된다.",
+    fullContent: `**URA 6월 2026 신규 민간주택 판매 실적 (7월 15일 발표)**
+
+**판매 실적**
+- 6월 신규 판매: **156건** (2024년 2월 153건 이후 **2년 최저**)
+- 전월(5월 447건) 대비: **-65.1%**
+- 전년 동월(2025년 6월 272건) 대비: **-42.6%**
+- **5개월 연속** 판매량이 신규 출시 물량 초과
+
+**역사적 기록**
+- 6월은 개발업체가 신규 단위를 **단 한 채도 출시(launch)하지 않은 2007년 이후 첫 달**
+
+**원인 및 전망**
+- 6월 중반기 학교 방학(mid-year school holidays) 시즌 특성상 구매 수요 일시 감소
+- 애널리스트 다수는 7월 신규 분양 재개와 함께 반등 예상
+
+**한인 참고**
+- 구매보다 임대가 일반적인 EP 소지자에게도 신규 공급 감소는 중장기 임대 시장에 영향
+- PR 취득 후 구매를 고려 중이라면 7월 이후 신규 분양 물량 동향을 주시할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Bloomberg · 99.co · Stacked Homes",
+    sources: [
+      { name: "Bloomberg — 싱가포르 주택 판매 2년 최저", url: "https://www.bloomberg.com/news/articles/2026-07-15/singapore-home-sales-drop-to-two-year-low-on-holiday-lull" },
+      { name: "99.co — 6월 신규주택 2년 최저·7월 반등 기대", url: "https://www.99.co/singapore/insider/developers-new-home-sales-fall-to-a-2-year-low-in-june-rebound-expected-in-july/" },
+      { name: "Stacked Homes — 신규 콘도 6월 65% 급감", url: "https://stackedhomes.com/singapores-new-condo-sales-plunged-65-in-june-heres-what-happened/" },
+    ],
+    time: "2026년 7월 15일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏢",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260715-3",
+    publishedAt: "2026-07-10",
+    category: "취업",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🤖 ILO 보고서: 싱가포르 ASEAN 최고 'AI 영향 직업' 42.2% — 약 8천만 명 영향, 대규모 해고보다 '역할 변화' 전망",
+    summary: "국제노동기구(ILO)가 7월 10일 발표한 보고서에 따르면 싱가포르 전체 고용의 42.2%가 'AI 영향 직업'으로 ASEAN 최고 수준이다(필리핀 28.1%, 인도네시아 21.7%). 약 8천만 ASEAN 근로자가 AI에 노출되나, ILO는 대규모 해고보다는 직무 내용 변화(역할 재편)를 전망했다. 싱가포르는 AI 영향 노출도와 AI 준비도 모두 ASEAN 1위로 평가됐다.",
+    fullContent: `**ILO 보고서: ASEAN AI 고용 영향 (2026년 7월 10일 발표)**
+
+**싱가포르의 위치**
+- AI 영향 직업(AI-exposed occupations) 비율: **42.2%** (ASEAN 최고)
+- 비교: 필리핀 28.1% / 인도네시아 21.7% / 베트남 20.8% / 태국 20.6%
+- AI 준비도(preparedness) 지수도 **ASEAN 1위**
+
+**ASEAN 전체 영향**
+- 약 **8천만 명** 영향 예상
+- ILO: **대규모 일자리 감소보다는 직무 내용·역할 재편**이 주된 변화 형태가 될 것
+
+**주요 전망**
+- 고도로 자동화되기보다는 AI와 협력하는 '인간+AI' 역할 확대
+- 헬스케어, 교육, 창의적 서비스 등 인간 고유 역량 직종은 영향 적음
+
+**한인 참고**
+- EP 등으로 금융·IT·전문서비스에 종사 중이라면 AI 전환 동향에 주목할 필요 있음
+- SkillsFuture 등 싱가포르 정부 지원 AI 교육 활용을 미리 검토할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "ILO · The Independent SG · Bloomberg",
+    sources: [
+      { name: "ILO — AI와 ASEAN 약 8천만 근로자 영향", url: "https://www.ilo.org/resource/news/ai-may-affect-nearly-80-million-workers-asean-region-large-scale-job" },
+      { name: "The Independent SG — 싱가포르 ASEAN AI 영향 직업 최고·준비도도 최고", url: "https://theindependent.sg/singapore-tops-asean-in-ai-exposed-jobs-but-remains-best-prepared-ilo-says/" },
+      { name: "Bloomberg — AI, ASEAN 수백만 영향·대량 해고 없을 것", url: "https://www.bloomberg.com/news/articles/2026-07-10/ai-could-affect-millions-in-asean-as-ilo-sees-no-big-job-cuts" },
+    ],
+    time: "2026년 7월 10일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🤖",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260715-4",
+    publishedAt: "2026-07-12",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🔵 서클선 완전 개통(7/12) — 케펠·캔턴먼트·프린스에드워드로드 3역 개장, 하버프론트↔마리나베이 순환 완성",
+    summary: "7월 12일 서클선(CCL) 6단계 케펠·캔턴먼트·프린스에드워드로드 역이 개통, 33개 역·39km 순환선이 완성됐다. 피크타임 2분 간격 운행. 텔록블랑아→마리나베이가 논스톱으로 약 10분 단축됐다. 하버프론트·탄종파가·마리나베이 일대 거주·근무 한인에게 직접적 편의 향상.",
+    fullContent: `**서클선(Circle Line) 6단계 공식 개통 (2026년 7월 12일)**
+
+**신설역 3곳**
+- 케펠(Keppel), 캔턴먼트(Cantonment), 프린스에드워드로드(Prince Edward Road)
+
+**서클선 완성**
+- 전체: **33개 역 · 39km** 완전 순환
+- 하버프론트(HarbourFront) ↔ 마리나베이(Marina Bay) 연결 완료
+
+**운행 정보**
+- 피크타임: **2분 간격** (메인 루프 기준)
+- 비피크: 5~6분 간격
+
+**이동 시간 단축**
+- 텔록블랑아(Telok Blangah)→마리나베이: 이전 환승 필요에서 **논스톱, 약 10분 단축**
+
+**한인 참고**
+- 탄종파가·하버프론트·케펠 일대 거주·근무하는 한인의 도심(마리나베이·오차드) 이동 편의 향상
+- 환승 경로·소요시간은 Singpass Maps 또는 SG Trains 앱에서 재확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "LTA · SGTrains · The Independent SG",
+    sources: [
+      { name: "SGTrains — CCL6 3개 신규역 7/12 개통", url: "https://blog.sgtrains.com/2026/07/singapores-circle-line-has-finally-gone-full-circle-three-new-ccl6-stations-open-on-jul-12-2026/" },
+      { name: "LTA — CCL6 탐색 (공식)", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/6/news-releases/explore-three-new-circle-line-stage-6-stations-on-4-july-2026.html" },
+      { name: "The Independent SG — 서클선 완성 첫 탑승", url: "https://theindependent.sg/singapore-s-circle-line-is-finally-complete-here-s-how-to-be-among-the-first-to-ride-it/" },
+    ],
+    time: "2026년 7월 12일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🔵",
+    relatedIds: ["auto-20260621-3"],
+  },
+  {
+    id: "auto-20260715-5",
+    publishedAt: "2026-07-15",
+    category: "날씨",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "☀️ NEA: 엘니뇨 80%↑ 가능성 — 하반기 더 덥고 건조, 연무 위험 증가·28개 기관 헤이즈 태스크포스 가동",
+    summary: "NEA·기상청(MSS)에 따르면 엘니뇨가 2026년 6~7월 발달 가능성이 80% 이상이며 양(+)의 인도양 다이폴(IOD)도 동반 발달 중이다. 두 현상이 겹치면 6~10월 싱가포르는 더 덥고 건조한 날씨와 연무(헤이즈) 위험이 높아진다. 7월 중에는 짧은 천둥소나기가 이어지며 최고 33~34°C. NEA 산하 28개 기관 헤이즈 태스크포스가 가동 중이다.",
+    fullContent: `**NEA 7월 날씨 전망 및 엘니뇨 경보 (2026년 7월)**
+
+**엘니뇨 발달**
+- 엘니뇨 형성 가능성: 2026년 6~7월 중 **80% 이상**
+- 양(+)의 인도양 다이폴(Positive IOD)도 2026년 하반기 동반 발달 중
+
+**하반기(6~10월) 예상 영향**
+- 평년 대비 더 덥고 건조한 날씨
+- 인도네시아·말레이시아 강수 감소 → 산림·농지 화재 증가 → **연무(헤이즈) 유입 위험 상승**
+- NEA 산하 **28개 기관 헤이즈 태스크포스** 대응 체계 가동 중
+
+**7월 날씨**
+- 짧은 천둥소나기 자주, 오후~저녁 집중
+- 낮 최고기온: **33~34°C**
+
+**한인 참고**
+- 야외 활동(운동·소풍·자녀 야외 수업) 전 NEA myENV 앱 또는 haze.gov.sg에서 PSI·PM2.5 확인
+- 연무 악화 시 N95 마스크·공기청정기 준비
+- 실시간 날씨 경보는 NEA 무료 앱 myENV로 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA · HRO",
+    sources: [
+      { name: "NEA — 엘니뇨·하반기 날씨 공식 발표", url: "https://www.nea.gov.sg/media/news/news/index/el-ni%C3%B1o-conditions-expected-in-second-half-of-2026--with-warmer-and-drier-weather-in-the-coming-months" },
+      { name: "Human Resources Online — 엘니뇨·헤이즈 위험 상승", url: "https://www.humanresourcesonline.net/el-nino-to-bring-hotter-and-drier-weather-to-singapore-in-second-half-of-2026-increasing-risk-of-haze" },
+      { name: "NEA — 7월 전반기 날씨 조언", url: "https://www.nea.gov.sg/media/news/advisories/index/mostly-short-duration-thundery-showers-in-the-first-fortnight-of-july-2026" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "☀️",
+    relatedIds: ["auto-20260622-5"],
+  },
+  {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
     category: "생활",
@@ -1184,44 +1380,6 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     relatedIds: ["20"],
   },
   {
-    id: "auto-20260622-4",
-    publishedAt: "2026-02-26",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🛂 PR 연 4만명 승인 목표 발표(2026~2030년) — 출산율 0.87 역대 최저, 금융·테크·헬스케어·물류·엔지니어링 우대",
-    summary: "Gan Kim Yong 부총리가 Budget 2026 예산위원회(COS) 토론에서 2026~2030년 연간 PR(영주권) 승인을 약 4만명 규모로 늘릴 계획이라고 밝혔다(2025년 약 3만5천명 대비 증가). 2025년 거주 출생아 수가 역대 최저(약 2만7,500명), 합계출산율 0.87로 더 낮아진 데 따른 대응이며, 금융·테크(AI·퀀텀 포함)·헬스케어·물류·엔지니어링 분야가 우대 대상으로 언급됐다.",
-    fullContent: `**PR(영주권) 연간 승인 목표 상향 — Budget 2026 COS 토론**
-Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에서 발표한 내용입니다.
-
-**핵심 발표**
-- 2026~2030년 연간 PR 승인을 약 **4만명** 규모로 계획 — 2025년(약 3만5천명) 대비 증가
-- Gan 부총리: "향후 5년간 연 약 4만명 PR 승인을 예상한다. 작년 승인한 3만5천명보다 다소 높은 수준"
-
-**배경**
-- 2025년 거주 출생아 수 약 2만7,500명으로 역대 최저
-- 합계출산율(TFR) 0.87로 전년 0.97에서 추가 하락
-- 고령화·생산연령인구 감소에 대한 대응 차원
-
-**우대 산업 분야**
-- 금융, 테크(AI·퀀텀컴퓨팅 포함), 헬스케어, 물류, 엔지니어링
-
-**한인 참고**
-- EP·S Pass로 거주 중 PR을 고려하는 한인이라면, 위 우대 산업군 종사 여부가 승인 가능성에 도움이 될 수 있음
-- 다만 이는 정부의 전체 정책 방향 발표로, 개별 심사 기준·세부 가점 항목은 ICA가 별도 공개하지 않음에 유의
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "population.gov.sg · VisaVerge",
-    sources: [
-      { name: "population.gov.sg — Speech by Deputy Prime Minister Gan Kim Yong, Committee of Supply Debate 2026", url: "https://www.population.gov.sg/speech-by-deputy-prime-minister-gan-kim-yong-committee-of-supply-debate-2026/" },
-      { name: "VisaVerge — Singapore to grant up to 40,000 Permanent Residencies a year, DPM Gan Kim Yong says", url: "https://www.visaverge.com/news/singapore-to-grant-up-to-40000-permanent-residencies-a-year-deputy-pm-gan-kim-yong-says/" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🛂",
-    relatedIds: [],
-  },
-  {
     id: "auto-20260622-5",
     publishedAt: "2026-05-29",
     category: "날씨",
@@ -1585,76 +1743,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: [],
   },
   {
-    id: "28",
-    publishedAt: "2026-02-26",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
-    summary: "싱가포르 경찰(SPF) 발표: 2025년 사기 건수 37,308건으로 전년比 27.6% 첫 감소, 피해액 약 S$9.13억. 다만 2026년 들어 'PR 신청 대행' 사칭 사기 24건(피해 약 S$39.7만) 발생 — PR 신청하는 한인 표적 가능, 각별 주의.",
-    fullContent: `**2025년 사기 통계 (2026년 2월 발표)**
-싱가포르 경찰청(SPF)이 2025년 사기·사이버범죄 통계를 발표했습니다.
-
-**전체 현황**
-- 사기 건수: **37,308건** (2024년 51,501건 대비 **27.6% 감소** — 통계 분리 이후 첫 감소)
-- 피해액: 약 **S$9.13억** (2024년 S$11.24억 대비 17.9%↓)
-- 단, 1인당 평균 피해액은 상승
-
-**⚠️ 한인 주의 — PR 신청 대행 사칭 사기**
-- 2026년 1월 이후 'PR(영주권) 신청을 도와주겠다'는 가짜 광고·서류·공식기관 사칭 사기 **24건**, 피해 약 **S$39.7만**
-- ICA 등 공식 절차는 정부 포털에서만 진행 — SNS 광고·대행 업체 통한 선입금 요구는 사기 의심
-
-**예방 수칙**
-- 정부 기관은 메신저·SNS DM으로 송금·개인정보를 요구하지 않음
-- 의심 시 ScamShield 앱·1799(안티스캠 핫라인) 확인
-
-정확한 최신 통계·경보는 아래 출처(SPF)를 확인하세요.`,
-    source: "SPF · The Online Citizen",
-    sources: [
-      { name: "SPF — Scams and Cybercrime Fell in 2025", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/02/Scams-and-Cybercrime-Fell-by-Almost-a-Quarter-in-2025" },
-      { name: "SPF — PR 신청 사기 경보", url: "https://www.police.gov.sg/Media-Hub/News/2026/04/20260422_police_advisory_on_scam_variant_involving_fraudulent_social_media_advertisements_teaser" },
-      { name: "The Online Citizen — 사기 27.6% 감소", url: "https://theonlinecitizen.com/2026/02/25/scam-cases-in-singapore-fall-27-6-per-cent-in-first-recorded-decrease" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["17"],
-  },
-  {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
     id: "17",
     publishedAt: "2026-03-03",
     category: "비자/취업",
@@ -1689,149 +1777,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "💼",
     relatedIds: ["21", "20"],
-  },
-  {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
-
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
-    id: "27",
-    publishedAt: "2026-02-17",
-    category: "생활",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
-    summary: "2026년 춘절(Chinese New Year)은 2월 17일(화)·18일(수) 공식 공휴일. 말의 해. 2월 16일(월) 연차 시 토~수 4일 연휴. 2026년 싱가포르 법정 공휴일은 총 11일(춘절·하리라야·디파발리·크리스마스·노동절·건국기념일 등).",
-    fullContent: `**2026년 춘절 & 공휴일 안내**
-한인 가정의 연휴·여행 계획에 참고하세요.
-
-**춘절(Chinese New Year) 2026**
-- 공식 공휴일: **2월 17일(화)·18일(수)** — 말(馬)의 해
-- 2월 16일(월) 연차 사용 시 **2/15(토)~2/18(수) 4일 연휴**
-- 축제는 15일간 이어지며 정월대보름(Lantern Festival)으로 마무리
-
-**2026년 법정 공휴일 (총 11일)**
-- 신정, 춘절(2일), 성금요일, 노동절, 하리라야 푸아사, 베삭데이, 하리라야 하지, 건국기념일(8/9), 디파발리, 크리스마스 등
-
-**팁**
-- 춘절 연휴엔 한국행 항공권 수요·가격 상승 — 미리 예약
-- 일부 한인 업소·마트 단축영업 가능, 방문 전 확인
-
-정확한 날짜는 아래 출처를 확인하세요.`,
-    source: "MOM · M1 · Foodline",
-    sources: [
-      { name: "M1 — 2026 공휴일 가이드", url: "https://www.m1.com.sg/blog/personal/public-holidays-2026-singapore-long-weekend" },
-      { name: "Eskimo Travel — CNY 2026", url: "https://www.eskimo.travel/en/blog/chinese-new-year-singapore-2026" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🧧",
-    relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
   },
   {
     id: "31",
@@ -1869,38 +1814,8 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     emoji: "📈",
     relatedIds: ["17", "21"],
   },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
-  },
 ];
+
 
 // 최신순(publishedAt 내림차순) 자동 정렬 — 새 뉴스 추가 시 배열 위치와 무관하게 최신이 위로.
 export const NEWS_ITEMS: NewsItem[] = [...RAW_NEWS_ITEMS]
