@@ -26,6 +26,163 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260724-1",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "🪪 S Pass 최저급여 7/1부터 S$3,600 시행 — LQS도 S$1,800으로 인상",
+    summary: "7월 1일부터 S Pass 최저 자격급여가 일반 업종 S$3,300→S$3,600, 금융 서비스 S$3,800→S$4,000으로 인상됐다. 로컬 자격급여(LQS)도 S$1,600→S$1,800으로 올라 한인 사업주의 외국인 채용 쿼터 산정 기준도 높아졌다. 7월 1일 이후 제출되는 신규·갱신 신청 모두 새 기준이 적용되므로, S Pass 보유자와 고용주는 현재 급여가 기준을 충족하는지 확인이 필요하다.",
+    fullContent: `**S Pass 최저급여 7월 1일부터 인상 시행**
+인력부(MOM)가 발표한 S Pass 자격급여 변경이 2026년 7월 1일부터 효력을 발휘합니다.
+
+**변경 내용**
+- 일반 업종(서비스·제조·건설 등): S$3,300 → **S$3,600**
+- 금융 서비스업: S$3,800 → **S$4,000**
+- 연령이 높을수록 추가 상향(30대 중반~40대 중반은 S$5,100/5,650 이상 요구)
+
+**LQS(로컬 자격급여) 인상**
+- 풀타임 로컬 직원 최저급여 기준: S$1,600 → **S$1,800**
+- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 로컬 직원 급여가 S$1,800 미만이면 해당 직원이 쿼터 계산에서 제외됨
+
+**한인 관련 주의사항**
+- **S Pass 보유자**: 현재 급여가 S$3,600(일반) 또는 S$4,000(금융) 미만이면 7/1 이후 갱신 시 탈락 위험. 고용주에 급여 조정 또는 EP 전환 검토 요청 필요
+- **한인 사업주·고용주**: 로컬 직원 급여가 S$1,800 미만이면 7월부터 해당 직원이 쿼터 계산에서 빠져 S Pass·Work Permit 채용 여력이 줄어들 수 있음
+- 연령별 상세 기준은 MOM 공식 안내에서 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Synchro Consulting SG · One Visa",
+    sources: [
+      { name: "Synchro Consulting SG — S Pass Salary Changes July 2026", url: "https://synchro.com.sg/s-pass-salary-changes-july-2026-what-singapore-smes-must-do-before-the-deadline/" },
+      { name: "One Visa — S Pass Minimum Salary 2026: Latest MOM Update", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
+      { name: "Singapore Employment Agency — S Pass Salary Increase July 2026", url: "https://singaporeemploymentagency.com/s-pass-salary-increase-july-2026/" },
+    ],
+    time: "2026년 7월 1일 시행",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🪪",
+    relatedIds: ["17"],
+  },
+  {
+    id: "auto-20260724-2",
+    publishedAt: "2026-07-24",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏢 URA Q2 민간주택 가격 +0.5%·렌트 +0.7% (7월 24일 확정) — 7분기 연속 상승, 렌트 다시 가속",
+    summary: "URA가 7월 24일 발표한 2026년 2분기 확정 통계에 따르면 민간주택 가격지수는 전분기比 +0.5%(Q1 +0.9%에서 둔화)로 7분기 연속 상승했다. 렌트는 +0.7%(Q1 +0.3%에서 가속), 단독주택(Landed) 렌트가 +2.7%로 가장 많이 올랐고 콘도 등 비단독주택은 +0.4%. 임차인 입장에서는 임대료가 소폭 다시 오르는 국면이다.",
+    fullContent: `**URA 2026년 2분기 부동산 통계 (7월 24일 확정 발표)**
+
+**민간주택 가격**
+- 전체 가격지수 전분기比 **+0.5%** (Q1 +0.9%에서 상승세 둔화)
+- **7분기 연속 가격 상승**
+- 단독주택(Landed): **+2.6%** (Q1 -0.4%에서 반등)
+- 비단독주택(콘도 등): 상승폭 소폭
+
+**민간주택 렌트**
+- 전체 렌트지수 전분기比 **+0.7%** (Q1 +0.3%에서 가속)
+- 단독주택 렌트: **+2.7%** (상승 주도)
+- 비단독주택 렌트: **+0.4%**
+
+**참고 — HDB 재판매**
+- 2분기 HDB 재판매가 **-0.3%** (2분기 연속 하락, 약 7년 만) — 별도 플래시 기준
+
+**한인 임차인 참고**
+- 콘도 렌트는 +0.4%로 소폭 올랐지만 단독주택 렌트 상승폭이 커, 단독주택 계약·갱신을 앞둔 분은 주의
+- 지역·평형별 편차가 크므로 실제 시세는 PropertyGuru·SRX·99.co 등에서 개별 확인 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "URA · 99.co · Bloomberg",
+    sources: [
+      { name: "99.co — Singapore private home prices Q2 2026: +0.5% with landed homes driving gains", url: "https://www.99.co/singapore/insider/singapore-private-home-prices-q2-2026-report-breakdown/" },
+      { name: "Yahoo News Singapore — Private residential rents rise 0.7% in Q2 as home prices inch up 0.5%: URA", url: "https://sg.news.yahoo.com/private-residential-rents-rise-0-073000846.html" },
+      { name: "Bloomberg — Singapore Home Prices Rise for Seventh Quarter as Rents Jump (7월 24일)", url: "https://www.bloomberg.com/news/articles/2026-07-24/singapore-home-prices-rise-for-seventh-quarter-rents-accelerate" },
+    ],
+    time: "2026년 7월 24일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏢",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260724-3",
+    publishedAt: "2026-07-24",
+    category: "생활",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🇸🇬 NDP 2026 프리뷰 내일(7/25)·본행사 8/9 — 내셔널 스타디움, 최초 실내 드론쇼·칼랑 불꽃",
+    summary: "제61주년 싱가포르 국경일(8월 9일) 기념 NDP 2026이 내셔널 스타디움에서 열린다. 프리뷰 1차(7/25)·2차(8/1)에는 칼랑 베이신 불꽃놀이가 동반된다. 올해 테마 'Majulah Singapura, Go Beyond!'로 최초 실내 드론 라이트쇼가 선보인다. 레드라이언스 낙하·전통 모바일 컬럼은 올해 제외됐다. 7/25~8/9 칼랑 일대 야외 전시·음악 공연도 진행된다.",
+    fullContent: `**NDP 2026 — 제61주년 싱가포르 국경일 기념 행사**
+이번 주부터 시작되는 내셔널 데이 퍼레이드(NDP) 2026 안내입니다.
+
+**일정**
+- 프리뷰 1: **7월 25일(토)**
+- 프리뷰 2: **8월 1일(토)**
+- 본행사: **8월 9일(일)** — 싱가포르 독립 61주년
+- 장소: **내셔널 스타디움(칼랑)**
+
+**테마·볼거리**
+- 테마: **'Majulah Singapura, Go Beyond!'** (61주년)
+- **최초의 실내 드론 라이트쇼** (대규모 스페셜이펙트 포함)
+- 프리뷰·본행사 때 **칼랑 베이신 불꽃놀이**
+- 7/25~8/9 칼랑 스타디움 리버사이드워크: 야외 음악 공연, 포토존 'Go Beyond' 조형물, 다문화 체험 행사
+
+**이번 행사에 없는 것**
+- 레드라이언스(공수부대) 낙하산 시범
+- 전통 모바일 컬럼
+- 퍼레이드 회장 상공 전면 에어쇼
+
+**참고**
+- NDP 입장권은 시민·PR 추첨이며 이미 발표됨 (EP 외국인은 입장권 없음)
+- 불꽃놀이는 칼랑 외부 마리나 베이·이스트 코스트 등 조망 포인트에서도 관람 가능
+- 칼랑 일대 교통혼잡·도로통제 예상 — 대중교통 이용 권장
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Urban List SG · Honeykids Asia · The Honeycombers",
+    sources: [
+      { name: "The Urban List Singapore — National Day 2026: NDP tickets, drone show, fireworks and everything to know", url: "https://www.theurbanlist.com/singapore/a-list/national-day-singapore-guide" },
+      { name: "Honeykids Asia — Singapore National Day 2026 (SG61): NDP, fireworks, theme and what to expect", url: "https://honeykidsasia.com/singapore-national-day/" },
+      { name: "The Honeycombers — National Day Singapore 2026: Events, fireworks and what's happening", url: "https://thehoneycombers.com/singapore/national-day-singapore/" },
+    ],
+    time: "2026년 7월 25일 프리뷰 · 8월 9일 본행사",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🇸🇬",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260724-4",
+    publishedAt: "2026-07-01",
+    category: "날씨",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🌦️ 7월 싱가포르 날씨 — 오후 짧은 천둥소나기 잦음·최고 33~34도, 8~9월 연무 '레드' 대비",
+    summary: "NEA가 발표한 7월 날씨 전망에 따르면 대부분의 날 늦은 오전~오후에 싱가포르 일부 지역에서 짧은 천둥소나기가 내린다. 일일 최고기온은 33~34도이며 구름이 적은 날은 34도 초과 가능. 엘니뇨 영향으로 8~9월 연무(헤이즈) 위험도 높아, 외출 전 NEA myENV 앱으로 PM2.5를 확인하는 습관이 필요하다.",
+    fullContent: `**7월 날씨 전망 · 연무 대비 (NEA)**
+국가환경청(NEA)이 발표한 2026년 7월 날씨 전망과 연무 대비 안내입니다.
+
+**7월 날씨 (NEA 공식 전망)**
+- 대부분의 날 늦은 오전~오후, 싱가포르 일부 지역에서 **짧은 천둥소나기** 예상
+- 일일 최고기온 **33~34도**, 구름 적은 날은 34도 초과 가능
+- 수마트라 스콜(돌풍 동반 비구름대) 발생 가능성도 있음
+
+**8~9월 연무(헤이즈) 피크 위험기 대비**
+- SIIA 'Haze Outlook 2026'은 엘니뇨+양의 인도양 다이폴로 인해 8~9월을 연무 '피크 위험기'로 규정, '레드' 등급 경보 발령 상태
+- 외출 전 NEA myENV 앱·weather.gov.sg에서 1시간 PM2.5·24시간 PSI 사전 확인 권장
+- 호흡기 질환자·어린이·노약자는 N95 마스크·공기청정기 사전 준비
+
+**참고**
+- 천둥·낙뢰 경보 시 야외 수영장·운동장·해변 활동은 즉시 중단하고 실내로 대피
+- 최신 기상 정보는 NEA 공식 채널에서 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA",
+    sources: [
+      { name: "NEA — Mostly Short-Duration Thundery Showers In The First Fortnight Of July 2026", url: "https://www.nea.gov.sg/media/news/advisories/index/mostly-short-duration-thundery-showers-in-the-first-fortnight-of-july-2026" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🌦️",
+    relatedIds: ["auto-20260624-5"],
+  },
+  {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
     category: "생활",
@@ -1585,76 +1742,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: [],
   },
   {
-    id: "28",
-    publishedAt: "2026-02-26",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
-    summary: "싱가포르 경찰(SPF) 발표: 2025년 사기 건수 37,308건으로 전년比 27.6% 첫 감소, 피해액 약 S$9.13억. 다만 2026년 들어 'PR 신청 대행' 사칭 사기 24건(피해 약 S$39.7만) 발생 — PR 신청하는 한인 표적 가능, 각별 주의.",
-    fullContent: `**2025년 사기 통계 (2026년 2월 발표)**
-싱가포르 경찰청(SPF)이 2025년 사기·사이버범죄 통계를 발표했습니다.
-
-**전체 현황**
-- 사기 건수: **37,308건** (2024년 51,501건 대비 **27.6% 감소** — 통계 분리 이후 첫 감소)
-- 피해액: 약 **S$9.13억** (2024년 S$11.24억 대비 17.9%↓)
-- 단, 1인당 평균 피해액은 상승
-
-**⚠️ 한인 주의 — PR 신청 대행 사칭 사기**
-- 2026년 1월 이후 'PR(영주권) 신청을 도와주겠다'는 가짜 광고·서류·공식기관 사칭 사기 **24건**, 피해 약 **S$39.7만**
-- ICA 등 공식 절차는 정부 포털에서만 진행 — SNS 광고·대행 업체 통한 선입금 요구는 사기 의심
-
-**예방 수칙**
-- 정부 기관은 메신저·SNS DM으로 송금·개인정보를 요구하지 않음
-- 의심 시 ScamShield 앱·1799(안티스캠 핫라인) 확인
-
-정확한 최신 통계·경보는 아래 출처(SPF)를 확인하세요.`,
-    source: "SPF · The Online Citizen",
-    sources: [
-      { name: "SPF — Scams and Cybercrime Fell in 2025", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/02/Scams-and-Cybercrime-Fell-by-Almost-a-Quarter-in-2025" },
-      { name: "SPF — PR 신청 사기 경보", url: "https://www.police.gov.sg/Media-Hub/News/2026/04/20260422_police_advisory_on_scam_variant_involving_fraudulent_social_media_advertisements_teaser" },
-      { name: "The Online Citizen — 사기 27.6% 감소", url: "https://theonlinecitizen.com/2026/02/25/scam-cases-in-singapore-fall-27-6-per-cent-in-first-recorded-decrease" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["17"],
-  },
-  {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
     id: "17",
     publishedAt: "2026-03-03",
     category: "비자/취업",
@@ -1691,149 +1778,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     relatedIds: ["21", "20"],
   },
   {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
-
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
-    id: "27",
-    publishedAt: "2026-02-17",
-    category: "생활",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
-    summary: "2026년 춘절(Chinese New Year)은 2월 17일(화)·18일(수) 공식 공휴일. 말의 해. 2월 16일(월) 연차 시 토~수 4일 연휴. 2026년 싱가포르 법정 공휴일은 총 11일(춘절·하리라야·디파발리·크리스마스·노동절·건국기념일 등).",
-    fullContent: `**2026년 춘절 & 공휴일 안내**
-한인 가정의 연휴·여행 계획에 참고하세요.
-
-**춘절(Chinese New Year) 2026**
-- 공식 공휴일: **2월 17일(화)·18일(수)** — 말(馬)의 해
-- 2월 16일(월) 연차 사용 시 **2/15(토)~2/18(수) 4일 연휴**
-- 축제는 15일간 이어지며 정월대보름(Lantern Festival)으로 마무리
-
-**2026년 법정 공휴일 (총 11일)**
-- 신정, 춘절(2일), 성금요일, 노동절, 하리라야 푸아사, 베삭데이, 하리라야 하지, 건국기념일(8/9), 디파발리, 크리스마스 등
-
-**팁**
-- 춘절 연휴엔 한국행 항공권 수요·가격 상승 — 미리 예약
-- 일부 한인 업소·마트 단축영업 가능, 방문 전 확인
-
-정확한 날짜는 아래 출처를 확인하세요.`,
-    source: "MOM · M1 · Foodline",
-    sources: [
-      { name: "M1 — 2026 공휴일 가이드", url: "https://www.m1.com.sg/blog/personal/public-holidays-2026-singapore-long-weekend" },
-      { name: "Eskimo Travel — CNY 2026", url: "https://www.eskimo.travel/en/blog/chinese-new-year-singapore-2026" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🧧",
-    relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
-  {
     id: "31",
     publishedAt: "2026-03-31",
     category: "취업",
@@ -1868,37 +1812,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📈",
     relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
   },
 ];
 
