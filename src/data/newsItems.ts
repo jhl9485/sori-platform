@@ -26,6 +26,202 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260725-1",
+    publishedAt: "2026-07-25",
+    category: "날씨",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🌩️ 7월 하반기 날씨 전망 — 매일 오후 천둥소나기, 낮 최고 33~34도, 수마트라 스콜 가능",
+    summary: "NEA가 발표한 7월 하반기 날씨 전망에 따르면 대부분의 날 오전 늦게~오후 사이 단시간 천둥소나기가 예상된다. 하루 이틀은 광범위한 폭우·천둥이 올 수 있고, 수마트라 스콜이 새벽~이른 아침에 강풍을 동반해 올 가능성도 있다. 낮 최고기온은 대부분 33~34도, 구름이 적은 날은 34도를 넘을 수 있으며, 남·동부 해안지역을 중심으로 일부 밤에는 28도 이상의 열대야가 이어질 수 있다.",
+    fullContent: `**7월 하반기 날씨 전망 (NEA)**
+국가환경청(NEA)이 발표한 2026년 7월 하반기 날씨 전망입니다.
+
+**강수**
+- 대부분의 날 오전 늦게~오후 사이 일부 지역에서 단시간 천둥소나기 예상
+- 하루 이틀은 광범위한 수렴대 형성으로 **강한 천둥·폭우**가 내릴 가능성
+- **수마트라 스콜**: 하루 이틀 새벽~이른 아침에 강풍을 동반한 넓은 비구름대가 통과할 수 있음
+- 7월 하반기 총 강수량은 대체로 평년 수준
+
+**기온**
+- 낮 최고기온 대부분 **33~34도**, 구름이 적은 날은 **34도 초과** 가능
+- 일부 밤(특히 **남부·동부 해안지역**)은 **28도 이상**의 열대야
+
+**한인 참고**
+- 오후 야외 약속·운동 계획 시 갑작스러운 천둥소나기에 대비해 우산을 지참하세요.
+- 수마트라 스콜은 새벽·이른 아침에 예고 없이 강풍을 동반하므로 창문·야외 물건을 미리 정리해두는 것이 좋습니다.
+- 최신 날씨·경보는 **NEA myENV 앱** 또는 weather.gov.sg에서 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA",
+    sources: [
+      { name: "NEA — Mostly Short-Duration Thundery Showers Expected In The Second Half Of July 2026", url: "https://www.nea.gov.sg/media/news/advisories/index/mostly-short-duration-thundery-showers-expected-in-the-second-half-of-july-2026" },
+    ],
+    time: "2026년 7월 25일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🌩️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260725-2",
+    publishedAt: "2026-07-25",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🎆 NDP 2026 프리뷰1 오늘(7/25) 교통통제 — 캘랑 일대 도로 통제·버스 6개 노선 우회, 8/1도 동일",
+    summary: "NDP 2026 첫 번째 프리뷰가 오늘(7월 25일, 토) 내셔널 스타디움에서 열린다. 캘랑 일대 도로 일부는 오전 7시부터 통제되고, 탄종루플레이스는 오후 3시, 스타디움 크레센트·워크 등은 오후 5시부터 밤 11시까지 통제된다. 버스 10·11·14·16·70/70M·196번이 임시 우회 운행하며, 경찰은 대중교통 이용을 권고했다. 다음 프리뷰2는 8월 1일(토).",
+    fullContent: `**NDP 2026 프리뷰1 교통 통제 (2026년 7월 25일)**
+8월 9일 내셔널 스타디움 NDP 2026 본행사를 앞두고 오늘(7/25, 토) 첫 번째 프리뷰가 열립니다.
+
+**도로 통제**
+- 일부 구간: **오전 7시부터** 통제 시작
+- **탄종루플레이스(Tanjong Rhu Place)**: 오후 **3시~밤 11시**
+- **잘란 베나안 카팔·스타디움 크레센트·스타디움워크·스타디움웨이 일부**: 오후 **5시~밤 11시**
+- 니콜하이웨이·마운트배튼로드·길르말로드 등 주변 도로도 영향권
+
+**임시 노선 변경 버스**
+- **10·11·14·16·70/70M·196번** — 캘랑 일대 우회 운행
+
+**8월 1일(토) 프리뷰2도 유사한 통제 예정**
+
+**참고**
+- 경찰(SPF)은 **대중교통 이용**을 적극 권고했습니다.
+- 캘랑·내셔널 스타디움·마운트배튼 인근 한인은 이동 시간을 여유 있게 잡으세요. 불법 주정차는 견인 대상입니다.
+- 정확한 도로 통제 범위·시간은 SPF·NDP 공식 안내를 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · Singpromos · SmartLocal",
+    sources: [
+      { name: "Singpromos — NDP 2026 Road Closures for P1 on 25 Jul 2026", url: "https://singpromos.com/motor-vehicles/national-day-parade-2026-road-closures-for-ne1-ne2-and-p1-on-11-jul-18-jul-and-25-jul-2026-304226/" },
+      { name: "The Smart Local — NDP 2026 Road Closures & Alternative Routes", url: "https://thesmartlocal.com/read/ndp-road-closures/" },
+      { name: "Singapore Uncensored — NDP 2026 Preview Road Closures 25 July", url: "https://singaporeuncensored.com/ndp-2026-preview-brings-extensive-road-closures-around-national-stadium-on-25-july/" },
+    ],
+    time: "2026년 7월 25일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🎆",
+    relatedIds: ["auto-20260628-1"],
+  },
+  {
+    id: "auto-20260725-3",
+    publishedAt: "2026-07-19",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "📞 '3'으로 시작하는 번호 정부기관 사칭 사기 — 5월 이후 12건·S$27만4천, 은행·MAS·SPF 사칭",
+    summary: "싱가포르 경찰(SPF)이 7월 19일 '3'으로 시작하는 8자리 번호로 전화해 은행·보험사·통신사 또는 MAS·SPF 등 정부기관을 사칭하는 사기를 경보했다. 5월 이후 최소 12건, 피해 약 S$27만4천 발생. 신용카드 이상 거래·보험 도용·명의 도용 휴대폰 개통 등을 빌미로 개인정보나 송금을 요구하는 수법이며, '3'으로 시작하는 번호는 싱가포르 정부기관·금융사 공식 번호가 아니다.",
+    fullContent: `**'3XXXXXXX' 번호 사칭 사기 경보 (SPF, 2026년 7월 19일)**
+싱가포르 경찰(SPF)이 새로운 번호 유형을 이용한 사기를 7월 19일 경보했습니다.
+
+**수법**
+- '3'으로 시작하는 **8자리 번호**로 피해자에게 전화
+- 은행·보험사·통신사, 또는 MinLaw·MAS·SPF 등 **정부기관 직원으로 가장**
+- "신용카드에 이상 거래가 감지됐다", "보험이 타인에게 도용됐다", "귀하 명의로 새 휴대폰 개통이 됐다" 등의 명목으로 접근
+- 개인정보·은행 정보 제공이나 계좌이체 요구로 이어짐
+
+**피해 현황**
+- 5월 이후 최소 **12건** 신고, 피해액 최소 **S$27만4천(S$274,000)**
+
+**공식 안내**
+- **'3'으로 시작하는 8자리 번호는 싱가포르 정부기관·금융사 공식 번호가 아님**
+- 이런 번호로 전화가 오면 의심하고, 전화를 끊은 뒤 해당 기관 공식 홈페이지 번호로 직접 확인할 것
+- ScamShield 앱 또는 1799(안티사기 핫라인)로 즉시 신고
+
+**한인 참고**
+- 어떤 기관도 전화로 계좌이체·OTP·개인 금융 정보를 요구하지 않음
+- 한국어로 걸려오는 사기 전화도 증가 추세이므로 출처 불명 전화에 각별히 주의할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · The Independent SG",
+    sources: [
+      { name: "SPF — Police Advisory On Government Officials Impersonation Scams Involving Telephone Numbers Beginning With The Digit '3'", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260719_police_advisory_on_government_officials_impersonation_scams_involving_telephone_numbers" },
+      { name: "The Independent SG — SPF: Scammers using '3XXXXXXX' numbers, 12 victims, S$274,000 lost since May", url: "https://theindependent.sg/spf-scammers-using-3xxxxxxx-numbers-to-impersonate-minlaw-mas-and-spf-12-victims-s-274-000-lost-since-may/" },
+    ],
+    time: "2026년 7월 19일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "📞",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260725-4",
+    publishedAt: "2026-07-02",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ MS·Crypto.com 사칭 기술지원 사기 신규 경보 — 5월 이후 30건·S$100만+, 원격조종 요구 주의",
+    summary: "SPF가 7월 2일 마이크로소프트(MS)와 Crypto.com을 동시에 사칭하는 기술지원 사기를 경보했다. 5월 이후 최소 30건, 피해 최소 S$100만. 브라우저 팝업·메신저로 '계정 해킹·보안 이상'을 알린 뒤 원격 접속 프로그램 설치나 지갑 시드구문 제공을 요구한다. 6월에도 MS 단독 사칭 경보(6/9)가 있었으나 이번에는 Crypto.com 사칭이 추가됐다.",
+    fullContent: `**MS·Crypto.com 사칭 기술지원 사기 경보 (SPF, 2026년 7월 2일)**
+싱가포르 경찰(SPF)이 마이크로소프트(MS)·Crypto.com을 동시에 사칭하는 기술지원 사기를 7월 2일 경보했습니다.
+
+**피해 현황**
+- 5월 이후 최소 **30건** 신고, 피해 최소 **S$100만(S$1 million) 이상**
+
+**수법**
+- 브라우저에 MS 또는 Crypto.com 로고가 붙은 가짜 경고 팝업 등장 — "기기가 해킹됐다", "암호화폐 계정에 이상이 생겼다"
+- 팝업의 번호·링크로 연락하면 '기술지원 담당자'와 연결
+- **원격 접속 프로그램(AnyDesk·TeamViewer 등) 설치 요구**
+- 암호화폐 지갑 복구용 **시드구문(seed phrase)·개인키 제공** 요구 → 지갑 자산 전체 탈취 가능
+
+**주의 사항**
+- MS, Crypto.com 모두 팝업·이메일로 원격 접속을 요구하거나 시드구문을 요청하지 않음
+- 팝업 속 번호로 전화하지 말고 브라우저를 종료할 것
+- 원격 접속 프로그램 설치·암호화폐 정보 공유 요청은 즉시 거절
+
+**한인 참고**
+- 암호화폐 투자를 하는 한인이라면 시드구문은 오프라인에 안전하게 보관하고, 어떤 이유로도 온라인에서 입력하거나 공유하지 말 것
+- 의심 시 ScamShield 앱 또는 1799(안티사기 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · CryptoTimes",
+    sources: [
+      { name: "SPF — Police Advisory On Technical Support Scams Impersonating Microsoft And Crypto.com", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260702_police_advisory_on_technical_support_scams_impersonating_microsoft_and_crypto_com" },
+      { name: "CryptoTimes — Singapore Police Warns of Microsoft, Crypto.com Impersonation Scam", url: "https://www.cryptotimes.io/2026/07/03/singapore-police-warns-of-microsoft-crypto-com-impersonation-scam/" },
+    ],
+    time: "2026년 7월 2일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🖥️",
+    relatedIds: ["auto-20260624-3"],
+  },
+  {
+    id: "auto-20260725-5",
+    publishedAt: "2026-07-01",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🔐 암호화폐 '퍼밋 서명' 탈취 사기 — SPF 7/1 경보, 클릭 한 번에 지갑 전체 인출 허용",
+    summary: "싱가포르 경찰(SPF)이 7월 1일 암호화폐 지갑의 '퍼밋 서명(permit signature)'을 악용하는 사기를 경보했다. 텔레그램 등에서 비즈니스 파트너·의뢰인으로 위장한 사기범이 퍼밋 서명에 동의하도록 유도하면, 이후 추가 확인 없이 지갑에서 임의로 자금을 빼갈 수 있게 된다. 일반 거래와 달리 오프체인에서 이루어져 피해 회복이 어렵다.",
+    fullContent: `**암호화폐 '퍼밋 서명' 악용 사기 경보 (SPF, 2026년 7월 1일)**
+싱가포르 경찰(SPF)이 암호화폐 사용자를 대상으로 한 신종 사기를 7월 1일 경보했습니다.
+
+**'퍼밋 서명(Permit Signature)'이란?**
+- ERC-20 등 일부 토큰이 지원하는 기능으로, 서명 한 번으로 스마트컨트랙트가 해당 지갑에서 이후 자금을 자유롭게 출금할 수 있도록 허용하는 방식
+- 일반 트랜잭션과 달리 **오프체인(off-chain)**에서 이루어져 블록체인에 즉시 기록되지 않아 피해를 늦게 알아채기 쉬움
+
+**수법**
+- 텔레그램·메신저 등에서 사기범이 비즈니스 파트너·잠재 고객인 척 접근
+- "거래 확인" 또는 "계약 서명"처럼 속여 피해자로 하여금 **퍼밋 서명에 동의**하게 함
+- 이후 사기범은 추가 확인 없이 피해자 지갑에서 자금을 자유롭게 인출
+
+**SPF 권고**
+- 출처 불명의 링크·첨부파일을 클릭하지 말 것
+- 서명 요청이 오면 거래 내용을 반드시 꼼꼼히 읽고, 이해되지 않으면 서명하지 말 것
+- 시드구문(seed phrase)·개인키를 어떤 이유로도 공유하지 말 것
+- 피해 발생 시 즉시 지갑 연결을 해제하고 ScamShield·1799로 신고
+
+**한인 참고**
+- DeFi(탈중앙화 금융) 거래 시 '퍼밋' 서명 창이 뜨면 서명 대상 스마트컨트랙트 주소를 반드시 확인하세요
+- 검증되지 않은 플랫폼·앱에서의 서명은 자산 전체를 잃을 수 있습니다
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Cryptocurrency Scams Involving Malicious Links And Unauthorised Transactions", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260701_police_advisory_on_cryptocurrency_scams_involving_malicious_links" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🔐",
+    relatedIds: ["auto-20260706-2"],
+  },
+
+  {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
     category: "생활",
@@ -54,6 +250,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🔑",
     relatedIds: [],
   },
+
   {
     id: "auto-20260712-2",
     publishedAt: "2026-07-07",
@@ -83,6 +280,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🚖",
     relatedIds: [],
   },
+
   {
     id: "auto-20260712-3",
     publishedAt: "2026-07-01",
@@ -113,6 +311,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🏘️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
@@ -150,6 +349,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "⚡",
     relatedIds: [],
   },
+
   {
     id: "auto-20260706-2",
     publishedAt: "2026-07-05",
@@ -199,6 +399,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🛡️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260706-3",
     publishedAt: "2026-07-06",
@@ -246,6 +447,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🎒",
     relatedIds: ["auto-20260619-3"],
   },
+
   {
     id: "auto-20260705-1",
     publishedAt: "2026-07-05",
@@ -274,6 +476,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🚌",
     relatedIds: [],
   },
+
   {
     id: "auto-20260703-1",
     publishedAt: "2026-07-03",
@@ -302,6 +505,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🏝️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260702-1",
     publishedAt: "2026-07-02",
@@ -331,6 +535,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "💰",
     relatedIds: [],
   },
+
   {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
@@ -359,6 +564,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🚇",
     relatedIds: [],
   },
+
   {
     id: "auto-20260630-2",
     publishedAt: "2026-06-30",
@@ -388,6 +594,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "💡",
     relatedIds: [],
   },
+
   {
     id: "auto-20260630-1",
     publishedAt: "2026-06-30",
@@ -415,6 +622,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🏠",
     relatedIds: [],
   },
+
   {
     id: "auto-20260629-1",
     publishedAt: "2026-06-29",
@@ -444,6 +652,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🎤",
     relatedIds: [],
   },
+
   {
     id: "auto-20260629-2",
     publishedAt: "2026-06-29",
@@ -473,6 +682,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🚕",
     relatedIds: [],
   },
+
   {
     id: "auto-20260628-1",
     publishedAt: "2026-06-28",
@@ -500,6 +710,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🎆",
     relatedIds: [],
   },
+
   {
     id: "auto-20260627-2",
     publishedAt: "2026-06-27",
@@ -526,6 +737,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🏦",
     relatedIds: [],
   },
+
   {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
@@ -557,6 +769,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🧧",
     relatedIds: [],
   },
+
   {
     id: "auto-20260625-1",
     publishedAt: "2026-06-25",
@@ -593,6 +806,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "⛴️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260624-5",
     publishedAt: "2026-06-24",
@@ -634,6 +848,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🌫️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260624-6",
     publishedAt: "2026-06-24",
@@ -672,6 +887,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🚨",
     relatedIds: [],
   },
+
   {
     id: "auto-20260624-7",
     publishedAt: "2026-06-18",
@@ -710,6 +926,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "💡",
     relatedIds: [],
   },
+
   {
     id: "auto-20260624-1",
     publishedAt: "2026-06-10",
@@ -753,6 +970,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🎫",
     relatedIds: ["28"],
   },
+
   {
     id: "auto-20260624-2",
     publishedAt: "2026-06-04",
@@ -792,6 +1010,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "💰",
     relatedIds: ["28"],
   },
+
   {
     id: "auto-20260624-3",
     publishedAt: "2026-06-09",
@@ -831,6 +1050,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🖥️",
     relatedIds: ["28"],
   },
+
   {
     id: "auto-20260624-4",
     publishedAt: "2026-06-22",
@@ -873,6 +1093,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "📊",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-6",
     publishedAt: "2026-06-22",
@@ -913,6 +1134,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🚨",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-7",
     publishedAt: "2026-06-29",
@@ -950,6 +1172,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🛡️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-8",
     publishedAt: "2026-06-15",
@@ -994,6 +1217,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "📉",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-9",
     publishedAt: "2026-06-16",
@@ -1030,6 +1254,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🌩️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-10",
     publishedAt: "2026-06-27",
@@ -1068,6 +1293,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🎓",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-1",
     publishedAt: "2026-04-28",
@@ -1105,6 +1331,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     emoji: "🚆",
     relatedIds: ["29"],
   },
+
   {
     id: "auto-20260622-2",
     publishedAt: "2026-06-10",
@@ -1144,6 +1371,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     emoji: "⚠️",
     relatedIds: ["28"],
   },
+
   {
     id: "auto-20260622-3",
     publishedAt: "2026-04-24",
@@ -1183,44 +1411,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     emoji: "🏢",
     relatedIds: ["20"],
   },
-  {
-    id: "auto-20260622-4",
-    publishedAt: "2026-02-26",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🛂 PR 연 4만명 승인 목표 발표(2026~2030년) — 출산율 0.87 역대 최저, 금융·테크·헬스케어·물류·엔지니어링 우대",
-    summary: "Gan Kim Yong 부총리가 Budget 2026 예산위원회(COS) 토론에서 2026~2030년 연간 PR(영주권) 승인을 약 4만명 규모로 늘릴 계획이라고 밝혔다(2025년 약 3만5천명 대비 증가). 2025년 거주 출생아 수가 역대 최저(약 2만7,500명), 합계출산율 0.87로 더 낮아진 데 따른 대응이며, 금융·테크(AI·퀀텀 포함)·헬스케어·물류·엔지니어링 분야가 우대 대상으로 언급됐다.",
-    fullContent: `**PR(영주권) 연간 승인 목표 상향 — Budget 2026 COS 토론**
-Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에서 발표한 내용입니다.
 
-**핵심 발표**
-- 2026~2030년 연간 PR 승인을 약 **4만명** 규모로 계획 — 2025년(약 3만5천명) 대비 증가
-- Gan 부총리: "향후 5년간 연 약 4만명 PR 승인을 예상한다. 작년 승인한 3만5천명보다 다소 높은 수준"
-
-**배경**
-- 2025년 거주 출생아 수 약 2만7,500명으로 역대 최저
-- 합계출산율(TFR) 0.87로 전년 0.97에서 추가 하락
-- 고령화·생산연령인구 감소에 대한 대응 차원
-
-**우대 산업 분야**
-- 금융, 테크(AI·퀀텀컴퓨팅 포함), 헬스케어, 물류, 엔지니어링
-
-**한인 참고**
-- EP·S Pass로 거주 중 PR을 고려하는 한인이라면, 위 우대 산업군 종사 여부가 승인 가능성에 도움이 될 수 있음
-- 다만 이는 정부의 전체 정책 방향 발표로, 개별 심사 기준·세부 가점 항목은 ICA가 별도 공개하지 않음에 유의
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "population.gov.sg · VisaVerge",
-    sources: [
-      { name: "population.gov.sg — Speech by Deputy Prime Minister Gan Kim Yong, Committee of Supply Debate 2026", url: "https://www.population.gov.sg/speech-by-deputy-prime-minister-gan-kim-yong-committee-of-supply-debate-2026/" },
-      { name: "VisaVerge — Singapore to grant up to 40,000 Permanent Residencies a year, DPM Gan Kim Yong says", url: "https://www.visaverge.com/news/singapore-to-grant-up-to-40000-permanent-residencies-a-year-deputy-pm-gan-kim-yong-says/" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🛂",
-    relatedIds: [],
-  },
   {
     id: "auto-20260622-5",
     publishedAt: "2026-05-29",
@@ -1261,6 +1452,7 @@ Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에
     emoji: "🌫️",
     relatedIds: ["19"],
   },
+
   {
     id: "auto-20260621-3",
     publishedAt: "2026-05-14",
@@ -1295,6 +1487,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "🚇",
     relatedIds: ["26"],
   },
+
   {
     id: "auto-20260619-1",
     publishedAt: "2026-06-17",
@@ -1329,6 +1522,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "⚡",
     relatedIds: [],
   },
+
   {
     id: "auto-20260619-3",
     publishedAt: "2026-04-29",
@@ -1368,6 +1562,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "🎒",
     relatedIds: [],
   },
+
   {
     id: "auto-20260619-4",
     publishedAt: "2026-03-24",
@@ -1408,6 +1603,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "👴",
     relatedIds: [],
   },
+
   {
     id: "auto-20260619-5",
     publishedAt: "2026-06-17",
@@ -1443,6 +1639,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "🎫",
     relatedIds: [],
   },
+
   {
     id: "auto-20260620-1",
     publishedAt: "2026-06-15",
@@ -1476,6 +1673,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "📋",
     relatedIds: ["17", "21"],
   },
+
   {
     id: "auto-20260620-3",
     publishedAt: "2026-04-01",
@@ -1510,6 +1708,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     emoji: "📉",
     relatedIds: ["23"],
   },
+
   {
     id: "auto-20260620-5",
     publishedAt: "2026-06-18",
@@ -1548,6 +1747,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     emoji: "🚨",
     relatedIds: ["28"],
   },
+
   {
     id: "19",
     publishedAt: "2026-06-19",
@@ -1584,76 +1784,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     emoji: "🦟",
     relatedIds: [],
   },
-  {
-    id: "28",
-    publishedAt: "2026-02-26",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
-    summary: "싱가포르 경찰(SPF) 발표: 2025년 사기 건수 37,308건으로 전년比 27.6% 첫 감소, 피해액 약 S$9.13억. 다만 2026년 들어 'PR 신청 대행' 사칭 사기 24건(피해 약 S$39.7만) 발생 — PR 신청하는 한인 표적 가능, 각별 주의.",
-    fullContent: `**2025년 사기 통계 (2026년 2월 발표)**
-싱가포르 경찰청(SPF)이 2025년 사기·사이버범죄 통계를 발표했습니다.
 
-**전체 현황**
-- 사기 건수: **37,308건** (2024년 51,501건 대비 **27.6% 감소** — 통계 분리 이후 첫 감소)
-- 피해액: 약 **S$9.13억** (2024년 S$11.24억 대비 17.9%↓)
-- 단, 1인당 평균 피해액은 상승
-
-**⚠️ 한인 주의 — PR 신청 대행 사칭 사기**
-- 2026년 1월 이후 'PR(영주권) 신청을 도와주겠다'는 가짜 광고·서류·공식기관 사칭 사기 **24건**, 피해 약 **S$39.7만**
-- ICA 등 공식 절차는 정부 포털에서만 진행 — SNS 광고·대행 업체 통한 선입금 요구는 사기 의심
-
-**예방 수칙**
-- 정부 기관은 메신저·SNS DM으로 송금·개인정보를 요구하지 않음
-- 의심 시 ScamShield 앱·1799(안티스캠 핫라인) 확인
-
-정확한 최신 통계·경보는 아래 출처(SPF)를 확인하세요.`,
-    source: "SPF · The Online Citizen",
-    sources: [
-      { name: "SPF — Scams and Cybercrime Fell in 2025", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/02/Scams-and-Cybercrime-Fell-by-Almost-a-Quarter-in-2025" },
-      { name: "SPF — PR 신청 사기 경보", url: "https://www.police.gov.sg/Media-Hub/News/2026/04/20260422_police_advisory_on_scam_variant_involving_fraudulent_social_media_advertisements_teaser" },
-      { name: "The Online Citizen — 사기 27.6% 감소", url: "https://theonlinecitizen.com/2026/02/25/scam-cases-in-singapore-fall-27-6-per-cent-in-first-recorded-decrease" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["17"],
-  },
-  {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
   {
     id: "17",
     publishedAt: "2026-03-03",
@@ -1690,149 +1821,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     emoji: "💼",
     relatedIds: ["21", "20"],
   },
-  {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
 
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
-    id: "27",
-    publishedAt: "2026-02-17",
-    category: "생활",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
-    summary: "2026년 춘절(Chinese New Year)은 2월 17일(화)·18일(수) 공식 공휴일. 말의 해. 2월 16일(월) 연차 시 토~수 4일 연휴. 2026년 싱가포르 법정 공휴일은 총 11일(춘절·하리라야·디파발리·크리스마스·노동절·건국기념일 등).",
-    fullContent: `**2026년 춘절 & 공휴일 안내**
-한인 가정의 연휴·여행 계획에 참고하세요.
-
-**춘절(Chinese New Year) 2026**
-- 공식 공휴일: **2월 17일(화)·18일(수)** — 말(馬)의 해
-- 2월 16일(월) 연차 사용 시 **2/15(토)~2/18(수) 4일 연휴**
-- 축제는 15일간 이어지며 정월대보름(Lantern Festival)으로 마무리
-
-**2026년 법정 공휴일 (총 11일)**
-- 신정, 춘절(2일), 성금요일, 노동절, 하리라야 푸아사, 베삭데이, 하리라야 하지, 건국기념일(8/9), 디파발리, 크리스마스 등
-
-**팁**
-- 춘절 연휴엔 한국행 항공권 수요·가격 상승 — 미리 예약
-- 일부 한인 업소·마트 단축영업 가능, 방문 전 확인
-
-정확한 날짜는 아래 출처를 확인하세요.`,
-    source: "MOM · M1 · Foodline",
-    sources: [
-      { name: "M1 — 2026 공휴일 가이드", url: "https://www.m1.com.sg/blog/personal/public-holidays-2026-singapore-long-weekend" },
-      { name: "Eskimo Travel — CNY 2026", url: "https://www.eskimo.travel/en/blog/chinese-new-year-singapore-2026" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🧧",
-    relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
   {
     id: "31",
     publishedAt: "2026-03-31",
@@ -1868,37 +1857,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "3분",
     emoji: "📈",
     relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
   },
 ];
 
