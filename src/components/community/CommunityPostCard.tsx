@@ -9,6 +9,7 @@ import { useToggleSet } from "@/lib/storage";
 import { cardTime, resolveISO } from "@/lib/format";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
 import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 function isNew(post: CommunityPost): boolean {
   // createdAt이 있으면 48시간 이내를 NEW로 간주, 없으면 기존 time 문자열로 판단
@@ -96,7 +97,8 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
 
       <div className="pt-2 border-t border-black/[0.08]">
         <MetricRow
-          likeKey="sori_liked_posts"
+          likeKey={LIKE_KEY.community}
+          viewKey={VIEW_KEY.community}
           id={post.id}
           seedLikes={post.likes}
           seedViews={post.views}

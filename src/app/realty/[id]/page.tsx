@@ -204,19 +204,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         </div>
       </div>
 
-      {/* 핵심 특장점 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h3 className="text-[0.9rem] font-bold mb-3">✨ 추천 포인트</h3>
-        <ul className="space-y-2">
-          {item.highlights.map((h) => (
-            <li key={h} className="flex items-start gap-2 text-[0.85rem] text-[#181614]">
-              <span className="text-[#D04020] font-bold">✓</span>
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div className="h-4" />
     </div>
   );

@@ -10,11 +10,13 @@ import { REALTY_ITEMS } from "@/data/realtyItems";
 import { FLEA_ITEMS } from "@/data/fleaItems";
 import { useUserPosts, useUserFlea, useUserJobs, useUserRealty, useUserBiz } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
-import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
 
 const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산", "벼룩"];
 const RECENT_KEY = "sori_recent_searches";
 const MAX_RECENT = 6;
+
+// 추천 검색어 — 라이브 후 실제 검색량 데이터로 교체 예정(백로그 참고). 인기 순위가 아니므로 순위 번호는 붙이지 않는다.
+const SUGGESTED_SEARCHES = ["OCBC 계좌", "EP 비자", "Tanjong Pagar 맛집", "감자탕", "한국어 강사", "콘도 렌트"];
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
@@ -74,16 +76,6 @@ export default function SearchPage() {
   const allRealty = useMemo(() => [...userRealty, ...REALTY_ITEMS], [userRealty]);
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
   const allFlea = useMemo(() => [...userFlea, ...FLEA_ITEMS], [userFlea]);
-
-  // 검색 전 화면에 보여줄 '최근 올라온 글' — 하드코딩이 아니라 실제 커뮤니티 글을 최신순 6개.
-  // 라이브되어 유저 글이 쌓이면 그대로 최신 글이 반영된다.
-  const recentPosts = useMemo(
-    () => [...userPosts, ...COMMUNITY_POSTS]
-      .slice()
-      .sort((a, b) => timeSortKey(b.createdAt, b.time) - timeSortKey(a.createdAt, a.time))
-      .slice(0, 6),
-    [userPosts]
-  );
 
   const postResults = useMemo(() =>
     q ? allPosts.filter(
@@ -194,12 +186,18 @@ export default function SearchPage() {
           )}
 
           <div>
-            <h2 className="text-[0.85rem] font-bold text-[#888070] mb-3">🆕 최근 올라온 글</h2>
-            {recentPosts.length > 0 ? (
-              <RecentPostList posts={recentPosts} />
-            ) : (
-              <p className="text-[0.78rem] text-[#888070] px-3">아직 등록된 글이 없어요.</p>
-            )}
+            <h2 className="text-[0.85rem] font-bold text-[#888070] mb-3">추천 검색어</h2>
+            <div className="flex flex-wrap gap-2">
+              {SUGGESTED_SEARCHES.map((term) => (
+                <button
+                  key={term}
+                  onClick={() => setQuery(term)}
+                  className="bg-white border border-black/[0.08] rounded-full px-3 py-[6px] text-[0.78rem] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+                >
+                  {term}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -210,12 +208,20 @@ export default function SearchPage() {
           <div className="text-5xl mb-4">🔍</div>
           <div className="text-[0.9rem] font-medium mb-1">&ldquo;{query}&rdquo; 검색 결과 없음</div>
           <div className="text-[0.78rem] mb-6">다른 키워드로 검색해보세요</div>
-          {recentPosts.length > 0 && (
-            <div className="w-full max-w-[440px]">
-              <div className="text-[0.78rem] font-bold text-[#888070] mb-2 text-center">🆕 최근 올라온 글</div>
-              <RecentPostList posts={recentPosts} />
+          <div className="w-full max-w-[400px]">
+            <div className="text-[0.78rem] font-bold text-[#888070] mb-2 text-center">추천 검색어</div>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {SUGGESTED_SEARCHES.map((term) => (
+                <button
+                  key={term}
+                  onClick={() => setQuery(term)}
+                  className="bg-white border border-black/[0.08] rounded-full px-3 py-[6px] text-[0.78rem] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+                >
+                  {term}
+                </button>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       )}
 
@@ -354,25 +360,6 @@ export default function SearchPage() {
           )}
         </div>
       )}
-    </div>
-  );
-}
-
-// 최근 올라온 커뮤니티 글 목록 — 검색 전 화면과 결과없음 화면에서 공용으로 쓴다.
-function RecentPostList({ posts }: { posts: typeof COMMUNITY_POSTS }) {
-  return (
-    <div className="flex flex-col gap-1">
-      {posts.map((post) => (
-        <Link
-          key={post.id}
-          href={`/community/${post.id}`}
-          className="flex items-center gap-2 px-3 py-2 rounded-[10px] hover:bg-[#F5F3EE] transition-colors"
-        >
-          <span className={`text-[0.6rem] px-2 py-[2px] rounded-full font-semibold flex-shrink-0 ${post.categoryStyle}`}>{post.categoryLabel}</span>
-          <span className="text-[0.82rem] text-[#181614] truncate flex-1 min-w-0">{post.title}</span>
-          <span className="text-[0.66rem] text-[#888070] flex-shrink-0" suppressHydrationWarning>{cardTime(resolveISO(post.createdAt, post.time)) || post.time}</span>
-        </Link>
-      ))}
     </div>
   );
 }

@@ -346,9 +346,6 @@ function WriteInner() {
           maxLength={2000}
           className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none placeholder:text-[#C0BBB0] bg-transparent resize-none"
         />
-        <div className="mt-2 text-[0.68rem] text-[#C0BBB0] leading-relaxed">
-          💡 줄바꿈·빈 줄이 그대로 반영돼요. <span className="font-semibold">**글자**</span>로 굵게, 줄 앞에 <span className="font-semibold">- </span>를 붙이면 목록이 돼요.
-        </div>
 
         {/* 태그 입력 */}
         <div className="mt-4 pt-4 border-t border-black/[0.06]">
