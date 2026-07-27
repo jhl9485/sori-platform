@@ -26,6 +26,145 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260725-1",
+    publishedAt: "2026-07-25",
+    category: "문화",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🇸🇬 NDP 2026 관람 가이드 — 본행사 8/9, 프리뷰 7/25·8/1, 10년 만에 내셔널 스타디움 복귀",
+    summary: "8월 9일(일) 건국 61주년 National Day Parade(NDP)가 10년 만에 캘랑 내셔널 스타디움으로 돌아온다(2016년 이후 처음). 테마는 'Majulah Singapura, Go Beyond!'. 300대 이상 드론쇼와 역대 최대 규모 특수효과, 불꽃놀이가 열린다. 프리뷰는 7월 25일·8월 1일 두 차례(둘 다 불꽃 포함). 대신 레드라이온 낙하·군용차량 모바일 컬럼·상공 비행 쇼·헤어드랜드 행사는 올해 열리지 않는다. 7/25~8/9 캘랑 일대는 무료 개방된다.",
+    fullContent: `**NDP 2026 (건국 61주년) 관람 가이드**
+8월 9일 국경일 퍼레이드가 10년 만에 내셔널 스타디움으로 복귀합니다. 아이와 함께 나들이 계획하는 한인 가정에 유용한 정보입니다.
+
+**언제·어디서**
+- **본행사: 8월 9일(일)** 내셔널 스타디움(캘랑) — 2016년 이후 **10년 만의 스타디움 복귀** (8월 10일 월요일 대체공휴일)
+- **프리뷰: 7월 25일 · 8월 1일** — 두 차례 모두 **불꽃놀이 포함**
+- 테마: **'Majulah Singapura, Go Beyond!'**
+
+**볼거리**
+- **드론쇼 300대 이상**(실내 라이트 쇼) + 역대 최대 규모 특수효과
+- 국기 편대비행(State Flag Flypast), 대통령 예포(캘랑 베이슨으로 이동)
+- **불꽃놀이**: 캘랑 일대에서 발사 — 명당은 캘랑 베이슨 워터프런트·스타디움 리버사이드 워크
+
+**올해는 없는 것**
+- 레드라이온 낙하산 강하, 군용차량 모바일 컬럼, 상공 비행(에어리얼) 쇼, 헤어드랜드(단지별) 행사
+
+**무료 개방**
+- 7월 25일~8월 9일 캘랑 일대 무료 개방(최대 약 20만 명 수용) — 공연·라이트 전시·체험 행사
+- 중계: 미디어코프 채널5·8·수리아·바산탐
+
+정확한 시간·좌석·행사 변경은 아래 출처(NDP 공식)를 확인하세요.`,
+    source: "NDP.gov.sg · HoneyKids Asia",
+    sources: [
+      { name: "NDP.gov.sg (공식)", url: "https://www.ndp.gov.sg/" },
+      { name: "HoneyKids Asia — NDP 2026 가이드", url: "https://honeykidsasia.com/singapore-national-day/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🇸🇬",
+    relatedIds: ["auto-20260628-1"],
+  },
+  {
+    id: "auto-20260722-1",
+    publishedAt: "2026-07-22",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🏛️ 내각 개편 발표 — 통상산업부, '에너지통상산업부(METI)'로 개명(10/1)·인력부 장관대행 교체",
+    summary: "로런스 웡 총리가 7월 22일 내각 개편을 발표했다. 통상산업부(MTI)는 10월 1일부터 '에너지통상산업부(Ministry of Energy, Trade and Industry)'로 이름을 바꾼다. K. 샨무감이 선임장관(Senior Minister)으로 임명되고(내무장관·국가안보조정장관 유지), Tan See Leng은 인력부 장관직을 내려놓고 새 부처를 이끈다. Jeffrey Siow(교통)·David Neo(문화공동체청년)·Sim Ann이 장관으로 승진, Jasmin Lau가 인력부 장관대행을 맡는다. 대부분 7월 27일 발효.",
+    fullContent: `**싱가포르 내각 개편 (총리실 발표, 7월 22일)**
+로런스 웡 총리가 발표한 개각으로, 부처명 변경과 세대교체성 승진이 포함됐습니다.
+
+**부처명 변경**
+- **통상산업부(MTI) → 에너지통상산업부(METI, Ministry of Energy, Trade and Industry)** — **10월 1일** 발효. 에너지가 산업·경쟁력·회복력에 중요해진 점을 반영
+
+**주요 인사 (7월 27일 발효)**
+- **K. 샨무감**: 선임장관(Senior Minister) 임명 — 내무장관·국가안보조정장관은 유지
+- **Tan See Leng**: 인력부 장관직 이양, 새 METI를 이끔
+- 장관 승진: **Jeffrey Siow**(교통장관·재무 제2장관), **David Neo**(문화공동체청년부 장관·교육 제2장관), **Sim Ann**(외교·내무 제2장관)
+- 선임정무장관(SMS) 승진: **Jasmin Lau**(인력부 장관대행 겸임), **Goh Pei Ming**
+
+**한인 참고**
+- EP·S Pass 등 취업비자를 관장하는 **인력부(MOM) 수장이 바뀝니다**(Jasmin Lau 장관대행). 향후 외국인력 정책 발표 주체가 달라질 수 있어 참고하세요.
+- 일상 행정 절차가 곧바로 바뀌는 것은 아닙니다.`,
+    source: "PMO · Mothership",
+    sources: [
+      { name: "PMO — 내각 개편·MTI 개명 (공식)", url: "https://www.pmo.gov.sg/newsroom/changes-to-cabinet-and-other-appointments-and-the-renaming-of-the-ministry-of-trade-and-industry-jul-2026/" },
+      { name: "Mothership — 2026 개각 정리", url: "https://mothership.sg/2026/07/singapore-cabinet-reshuffle-2026/" },
+    ],
+    time: "2026년 7월 22일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏛️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260716-1",
+    publishedAt: "2026-07-16",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚔 경찰 전국 단속 2주간 579명 적발 — 스캐머·머니뮬, 피해 1,469건·약 S$1,800만",
+    summary: "싱가포르 경찰청(SPF)이 7월 2~15일 상무부(CAD)·7개 경찰구역 합동으로 스캐머·머니뮬 혐의자 579명(남 359·여 220, 15~83세)을 조사했다고 7월 16일 발표했다. 전자상거래·지인사칭·취업·정부기관사칭·투자·렌트 사기 등 1,469건 이상(피해 약 S$1,800만)과 연관됐다. 머니뮬(계좌·명의 대여)은 최대 태형 12대와 은행·통신 서비스 제한을 받을 수 있다. 별개로 7월 19일엔 '3으로 시작하는 8자리 번호' 정부기관 사칭 사기 경보도 나왔다.",
+    fullContent: `**경찰 전국 사기 단속 결과 (SPF, 7월 16일 발표)**
+싱가포르 경찰청이 7월 2~15일 2주간 벌인 전국 단속 결과입니다.
+
+- **조사 인원: 579명** (남 359·여 220, 15~83세)
+- **연관 사건: 1,469건 이상 / 피해액 약 S$1,800만(S$18 million)**
+- **사기 유형**: 전자상거래·지인사칭·취업·정부기관사칭·투자·렌트 사기 등
+- **머니뮬 처벌**: 계좌·명의를 빌려준 머니뮬은 **최대 태형 12대**, 은행·통신(모바일 회선) 서비스 제한 대상이 될 수 있음
+
+**⚠️ 최근 새 수법 — '3'으로 시작하는 번호 정부기관 사칭 (7/19 경보)**
+- **8자리 전화번호가 숫자 '3'으로 시작**하면 의심할 것 (5월 이후 최소 12건·피해 약 S$27만4천)
+- 은행·통신사 직원을 사칭해 접근 → "수사기관(MinLaw·MAS·경찰) 직원"으로 연결 → 자금세탁 누명 → ATM 송금·귀중품 전달 요구
+- 싱가포르 정부기관은 전화로 송금·계좌이체를 요구하지 않음
+
+**한인 주의 팁**
+- '쉽게 돈 버는 아르바이트'로 **본인 계좌·명의를 빌려주면 머니뮬 공범**이 될 수 있음 — 절대 응하지 말 것
+- 의심되면 **ScamShield 앱 / 핫라인 1799**, 신고는 경찰 1800-255-0000
+
+정확한 내용은 아래 출처를 확인하세요.`,
+    source: "SPF (공식)",
+    sources: [
+      { name: "SPF — 579명 단속 (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260716_police_investigate_579_scammers_and_money_mules_in_islandwide_enforcement_operation" },
+      { name: "SPF — '3' 시작 번호 정부기관 사칭 경보 (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260719_police_advisory_on_government_officials_impersonation_scams_involving_telephone_numbers" },
+    ],
+    time: "2026년 7월 16일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚔",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260714-1",
+    publishedAt: "2026-07-14",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📈 2분기 GDP +5.7% 성장(속보치) — 제조업 +12.2%, AI 반도체 수요가 견인",
+    summary: "통상산업부(MTI)가 7월 14일 발표한 2026년 2분기 GDP 속보치는 전년동기 대비 +5.7%로, 1분기(+6.3%)보다 둔화됐지만 시장 예상(+5.5%)을 웃돌았다. 전분기 대비(계절조정)로는 +1.1%. 제조업이 +12.2%로 크게 뛰며 성장을 이끌었는데, 전자·정밀공업 부문의 AI용 반도체·반도체 장비 수요가 강했기 때문이다. 반면 화학·바이오메디컬은 위축(화학은 중동 사태發 원료 공급 차질). MTI는 연간 성장률 전망을 2.0~4.0%로 유지했다.",
+    fullContent: `**2026년 2분기 GDP 속보치 (MTI, 7월 14일)**
+싱가포르 경제 성장세와 향후 물가·고용·임대 흐름을 가늠할 지표입니다.
+
+- **전년동기 대비 +5.7%** — 1분기(+6.3%)보다 둔화, 그러나 시장 예상(+5.5%) 상회
+- **전분기 대비(계절조정) +1.1%** (1분기 +1.3%)
+- **제조업 +12.2%** (1분기 +8.0%에서 가속) — 전자·정밀공업의 **AI용 반도체·반도체 장비 수요**가 견인
+- **화학·바이오메디컬은 위축** — 화학은 중동 사태에 따른 원료(피드스톡) 공급 차질 영향
+- MTI는 **2026년 연간 성장률 전망을 2.0~4.0%로 유지**
+
+**참고**
+- 속보치(advance estimate)로, 확정치는 이후 수정 발표됩니다.
+- 성장세가 반도체 등 특정 부문에 쏠려 있어, 업종에 따라 체감 경기는 다를 수 있습니다.`,
+    source: "MTI · SingStat · CNBC",
+    sources: [
+      { name: "MTI — 2분기 GDP +5.7% (공식)", url: "https://www.mti.gov.sg/newsroom/singapore-s-gdp-grew-by-5-7-per-cent-in-the-second-quarter-of-2026/" },
+      { name: "SingStat — Advance GDP Estimates 2Q2026", url: "https://www.singstat.gov.sg/news/advance-gdp-estimate-2q2026" },
+      { name: "CNBC — Singapore Q2 GDP 5.7%", url: "https://www.cnbc.com/2026/07/14/singapore-gdp-iran-war-impact-takes-hold.html" },
+    ],
+    time: "2026년 7월 14일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📈",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
     category: "생활",
