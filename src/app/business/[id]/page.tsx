@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/shared/PageHeader";
+import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
 import VerifiedBadge from "@/components/shared/VerifiedBadge";
@@ -49,10 +50,14 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         />
       )}
 
-      {/* 히어로 */}
-      <div className={`w-full h-[160px] flex items-center justify-center text-[5rem] ${biz.bg}`}>
-        {biz.emoji}
-      </div>
+      {/* 히어로 — 등록한 사진이 있으면 캐러셀로, 없으면 이모지 */}
+      <PhotoCarousel
+        photos={biz.photos || []}
+        fallbackEmoji={biz.emoji}
+        fallbackBg={biz.bg}
+        heightClass="h-[200px]"
+        alt={biz.name}
+      />
 
       {/* 미인증 업소 안내 */}
       {!biz.verified && (

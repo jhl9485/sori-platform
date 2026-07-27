@@ -10,7 +10,7 @@ import { REALTY_ITEMS } from "@/data/realtyItems";
 import { FLEA_ITEMS } from "@/data/fleaItems";
 import { JOBS } from "@/data/jobs";
 import { useToggleSet } from "@/lib/storage";
-import { SAVE_KEY } from "@/lib/metrics";
+import { LIKE_KEY, SAVE_KEY } from "@/lib/metrics";
 import {
   useUserPosts,
   useUserFlea,
@@ -72,7 +72,13 @@ function MyPageInner() {
   const { ids: savedRealtyIds } = useToggleSet(SAVE_KEY.realty);
   const { ids: savedFleaIds } = useToggleSet(SAVE_KEY.flea);
   const { ids: savedJobIds } = useToggleSet(SAVE_KEY.jobs);
-  const { ids: likedPostIds } = useToggleSet("sori_liked_posts");
+  // 좋아요 — 전 카테고리(커뮤니티·뉴스·업소·부동산·벼룩·구인)
+  const { ids: likedPostIds } = useToggleSet(LIKE_KEY.community);
+  const { ids: likedNewsIds } = useToggleSet(LIKE_KEY.news);
+  const { ids: likedBizIds } = useToggleSet(LIKE_KEY.biz);
+  const { ids: likedRealtyIds } = useToggleSet(LIKE_KEY.realty);
+  const { ids: likedFleaIds } = useToggleSet(LIKE_KEY.flea);
+  const { ids: likedJobIds } = useToggleSet(LIKE_KEY.jobs);
 
   // 저장된 항목 실제 객체 조회 (사용자 글 + 정적 데이터)
   const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
@@ -110,8 +116,14 @@ function MyPageInner() {
     () => allPosts.filter((p) => likedPostIds.has(p.id)),
     [allPosts, likedPostIds]
   );
+  const likedNews = useMemo(() => NEWS_ITEMS.filter((n) => likedNewsIds.has(n.id)), [likedNewsIds]);
+  const likedBiz = useMemo(() => allBiz.filter((b) => likedBizIds.has(b.id)), [allBiz, likedBizIds]);
+  const likedRealty = useMemo(() => allRealty.filter((r) => likedRealtyIds.has(r.id)), [allRealty, likedRealtyIds]);
+  const likedFlea = useMemo(() => allFlea.filter((f) => likedFleaIds.has(f.id)), [allFlea, likedFleaIds]);
+  const likedJobs = useMemo(() => allJobs.filter((j) => likedJobIds.has(j.id)), [allJobs, likedJobIds]);
 
   const totalSaved = savedPosts.length + savedNews.length + savedBiz.length + savedRealty.length + savedFlea.length + savedJobs.length;
+  const totalLiked = likedPosts.length + likedNews.length + likedBiz.length + likedRealty.length + likedFlea.length + likedJobs.length;
   const totalUserWrites = userPosts.length + userFlea.length + userJobs.length + userRealty.length;
 
   return (
@@ -176,7 +188,7 @@ function MyPageInner() {
         <div className="grid grid-cols-3 gap-2 mt-5 bg-white/[0.07] rounded-[12px] p-3">
           <Stat label="작성" value={totalUserWrites} onClick={() => setActiveTab("posts")} />
           <Stat label="저장" value={totalSaved} onClick={() => setActiveTab("saved")} />
-          <Stat label="좋아요" value={likedPostIds.size} onClick={() => setActiveTab("liked")} />
+          <Stat label="좋아요" value={totalLiked} onClick={() => setActiveTab("liked")} />
         </div>
       </div>
 
@@ -207,7 +219,7 @@ function MyPageInner() {
             userJobsCount={userJobs.length}
             userRealtyCount={userRealty.length}
             savedCount={totalSaved}
-            likedCount={likedPostIds.size}
+            likedCount={totalLiked}
             onSelectTab={setActiveTab}
           />
         )}
@@ -233,7 +245,14 @@ function MyPageInner() {
         )}
 
         {activeTab === "liked" && (
-          <LikedTab posts={likedPosts} />
+          <LikedTab
+            posts={likedPosts}
+            news={likedNews}
+            biz={likedBiz}
+            realty={likedRealty}
+            flea={likedFlea}
+            jobs={likedJobs}
+          />
         )}
 
         {activeTab === "settings" && <SettingsTab />}
@@ -372,10 +391,12 @@ interface PostsTabProps {
 
 function PostsTab({ userPosts, userFlea, userJobs, userRealty }: PostsTabProps) {
   const [, forceUpdate] = useState({});
-  const remove = (key: string, id: string) => {
-    if (!confirm("정말 삭제하시겠어요? 되돌릴 수 없어요.")) return;
+  const remove = async (key: string, id: string) => {
+    const ok = await confirmDialog({ message: "정말 삭제하시겠어요?\n되돌릴 수 없어요.", confirmText: "삭제", danger: true });
+    if (!ok) return;
     removeUserItem(key, id);
     forceUpdate({});
+    toast("삭제했어요.");
   };
 
   const total = userPosts.length + userFlea.length + userJobs.length + userRealty.length;
@@ -595,34 +616,82 @@ function SavedTab({ posts, news, biz, realty, flea, jobs }: SavedTabProps) {
 
 interface LikedTabProps {
   posts: ReturnType<typeof useUserPosts>;
+  news: typeof NEWS_ITEMS;
+  biz: typeof BUSINESSES;
+  realty: ReturnType<typeof useUserRealty>;
+  flea: ReturnType<typeof useUserFlea>;
+  jobs: ReturnType<typeof useUserJobs>;
 }
 
-function LikedTab({ posts }: LikedTabProps) {
-  if (posts.length === 0) {
+// 좋아요 탭 — 커뮤니티뿐 아니라 업소·부동산·벼룩·구인·뉴스 좋아요까지 전 카테고리 합산.
+function LikedTab({ posts, news, biz, realty, flea, jobs }: LikedTabProps) {
+  const total = posts.length + news.length + biz.length + realty.length + flea.length + jobs.length;
+  if (total === 0) {
     return (
       <EmptyState
         icon="❤️"
-        text="좋아요 표시한 글이 없어요"
-        ctaText="커뮤니티 보러가기"
-        ctaHref="/community"
+        text="좋아요 표시한 항목이 없어요"
+        ctaText="둘러보기"
+        ctaHref="/"
       />
     );
   }
 
   return (
     <div className="space-y-5">
-      <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
-        <SectionHeader title="❤️ 좋아요한 글" count={posts.length} />
-        {posts.map((p) => (
-          <ListLink
-            key={p.id}
-            href={`/community/${p.id}`}
-            title={p.title}
-            sub={`${p.categoryLabel} · 좋아요 ${p.likes}`}
-            badge={p.time}
-          />
-        ))}
-      </section>
+      {posts.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="💬 커뮤니티 글" count={posts.length} />
+          {posts.map((p) => (
+            <ListLink key={p.id} href={`/community/${p.id}`} title={p.title} sub={`${p.categoryLabel} · ❤️ ${p.likes} · 💬 ${p.comments}`} badge={p.time} />
+          ))}
+        </section>
+      )}
+
+      {biz.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="🏪 한인 업소" count={biz.length} />
+          {biz.map((b) => (
+            <ListLink key={b.id} href={`/business/${b.id}`} title={b.name} sub={`${b.category} · ${b.area}`} badge={b.verified ? "✓ 인증" : "미인증"} />
+          ))}
+        </section>
+      )}
+
+      {realty.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="🏘️ 부동산" count={realty.length} />
+          {realty.map((r) => (
+            <ListLink key={r.id} href={`/realty/${r.id}`} title={r.title} sub={`${r.type} · ${r.area} · ${r.price}`} badge={r.deal} />
+          ))}
+        </section>
+      )}
+
+      {flea.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="🛍️ 벼룩시장" count={flea.length} />
+          {flea.map((f) => (
+            <ListLink key={f.id} href={`/flea/${f.id}`} title={f.title} sub={`${f.category} · ${f.area} · ${f.price}`} badge={f.status || "판매중"} />
+          ))}
+        </section>
+      )}
+
+      {jobs.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="💼 채용 공고" count={jobs.length} />
+          {jobs.map((j) => (
+            <ListLink key={j.id} href={`/jobs/${j.id}`} title={j.title} sub={`${j.company} · ${j.location} · ${j.salary}`} badge={j.jobType} />
+          ))}
+        </section>
+      )}
+
+      {news.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="📰 뉴스" count={news.length} />
+          {news.map((n) => (
+            <ListLink key={n.id} href={`/news/${n.id}`} title={n.title} sub={`${n.category} · ${n.source}`} badge={n.time} />
+          ))}
+        </section>
+      )}
     </div>
   );
 }

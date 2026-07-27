@@ -50,7 +50,7 @@ export function useLiveNotifications(): NotificationItem[] {
           iconBg: "bg-[#F0EDE8]",
           title: "저장한 공고가 마감됐어요",
           body: `${job.title} · ${job.company}`,
-          time: "",
+          time: "마감",
           link: `/jobs/${id}`,
         });
       }
@@ -67,7 +67,7 @@ export function useLiveNotifications(): NotificationItem[] {
           iconBg: "bg-[#EBF5F0]",
           title: "저장한 물건이 판매완료됐어요",
           body: `${it.title} · ${it.price}`,
-          time: "",
+          time: "판매완료",
           link: `/flea/${id}`,
         });
       }
@@ -82,7 +82,7 @@ export function useLiveNotifications(): NotificationItem[] {
           iconBg: "bg-[#EBF5F0]",
           title: "저장한 매물이 거래완료됐어요",
           body: `${it.title} · ${it.price}`,
-          time: "",
+          time: "거래완료",
           link: `/realty/${id}`,
         });
       }

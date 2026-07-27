@@ -1,7 +1,6 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import OwnerActions from "@/components/shared/OwnerActions";
@@ -30,9 +29,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
     if (!hydrated) return <DetailSkeleton />;
     return notFound();
   }
-
-  const allItems = [...userRealty, ...REALTY_ITEMS];
-  const others = allItems.filter((r) => r.id !== item.id && r.deal === item.deal).slice(0, 3);
 
   // 본인 매물 여부 — 본인만 거래 상태 변경 가능
   const isMine = userRealty.some((r) => r.id === params.id);
@@ -220,38 +216,6 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           ))}
         </ul>
       </div>
-
-      {/* 비슷한 매물 */}
-      {others.length > 0 && (
-        <div className="bg-white mt-2 px-4 md:px-6 py-4">
-          <h3 className="text-[0.85rem] font-bold mb-3 text-[#888070]">비슷한 {item.deal} 매물</h3>
-          {others.map((r) => (
-            <Link
-              key={r.id}
-              href={`/realty/${r.id}`}
-              className="flex items-center gap-3 py-3 border-b border-black/[0.04] last:border-0 group"
-            >
-              <div className={`w-12 h-12 rounded-[10px] flex items-center justify-center text-2xl flex-shrink-0 ${r.bg}`}>
-                {r.emoji}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[0.82rem] font-medium group-hover:text-[#D04020] transition-colors line-clamp-1">
-                  {r.title}
-                </div>
-                <div className="text-[0.72rem] text-[#888070] mt-[2px]">
-                  {r.area} · {r.bedrooms}BR · <span className="font-bold text-[#D04020]">{r.price}</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-          <Link
-            href="/realty"
-            className="block text-center text-[0.78rem] text-[#D04020] font-medium pt-3 hover:underline"
-          >
-            전체 매물 보기 →
-          </Link>
-        </div>
-      )}
 
       <div className="h-4" />
     </div>

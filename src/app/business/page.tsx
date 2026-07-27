@@ -34,7 +34,12 @@ export default function BusinessPage() {
     return allBiz.filter((b) => {
       if (selected !== "all" && b.category !== selected) return false;
       if (selected === "식당" && cuisine !== "all" && b.cuisine !== cuisine) return false;
-      if (searchQuery && !b.name.includes(searchQuery) && !b.tags.some(t => t.includes(searchQuery))) return false;
+      if (searchQuery) {
+        // 안내문("업소명, 카테고리, 지역 검색")대로 이름·카테고리·음식종류·지역·태그를 모두 대상으로, 대소문자 무시.
+        const qq = searchQuery.toLowerCase();
+        const hay = `${b.name} ${b.category} ${b.cuisine ?? ""} ${b.area} ${b.tags.join(" ")}`.toLowerCase();
+        if (!hay.includes(qq)) return false;
+      }
       return true;
     }).sort((a, b) => {
       const r = rank(b) - rank(a);

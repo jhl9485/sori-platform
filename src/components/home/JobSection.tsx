@@ -5,6 +5,8 @@ import Link from "next/link";
 import { JOBS, type Job } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import { salaryText } from "@/lib/jobStatus";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 
 // 사용자 등록 공고 + 정적 공고 통합, 최신 3개 노출
 export default function JobSection() {
@@ -56,6 +58,9 @@ function JobCard({ job }: { job: Job }) {
         <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#F5F3EE] text-[#888070] border-black/[0.08]">
           {salaryText(job.salary)}
         </span>
+      </div>
+      <div className="flex items-center pt-2 mt-2 border-t border-black/[0.06]">
+        <MetricRow likeKey={LIKE_KEY.jobs} viewKey={VIEW_KEY.jobs} id={job.id} seedViews={job.views} />
       </div>
     </Link>
   );

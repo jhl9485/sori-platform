@@ -11,14 +11,14 @@ export default function LiveBar() {
       bg: "bg-[#EBF0FB]",
       label: "SGD → KRW",
       value: data.fx ? `₩${data.fx.toLocaleString()}` : data.fxLoaded ? "—" : "···",
-      sub: data.fx ? "실시간" : "불러오는 중",
+      sub: data.fx ? "실시간" : data.fxLoaded ? "불러오기 실패" : "불러오는 중",
       pulse: true,
     },
     {
       bg: "bg-[#FBF5E8]",
       label: "싱가포르",
       value: data.temp !== undefined ? `${data.temp}°C` : data.weatherLoaded ? "—" : "···",
-      sub: data.humidity !== undefined ? `습도 ${data.humidity}%` : "불러오는 중",
+      sub: data.humidity !== undefined ? `습도 ${data.humidity}%` : data.weatherLoaded ? "불러오기 실패" : "불러오는 중",
     },
     // MRT 위젯은 실제 운행 상태를 가져오지 못해(항상 '정상운행' 고정) 잘못된 정보라 제거함.
   ];

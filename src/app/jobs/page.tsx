@@ -6,6 +6,8 @@ import Link from "next/link";
 import { JOBS, type VisaType, type JobType } from "@/data/jobs";
 import { useUserJobs } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import MetricRow from "@/components/shared/MetricRow";
+import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
 import { isJobClosed, isJobExpired, salaryText } from "@/lib/jobStatus";
 
@@ -129,11 +131,12 @@ export default function JobsPage() {
               <div className="flex flex-wrap gap-1 mb-3">
                 {job.tags.map((tag) => <span key={tag} className="text-[0.68rem] bg-[#F5F3EE] border border-black/[0.08] rounded-full px-2 py-[2px] text-[#888070]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{tag}</span>)}
               </div>
-              <div className="flex items-center justify-between pt-2 border-t border-black/[0.06]">
-                <div className="flex items-center gap-3 text-[0.72rem] text-[#888070]">
-                  <span>📍 {job.location}</span>
+              <div className="flex items-center justify-between pt-2 border-t border-black/[0.06] gap-2">
+                <MetricRow likeKey={LIKE_KEY.jobs} viewKey={VIEW_KEY.jobs} id={job.id} seedViews={job.views} className="flex-shrink-0" />
+                <div className="flex items-center gap-2 text-[0.7rem] text-[#888070] min-w-0">
+                  <span className="truncate">📍 {job.location}</span>
+                  <span className="flex-shrink-0" suppressHydrationWarning>{cardTime(resolveISO(job.createdAt, job.postedAt)) || job.postedAt}</span>
                 </div>
-                <span className="text-[0.7rem] text-[#888070]" suppressHydrationWarning>{cardTime(resolveISO(job.createdAt, job.postedAt)) || job.postedAt}</span>
               </div>
             </Link>
             );
