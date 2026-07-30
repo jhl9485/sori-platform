@@ -26,6 +26,159 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260730-1",
+    publishedAt: "2026-07-30",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚔 신설 사이버커맨드 첫 작전 — 255명 수사, 660건·약 S$560만 피해",
+    summary: "SPF가 7월 3일 발족한 신설 사이버커맨드(Cyber Command)와 7개 경찰 관할구역이 7월 16~29일 합동 작전을 벌인 결과를 7월 30일 발표했다. 255명(남 172·여 83, 16~77세)이 수사 대상이며 전자상거래·피싱·취업·정부기관사칭·투자·행운권 사기 660건 이상, 피해액 약 S$560만과 연루됐다. 사기죄는 최대 10년 징역, 자금세탁은 최대 10년 징역+S$50만 벌금이다.",
+    fullContent: `**SPF 사이버커맨드 첫 대규모 작전 결과 (2026년 7월 30일 발표)**
+싱가포르 경찰청(SPF)이 7월 3일 신설한 온라인 사기·사이버범죄 전담 부서 사이버커맨드(Cyber Command)의 첫 대규모 작전 결과입니다.
+
+**수사 개요**
+- **작전 기간**: 2026년 7월 16~29일
+- **합동 주체**: 사이버커맨드 + 7개 경찰 관할구역
+- **수사 대상**: **255명** (남 172명·여 83명, 16~77세)
+- **연루 사건**: **660건 이상** — 전자상거래·피싱·취업·정부기관사칭·투자·행운권 사기
+- **피해액**: 약 **S$560만(S$5.6 million)**
+
+**처벌 기준**
+- 사기죄(Cheating): 최대 **10년 징역 + 벌금**
+- 자금세탁(Money Laundering): 최대 **10년 징역 + S$50만 벌금**
+- 무허가 결제서비스 운영: 최대 **3년 징역 + S$12만5천 벌금**
+
+**한인 주의 팁**
+- 본인 계좌·명의를 타인에게 빌려주면 머니뮬로 처벌받을 수 있습니다.
+- 의심스러운 취업 제안·투자 권유·정부기관 사칭 전화는 즉시 끊고 ScamShield 앱 또는 핫라인 1799에 신고하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · The Star",
+    sources: [
+      { name: "The Star — Singapore police probe 255 over scam cases involving losses of about $5.6 million (July 30, 2026)", url: "https://www.thestar.com.my/aseanplus/2026/07/30/singapore-police-probe-255-over-scam-cases-involving-losses-of-about-56-million" },
+      { name: "SPF — PM Lawrence Wong Visits the SPF's Cyber Command (공식)", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/07/Inside-Singapores-Scam-War-PM-Lawrence-Wong-Visits-the-SPFs-Cyber-Command" },
+    ],
+    time: "2026년 7월 30일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚔",
+    relatedIds: ["auto-20260716-1"],
+  },
+  {
+    id: "auto-20260730-2",
+    publishedAt: "2026-07-15",
+    category: "안전",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "📦 닌자반·J&T Express 사칭 택배 피싱 주의 — '+212 모로코 번호' 문자, S$25.9만 피해",
+    summary: "SPF가 7월 15일 택배사 사칭 피싱 경보를 발령했다. 6월 24일 이후 43건·피해액 S$25만9천 이상. 모로코 국가코드(+212) 또는 무작위 이메일 주소에서 닌자반(Ninja Van)·J&T Express를 사칭, '주소 오류로 배송 실패' 문자와 함께 가짜 사이트 링크를 보낸다. 소액 재배송료(6센트~S$1.64) 명목으로 카드 정보를 탈취한 뒤 피해자 몰래 카드를 Google Pay·Apple Pay에 무단 등록한다.",
+    fullContent: `**택배회사 사칭 피싱 사기 경보 (SPF, 2026년 7월 15일)**
+싱가포르 경찰(SPF)이 닌자반(Ninja Van)·J&T Express를 사칭한 피싱 사기가 급증하고 있다고 경보를 발령했습니다.
+
+**피해 현황**
+- **2026년 6월 24일 이후** 최소 **43건**, 피해액 **S$25만9천(S$259,000) 이상**
+- 7월 13일 하루에만 **20건** 신고 접수
+
+**수법 단계별 설명**
+1. 모로코 국가코드(**+212**)로 시작하는 번호 또는 무작위 이메일 주소에서 닌자반·J&T Express 명의로 문자·이메일 발송
+2. "배송 주소 오류 — **24시간 이내** 주소를 업데이트하세요"라는 링크 포함
+3. 클릭하면 실제 택배사 사이트와 유사한 **가짜 사이트**로 이동
+4. **재배송료 6센트~S$1.64** 결제를 위해 카드 정보 입력 유도
+5. 이후 피해자 몰래 카드를 **Google Pay / Apple Pay에 무단 등록** → 추가 결제 발생
+
+**한인 주의 팁**
+- +212(모로코) 등 예상치 못한 국가코드에서 오는 '배송 관련' 문자 링크는 클릭 금지
+- 소액이라도 카드 정보 입력 후 의심스러우면 즉시 카드사에 연락해 결제 정지 요청
+- 실제 배송 조회는 택배사 공식 앱·사이트에서 직접 접속
+- 신고: ScamShield 앱 또는 SPF 1800-255-0000
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식)",
+    sources: [
+      { name: "SPF — Police Advisory On Phishing Scams Impersonating Courier Companies (2026년 7월 15일, 공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/07/20260715_police_advisory_on_phishing_scams_impersonating_courier_companies" },
+      { name: "The Independent SG — More than S$259K losses from courier phishing scams since June", url: "https://theindependent.sg/spf-more-than-s-259k-losses-suffered-by-singapore-victims-from-courier-phishing-scams-since-june/" },
+      { name: "Nestia — Victims lose more than S$259,000 in courier phishing scams since Jun 24", url: "https://news.nestia.com/detail/Victims-lose-more-than-S$259,000-in-courier-phishing-scams-since-Jun-24/14123316" },
+    ],
+    time: "2026년 7월 15일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📦",
+    relatedIds: ["auto-20260716-1", "auto-20260730-1"],
+  },
+  {
+    id: "auto-20260730-3",
+    publishedAt: "2026-07-01",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "💼 S Pass 쿼터 기준 'LQS' 7/1부터 S$1,800으로 인상 — 일부 기업 외국인 채용 한도 변동 가능",
+    summary: "MOM의 '로컬 적정급여(LQS, Local Qualifying Salary)'가 7월 1일부터 S$1,600에서 S$1,800으로 올랐다. LQS는 S Pass·워크퍼밋(WP) 외국인 채용 쿼터 계산 시 로컬 직원 '1명분'으로 인정되는 최저 월급 기준이다. S$1,600~S$1,799 구간 로컬 직원은 이전엔 1.0명분이었지만 이제 0.5명분으로 낮아져 일부 기업의 S Pass 채용 한도가 줄어들 수 있다. 시간제 기준도 시간당 S$9→S$10.50으로 올랐다.",
+    fullContent: `**로컬 적정급여(LQS) S$1,800 인상 (2026년 7월 1일 시행)**
+MOM이 7월 1일부터 외국인 채용 쿼터 산정에 쓰이는 로컬 적정급여(LQS)를 인상했습니다.
+
+**LQS(Local Qualifying Salary)란?**
+S Pass·워크퍼밋(WP) 외국인을 채용하려면 회사가 일정 비율의 로컬(시민·PR) 직원을 유지해야 합니다(쿼터제). 이 쿼터 계산 시 로컬 직원이 **'1명분'으로 인정받으려면** 월급이 LQS 이상이어야 합니다.
+
+**변경 내용 (2026년 7월 1일 시행)**
+- **전일제 LQS**: S$1,600 → **S$1,800** (월급 기준)
+- **파트타임 LQS**: 시간당 S$9 → **S$10.50**
+- S$1,600~S$1,799 구간 로컬 직원: 기존 1.0명분 → **0.5명분**으로 하락
+
+**기업 영향**
+- 이 구간 로컬 직원이 많은 회사는 카운트가 줄어 **S Pass 채용 한도가 감소**할 수 있음
+- 정부는 보완 차원에서 **프로그레시브 웨이지 크레딧 스킴(PWCS) 정부 공동부담을 20%→30%**로 상향(2026년 한시 적용)
+
+**한인 고용주·HR 담당자 참고**
+- 7월 이후 S Pass 신규 채용 전 쿼터 재계산 필요
+- 해당 구간 로컬 직원 월급을 S$1,800 이상으로 조정하면 쿼터 영향 없음
+- 자세한 계산은 MOM MyMOM Portal에서 확인 가능
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · Singapore Employment Agency",
+    sources: [
+      { name: "Singapore Employment Agency — LQS Rises to S$1,800 from 1 July 2026", url: "https://singaporeemploymentagency.com/local-qualifying-salary-s1800-july-2026/" },
+      { name: "kmerleone.com — Singapore Raises the Local Qualifying Salary (LQS) to $1,800 from 1 July 2026", url: "https://www.kmerleone.com/post/singapore-raises-the-local-qualifying-salary-lqs-to-1-800-from-1-july-2026" },
+      { name: "Migrant Times — Singapore Raises Local Qualifying Salary to S$1,800", url: "https://migrantimes.com/labour-policy/02-07-2026/singapore-raises-local-qualifying-salary-to-s1800" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💼",
+    relatedIds: ["auto-20260620-1"],
+  },
+  {
+    id: "auto-20260730-4",
+    publishedAt: "2026-07-28",
+    category: "교통",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🚇 MRT '2011년 집계 이래 최장 무지연 기록' — 다운타운선 금요 밤 11:30 조기 종료(~9/5)",
+    summary: "LTA 발표에 따르면 2025년 11월 이후 30분 이상 MRT 지연이 단 한 건도 발생하지 않아 2011년 통계 집계 이후 최장 기간을 기록 중이다. 6월 기준 운행률·정시율은 99% 이상. 다만 다운타운선(DTL) 전 구간은 7월 10일~9월 5일 매주 금요일 밤 11시 30분에 조기 종료되고 토요일 오전 8시 30분에 늦게 시작하니 DTL 이용자는 심야 이동 계획에 주의가 필요하다.",
+    fullContent: `**MRT 최장 무지연 기록 및 다운타운선 심야 서비스 변경 (2026년 7월)**
+
+**MRT 신뢰도 최장 기록**
+LTA가 공개한 지표에 따르면, 2025년 11월 이후 MRT 전 노선에서 **30분 이상 지연이 단 한 건도 발생하지 않았습니다**. 이는 LTA가 2011년부터 이 통계를 집계한 이후 **가장 긴 연속 무(無)지연 기간**입니다.
+- 2026년 6월 기준 **열차 서비스 이행률·정시율: 99% 이상** 유지
+
+**⚠️ 다운타운선(DTL) 심야 서비스 변경 — 현재 진행 중 (7월 10일~9월 5일)**
+- **매주 금요일 밤**: 평소 자정(0:00)이 아닌 **밤 11시 30분(23:30) 조기 종료**
+- **매주 토요일 아침**: 평소 오전 5시 30분이 아닌 **오전 8시 30분 늦게 운행 시작**
+- 적용 구간: DTL 전 구간(부기스~엑스포 방향 포함)
+- 적용 기간: **2026년 7월 10일 ~ 9월 5일** (현재 진행 중)
+
+**한인 참고 팁**
+- 금·토 심야에 다운타운선(차이나타운·부기스·부킷 팡앙·엑스포 방면 등)을 이용할 계획이라면 버스 대체 또는 Grab·택시를 미리 준비하세요.
+- 야간 운행 단축은 선로·신호 정비를 위한 엔지니어링 작업으로, 9월 5일 이후 정상화됩니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · LTA",
+    sources: [
+      { name: "Mothership — No MRT delays above 30 min since Nov. 2025, longest such period since records started in 2011", url: "https://mothership.sg/2026/07/mrt-rail-reliability-figures/" },
+      { name: "Land Transport Guru — Singapore MRT Map (July 2026)", url: "https://landtransportguru.net/singapore-mrt-map-jul2026/" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🚇",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260725-1",
     publishedAt: "2026-07-25",
     category: "문화",
@@ -1648,396 +1801,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     readTime: "2분",
     emoji: "📉",
     relatedIds: ["23"],
-  },
-  {
-    id: "auto-20260620-5",
-    publishedAt: "2026-06-18",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 일주일 새 사기 경보 2건 — 페이스북 라이브 행운권·시니어 대상 안드로이드 악성코드",
-    summary: "싱가포르 경찰(SPF)이 6월 15일·18일 잇따라 경보를 냈다. ①페북 라이브 행운권/스크래치카드 사기: 5월 20일 이후 33건·손실 최소 S$6만, PayNow QR로 '수수료' 요구. ②시니어 대상 안드로이드 악성코드: 4월 1일 이후 8건·손실 최소 S$6.9만, APK 설치 유도 후 Singpass·ScamShield 삭제·계좌 한도 조작.",
-    fullContent: `**SPF 사기 경보 2건 (2026년 6월)**
-싱가포르 경찰(SPF)이 일주일 사이 신종 사기 경보를 두 건 발표했습니다.
-
-**① 페이스북 라이브 행운권 사기 (6월 15일 발표)**
-- 5월 20일 이후 최소 **33건**, 피해액 최소 **S$6만**
-- 페북 라이브 방송에서 스크래치카드·복권을 판매 → "당첨됐다"며 **PayNow QR(Liquidpay 계좌)**로 '수수료' 등 추가 송금 요구
-- 당첨금이 안 들어오거나 연락이 끊겨야 사기임을 인지
-
-**② 시니어 대상 안드로이드 악성코드 사기 (6월 18일 발표)**
-- 4월 1일 이후 최소 **8건**, 피해액 최소 **S$6.9만**
-- 페북·TikTok의 '시니어 활동' 광고 → 관심 등록 시 WhatsApp으로 연락 → **APK 파일 설치** 유도(활동 목록 확인 명목)
-- 설치 후 **Singpass·ScamShield 앱이 삭제**되거나 **계좌 이체 한도가 무단 변경**된 피해 사례
-
-**한인 가정 주의 팁**
-- 출처 불명 APK 파일은 절대 설치하지 말 것(공식 앱스토어 외 설치 차단 권장)
-- SNS 라이브·광고 경품·당첨 안내는 선입금·수수료 요구 시 사기로 의심
-- 부모님 등 시니어가 방문·체류 중이라면 이 2건을 미리 공유해 주의를 당부할 것
-- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "SPF",
-    sources: [
-      { name: "SPF — Police Advisory On Lucky Draw Scams Involving Facebook Live", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260615_police_advisory_on_lucky_draw_scams_involving_facebook_live" },
-      { name: "SPF — Police Advisory On Malware-Enabled Scams On Android Devices Targeting Senior Citizens", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260618_police_advisory_on_malware_enabled_scams_on_android_devices_targeting_senior_citizens" },
-    ],
-    time: "2026년 6월 18일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["28"],
-  },
-  {
-    id: "19",
-    publishedAt: "2026-06-19",
-    category: "건강",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🦟 뎅기열 2026년 주간 최다 발생 — 6월 13일 주 119건, 북부 레드얼럿 클러스터 주의",
-    summary: "NEA 집계 기준 6월 13일로 끝나는 주에 뎅기 119건 확진(2026년 주간 최다, 전주比 +39). 누적 약 938건으로 피크 시즌 진입. 6월 15일 기준 활성 클러스터 12곳 중 4곳 레드얼럿. 북부 거주 한인 가정 모기 번식 방지 주의.",
-    fullContent: `**2026년 뎅기열 주간 최다 발생**
-국가환경청(NEA) 집계 기준, 6월 13일로 끝나는 주에 뎅기열 확진이 급증했습니다.
-
-**현황**
-- 해당 주 확진: **119건** (2026년 주간 최다, 전주 대비 +39건)
-- 누적(1/1~6/13): 약 **938건**
-- 피크 시즌(5~10월) 진입
-
-**클러스터 경보 (6월 15일 기준)**
-- 활성 클러스터 **12곳**, 그중 **4곳이 레드얼럿**(10건 이상·확산 가속)
-- 특히 **북부 지역** 주의
-
-**한인 가정 예방 체크리스트**
-- 화분 받침대·에어컨 응결수 받이 고인 물 즉시 제거
-- 발코니 양동이·물통 뒤집어 보관, 배수구 주 1회 청소
-- 고열·심한 두통·관절통 시 GP/폴리클리닉 방문, NS1 검사 요청
-
-실시간 클러스터(빨간 구역)는 NEA myENV 앱·haze.gov.sg에서 확인하세요.`,
-    source: "NEA · Medical Daily",
-    sources: [
-      { name: "Medical Daily — Singapore Dengue 2026 (NEA 인용)", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
-      { name: "NEA haze.gov.sg", url: "https://www.haze.gov.sg/home" },
-    ],
-    time: "2026년 6월 19일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🦟",
-    relatedIds: [],
-  },
-  {
-    id: "28",
-    publishedAt: "2026-02-26",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
-    summary: "싱가포르 경찰(SPF) 발표: 2025년 사기 건수 37,308건으로 전년比 27.6% 첫 감소, 피해액 약 S$9.13억. 다만 2026년 들어 'PR 신청 대행' 사칭 사기 24건(피해 약 S$39.7만) 발생 — PR 신청하는 한인 표적 가능, 각별 주의.",
-    fullContent: `**2025년 사기 통계 (2026년 2월 발표)**
-싱가포르 경찰청(SPF)이 2025년 사기·사이버범죄 통계를 발표했습니다.
-
-**전체 현황**
-- 사기 건수: **37,308건** (2024년 51,501건 대비 **27.6% 감소** — 통계 분리 이후 첫 감소)
-- 피해액: 약 **S$9.13억** (2024년 S$11.24억 대비 17.9%↓)
-- 단, 1인당 평균 피해액은 상승
-
-**⚠️ 한인 주의 — PR 신청 대행 사칭 사기**
-- 2026년 1월 이후 'PR(영주권) 신청을 도와주겠다'는 가짜 광고·서류·공식기관 사칭 사기 **24건**, 피해 약 **S$39.7만**
-- ICA 등 공식 절차는 정부 포털에서만 진행 — SNS 광고·대행 업체 통한 선입금 요구는 사기 의심
-
-**예방 수칙**
-- 정부 기관은 메신저·SNS DM으로 송금·개인정보를 요구하지 않음
-- 의심 시 ScamShield 앱·1799(안티스캠 핫라인) 확인
-
-정확한 최신 통계·경보는 아래 출처(SPF)를 확인하세요.`,
-    source: "SPF · The Online Citizen",
-    sources: [
-      { name: "SPF — Scams and Cybercrime Fell in 2025", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/02/Scams-and-Cybercrime-Fell-by-Almost-a-Quarter-in-2025" },
-      { name: "SPF — PR 신청 사기 경보", url: "https://www.police.gov.sg/Media-Hub/News/2026/04/20260422_police_advisory_on_scam_variant_involving_fraudulent_social_media_advertisements_teaser" },
-      { name: "The Online Citizen — 사기 27.6% 감소", url: "https://theonlinecitizen.com/2026/02/25/scam-cases-in-singapore-fall-27-6-per-cent-in-first-recorded-decrease" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["17"],
-  },
-  {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
-    id: "17",
-    publishedAt: "2026-03-03",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💼 EP 최저급여 2027년 $6,000으로 인상 + 'ONE Pass (AI·Tech)' 신설 — Budget 2026 확정",
-    summary: "MOM Budget 2026 발표: 일반 EP 최저 월급여 2027년 1월(신규)·2028년 1월(갱신)부터 $5,600→$6,000, 금융권 $6,200→$6,600. 2026년 현재는 아직 $5,600. 2027년 1월 Tech.Pass 대체 'ONE Pass (AI and Tech)' 신설 예정.",
-    fullContent: `**Budget 2026 외국인력 정책 변경**
-싱가포르 인력부(MOM)가 Budget 2026에서 Employment Pass(EP) 등 외국인력 정책 변경을 발표했습니다.
-
-**EP 최저 월급여 인상 (2027~2028 적용)**
-- 일반 업종: $5,600 → **$6,000** (2027년 1월 신규 / 2028년 1월 갱신부터)
-- 금융 서비스업: $6,200 → **$6,600**
-- ※ 2026년 현재는 아직 일반 $5,600 / 금융 $6,200
-
-**ONE Pass (AI and Tech) 신설**
-- 2027년 1월 기존 Tech.Pass를 대체하는 새 트랙 도입 예정
-- AI·테크 인재 유치 강화 목적, 더 유리한 조건 제공 예정
-
-**한인 체크리스트**
-- EP 갱신 예정자는 인상 시점(2028년 갱신)에 맞춰 급여 기준 사전 확인
-- COMPASS 40점 기준은 계속 적용 — 급여가 기준을 간신히 넘으면 사전 자가진단 권장
-
-정확한 기준과 최신 발표는 반드시 MOM 공식 자료(아래 출처)를 확인하세요.`,
-    source: "MOM · Newland Chase",
-    sources: [
-      { name: "MOM 공식 factsheet (2026-03-03)", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
-      { name: "Newland Chase — 외국인력 정책 변경", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-      { name: "Slasify — SG 취업비자 2026 가이드", url: "https://slasify.com/en/blog/singapore-work-visas-2026-guide" },
-    ],
-    time: "2026년 3월 3일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "💼",
-    relatedIds: ["21", "20"],
-  },
-  {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
-
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
-    id: "27",
-    publishedAt: "2026-02-17",
-    category: "생활",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
-    summary: "2026년 춘절(Chinese New Year)은 2월 17일(화)·18일(수) 공식 공휴일. 말의 해. 2월 16일(월) 연차 시 토~수 4일 연휴. 2026년 싱가포르 법정 공휴일은 총 11일(춘절·하리라야·디파발리·크리스마스·노동절·건국기념일 등).",
-    fullContent: `**2026년 춘절 & 공휴일 안내**
-한인 가정의 연휴·여행 계획에 참고하세요.
-
-**춘절(Chinese New Year) 2026**
-- 공식 공휴일: **2월 17일(화)·18일(수)** — 말(馬)의 해
-- 2월 16일(월) 연차 사용 시 **2/15(토)~2/18(수) 4일 연휴**
-- 축제는 15일간 이어지며 정월대보름(Lantern Festival)으로 마무리
-
-**2026년 법정 공휴일 (총 11일)**
-- 신정, 춘절(2일), 성금요일, 노동절, 하리라야 푸아사, 베삭데이, 하리라야 하지, 건국기념일(8/9), 디파발리, 크리스마스 등
-
-**팁**
-- 춘절 연휴엔 한국행 항공권 수요·가격 상승 — 미리 예약
-- 일부 한인 업소·마트 단축영업 가능, 방문 전 확인
-
-정확한 날짜는 아래 출처를 확인하세요.`,
-    source: "MOM · M1 · Foodline",
-    sources: [
-      { name: "M1 — 2026 공휴일 가이드", url: "https://www.m1.com.sg/blog/personal/public-holidays-2026-singapore-long-weekend" },
-      { name: "Eskimo Travel — CNY 2026", url: "https://www.eskimo.travel/en/blog/chinese-new-year-singapore-2026" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🧧",
-    relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
-  {
-    id: "31",
-    publishedAt: "2026-03-31",
-    category: "취업",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "📈 2026년 1분기 노동시장 — 실업률 2.0%로 안정, 정리해고는 소폭 증가",
-    summary: "MOM: 2026년 1분기 총고용 +9,400명(18분기 연속 증가), 실업률 2.0%로 낮은 수준 유지. 단 정리해고는 3,690→3,830명으로 소폭 증가(제조·금융·전문서비스 중심). 구인은 여전히 구직 초과(약 1.46배)지만 채용은 신중해지는 분위기.",
-    fullContent: `**2026년 1분기 노동시장 동향 (MOM)**
-한인 구직자·이직 고려자에게 참고가 되는 고용 지표입니다.
-
-**전반적으로 안정**
-- 총고용 **+9,400명** (2021년 말 이후 **18분기 연속 증가**)
-- 실업률 **2.0%** (거주자 2.9%, 시민 3.1%)
-- 구인 약 73,300건, 실업자 1명당 약 **1.46개 일자리**
-
-**주의 신호**
-- 정리해고 **3,690 → 3,830명**(전분기比 소폭 증가), 주로 **제조·금융·전문서비스**
-- 단 해고율은 1,000명당 1.6명으로 비(非)침체 수준
-- 채용·임금 인상 기대는 다소 둔화 — 기업이 신중해지는 분위기
-
-**한인 참고**
-- 전반적으로 견조하나 일부 업종은 채용 보수화 — 이직 시 타이밍·업종 확인
-- EP 신청은 COMPASS·최저급여 기준 동시 충족 필요(관련 기사 참고)
-
-정확한 통계는 아래 MOM 자료를 확인하세요.`,
-    source: "MOM · Human Resources Online",
-    sources: [
-      { name: "Human Resources Online — Q1 노동시장", url: "https://www.humanresourcesonline.net/retrenchments-edged-up-in-q1-but-singapore-s-labour-market-stayed-broadly-stable-says-mom" },
-      { name: "Asian Prime Properties — Q1 2026 고용", url: "https://asianprimeproperties.sg/singapore-employment-growth-q1-2026-labour-market-resilient/" },
-    ],
-    time: "2026년 1분기",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📈",
-    relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
   },
 ];
 
