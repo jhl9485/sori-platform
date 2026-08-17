@@ -62,14 +62,15 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap mb-1">
               {/* 마감된 공고에는 NEW·급구를 붙이지 않는다 (목록 화면과 같은 규칙) */}
+              {/* NEW 배지는 뉴스·커뮤니티와 같은 초록 + 기본 글꼴 */}
               {!closed && job.isNew && (
-                <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>
+                <span className="text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>
               )}
               {!closed && job.isUrgent && (
                 <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>
               )}
             </div>
-            <h1 className="text-[1rem] font-bold leading-tight mb-1">{job.title}</h1>
+            <h1 className="text-[1.1rem] font-bold leading-tight mb-1">{job.title}</h1>
             <div className="text-[0.8rem] text-[#888070]">{job.company}</div>
           </div>
         </div>

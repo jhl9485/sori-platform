@@ -132,14 +132,16 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
       {/* 가격 + 제목 */}
       <div className="bg-white px-4 md:px-6 py-5">
         <div className="flex items-start justify-between gap-3 mb-2">
+          {/* 제목이 먼저, 가격이 그다음. 다른 상세 5개와 같은 순서·크기를 쓴다.
+              예전엔 가격(1.3rem)이 제목(0.95rem)보다 커서 제목이 부제처럼 보였다. */}
           <div>
-            <div className="flex items-center gap-2 mb-1">
+            <h1 className="text-[1.1rem] font-bold text-[#181614] leading-snug mb-1">{item.title}</h1>
+            <div className="flex items-center gap-2">
               <span className="text-[1.3rem] font-bold">{item.price}</span>
               {item.originalPrice && (
                 <span className="text-[0.88rem] text-[#888070] line-through">{item.originalPrice}</span>
               )}
             </div>
-            <h1 className="text-[0.95rem] font-bold text-[#181614]">{item.title}</h1>
           </div>
           <span className={`text-[0.72rem] px-2 py-[4px] rounded-lg font-medium flex-shrink-0 ${conditionColor[item.condition]}`}>
             {item.condition}

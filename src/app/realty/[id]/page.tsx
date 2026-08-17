@@ -121,7 +121,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
             </span>
           )}
         </div>
-        <h1 className="text-[1.15rem] font-bold leading-snug mb-2">{item.title}</h1>
+        <h1 className="text-[1.1rem] font-bold leading-snug mb-2">{item.title}</h1>
         <div className="text-[1.6rem] font-extrabold text-[#D04020] mb-1">{item.price}</div>
         <div className="text-[0.78rem] text-[#888070] mb-3">
           📍 {item.area} · 🚇 {item.mrt}

@@ -74,7 +74,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         <div className="flex items-start justify-between gap-3 mb-3">
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-[1.2rem] font-bold">{biz.name}</h1>
+              <h1 className="text-[1.1rem] font-bold">{biz.name}</h1>
               {biz.verified
                 ? <VerifiedBadge size="md" />
                 : <span className="text-[0.62rem] bg-[#F0EDE8] text-[#888070] px-[6px] py-[2px] rounded font-medium">미인증</span>}
