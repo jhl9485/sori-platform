@@ -116,7 +116,8 @@ export default function JobsPage() {
                   <div className="flex items-center gap-1 flex-wrap">
                     {closed && <span className="text-[0.6rem] bg-[#888070] text-white px-[5px] py-[1px] rounded font-bold">마감</span>}
                     {userIds.has(job.id) && <span className="text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 공고</span>}
-                    {!closed && !userIds.has(job.id) && job.isNew && <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>}
+                    {/* NEW 배지는 뉴스·커뮤니티와 같은 초록 + 기본 글꼴 */}
+                    {!closed && !userIds.has(job.id) && job.isNew && <span className="text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>}
                     {!closed && !userIds.has(job.id) && job.isUrgent && <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>}
                   </div>
                   <div className="text-[0.88rem] font-bold mt-[2px] leading-tight">{job.title}</div>

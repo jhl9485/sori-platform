@@ -269,7 +269,7 @@ export default function RealtyPage() {
                   r.emoji
                 )}
                 {userIds.has(r.id) && (
-                  <span className="absolute top-2 left-2 bg-[#2B7A50] text-white text-[0.62rem] font-bold px-2 py-[2px] rounded-full">
+                  <span className="absolute top-2 left-2 bg-[#2B7A50] text-white text-[0.6rem] font-bold px-[5px] py-[1px] rounded">
                     내 매물
                   </span>
                 )}
