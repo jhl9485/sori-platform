@@ -20,21 +20,23 @@ const REALTY_PERIODS = [
   { id: "6m",  label: "6개월" },
 ] as const;
 
-function withinPeriod(time: string, period: string): boolean {
+// 등록 기간 필터.
+// 카드에 표시되는 날짜와 반드시 같은 소스(resolveISO)로 판정해야 한다.
+// 예전에는 time 문자열("2시간 전")을 지금 시각 기준으로 해석했는데,
+// 카드 날짜는 고정 기준시각(SEED_EPOCH) 기준이라 두 기준이 어긋났다
+// → "1주" 필터에 카드상 한 달 전인 매물이 남았다.
+// 또 사용자가 등록한 매물의 "2026. 8. 17." 형식은 옛 정규식이 못 읽어
+// 항상 0일로 계산돼 모든 기간 필터를 통과했다.
+function withinPeriod(createdAt: string | undefined, time: string | undefined, period: string): boolean {
   if (period === "all") return true;
-  if (/방금|분 전|시간 전|어제/.test(time)) return true;
-  const dayMatch = time.match(/(\d+)일 전/);
-  let computedDays = dayMatch ? parseInt(dayMatch[1], 10) : 0;
-  if (computedDays === 0) {
-    const abs = time.match(/(\d{4})년\s*(\d+)월\s*(\d+)일/);
-    if (abs) {
-      const t = new Date(parseInt(abs[1]), parseInt(abs[2]) - 1, parseInt(abs[3])).getTime();
-      computedDays = Math.floor((Date.now() - t) / (1000 * 60 * 60 * 24));
-    }
-  }
-  if (period === "1w") return computedDays <= 7;
-  if (period === "1m") return computedDays <= 30;
-  if (period === "6m") return computedDays <= 180;
+  const iso = resolveISO(createdAt, time);
+  if (!iso) return false; // 날짜를 알 수 없으면 기간 필터에서 제외
+  const t = new Date(iso).getTime();
+  if (Number.isNaN(t)) return false;
+  const days = (Date.now() - t) / 86_400_000;
+  if (period === "1w") return days <= 7;
+  if (period === "1m") return days <= 30;
+  if (period === "6m") return days <= 180;
   return true;
 }
 
@@ -82,7 +84,7 @@ export default function RealtyPage() {
       const st = r.status || "가능";
       if (st !== selectedStatus) return false;
     }
-    if (selectedPeriod !== "all" && !withinPeriod(r.time, selectedPeriod)) return false;
+    if (selectedPeriod !== "all" && !withinPeriod(r.createdAt, r.time, selectedPeriod)) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const hay = `${r.title} ${r.area} ${r.address} ${r.mrt}`.toLowerCase();
