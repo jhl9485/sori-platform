@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { CATEGORIES } from "@/data/categories";
@@ -8,6 +8,7 @@ import type { VisaBadge } from "@/data/communityPosts";
 import { updateUserItem } from "@/lib/userContent";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
+import ImageUploader from "@/components/shared/ImageUploader";
 
 const DRAFT_KEY = "sori_write_draft";
 const POSTS_KEY = "sori_user_posts";
@@ -45,33 +46,8 @@ interface DraftState {
   images: string[];
 }
 
-// 이미지 파일을 축소·압축해 data URL로 변환 (localStorage 용량 절약)
-async function compressImage(file: File, maxDim = 1000, quality = 0.7): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = () => reject(new Error("read error"));
-    reader.onload = () => {
-      const img = new window.Image();
-      img.onerror = () => reject(new Error("image error"));
-      img.onload = () => {
-        let { width, height } = img;
-        if (width > maxDim || height > maxDim) {
-          if (width >= height) { height = Math.round((height * maxDim) / width); width = maxDim; }
-          else { width = Math.round((width * maxDim) / height); height = maxDim; }
-        }
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) { reject(new Error("no ctx")); return; }
-        ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL("image/jpeg", quality));
-      };
-      img.src = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  });
-}
+// 사진 압축·리사이즈는 공용 ImageUploader가 담당한다.
+// (예전엔 여기에 별도 구현이 있어 1000px/0.7 — 공용은 1200px/0.78 이라 결과물이 달랐다)
 
 function WriteInner() {
   const router = useRouter();
@@ -88,7 +64,6 @@ function WriteInner() {
   const [tagsInput, setTagsInput] = useState("");
   const [visaBadge, setVisaBadge] = useState<VisaBadge>(null);
   const [images, setImages] = useState<string[]>([]);
-  const fileRef = useRef<HTMLInputElement>(null);
   const [showCatPicker, setShowCatPicker] = useState(false);
   const [restored, setRestored] = useState(false);
   const [hydrated, setHydrated] = useState(false);
@@ -162,20 +137,6 @@ function WriteInner() {
 
   const tagsPreview = parseTags(tagsInput);
 
-  const onPickImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (!files.length) return;
-    const room = Math.max(0, 4 - images.length);
-    const picked = files.slice(0, room);
-    const urls: string[] = [];
-    for (const f of picked) {
-      if (!f.type.startsWith("image/")) continue;
-      try { urls.push(await compressImage(f)); } catch { /* 변환 실패 무시 */ }
-    }
-    if (urls.length) setImages((prev) => [...prev, ...urls].slice(0, 4));
-    if (fileRef.current) fileRef.current.value = "";
-  };
-
   const submit = () => {
     if (!canSubmit) return;
 
@@ -238,7 +199,7 @@ function WriteInner() {
   };
 
   return (
-    <div className="max-w-[390px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
+    <div className="max-w-[480px] mx-auto min-h-screen bg-white shadow-[0_0_60px_rgba(0,0,0,0.12)]">
       {/* 헤더 */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/[0.08] px-4 h-[56px] flex items-center justify-between">
         <button onClick={async () => { if (await confirmLeave()) router.back(); }} className="text-[0.9rem] text-[#888070]" aria-label="닫기">✕</button>
@@ -332,7 +293,7 @@ function WriteInner() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           maxLength={50}
-          className="w-full text-[1rem] font-bold border-b border-black/[0.08] pb-2 outline-none placeholder:text-[#C0BBB0] bg-transparent"
+          className="w-full text-[1rem] font-bold border-b border-black/[0.08] pb-2 outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] bg-transparent"
         />
         <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1 mb-3">{title.length}/50</div>
 
@@ -344,7 +305,7 @@ function WriteInner() {
           onFocus={(e) => setTimeout(() => e.target.scrollIntoView({ behavior: "smooth", block: "center" }), 300)}
           rows={10}
           maxLength={2000}
-          className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none placeholder:text-[#C0BBB0] bg-transparent resize-none"
+          className="w-full text-[0.88rem] text-[#181614] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] bg-transparent resize-none"
         />
 
         {/* 태그 입력 */}
@@ -355,7 +316,7 @@ function WriteInner() {
             value={tagsInput}
             onChange={(e) => setTagsInput(e.target.value)}
             placeholder="예: 비자, EP, OCBC, Tanjong-Pagar"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           {tagsPreview.length > 0 && (
             <div className="flex flex-wrap gap-[5px] mt-2">
@@ -372,25 +333,12 @@ function WriteInner() {
           )}
         </div>
 
-        {images.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {images.map((src, i) => (
-              <div key={i} className="relative w-20 h-20 rounded-[10px] overflow-hidden border border-black/[0.08]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt={`첨부 사진 ${i + 1}`} className="w-full h-full object-cover" />
-                <button
-                  type="button"
-                  onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
-                  className="absolute top-0.5 right-0.5 w-5 h-5 rounded-full bg-black/60 text-white text-[0.7rem] leading-none flex items-center justify-center"
-                  aria-label="사진 삭제"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-        <input ref={fileRef} type="file" accept="image/*" multiple onChange={onPickImages} className="hidden" />
+        {/* 사진 — 다른 작성 화면 3곳과 같은 공용 컴포넌트를 쓴다.
+            예전엔 여기만 직접 구현이라 4장 제한·대표 배지 없음·다른 압축 설정이었다. */}
+        <div className="mt-4">
+          <label className="block text-[0.8rem] font-bold text-[#888070] mb-2">사진</label>
+          <ImageUploader images={images} onChange={setImages} />
+        </div>
 
         <div className="flex items-center justify-between mt-3">
           <span className="text-[0.7rem] text-[#C0BBB0]">
@@ -403,23 +351,11 @@ function WriteInner() {
       </div>
 
       {/* 하단 옵션 바 */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-white border-t border-black/[0.08] px-4 py-3 flex items-center justify-between z-50 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            disabled={images.length >= 4}
-            className="w-9 h-9 inline-flex items-center justify-center text-[#888070] text-base leading-none hover:bg-[#F5F3EE] rounded-lg transition-colors disabled:opacity-40 relative"
-            aria-label="사진 첨부"
-          >
-            <span className="block leading-none">📷</span>
-            {images.length > 0 && (
-              <span className="absolute -top-1 -right-1 min-w-[15px] h-[15px] bg-[#D04020] text-white text-[0.55rem] font-bold rounded-full px-1 flex items-center justify-center leading-none">
-                {images.length}
-              </span>
-            )}
-          </button>
-        </div>
+      {/* 폭은 위 본문 컨테이너(max-w-[480px])와 반드시 같아야 어긋나지 않는다 */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white border-t border-black/[0.08] px-4 py-3 flex items-center justify-between z-50 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+        {/* 사진 첨부는 본문 안 공용 컴포넌트 한 곳에서만 받는다.
+            여기에도 📷을 두면 입구가 두 개가 되어 벼룩 카드의 하트 중복과 같은 문제가 생긴다. */}
+        <div />
         <button
           onClick={() => setIsAnon(!isAnon)}
           className={`inline-flex items-center gap-[6px] px-3 h-9 rounded-full text-[0.75rem] font-medium border transition-all leading-none ${
