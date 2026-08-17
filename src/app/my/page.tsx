@@ -22,6 +22,8 @@ import {
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
 import { toast, confirmDialog, alertDialog } from "@/components/shared/Feedback";
+import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
+import { toNum } from "@/components/shared/MetricRow";
 
 const TABS = [
   { id: "overview", label: "활동", icon: "📊" },
@@ -497,6 +499,27 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty }: PostsTabProps) 
   );
 }
 
+// 저장·좋아요 탭의 커뮤니티 글 한 줄.
+// 숫자는 카드·상세와 반드시 같은 계산식이어야 한다 (MetricRow.tsx 참고):
+//   좋아요 = 시드 + (내가 눌렀으면 1)   ← 좋아요 탭은 정의상 항상 +1이 붙는다
+//   댓글   = 예시 댓글 + 내가 쓴 댓글 (realCommentCount)
+// 예전에는 데이터 원본 필드(p.likes / p.comments)를 그대로 찍어
+// 마이페이지만 다른 숫자를 보여줬다.
+function CommunityPostRow({ post }: { post: SavedTabProps["posts"][number] }) {
+  const { has: isLiked } = useToggleSet(LIKE_KEY.community);
+  const userCommentCounts = useUserCommentCounts();
+  const likeCount = toNum(post.likes) + (isLiked(post.id) ? 1 : 0);
+  const commentCount = realCommentCount(post.id, userCommentCounts);
+  return (
+    <ListLink
+      href={`/community/${post.id}`}
+      title={post.title}
+      sub={`${post.categoryLabel} · ❤️ ${likeCount} · 💬 ${commentCount}`}
+      badge={post.time}
+    />
+  );
+}
+
 interface SavedTabProps {
   posts: ReturnType<typeof useUserPosts>;
   news: typeof NEWS_ITEMS;
@@ -525,13 +548,7 @@ function SavedTab({ posts, news, biz, realty, flea, jobs }: SavedTabProps) {
         <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
           <SectionHeader title="💬 커뮤니티 글" count={posts.length} />
           {posts.map((p) => (
-            <ListLink
-              key={p.id}
-              href={`/community/${p.id}`}
-              title={p.title}
-              sub={`${p.categoryLabel} · ❤️ ${p.likes} · 💬 ${p.comments}`}
-              badge={p.time}
-            />
+            <CommunityPostRow key={p.id} post={p} />
           ))}
         </section>
       )}
@@ -643,7 +660,7 @@ function LikedTab({ posts, news, biz, realty, flea, jobs }: LikedTabProps) {
         <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
           <SectionHeader title="💬 커뮤니티 글" count={posts.length} />
           {posts.map((p) => (
-            <ListLink key={p.id} href={`/community/${p.id}`} title={p.title} sub={`${p.categoryLabel} · ❤️ ${p.likes} · 💬 ${p.comments}`} badge={p.time} />
+            <CommunityPostRow key={p.id} post={p} />
           ))}
         </section>
       )}

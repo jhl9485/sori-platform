@@ -8,7 +8,9 @@ import { formatCount } from "@/lib/format";
 // 양쪽 다 받아서 숫자로 맞춘다.
 export type Count = number | string | undefined;
 
-function toNum(v: Count): number {
+// export: 마이페이지 등 MetricRow를 쓰지 않는 화면도 같은 계산식을 써야
+// 카드·상세와 숫자가 어긋나지 않는다.
+export function toNum(v: Count): number {
   if (v === undefined) return 0;
   if (typeof v === "number") return Number.isFinite(v) ? v : 0;
   const n = parseInt(v.replace(/,/g, ""), 10);
