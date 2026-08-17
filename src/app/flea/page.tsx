@@ -8,7 +8,6 @@ import { useUserFlea } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
-import { useToggleSet } from "@/lib/storage";
 import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
 import ScrollRow from "@/components/shared/ScrollRow";
 
@@ -23,7 +22,6 @@ const conditionColor: Record<string, string> = {
 export default function FleaPage() {
   const [selectedCat, setSelectedCat] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
-  const { has: isLiked, toggle: toggleLike } = useToggleSet(LIKE_KEY.flea);
   const [visibleCount, setVisibleCount] = useState(12);
   useListRestore("sori_list_flea", { selectedCat, searchQuery, visibleCount }, (s) => {
     setSelectedCat(s.selectedCat);
@@ -39,12 +37,6 @@ export default function FleaPage() {
     return true;
   }).sort((a, b) => timeSortKey(b.createdAt, b.time) - timeSortKey(a.createdAt, a.time)), [allItems, selectedCat, q]);
   const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
-
-  const handleLike = (id: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleLike(id);
-  };
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -114,9 +106,6 @@ export default function FleaPage() {
                   📷 {item.photos.length}
                 </span>
               )}
-              <button onClick={(e) => handleLike(item.id, e)} aria-label="좋아요" className="absolute bottom-2 right-2 w-6 h-6 bg-white/80 rounded-full flex items-center justify-center text-sm hover:bg-white transition-colors">
-                {isLiked(item.id) ? "❤️" : "🤍"}
-              </button>
             </div>
             <div className="p-2">
               <div className="text-[0.82rem] font-bold mb-[3px] line-clamp-2 leading-tight">{item.title}</div>
