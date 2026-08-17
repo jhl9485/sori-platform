@@ -11,7 +11,7 @@ import Lightbox from "@/components/shared/Lightbox";
 import { COMMUNITY_POSTS, SAMPLE_COMMENTS } from "@/data/communityPosts";
 import { VISA_BADGE_STYLE } from "@/lib/visaBadge";
 import { renderMarkdown } from "@/lib/renderMarkdown";
-import { formatCount, exactTime, resolveISO } from "@/lib/format";
+import { exactTime, resolveISO } from "@/lib/format";
 import { useToggleSet } from "@/lib/storage";
 import { useHydrated } from "@/lib/hooks";
 import { useUserPosts } from "@/lib/userContent";
@@ -25,7 +25,9 @@ export default function CommunityDetailClient({ params }: { params: { id: string
   const hydrated = useHydrated();
   const userPosts = useUserPosts();
   const post = userPosts.find((p) => p.id === params.id) || COMMUNITY_POSTS.find((p) => p.id === params.id);
-  const { toggle: markRead } = useToggleSet("sori_read_posts");
+  // add(멱등 추가)를 쓴다. toggle을 쓰면 같은 글을 두 번째로 열 때 읽음 기록이 삭제돼
+  // 목록에서 다시 "안 읽음"으로 보인다.
+  const { add: markRead } = useToggleSet("sori_read_posts");
   const userCommentCounts = useUserCommentCounts();
   const gate = useAuthGate();
   const [zoomIndex, setZoomIndex] = useState<number | null>(null);
@@ -113,7 +115,7 @@ export default function CommunityDetailClient({ params }: { params: { id: string
                 )}
               </div>
               <div className="text-[0.7rem] text-[#888070] mt-[1px]" suppressHydrationWarning>
-                {exactTime(resolveISO(post.createdAt, post.time)) || post.time} · 조회 {formatCount(post.views)} · 댓글 {realCommentCount(post.id, userCommentCounts)}
+                {exactTime(resolveISO(post.createdAt, post.time)) || post.time} · 댓글 {realCommentCount(post.id, userCommentCounts)}
               </div>
             </div>
           </div>
