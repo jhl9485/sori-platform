@@ -20,11 +20,12 @@ export default function JobSection() {
   return (
     <section className="mt-1">
       <div className="h-px bg-black/[0.08] mx-4 mb-5" />
-      <div className="flex justify-between items-center px-4 pb-[10px]">
+      {/* 제목 줄과 카드 줄은 같은 좌우 여백을 써야 다른 홈 섹션과 세로선이 맞는다 */}
+      <div className="flex justify-between items-center px-4 md:px-6 pb-[10px]">
         <h2 className="text-base font-bold tracking-tight">최신 채용공고</h2>
         <Link href="/jobs" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">전체보기</Link>
       </div>
-      <div className="flex gap-[10px] px-4 pb-[10px] overflow-x-auto scrollbar-hide">
+      <div className="flex gap-[10px] px-4 md:px-6 pb-[10px] overflow-x-auto scrollbar-hide">
         {featured.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}

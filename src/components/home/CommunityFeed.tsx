@@ -20,7 +20,8 @@ export default function CommunityFeed() {
   return (
     <section>
       {/* 섹션 헤더 */}
-      <div className="flex justify-between items-center px-4 pb-3">
+      {/* 제목 줄과 카드 줄은 같은 좌우 여백을 써야 세로선이 맞는다 */}
+      <div className="flex justify-between items-center px-4 md:px-6 pb-3">
         <h2 className="text-base font-bold tracking-tight">🔥 오늘의 인기 글</h2>
         <Link href="/community" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">
           전체보기
