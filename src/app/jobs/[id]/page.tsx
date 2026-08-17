@@ -61,10 +61,11 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap mb-1">
-              {job.isNew && (
+              {/* 마감된 공고에는 NEW·급구를 붙이지 않는다 (목록 화면과 같은 규칙) */}
+              {!closed && job.isNew && (
                 <span className="text-[0.6rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>NEW</span>
               )}
-              {job.isUrgent && (
+              {!closed && job.isUrgent && (
                 <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>
               )}
             </div>
