@@ -259,14 +259,14 @@ function JobsWriteInner() {
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             placeholder="회사명 (예: Samsung Electronics SG)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] mb-2"
           />
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="직무 제목 (예: Senior Software Engineer)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] font-bold outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] placeholder:font-normal"
           />
         </section>
 
@@ -344,7 +344,7 @@ function JobsWriteInner() {
                 onChange={(e) => setSalaryMin(e.target.value)}
                 disabled={salaryNego}
                 placeholder="최소 (72,000)"
-                className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-3 py-3 text-[0.88rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
+                className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-3 py-3 text-[0.88rem] font-bold outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] placeholder:font-normal"
               />
             </div>
             <span className="text-[#888070]">~</span>
@@ -356,7 +356,7 @@ function JobsWriteInner() {
                 onChange={(e) => setSalaryMax(e.target.value)}
                 disabled={salaryNego}
                 placeholder="최대 (108,000)"
-                className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-3 py-3 text-[0.88rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
+                className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-3 py-3 text-[0.88rem] font-bold outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] placeholder:font-normal"
               />
             </div>
           </div>
@@ -382,7 +382,7 @@ function JobsWriteInner() {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="예: One-North · Buona Vista"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] mb-2"
           />
           <div className="flex flex-wrap gap-[5px]">
             {COMMON_AREAS.map((a) => (
@@ -405,7 +405,7 @@ function JobsWriteInner() {
             value={tagsText}
             onChange={(e) => setTagsText(e.target.value)}
             placeholder="예: React, 회계, 한식 조리"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <p className="text-[0.68rem] text-[#888070] mt-1">쉼표(,)로 구분해서 자유롭게 적어주세요.</p>
           {parsedTags.length > 0 && (
@@ -431,7 +431,7 @@ function JobsWriteInner() {
             value={contact}
             onChange={(e) => setContact(e.target.value)}
             placeholder="예: hr@company.com 또는 +65 9123 4567"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <p className="text-[0.68rem] text-[#888070] mt-1">
             🔒 지원자가 연락할 이메일 또는 전화번호예요. 스팸을 막기 위해 <b>로그인한 사용자에게만</b> 보여요.
@@ -446,7 +446,7 @@ function JobsWriteInner() {
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
             placeholder="예: 2026-06-30 또는 채용시까지"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <p className="text-[0.68rem] text-[#888070] mt-1">
             📅 날짜를 적으면 그날 이후 &lsquo;마감&rsquo;으로 표시되고, <b>마감 6개월 뒤 목록에서 자동으로 사라져요.</b> 비워두거나 &lsquo;채용시까지&rsquo;로 적으면 계속 노출돼요.
@@ -461,7 +461,7 @@ function JobsWriteInner() {
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
             placeholder="어떤 일을 하게 되는지, 팀 구성, 업무 범위 등을 적어주세요."
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
         </section>
 
@@ -473,7 +473,7 @@ function JobsWriteInner() {
             onChange={(e) => setRequirements(e.target.value)}
             rows={5}
             placeholder={`줄 단위로 한 항목씩 적어주세요.\n\n예시:\n경력 3년 이상\nReact / TypeScript 실무 경험\n영어 비즈니스 커뮤니케이션 가능`}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
         </section>
 
@@ -485,7 +485,7 @@ function JobsWriteInner() {
             onChange={(e) => setPreferred(e.target.value)}
             rows={4}
             placeholder="줄 단위로 한 항목씩"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
         </section>
 
@@ -497,7 +497,7 @@ function JobsWriteInner() {
             onChange={(e) => setBenefits(e.target.value)}
             rows={4}
             placeholder={`예시:\n연간 성과급 1~4개월\n의료보험 + 치과보험\n유연근무제 (주 2회 재택)`}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
         </section>
 

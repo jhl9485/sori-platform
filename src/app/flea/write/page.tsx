@@ -263,7 +263,7 @@ function FleaWriteInner() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="예: 다이킨 에어컨 2년사용 (5 ticks)"
             maxLength={50}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{title.length}/50</div>
         </section>
@@ -307,7 +307,7 @@ function FleaWriteInner() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="판매 가격"
-              className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-4 py-3 text-[0.95rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
+              className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-4 py-3 text-[0.95rem] font-bold outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] placeholder:font-normal"
             />
           </div>
           <div className="relative mb-2">
@@ -317,7 +317,7 @@ function FleaWriteInner() {
               value={originalPrice}
               onChange={(e) => setOriginalPrice(e.target.value)}
               placeholder="정가 (선택 · 신상품 대비 할인율 표시용)"
-              className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+              className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
             />
           </div>
           <button
@@ -416,7 +416,7 @@ function FleaWriteInner() {
             onChange={(e) => setDescription(e.target.value)}
             rows={9}
             placeholder={`상품 상태, 사용 기간, 구매 시기와 함께 연락받을 방법을 적어주세요.\n\n예시:\n- 모델: Daikin FTKF25D\n- 사용 기간: 약 2년\n- 정상 작동 확인, 외관 스크래치 없음\n- 분리 비용 별도 협의 가능\n- 연락처: 왓츠앱 / 카톡ID / 번호`}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
           <p className="text-[0.68rem] text-[#888070] mt-1">
             💬 SORI에는 아직 채팅이 없어요. 연락받을 방법(왓츠앱·카톡ID·번호)을 꼭 남겨주세요.

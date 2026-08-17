@@ -315,7 +315,7 @@ function RealtyWriteInner() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="예: Tanjong Pagar 신축 2BR — Diplomatic Clause 포함"
             maxLength={60}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{title.length}/60</div>
         </section>
@@ -398,21 +398,21 @@ function RealtyWriteInner() {
               value={area}
               onChange={(e) => setArea(e.target.value)}
               placeholder="🏙 동네 / 지구 (예: Tanjong Pagar)"
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] mb-2"
             />
             <input
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder="상세 주소 (선택 · 단지명·도로명 정도만)"
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
             />
             <input
               type="text"
               value={mrt}
               onChange={(e) => setMrt(e.target.value)}
               placeholder="🚇 가까운 MRT (선택 · 예: Tanjong Pagar EW15, 도보 3분)"
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
             />
             <p className="text-[0.68rem] text-[#888070] mt-1">
               💡 정확한 주소는 비공개로 두셔도 됩니다. 지역만 선택하셔도 OK.
@@ -439,7 +439,7 @@ function RealtyWriteInner() {
                 value={sizeSqft}
                 onChange={(e) => setSizeSqft(e.target.value)}
                 placeholder="예: 969 sqft"
-                className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+                className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
               />
             </div>
             <div>
@@ -449,7 +449,7 @@ function RealtyWriteInner() {
                 value={floor}
                 onChange={(e) => setFloor(e.target.value)}
                 placeholder="예: 중층"
-                className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+                className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
               />
             </div>
           </div>
@@ -485,7 +485,7 @@ function RealtyWriteInner() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder={deal === "매매" ? "예: 1,850,000" : "예: 4,700"}
-              className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-16 py-3 text-[0.95rem] font-bold outline-none placeholder:text-[#C0BBB0] placeholder:font-normal"
+              className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-16 py-3 text-[0.95rem] font-bold outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] placeholder:font-normal"
             />
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[0.78rem] text-[#888070] pointer-events-none">
               {deal === "매매" ? "총액" : "/월"}
@@ -501,7 +501,7 @@ function RealtyWriteInner() {
             value={availableFrom}
             onChange={(e) => setAvailableFrom(e.target.value)}
             placeholder="📅 입주 가능일 (예: 2026-06-15 또는 즉시 입주)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] mb-2"
           />
           {(deal === "렌트" || deal === "룸렌트" || deal === "룸메이트") && (
             <button
@@ -560,7 +560,7 @@ function RealtyWriteInner() {
             onChange={(e) => setDescription(e.target.value)}
             rows={8}
             placeholder={`매물 강점, 주변 환경, 협상 가능 여부 등 자유롭게 작성해주세요.\n\n예시:\n- 신축 5년차, 깨끗한 상태\n- 한국학교 셔틀 정류장 단지 앞\n- 2년 계약 우대\n- 가구·가전 일체 포함`}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
           <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">
             {description.length} / 2000

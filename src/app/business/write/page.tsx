@@ -347,7 +347,7 @@ function BusinessWriteInner() {
             onChange={(e) => setName(e.target.value)}
             placeholder="예: 강남부식, 서울뷰티"
             maxLength={30}
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
         </section>
 
@@ -372,7 +372,7 @@ function BusinessWriteInner() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="상세 주소 (선택)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
         </section>
 
@@ -384,14 +384,14 @@ function BusinessWriteInner() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="📞 전화번호 (예: +65 6222 1234)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] mb-2"
           />
           <input
             type="text"
             value={openHours}
             onChange={(e) => setOpenHours(e.target.value)}
             placeholder="🕐 영업시간 (예: 11:00 - 22:00)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0] mb-2"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] mb-2"
           />
           <input
             type="text"
@@ -399,7 +399,7 @@ function BusinessWriteInner() {
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
             placeholder="🔗 홈페이지·SNS 링크 (선택, 예: instagram.com/...)"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <p className="text-[0.68rem] text-[#888070] mt-1">홈페이지·인스타·카톡 등 링크가 있으면 적어주세요. 없으면 비워두면 돼요.</p>
         </section>
@@ -455,7 +455,7 @@ function BusinessWriteInner() {
             value={tagsInput}
             onChange={(e) => setTagsInput(e.target.value)}
             placeholder="예: 갈비탕, 한정식, 포장가능"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-[5px] mt-2">
@@ -474,7 +474,7 @@ function BusinessWriteInner() {
             value={description}
             onChange={(e) => setDescription(e.target.value.slice(0, 80))}
             placeholder="예: 25년 전통 한식 맛집. 서울에서 직접 공수한 재료만 사용."
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
           <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{description.length}/80</div>
         </section>
@@ -487,7 +487,7 @@ function BusinessWriteInner() {
             onChange={(e) => setFullDescription(e.target.value)}
             rows={6}
             placeholder="추천 메뉴, 인기 시술, 영업 정책 등 자유롭게 작성"
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
         </section>
 
