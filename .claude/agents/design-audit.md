@@ -51,8 +51,14 @@ color: magenta
 **⚠️ 이 6개를 나란히 비교하는 것이 당신 업무의 90%다.** 하나만 보면 전부 정상으로 보인다.
 
 ## 공용 컴포넌트 (여기서 벗어난 곳이 곧 불일치)
-`src/components/shared/` — MetricRow, DetailActions, PageHeader, EmptyState,
-CommentSection, SearchField, PhotoCarousel, OwnerActions, Feedback 등
+`src/components/shared/` — MetricRow, DetailActions, PageHeader, DetailSkeleton,
+CommentSection, SearchField, PhotoCarousel, ImageUploader, ScrollRow, OwnerActions,
+Lightbox, Feedback 등
+
+> ⚠️ **목록을 믿지 말고 직접 확인하라.** 이 목록은 참고일 뿐이며 틀릴 수 있다.
+> (예: 1회차 때 지시서에 `EmptyState`가 공용 컴포넌트로 적혀 있었으나 실제로는
+> `shared/`에 없었다. 디자인팀이 이를 잡아냈다.)
+> 반드시 `src/components/shared/` 를 직접 나열해 실제 목록을 확인한 뒤 시작하라.
 `src/components/layout/` — TopNav, BottomNav, AppShell, DesktopSidebar, MobileDrawer
 
 **공용 컴포넌트가 있는데 쓰지 않고 직접 그린 화면**이 가장 흔한 불일치 원인이다.
