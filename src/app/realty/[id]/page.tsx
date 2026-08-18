@@ -168,20 +168,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         <div className="divide-y divide-black/[0.05]">
           <div className="flex justify-between items-center py-3 gap-3">
             <span className="text-[0.78rem] text-[#888070] flex-shrink-0">🧑 등록자</span>
-            <span className="flex items-center gap-[6px] min-w-0">
-              <span className="text-[0.82rem] font-medium truncate">{item.agent}</span>
-              {item.agentBadge && (
-                <span
-                  className={`text-[0.62rem] font-bold px-[6px] py-[2px] rounded flex-shrink-0 border ${
-                    item.agentBadge === "공인중개사"
-                      ? "bg-[#EBF0FB] text-[#2050A0] border-[#2050A0]/25"
-                      : "bg-[#FBF5E8] text-[#B07010] border-[#B07010]/25"
-                  }`}
-                >
-                  {item.agentBadge}
-                </span>
-              )}
-            </span>
+            <span className="text-[0.82rem] font-medium truncate">{item.agent}</span>
           </div>
           <div className="flex justify-between py-3">
             <span className="text-[0.78rem] text-[#888070]">📅 입주 가능</span>
