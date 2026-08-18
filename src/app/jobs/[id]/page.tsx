@@ -62,11 +62,14 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap mb-1">
               {/* 마감된 공고에는 NEW·급구를 붙이지 않는다 (목록 화면과 같은 규칙) */}
-              {/* NEW 배지는 뉴스·커뮤니티와 같은 초록 + 기본 글꼴 */}
-              {!closed && job.isNew && (
+              {/* NEW 배지는 뉴스·커뮤니티와 같은 초록 + 기본 글꼴.
+                  조건은 목록 화면(jobs/page.tsx)과 반드시 같아야 한다.
+                  내가 올린 공고는 isNew가 true로 저장되므로 !isMine을 빼면
+                  목록엔 NEW가 없고 상세에만 붙는 어긋남이 생긴다. */}
+              {!closed && !isMine && job.isNew && (
                 <span className="text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>
               )}
-              {!closed && job.isUrgent && (
+              {!closed && !isMine && job.isUrgent && (
                 <span className="text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>급구</span>
               )}
             </div>

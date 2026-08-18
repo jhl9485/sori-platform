@@ -59,7 +59,13 @@
 ### 개발 서버 / 빌드 (스크립트는 package.json에 정의됨)
 - `npm run dev` — 개발 서버(3000). `predev`가 3000 포트 자동 정리.
 - `npm run fresh` — `.next` 캐시 완전 삭제 후 dev 재시작. **화면이 깨지면 이걸로 복구.**
-- `npm run verify` — dev와 분리된 안전 검증(정리→tsc→lint→build→정리). **빌드 검증은 항상 이걸로** (dev 서버 켜진 채 `next build` 직접 실행 금지 — `.next` 충돌로 화면 깨짐).
+- `npm run verify` — 전체 검증(정리→tsc→lint→build→정리). 빌드 검증은 이걸로 한다.
+  - ⚠️ **dev 서버가 켜져 있으면 쓰지 말 것.** `scripts/verify.cjs:22`가 `kill-port.cjs 3000`을
+    호출해 **실행 중인 dev 서버를 종료시킨다.** (2026-08-18 실제로 발생)
+    예전 설명("dev와 분리된 안전 검증")은 사실과 달랐다 — `.next` 폴더는 분리되지만 포트는 죽인다.
+  - **dev 서버를 켜둔 채 검증하려면** 포트·`.next`를 건드리지 않는 이 둘을 쓴다:
+    `npx tsc --noEmit` (타입) · `npx next lint` (lint)
+  - `next build` 직접 실행은 여전히 금지 — `.next` 충돌로 화면이 깨진다.
 
 ### 기술 스택
 - Next.js 14 (App Router) · TypeScript · Tailwind CSS · localStorage 기반 MVP (백엔드 없음).
