@@ -178,6 +178,22 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
+      {/* 판매자.
+          데이터에 seller·sellerSince·sellerDeals가 있는데 화면에 쓰지 않아
+          "누가 파는 물건인지" 알 수 없었다. */}
+      <div className="bg-white mt-2 px-4 md:px-6 py-4 flex items-center gap-3">
+        <span className="w-10 h-10 rounded-full bg-[#F5F3EE] border border-black/[0.06] flex items-center justify-center text-lg flex-shrink-0">
+          {item.sellerEmoji || "👤"}
+        </span>
+        <div className="min-w-0">
+          <div className="text-[0.85rem] font-bold truncate">{item.seller}</div>
+          <div className="text-[0.72rem] text-[#888070]">
+            {item.sellerSince}년부터 활동
+            {item.sellerDeals > 0 && ` · 거래 ${item.sellerDeals}회`}
+          </div>
+        </div>
+      </div>
+
       {/* 상품 설명 — 연락 방법도 판매자가 여기에 함께 적는다 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
         <h2 className="text-[0.85rem] font-bold mb-3">상품 설명</h2>
