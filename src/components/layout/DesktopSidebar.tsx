@@ -52,6 +52,20 @@ export default function DesktopSidebar() {
       {/* 구분선 */}
       <div className="h-px bg-white/[0.06] mx-4 mb-3" />
 
+      {/* 검색.
+          이게 없으면 중간 폭(768~1279px)에서 검색으로 갈 방법이 아예 없다.
+          그 폭에서는 상단바(md:hidden)도 홈 검색칸(md:hidden)도 오른쪽
+          패널(xl:block)도 전부 안 보이기 때문이다. */}
+      <div className="px-3 pb-2">
+        <Link
+          href="/search"
+          className="flex items-center gap-2 px-3 py-[9px] rounded-[10px] bg-white/[0.06] border border-white/[0.06] text-white/45 hover:text-white/80 hover:bg-white/10 hover:border-white/15 transition-all duration-150"
+        >
+          <span className="text-[0.95rem] leading-none flex-shrink-0">🔍</span>
+          <span className="text-[0.82rem] font-medium tracking-tight">검색</span>
+        </Link>
+      </div>
+
       {/* 메인 네비게이션 */}
       <nav className="flex-1 px-3 py-1 flex flex-col gap-[2px]">
         {NAV.map((item) => {
