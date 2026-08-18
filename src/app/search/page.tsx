@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useListRestore } from "@/lib/listRestore";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { BUSINESSES } from "@/data/businesses";
 import { JOBS } from "@/data/jobs";
@@ -19,10 +21,20 @@ const MAX_RECENT = 6;
 const SUGGESTED_SEARCHES = ["OCBC 계좌", "EP 비자", "Tanjong Pagar 맛집", "감자탕", "한국어 강사", "콘도 렌트"];
 
 export default function SearchPage() {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeTab, setActiveTab] = useState("전체");
   const [recent, setRecent] = useState<string[]>([]);
+
+  // 검색어·탭·스크롤을 기억한다. 목록 6곳이 쓰는 것과 같은 방식.
+  // 이게 없으면 결과 하나를 열어보고 뒤로 올 때마다 검색어를 다시 쳐야 해서
+  // 여러 결과를 비교하는 것 자체가 불가능했다.
+  useListRestore("sori_list_search", { query, activeTab }, (st) => {
+    setQuery(st.query);
+    setDebouncedQuery(st.query);
+    setActiveTab(st.activeTab);
+  });
 
   // 입력 디바운스 (150ms) — 빠른 타이핑 시 매 키마다 필터링 안 함
   useEffect(() => {
@@ -123,9 +135,16 @@ export default function SearchPage() {
       {/* 검색 헤더 */}
       <div className="sticky top-0 z-40 bg-[rgba(245,243,238,0.95)] backdrop-blur-md border-b border-black/[0.07] px-4 md:px-6 py-3">
         <div className="flex items-center gap-2">
-          <Link href="/" className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/[0.06] transition-colors text-[#181614] flex-shrink-0">
+          {/* 홈 고정이 아니라 이전 화면으로. 채용 목록에서 검색으로 들어와도
+              뒤로 누르면 홈으로 튕기던 문제를 없앤다. */}
+          <button
+            type="button"
+            onClick={() => router.back()}
+            aria-label="뒤로"
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/[0.06] transition-colors text-[#181614] flex-shrink-0"
+          >
             ←
-          </Link>
+          </button>
           <div className="flex-1">
             <SearchField value={query} onChange={setQuery} onClear={() => setQuery("")} placeholder="검색어를 입력하세요..." autoFocus />
           </div>
