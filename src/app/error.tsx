@@ -28,8 +28,11 @@ export default function Error({
       <p className="text-[0.88rem] text-[#888070] mb-1">
         페이지를 불러오는 중 오류가 발생했어요.
       </p>
+      {/* 예전에는 "마이페이지 → 캐시 비우기"를 안내했으나 그런 메뉴가 없다.
+          가장 비슷해 보이는 버튼은 "모든 로컬 데이터 초기화"인데,
+          그건 사용자가 쓴 글까지 전부 지운다. 안내가 삭제를 유도하면 안 된다. */}
       <p className="text-[0.78rem] text-[#888070] mb-6">
-        잠시 후 다시 시도해주세요. 계속 안 되면 마이페이지 → 캐시 비우기를 시도해주세요.
+        잠시 후 다시 시도해주세요. 계속 안 되면 브라우저 새로고침을 해보세요.
       </p>
 
       <div className="flex flex-wrap gap-2 justify-center">
