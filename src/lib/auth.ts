@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { confirmDialog } from "@/components/shared/Feedback";
 
 // ⚠️ MVP 목(mock) 인증: 백엔드가 없으므로 실제 비밀번호 검증은 하지 않는다.
@@ -101,10 +101,35 @@ export function useAuthGate() {
         confirmText: "로그인",
         cancelText: "취소",
       }).then((ok) => {
-        if (ok) router.push("/login");
+        // 보던 화면 주소를 함께 넘겨, 로그인 후 그 자리로 돌아오게 한다.
+        // (예전엔 무조건 홈으로 떨어져서 저장하려던 매물을 다시 찾아야 했다)
+        if (ok) router.push(`/login?redirect=${encodeURIComponent(currentPath())}`);
       });
       return false;
     },
     [router]
   );
+}
+
+// 로그인 후 돌아갈 주소. 쿼리스트링·해시까지 포함해 보던 상태를 최대한 살린다.
+export function currentPath(): string {
+  if (typeof window === "undefined") return "/";
+  return window.location.pathname + window.location.search + window.location.hash;
+}
+
+// 화면에 직접 놓는 "로그인" 링크용 주소.
+// usePathname만 쓴다 — useSearchParams는 Suspense 경계를 요구하는데
+// 이 훅을 쓰는 곳들은 전부 경로 기반 상세 화면이라 쿼리가 없다.
+export function useLoginHref(): string {
+  const pathname = usePathname();
+  if (!pathname || pathname === "/login" || pathname === "/signup") return "/login";
+  return `/login?redirect=${encodeURIComponent(pathname)}`;
+}
+
+// redirect 파라미터를 안전하게 해석한다.
+// 외부 주소(//evil.com, https://…)로 튕기지 않도록 앱 내부 경로만 허용한다.
+export function safeRedirect(raw: string | null | undefined): string {
+  if (!raw) return "/";
+  if (!raw.startsWith("/") || raw.startsWith("//")) return "/";
+  return raw;
 }

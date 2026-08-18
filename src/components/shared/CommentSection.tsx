@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Comment } from "@/data/communityPosts";
 import { useProfile } from "@/lib/profile";
-import { useAuth, useAuthGate, isLoggedIn } from "@/lib/auth";
+import { useAuth, useAuthGate, isLoggedIn, useLoginHref } from "@/lib/auth";
 import { useToggleSet } from "@/lib/storage";
 import { relativeTime } from "@/lib/userContent";
 import { toast, confirmDialog, reportDialog } from "@/components/shared/Feedback";
@@ -298,6 +298,8 @@ function CommentItem({
 }
 
 export default function CommentSection({ comments, postId }: Props) {
+  // 댓글을 쓰려던 글로 돌아와야 한다
+  const loginHref = useLoginHref();
   const { profile } = useProfile();
   const { isAuthed, hydrated } = useAuth();
   const [userComments, setUserComments] = useState<Comment[]>([]);
@@ -446,7 +448,7 @@ export default function CommentSection({ comments, postId }: Props) {
         </div>
         {hydrated && !isAuthed ? (
           <Link
-            href="/login"
+            href={loginHref}
             className="flex items-center justify-center gap-2 w-full bg-[#F5F3EE] rounded-full px-4 py-[10px] text-[0.82rem] text-[#888070] hover:bg-[#EFEBE3] transition-colors"
           >
             🔒 로그인하고 댓글 남기기

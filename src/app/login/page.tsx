@@ -1,15 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useAuth } from "@/lib/auth";
+import { useAuth, safeRedirect } from "@/lib/auth";
 
 const INPUT_CLS =
   "w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.9rem] outline-none placeholder:text-[#C0BBB0] focus:ring-2 focus:ring-[#D04020]/25 transition";
 
-export default function LoginPage() {
+function LoginInner() {
   const router = useRouter();
+  const sp = useSearchParams();
+  // 로그인 벽에서 넘어온 원래 주소. 없으면 홈.
+  const redirect = safeRedirect(sp.get("redirect"));
   const { login } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -28,12 +31,12 @@ export default function LoginPage() {
       return;
     }
     login(email.trim());
-    router.push("/");
+    router.push(redirect);
   };
 
   const social = (fallbackEmail: string) => {
     login(email.trim() || fallbackEmail);
-    router.push("/");
+    router.push(redirect);
   };
 
   return (
@@ -126,7 +129,7 @@ export default function LoginPage() {
 
         <p className="text-center text-[0.82rem] text-[#888070] mt-5">
           아직 계정이 없으신가요?{" "}
-          <Link href="/signup" className="text-[#D04020] font-semibold">
+          <Link href={`/signup?redirect=${encodeURIComponent(redirect)}`} className="text-[#D04020] font-semibold">
             회원가입
           </Link>
         </p>
@@ -142,5 +145,14 @@ export default function LoginPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+// useSearchParams를 쓰므로 Suspense 경계가 필요하다 (Next.js App Router 요구사항).
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#F5F3EE]" />}>
+      <LoginInner />
+    </Suspense>
   );
 }

@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useAuth } from "@/lib/auth";
+import { useAuth, useLoginHref } from "@/lib/auth";
 
 /**
  * 채용 담당자 연락처 — 상세 맨 아래.
  * 게스트에게는 가려둔다: 공개해두면 크롤러가 이메일·번호를 수집해 스팸이 간다.
  */
 export default function JobContact({ contact }: { contact?: string }) {
+  // 연락처를 보려고 누른 것이므로 로그인 후 그 공고로 돌아와야 한다
+  const loginHref = useLoginHref();
   const { isAuthed, hydrated } = useAuth();
 
   const value = contact?.trim();
@@ -36,7 +38,7 @@ export default function JobContact({ contact }: { contact?: string }) {
             <span className="block text-[0.7rem] text-[#C0BBB0] mt-1">무분별한 수집·스팸을 막기 위한 조치예요.</span>
           </p>
           <Link
-            href="/login"
+            href={loginHref}
             className="inline-block bg-[#D04020] text-white text-[0.8rem] font-bold px-5 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
           >
             로그인하고 보기

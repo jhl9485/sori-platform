@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useAuth } from "@/lib/auth";
+import { useAuth, safeRedirect } from "@/lib/auth";
 import { useProfile } from "@/lib/profile";
 
 const INPUT_CLS =
@@ -13,8 +13,11 @@ const VISA_OPTIONS = ["EP", "S-Pass", "DP", "PR", "시민권", "WH", "방문", "
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function SignupPage() {
+function SignupInner() {
   const router = useRouter();
+  const sp = useSearchParams();
+  // 로그인 화면에서 넘어온 원래 주소. 가입 후에도 그 자리로 돌아간다.
+  const redirect = safeRedirect(sp.get("redirect"));
   const { signup } = useAuth();
   const { setProfile } = useProfile();
 
@@ -55,7 +58,7 @@ export default function SignupPage() {
     // 프로필에도 반영 → 마이페이지·글 작성 시 자동 사용
     setProfile({ name: trimmedName, visa, avatarChar: trimmedName.charAt(0) });
     signup({ name: trimmedName, email: email.trim(), visa });
-    router.push("/");
+    router.push(redirect);
   };
 
   return (
@@ -204,7 +207,7 @@ export default function SignupPage() {
 
         <p className="text-center text-[0.82rem] text-[#888070] mt-5">
           이미 계정이 있으신가요?{" "}
-          <Link href="/login" className="text-[#D04020] font-semibold">
+          <Link href={`/login?redirect=${encodeURIComponent(redirect)}`} className="text-[#D04020] font-semibold">
             로그인
           </Link>
         </p>
@@ -216,5 +219,14 @@ export default function SignupPage() {
         </p>
       </div>
     </main>
+  );
+}
+
+// useSearchParams를 쓰므로 Suspense 경계가 필요하다 (Next.js App Router 요구사항).
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#F5F3EE]" />}>
+      <SignupInner />
+    </Suspense>
   );
 }
