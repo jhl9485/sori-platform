@@ -163,8 +163,8 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         </div>
 
         {/* 등록자 + 입주 가능일 + 주소.
-            데이터에 agent·agentBadge가 있는데 화면에 쓰지 않아 "누가 올린 매물인지"
-            알 수 없었다. 공인중개사와 개인 직거래를 구분하는 것이 신뢰의 출발점이다. */}
+            데이터에 agent가 있는데 화면에 쓰지 않아 "누가 올린 매물인지"
+            알 수 없었다. 거래 방식·연락 방법은 작성자가 매물 설명에 직접 쓴다. */}
         <div className="divide-y divide-black/[0.05]">
           <div className="flex justify-between items-center py-3 gap-3">
             <span className="text-[0.78rem] text-[#888070] flex-shrink-0">🧑 등록자</span>

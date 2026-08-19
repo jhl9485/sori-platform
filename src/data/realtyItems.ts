@@ -26,7 +26,6 @@ export interface RealtyItem {
   likes: number;
   time: string;
   agent: string;
-  agentBadge?: "공인중개사" | "집주인 직거래";
   description: string;
   highlights: string[];
   mrt: string;               // 가까운 MRT
@@ -90,7 +89,6 @@ export const REALTY_ITEMS: RealtyItem[] = [
     likes: 28,
     time: "2시간 전",
     agent: "박앤리 부동산",
-    agentBadge: "공인중개사",
     description: `Tanjong Pagar MRT 도보 3분, 한인 밀집 지역 핵심 위치 2베드룸 콘도입니다.
 
 **주요 특징**
@@ -127,7 +125,6 @@ export const REALTY_ITEMS: RealtyItem[] = [
     likes: 52,
     time: "5시간 전",
     agent: "김명자 부동산",
-    agentBadge: "공인중개사",
     description: `One-North 비즈니스 허브 인접, 자녀 교육 환경 우수한 3BR 콘도입니다.
 
 **입지 강점**
@@ -164,7 +161,6 @@ export const REALTY_ITEMS: RealtyItem[] = [
     likes: 87,
     time: "어제",
     agent: "이정훈",
-    agentBadge: "집주인 직거래",
     description: `Clementi HDB 4-Room 전체 임대 (Whole Unit). 한인 가정에 인기 높은 위치입니다.
 
 **솔직 정보**
@@ -201,7 +197,6 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
     likes: 41,
     time: "2일 전",
     agent: "박앤리 부동산",
-    agentBadge: "공인중개사",
     description: `River Valley 시내 중심, CCR 핵심 콘도 매매 매물입니다.
 
 **투자 포인트**
@@ -238,7 +233,6 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
     likes: 14,
     time: "3일 전",
     agent: "Frasers Hospitality",
-    agentBadge: "공인중개사",
     description: `Orchard 한복판 서비스 아파트. 싱가포르 정착 초기 또는 단기 출장 추천.
 
 **서비스 포함**
@@ -276,7 +270,6 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
     likes: 19,
     time: "4일 전",
     agent: "정한솔",
-    agentBadge: "집주인 직거래",
     description: `2025년 완공 신축 1베드룸. East Coast Park 도보권으로 운동·산책 환경 최고.
 
 **추천 대상**
