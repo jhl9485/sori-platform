@@ -572,7 +572,6 @@ function RealtyWriteInner() {
           <span className="text-sm">💡</span>
           <p className="text-[0.72rem] text-[#B07010] leading-relaxed">
             허위 매물·과장 광고 등록 시 사전 고지 없이 삭제될 수 있습니다.
-            연락처는 등록 후 매물 상세 페이지에서 별도 인증 절차를 거쳐 노출됩니다.
           </p>
         </div>
 

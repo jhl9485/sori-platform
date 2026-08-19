@@ -21,7 +21,6 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
     : (news.sourceUrl ? [{ name: news.source, url: news.sourceUrl }] : []);
 
   const related = NEWS_ITEMS.filter((n) => news.relatedIds.includes(n.id));
-  const others = NEWS_ITEMS.filter((n) => n.id !== news.id).slice(0, 3);
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -125,23 +124,6 @@ export default function NewsDetailClient({ params }: { params: { id: string } })
           ))}
         </div>
       )}
-
-      {/* 다른 뉴스 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-4">
-        <h3 className="text-[0.85rem] font-bold mb-3 text-[#888070]">다른 뉴스</h3>
-        {others.map((n) => (
-          <Link key={n.id} href={`/news/${n.id}`} className="flex items-center gap-3 py-2 border-b border-black/[0.04] last:border-0 group">
-            <span className="text-xl">{n.emoji}</span>
-            <div className="flex-1 min-w-0">
-              <div className="text-[0.82rem] font-medium group-hover:text-[#D04020] transition-colors line-clamp-1">{n.title}</div>
-              <div className="text-[0.7rem] text-[#888070]">{n.category} · {n.time}</div>
-            </div>
-          </Link>
-        ))}
-        <Link href="/news" className="block text-center text-[0.78rem] text-[#D04020] font-medium pt-3 hover:underline">
-          뉴스 전체 보기 →
-        </Link>
-      </div>
 
       <div className="h-4" />
     </div>

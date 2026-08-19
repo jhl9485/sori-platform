@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { markNavEntry } from "@/lib/navEntry";
 import DesktopSidebar from "./DesktopSidebar";
 import DesktopRightPanel from "./DesktopRightPanel";
 import TopNav from "./TopNav";
@@ -25,6 +27,11 @@ function WriteGate({ children }: { children: React.ReactNode }) {
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+
+  // 이 탭에서 처음 연 화면을 기록해 둔다 → PageHeader의 "뒤로"가 앱 밖으로 나가지 않게 하는 근거
+  useEffect(() => {
+    markNavEntry(pathname);
+  }, [pathname]);
 
   if (STANDALONE.some((p) => pathname?.startsWith(p))) {
     if (WRITE_ROUTES.some((p) => pathname?.startsWith(p))) {

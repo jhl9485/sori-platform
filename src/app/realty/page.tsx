@@ -307,16 +307,6 @@ export default function RealtyPage() {
                   <span className="truncate">🚇 {r.mrt}</span>
                   <span className="flex-shrink-0" suppressHydrationWarning>{cardTime(resolveISO(r.createdAt, r.time))}</span>
                 </div>
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {r.highlights.slice(0, 3).map((h) => (
-                    <span
-                      key={h}
-                      className="text-[0.62rem] bg-[#FBF5E8] text-[#B07010] rounded-full px-2 py-[1px]"
-                    >
-                      {h}
-                    </span>
-                  ))}
-                </div>
                 <div className="flex items-center justify-end pt-2 border-t border-black/[0.06]">
                   <MetricRow
                     likeKey={LIKE_KEY.realty}
