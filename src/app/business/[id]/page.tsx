@@ -169,28 +169,33 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
             </div>
 
             {/* 영업시간 */}
-            <div className="flex gap-3 py-3">
-              <span className="text-base flex-shrink-0 w-6 text-center">🕐</span>
-              <div className="flex-1 min-w-0">
-                <div className="text-[0.72rem] text-[#888070] mb-[2px]">영업시간</div>
-                <div className="text-[0.82rem] text-[#181614]">{biz.openHours}</div>
+            {/* 영업시간 — 선택 항목이므로 안 적었으면 줄째로 숨긴다 */}
+            {biz.openHours && (
+              <div className="flex gap-3 py-3">
+                <span className="text-base flex-shrink-0 w-6 text-center">🕐</span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[0.72rem] text-[#888070] mb-[2px]">영업시간</div>
+                  <div className="text-[0.82rem] text-[#181614]">{biz.openHours}</div>
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* 전화 — 탭하면 전화 걸기 */}
-            <div className="flex gap-3 py-3">
-              <span className="text-base flex-shrink-0 w-6 text-center">📞</span>
-              <div className="flex-1 min-w-0">
-                <div className="text-[0.72rem] text-[#888070] mb-[2px]">전화번호</div>
-                {isRealValue(biz.phone) ? (
-                  <a href={telHref(biz.phone)} className="text-[0.82rem] text-[#2050A0] hover:text-[#D04020] transition-colors">
-                    {biz.phone} <span className="text-[0.72rem] text-[#888070]">📞 전화걸기</span>
-                  </a>
-                ) : (
-                  <div className="text-[0.82rem] text-[#888070]">{biz.phone}</div>
-                )}
+            {/* 전화 — 탭하면 전화 걸기. 안 적었으면 줄째로 숨긴다 */}
+            {biz.phone && (
+              <div className="flex gap-3 py-3">
+                <span className="text-base flex-shrink-0 w-6 text-center">📞</span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[0.72rem] text-[#888070] mb-[2px]">전화번호</div>
+                  {isRealValue(biz.phone) ? (
+                    <a href={telHref(biz.phone)} className="text-[0.82rem] text-[#2050A0] hover:text-[#D04020] transition-colors">
+                      {biz.phone} <span className="text-[0.72rem] text-[#888070]">📞 전화걸기</span>
+                    </a>
+                  ) : (
+                    <div className="text-[0.82rem] text-[#888070]">{biz.phone}</div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* 홈페이지·SNS (있을 때만) */}
             {isRealValue(biz.website) && (

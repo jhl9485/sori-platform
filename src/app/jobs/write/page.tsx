@@ -149,10 +149,22 @@ function JobsWriteInner() {
   const confirmLeave = useUnsavedGuard(!!(company || title || description));
 
   // 연봉은 선택. 협의를 켜거나 비워두면 "협의"로 저장(화면엔 '연봉 협의'로 표시).
+  // 한쪽만 적는 사람이 있다. 그대로 이으면 "$72000 ~ $"처럼 뒤가 잘려 보인다.
+  // 시드 표기($96,000 ~ $144,000)에 맞춰 천단위 쉼표도 붙인다.
+  const withCommas = (v: string) => {
+    const digits = v.replace(/[^\d]/g, "");
+    return digits ? Number(digits).toLocaleString("en-US") : "";
+  };
+  const minAmount = withCommas(salaryMin);
+  const maxAmount = withCommas(salaryMax);
   const salaryValue =
-    salaryNego || (!salaryMin.trim() && !salaryMax.trim())
+    salaryNego || (!minAmount && !maxAmount)
       ? "협의"
-      : `$${salaryMin.trim()} ~ $${salaryMax.trim()}`;
+      : minAmount && maxAmount
+        ? `$${minAmount} ~ $${maxAmount}`
+        : minAmount
+          ? `$${minAmount} 이상`
+          : `$${maxAmount} 이하`;
 
   const canSubmit =
     company.trim() && title.trim() && location.trim() && description.trim() && contact.trim();

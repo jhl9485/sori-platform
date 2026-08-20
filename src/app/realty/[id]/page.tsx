@@ -124,7 +124,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         <h1 className="text-[1.1rem] font-bold leading-snug mb-2">{item.title}</h1>
         <div className="text-[1.6rem] font-extrabold text-[#D04020] mb-1">{item.price}</div>
         <div className="text-[0.78rem] text-[#888070] mb-3">
-          📍 {item.area} · 🚇 {item.mrt}
+          📍 {item.area}{item.mrt && ` · 🚇 ${item.mrt}`}
         </div>
 
         {/* 액션 바 — 모든 카테고리 공통 배치 */}
@@ -148,14 +148,18 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
               {item.bedrooms}BR · {item.bathrooms}욕실
             </div>
           </div>
-          <div className="bg-[#F5F3EE] rounded-[10px] p-3">
-            <div className="text-[0.68rem] text-[#888070] mb-1">📐 면적</div>
-            <div className="text-[0.88rem] font-bold">{item.size}</div>
-          </div>
-          <div className="bg-[#F5F3EE] rounded-[10px] p-3">
-            <div className="text-[0.68rem] text-[#888070] mb-1">🏢 층수</div>
-            <div className="text-[0.88rem] font-bold">{item.floor}</div>
-          </div>
+          {item.size && (
+            <div className="bg-[#F5F3EE] rounded-[10px] p-3">
+              <div className="text-[0.68rem] text-[#888070] mb-1">📐 면적</div>
+              <div className="text-[0.88rem] font-bold">{item.size}</div>
+            </div>
+          )}
+          {item.floor && (
+            <div className="bg-[#F5F3EE] rounded-[10px] p-3">
+              <div className="text-[0.68rem] text-[#888070] mb-1">🏢 층수</div>
+              <div className="text-[0.88rem] font-bold">{item.floor}</div>
+            </div>
+          )}
           <div className="bg-[#F5F3EE] rounded-[10px] p-3">
             <div className="text-[0.68rem] text-[#888070] mb-1">🛋️ 가구</div>
             <div className="text-[0.88rem] font-bold">{item.furnished}</div>
@@ -195,7 +199,8 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         </p>
       </div>
 
-      {/* 단지 편의시설 */}
+      {/* 단지 편의시설 — 선택 항목이므로 하나도 안 고르면 제목째로 숨긴다 */}
+      {item.amenities.length > 0 && (
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
         <h3 className="text-[0.9rem] font-bold mb-3">🏗️ 단지 편의시설</h3>
         <div className="flex flex-wrap gap-2">
@@ -209,6 +214,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           ))}
         </div>
       </div>
+      )}
 
       <div className="h-4" />
     </div>

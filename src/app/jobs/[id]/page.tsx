@@ -109,11 +109,13 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
         />
       </div>
 
-      {/* 회사 소개 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h2 className="text-[0.9rem] font-bold mb-2">회사 소개</h2>
-        <p className="text-[0.82rem] text-[#888070] leading-relaxed">{job.companyDesc}</p>
-      </div>
+      {/* 회사 소개 — 작성 폼에 입력칸이 없어 사용자 공고는 항상 빈값이다. 비면 제목째로 숨긴다. */}
+      {job.companyDesc && (
+        <div className="bg-white mt-2 px-4 md:px-6 py-5">
+          <h2 className="text-[0.9rem] font-bold mb-2">회사 소개</h2>
+          <p className="text-[0.82rem] text-[#888070] leading-relaxed">{job.companyDesc}</p>
+        </div>
+      )}
 
       {/* 직무 설명 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
@@ -121,43 +123,49 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
         <p className="text-[0.82rem] text-[#181614] leading-relaxed">{job.description}</p>
       </div>
 
-      {/* 자격요건 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h2 className="text-[0.9rem] font-bold mb-3">자격 요건</h2>
-        <ul className="space-y-2">
-          {job.requirements.map((req, i) => (
-            <li key={i} className="flex items-start gap-2 text-[0.82rem] text-[#181614]">
-              <span className="text-[#D04020] flex-shrink-0 mt-[2px]">✓</span>
-              {req}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* 우대사항 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h2 className="text-[0.9rem] font-bold mb-3">우대 사항</h2>
-        <ul className="space-y-2">
-          {job.preferred.map((pref, i) => (
-            <li key={i} className="flex items-start gap-2 text-[0.82rem] text-[#888070]">
-              <span className="text-[#2B7A50] flex-shrink-0 mt-[2px]">+</span>
-              {pref}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* 혜택 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h2 className="text-[0.9rem] font-bold mb-3">혜택 및 복지</h2>
-        <div className="flex flex-wrap gap-2">
-          {job.benefits.map((benefit, i) => (
-            <span key={i} className="text-[0.78rem] bg-[#EBF5F0] text-[#2B7A50] px-3 py-[5px] rounded-full">
-              ✦ {benefit}
-            </span>
-          ))}
+      {/* 자격요건 — 선택 항목이므로 비면 숨긴다 */}
+      {job.requirements.length > 0 && (
+        <div className="bg-white mt-2 px-4 md:px-6 py-5">
+          <h2 className="text-[0.9rem] font-bold mb-3">자격 요건</h2>
+          <ul className="space-y-2">
+            {job.requirements.map((req, i) => (
+              <li key={i} className="flex items-start gap-2 text-[0.82rem] text-[#181614]">
+                <span className="text-[#D04020] flex-shrink-0 mt-[2px]">✓</span>
+                {req}
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
+      )}
+
+      {/* 우대사항 — 선택 항목이므로 비면 숨긴다 */}
+      {job.preferred.length > 0 && (
+        <div className="bg-white mt-2 px-4 md:px-6 py-5">
+          <h2 className="text-[0.9rem] font-bold mb-3">우대 사항</h2>
+          <ul className="space-y-2">
+            {job.preferred.map((pref, i) => (
+              <li key={i} className="flex items-start gap-2 text-[0.82rem] text-[#888070]">
+                <span className="text-[#2B7A50] flex-shrink-0 mt-[2px]">+</span>
+                {pref}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* 혜택 — 선택 항목이므로 비면 숨긴다 */}
+      {job.benefits.length > 0 && (
+        <div className="bg-white mt-2 px-4 md:px-6 py-5">
+          <h2 className="text-[0.9rem] font-bold mb-3">혜택 및 복지</h2>
+          <div className="flex flex-wrap gap-2">
+            {job.benefits.map((benefit, i) => (
+              <span key={i} className="text-[0.78rem] bg-[#EBF5F0] text-[#2B7A50] px-3 py-[5px] rounded-full">
+                ✦ {benefit}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 마감일 */}
       <div className="bg-[#FBF0EC] mt-2 px-4 md:px-6 py-4 flex items-center justify-between">

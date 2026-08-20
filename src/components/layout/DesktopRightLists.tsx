@@ -6,6 +6,7 @@ import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { JOBS } from "@/data/jobs";
 import { BUSINESSES } from "@/data/businesses";
 import { useUserPosts, useUserJobs, useUserBiz } from "@/lib/userContent";
+import { salaryText } from "@/lib/jobStatus";
 import BizReviewCount from "@/components/business/BizReviewCount";
 
 /**
@@ -68,7 +69,7 @@ export default function DesktopRightLists() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[0.78rem] font-medium truncate group-hover:text-[#D04020] transition-colors">{job.title}</div>
-                <div className="text-[0.68rem] text-[#888070]">{job.company} · {job.salary}</div>
+                <div className="text-[0.68rem] text-[#888070]">{job.company} · {salaryText(job.salary)}</div>
               </div>
               <span className="text-[0.62rem] bg-[#EBF0FB] text-[#2050A0] px-[5px] py-[2px] rounded-full font-medium flex-shrink-0">
                 {job.visaType}

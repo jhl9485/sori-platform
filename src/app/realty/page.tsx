@@ -301,10 +301,10 @@ export default function RealtyPage() {
                 </div>
                 <div className="text-[1rem] font-extrabold text-[#D04020] mb-1">{r.price}</div>
                 <div className="text-[0.72rem] text-[#888070] mb-2">
-                  📍 {r.area} · {r.size}
+                  📍 {r.area}{r.size && ` · ${r.size}`}
                 </div>
                 <div className="text-[0.7rem] text-[#888070] mb-2 flex items-center justify-between gap-1">
-                  <span className="truncate">🚇 {r.mrt}</span>
+                  <span className="truncate">{r.mrt && `🚇 ${r.mrt}`}</span>
                   <span className="flex-shrink-0" suppressHydrationWarning>{cardTime(resolveISO(r.createdAt, r.time))}</span>
                 </div>
                 <div className="flex items-center justify-end pt-2 border-t border-black/[0.06]">

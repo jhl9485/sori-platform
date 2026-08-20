@@ -187,10 +187,14 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
         </span>
         <div className="min-w-0">
           <div className="text-[0.85rem] font-bold truncate">{item.seller}</div>
-          <div className="text-[0.72rem] text-[#888070]">
-            {item.sellerSince}년부터 활동
-            {item.sellerDeals > 0 && ` · 거래 ${item.sellerDeals}회`}
-          </div>
+          {/* 가입 연도·거래 횟수는 확실할 때만 — 둘 다 없으면 줄째로 숨긴다 */}
+          {(item.sellerSince || item.sellerDeals > 0) && (
+            <div className="text-[0.72rem] text-[#888070]">
+              {item.sellerSince && `${item.sellerSince}년부터 활동`}
+              {item.sellerSince && item.sellerDeals > 0 && " · "}
+              {item.sellerDeals > 0 && `거래 ${item.sellerDeals}회`}
+            </div>
+          )}
         </div>
       </div>
 

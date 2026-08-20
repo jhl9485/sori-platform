@@ -134,7 +134,7 @@ export default function BusinessPage() {
                 </div>
                 <div className="bg-[#F5F3EE] rounded-lg p-2 text-[0.72rem] text-[#888070] line-clamp-1">💬 &ldquo;{biz.description}&rdquo;</div>
                 <div className="mt-2 flex items-center justify-between gap-2">
-                  <span className="text-[0.7rem] text-[#888070] truncate">🕐 {biz.openHours}</span>
+                  <span className="text-[0.7rem] text-[#888070] truncate">{biz.openHours && `🕐 ${biz.openHours}`}</span>
                   <MetricRow
                     likeKey={LIKE_KEY.biz}
                     viewKey={VIEW_KEY.biz}
