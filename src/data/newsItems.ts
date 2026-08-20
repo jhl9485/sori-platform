@@ -25,6 +25,215 @@ export interface NewsItem {
 // 한인 커뮤니티에 유용한 정보 위주로 한국어 요약한 것이며, 참고한 출처를 sources[]에 명시한다.
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
+
+  {
+    id: "auto-20260820-1",
+    publishedAt: "2026-08-19",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "💬 SNS·메시지 앱 반사기 규제 강화 — WhatsApp·Telegram·Facebook 등 2027년 1월까지 의무 준수",
+    summary: "8월 18~19일 싱가포르 정부가 온라인 플랫폼 대상 반사기 코드 오브 프랙티스(Codes of Practice)를 강화 발표했다. 메시징 앱(WhatsApp·Telegram·WeChat·Apple iMessage·Google Messages 등)은 '낯선 사람이 그룹 추가 시 사용자 동의 필수', '의심 계정 경고' 등을 도입해야 한다. 소셜미디어(Facebook·Instagram·TikTok)는 광고주 신원 검증 및 사기 의심 광고 삭제 의무가 생긴다. 플랫폼은 2027년 1월 31일까지 준수해야 하며, 미준수 시 최대 S$1,000만 벌금이 부과된다.",
+    fullContent: `**온라인 플랫폼 반사기 규제 강화 (2026년 8월 18~19일 발표)**
+싱가포르 정부(MCI·IMDA)가 온라인 플랫폼 사기 방지 의무를 대폭 강화했습니다.
+
+**메시징 코드 (Messaging Code of Practice)**
+대상: **WhatsApp·Telegram·WeChat·Apple iMessage·Apple FaceTime·Google Messages·Google Meet**
+- 모르는 사람이 그룹 채팅에 추가할 때 **사용자 동의 필수**
+- 의심 계정·메시지에 **경고 표시** 의무화
+- 모르는 번호로부터 메시지·통화 **차단·필터 옵션** 제공
+
+**소셜미디어 코드 (Social Media Code of Practice)**
+대상: **Facebook·Instagram·TikTok**
+- **광고주 신원 검증** 의무 (2025년 소셜미디어 사기가 전체 사기의 약 30%)
+- 사기 의심 광고 탐지·삭제 의무
+
+**준수 기한 및 벌금**
+- 플랫폼은 **2027년 1월 31일**까지 준수
+- 미준수 시 최대 **S$1,000만** 벌금 부과 예정
+
+**효과**
+- 이전 지정 서비스의 사기 건수가 2024~2025년 사이 약 **37% 감소**한 것으로 나타남
+
+**한인 팁**
+- WhatsApp·Telegram 사용 중 모르는 그룹 초대·메시지는 절대 응하지 말 것
+- 불심 메시지는 ScamShield 앱 또는 1799로 신고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Xinhua · Marketing-Interactive · The Star",
+    sources: [
+      { name: "Xinhua — Singapore tightens online scam safeguards for major platforms (Aug 19)", url: "https://english.news.cn/20260819/a80275565f024ac4a07c1227f350d8cf/c.html" },
+      { name: "Marketing-Interactive — Singapore tightens scam rules for social media, messaging and eCommerce platforms", url: "https://www.marketing-interactive.com/singapore-tightens-scam-rules-for-social-media-messaging-and-ecommerce-platforms" },
+      { name: "The Star — Singapore tightens anti-scam rules on social media, messaging platforms (Aug 19)", url: "https://www.thestar.com.my/tech/tech-news/2026/08/19/singapore-tightens-anti-scam-rules-on-social-media-messaging-platforms" },
+    ],
+    time: "2026년 8월 19일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💬",
+    relatedIds: ["auto-20260716-1"],
+  },
+  {
+    id: "auto-20260820-2",
+    publishedAt: "2026-08-14",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🔐 SPF·CSA 합동 경보 — 암호화폐·IT직 가짜 채용 사기, 피해 약 S$1,500만",
+    summary: "싱가포르 경찰청(SPF)과 사이버보안청(CSA)이 8월 14일 공동 경보를 발령했다. 기술직·암호화폐 전문가를 노린 채용 사기로 약 USD 1,180만(약 S$1,500만) 피해가 발생했다. 사기꾼은 정상 기업으로 위장해 이메일·화상면접(카메라 꺼진 상태)으로 접근한 뒤, 코딩 테스트 사이트로 위장한 피싱 사이트에서 악성코드를 다운로드하도록 유도해 회사 시스템에 침투했다.",
+    fullContent: `**SPF·CSA 암호화폐·IT직 가짜 채용 사기 경보 (2026년 8월 14일)**
+싱가포르 경찰청과 사이버보안청이 IT·암호화폐 분야 구직자를 노린 신종 사기에 공동 경보를 발령했습니다.
+
+**사기 수법 (단계별)**
+1. 사기꾼이 **스푸핑된 도메인 이메일**(합법 기업을 사칭)로 구직자에게 접근
+2. **화상면접 수차례 진행** — 사기꾼은 카메라를 켜지 않음(의심 차단)
+3. **코딩 기술평가 사이트**로 위장한 피싱 사이트로 안내 → 피해자가 회사 업무용 기기로 접속
+4. 악성 소프트웨어(malware) **무의식 중 다운로드** → 회사 시스템·암호화폐 지갑 탈취
+
+**피해 규모**
+- 피해액 약 **USD 1,180만 (약 S$1,500만)**
+- 주 대상: **기술직·암호화폐 전문가**
+
+**⚠️ 한인 주의 사항**
+- 채용 면접에서 면접관이 **카메라를 켜지 않으면** 즉시 의심할 것
+- '기술 테스트'라며 링크 접속·프로그램 설치를 요구하면 거부
+- 업무용 기기에 면접 관련 소프트웨어 설치는 IT 부서와 반드시 사전 확인
+- 의심 시 **CSA 핫라인 1800-323-8804** 또는 ScamShield 앱 신고
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF·CSA 공식 · Crypto Times",
+    sources: [
+      { name: "SPF — SPF-CSA Joint Advisory On Cryptocurrency Scams Involving Fake Job Offers (Aug 14, 공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/08/20260814_spf_csa_joint_advisory_on_cryptocurrency_scams_involving_fake_job_offers" },
+      { name: "Crypto Times — Singapore's SPF & CSA Report $11.8M Losses From Crypto Job Scams", url: "https://www.cryptotimes.io/2026/08/14/singapores-spf-csa-report-11-8m-losses-from-crypto-job-scams/" },
+    ],
+    time: "2026년 8월 14일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🔐",
+    relatedIds: ["auto-20260716-1"],
+  },
+  {
+    id: "auto-20260820-3",
+    publishedAt: "2026-08-10",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🌫️ 연무 경보 — NEA, PSI 81(중부) 기록·건조한 날씨 지속으로 악화 가능성",
+    summary: "8월 10일 싱가포르 국가환경청(NEA)이 연무 위험 상승을 경보했다. 8월 9일 오후 1시 기준 중부 지역 24시간 PSI가 81(보통 범위 상단)을 기록했으며, 수마트라·칼리만탄 화재 연기와 건조한 날씨가 결합해 다음 주까지 악화될 수 있다. PSI 100 초과 시 정부 28개 기관 연무 태스크포스가 즉시 가동된다. 전문가들은 El Niño 조건으로 올해 8~9월이 피크 기간이라고 경고했다.",
+    fullContent: `**싱가포르 연무 위험 경보 (NEA, 2026년 8월 10일)**
+NEA가 연무(haze) 악화 가능성을 공식 경보했습니다.
+
+**현황**
+- 8월 9일 오후 1시 기준 **중부 PSI 81** (보통 범위 상단; PSI 100 초과부터 '불건강' 판정)
+- 수마트라·칼리만탄 화재 연기 유입 + **건조한 날씨 지속**으로 다음 주까지 악화 가능성
+
+**정부 대응**
+- PSI 100 초과 시 28개 정부 기관 '**연무 태스크포스**' 즉시 가동
+- SIIA 2026 연무 전망: 8~9월 피크 기간 **레드 등급** (2019년 이후 2번째 최고 위험)
+
+**실시간 확인**
+- NEA 앱 **myENV** 또는 haze.gov.sg에서 PSI 실시간 확인
+- PSI 51~100 보통 → 민감군(노약자·어린이·호흡기 질환자) 야외 활동 자제
+- PSI 101~200 불건강 → 모든 야외 활동 줄이기, **N95 마스크 착용**
+
+**한인 팁**
+- N95 마스크(수술용 아님)를 미리 준비하세요 (약국·NTUC FairPrice 판매)
+- 어린이 등·하교, 야외 스포츠 일정을 PSI 확인 후 결정
+- 창문 닫고 에어컨 사용 시 실내 공기 순환 모드 활용
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "Mothership · Malay Mail · The Star",
+    sources: [
+      { name: "Mothership — Haze risk could increase in coming week due to dry conditions: NEA", url: "https://mothership.sg/2026/08/haze-risk-increase-nea/" },
+      { name: "Malay Mail — Haze risk rises: Singapore task force ready if PSI tops 100 (Aug 10)", url: "https://www.malaymail.com/amp/news/singapore/2026/08/10/haze-risk-rises-singapore-task-force-ready-if-psi-tops-100/230772" },
+      { name: "The Star — How worrying is Singapore's haze outlook, and how can you protect yourself? (Aug 10)", url: "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/08/10/how-worrying-is-singapores-haze-outlook-and-how-can-you-protect-yourself" },
+    ],
+    time: "2026년 8월 10일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🌫️",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260820-4",
+    publishedAt: "2026-08-01",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기 주간 119건 '2026년 최고치' — 17개 활성 클러스터, 8주 연속 100건 이상",
+    summary: "8월 1일 기준 최근 1주간 뎅기 신규 확진 119건으로 2026년 최고치를 기록했다. 2026년 누적 1,700건 이상이며 17개 활성 클러스터가 존재한다. Countryside Road/Lentor Ave(228건)와 Jalan Tari Dulang(38건) 클러스터가 빠르게 확산 중이다. NEA는 5~10월 피크 시즌 중 야외 번식지(고인 물) 제거를 강력 권고하고 있다.",
+    fullContent: `**뎅기 현황 (NEA, 2026년 8월 1일 기준)**
+
+**주간 통계**
+- 최근 1주간 신규 확진 **119건** — **2026년 최고치**
+- **8주 연속** 주간 100건 이상 지속
+- 2026년 누적: **1,700건 이상**
+
+**활성 클러스터 (17개)**
+- **Countryside Road / Lentor Avenue**: 누적 **228건** (가장 큰 클러스터)
+- **Jalan Tari Dulang / Jalan Tari Payong**: 누적 **38건** (빠르게 확산 중)
+- 10건 이상 '블랙스팟' 클러스터 6곳
+
+**피크 시즌 (5~10월)**
+- 현재 전통적 피크 기간 — NEA, 번식지 제거 강력 권고
+
+**⚠️ 한인 주의사항**
+- **집 안팎의 고인 물 즉시 제거**: 화분 받침·물동이·에어컨 배수구 등 주 1회 점검
+- 뎅기 모기(흰줄숲모기)는 **낮에** 활동 — 낮에도 긴 소매·방충제 착용 권장
+- 발열·두통·관절통·발진 등 뎅기 증상 시 의사 방문 후 검사
+- 우리 동네 클러스터 확인: **NEA 웹사이트 > Dengue Clusters**
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Independent SG · NEA",
+    sources: [
+      { name: "The Independent Singapore — Dengue cases fall to 119 last week, but Singapore still has 17 active clusters", url: "https://theindependent.sg/dengue-cases-fall-to-119-last-week-but-singapore-still-has-17-active-clusters/" },
+      { name: "NEA — Dengue Clusters Under Surveillance (공식)", url: "https://www.nea.gov.sg/dengue-zika/dengue/dengue-clusters-under-surveillance" },
+    ],
+    time: "2026년 8월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🦟",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260820-5",
+    publishedAt: "2026-07-01",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💡 전기요금 Q3(7~9월) +17% 공식 확정 — kWh당 34.78센트(GST 포함), 연료비 급등 원인",
+    summary: "SP Group이 7월 1일부터 적용되는 3분기(7~9월) 가정용 전기요금을 kWh당 31.91센트(세전), GST 포함 34.78센트로 확정 발표했다. 이전 분기(GST 포함 29.72센트) 대비 +4.64센트, 약 17% 인상이다. 4룸 HDB 가구 기준 평균 월 청구액이 약 S$17(세전) 늘어난다. 원인은 중동 정세로 인한 천연가스 가격 급등이며, 7월 U-Save·SCC 리베이트로 정부가 일부 완충한다.",
+    fullContent: `**전기요금 Q3 2026(7월~9월) 공식 인상 (SP Group 발표)**
+
+**새 요금**
+- **31.91센트/kWh (세전)** / **34.78센트/kWh (GST 포함)**
+- 이전 분기: 29.72센트/kWh(GST 포함)
+- **인상폭: +4.64센트/kWh = 약 +17%**
+
+**가구별 영향**
+- 4룸 HDB(월평균 약 420kWh 사용) 기준 월 청구액 약 **S$17(세전) 증가**
+- 4룸 HDB 월 전기요금 기준 약 **S$146** (GST 포함, 리베이트 적용 전)
+
+**인상 원인**
+- 중동 사태로 인한 **천연가스 가격 급등** (싱가포르 발전 연료 95% 수입 의존)
+- 요금은 전 분기 첫 2.5개월 평균 연료비로 산정 — 최근 미·이란 휴전도 7월 요금에 미반영
+
+**정부 완충 지원**
+- **7월 중 U-Save 리베이트**: 가구당 S$110~190 지급 예정
+- **SCC(관리비) 리베이트** 추가 지급
+
+**오픈마켓 계약자**
+- 오픈일렉트리시티마켓(OEM) 고정요금제 계약자는 이번 분기 직접 영향 없음
+- 단, 계약 갱신 시점엔 시세 반영 가능성
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SP Group 공식 · getsolar.ai · MissLobang",
+    sources: [
+      { name: "SP Group — Electricity Tariff Revision for the Period 1 July to 30 September 2026 (공식)", url: "https://www.spgroup.com.sg/about-us/media-resources/news-and-media-releases/Electricity-Tariff-Revision-for-the-Period-1-July-to-30-September-2026" },
+      { name: "getsolar.ai — Singapore Electricity Tariffs Rise 17% From July 2026", url: "https://getsolar.ai/en-sg/blog/singapore-q3-2026-electricity-tariff-rise" },
+      { name: "Sunollo — Singapore Electricity Price Tracker (Q3 2026): Record High 34.78¢", url: "https://www.sunollo.com/blog/singapore-electricity-price-tracker" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "💡",
+    relatedIds: ["auto-20260624-7"],
+  },
+
   {
     id: "auto-20260725-1",
     publishedAt: "2026-07-25",
@@ -64,6 +273,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🇸🇬",
     relatedIds: ["auto-20260628-1"],
   },
+
   {
     id: "auto-20260722-1",
     publishedAt: "2026-07-22",
@@ -97,6 +307,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🏛️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260716-1",
     publishedAt: "2026-07-16",
@@ -133,6 +344,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🚔",
     relatedIds: [],
   },
+
   {
     id: "auto-20260714-1",
     publishedAt: "2026-07-14",
@@ -164,6 +376,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "📈",
     relatedIds: [],
   },
+
   {
     id: "auto-20260712-1",
     publishedAt: "2026-07-07",
@@ -193,6 +406,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🔑",
     relatedIds: [],
   },
+
   {
     id: "auto-20260712-2",
     publishedAt: "2026-07-07",
@@ -222,36 +436,55 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🚖",
     relatedIds: [],
   },
+
   {
-    id: "auto-20260712-3",
-    publishedAt: "2026-07-01",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏘️ HDB 재판매가 Q2 -0.3% '2분기 연속 하락'(7년 만) — 민간주택은 +0.5%로 둔화",
-    summary: "HDB·URA가 7월 1일 발표한 2026년 2분기 플래시 추정치에 따르면, HDB 재판매가격지수가 전분기 대비 -0.3% 내리며 1분기(-0.1%)에 이어 약 7년 만에 처음으로 2분기 연속 하락했다. 민간주택 가격은 +0.5%로 1분기(+0.9%)보다 상승세가 둔화됐고, 비(非)단독주택은 -0.1%로 소폭 하락(RCR -1.4%, CCR +2.0%). 실수요·임차인에게는 협상 여지가 커지는 흐름이다.",
-    fullContent: `**2026년 2분기 주택가격 플래시 (HDB·URA, 7월 1일)**
+    id: "auto-20260706-3",
+    publishedAt: "2026-07-06",
+    category: "교육",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🎒 2026 하반기 학교 주요 일정 — P1 2A 등록 7/9~10·PSLE 8~10월·9월 방학 한눈에 정리",
+    summary: "3학기가 6월 29일 시작된 가운데 Youth Day(7/5)·대체공휴일(7/6) 방학 후 7월 7일(화)부터 수업이 재개된다. P1 2A단계 등록이 7월 9~10일로 3일 앞으로 다가왔다. PSLE 구술시험 8월 12~13일, 필기시험 9월 24~30일. 9월 방학 9월 5~13일. 현지 정부학교 재학 자녀를 둔 한인 가정의 하반기 일정 참고용.",
+    fullContent: `**2026년 하반기 학사 주요 일정 (MOE)**
+현지 정부학교에 재학 중인 자녀가 있는 한인 가정을 위한 2026년 하반기 학사 주요 일정입니다.
 
-**HDB 재판매**
-- 재판매가격지수 전분기 대비 **-0.3%** (1분기 -0.1%에 이어 **2분기 연속 하락**, 약 7년 만)
+**3학기 현황**
+- 3학기 시작: **6월 29일(월)** (6월 방학 5/30~6/28 종료 후)
+- Youth Day (7/5 일요일) → 대체공휴일 **7월 6일(월) 학교 휴무**
+- **7월 7일(화)부터 수업 재개**
 
-**민간주택 (URA)**
-- 전체 **+0.5%** — 1분기(+0.9%)보다 상승세 둔화
-- 비단독주택 **-0.1%** (RCR -1.4% / CCR +2.0%)
+**⭐ 곧 다가오는 일정**
+- **P1 2A단계 등록: 7월 9일(목)~10일(금)** → 결과 발표 7/17 *(2027년 입학 대상, PR·시민권자 자녀)*
+
+**PSLE (초등 졸업시험, P6 대상) 일정**
+- 구술시험(Orals): **8월 12일~13일**
+- 듣기평가(Listening Comprehension): **9월 15일**
+- 필기시험(Written Exams): **9월 24~25일, 28~30일**
+- 채점기간(P1~5 일부 수업 조정 가능): **10월 12~14일**
+
+**9월 방학**
+- **9월 5일(토)~13일(일)** (9일간)
+
+**연말 방학**
+- **11월 21일~12월 31일**
 
 **참고**
-- 플래시(잠정) 추정치로, 확정치는 이후 발표됩니다.
-- 재판매·렌트를 앞둔 한인에게는 협상 여지가 이전보다 커진 편입니다. 단지·지역별 차이가 크니 실제 매물로 비교하세요.`,
-    source: "99.co · URA/HDB",
+- PSLE는 초등 6학년(P6) 대상. P1~5는 구술·필기시험 기간 중 일정 변동이 있을 수 있으며, 10월 채점기간에는 조기 하교 등이 적용될 수 있음
+- 국제학교·IB 학교는 별도 일정이니 해당 학교 캘린더를 확인할 것
+- P1 등록 2A단계는 해당 아동 거주지와 희망 학교 거리(1km·2km 이내 여부)에 따라 우선순위가 갈림
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOE (공식)",
     sources: [
-      { name: "99.co — Q2 2026 HDB·URA 플래시", url: "https://www.99.co/singapore/insider/ura-hdb-flash-estimates-q2-2026-breakdown/" },
-      { name: "Yahoo — HDB 2분기 연속 하락·민간 +0.5%", url: "https://malaysia.news.yahoo.com/singapore-hdb-resale-prices-dip-090809669.html" },
+      { name: "MOE — School Terms and Holidays for 2026 (공식)", url: "https://www.moe.gov.sg/news/press-releases/20250730-school-terms-and-holidays-for-2026" },
+      { name: "MOE — Academic Calendar 2026", url: "https://www.moe.gov.sg/calendar" },
     ],
     time: "2026년 7월",
     isBreaking: false,
     readTime: "2분",
-    emoji: "🏘️",
-    relatedIds: [],
+    emoji: "🎒",
+    relatedIds: ["auto-20260619-3"],
   },
+
   {
     id: "auto-20260706-1",
     publishedAt: "2026-07-05",
@@ -289,6 +522,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "⚡",
     relatedIds: [],
   },
+
   {
     id: "auto-20260706-2",
     publishedAt: "2026-07-05",
@@ -338,53 +572,7 @@ const RAW_NEWS_ITEMS: NewsItem[] = [
     emoji: "🛡️",
     relatedIds: [],
   },
-  {
-    id: "auto-20260706-3",
-    publishedAt: "2026-07-06",
-    category: "교육",
-    catStyle: "bg-[#FBF0EC] text-[#D04020]",
-    title: "🎒 2026 하반기 학교 주요 일정 — P1 2A 등록 7/9~10·PSLE 8~10월·9월 방학 한눈에 정리",
-    summary: "3학기가 6월 29일 시작된 가운데 Youth Day(7/5)·대체공휴일(7/6) 방학 후 7월 7일(화)부터 수업이 재개된다. P1 2A단계 등록이 7월 9~10일로 3일 앞으로 다가왔다. PSLE 구술시험 8월 12~13일, 필기시험 9월 24~30일. 9월 방학 9월 5~13일. 현지 정부학교 재학 자녀를 둔 한인 가정의 하반기 일정 참고용.",
-    fullContent: `**2026년 하반기 학사 주요 일정 (MOE)**
-현지 정부학교에 재학 중인 자녀가 있는 한인 가정을 위한 2026년 하반기 학사 주요 일정입니다.
 
-**3학기 현황**
-- 3학기 시작: **6월 29일(월)** (6월 방학 5/30~6/28 종료 후)
-- Youth Day (7/5 일요일) → 대체공휴일 **7월 6일(월) 학교 휴무**
-- **7월 7일(화)부터 수업 재개**
-
-**⭐ 곧 다가오는 일정**
-- **P1 2A단계 등록: 7월 9일(목)~10일(금)** → 결과 발표 7/17 *(2027년 입학 대상, PR·시민권자 자녀)*
-
-**PSLE (초등 졸업시험, P6 대상) 일정**
-- 구술시험(Orals): **8월 12일~13일**
-- 듣기평가(Listening Comprehension): **9월 15일**
-- 필기시험(Written Exams): **9월 24~25일, 28~30일**
-- 채점기간(P1~5 일부 수업 조정 가능): **10월 12~14일**
-
-**9월 방학**
-- **9월 5일(토)~13일(일)** (9일간)
-
-**연말 방학**
-- **11월 21일~12월 31일**
-
-**참고**
-- PSLE는 초등 6학년(P6) 대상. P1~5는 구술·필기시험 기간 중 일정 변동이 있을 수 있으며, 10월 채점기간에는 조기 하교 등이 적용될 수 있음
-- 국제학교·IB 학교는 별도 일정이니 해당 학교 캘린더를 확인할 것
-- P1 등록 2A단계는 해당 아동 거주지와 희망 학교 거리(1km·2km 이내 여부)에 따라 우선순위가 갈림
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "MOE (공식)",
-    sources: [
-      { name: "MOE — School Terms and Holidays for 2026 (공식)", url: "https://www.moe.gov.sg/news/press-releases/20250730-school-terms-and-holidays-for-2026" },
-      { name: "MOE — Academic Calendar 2026", url: "https://www.moe.gov.sg/calendar" },
-    ],
-    time: "2026년 7월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🎒",
-    relatedIds: ["auto-20260619-3"],
-  },
   {
     id: "auto-20260705-1",
     publishedAt: "2026-07-05",
@@ -413,6 +601,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🚌",
     relatedIds: [],
   },
+
   {
     id: "auto-20260703-1",
     publishedAt: "2026-07-03",
@@ -441,6 +630,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🏝️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260702-1",
     publishedAt: "2026-07-02",
@@ -470,6 +660,38 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "💰",
     relatedIds: [],
   },
+
+  {
+    id: "auto-20260712-3",
+    publishedAt: "2026-07-01",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏘️ HDB 재판매가 Q2 -0.3% '2분기 연속 하락'(7년 만) — 민간주택은 +0.5%로 둔화",
+    summary: "HDB·URA가 7월 1일 발표한 2026년 2분기 플래시 추정치에 따르면, HDB 재판매가격지수가 전분기 대비 -0.3% 내리며 1분기(-0.1%)에 이어 약 7년 만에 처음으로 2분기 연속 하락했다. 민간주택 가격은 +0.5%로 1분기(+0.9%)보다 상승세가 둔화됐고, 비(非)단독주택은 -0.1%로 소폭 하락(RCR -1.4%, CCR +2.0%). 실수요·임차인에게는 협상 여지가 커지는 흐름이다.",
+    fullContent: `**2026년 2분기 주택가격 플래시 (HDB·URA, 7월 1일)**
+
+**HDB 재판매**
+- 재판매가격지수 전분기 대비 **-0.3%** (1분기 -0.1%에 이어 **2분기 연속 하락**, 약 7년 만)
+
+**민간주택 (URA)**
+- 전체 **+0.5%** — 1분기(+0.9%)보다 상승세 둔화
+- 비단독주택 **-0.1%** (RCR -1.4% / CCR +2.0%)
+
+**참고**
+- 플래시(잠정) 추정치로, 확정치는 이후 발표됩니다.
+- 재판매·렌트를 앞둔 한인에게는 협상 여지가 이전보다 커진 편입니다. 단지·지역별 차이가 크니 실제 매물로 비교하세요.`,
+    source: "99.co · URA/HDB",
+    sources: [
+      { name: "99.co — Q2 2026 HDB·URA 플래시", url: "https://www.99.co/singapore/insider/ura-hdb-flash-estimates-q2-2026-breakdown/" },
+      { name: "Yahoo — HDB 2분기 연속 하락·민간 +0.5%", url: "https://malaysia.news.yahoo.com/singapore-hdb-resale-prices-dip-090809669.html" },
+    ],
+    time: "2026년 7월",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏘️",
+    relatedIds: [],
+  },
+
   {
     id: "auto-20260701-1",
     publishedAt: "2026-07-01",
@@ -498,6 +720,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🚇",
     relatedIds: [],
   },
+
   {
     id: "auto-20260630-2",
     publishedAt: "2026-06-30",
@@ -527,6 +750,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "💡",
     relatedIds: [],
   },
+
   {
     id: "auto-20260630-1",
     publishedAt: "2026-06-30",
@@ -554,6 +778,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🏠",
     relatedIds: [],
   },
+
   {
     id: "auto-20260629-1",
     publishedAt: "2026-06-29",
@@ -583,6 +808,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🎤",
     relatedIds: [],
   },
+
   {
     id: "auto-20260629-2",
     publishedAt: "2026-06-29",
@@ -612,6 +838,45 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🚕",
     relatedIds: [],
   },
+
+  {
+    id: "auto-20260622-7",
+    publishedAt: "2026-06-29",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🛡️ 온라인안전위원회(OSC) 6월 29일 출범 — 온라인 괴롭힘·명예훼손 피해자 신속 구제 절차 신설",
+    summary: "싱가포르 법무부(MinLaw)·디지털개발정보부(MDDI) 발표에 따르면 온라인안전위원회(Online Safety Commission)와 온라인안전(구제 및 책임)법 2025가 6월 29일부터 시행된다. 온라인 괴롭힘·스토킹·명예훼손성 게시물 등 피해를 입은 시민이 위원회를 통해 빠른 구제를 받을 수 있게 되며, 6월 1일부터 위원장 직무대행을 맡은 Francis Ng가 6월 29일 정식 위원장이 된다.",
+    fullContent: `**온라인안전위원회(OSC) 출범 (2026년 6월 29일 시행)**
+법무부(MinLaw)·디지털개발정보부(MDDI)가 공동 발표한 내용입니다.
+
+**시행일**
+- 2026년 6월 29일부터 온라인안전위원회(Online Safety Commission)와 온라인안전(구제 및 책임)법 2025(OSRAA)의 관련 조항 시행
+
+**무엇이 달라지나**
+- 온라인 괴롭힘, 사이버스토킹, 명예훼손성 게시물, 음란합성물(딥페이크) 등 온라인 피해를 입은 사람이 위원회를 통해 콘텐츠 삭제·시정 명령 등 신속한 구제를 요청할 수 있음
+- 위원회는 유해 콘텐츠 게시자, 온라인 공간 운영자, 플랫폼 사업자에게 직접 시정 지시를 내릴 권한을 가짐
+
+**조직**
+- Francis Ng(50)가 6월 1일부터 위원장 직무대행(Commissioner-Designate)을 맡았고, 6월 29일 정식 위원장(Commissioner)으로 취임
+- 법무부 법무정책국장, 검찰청 범죄수사부 부장검사 등을 지낸 25년 경력의 법조인
+
+**한인 참고**
+- 온라인에서 괴롭힘·명예훼손·신상유출(독싱) 피해를 입었다면 6월 29일부터 OSC를 통한 구제 신청이 가능해짐
+- 신청 절차·자격 등 세부 사항은 MinLaw·MDDI 공식 발표를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MinLaw · MDDI",
+    sources: [
+      { name: "MinLaw — Online Safety Commission and Online Safety (Relief and Accountability) Act 2025 to Start on 29 June 2026", url: "https://www.mlaw.gov.sg/online-safety-commission-and-online-safety-relief-and-accountability-act-2025-to-start-on-29-june-2026/" },
+      { name: "MDDI — Online Safety Commission And Online Safety (Relief And Accountability) Act 2025 to start on 29 June 2026", url: "https://www.mddi.gov.sg/newsroom/online-safety-commission-and-online-safety--relief-and-accountability--act-2025-to-start-on-29-june-2026/" },
+    ],
+    time: "2026년 6월 29일 시행 예정(6월 발표)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🛡️",
+    relatedIds: [],
+  },
+
   {
     id: "auto-20260628-1",
     publishedAt: "2026-06-28",
@@ -639,6 +904,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🎆",
     relatedIds: [],
   },
+
   {
     id: "auto-20260627-2",
     publishedAt: "2026-06-27",
@@ -665,6 +931,7 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🏦",
     relatedIds: [],
   },
+
   {
     id: "auto-20260627-1",
     publishedAt: "2026-06-27",
@@ -696,6 +963,46 @@ LTA가 발주한 탐피네스 버스 패키지가 두 단계에 걸쳐 Go-Ahead�
     emoji: "🧧",
     relatedIds: [],
   },
+
+  {
+    id: "auto-20260622-10",
+    publishedAt: "2026-06-27",
+    category: "교육",
+    catStyle: "bg-[#FBF0EC] text-[#D04020]",
+    title: "🎓 MOE \"PSLE 부담 줄이기\" 공개 논의 시작 — 6월 27일 첫 공개 세션, DSA 제도 개편도 포함",
+    summary: "교육부(MOE)가 PSLE(초등 졸업시험)의 중등 배정 활용 방식과 DSA(직접학교입학) 제도 개편 등을 주제로 한 'Education Conversations' 공개 의견수렴을 시작했다. 4월부터 교육 전문가·학부모·청년 대상 포커스그룹을 진행했고, 6월 27일 Desmond Lee 교육부장관이 직접 이끄는 첫 공개 세션이 열렸다. 논의는 2026~2027년에 걸쳐 계속된다.",
+    fullContent: `**MOE 'Education Conversations' 공개 의견수렴 시작**
+교육부(MOE) 발표 내용입니다.
+
+**배경**
+- PSLE(초등 졸업시험) 성적이 중등학교 배정에 미치는 영향과 '학업 군비경쟁' 우려에 대한 학부모·사회 논쟁이 이어짐에 따라, MOE가 공개 의견수렴 절차를 시작
+
+**진행 방식**
+- 4월부터 교육 전문가·학부모·청년 대상 소규모 포커스그룹 진행
+- 6월 27일(토) Desmond Lee 교육부장관이 이끄는 첫 공개 세션 개최
+- 이후 2026~2027년에 걸쳐 대면·온라인('Education Conversations' 마이크로사이트) 의견수렴 계속
+
+**주요 논의 주제**
+- PSLE를 중등 1학년 배정에 활용하는 방식 등 시험 부담 완화 방안
+- DSA(직접학교입학) 제도 개편 — 학생 역량 개발·선발 방식·접근성 개선
+- 인성·시민교육(CCE)·교내외 활동(CCA) 강화로 가치관·생활역량 함양
+
+**한인 참고**
+- 자녀가 현지 정부학교(특히 초·중등)에 재학 중인 한인 가정은 PSLE·DSA 제도 변화가 입시 전략에 직접 영향을 줄 수 있어 추이를 지켜볼 것
+- 구체적 개편안은 아직 확정되지 않았으며 MOE 공식 발표를 통해 순차적으로 공개될 예정
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOE",
+    sources: [
+      { name: "MOE — Education Conversations", url: "https://www.moe.gov.sg/news/press-releases/20260528-education-conversations" },
+    ],
+    time: "2026년 6월 27일(첫 공개 세션)",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🎓",
+    relatedIds: [],
+  },
+
   {
     id: "auto-20260625-1",
     publishedAt: "2026-06-25",
@@ -732,6 +1039,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "⛴️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260624-5",
     publishedAt: "2026-06-24",
@@ -773,6 +1081,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🌫️",
     relatedIds: [],
   },
+
   {
     id: "auto-20260624-6",
     publishedAt: "2026-06-24",
@@ -811,165 +1120,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🚨",
     relatedIds: [],
   },
-  {
-    id: "auto-20260624-7",
-    publishedAt: "2026-06-18",
-    category: "생활",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "💡 7월 전기요금 '대폭' 인상 예고 — 에너지청, 중동 사태發 가스값 급등으로 최대 30% 상승 전망",
-    summary: "싱가포르 에너지청(EMA)이 6월 18일 더 스트레이츠 타임스에 3분기(7~9월) 규제 전기요금이 'significantly'(상당히) 오를 것이라고 확인했다. 현재 요금(GST 포함 kWh당 29.72센트) 대비 분석가들은 최대 30%까지 인상을 전망하며, 원인은 2월 말 이후 이란을 둘러싼 분쟁과 호르무즈 해협 관련 천연가스 가격 급등이다. 정부는 7월 U-Save 리베이트(가구당 110~190달러)로 부담을 일부 완화할 계획이다.",
-    fullContent: `**전기요금 3분기(7~9월) 인상 전망 (에너지청 EMA, 2026년 6월 18일 확인)**
 
-**현황**
-- 에너지청(EMA)이 6월 18일 더 스트레이츠 타임스에 규제 전기요금(가구 62.8%가 적용받는 요금)이 3분기부터 'significantly'(상당히) 오를 것이라 확인
-- 현재(4~6월) 요금: GST 포함 kWh당 **29.72센트**
-- 분석가 전망: 최대 **30%**까지 인상 가능성
-
-**원인**
-- 2월 말 미국·이스라엘의 이란 공습 이후 호르무즈 해협이 사실상 봉쇄되며 천연가스 가격 급등
-- 싱가포르는 발전 연료의 95%를 수입에 의존해 국제 가스값 변동에 취약
-- 요금은 전 분기 첫 2.5개월 평균 연료비로 산정되는 구조라, 최근 미·이란 휴전 합의도 7월 요금에는 반영되지 않음
-
-**정부 지원**
-- 7월 중 U-Save 리베이트(가구당 110~190달러) 및 SCC(관리비) 리베이트 지급 예정
-
-**한인 참고**
-- 7월 1일부터 실제 고지서에 인상분이 반영되므로, 전기 사용량이 많은 가정은 미리 절약 계획을 세워두는 것이 좋음
-- 오픈일렉트리시티마켓(OEM) 고정요금제 계약자는 이번 인상의 직접 영향은 적지만, 계약 갱신 시점에는 새 시세가 반영될 수 있음
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "싱가포르 에너지청(EMA)",
-    sources: [
-      { name: "Mothership — S'pore electricity tariff expected to rise 'significantly' from July: EMA", url: "https://mothership.sg/2026/06/electricity-tariff-july-2026-expected-rise/" },
-      { name: "VnExpress International — Singapore households warned of 'significant' electricity tariff hike in coming months", url: "https://e.vnexpress.net/news/business/economy/singapore-households-warned-of-significant-electricity-tariff-hike-in-coming-months-5087292.html" },
-    ],
-    time: "2026년 6월 18일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "💡",
-    relatedIds: [],
-  },
-  {
-    id: "auto-20260624-1",
-    publishedAt: "2026-06-10",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🎫 BTS 콘서트 티켓 사기 주의보 — 6월 1일 이후 62건·6만8천200달러 피해, 12월 'Arirang' 싱가포르 공연 전 회차 매진",
-    summary: "싱가포르 경찰(SPF)에 따르면 6월 1일 이후 BTS 월드투어 'Arirang' 콘서트 티켓 판매 사기가 최소 62건 발생, 피해액이 6만8천200달러를 넘었다. X·인스타그램·캐러셀 등에서 티켓을 판다며 PayNow로 결제를 유도한 뒤 '수수료' 등 추가 송금을 요구하는 수법이다. 해당 콘서트는 12월 17·19·20·22일 내셔널 스타디움에서 열리며, BTS가 완전체로 7년 만에 싱가포르를 찾는 공연으로 전 회차 매진됐다.",
-    fullContent: `**BTS 콘서트 티켓 사기 경보 (싱가포르 경찰, 2026년 6월)**
-싱가포르 경찰(SPF)이 발표한 내용입니다.
-
-**피해 현황**
-- 6월 1일 이후 최소 **62건** 신고, 피해액 최소 **6만8천200달러(S$68,200)**
-
-**수법**
-- X(트위터)·인스타그램·캐러셀 등 SNS에서 "콘서트 티켓 판매" 게시물·DM으로 접근
-- PayNow 또는 QR코드로 결제 유도 → 결제 후 "수수료" 등 명목으로 추가 송금 요구
-- 티켓이 오지 않거나 판매자와 연락이 끊겨야 사기임을 인지
-
-**콘서트 정보(참고)**
-- BTS 월드투어 'Arirang' 싱가포르 공연: 12월 17·19·20·22일, 내셔널 스타디움
-- 완전체로 7년 만의 싱가포르 공연이며, 공식 채널(Ticketmaster) 기준 전 회차 매진
-- Ticketmaster 약관상 리세일 티켓 사용 시 입장이 거부되며 환불도 되지 않음
-
-**경찰 안내**
-- 콘서트 티켓은 공식 판매처(Ticketmaster 등)에서만 구매할 것
-- SNS 개인 판매자에게 선입금하지 말 것, 의심 시 ScamShield 앱 또는 1799 확인
-
-**한인 참고**
-- 싱가포르 거주 한인 팬덤 다수가 이번 공연 티켓을 구하려 SNS 개인거래를 시도할 수 있어 특히 주의가 필요
-- 리세일 티켓은 설령 진짜 티켓이라도 공연장 입장이 거부될 수 있다는 점도 유의할 것
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "싱가포르 경찰(SPF)",
-    sources: [
-      { name: "SPF — Police Advisory On Scams Involving The Sale Of BTS World Tour 'Arirang' Concert Tickets", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260610_police_advisory_on_scams_involving_the_sale_of_bts_world_tour_arirang_concert_tickets" },
-      { name: "Klook — BTS World Tour 'Arirang' in Singapore", url: "https://www.klook.com/en-US/blog/bts-world-tour-arirang-singapore/" },
-    ],
-    time: "2026년 6월 10일 경보(피해 집계 진행 중)",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🎫",
-    relatedIds: ["28"],
-  },
-  {
-    id: "auto-20260624-2",
-    publishedAt: "2026-06-04",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "💰 \"무료 투자강의\" 빙자 사기 — 5월 이후 48건·360만 달러 피해, SNS 광고→ 채팅방 초대 수법",
-    summary: "싱가포르 경찰(SPF)에 따르면 5월 이후 '무료 투자강의'를 빙자한 채팅방 투자 사기가 최소 48건 발생해 피해액이 360만 달러를 넘었다. SNS 광고로 유인해 왓츠앱 채팅방에 초대한 뒤 '멘토'를 자처하는 사기범과 가짜 수익 인증을 보여주는 '회원'들이 투자를 권유하고, 가짜 앱·웹사이트에 투자하게 한 뒤 인출을 막는 수법이다.",
-    fullContent: `**"무료 투자강의" 채팅방 투자 사기 경보 (싱가포르 경찰, 2026년 6월 4일 발표)**
-
-**피해 현황**
-- 5월 이후 최소 **48건** 신고, 피해액 최소 **360만 달러(S$3.6 million)**
-
-**수법**
-- SNS에서 "무료로 투자를 배울 수 있다"는 광고 게시 → 관심 등록 시 왓츠앱 채팅방으로 초대
-- 채팅방 내 '멘토'를 자처하는 인물이 투자 조언·보너스를 제공하며 투자를 유도
-- 다른 '회원'들이 가짜 수익 인증 스크린샷을 공유해 신뢰를 유도
-- 피해자는 사기범이 안내한 가짜 투자 웹사이트나 앱(애플 앱스토어·구글플레이 외 경로 포함)을 통해 자금을 입금
-- 수익을 인출하려 하면 막히거나 사기범과 연락이 끊겨야 사기임을 인지
-
-**경찰 안내**
-- 신원이 확인되지 않은 사람에게 금전·귀중품을 건네지 말 것
-- 투자 회사·상품은 MAS(통화청) 공식 웹사이트에서 등록 여부를 먼저 확인할 것
-
-**한인 참고**
-- SNS에서 '무료 투자 강의' 광고를 보고 단체방에 초대받았다면 투자 권유로 이어지는지 주의할 것
-- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "싱가포르 경찰(SPF)",
-    sources: [
-      { name: "SPF — Police Advisory On Investment Scams Involving Chat Groups That Offer Fake Opportunities To Learn Investing", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260604_police_advisory_on_investment_scams_involving_chat_groups" },
-      { name: "The Independent Singapore — SG police report: S$3.6M lost from 'free lessons' investment scams via chat group since May", url: "https://theindependent.sg/sg-police-report-s-3-6m-lost-from-free-lessons-investment-scams-via-chat-group-since-may/" },
-    ],
-    time: "2026년 6월 4일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "💰",
-    relatedIds: ["28"],
-  },
-  {
-    id: "auto-20260624-3",
-    publishedAt: "2026-06-09",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🖥️ MS(마이크로소프트) 기술지원 사칭 사기 — 2월 이후 170만 달러 피해, 가짜 '해킹 경고' 팝업→ 가짜 경찰관 연결",
-    summary: "싱가포르 경찰(SPF)·사이버보안청(CSA) 공동 경보에 따르면 2월 이후 마이크로소프트(MS) 기술지원을 사칭한 사기가 최소 10건 발생해 피해액이 170만 달러를 넘었다. 브라우저에 '기기가 해킹됐다'는 가짜 팝업이 뜨고, 안내된 번호로 전화하면 가짜 경찰관에게 연결돼 '자금세탁에 연루됐다'며 계좌이체·원격조종을 요구받는 수법이다.",
-    fullContent: `**MS 기술지원 사칭 사기 공동 경보 (SPF·CSA, 2026년 6월 9일 발표)**
-
-**피해 현황**
-- 2월 이후 최소 **10건** 신고, 피해액 최소 **170만 달러(S$1.7 million)**
-
-**수법**
-- 인터넷 브라우저에 마이크로소프트(MS)를 사칭한 팝업 경고 — "기기가 해킹·손상됐다"는 내용
-- 팝업에 안내된 인터넷전화 번호로 전화하면 "기술지원 담당자"와 연결
-- 이후 "경찰관"을 사칭하는 또 다른 사기범에게 전화가 넘겨지며, 해당 기기가 자금세탁 등 범죄에 연루됐다고 주장
-- 계좌이체, 은행 로그인 정보 제공, 또는 기기 원격조종 허용을 요구
-
-**경찰·CSA 안내**
-- 마이크로소프트는 오류·경고 메시지에 전화번호를 포함하지 않음
-- 팝업에 표시된 번호로 전화하거나 링크·버튼을 클릭하지 말고, 브라우저를 종료할 것
-
-**한인 참고**
-- 평소 사용하는 PC·노트북에 이런 팝업이 뜨면 절대 전화하지 말고 그대로 브라우저를 닫을 것
-- 원격조종 프로그램 설치나 계좌 정보 요구는 모두 사기로 간주할 것
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "SPF · CSA",
-    sources: [
-      { name: "SPF — Joint Advisory On Technical Support Scams Involving The Impersonation Of Microsoft", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260609_joint_advisory_on_technical_support_scams_involving_the_impersonation_of_microsoft" },
-      { name: "CSA — Joint Advisory on Technical Support Scams Involving the Impersonation of Microsoft", url: "https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-006/" },
-      { name: "Yahoo News Singapore — At least $1.7m lost since February to scams where fraudsters impersonate Microsoft tech support", url: "https://sg.news.yahoo.com/least-1-7m-lost-since-155000129.html" },
-    ],
-    time: "2026년 6월 9일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🖥️",
-    relatedIds: ["28"],
-  },
   {
     id: "auto-20260624-4",
     publishedAt: "2026-06-22",
@@ -1012,6 +1163,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "📊",
     relatedIds: [],
   },
+
   {
     id: "auto-20260622-6",
     publishedAt: "2026-06-22",
@@ -1052,43 +1204,230 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "🚨",
     relatedIds: [],
   },
+
   {
-    id: "auto-20260622-7",
-    publishedAt: "2026-06-29",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🛡️ 온라인안전위원회(OSC) 6월 29일 출범 — 온라인 괴롭힘·명예훼손 피해자 신속 구제 절차 신설",
-    summary: "싱가포르 법무부(MinLaw)·디지털개발정보부(MDDI) 발표에 따르면 온라인안전위원회(Online Safety Commission)와 온라인안전(구제 및 책임)법 2025가 6월 29일부터 시행된다. 온라인 괴롭힘·스토킹·명예훼손성 게시물 등 피해를 입은 시민이 위원회를 통해 빠른 구제를 받을 수 있게 되며, 6월 1일부터 위원장 직무대행을 맡은 Francis Ng가 6월 29일 정식 위원장이 된다.",
-    fullContent: `**온라인안전위원회(OSC) 출범 (2026년 6월 29일 시행)**
-법무부(MinLaw)·디지털개발정보부(MDDI)가 공동 발표한 내용입니다.
+    id: "19",
+    publishedAt: "2026-06-19",
+    category: "건강",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🦟 뎅기열 2026년 주간 최다 발생 — 6월 13일 주 119건, 북부 레드얼럿 클러스터 주의",
+    summary: "NEA 집계 기준 6월 13일로 끝나는 주에 뎅기 119건 확진(2026년 주간 최다, 전주比 +39). 누적 약 938건으로 피크 시즌 진입. 6월 15일 기준 활성 클러스터 12곳 중 4곳 레드얼럿. 북부 거주 한인 가정 모기 번식 방지 주의.",
+    fullContent: `**2026년 뎅기열 주간 최다 발생**
+국가환경청(NEA) 집계 기준, 6월 13일로 끝나는 주에 뎅기열 확진이 급증했습니다.
 
-**시행일**
-- 2026년 6월 29일부터 온라인안전위원회(Online Safety Commission)와 온라인안전(구제 및 책임)법 2025(OSRAA)의 관련 조항 시행
+**현황**
+- 해당 주 확진: **119건** (2026년 주간 최다, 전주 대비 +39건)
+- 누적(1/1~6/13): 약 **938건**
+- 피크 시즌(5~10월) 진입
 
-**무엇이 달라지나**
-- 온라인 괴롭힘, 사이버스토킹, 명예훼손성 게시물, 음란합성물(딥페이크) 등 온라인 피해를 입은 사람이 위원회를 통해 콘텐츠 삭제·시정 명령 등 신속한 구제를 요청할 수 있음
-- 위원회는 유해 콘텐츠 게시자, 온라인 공간 운영자, 플랫폼 사업자에게 직접 시정 지시를 내릴 권한을 가짐
+**클러스터 경보 (6월 15일 기준)**
+- 활성 클러스터 **12곳**, 그중 **4곳이 레드얼럿**(10건 이상·확산 가속)
+- 특히 **북부 지역** 주의
 
-**조직**
-- Francis Ng(50)가 6월 1일부터 위원장 직무대행(Commissioner-Designate)을 맡았고, 6월 29일 정식 위원장(Commissioner)으로 취임
-- 법무부 법무정책국장, 검찰청 범죄수사부 부장검사 등을 지낸 25년 경력의 법조인
+**한인 가정 예방 체크리스트**
+- 화분 받침대·에어컨 응결수 받이 고인 물 즉시 제거
+- 발코니 양동이·물통 뒤집어 보관, 배수구 주 1회 청소
+- 고열·심한 두통·관절통 시 GP/폴리클리닉 방문, NS1 검사 요청
 
-**한인 참고**
-- 온라인에서 괴롭힘·명예훼손·신상유출(독싱) 피해를 입었다면 6월 29일부터 OSC를 통한 구제 신청이 가능해짐
-- 신청 절차·자격 등 세부 사항은 MinLaw·MDDI 공식 발표를 확인할 것
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "MinLaw · MDDI",
+실시간 클러스터(빨간 구역)는 NEA myENV 앱·haze.gov.sg에서 확인하세요.`,
+    source: "NEA · Medical Daily",
     sources: [
-      { name: "MinLaw — Online Safety Commission and Online Safety (Relief and Accountability) Act 2025 to Start on 29 June 2026", url: "https://www.mlaw.gov.sg/online-safety-commission-and-online-safety-relief-and-accountability-act-2025-to-start-on-29-june-2026/" },
-      { name: "MDDI — Online Safety Commission And Online Safety (Relief And Accountability) Act 2025 to start on 29 June 2026", url: "https://www.mddi.gov.sg/newsroom/online-safety-commission-and-online-safety--relief-and-accountability--act-2025-to-start-on-29-june-2026/" },
+      { name: "Medical Daily — Singapore Dengue 2026 (NEA 인용)", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
+      { name: "NEA haze.gov.sg", url: "https://www.haze.gov.sg/home" },
     ],
-    time: "2026년 6월 29일 시행 예정(6월 발표)",
-    isBreaking: false,
+    time: "2026년 6월 19일",
+    isBreaking: true,
     readTime: "3분",
-    emoji: "🛡️",
+    emoji: "🦟",
     relatedIds: [],
   },
+
+  {
+    id: "auto-20260624-7",
+    publishedAt: "2026-06-18",
+    category: "생활",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "💡 7월 전기요금 '대폭' 인상 예고 — 에너지청, 중동 사태發 가스값 급등으로 최대 30% 상승 전망",
+    summary: "싱가포르 에너지청(EMA)이 6월 18일 더 스트레이츠 타임스에 3분기(7~9월) 규제 전기요금이 'significantly'(상당히) 오를 것이라고 확인했다. 현재 요금(GST 포함 kWh당 29.72센트) 대비 분석가들은 최대 30%까지 인상을 전망하며, 원인은 2월 말 이후 이란을 둘러싼 분쟁과 호르무즈 해협 관련 천연가스 가격 급등이다. 정부는 7월 U-Save 리베이트(가구당 110~190달러)로 부담을 일부 완화할 계획이다.",
+    fullContent: `**전기요금 3분기(7~9월) 인상 전망 (에너지청 EMA, 2026년 6월 18일 확인)**
+
+**현황**
+- 에너지청(EMA)이 6월 18일 더 스트레이츠 타임스에 규제 전기요금(가구 62.8%가 적용받는 요금)이 3분기부터 'significantly'(상당히) 오를 것이라 확인
+- 현재(4~6월) 요금: GST 포함 kWh당 **29.72센트**
+- 분석가 전망: 최대 **30%**까지 인상 가능성
+
+**원인**
+- 2월 말 미국·이스라엘의 이란 공습 이후 호르무즈 해협이 사실상 봉쇄되며 천연가스 가격 급등
+- 싱가포르는 발전 연료의 95%를 수입에 의존해 국제 가스값 변동에 취약
+- 요금은 전 분기 첫 2.5개월 평균 연료비로 산정되는 구조라, 최근 미·이란 휴전 합의도 7월 요금에는 반영되지 않음
+
+**정부 지원**
+- 7월 중 U-Save 리베이트(가구당 110~190달러) 및 SCC(관리비) 리베이트 지급 예정
+
+**한인 참고**
+- 7월 1일부터 실제 고지서에 인상분이 반영되므로, 전기 사용량이 많은 가정은 미리 절약 계획을 세워두는 것이 좋음
+- 오픈일렉트리시티마켓(OEM) 고정요금제 계약자는 이번 인상의 직접 영향은 적지만, 계약 갱신 시점에는 새 시세가 반영될 수 있음
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "싱가포르 에너지청(EMA)",
+    sources: [
+      { name: "Mothership — S'pore electricity tariff expected to rise 'significantly' from July: EMA", url: "https://mothership.sg/2026/06/electricity-tariff-july-2026-expected-rise/" },
+      { name: "VnExpress International — Singapore households warned of 'significant' electricity tariff hike in coming months", url: "https://e.vnexpress.net/news/business/economy/singapore-households-warned-of-significant-electricity-tariff-hike-in-coming-months-5087292.html" },
+    ],
+    time: "2026년 6월 18일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "💡",
+    relatedIds: [],
+  },
+
+  {
+    id: "auto-20260620-5",
+    publishedAt: "2026-06-18",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🚨 일주일 새 사기 경보 2건 — 페이스북 라이브 행운권·시니어 대상 안드로이드 악성코드",
+    summary: "싱가포르 경찰(SPF)이 6월 15일·18일 잇따라 경보를 냈다. ①페북 라이브 행운권/스크래치카드 사기: 5월 20일 이후 33건·손실 최소 S$6만, PayNow QR로 '수수료' 요구. ②시니어 대상 안드로이드 악성코드: 4월 1일 이후 8건·손실 최소 S$6.9만, APK 설치 유도 후 Singpass·ScamShield 삭제·계좌 한도 조작.",
+    fullContent: `**SPF 사기 경보 2건 (2026년 6월)**
+싱가포르 경찰(SPF)이 일주일 사이 신종 사기 경보를 두 건 발표했습니다.
+
+**① 페이스북 라이브 행운권 사기 (6월 15일 발표)**
+- 5월 20일 이후 최소 **33건**, 피해액 최소 **S$6만**
+- 페북 라이브 방송에서 스크래치카드·복권을 판매 → "당첨됐다"며 **PayNow QR(Liquidpay 계좌)**로 '수수료' 등 추가 송금 요구
+- 당첨금이 안 들어오거나 연락이 끊겨야 사기임을 인지
+
+**② 시니어 대상 안드로이드 악성코드 사기 (6월 18일 발표)**
+- 4월 1일 이후 최소 **8건**, 피해액 최소 **S$6.9만**
+- 페북·TikTok의 '시니어 활동' 광고 → 관심 등록 시 WhatsApp으로 연락 → **APK 파일 설치** 유도(활동 목록 확인 명목)
+- 설치 후 **Singpass·ScamShield 앱이 삭제**되거나 **계좌 이체 한도가 무단 변경**된 피해 사례
+
+**한인 가정 주의 팁**
+- 출처 불명 APK 파일은 절대 설치하지 말 것(공식 앱스토어 외 설치 차단 권장)
+- SNS 라이브·광고 경품·당첨 안내는 선입금·수수료 요구 시 사기로 의심
+- 부모님 등 시니어가 방문·체류 중이라면 이 2건을 미리 공유해 주의를 당부할 것
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF",
+    sources: [
+      { name: "SPF — Police Advisory On Lucky Draw Scams Involving Facebook Live", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260615_police_advisory_on_lucky_draw_scams_involving_facebook_live" },
+      { name: "SPF — Police Advisory On Malware-Enabled Scams On Android Devices Targeting Senior Citizens", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260618_police_advisory_on_malware_enabled_scams_on_android_devices_targeting_senior_citizens" },
+    ],
+    time: "2026년 6월 18일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🚨",
+    relatedIds: ["28"],
+  },
+
+  {
+    id: "auto-20260619-1",
+    publishedAt: "2026-06-17",
+    category: "생활비",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "⚡ 전기요금 7월부터 큰 폭 인상 예고 — 2분기 대비 8.1%↑(2.21센트/kWh), U-Save 환급으로 일부 상쇄",
+    summary: "에너지시장청(EMA) 발표에 따르면 중동 정세발 천연가스 가격 상승 영향으로 2026년 3분기(7~9월) 규제 전기요금이 2분기보다 평균 8.1%(2.21센트/kWh) 오를 전망이다. 1~3월기 대비 4~6월기 인상폭(2.1%·0.56센트)보다 훨씬 크다. 7월 지급되는 U-Save 환급(가구당 S$110~190)이 일부를 상쇄할 예정이다.",
+    fullContent: `**3분기(7~9월) 전기요금 인상 전망**
+에너지시장청(EMA)에 따르면, 중동 정세 불안으로 천연가스 가격이 급등하면서 2026년 7~9월 적용될 규제 전기요금이 직전 분기보다 크게 오를 전망입니다.
+
+**인상 규모**
+- 2026년 4~6월 요금: **27.27센트/kWh(GST 제외) · 29.72센트/kWh(GST 포함)** — 직전 분기比 2.1%(0.56센트) 인상
+- 2026년 7~9월 요금: 직전 분기比 평균 **8.1%(2.21센트/kWh) 인상** 전망 — 훨씬 가파른 인상폭
+- 원인: 중동 정세 불안으로 천연가스 가격 급등. SP그룹은 분기별로 직전 2.5개월 평균 가스가격을 반영해 요금을 산정
+
+**완화 조치**
+- 2026년 7월, 적격 가구에 **U-Save 환급(가구당 S$110~190)** 추가 지급 예정
+
+**한인 가정 참고**
+- 고정요율(fixed-price) 전기 소매 플랜 가입 가구 비율이 2월 36.6%→6월 37.1%로 늘고 있어, 변동요율 부담이 크다면 고정 플랜 비교를 검토할 만합니다.
+- HDB·콘도 가구 모두 여름철(7~9월) 전기 사용량 관리가 필요합니다.
+
+정확한 수치는 EMA·SP그룹 공식 발표 또는 아래 출처를 확인하세요.`,
+    source: "EMA · Mothership",
+    sources: [
+      { name: "Mothership — S'pore electricity tariff expected to rise 'significantly' from July: EMA", url: "https://mothership.sg/2026/06/electricity-tariff-july-2026-expected-rise/" },
+      { name: "Malay Mail — Singapore electricity and gas tariffs to rise from April to June, with steeper hikes likely later in 2026, says Energy Market Authority", url: "https://www.malaymail.com/news/singapore/2026/03/31/singapore-electricity-and-gas-tariffs-to-rise-from-april-to-june-with-steeper-hikes-likely-later-in-2026-says-energy-market-authority/214524" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "⚡",
+    relatedIds: [],
+  },
+
+  {
+    id: "auto-20260619-5",
+    publishedAt: "2026-06-17",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🎫 NDP 2026 입장권 발표 6/15~17 — 시민권자·PR만 신청 가능, '재판매·스캠 주의' 경고",
+    summary: "8월 9일 내셔널 스타디움에서 16년 만에 돌아오는 National Day Parade 2026 입장권 응모(5/23~6/6, 시민권자·PR만 Singpass로 신청) 결과가 6월 15~17일 사이 정부 공식 채널로 통지됐다. 주최 측은 표가 매매 대상이 아니며 재판매·스캠 시도에 단호히 대응하겠다고 경고했다.",
+    fullContent: `**NDP 2026 입장권 발표 (6월 15~17일)**
+8월 9일 National Stadium에서 2016년 이후 처음으로 돌아오는 National Day Parade(NDP) 2026의 입장권 발표가 6월 15~17일 사이 이뤄졌습니다.
+
+**응모·발표 절차**
+- 응모 기간: 5월 23일 정오~6월 6일 정오, **Singpass**로 본인 인증 후 신청(시민권자·PR만 가능)
+- 본 행사(8/9) 또는 프리뷰 공연(7/25, 8/1) 중 선택, 1인당 2·4·6매 신청 가능
+- 발표: 추첨 방식으로 6월 15~17일 사이 정부 공식 채널(gov.sg, 주최 측 승인 이메일)로만 통지
+
+**⚠️ 주의사항**
+- 주최 측은 **티켓 매매·양도가 금지**돼 있으며, **재판매(스캘핑)·사기에 대해 강력 대응**하겠다고 공식 경고했습니다.
+- 공식 채널 외 SNS·메신저로 "당첨됐다"며 금전을 요구하거나 표를 판매한다는 연락은 사기일 가능성이 매우 높습니다.
+
+**한인 가정 참고**
+- 시민권자·PR만 응모할 수 있어 EP 등 외국인 신분이라면 이번 회차는 해당되지 않습니다.
+- PR이고 6/6 마감 전 응모했다면 공식 채널로만 결과를 확인하고, SNS에 떠도는 양도·판매 글은 무시·신고하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "The Independent · IBTimes SG",
+    sources: [
+      { name: "The Independent Singapore — Singapore National Day Parade 2026: Up to 6 tickets can be applied for via SingPass; organisers warn against scams and scalping", url: "https://theindependent.sg/singapore-national-day-parade-2026-up-to-6-tickets-can-be-applied-for-via-singpass-organisers-warn-against-scams-and-scalping/" },
+      { name: "IBTimes SG — National Day Parade 2026: Singapore Opens NDP Ticket Applications from May 23 to June 6", url: "https://www.ibtimes.sg/national-day-parade-2026-singapore-opens-ndp-ticket-applications-may-23-june-6-heres-how-book-86825" },
+    ],
+    time: "2026년 6월 17일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🎫",
+    relatedIds: [],
+  },
+
+  {
+    id: "auto-20260622-9",
+    publishedAt: "2026-06-16",
+    category: "날씨",
+    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
+    title: "🌩️ 6월 남은 기간 거의 매일 천둥소나기 — NEA \"수마트라 스콜 동반 가능\", 낮 최고 33~34도",
+    summary: "기상청(NEA)이 6월 16일 발표한 기후전망에 따르면 6월 남은 기간 동안 거의 매일 늦은 오전~오후에 국지적 천둥소나기가 예상되며, 일부 날은 새벽~정오 사이 수마트라 스콜(돌풍 동반 비구름대)도 발생할 수 있다. 남서 몬순 영향으로 낮 최고기온은 33~34도로 예상된다.",
+    fullContent: `**6월 후반 날씨 전망 (NEA, 6월 16일 발표)**
+기상청(NEA)이 발표한 2026년 6월 후반 날씨 전망입니다.
+
+**천둥소나기**
+- 6월 남은 기간 거의 매일 늦은 오전~오후, 싱가포르 북부·동부·서부 지역 중심으로 국지적 천둥소나기 예상
+- 광범위한 바람 수렴이 있는 날은 강한 비가 내릴 수 있음
+
+**수마트라 스콜**
+- 일부 날은 새벽~정오 사이 수마트라 스콜(돌풍을 동반한 비구름대) 발생 가능 — 광범위한 비·강풍 동반
+
+**기온**
+- 낮 최고기온 대부분 33~34도
+- 남서 몬순이 6월부터 9월 말까지 이어질 전망(우기철 천둥번개 활동이 전형적으로 잦은 시기)
+
+**한인 참고**
+- 야외활동·통근 시 우산을 휴대하고, 특히 늦은 오전~오후 시간대 갑작스러운 비를 염두에 둘 것
+- 천둥 시 야외 수영장·운동장 이용은 자제하고, 최신 경보는 NEA myENV 앱·weather.gov.sg에서 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "NEA",
+    sources: [
+      { name: "NEA — Thundery Showers Expected On Most Days For The Rest Of June 2026", url: "https://www.nea.gov.sg/media/news/advisories/index/thundery-showers-expected-on-most-days-for-the-rest-of-june-2026" },
+    ],
+    time: "2026년 6월 16일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🌩️",
+    relatedIds: [],
+  },
+
   {
     id: "auto-20260622-8",
     publishedAt: "2026-06-15",
@@ -1133,117 +1472,85 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     emoji: "📉",
     relatedIds: [],
   },
+
   {
-    id: "auto-20260622-9",
-    publishedAt: "2026-06-16",
-    category: "날씨",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🌩️ 6월 남은 기간 거의 매일 천둥소나기 — NEA \"수마트라 스콜 동반 가능\", 낮 최고 33~34도",
-    summary: "기상청(NEA)이 6월 16일 발표한 기후전망에 따르면 6월 남은 기간 동안 거의 매일 늦은 오전~오후에 국지적 천둥소나기가 예상되며, 일부 날은 새벽~정오 사이 수마트라 스콜(돌풍 동반 비구름대)도 발생할 수 있다. 남서 몬순 영향으로 낮 최고기온은 33~34도로 예상된다.",
-    fullContent: `**6월 후반 날씨 전망 (NEA, 6월 16일 발표)**
-기상청(NEA)이 발표한 2026년 6월 후반 날씨 전망입니다.
+    id: "auto-20260620-1",
+    publishedAt: "2026-06-15",
+    category: "비자/취업",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "📋 EP COMPASS 갱신 심사 7월 1일부터 강화 — 2023~24년 승인자도 재심사 시 탈락 위험",
+    summary: "2026년 1월 신규 EP 신청부터 적용된 개정 COMPASS 기준(섹터·연령대별 급여 벤치마크, 자격 목록 등)이 7월 1일부터 갱신(renewal) 심사에도 적용된다. 2023~24년 65th 퍼센타일 기준으로 승인됐던 EP도 2026년 갱신 시점 기준 미달 시 점수가 깎여 탈락할 수 있다.",
+    fullContent: `**COMPASS 2단계 — 갱신 심사 적용 (2026년 7월 1일부터)**
+싱가포르 인력부(MOM)의 Employment Pass(EP) COMPASS 프레임워크 개정판이 2026년 1월 1일 신규 신청에 먼저 적용됐고, **7월 1일부터는 갱신 신청**에도 동일하게 적용됩니다.
 
-**천둥소나기**
-- 6월 남은 기간 거의 매일 늦은 오전~오후, 싱가포르 북부·동부·서부 지역 중심으로 국지적 천둥소나기 예상
-- 광범위한 바람 수렴이 있는 날은 강한 비가 내릴 수 있음
+**무엇이 바뀌었나**
+- **C1 급여 기준**: 섹터·연령대별로 세분화돼, 동일 분야 로컬 PMET 임금의 **65th 퍼센타일**을 기준으로 채점
+- **C2 자격 목록**: 학위 동등 전문자격·상위권 대학 리스트 갱신
+- Shortage Occupation List(부족 직종 목록) 확대(헬스케어 등 신규 직종 추가)
+- 통과 기준선은 여전히 **40점 이상**
 
-**수마트라 스콜**
-- 일부 날은 새벽~정오 사이 수마트라 스콜(돌풍을 동반한 비구름대) 발생 가능 — 광범위한 비·강풍 동반
+**한인 EP 보유자가 챙겨야 할 점**
+- 2023~2024년에 당시 65th 퍼센타일을 통과해 승인받았더라도, **2026년 갱신 시점 기준으로는 미달**할 수 있어 점수가 깎입니다.
+- 본인 EP 만료일이 **2026년 하반기**라면, 고용주(HR)에 COMPASS 점수 사전 점검을 요청하는 것이 안전합니다.
+- 점수가 부족하면 급여 조정, 자격 보완 서류 준비 등을 갱신 신청 전에 검토해야 합니다.
 
-**기온**
-- 낮 최고기온 대부분 33~34도
-- 남서 몬순이 6월부터 9월 말까지 이어질 전망(우기철 천둥번개 활동이 전형적으로 잦은 시기)
-
-**한인 참고**
-- 야외활동·통근 시 우산을 휴대하고, 특히 늦은 오전~오후 시간대 갑작스러운 비를 염두에 둘 것
-- 천둥 시 야외 수영장·운동장 이용은 자제하고, 최신 경보는 NEA myENV 앱·weather.gov.sg에서 확인할 것
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "NEA",
+정확한 점수표·기준은 아래 출처(MOM 안내를 다룬 전문 매체)를 확인하세요.`,
+    source: "Human Resources Online · Asanify",
     sources: [
-      { name: "NEA — Thundery Showers Expected On Most Days For The Rest Of June 2026", url: "https://www.nea.gov.sg/media/news/advisories/index/thundery-showers-expected-on-most-days-for-the-rest-of-june-2026" },
+      { name: "Human Resources Online — Reminder: Singapore's updated COMPASS rules effective in 2026", url: "https://www.humanresourcesonline.net/reminder-singapore-s-updated-compass-rules-effective-in-2026-for-ep-applications-and-renewals" },
+      { name: "Asanify — Singapore Employment Pass Renewals Digest (Jun 15, 2026)", url: "https://asanify.com/blog/news/singapore-employment-pass-renewals-june-15-2026/" },
     ],
-    time: "2026년 6월 16일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🌩️",
-    relatedIds: [],
-  },
-  {
-    id: "auto-20260622-10",
-    publishedAt: "2026-06-27",
-    category: "교육",
-    catStyle: "bg-[#FBF0EC] text-[#D04020]",
-    title: "🎓 MOE \"PSLE 부담 줄이기\" 공개 논의 시작 — 6월 27일 첫 공개 세션, DSA 제도 개편도 포함",
-    summary: "교육부(MOE)가 PSLE(초등 졸업시험)의 중등 배정 활용 방식과 DSA(직접학교입학) 제도 개편 등을 주제로 한 'Education Conversations' 공개 의견수렴을 시작했다. 4월부터 교육 전문가·학부모·청년 대상 포커스그룹을 진행했고, 6월 27일 Desmond Lee 교육부장관이 직접 이끄는 첫 공개 세션이 열렸다. 논의는 2026~2027년에 걸쳐 계속된다.",
-    fullContent: `**MOE 'Education Conversations' 공개 의견수렴 시작**
-교육부(MOE) 발표 내용입니다.
-
-**배경**
-- PSLE(초등 졸업시험) 성적이 중등학교 배정에 미치는 영향과 '학업 군비경쟁' 우려에 대한 학부모·사회 논쟁이 이어짐에 따라, MOE가 공개 의견수렴 절차를 시작
-
-**진행 방식**
-- 4월부터 교육 전문가·학부모·청년 대상 소규모 포커스그룹 진행
-- 6월 27일(토) Desmond Lee 교육부장관이 이끄는 첫 공개 세션 개최
-- 이후 2026~2027년에 걸쳐 대면·온라인('Education Conversations' 마이크로사이트) 의견수렴 계속
-
-**주요 논의 주제**
-- PSLE를 중등 1학년 배정에 활용하는 방식 등 시험 부담 완화 방안
-- DSA(직접학교입학) 제도 개편 — 학생 역량 개발·선발 방식·접근성 개선
-- 인성·시민교육(CCE)·교내외 활동(CCA) 강화로 가치관·생활역량 함양
-
-**한인 참고**
-- 자녀가 현지 정부학교(특히 초·중등)에 재학 중인 한인 가정은 PSLE·DSA 제도 변화가 입시 전략에 직접 영향을 줄 수 있어 추이를 지켜볼 것
-- 구체적 개편안은 아직 확정되지 않았으며 MOE 공식 발표를 통해 순차적으로 공개될 예정
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "MOE",
-    sources: [
-      { name: "MOE — Education Conversations", url: "https://www.moe.gov.sg/news/press-releases/20260528-education-conversations" },
-    ],
-    time: "2026년 6월 27일(첫 공개 세션)",
-    isBreaking: false,
+    time: "2026년 6월 15일",
+    isBreaking: true,
     readTime: "3분",
-    emoji: "🎓",
-    relatedIds: [],
+    emoji: "📋",
+    relatedIds: ["17", "21"],
   },
+
   {
-    id: "auto-20260622-1",
-    publishedAt: "2026-04-28",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚆 TEL·DTL 금요일 단축운행·토요일 늦은 개통 — TEL 7/4까지, DTL 7/10~9/5 셔틀버스 운행",
-    summary: "LTA·SBS Transit·SMRT 공동 발표에 따르면 톰슨이스트코스트선(TEL)이 5월 22일~7월 12일 시행 중, 다운타운선(DTL)이 7월 10일~9월 5일 매주 금요일 밤 11시 30분 조기 종료·토요일 오전 8시 30분 늦은 개통된다. TEL 5단계·DTL3 연장 개통 전 최종 통합 시험운행 때문이며, 토요일 늦은 개통 시간대엔 환승역 연계 셔틀버스가 운행된다.",
-    fullContent: `**TEL·DTL 주말 단축운행 (2026년 4~9월)**
-LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다운타운선(DTL) 시운전 관련 운행 조정입니다.
+    id: "auto-20260624-1",
+    publishedAt: "2026-06-10",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🎫 BTS 콘서트 티켓 사기 주의보 — 6월 1일 이후 62건·6만8천200달러 피해, 12월 'Arirang' 싱가포르 공연 전 회차 매진",
+    summary: "싱가포르 경찰(SPF)에 따르면 6월 1일 이후 BTS 월드투어 'Arirang' 콘서트 티켓 판매 사기가 최소 62건 발생, 피해액이 6만8천200달러를 넘었다. X·인스타그램·캐러셀 등에서 티켓을 판다며 PayNow로 결제를 유도한 뒤 '수수료' 등 추가 송금을 요구하는 수법이다. 해당 콘서트는 12월 17·19·20·22일 내셔널 스타디움에서 열리며, BTS가 완전체로 7년 만에 싱가포르를 찾는 공연으로 전 회차 매진됐다.",
+    fullContent: `**BTS 콘서트 티켓 사기 경보 (싱가포르 경찰, 2026년 6월)**
+싱가포르 경찰(SPF)이 발표한 내용입니다.
 
-**시행 기간**
-- **TEL**: 5월 22일~7월 4일, 매주 금요일 밤 11시 30분 조기 종료 / 토요일 오전 8시 30분 늦은 개통
-- **DTL**: 7월 10일~9월 5일, 동일하게 금요일 밤 11시 30분 조기 종료 / 토요일 오전 8시 30분 늦은 개통
+**피해 현황**
+- 6월 1일 이후 최소 **62건** 신고, 피해액 최소 **6만8천200달러(S$68,200)**
 
-**이유**
-- TEL 5단계(Xilin·Bedok South·Sungei Bedok)와 DTL3 연장 개통(2026년 하반기 예정)에 앞서, 신규 구간을 기존 노선에 통합하는 최종 시스템 통합 시험운행 필요
-- 야간 시간대 정규 정비시간으로는 부족해 금요일 밤~토요일 아침 운행시간을 늘려 시험
+**수법**
+- X(트위터)·인스타그램·캐러셀 등 SNS에서 "콘서트 티켓 판매" 게시물·DM으로 접근
+- PayNow 또는 QR코드로 결제 유도 → 결제 후 "수수료" 등 명목으로 추가 송금 요구
+- 티켓이 오지 않거나 판매자와 연락이 끊겨야 사기임을 인지
 
-**대체 교통**
-- 토요일 늦은 개통 시간대엔 환승역 연계 셔틀버스 3개 노선 운행(DTL 구간은 부기스·맥퍼슨 환승역 연계)
+**콘서트 정보(참고)**
+- BTS 월드투어 'Arirang' 싱가포르 공연: 12월 17·19·20·22일, 내셔널 스타디움
+- 완전체로 7년 만의 싱가포르 공연이며, 공식 채널(Ticketmaster) 기준 전 회차 매진
+- Ticketmaster 약관상 리세일 티켓 사용 시 입장이 거부되며 환불도 되지 않음
+
+**경찰 안내**
+- 콘서트 티켓은 공식 판매처(Ticketmaster 등)에서만 구매할 것
+- SNS 개인 판매자에게 선입금하지 말 것, 의심 시 ScamShield 앱 또는 1799 확인
 
 **한인 참고**
-- 금요일 야간 약속·새벽 귀가, 토요일 오전 일찍 이동 계획이 있다면 해당 기간 TEL·DTL 이용 시 시간을 다시 확인할 것
-- 정확한 적용 구간·셔틀버스 노선은 LTA·SMRT·SBS Transit 공지를 확인할 것
+- 싱가포르 거주 한인 팬덤 다수가 이번 공연 티켓을 구하려 SNS 개인거래를 시도할 수 있어 특히 주의가 필요
+- 리세일 티켓은 설령 진짜 티켓이라도 공연장 입장이 거부될 수 있다는 점도 유의할 것
 
 정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "LTA·SBS Transit·SMRT",
+    source: "싱가포르 경찰(SPF)",
     sources: [
-      { name: "LTA — Train Service Adjustments along TEL and DTL to Facilitate Rail Expansion Works", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/4/news-releases/train-service-adjustments-tel-and-dtl-to-facilitate-rail-expansion-works.html" },
-      { name: "TheSmartLocal — Train Service Adjustments For TEL & DTL From May To Sep 2026", url: "https://thesmartlocal.com/read/tel-dtl-train-service-adjustments/" },
+      { name: "SPF — Police Advisory On Scams Involving The Sale Of BTS World Tour 'Arirang' Concert Tickets", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260610_police_advisory_on_scams_involving_the_sale_of_bts_world_tour_arirang_concert_tickets" },
+      { name: "Klook — BTS World Tour 'Arirang' in Singapore", url: "https://www.klook.com/en-US/blog/bts-world-tour-arirang-singapore/" },
     ],
-    time: "2026년 4월 28일 발표",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚆",
-    relatedIds: ["29"],
+    time: "2026년 6월 10일 경보(피해 집계 진행 중)",
+    isBreaking: true,
+    readTime: "3분",
+    emoji: "🎫",
+    relatedIds: ["28"],
   },
+
   {
     id: "auto-20260622-2",
     publishedAt: "2026-06-10",
@@ -1283,83 +1590,87 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     emoji: "⚠️",
     relatedIds: ["28"],
   },
+
   {
-    id: "auto-20260622-3",
-    publishedAt: "2026-04-24",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏢 1분기 콘도 렌트·매매가 동반 상승 — 렌트 +0.3%(외곽 OCR +1.0%), 매매가 +0.9%(OCR +2.2%)",
-    summary: "URA(도시재개발청) 발표에 따르면 2026년 1분기 민간주택 렌트지수가 전분기比 0.3% 올랐다(직전 분기는 -0.5%). 외곽지역(OCR)이 +1.0%로 가장 많이 오르고 중심지역(RCR)은 -0.2%로 6분기 연속 상승 후 처음 하락했다. 같은 기간 매매가지수는 +0.9%로 상향 확정(잠정치 +0.3%보다 큼), 공실률은 6.2%로 소폭 상승했다.",
-    fullContent: `**URA 1분기(Q1) 2026 부동산 통계 (4월 24일 발표)**
-도시재개발청(URA)이 발표한 2026년 1분기 민간주택 가격·렌트 지표입니다.
+    id: "auto-20260624-3",
+    publishedAt: "2026-06-09",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🖥️ MS(마이크로소프트) 기술지원 사칭 사기 — 2월 이후 170만 달러 피해, 가짜 '해킹 경고' 팝업→ 가짜 경찰관 연결",
+    summary: "싱가포르 경찰(SPF)·사이버보안청(CSA) 공동 경보에 따르면 2월 이후 마이크로소프트(MS) 기술지원을 사칭한 사기가 최소 10건 발생해 피해액이 170만 달러를 넘었다. 브라우저에 '기기가 해킹됐다'는 가짜 팝업이 뜨고, 안내된 번호로 전화하면 가짜 경찰관에게 연결돼 '자금세탁에 연루됐다'며 계좌이체·원격조종을 요구받는 수법이다.",
+    fullContent: `**MS 기술지원 사칭 사기 공동 경보 (SPF·CSA, 2026년 6월 9일 발표)**
 
-**렌트지수**
-- 전체: 전분기比 **+0.3%** (직전 4분기는 -0.5%)
-- 외곽지역(OCR): **+1.0%**(상승 주도)
-- 중심지역(CCR, 고급): **+0.5%**
-- 도심외곽(RCR, 중급): **-0.2%** — 6분기 연속 상승 후 첫 하락
-- 공실률: **6.2%**(전분기比 +0.2%p)
+**피해 현황**
+- 2월 이후 최소 **10건** 신고, 피해액 최소 **170만 달러(S$1.7 million)**
 
-**매매가지수**
-- 전체: **+0.9%**(잠정치 +0.3%보다 상향 확정)
-- 비단독(콘도 등): +1.3% / 단독주택: -0.4%
-- 1분기 거래량은 전분기比 19.2% 감소(5,413건), 신규분양 31.5% 감소(2,013건) — 설 연휴·분양 물량 감소 영향
+**수법**
+- 인터넷 브라우저에 마이크로소프트(MS)를 사칭한 팝업 경고 — "기기가 해킹·손상됐다"는 내용
+- 팝업에 안내된 인터넷전화 번호로 전화하면 "기술지원 담당자"와 연결
+- 이후 "경찰관"을 사칭하는 또 다른 사기범에게 전화가 넘겨지며, 해당 기기가 자금세탁 등 범죄에 연루됐다고 주장
+- 계좌이체, 은행 로그인 정보 제공, 또는 기기 원격조종 허용을 요구
+
+**경찰·CSA 안내**
+- 마이크로소프트는 오류·경고 메시지에 전화번호를 포함하지 않음
+- 팝업에 표시된 번호로 전화하거나 링크·버튼을 클릭하지 말고, 브라우저를 종료할 것
 
 **한인 참고**
-- 콘도 임차 중이라면 OCR(외곽) 지역 렌트가 가장 빠르게 오르고 있어 갱신 시 인상 가능성을 염두에 둘 것
-- RCR(중급) 렌트는 6분기 만에 처음 하락해 협상 여지가 있을 수 있음
-- 정확한 지역별·평형별 수치는 URA 공식 발표를 확인할 것
+- 평소 사용하는 PC·노트북에 이런 팝업이 뜨면 절대 전화하지 말고 그대로 브라우저를 닫을 것
+- 원격조종 프로그램 설치나 계좌 정보 요구는 모두 사기로 간주할 것
 
 정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "URA",
+    source: "SPF · CSA",
     sources: [
-      { name: "URA — Release of 1st Quarter 2026 real estate statistics (PR26-31)", url: "https://www.ura.gov.sg/Corporate/Media-Room/Media-Releases/pr26-31" },
-      { name: "LittleBigRedDot — URA Q1 2026 Property Statistics: What The 0.9% Private Home Price Rise Means", url: "https://littlebigreddot.com/ura-q1-2026-property-statistics-private-home-prices-guide/" },
+      { name: "SPF — Joint Advisory On Technical Support Scams Involving The Impersonation Of Microsoft", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260609_joint_advisory_on_technical_support_scams_involving_the_impersonation_of_microsoft" },
+      { name: "CSA — Joint Advisory on Technical Support Scams Involving the Impersonation of Microsoft", url: "https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-006/" },
+      { name: "Yahoo News Singapore — At least $1.7m lost since February to scams where fraudsters impersonate Microsoft tech support", url: "https://sg.news.yahoo.com/least-1-7m-lost-since-155000129.html" },
     ],
-    time: "2026년 4월 24일",
-    isBreaking: false,
+    time: "2026년 6월 9일",
+    isBreaking: true,
     readTime: "3분",
-    emoji: "🏢",
-    relatedIds: ["20"],
+    emoji: "🖥️",
+    relatedIds: ["28"],
   },
+
   {
-    id: "auto-20260622-4",
-    publishedAt: "2026-02-26",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🛂 PR 연 4만명 승인 목표 발표(2026~2030년) — 출산율 0.87 역대 최저, 금융·테크·헬스케어·물류·엔지니어링 우대",
-    summary: "Gan Kim Yong 부총리가 Budget 2026 예산위원회(COS) 토론에서 2026~2030년 연간 PR(영주권) 승인을 약 4만명 규모로 늘릴 계획이라고 밝혔다(2025년 약 3만5천명 대비 증가). 2025년 거주 출생아 수가 역대 최저(약 2만7,500명), 합계출산율 0.87로 더 낮아진 데 따른 대응이며, 금융·테크(AI·퀀텀 포함)·헬스케어·물류·엔지니어링 분야가 우대 대상으로 언급됐다.",
-    fullContent: `**PR(영주권) 연간 승인 목표 상향 — Budget 2026 COS 토론**
-Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에서 발표한 내용입니다.
+    id: "auto-20260624-2",
+    publishedAt: "2026-06-04",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "💰 \"무료 투자강의\" 빙자 사기 — 5월 이후 48건·360만 달러 피해, SNS 광고→ 채팅방 초대 수법",
+    summary: "싱가포르 경찰(SPF)에 따르면 5월 이후 '무료 투자강의'를 빙자한 채팅방 투자 사기가 최소 48건 발생해 피해액이 360만 달러를 넘었다. SNS 광고로 유인해 왓츠앱 채팅방에 초대한 뒤 '멘토'를 자처하는 사기범과 가짜 수익 인증을 보여주는 '회원'들이 투자를 권유하고, 가짜 앱·웹사이트에 투자하게 한 뒤 인출을 막는 수법이다.",
+    fullContent: `**"무료 투자강의" 채팅방 투자 사기 경보 (싱가포르 경찰, 2026년 6월 4일 발표)**
 
-**핵심 발표**
-- 2026~2030년 연간 PR 승인을 약 **4만명** 규모로 계획 — 2025년(약 3만5천명) 대비 증가
-- Gan 부총리: "향후 5년간 연 약 4만명 PR 승인을 예상한다. 작년 승인한 3만5천명보다 다소 높은 수준"
+**피해 현황**
+- 5월 이후 최소 **48건** 신고, 피해액 최소 **360만 달러(S$3.6 million)**
 
-**배경**
-- 2025년 거주 출생아 수 약 2만7,500명으로 역대 최저
-- 합계출산율(TFR) 0.87로 전년 0.97에서 추가 하락
-- 고령화·생산연령인구 감소에 대한 대응 차원
+**수법**
+- SNS에서 "무료로 투자를 배울 수 있다"는 광고 게시 → 관심 등록 시 왓츠앱 채팅방으로 초대
+- 채팅방 내 '멘토'를 자처하는 인물이 투자 조언·보너스를 제공하며 투자를 유도
+- 다른 '회원'들이 가짜 수익 인증 스크린샷을 공유해 신뢰를 유도
+- 피해자는 사기범이 안내한 가짜 투자 웹사이트나 앱(애플 앱스토어·구글플레이 외 경로 포함)을 통해 자금을 입금
+- 수익을 인출하려 하면 막히거나 사기범과 연락이 끊겨야 사기임을 인지
 
-**우대 산업 분야**
-- 금융, 테크(AI·퀀텀컴퓨팅 포함), 헬스케어, 물류, 엔지니어링
+**경찰 안내**
+- 신원이 확인되지 않은 사람에게 금전·귀중품을 건네지 말 것
+- 투자 회사·상품은 MAS(통화청) 공식 웹사이트에서 등록 여부를 먼저 확인할 것
 
 **한인 참고**
-- EP·S Pass로 거주 중 PR을 고려하는 한인이라면, 위 우대 산업군 종사 여부가 승인 가능성에 도움이 될 수 있음
-- 다만 이는 정부의 전체 정책 방향 발표로, 개별 심사 기준·세부 가점 항목은 ICA가 별도 공개하지 않음에 유의
+- SNS에서 '무료 투자 강의' 광고를 보고 단체방에 초대받았다면 투자 권유로 이어지는지 주의할 것
+- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
 
 정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "population.gov.sg · VisaVerge",
+    source: "싱가포르 경찰(SPF)",
     sources: [
-      { name: "population.gov.sg — Speech by Deputy Prime Minister Gan Kim Yong, Committee of Supply Debate 2026", url: "https://www.population.gov.sg/speech-by-deputy-prime-minister-gan-kim-yong-committee-of-supply-debate-2026/" },
-      { name: "VisaVerge — Singapore to grant up to 40,000 Permanent Residencies a year, DPM Gan Kim Yong says", url: "https://www.visaverge.com/news/singapore-to-grant-up-to-40000-permanent-residencies-a-year-deputy-pm-gan-kim-yong-says/" },
+      { name: "SPF — Police Advisory On Investment Scams Involving Chat Groups That Offer Fake Opportunities To Learn Investing", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260604_police_advisory_on_investment_scams_involving_chat_groups" },
+      { name: "The Independent Singapore — SG police report: S$3.6M lost from 'free lessons' investment scams via chat group since May", url: "https://theindependent.sg/sg-police-report-s-3-6m-lost-from-free-lessons-investment-scams-via-chat-group-since-may/" },
     ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
+    time: "2026년 6월 4일",
+    isBreaking: true,
     readTime: "3분",
-    emoji: "🛂",
-    relatedIds: [],
+    emoji: "💰",
+    relatedIds: ["28"],
   },
+
   {
     id: "auto-20260622-5",
     publishedAt: "2026-05-29",
@@ -1400,6 +1711,7 @@ Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에
     emoji: "🌫️",
     relatedIds: ["19"],
   },
+
   {
     id: "auto-20260621-3",
     publishedAt: "2026-05-14",
@@ -1434,40 +1746,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "🚇",
     relatedIds: ["26"],
   },
-  {
-    id: "auto-20260619-1",
-    publishedAt: "2026-06-17",
-    category: "생활비",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "⚡ 전기요금 7월부터 큰 폭 인상 예고 — 2분기 대비 8.1%↑(2.21센트/kWh), U-Save 환급으로 일부 상쇄",
-    summary: "에너지시장청(EMA) 발표에 따르면 중동 정세발 천연가스 가격 상승 영향으로 2026년 3분기(7~9월) 규제 전기요금이 2분기보다 평균 8.1%(2.21센트/kWh) 오를 전망이다. 1~3월기 대비 4~6월기 인상폭(2.1%·0.56센트)보다 훨씬 크다. 7월 지급되는 U-Save 환급(가구당 S$110~190)이 일부를 상쇄할 예정이다.",
-    fullContent: `**3분기(7~9월) 전기요금 인상 전망**
-에너지시장청(EMA)에 따르면, 중동 정세 불안으로 천연가스 가격이 급등하면서 2026년 7~9월 적용될 규제 전기요금이 직전 분기보다 크게 오를 전망입니다.
 
-**인상 규모**
-- 2026년 4~6월 요금: **27.27센트/kWh(GST 제외) · 29.72센트/kWh(GST 포함)** — 직전 분기比 2.1%(0.56센트) 인상
-- 2026년 7~9월 요금: 직전 분기比 평균 **8.1%(2.21센트/kWh) 인상** 전망 — 훨씬 가파른 인상폭
-- 원인: 중동 정세 불안으로 천연가스 가격 급등. SP그룹은 분기별로 직전 2.5개월 평균 가스가격을 반영해 요금을 산정
-
-**완화 조치**
-- 2026년 7월, 적격 가구에 **U-Save 환급(가구당 S$110~190)** 추가 지급 예정
-
-**한인 가정 참고**
-- 고정요율(fixed-price) 전기 소매 플랜 가입 가구 비율이 2월 36.6%→6월 37.1%로 늘고 있어, 변동요율 부담이 크다면 고정 플랜 비교를 검토할 만합니다.
-- HDB·콘도 가구 모두 여름철(7~9월) 전기 사용량 관리가 필요합니다.
-
-정확한 수치는 EMA·SP그룹 공식 발표 또는 아래 출처를 확인하세요.`,
-    source: "EMA · Mothership",
-    sources: [
-      { name: "Mothership — S'pore electricity tariff expected to rise 'significantly' from July: EMA", url: "https://mothership.sg/2026/06/electricity-tariff-july-2026-expected-rise/" },
-      { name: "Malay Mail — Singapore electricity and gas tariffs to rise from April to June, with steeper hikes likely later in 2026, says Energy Market Authority", url: "https://www.malaymail.com/news/singapore/2026/03/31/singapore-electricity-and-gas-tariffs-to-rise-from-april-to-june-with-steeper-hikes-likely-later-in-2026-says-energy-market-authority/214524" },
-    ],
-    time: "2026년 6월 17일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "⚡",
-    relatedIds: [],
-  },
   {
     id: "auto-20260619-3",
     publishedAt: "2026-04-29",
@@ -1507,538 +1786,85 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     emoji: "🎒",
     relatedIds: [],
   },
+
   {
-    id: "auto-20260619-4",
-    publishedAt: "2026-03-24",
-    category: "취업",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "👴 정년 64세·재고용 69세로 상향 — 7월 1일 시행, CPF 수령연령(65세)은 변동 없음",
-    summary: "싱가포르 정년이 7월 1일부터 63→64세, 재고용 연령이 68→69세로 오른다. 1962년 7월 1일 이후 출생 시민권자·PR에게 새 정년이, 1957년 7월 1일 이후 출생자에게 새 재고용 연령이 적용된다. CPF 수령 개시 연령(65세)은 이번 변경과 무관하게 그대로 유지된다.",
-    fullContent: `**정년·재고용 연령 상향 (2026년 7월 1일 시행)**
-싱가포르 인력부(MOM) 발표에 따라, 7월 1일부터 정년과 재고용 연령이 각각 1세씩 올라갑니다.
-
-**무엇이 바뀌나**
-- 정년: 63세 → **64세** (1962년 7월 1일 이후 출생 시민권자·PR 적용)
-- 재고용 연령: 68세 → **69세** (1957년 7월 1일 이후 출생자 적용)
-- 2030년까지 정년 65세·재고용 70세로 추가 상향 예정(장기 로드맵)
-
-**CPF는 별도 기준 — 영향 없음**
-- **CPF 수령 개시 연령(65세)은 정년·재고용 연령과 무관한 별도 기준**이라 이번 변경으로 바뀌지 않습니다.
-- 55~60세, 60~65세 구간 CPF 기여율은 2027년부터 단계적으로 추가 인상되는데, 이는 이번 7월 변경과는 별개 일정입니다.
-
-**기업 지원**
-- Senior Employment Credit(고령자 고용지원금)을 2027년 12월까지 연장, 69세 이상 고용 시 최대 7% 임금 지원
-
-**한인 근로자·고용주 참고**
-- 만 63세 정년을 앞두고 있던 시민권자·PR 직원이라면 7월 1일부터 정년이 1년 늘어납니다.
-- 한인 사업장에서 시니어 직원을 고용 중이라면 정년·재고용 규정 갱신 여부를 HR과 점검해야 합니다.
-- EP 등 외국인 근로비자 소지자에게는 이 정년 규정이 직접 적용되지 않지만(외국인 워크패스는 별도 만료·갱신 체계), PR 신분의 시니어 근로자라면 직접 영향을 받습니다.
-
-정확한 적용 대상·시행 세부사항은 MOM 공식 발표(아래 출처)를 확인하세요.`,
-    source: "MOM · L&E Global",
-    sources: [
-      { name: "L&E Global — Singapore: Retirement Age and Re-Employment Age to be Raised on 1 July 2026 and Other Related Changes", url: "https://leglobal.law/2026/03/24/singapore-retirement-age-and-re-employment-age-to-be-raised-on-1-july-2026-and-other-related-changes/" },
-      { name: "Human Resources Online — MOM Committee of Supply 2026: Singapore to raise retirement age to 64 & re-employment age to 69 from 1 July 2026", url: "https://www.humanresourcesonline.net/mom-committee-of-supply-2026-singapore-to-raise-retirement-age-to-64-re-employment-age-to-69-from-1-july-2026" },
-      { name: "CPFB — Does raising the Singapore retirement age affect the CPF payout eligibility age?", url: "https://www.cpf.gov.sg/member/infohub/educational-resources/does-raising-the-singapore-retirement-age-affect-the-cpf-payout-eligibility-age" },
-    ],
-    time: "2026년 3월 24일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "👴",
-    relatedIds: [],
-  },
-  {
-    id: "auto-20260619-5",
-    publishedAt: "2026-06-17",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🎫 NDP 2026 입장권 발표 6/15~17 — 시민권자·PR만 신청 가능, '재판매·스캠 주의' 경고",
-    summary: "8월 9일 내셔널 스타디움에서 16년 만에 돌아오는 National Day Parade 2026 입장권 응모(5/23~6/6, 시민권자·PR만 Singpass로 신청) 결과가 6월 15~17일 사이 정부 공식 채널로 통지됐다. 주최 측은 표가 매매 대상이 아니며 재판매·스캠 시도에 단호히 대응하겠다고 경고했다.",
-    fullContent: `**NDP 2026 입장권 발표 (6월 15~17일)**
-8월 9일 National Stadium에서 2016년 이후 처음으로 돌아오는 National Day Parade(NDP) 2026의 입장권 발표가 6월 15~17일 사이 이뤄졌습니다.
-
-**응모·발표 절차**
-- 응모 기간: 5월 23일 정오~6월 6일 정오, **Singpass**로 본인 인증 후 신청(시민권자·PR만 가능)
-- 본 행사(8/9) 또는 프리뷰 공연(7/25, 8/1) 중 선택, 1인당 2·4·6매 신청 가능
-- 발표: 추첨 방식으로 6월 15~17일 사이 정부 공식 채널(gov.sg, 주최 측 승인 이메일)로만 통지
-
-**⚠️ 주의사항**
-- 주최 측은 **티켓 매매·양도가 금지**돼 있으며, **재판매(스캘핑)·사기에 대해 강력 대응**하겠다고 공식 경고했습니다.
-- 공식 채널 외 SNS·메신저로 "당첨됐다"며 금전을 요구하거나 표를 판매한다는 연락은 사기일 가능성이 매우 높습니다.
-
-**한인 가정 참고**
-- 시민권자·PR만 응모할 수 있어 EP 등 외국인 신분이라면 이번 회차는 해당되지 않습니다.
-- PR이고 6/6 마감 전 응모했다면 공식 채널로만 결과를 확인하고, SNS에 떠도는 양도·판매 글은 무시·신고하세요.
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "The Independent · IBTimes SG",
-    sources: [
-      { name: "The Independent Singapore — Singapore National Day Parade 2026: Up to 6 tickets can be applied for via SingPass; organisers warn against scams and scalping", url: "https://theindependent.sg/singapore-national-day-parade-2026-up-to-6-tickets-can-be-applied-for-via-singpass-organisers-warn-against-scams-and-scalping/" },
-      { name: "IBTimes SG — National Day Parade 2026: Singapore Opens NDP Ticket Applications from May 23 to June 6", url: "https://www.ibtimes.sg/national-day-parade-2026-singapore-opens-ndp-ticket-applications-may-23-june-6-heres-how-book-86825" },
-    ],
-    time: "2026년 6월 17일",
-    isBreaking: true,
-    readTime: "2분",
-    emoji: "🎫",
-    relatedIds: [],
-  },
-  {
-    id: "auto-20260620-1",
-    publishedAt: "2026-06-15",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📋 EP COMPASS 갱신 심사 7월 1일부터 강화 — 2023~24년 승인자도 재심사 시 탈락 위험",
-    summary: "2026년 1월 신규 EP 신청부터 적용된 개정 COMPASS 기준(섹터·연령대별 급여 벤치마크, 자격 목록 등)이 7월 1일부터 갱신(renewal) 심사에도 적용된다. 2023~24년 65th 퍼센타일 기준으로 승인됐던 EP도 2026년 갱신 시점 기준 미달 시 점수가 깎여 탈락할 수 있다.",
-    fullContent: `**COMPASS 2단계 — 갱신 심사 적용 (2026년 7월 1일부터)**
-싱가포르 인력부(MOM)의 Employment Pass(EP) COMPASS 프레임워크 개정판이 2026년 1월 1일 신규 신청에 먼저 적용됐고, **7월 1일부터는 갱신 신청**에도 동일하게 적용됩니다.
-
-**무엇이 바뀌었나**
-- **C1 급여 기준**: 섹터·연령대별로 세분화돼, 동일 분야 로컬 PMET 임금의 **65th 퍼센타일**을 기준으로 채점
-- **C2 자격 목록**: 학위 동등 전문자격·상위권 대학 리스트 갱신
-- Shortage Occupation List(부족 직종 목록) 확대(헬스케어 등 신규 직종 추가)
-- 통과 기준선은 여전히 **40점 이상**
-
-**한인 EP 보유자가 챙겨야 할 점**
-- 2023~2024년에 당시 65th 퍼센타일을 통과해 승인받았더라도, **2026년 갱신 시점 기준으로는 미달**할 수 있어 점수가 깎입니다.
-- 본인 EP 만료일이 **2026년 하반기**라면, 고용주(HR)에 COMPASS 점수 사전 점검을 요청하는 것이 안전합니다.
-- 점수가 부족하면 급여 조정, 자격 보완 서류 준비 등을 갱신 신청 전에 검토해야 합니다.
-
-정확한 점수표·기준은 아래 출처(MOM 안내를 다룬 전문 매체)를 확인하세요.`,
-    source: "Human Resources Online · Asanify",
-    sources: [
-      { name: "Human Resources Online — Reminder: Singapore's updated COMPASS rules effective in 2026", url: "https://www.humanresourcesonline.net/reminder-singapore-s-updated-compass-rules-effective-in-2026-for-ep-applications-and-renewals" },
-      { name: "Asanify — Singapore Employment Pass Renewals Digest (Jun 15, 2026)", url: "https://asanify.com/blog/news/singapore-employment-pass-renewals-june-15-2026/" },
-    ],
-    time: "2026년 6월 15일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "📋",
-    relatedIds: ["17", "21"],
-  },
-  {
-    id: "auto-20260620-3",
-    publishedAt: "2026-04-01",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "📉 HDB 재판매가 7년 만에 첫 하락 — 1분기 -0.1%, 렌트도 소폭 완화세",
-    summary: "HDB 발표 기준 2026년 1분기 재판매가지수가 203.4로 전 분기比 0.1% 하락, 2019년 2분기 이후 약 7년 만의 첫 하락이다. 렌트 지수도 0.1% 내리며 2023년 고점 이후 완만한 하락세가 이어지고 있다(4룸 기준 월세 중간값 약 S$2,600).",
-    fullContent: `**HDB 1분기(Q1) 2026 통계**
-HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
-
-**재판매(Resale) 가격**
-- 재판매가격지수(RPI) **203.4**, 전 분기比 **-0.1%**
-- **2019년 2분기 이후 약 7년 만의 첫 분기 하락**
-
-**임대(Rental) 시장**
-- HDB 렌트 지수도 전 분기比 **-0.1%**, 2023년 고점 이후 완만한 하락세 지속
-- **4룸 기준 월세 중간값 약 S$2,600**
-
-**한인 임차인 참고**
-- 렌트 시장이 과열기를 지나 완만히 안정되는 흐름이라, 계약 갱신·재계약 시 협상 여지가 있을 수 있습니다.
-- 다만 지역·평형별 편차가 크므로, 실제 시세는 HDB·중개사 최신 데이터로 재확인하세요.
-
-정확한 수치는 아래 출처(HDB 통계 기반 보도)를 확인하세요.`,
-    source: "99.co · Mothership",
-    sources: [
-      { name: "99.co — Q1 2026: HDB resale market sees first price decline in 7 years", url: "https://www.99.co/singapore/insider/q1-2026-hdb-resale-market-first-price-decline-in-7-years/" },
-      { name: "Mothership — HDB resale prices fell by 0.1%, private housing prices rose 0.9%, in 1st quarter 2026", url: "https://mothership.sg/2026/04/hdb-ura-real-estate-statistics/" },
-    ],
-    time: "2026년 4월 1일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "📉",
-    relatedIds: ["23"],
-  },
-  {
-    id: "auto-20260620-5",
-    publishedAt: "2026-06-18",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 일주일 새 사기 경보 2건 — 페이스북 라이브 행운권·시니어 대상 안드로이드 악성코드",
-    summary: "싱가포르 경찰(SPF)이 6월 15일·18일 잇따라 경보를 냈다. ①페북 라이브 행운권/스크래치카드 사기: 5월 20일 이후 33건·손실 최소 S$6만, PayNow QR로 '수수료' 요구. ②시니어 대상 안드로이드 악성코드: 4월 1일 이후 8건·손실 최소 S$6.9만, APK 설치 유도 후 Singpass·ScamShield 삭제·계좌 한도 조작.",
-    fullContent: `**SPF 사기 경보 2건 (2026년 6월)**
-싱가포르 경찰(SPF)이 일주일 사이 신종 사기 경보를 두 건 발표했습니다.
-
-**① 페이스북 라이브 행운권 사기 (6월 15일 발표)**
-- 5월 20일 이후 최소 **33건**, 피해액 최소 **S$6만**
-- 페북 라이브 방송에서 스크래치카드·복권을 판매 → "당첨됐다"며 **PayNow QR(Liquidpay 계좌)**로 '수수료' 등 추가 송금 요구
-- 당첨금이 안 들어오거나 연락이 끊겨야 사기임을 인지
-
-**② 시니어 대상 안드로이드 악성코드 사기 (6월 18일 발표)**
-- 4월 1일 이후 최소 **8건**, 피해액 최소 **S$6.9만**
-- 페북·TikTok의 '시니어 활동' 광고 → 관심 등록 시 WhatsApp으로 연락 → **APK 파일 설치** 유도(활동 목록 확인 명목)
-- 설치 후 **Singpass·ScamShield 앱이 삭제**되거나 **계좌 이체 한도가 무단 변경**된 피해 사례
-
-**한인 가정 주의 팁**
-- 출처 불명 APK 파일은 절대 설치하지 말 것(공식 앱스토어 외 설치 차단 권장)
-- SNS 라이브·광고 경품·당첨 안내는 선입금·수수료 요구 시 사기로 의심
-- 부모님 등 시니어가 방문·체류 중이라면 이 2건을 미리 공유해 주의를 당부할 것
-- 의심 시 ScamShield 앱 또는 1799(안티스캠 핫라인) 확인
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "SPF",
-    sources: [
-      { name: "SPF — Police Advisory On Lucky Draw Scams Involving Facebook Live", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260615_police_advisory_on_lucky_draw_scams_involving_facebook_live" },
-      { name: "SPF — Police Advisory On Malware-Enabled Scams On Android Devices Targeting Senior Citizens", url: "https://www.police.gov.sg/Media-Hub/News/2026/06/20260618_police_advisory_on_malware_enabled_scams_on_android_devices_targeting_senior_citizens" },
-    ],
-    time: "2026년 6월 18일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["28"],
-  },
-  {
-    id: "19",
-    publishedAt: "2026-06-19",
-    category: "건강",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🦟 뎅기열 2026년 주간 최다 발생 — 6월 13일 주 119건, 북부 레드얼럿 클러스터 주의",
-    summary: "NEA 집계 기준 6월 13일로 끝나는 주에 뎅기 119건 확진(2026년 주간 최다, 전주比 +39). 누적 약 938건으로 피크 시즌 진입. 6월 15일 기준 활성 클러스터 12곳 중 4곳 레드얼럿. 북부 거주 한인 가정 모기 번식 방지 주의.",
-    fullContent: `**2026년 뎅기열 주간 최다 발생**
-국가환경청(NEA) 집계 기준, 6월 13일로 끝나는 주에 뎅기열 확진이 급증했습니다.
-
-**현황**
-- 해당 주 확진: **119건** (2026년 주간 최다, 전주 대비 +39건)
-- 누적(1/1~6/13): 약 **938건**
-- 피크 시즌(5~10월) 진입
-
-**클러스터 경보 (6월 15일 기준)**
-- 활성 클러스터 **12곳**, 그중 **4곳이 레드얼럿**(10건 이상·확산 가속)
-- 특히 **북부 지역** 주의
-
-**한인 가정 예방 체크리스트**
-- 화분 받침대·에어컨 응결수 받이 고인 물 즉시 제거
-- 발코니 양동이·물통 뒤집어 보관, 배수구 주 1회 청소
-- 고열·심한 두통·관절통 시 GP/폴리클리닉 방문, NS1 검사 요청
-
-실시간 클러스터(빨간 구역)는 NEA myENV 앱·haze.gov.sg에서 확인하세요.`,
-    source: "NEA · Medical Daily",
-    sources: [
-      { name: "Medical Daily — Singapore Dengue 2026 (NEA 인용)", url: "https://www.medicaldaily.com/singapore-dengue-cases-2026-high-red-alert-clusters-june-475672" },
-      { name: "NEA haze.gov.sg", url: "https://www.haze.gov.sg/home" },
-    ],
-    time: "2026년 6월 19일",
-    isBreaking: true,
-    readTime: "3분",
-    emoji: "🦟",
-    relatedIds: [],
-  },
-  {
-    id: "28",
-    publishedAt: "2026-02-26",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
-    summary: "싱가포르 경찰(SPF) 발표: 2025년 사기 건수 37,308건으로 전년比 27.6% 첫 감소, 피해액 약 S$9.13억. 다만 2026년 들어 'PR 신청 대행' 사칭 사기 24건(피해 약 S$39.7만) 발생 — PR 신청하는 한인 표적 가능, 각별 주의.",
-    fullContent: `**2025년 사기 통계 (2026년 2월 발표)**
-싱가포르 경찰청(SPF)이 2025년 사기·사이버범죄 통계를 발표했습니다.
-
-**전체 현황**
-- 사기 건수: **37,308건** (2024년 51,501건 대비 **27.6% 감소** — 통계 분리 이후 첫 감소)
-- 피해액: 약 **S$9.13억** (2024년 S$11.24억 대비 17.9%↓)
-- 단, 1인당 평균 피해액은 상승
-
-**⚠️ 한인 주의 — PR 신청 대행 사칭 사기**
-- 2026년 1월 이후 'PR(영주권) 신청을 도와주겠다'는 가짜 광고·서류·공식기관 사칭 사기 **24건**, 피해 약 **S$39.7만**
-- ICA 등 공식 절차는 정부 포털에서만 진행 — SNS 광고·대행 업체 통한 선입금 요구는 사기 의심
-
-**예방 수칙**
-- 정부 기관은 메신저·SNS DM으로 송금·개인정보를 요구하지 않음
-- 의심 시 ScamShield 앱·1799(안티스캠 핫라인) 확인
-
-정확한 최신 통계·경보는 아래 출처(SPF)를 확인하세요.`,
-    source: "SPF · The Online Citizen",
-    sources: [
-      { name: "SPF — Scams and Cybercrime Fell in 2025", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/02/Scams-and-Cybercrime-Fell-by-Almost-a-Quarter-in-2025" },
-      { name: "SPF — PR 신청 사기 경보", url: "https://www.police.gov.sg/Media-Hub/News/2026/04/20260422_police_advisory_on_scam_variant_involving_fraudulent_social_media_advertisements_teaser" },
-      { name: "The Online Citizen — 사기 27.6% 감소", url: "https://theonlinecitizen.com/2026/02/25/scam-cases-in-singapore-fall-27-6-per-cent-in-first-recorded-decrease" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["17"],
-  },
-  {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
-    id: "17",
-    publishedAt: "2026-03-03",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💼 EP 최저급여 2027년 $6,000으로 인상 + 'ONE Pass (AI·Tech)' 신설 — Budget 2026 확정",
-    summary: "MOM Budget 2026 발표: 일반 EP 최저 월급여 2027년 1월(신규)·2028년 1월(갱신)부터 $5,600→$6,000, 금융권 $6,200→$6,600. 2026년 현재는 아직 $5,600. 2027년 1월 Tech.Pass 대체 'ONE Pass (AI and Tech)' 신설 예정.",
-    fullContent: `**Budget 2026 외국인력 정책 변경**
-싱가포르 인력부(MOM)가 Budget 2026에서 Employment Pass(EP) 등 외국인력 정책 변경을 발표했습니다.
-
-**EP 최저 월급여 인상 (2027~2028 적용)**
-- 일반 업종: $5,600 → **$6,000** (2027년 1월 신규 / 2028년 1월 갱신부터)
-- 금융 서비스업: $6,200 → **$6,600**
-- ※ 2026년 현재는 아직 일반 $5,600 / 금융 $6,200
-
-**ONE Pass (AI and Tech) 신설**
-- 2027년 1월 기존 Tech.Pass를 대체하는 새 트랙 도입 예정
-- AI·테크 인재 유치 강화 목적, 더 유리한 조건 제공 예정
-
-**한인 체크리스트**
-- EP 갱신 예정자는 인상 시점(2028년 갱신)에 맞춰 급여 기준 사전 확인
-- COMPASS 40점 기준은 계속 적용 — 급여가 기준을 간신히 넘으면 사전 자가진단 권장
-
-정확한 기준과 최신 발표는 반드시 MOM 공식 자료(아래 출처)를 확인하세요.`,
-    source: "MOM · Newland Chase",
-    sources: [
-      { name: "MOM 공식 factsheet (2026-03-03)", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
-      { name: "Newland Chase — 외국인력 정책 변경", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-      { name: "Slasify — SG 취업비자 2026 가이드", url: "https://slasify.com/en/blog/singapore-work-visas-2026-guide" },
-    ],
-    time: "2026년 3월 3일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "💼",
-    relatedIds: ["21", "20"],
-  },
-  {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
-
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
-    id: "27",
-    publishedAt: "2026-02-17",
-    category: "생활",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
-    summary: "2026년 춘절(Chinese New Year)은 2월 17일(화)·18일(수) 공식 공휴일. 말의 해. 2월 16일(월) 연차 시 토~수 4일 연휴. 2026년 싱가포르 법정 공휴일은 총 11일(춘절·하리라야·디파발리·크리스마스·노동절·건국기념일 등).",
-    fullContent: `**2026년 춘절 & 공휴일 안내**
-한인 가정의 연휴·여행 계획에 참고하세요.
-
-**춘절(Chinese New Year) 2026**
-- 공식 공휴일: **2월 17일(화)·18일(수)** — 말(馬)의 해
-- 2월 16일(월) 연차 사용 시 **2/15(토)~2/18(수) 4일 연휴**
-- 축제는 15일간 이어지며 정월대보름(Lantern Festival)으로 마무리
-
-**2026년 법정 공휴일 (총 11일)**
-- 신정, 춘절(2일), 성금요일, 노동절, 하리라야 푸아사, 베삭데이, 하리라야 하지, 건국기념일(8/9), 디파발리, 크리스마스 등
-
-**팁**
-- 춘절 연휴엔 한국행 항공권 수요·가격 상승 — 미리 예약
-- 일부 한인 업소·마트 단축영업 가능, 방문 전 확인
-
-정확한 날짜는 아래 출처를 확인하세요.`,
-    source: "MOM · M1 · Foodline",
-    sources: [
-      { name: "M1 — 2026 공휴일 가이드", url: "https://www.m1.com.sg/blog/personal/public-holidays-2026-singapore-long-weekend" },
-      { name: "Eskimo Travel — CNY 2026", url: "https://www.eskimo.travel/en/blog/chinese-new-year-singapore-2026" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🧧",
-    relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
-  {
-    id: "31",
-    publishedAt: "2026-03-31",
-    category: "취업",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "📈 2026년 1분기 노동시장 — 실업률 2.0%로 안정, 정리해고는 소폭 증가",
-    summary: "MOM: 2026년 1분기 총고용 +9,400명(18분기 연속 증가), 실업률 2.0%로 낮은 수준 유지. 단 정리해고는 3,690→3,830명으로 소폭 증가(제조·금융·전문서비스 중심). 구인은 여전히 구직 초과(약 1.46배)지만 채용은 신중해지는 분위기.",
-    fullContent: `**2026년 1분기 노동시장 동향 (MOM)**
-한인 구직자·이직 고려자에게 참고가 되는 고용 지표입니다.
-
-**전반적으로 안정**
-- 총고용 **+9,400명** (2021년 말 이후 **18분기 연속 증가**)
-- 실업률 **2.0%** (거주자 2.9%, 시민 3.1%)
-- 구인 약 73,300건, 실업자 1명당 약 **1.46개 일자리**
-
-**주의 신호**
-- 정리해고 **3,690 → 3,830명**(전분기比 소폭 증가), 주로 **제조·금융·전문서비스**
-- 단 해고율은 1,000명당 1.6명으로 비(非)침체 수준
-- 채용·임금 인상 기대는 다소 둔화 — 기업이 신중해지는 분위기
-
-**한인 참고**
-- 전반적으로 견조하나 일부 업종은 채용 보수화 — 이직 시 타이밍·업종 확인
-- EP 신청은 COMPASS·최저급여 기준 동시 충족 필요(관련 기사 참고)
-
-정확한 통계는 아래 MOM 자료를 확인하세요.`,
-    source: "MOM · Human Resources Online",
-    sources: [
-      { name: "Human Resources Online — Q1 노동시장", url: "https://www.humanresourcesonline.net/retrenchments-edged-up-in-q1-but-singapore-s-labour-market-stayed-broadly-stable-says-mom" },
-      { name: "Asian Prime Properties — Q1 2026 고용", url: "https://asianprimeproperties.sg/singapore-employment-growth-q1-2026-labour-market-resilient/" },
-    ],
-    time: "2026년 1분기",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📈",
-    relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
+    id: "auto-20260622-1",
+    publishedAt: "2026-04-28",
     category: "교통",
     catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
+    title: "🚆 TEL·DTL 금요일 단축운행·토요일 늦은 개통 — TEL 7/4까지, DTL 7/10~9/5 셔틀버스 운행",
+    summary: "LTA·SBS Transit·SMRT 공동 발표에 따르면 톰슨이스트코스트선(TEL)이 5월 22일~7월 12일 시행 중, 다운타운선(DTL)이 7월 10일~9월 5일 매주 금요일 밤 11시 30분 조기 종료·토요일 오전 8시 30분 늦은 개통된다. TEL 5단계·DTL3 연장 개통 전 최종 통합 시험운행 때문이며, 토요일 늦은 개통 시간대엔 환승역 연계 셔틀버스가 운행된다.",
+    fullContent: `**TEL·DTL 주말 단축운행 (2026년 4~9월)**
+LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다운타운선(DTL) 시운전 관련 운행 조정입니다.
 
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
+**시행 기간**
+- **TEL**: 5월 22일~7월 4일, 매주 금요일 밤 11시 30분 조기 종료 / 토요일 오전 8시 30분 늦은 개통
+- **DTL**: 7월 10일~9월 5일, 동일하게 금요일 밤 11시 30분 조기 종료 / 토요일 오전 8시 30분 늦은 개통
+
+**이유**
+- TEL 5단계(Xilin·Bedok South·Sungei Bedok)와 DTL3 연장 개통(2026년 하반기 예정)에 앞서, 신규 구간을 기존 노선에 통합하는 최종 시스템 통합 시험운행 필요
+- 야간 시간대 정규 정비시간으로는 부족해 금요일 밤~토요일 아침 운행시간을 늘려 시험
+
+**대체 교통**
+- 토요일 늦은 개통 시간대엔 환승역 연계 셔틀버스 3개 노선 운행(DTL 구간은 부기스·맥퍼슨 환승역 연계)
 
 **한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
+- 금요일 야간 약속·새벽 귀가, 토요일 오전 일찍 이동 계획이 있다면 해당 기간 TEL·DTL 이용 시 시간을 다시 확인할 것
+- 정확한 적용 구간·셔틀버스 노선은 LTA·SMRT·SBS Transit 공지를 확인할 것
 
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "LTA·SBS Transit·SMRT",
     sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
+      { name: "LTA — Train Service Adjustments along TEL and DTL to Facilitate Rail Expansion Works", url: "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/4/news-releases/train-service-adjustments-tel-and-dtl-to-facilitate-rail-expansion-works.html" },
+      { name: "TheSmartLocal — Train Service Adjustments For TEL & DTL From May To Sep 2026", url: "https://thesmartlocal.com/read/tel-dtl-train-service-adjustments/" },
     ],
-    time: "2026년",
+    time: "2026년 4월 28일 발표",
     isBreaking: false,
     readTime: "2분",
-    emoji: "🚉",
-    relatedIds: [],
+    emoji: "🚆",
+    relatedIds: ["29"],
   },
+
+  {
+    id: "auto-20260622-3",
+    publishedAt: "2026-04-24",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏢 1분기 콘도 렌트·매매가 동반 상승 — 렌트 +0.3%(외곽 OCR +1.0%), 매매가 +0.9%(OCR +2.2%)",
+    summary: "URA(도시재개발청) 발표에 따르면 2026년 1분기 민간주택 렌트지수가 전분기比 0.3% 올랐다(직전 분기는 -0.5%). 외곽지역(OCR)이 +1.0%로 가장 많이 오르고 중심지역(RCR)은 -0.2%로 6분기 연속 상승 후 처음 하락했다. 같은 기간 매매가지수는 +0.9%로 상향 확정(잠정치 +0.3%보다 큼), 공실률은 6.2%로 소폭 상승했다.",
+    fullContent: `**URA 1분기(Q1) 2026 부동산 통계 (4월 24일 발표)**
+도시재개발청(URA)이 발표한 2026년 1분기 민간주택 가격·렌트 지표입니다.
+
+**렌트지수**
+- 전체: 전분기比 **+0.3%** (직전 4분기는 -0.5%)
+- 외곽지역(OCR): **+1.0%**(상승 주도)
+- 중심지역(CCR, 고급): **+0.5%**
+- 도심외곽(RCR, 중급): **-0.2%** — 6분기 연속 상승 후 첫 하락
+- 공실률: **6.2%**(전분기比 +0.2%p)
+
+**매매가지수**
+- 전체: **+0.9%**(잠정치 +0.3%보다 상향 확정)
+- 비단독(콘도 등): +1.3% / 단독주택: -0.4%
+- 1분기 거래량은 전분기比 19.2% 감소(5,413건), 신규분양 31.5% 감소(2,013건) — 설 연휴·분양 물량 감소 영향
+
+**한인 참고**
+- 콘도 임차 중이라면 OCR(외곽) 지역 렌트가 가장 빠르게 오르고 있어 갱신 시 인상 가능성을 염두에 둘 것
+- RCR(중급) 렌트는 6분기 만에 처음 하락해 협상 여지가 있을 수 있음
+- 정확한 지역별·평형별 수치는 URA 공식 발표를 확인할 것
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "URA",
+    sources: [
+      { name: "URA — Release of 1st Quarter 2026 real estate statistics (PR26-31)", url: "https://www.ura.gov.sg/Corporate/Media-Room/Media-Releases/pr26-31" },
+      { name: "LittleBigRedDot — URA Q1 2026 Property Statistics: What The 0.9% Private Home Price Rise Means", url: "https://littlebigreddot.com/ura-q1-2026-property-statistics-private-home-prices-guide/" },
+    ],
+    time: "2026년 4월 24일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "🏢",
+    relatedIds: ["20"],
+  }
+
 ];
 
 // 최신순(publishedAt 내림차순) 자동 정렬 — 새 뉴스 추가 시 배열 위치와 무관하게 최신이 위로.
