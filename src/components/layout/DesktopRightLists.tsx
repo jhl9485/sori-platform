@@ -8,6 +8,10 @@ import { BUSINESSES } from "@/data/businesses";
 import { useUserPosts, useUserJobs, useUserBiz } from "@/lib/userContent";
 import { salaryText } from "@/lib/jobStatus";
 import BizReviewCount from "@/components/business/BizReviewCount";
+import { useToggleSet } from "@/lib/storage";
+import { VIEW_KEY } from "@/lib/metrics";
+import { formatCount } from "@/lib/format";
+import { toNum } from "@/components/shared/MetricRow";
 
 /**
  * 데스크탑 우측 패널의 인기 게시글 / 채용 / 업소 리스트.
@@ -17,6 +21,10 @@ export default function DesktopRightLists() {
   const userPosts = useUserPosts();
   const userJobs = useUserJobs();
   const userBiz = useUserBiz();
+  // 조회수는 카드·상세(MetricRow)와 똑같이 "시드 숫자 + (내가 봤으면 1)"로 계산해야 한다.
+  // 넓은 화면에서는 같은 글이 가운데 카드와 이 목록에 동시에 보이므로, 여기서만 원본 숫자를
+  // 쓰면 방금 읽은 글이 카드 48 / 우측 47처럼 어긋난다.
+  const { has: isViewed } = useToggleSet(VIEW_KEY.community);
 
   const hotPosts = useMemo(() => {
     const merged = [...userPosts, ...COMMUNITY_POSTS];
@@ -48,7 +56,10 @@ export default function DesktopRightLists() {
               </span>
               <div className="flex-1 min-w-0">
                 <div className="text-[0.78rem] font-medium group-hover:text-[#D04020] transition-colors line-clamp-1">{post.title}</div>
-                <div className="text-[0.68rem] text-[#888070] mt-[2px]">{post.categoryLabel} · 👁 {post.views}</div>
+                {/* 표기도 카드·상세와 같은 formatCount(4,123 → 4.1K)를 쓴다. 한 화면에 두 형식이 보이면 안 된다. */}
+                <div className="text-[0.68rem] text-[#888070] mt-[2px]">
+                  {post.categoryLabel} · 👁 {formatCount(toNum(post.views) + (isViewed(post.id) ? 1 : 0))}
+                </div>
               </div>
             </Link>
           ))}

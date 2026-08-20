@@ -150,9 +150,11 @@ function CommunityPageInner() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-[1.2rem] md:text-[1.4rem] font-bold tracking-tight">커뮤니티</h1>
-            <p className="text-[0.75rem] text-[#888070] mt-[2px]">
-              싱가포르 한인 자유 게시판 · <span className="font-medium text-[#181614]">{allPosts.length}개</span> 게시글
-            </p>
+            {/* 여기에도 개수를 적으면 필터를 걸었을 때 목록 바로 위의 "N개 게시글"과 값이 달라
+                한 화면에 "21개 게시글"과 "3개 게시글"이 동시에 보인다. 개수는 목록 바로 위
+                한 곳에서만 말한다(업소·벼룩·채용·부동산도 같은 방식).
+                전체 개수는 아래 카테고리 탭의 "전체" 칩에 그대로 남아 있다. */}
+            <p className="text-[0.75rem] text-[#888070] mt-[2px]">싱가포르 한인 자유 게시판</p>
           </div>
           <Link
             href="/write"

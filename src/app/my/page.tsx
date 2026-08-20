@@ -126,7 +126,8 @@ function MyPageInner() {
 
   const totalSaved = savedPosts.length + savedNews.length + savedBiz.length + savedRealty.length + savedFlea.length + savedJobs.length;
   const totalLiked = likedPosts.length + likedNews.length + likedBiz.length + likedRealty.length + likedFlea.length + likedJobs.length;
-  const totalUserWrites = userPosts.length + userFlea.length + userJobs.length + userRealty.length;
+  // 등록한 업소도 내가 쓴 것이다 — 빠져 있으면 업소만 올린 사람은 "작성 0"으로 보인다.
+  const totalUserWrites = userPosts.length + userFlea.length + userJobs.length + userRealty.length + userBiz.length;
 
   return (
     <div className="max-w-[680px] mx-auto">
@@ -220,6 +221,7 @@ function MyPageInner() {
             userFleaCount={userFlea.length}
             userJobsCount={userJobs.length}
             userRealtyCount={userRealty.length}
+            userBizCount={userBiz.length}
             savedCount={totalSaved}
             likedCount={totalLiked}
             onSelectTab={setActiveTab}
@@ -232,6 +234,7 @@ function MyPageInner() {
             userFlea={userFlea}
             userJobs={userJobs}
             userRealty={userRealty}
+            userBiz={userBiz}
           />
         )}
 
@@ -337,6 +340,7 @@ interface OverviewProps {
   userFleaCount: number;
   userJobsCount: number;
   userRealtyCount: number;
+  userBizCount: number;
   savedCount: number;
   likedCount: number;
   onSelectTab: (id: TabId) => void;
@@ -348,6 +352,8 @@ function OverviewTab(props: OverviewProps) {
     { icon: "🛍️", label: "내 판매", count: props.userFleaCount, action: () => props.onSelectTab("posts") },
     { icon: "💼", label: "내 공고", count: props.userJobsCount, action: () => props.onSelectTab("posts") },
     { icon: "🏘️", label: "내 매물", count: props.userRealtyCount, action: () => props.onSelectTab("posts") },
+    // 업소가 빠져 있으면 이 타일들의 합이 위 "작성" 숫자와 맞지 않는다(같은 화면에 함께 보임).
+    { icon: "🏪", label: "내 업소", count: props.userBizCount, action: () => props.onSelectTab("posts") },
     { icon: "🔖", label: "저장한 글", count: props.savedCount, action: () => props.onSelectTab("saved") },
     { icon: "❤️", label: "좋아요", count: props.likedCount, action: () => props.onSelectTab("liked") },
   ];
@@ -389,9 +395,10 @@ interface PostsTabProps {
   userFlea: ReturnType<typeof useUserFlea>;
   userJobs: ReturnType<typeof useUserJobs>;
   userRealty: ReturnType<typeof useUserRealty>;
+  userBiz: ReturnType<typeof useUserBiz>;
 }
 
-function PostsTab({ userPosts, userFlea, userJobs, userRealty }: PostsTabProps) {
+function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsTabProps) {
   const [, forceUpdate] = useState({});
   const remove = async (key: string, id: string) => {
     const ok = await confirmDialog({ message: "정말 삭제하시겠어요?\n되돌릴 수 없어요.", confirmText: "삭제", danger: true });
@@ -401,7 +408,9 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty }: PostsTabProps) 
     toast("삭제했어요.");
   };
 
-  const total = userPosts.length + userFlea.length + userJobs.length + userRealty.length;
+  // 위 "작성" 숫자와 같은 식이어야 한다 — 업소를 세지 않으면 "작성 1"을 누르고 들어왔는데
+  // "아직 작성한 글이 없어요"가 뜬다.
+  const total = userPosts.length + userFlea.length + userJobs.length + userRealty.length + userBiz.length;
 
   if (total === 0) {
     return (
@@ -491,6 +500,25 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty }: PostsTabProps) 
                 <div className="text-[0.7rem] text-[#888070] mt-[2px]">{j.company} · {j.salary}</div>
               </Link>
               <button onClick={() => remove("sori_user_jobs", j.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
+            </div>
+          ))}
+        </section>
+      )}
+
+      {userBiz.length > 0 && (
+        <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+          <SectionHeader title="🏪 한인 업소" count={userBiz.length} />
+          {userBiz.map((b) => (
+            <div key={b.id} className="border-b border-black/[0.04] last:border-0 py-3 flex items-start gap-3">
+              <Link href={`/business/${b.id}`} className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[0.62rem] bg-[#F5F3EE] text-[#888070] px-2 py-[1px] rounded-full font-semibold">{b.category}</span>
+                  <span className="text-[0.65rem] text-[#888070]">{b.area}</span>
+                </div>
+                <div className="text-[0.85rem] font-medium line-clamp-1 hover:text-[#D04020] transition-colors">{b.name}</div>
+                <div className="text-[0.7rem] text-[#888070] mt-[2px] line-clamp-1">{b.description}</div>
+              </Link>
+              <button onClick={() => remove("sori_user_biz", b.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
             </div>
           ))}
         </section>
@@ -806,7 +834,7 @@ function usePrivacySettings() {
 
 function SettingsTab() {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { logout, isAuthed, hydrated } = useAuth();
   const [notifOpen, setNotifOpen] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const { settings, setOne, setAll } = useNotifSettings();
@@ -866,12 +894,17 @@ function SettingsTab() {
           </button>
         ))}
       </div>
-      <button
-        onClick={handleLogout}
-        className="w-full mt-3 py-3 text-[0.82rem] text-[#D04020] font-medium bg-white rounded-[14px] border border-black/[0.08] hover:bg-[#FBF0EC] transition-colors"
-      >
-        로그아웃
-      </button>
+      {/* 로그인한 사람에게만 보인다. 게스트에게 보이면 화면 위쪽 "게스트 · 로그인"과 정면으로 어긋난다.
+          hydrated를 함께 보는 이유: 로그인 여부는 브라우저 저장소에서 읽으므로 첫 렌더에는 아직 모른다.
+          그때 미리 그리면 로그인한 사람 화면에서 버튼이 깜빡인다(프로필 헤더도 같은 방식). */}
+      {hydrated && isAuthed && (
+        <button
+          onClick={handleLogout}
+          className="w-full mt-3 py-3 text-[0.82rem] text-[#D04020] font-medium bg-white rounded-[14px] border border-black/[0.08] hover:bg-[#FBF0EC] transition-colors"
+        >
+          로그아웃
+        </button>
+      )}
       <button
         onClick={handleClearData}
         className="w-full mt-2 py-3 text-[0.78rem] text-[#888070] font-medium bg-white rounded-[14px] border border-black/[0.08] hover:bg-[#F5F3EE] hover:text-[#D04020] transition-colors"
