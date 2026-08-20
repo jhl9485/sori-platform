@@ -39,15 +39,18 @@ export function useProfile() {
     return () => window.removeEventListener("storage", handler);
   }, []);
 
+  // 저장(localStorage 쓰기 + storage 이벤트 발송)은 setProfileState 업데이터 "밖"에서 한다.
+  // 업데이터 안에서 이벤트를 쏘면 렌더 도중 이 키를 듣는 다른 컴포넌트의 setState가 연쇄로 일어나
+  // "Cannot update a component while rendering a different component" 경고가 난다.
+  // prev 대신 read()로 localStorage를 직접 읽으므로, 하이드레이션 전에 호출돼도
+  // 기본값이 저장돼 있던 프로필을 덮어쓰지 않는다.
   const setProfile = useCallback((next: Partial<UserProfile>) => {
-    setProfileState((prev) => {
-      const merged = { ...prev, ...next };
-      try {
-        localStorage.setItem(KEY, JSON.stringify(merged));
-        window.dispatchEvent(new StorageEvent("storage", { key: KEY }));
-      } catch {}
-      return merged;
-    });
+    const merged = { ...read(), ...next };
+    setProfileState(merged);
+    try {
+      localStorage.setItem(KEY, JSON.stringify(merged));
+      window.dispatchEvent(new StorageEvent("storage", { key: KEY }));
+    } catch {}
   }, []);
 
   return { profile, setProfile };

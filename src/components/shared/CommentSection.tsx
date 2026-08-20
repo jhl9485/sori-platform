@@ -335,46 +335,39 @@ export default function CommentSection({ comments, postId }: Props) {
     setTimeout(() => setHighlightId((cur) => (cur === id ? null : cur)), 2200);
   };
 
+  // 아래 세 핸들러는 저장(writeFor/writeReplies)을 setState 업데이터 "밖"에서 한다.
+  // writeFor는 storage 이벤트를 쏘는데, 업데이터 안에서 쏘면 렌더 도중 이 키를 듣는
+  // 다른 컴포넌트(사이드바 등)의 setState가 연쇄로 일어나
+  // "Cannot update a component while rendering a different component" 경고가 난다.
+  // 다음 값을 먼저 만들고 → setState → 저장. (아래 submitComment가 쓰던 방식과 동일)
   const handleAddReply = (parentId: string, reply: Comment) => {
-    setUserReplies((prev) => {
-      const next = { ...prev, [parentId]: [...(prev[parentId] || []), reply] };
-      writeReplies(parentId, next[parentId]);
-      return next;
-    });
+    const arr = [...(userReplies[parentId] || []), reply];
+    setUserReplies({ ...userReplies, [parentId]: arr });
+    writeReplies(parentId, arr);
     flashTo(reply.id);
   };
 
   const handleEdit = (id: string, parentId: string | null, content: string) => {
     if (parentId === null) {
-      setUserComments((prev) => {
-        const next = prev.map((c) => (c.id === id ? { ...c, content } : c));
-        if (postId) writeFor(postId, next);
-        return next;
-      });
+      const next = userComments.map((c) => (c.id === id ? { ...c, content } : c));
+      setUserComments(next);
+      if (postId) writeFor(postId, next);
     } else {
-      setUserReplies((prev) => {
-        const arr = (prev[parentId] || []).map((r) => (r.id === id ? { ...r, content } : r));
-        const next = { ...prev, [parentId]: arr };
-        writeReplies(parentId, arr);
-        return next;
-      });
+      const arr = (userReplies[parentId] || []).map((r) => (r.id === id ? { ...r, content } : r));
+      setUserReplies({ ...userReplies, [parentId]: arr });
+      writeReplies(parentId, arr);
     }
   };
 
   const handleDelete = (id: string, parentId: string | null) => {
     if (parentId === null) {
-      setUserComments((prev) => {
-        const next = prev.filter((c) => c.id !== id);
-        if (postId) writeFor(postId, next);
-        return next;
-      });
+      const next = userComments.filter((c) => c.id !== id);
+      setUserComments(next);
+      if (postId) writeFor(postId, next);
     } else {
-      setUserReplies((prev) => {
-        const arr = (prev[parentId] || []).filter((r) => r.id !== id);
-        const next = { ...prev, [parentId]: arr };
-        writeReplies(parentId, arr);
-        return next;
-      });
+      const arr = (userReplies[parentId] || []).filter((r) => r.id !== id);
+      setUserReplies({ ...userReplies, [parentId]: arr });
+      writeReplies(parentId, arr);
     }
     toast("댓글을 삭제했어요.");
   };

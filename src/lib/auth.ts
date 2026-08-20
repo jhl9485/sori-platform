@@ -60,20 +60,22 @@ export function useAuth() {
     setAccount(acc);
   }, []);
 
+  // 저장(persist = localStorage 쓰기 + storage 이벤트 발송)은 setAccount 업데이터 "밖"에서 한다.
+  // 업데이터 안에서 이벤트를 쏘면 렌더 도중 이 키를 듣는 다른 컴포넌트(사이드바 등)의 setState가
+  // 연쇄로 일어나 "Cannot update a component while rendering a different component" 경고가 난다.
+  // prev 대신 read()로 localStorage를 직접 읽으므로, 하이드레이션 전에 호출돼도
+  // 빈 초기 상태가 기존 계정(이름·비자)을 덮어쓰지 않는다. (signup과 같은 모양)
   const login = useCallback((email: string) => {
-    setAccount((prev) => {
-      const acc: Account = { ...prev, email: email || prev.email, loggedIn: true };
-      persist(acc);
-      return acc;
-    });
+    const cur = read();
+    const acc: Account = { ...cur, email: email || cur.email, loggedIn: true };
+    persist(acc);
+    setAccount(acc);
   }, []);
 
   const logout = useCallback(() => {
-    setAccount((prev) => {
-      const acc: Account = { ...prev, loggedIn: false };
-      persist(acc);
-      return acc;
-    });
+    const acc: Account = { ...read(), loggedIn: false };
+    persist(acc);
+    setAccount(acc);
   }, []);
 
   return { account, isAuthed: account.loggedIn, hydrated, signup, login, logout };
