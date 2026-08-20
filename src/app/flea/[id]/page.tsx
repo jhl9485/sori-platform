@@ -167,13 +167,19 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
           className="mt-3"
         />
 
-        {/* 거래 방법 */}
+        {/* 거래 방법 · 협상 가능 여부 — 작성 폼에서 받은 값을 여기서 되돌려준다 */}
         <div className="flex gap-2 mt-3">
           {item.canMeet && (
             <span className="text-[0.72rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[3px] rounded-full">직거래</span>
           )}
           {item.canDeliver && (
             <span className="text-[0.72rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[3px] rounded-full">택배거래</span>
+          )}
+          {item.negotiable && (
+            <span className="text-[0.72rem] bg-[#FBF5E8] text-[#B07010] px-2 py-[3px] rounded-full">협상가능</span>
+          )}
+          {item.isUrgent && (
+            <span className="text-[0.72rem] bg-[#FBEBE8] text-[#D04020] px-2 py-[3px] rounded-full font-medium">급구</span>
           )}
         </div>
       </div>

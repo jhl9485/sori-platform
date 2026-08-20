@@ -1432,7 +1432,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     isBreaking: false,
     readTime: "2분",
     emoji: "🚇",
-    relatedIds: ["26"],
+    relatedIds: ["29"],
   },
   {
     id: "auto-20260619-1",
@@ -2042,6 +2042,9 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
 ];
 
 // 최신순(publishedAt 내림차순) 자동 정렬 — 새 뉴스 추가 시 배열 위치와 무관하게 최신이 위로.
+//
+// 예전에는 여기서 `.slice(0, 50)`으로 잘라냈다. 그러나 자르기는 실행 시점에 일어나므로
+// 번들 크기는 전혀 줄지 않았고, 잘린 7건은 상세 페이지에 닿을 수조차 없었다.
+// 그 7건을 가리키던 "관련 기사" 링크 10건이 조용히 사라지던 원인이기도 하다.
 export const NEWS_ITEMS: NewsItem[] = [...RAW_NEWS_ITEMS]
-  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-  .slice(0, 50); // 최신 50건만 노출 (데이터 비대·번들·렌더 비용 관리)
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));

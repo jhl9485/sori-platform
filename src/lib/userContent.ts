@@ -235,6 +235,14 @@ const REALTY_EMOJI: Record<string, { emoji: string; bg: string }> = {
 export function userRealtyToRealtyItem(p: RawUserRealty): RealtyItem {
   const meta = REALTY_EMOJI[p.type] || { emoji: "🏘️", bg: "bg-[#F5F3EE]" };
   const isSale = p.deal === "매매";
+
+  // 사용자가 "4700"이라고 치면 "$4700/월"이 되어 시드 표기("$4,700/월")와 나란히 놓였을 때 티가 난다.
+  // 숫자만 뽑아 천단위 쉼표를 붙인다. 숫자가 없으면(예: "협의") 손대지 않는다.
+  function formatPrice(raw: string, sale: boolean) {
+    const digits = raw.replace(/[^\d]/g, "");
+    if (!digits) return raw;
+    return `$${Number(digits).toLocaleString("en-US")}${sale ? "" : "/월"}`;
+  }
   return {
     id: p.id,
     type: p.type,
@@ -244,7 +252,7 @@ export function userRealtyToRealtyItem(p: RawUserRealty): RealtyItem {
     emoji: meta.emoji,
     bg: meta.bg,
     title: p.title,
-    price: p.price.startsWith("$") ? p.price : `$${p.price}${isSale ? "" : "/월"}`,
+    price: formatPrice(p.price, isSale),
     area: p.area,
     address: p.address || p.area,
     // 선택 항목은 비면 빈 문자열로 둔다 — 화면에서 "—" 대신 그 줄째로 숨긴다

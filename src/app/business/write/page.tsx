@@ -435,7 +435,7 @@ function BusinessWriteInner() {
           >
             <span className="text-[0.85rem] font-medium text-left flex-1">
               🇰🇷 한국어 상담 가능
-              <span className="block text-[0.68rem] text-[#888070] font-normal">한인 사용자에게 노출 우선순위 상승</span>
+              <span className="block text-[0.68rem] text-[#888070] font-normal">검증 후 &lsquo;한국어 가능&rsquo; 표시를 달아드려요</span>
             </span>
             <span className={`inline-block w-10 h-6 rounded-full flex-shrink-0 transition-colors relative ${
               koreanAvailable ? "bg-[#D04020]" : "bg-[#C0BBB0]"

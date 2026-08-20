@@ -66,7 +66,8 @@ export const FLEA_ITEMS: FleaItem[] = [
 **거래 방법**
 Bishan 직거래 선호. 멀리 계신 분은 편의점 택배 가능 (비용 실비)
 
-**협상 불가** 급하게 처분해야 해서요.`,
+**협상 불가**
+급하게 처분해야 해서요.`,
     canDeliver: false,
     canMeet: true,
   },

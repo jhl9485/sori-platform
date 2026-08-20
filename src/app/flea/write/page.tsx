@@ -316,7 +316,7 @@ function FleaWriteInner() {
               type="text"
               value={originalPrice}
               onChange={(e) => setOriginalPrice(e.target.value)}
-              placeholder="정가 (선택 · 신상품 대비 할인율 표시용)"
+              placeholder="정가 (선택 · 판매 가격 옆에 취소선으로 함께 표시)"
               className="w-full bg-[#F5F3EE] rounded-[10px] pl-7 pr-4 py-3 text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
             />
           </div>

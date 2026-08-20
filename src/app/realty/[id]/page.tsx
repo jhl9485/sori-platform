@@ -5,13 +5,14 @@ import PageHeader from "@/components/shared/PageHeader";
 import PhotoCarousel from "@/components/shared/PhotoCarousel";
 import OwnerActions from "@/components/shared/OwnerActions";
 import DetailSkeleton from "@/components/shared/DetailSkeleton";
-import { REALTY_ITEMS, type RealtyStatus } from "@/data/realtyItems";
+import { REALTY_ITEMS, getRegion, type RealtyStatus } from "@/data/realtyItems";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useUserRealty, updateUserItem } from "@/lib/userContent";
 import { useHydrated } from "@/lib/hooks";
 import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 import { exactTime, resolveISO } from "@/lib/format";
+import { renderMarkdown } from "@/lib/renderMarkdown";
 
 const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
   { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
@@ -29,6 +30,10 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
     if (!hydrated) return <DetailSkeleton />;
     return notFound();
   }
+
+  // 지역구분은 작성 폼에서 필수로 받는다. 목록 필터에만 쓰고 화면에 안 보여주면
+  // 사용자는 필수로 적은 값을 되돌려받지 못한다. 동네 앞에 함께 표시한다.
+  const regionLabel = item.region || getRegion(item.area);
 
   // 본인 매물 여부 — 본인만 거래 상태 변경 가능
   const isMine = userRealty.some((r) => r.id === params.id);
@@ -124,7 +129,7 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         <h1 className="text-[1.1rem] font-bold leading-snug mb-2">{item.title}</h1>
         <div className="text-[1.6rem] font-extrabold text-[#D04020] mb-1">{item.price}</div>
         <div className="text-[0.78rem] text-[#888070] mb-3">
-          📍 {item.area}{item.mrt && ` · 🚇 ${item.mrt}`}
+          📍 {regionLabel && `${regionLabel} · `}{item.area}{item.mrt && ` · 🚇 ${item.mrt}`}
         </div>
 
         {/* 액션 바 — 모든 카테고리 공통 배치 */}
@@ -191,12 +196,12 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
         </div>
       </div>
 
-      {/* 매물 설명 */}
+      {/* 매물 설명 — 뉴스와 같은 마크다운 처리. 원문을 그대로 찍으면 **굵게** 별표가 노출된다 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
         <h3 className="text-[0.9rem] font-bold mb-3">매물 설명</h3>
-        <p className="text-[0.85rem] text-[#181614] leading-relaxed whitespace-pre-line">
-          {item.description}
-        </p>
+        <div className="text-[0.85rem] text-[#181614] leading-relaxed">
+          {renderMarkdown(item.description)}
+        </div>
       </div>
 
       {/* 단지 편의시설 — 선택 항목이므로 하나도 안 고르면 제목째로 숨긴다 */}
