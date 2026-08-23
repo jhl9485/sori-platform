@@ -26,6 +26,193 @@ export interface NewsItem {
 // ⚠️ AI 요약 특성상 원문과 차이가 있을 수 있어, 각 상세 페이지에 "원문 확인 권고"가 표시된다.
 const RAW_NEWS_ITEMS: NewsItem[] = [
   {
+    id: "auto-20260823-1",
+    publishedAt: "2026-08-23",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🇸🇬 국가발전 연설(NDR) 2026 — 웡 총리, AI 일자리·보육 지원·미중 지정학 발표",
+    summary: "로런스 웡 총리가 8월 23일(일) 저녁 ITE 본부(앙모키오)에서 세 번째 국가발전 연설(National Day Rally)을 한다. 예고된 주제는 AI 도입에 따른 일자리 불안 해소, 보육·유아교육 지원 확대(정부 지원 어린이집을 초등교육 수준으로 강화), 가족 생애 주기 지원 전면 검토, 미중 경쟁 심화와 싱가포르 대응 전략이다. 연설은 말레이어→만다린→영어 순으로 진행되며 메디아코프 TV·유튜브로 생중계된다.",
+    fullContent: `**국가발전 연설(NDR) 2026 — 8월 23일**
+총리실(PMO)에 따르면 로런스 웡 총리는 8월 23일 저녁 **ITE 본부(앙모키오)**에서 세 번째 NDR을 진행합니다.
+
+**시간 및 중계**
+- 오후 **6시 45분** 시작
+- 말레이어 → 만다린 → 영어 순서
+- 메디아코프 채널5·8·수리아·CNA 및 유튜브 생중계
+
+**예고된 주요 주제**
+- **AI와 일자리**: AI 도입 확산으로 불안해하는 근로자를 위한 정부 지원 방향
+- **보육·유아교육**: 정부 지원 어린이집·유치원에 대한 지원을 초등교육 수준으로 강화
+- **가족 지원**: 양육비·영유아 보육 접근성 등 가족 생애 주기 전반 지원 체계 재검토
+- **지정학**: 미·중 경쟁 심화와 싱가포르 대응 전략
+
+**한인 참고**
+- NDR은 향후 1~2년 싱가포르 정책 방향을 예고하는 자리입니다. 육아·교육·취업 관련 정책 변화 신호를 볼 수 있습니다.
+- 영어 연설 전문은 PMO 홈페이지(아래 출처)에 당일 또는 익일 게재됩니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "PMO · BritCham SG",
+    sources: [
+      { name: "PMO — National Day Rally 2026", url: "https://www.pmo.gov.sg/newsroom/ndr2026/" },
+      { name: "British Chamber of Commerce SG — NDR 2026 시간 안내", url: "https://www.britcham.org.sg/news/pm-wongs-national-day-rally-speech-begin-645pm-aug-23" },
+    ],
+    time: "2026년 8월 23일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🇸🇬",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260821-1",
+    publishedAt: "2026-08-21",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "🍎 SPF 경보: 애플 사칭 암호화폐 사기 — 8월 이후 5건·최소 S$19.5만 피해",
+    summary: "싱가포르 경찰청(SPF)이 8월 21일 경보를 냈다. 8월 7일 이후 애플 기기 팝업을 사칭한 암호화폐 사기가 최소 5건 발생해 피해액이 S$19.5만(S$195,000)을 넘었다. 범인들은 '계정 무단 접근' 팝업 후 +1(북미 국가코드)로 전화해 'chat-apple.com' 등 가짜 사이트로 유도한 뒤 OTP를 탈취해 암호화폐 지갑을 털었다.",
+    fullContent: `**애플 사칭 암호화폐 사기 경보 (SPF, 8월 21일)**
+
+**수법**
+1. 애플 기기에 "무단 접근 시도" 또는 "비밀번호 변경" 팝업이 표시됨
+2. 이후 **+1(북미 국가코드) 번호**에서 '애플 기술지원'을 사칭한 전화가 걸려 옴
+3. 범인이 'chat-apple.com', 'case-apple.com' 등 **가짜 사이트**로 유도
+4. 피해자가 OTP·계정 정보를 입력하면 범인이 암호화폐 지갑·연결 계좌 자산을 탈취
+
+**피해 현황 (8월 7~21일 기준)**
+- 최소 **5건** 접수
+- 총 피해액 최소 **S$195,000(약 S$19.5만)**
+
+**한인 주의 팁**
+- 애플은 먼저 전화하지 않습니다. 의심 전화는 바로 끊을 것
+- 팝업 속 번호·링크로는 절대 전화·접속하지 말 것
+- 암호화폐 지갑·거래소는 2단계 인증(2FA) + 앱 전용 인증 사용 권장
+- 피해 시 ScamShield 앱 또는 핫라인 **1799**, 신고는 경찰 **999(긴급)/1800-255-0000**
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF (공식)",
+    sources: [
+      { name: "SPF — Police Advisory On Apple Impersonation Cryptocurrency Account Compromise Scams (공식)", url: "https://www.police.gov.sg/Media-Hub/News/2026/08/20260821_police_advisory_on_apple_impersonation_cryptocurrency_account_compromise_scams" },
+    ],
+    time: "2026년 8월 21일",
+    isBreaking: true,
+    readTime: "2분",
+    emoji: "🍎",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260818-1",
+    publishedAt: "2026-08-18",
+    category: "사회",
+    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
+    title: "📱 SNS 사기 광고 제동 — 페이스북·인스타·틱톡, 2027년 1월까지 광고주 신원 의무 검증",
+    summary: "8월 18일 SPF가 온라인범죄해악방지법(OCHA) 소셜미디어 실천강령을 발동했다. 페이스북·인스타그램·틱톡은 2027년 1월 31일까지 싱가포르 이용자 대상 광고주를 정부 공식 기록으로 검증해야 하며, 금융 서비스 광고는 MAS 허가 업체만 게재할 수 있다. 미이행 시 최대 S$100만 벌금. 2025년 기준 싱가포르 사기 피해의 약 30%가 소셜미디어에서 발생했다.",
+    fullContent: `**소셜미디어 사기 광고 차단 새 규정 (2026년 8월 18일 발효)**
+
+**배경**
+- 2025년 기준 싱가포르 사기 피해의 약 **30%가 소셜미디어**를 통해 발생; 페이스북만 약 18%
+- 딥페이크·허위 광고 등 신종 사기가 급증하자 SPF가 OCHA 소셜미디어 실천강령을 발동
+
+**대상 플랫폼 및 주요 의무**
+- **페이스북·인스타그램·틱톡** 대상
+- **2027년 1월 31일까지** 싱가포르 이용자 대상 광고주를 정부 공식 기록으로 **신원 검증** 완료
+- **금융 서비스 광고**: MAS(통화청) 허가 업체만 게재 가능
+- URL 클로킹(실제 목적지를 감추는 링크) 차단 의무
+
+**처벌**
+- 미이행 시 최대 **S$1,000,000(약 S$100만)** 벌금 + 계속 위반 시 추가 벌금
+
+**한인 SNS 이용 팁**
+- SNS 광고로 연결된 금융 서비스·투자 사이트는 MAS InvestSmart에서 허가 여부를 먼저 확인하세요 (mas.gov.sg/investor-alert-list)
+- '당첨', '수익 보장' 투자 광고는 모두 사기 의심 대상
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "SPF · Malay Mail",
+    sources: [
+      { name: "Malay Mail — Singapore's new law targets WhatsApp, TikTok, and Facebook over scams", url: "https://www.malaymail.com/news/singapore/2026/08/18/singapores-new-law-targets-whatsapp-tiktok-and-facebook-over-scams/231828" },
+      { name: "Startup Fortune — Singapore Forces TikTok and Meta to Verify Ads After Deepfake Scam Surge", url: "https://startupfortune.com/singapore-forces-tiktok-and-meta-to-verify-ads-after-deepfake-scam-surge/" },
+    ],
+    time: "2026년 8월 18일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "📱",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260731-1",
+    publishedAt: "2026-07-31",
+    category: "경제",
+    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
+    title: "💼 2분기 정리해고 4,500명 — 5년 만에 최다, 고용은 19분기 연속 증가",
+    summary: "MOM이 7월 31일 발표한 2026년 2분기 노동시장 속보치에 따르면 정리해고가 4,500명으로 전 분기(3,830명)보다 17.5% 늘어 2020년 4분기 이후 최고치를 기록했다. ICT·제조업 구조조정이 주요 원인이다. 그러나 총고용은 1만700명 증가해 2021년 4분기부터 19분기 연속 증가세가 이어지고 있으며, 실업률은 2.0%로 안정적이다.",
+    fullContent: `**2026년 2분기 노동시장 속보치 (MOM, 7월 31일 발표)**
+
+**정리해고**
+- 4,500명 (Q1 3,830명 대비 **+17.5%**) — **2020년 4분기 이후 최고**
+- 주된 업종: **ICT·제조업** (사업 구조조정 중심)
+- 해고율: 1,000명당 1.9명 — 경기침체기보다는 낮은 수준
+
+**고용**
+- 총고용 **+10,700명** (Q1 +9,400명 대비 증가)
+- **2021년 4분기 이후 19분기 연속 증가** 유지
+- 실업률: **2.0%** (거주자 2.9%, 시민 3.0%)
+- 구인 78,800건 — 실업자 1명당 약 1.46개 일자리
+
+**전망**
+- 향후 3개월 채용 계획 기업 비중: 40.6% → 43.9%로 상승
+- 임금 인상 기대 기업: 23.7% → 29.3%로 증가
+
+**한인 참고**
+- 구직·이직 중이라면 ICT·제조·금융 분야에서 조정이 진행 중임을 감안해 타이밍을 신중히 검토할 것
+- 전체 고용시장은 견조하지만 특정 업종에서 구조조정이 있으니 업종별 동향을 확인하세요.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "MOM · HRM Asia",
+    sources: [
+      { name: "People Matters — Singapore labour market adds 10,700 jobs in Q2, unemployment stays at 2%", url: "https://sea.peoplemattersglobal.com/news/economy-policy/singapore-labour-market-adds-10700-jobs-in-q2-unemployment-stays-at-2percent-51178" },
+      { name: "HRM Asia — Retrenchments climb to five-year high as Singapore's job market keeps growing", url: "https://hrmasia.com/retrenchments-climb-to-five-year-high-as-singapores-job-market-keeps-growing/" },
+    ],
+    time: "2026년 7월 31일",
+    isBreaking: false,
+    readTime: "3분",
+    emoji: "💼",
+    relatedIds: [],
+  },
+  {
+    id: "auto-20260701-4",
+    publishedAt: "2026-07-01",
+    category: "부동산",
+    catStyle: "bg-[#FBF5E8] text-[#B07010]",
+    title: "🏠 HDB 재판매가 2분기 연속 하락 — Q2 -0.3%, 4룸 중간값 S$56.5만",
+    summary: "HDB가 7월 1일 발표한 2026년 2분기 재판매가격지수(RPI)는 202.8로 전 분기 대비 0.3% 하락, 1분기(-0.1%)에 이어 2분기 연속 하락이다. BTO 공급 증가·경기 불확실성이 배경이다. 반면 백만달러(S$100만↑) 거래는 491건으로 분기 사상 최다를 기록했고, 전체 거래량도 6,396건으로 전 분기 대비 1.8% 늘었다.",
+    fullContent: `**HDB 재판매 시장 Q2 2026 (HDB, 7월 1일 발표)**
+
+**가격 동향**
+- 재판매가격지수(RPI): **202.8** (전 분기比 **-0.3%**)
+- **2분기 연속 하락** — 2025년 4분기가 최고점 이후 안정세
+- 배경: BTO 공급 증가, 경기 불확실성, 소프트한 고용시장
+
+**거래 동향**
+- 2분기 거래량: **6,396건** (전 분기比 **+1.8%**)
+- **백만달러(S$100만↑) 거래: 491건** — 역대 분기 최다 (직전 최고 Q3 2025: 480건)
+- 4룸 기준 중간 재판매가: 약 **S$565,000**
+
+**한인 임차·구매 참고**
+- 가격이 소폭 내리고 있어, 재판매 구매 협상 시 이 흐름을 참고할 수 있습니다.
+- 외국인(EP 등)은 ABSD 60%로 HDB 직접 구매가 불리하며 임대가 일반적입니다.
+- 렌트 시장도 완만히 안정화되고 있어, 계약 갱신 시 협상 여지를 타진해 볼 만합니다.
+
+정확한 내용은 원문(아래 출처)을 확인하세요.`,
+    source: "HDB · Malay Mail",
+    sources: [
+      { name: "Malay Mail — HDB resale prices dip for second quarter as private home prices rise 0.5pc", url: "https://www.malaymail.com/news/singapore/2026/07/01/singapore-hdb-resale-prices-dip-for-second-quarter-as-private-home-prices-rise-05pc/225962" },
+      { name: "99.co — HDB resale prices fell in Q2 2026 as market continues to stabilise", url: "https://www.99.co/singapore/insider/hdb-resale-prices-fell-in-q2-2026-as-market-continues-to-stabilise/" },
+    ],
+    time: "2026년 7월 1일",
+    isBreaking: false,
+    readTime: "2분",
+    emoji: "🏠",
+    relatedIds: [],
+  },
+  {
     id: "auto-20260725-1",
     publishedAt: "2026-07-25",
     category: "문화",
@@ -1284,83 +1471,6 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     relatedIds: ["28"],
   },
   {
-    id: "auto-20260622-3",
-    publishedAt: "2026-04-24",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏢 1분기 콘도 렌트·매매가 동반 상승 — 렌트 +0.3%(외곽 OCR +1.0%), 매매가 +0.9%(OCR +2.2%)",
-    summary: "URA(도시재개발청) 발표에 따르면 2026년 1분기 민간주택 렌트지수가 전분기比 0.3% 올랐다(직전 분기는 -0.5%). 외곽지역(OCR)이 +1.0%로 가장 많이 오르고 중심지역(RCR)은 -0.2%로 6분기 연속 상승 후 처음 하락했다. 같은 기간 매매가지수는 +0.9%로 상향 확정(잠정치 +0.3%보다 큼), 공실률은 6.2%로 소폭 상승했다.",
-    fullContent: `**URA 1분기(Q1) 2026 부동산 통계 (4월 24일 발표)**
-도시재개발청(URA)이 발표한 2026년 1분기 민간주택 가격·렌트 지표입니다.
-
-**렌트지수**
-- 전체: 전분기比 **+0.3%** (직전 4분기는 -0.5%)
-- 외곽지역(OCR): **+1.0%**(상승 주도)
-- 중심지역(CCR, 고급): **+0.5%**
-- 도심외곽(RCR, 중급): **-0.2%** — 6분기 연속 상승 후 첫 하락
-- 공실률: **6.2%**(전분기比 +0.2%p)
-
-**매매가지수**
-- 전체: **+0.9%**(잠정치 +0.3%보다 상향 확정)
-- 비단독(콘도 등): +1.3% / 단독주택: -0.4%
-- 1분기 거래량은 전분기比 19.2% 감소(5,413건), 신규분양 31.5% 감소(2,013건) — 설 연휴·분양 물량 감소 영향
-
-**한인 참고**
-- 콘도 임차 중이라면 OCR(외곽) 지역 렌트가 가장 빠르게 오르고 있어 갱신 시 인상 가능성을 염두에 둘 것
-- RCR(중급) 렌트는 6분기 만에 처음 하락해 협상 여지가 있을 수 있음
-- 정확한 지역별·평형별 수치는 URA 공식 발표를 확인할 것
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "URA",
-    sources: [
-      { name: "URA — Release of 1st Quarter 2026 real estate statistics (PR26-31)", url: "https://www.ura.gov.sg/Corporate/Media-Room/Media-Releases/pr26-31" },
-      { name: "LittleBigRedDot — URA Q1 2026 Property Statistics: What The 0.9% Private Home Price Rise Means", url: "https://littlebigreddot.com/ura-q1-2026-property-statistics-private-home-prices-guide/" },
-    ],
-    time: "2026년 4월 24일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏢",
-    relatedIds: ["20"],
-  },
-  {
-    id: "auto-20260622-4",
-    publishedAt: "2026-02-26",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🛂 PR 연 4만명 승인 목표 발표(2026~2030년) — 출산율 0.87 역대 최저, 금융·테크·헬스케어·물류·엔지니어링 우대",
-    summary: "Gan Kim Yong 부총리가 Budget 2026 예산위원회(COS) 토론에서 2026~2030년 연간 PR(영주권) 승인을 약 4만명 규모로 늘릴 계획이라고 밝혔다(2025년 약 3만5천명 대비 증가). 2025년 거주 출생아 수가 역대 최저(약 2만7,500명), 합계출산율 0.87로 더 낮아진 데 따른 대응이며, 금융·테크(AI·퀀텀 포함)·헬스케어·물류·엔지니어링 분야가 우대 대상으로 언급됐다.",
-    fullContent: `**PR(영주권) 연간 승인 목표 상향 — Budget 2026 COS 토론**
-Gan Kim Yong 부총리가 2026년 예산위원회(Committee of Supply) 토론에서 발표한 내용입니다.
-
-**핵심 발표**
-- 2026~2030년 연간 PR 승인을 약 **4만명** 규모로 계획 — 2025년(약 3만5천명) 대비 증가
-- Gan 부총리: "향후 5년간 연 약 4만명 PR 승인을 예상한다. 작년 승인한 3만5천명보다 다소 높은 수준"
-
-**배경**
-- 2025년 거주 출생아 수 약 2만7,500명으로 역대 최저
-- 합계출산율(TFR) 0.87로 전년 0.97에서 추가 하락
-- 고령화·생산연령인구 감소에 대한 대응 차원
-
-**우대 산업 분야**
-- 금융, 테크(AI·퀀텀컴퓨팅 포함), 헬스케어, 물류, 엔지니어링
-
-**한인 참고**
-- EP·S Pass로 거주 중 PR을 고려하는 한인이라면, 위 우대 산업군 종사 여부가 승인 가능성에 도움이 될 수 있음
-- 다만 이는 정부의 전체 정책 방향 발표로, 개별 심사 기준·세부 가점 항목은 ICA가 별도 공개하지 않음에 유의
-
-정확한 내용은 원문(아래 출처)을 확인하세요.`,
-    source: "population.gov.sg · VisaVerge",
-    sources: [
-      { name: "population.gov.sg — Speech by Deputy Prime Minister Gan Kim Yong, Committee of Supply Debate 2026", url: "https://www.population.gov.sg/speech-by-deputy-prime-minister-gan-kim-yong-committee-of-supply-debate-2026/" },
-      { name: "VisaVerge — Singapore to grant up to 40,000 Permanent Residencies a year, DPM Gan Kim Yong says", url: "https://www.visaverge.com/news/singapore-to-grant-up-to-40000-permanent-residencies-a-year-deputy-pm-gan-kim-yong-says/" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🛂",
-    relatedIds: [],
-  },
-  {
     id: "auto-20260622-5",
     publishedAt: "2026-05-29",
     category: "날씨",
@@ -1508,46 +1618,6 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     relatedIds: [],
   },
   {
-    id: "auto-20260619-4",
-    publishedAt: "2026-03-24",
-    category: "취업",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "👴 정년 64세·재고용 69세로 상향 — 7월 1일 시행, CPF 수령연령(65세)은 변동 없음",
-    summary: "싱가포르 정년이 7월 1일부터 63→64세, 재고용 연령이 68→69세로 오른다. 1962년 7월 1일 이후 출생 시민권자·PR에게 새 정년이, 1957년 7월 1일 이후 출생자에게 새 재고용 연령이 적용된다. CPF 수령 개시 연령(65세)은 이번 변경과 무관하게 그대로 유지된다.",
-    fullContent: `**정년·재고용 연령 상향 (2026년 7월 1일 시행)**
-싱가포르 인력부(MOM) 발표에 따라, 7월 1일부터 정년과 재고용 연령이 각각 1세씩 올라갑니다.
-
-**무엇이 바뀌나**
-- 정년: 63세 → **64세** (1962년 7월 1일 이후 출생 시민권자·PR 적용)
-- 재고용 연령: 68세 → **69세** (1957년 7월 1일 이후 출생자 적용)
-- 2030년까지 정년 65세·재고용 70세로 추가 상향 예정(장기 로드맵)
-
-**CPF는 별도 기준 — 영향 없음**
-- **CPF 수령 개시 연령(65세)은 정년·재고용 연령과 무관한 별도 기준**이라 이번 변경으로 바뀌지 않습니다.
-- 55~60세, 60~65세 구간 CPF 기여율은 2027년부터 단계적으로 추가 인상되는데, 이는 이번 7월 변경과는 별개 일정입니다.
-
-**기업 지원**
-- Senior Employment Credit(고령자 고용지원금)을 2027년 12월까지 연장, 69세 이상 고용 시 최대 7% 임금 지원
-
-**한인 근로자·고용주 참고**
-- 만 63세 정년을 앞두고 있던 시민권자·PR 직원이라면 7월 1일부터 정년이 1년 늘어납니다.
-- 한인 사업장에서 시니어 직원을 고용 중이라면 정년·재고용 규정 갱신 여부를 HR과 점검해야 합니다.
-- EP 등 외국인 근로비자 소지자에게는 이 정년 규정이 직접 적용되지 않지만(외국인 워크패스는 별도 만료·갱신 체계), PR 신분의 시니어 근로자라면 직접 영향을 받습니다.
-
-정확한 적용 대상·시행 세부사항은 MOM 공식 발표(아래 출처)를 확인하세요.`,
-    source: "MOM · L&E Global",
-    sources: [
-      { name: "L&E Global — Singapore: Retirement Age and Re-Employment Age to be Raised on 1 July 2026 and Other Related Changes", url: "https://leglobal.law/2026/03/24/singapore-retirement-age-and-re-employment-age-to-be-raised-on-1-july-2026-and-other-related-changes/" },
-      { name: "Human Resources Online — MOM Committee of Supply 2026: Singapore to raise retirement age to 64 & re-employment age to 69 from 1 July 2026", url: "https://www.humanresourcesonline.net/mom-committee-of-supply-2026-singapore-to-raise-retirement-age-to-64-re-employment-age-to-69-from-1-july-2026" },
-      { name: "CPFB — Does raising the Singapore retirement age affect the CPF payout eligibility age?", url: "https://www.cpf.gov.sg/member/infohub/educational-resources/does-raising-the-singapore-retirement-age-affect-the-cpf-payout-eligibility-age" },
-    ],
-    time: "2026년 3월 24일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "👴",
-    relatedIds: [],
-  },
-  {
     id: "auto-20260619-5",
     publishedAt: "2026-06-17",
     category: "사회",
@@ -1614,40 +1684,6 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     readTime: "3분",
     emoji: "📋",
     relatedIds: ["17", "21"],
-  },
-  {
-    id: "auto-20260620-3",
-    publishedAt: "2026-04-01",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "📉 HDB 재판매가 7년 만에 첫 하락 — 1분기 -0.1%, 렌트도 소폭 완화세",
-    summary: "HDB 발표 기준 2026년 1분기 재판매가지수가 203.4로 전 분기比 0.1% 하락, 2019년 2분기 이후 약 7년 만의 첫 하락이다. 렌트 지수도 0.1% 내리며 2023년 고점 이후 완만한 하락세가 이어지고 있다(4룸 기준 월세 중간값 약 S$2,600).",
-    fullContent: `**HDB 1분기(Q1) 2026 통계**
-HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
-
-**재판매(Resale) 가격**
-- 재판매가격지수(RPI) **203.4**, 전 분기比 **-0.1%**
-- **2019년 2분기 이후 약 7년 만의 첫 분기 하락**
-
-**임대(Rental) 시장**
-- HDB 렌트 지수도 전 분기比 **-0.1%**, 2023년 고점 이후 완만한 하락세 지속
-- **4룸 기준 월세 중간값 약 S$2,600**
-
-**한인 임차인 참고**
-- 렌트 시장이 과열기를 지나 완만히 안정되는 흐름이라, 계약 갱신·재계약 시 협상 여지가 있을 수 있습니다.
-- 다만 지역·평형별 편차가 크므로, 실제 시세는 HDB·중개사 최신 데이터로 재확인하세요.
-
-정확한 수치는 아래 출처(HDB 통계 기반 보도)를 확인하세요.`,
-    source: "99.co · Mothership",
-    sources: [
-      { name: "99.co — Q1 2026: HDB resale market sees first price decline in 7 years", url: "https://www.99.co/singapore/insider/q1-2026-hdb-resale-market-first-price-decline-in-7-years/" },
-      { name: "Mothership — HDB resale prices fell by 0.1%, private housing prices rose 0.9%, in 1st quarter 2026", url: "https://mothership.sg/2026/04/hdb-ura-real-estate-statistics/" },
-    ],
-    time: "2026년 4월 1일",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "📉",
-    relatedIds: ["23"],
   },
   {
     id: "auto-20260620-5",
@@ -1721,322 +1757,6 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     isBreaking: true,
     readTime: "3분",
     emoji: "🦟",
-    relatedIds: [],
-  },
-  {
-    id: "28",
-    publishedAt: "2026-02-26",
-    category: "사회",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🚨 2025년 사기 첫 감소 27.6%↓ — 그러나 'PR 신청 대행' 사칭 사기 한인 주의보",
-    summary: "싱가포르 경찰(SPF) 발표: 2025년 사기 건수 37,308건으로 전년比 27.6% 첫 감소, 피해액 약 S$9.13억. 다만 2026년 들어 'PR 신청 대행' 사칭 사기 24건(피해 약 S$39.7만) 발생 — PR 신청하는 한인 표적 가능, 각별 주의.",
-    fullContent: `**2025년 사기 통계 (2026년 2월 발표)**
-싱가포르 경찰청(SPF)이 2025년 사기·사이버범죄 통계를 발표했습니다.
-
-**전체 현황**
-- 사기 건수: **37,308건** (2024년 51,501건 대비 **27.6% 감소** — 통계 분리 이후 첫 감소)
-- 피해액: 약 **S$9.13억** (2024년 S$11.24억 대비 17.9%↓)
-- 단, 1인당 평균 피해액은 상승
-
-**⚠️ 한인 주의 — PR 신청 대행 사칭 사기**
-- 2026년 1월 이후 'PR(영주권) 신청을 도와주겠다'는 가짜 광고·서류·공식기관 사칭 사기 **24건**, 피해 약 **S$39.7만**
-- ICA 등 공식 절차는 정부 포털에서만 진행 — SNS 광고·대행 업체 통한 선입금 요구는 사기 의심
-
-**예방 수칙**
-- 정부 기관은 메신저·SNS DM으로 송금·개인정보를 요구하지 않음
-- 의심 시 ScamShield 앱·1799(안티스캠 핫라인) 확인
-
-정확한 최신 통계·경보는 아래 출처(SPF)를 확인하세요.`,
-    source: "SPF · The Online Citizen",
-    sources: [
-      { name: "SPF — Scams and Cybercrime Fell in 2025", url: "https://www.police.gov.sg/Media-Hub/Police-Life/2026/02/Scams-and-Cybercrime-Fell-by-Almost-a-Quarter-in-2025" },
-      { name: "SPF — PR 신청 사기 경보", url: "https://www.police.gov.sg/Media-Hub/News/2026/04/20260422_police_advisory_on_scam_variant_involving_fraudulent_social_media_advertisements_teaser" },
-      { name: "The Online Citizen — 사기 27.6% 감소", url: "https://theonlinecitizen.com/2026/02/25/scam-cases-in-singapore-fall-27-6-per-cent-in-first-recorded-decrease" },
-    ],
-    time: "2026년 2월 26일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🚨",
-    relatedIds: ["17"],
-  },
-  {
-    id: "20",
-    publishedAt: "2026-02-12",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💰 Budget 2026 발표 (2월 12일) — CDC 바우처 $500·생활비 현금 $200~400, 단 시민·PR 대상",
-    summary: "로런스 웡 총리 Budget 2026 발표: 전 가구 CDC 바우처 S$500(2027년 1월), 생활비 특별현금 S$200~400, U-Save 추가 환급, 자녀 LifeSG 크레딧 S$500 등. ⚠️ 대부분 시민·PR 대상이라 EP/DP 한인은 직접 혜택 제한적.",
-    fullContent: `**Budget 2026 (2026년 2월 12일, 로런스 웡 총리 발표)**
-싱가포르 정부가 2026년도 예산안을 발표했습니다. 생활비 지원이 핵심입니다.
-
-**주요 지원 (대부분 싱가포르 시민·일부 PR 대상)**
-- **CDC 바우처 S$500** / 전 가구 (2027년 1월 지급)
-- **생활비 특별현금 S$200~400** (21세 이상·과세소득 S$10만 이하·주택 1채 이하 시민)
-- **U-Save 환급** 1.5배 (HDB 가구, 연 최대 약 S$570~760)
-- **자녀 LifeSG 크레딧 S$500** (12세 이하 시민 자녀)
-- 영유아·보육 추가 보조금 소득기준 상향(월 S$1.2만 → S$1.5만)
-
-**⚠️ EP/DP 한인 입장에서 꼭 알 점**
-- CDC 바우처·생활비 현금·U-Save 등 **대부분 시민(일부 PR) 대상**으로, EP·DP 비자 한인 가구는 **직접 수혜 대상이 아닌 경우가 많습니다.**
-- 다만 물가·정책 방향(생활비 보전 기조)은 전체 거주자에게 영향.
-
-정확한 자격·금액은 아래 공식 출처(SupportGoWhere)에서 확인하세요.`,
-    source: "MOF · Mothership · DollarsAndSense",
-    sources: [
-      { name: "SupportGoWhere — Budget 2026 (정부 공식)", url: "https://supportgowhere.life.gov.sg/budget-2026" },
-      { name: "Mothership — CDC 바우처·생활비 지원", url: "https://mothership.sg/2026/02/cdc-vouchers-500-budget-2026/" },
-      { name: "DollarsAndSense — Budget 2026 핵심 5가지", url: "https://dollarsandsense.sg/singapore-budget-2026-5-announcements-that-will-benefit-everyday-singaporeans-financially/" },
-    ],
-    time: "2026년 2월 12일",
-    isBreaking: false,
-    readTime: "4분",
-    emoji: "💰",
-    relatedIds: ["17"],
-  },
-  {
-    id: "17",
-    publishedAt: "2026-03-03",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "💼 EP 최저급여 2027년 $6,000으로 인상 + 'ONE Pass (AI·Tech)' 신설 — Budget 2026 확정",
-    summary: "MOM Budget 2026 발표: 일반 EP 최저 월급여 2027년 1월(신규)·2028년 1월(갱신)부터 $5,600→$6,000, 금융권 $6,200→$6,600. 2026년 현재는 아직 $5,600. 2027년 1월 Tech.Pass 대체 'ONE Pass (AI and Tech)' 신설 예정.",
-    fullContent: `**Budget 2026 외국인력 정책 변경**
-싱가포르 인력부(MOM)가 Budget 2026에서 Employment Pass(EP) 등 외국인력 정책 변경을 발표했습니다.
-
-**EP 최저 월급여 인상 (2027~2028 적용)**
-- 일반 업종: $5,600 → **$6,000** (2027년 1월 신규 / 2028년 1월 갱신부터)
-- 금융 서비스업: $6,200 → **$6,600**
-- ※ 2026년 현재는 아직 일반 $5,600 / 금융 $6,200
-
-**ONE Pass (AI and Tech) 신설**
-- 2027년 1월 기존 Tech.Pass를 대체하는 새 트랙 도입 예정
-- AI·테크 인재 유치 강화 목적, 더 유리한 조건 제공 예정
-
-**한인 체크리스트**
-- EP 갱신 예정자는 인상 시점(2028년 갱신)에 맞춰 급여 기준 사전 확인
-- COMPASS 40점 기준은 계속 적용 — 급여가 기준을 간신히 넘으면 사전 자가진단 권장
-
-정확한 기준과 최신 발표는 반드시 MOM 공식 자료(아래 출처)를 확인하세요.`,
-    source: "MOM · Newland Chase",
-    sources: [
-      { name: "MOM 공식 factsheet (2026-03-03)", url: "https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/factsheet-on-foreign-workforce-policies-03032026.pdf" },
-      { name: "Newland Chase — 외국인력 정책 변경", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-      { name: "Slasify — SG 취업비자 2026 가이드", url: "https://slasify.com/en/blog/singapore-work-visas-2026-guide" },
-    ],
-    time: "2026년 3월 3일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "💼",
-    relatedIds: ["21", "20"],
-  },
-  {
-    id: "21",
-    publishedAt: "2026-02-12",
-    category: "비자/취업",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "🪪 S Pass 최저급여 2026년 $3,300 — 7월부터 LQS $1,800로 인상, 2027년 추가 인상 예고",
-    summary: "2026년 S Pass 최저 월급여 S$3,300(금융 S$3,800), 연령에 따라 상향. 7월 1일부터 로컬 자격급여(LQS) S$1,600→S$1,800로 인상돼 쿼터 산정에 영향. S Pass 레비 월 S$650. 2027년 1월 최저 S$3,600/4,000으로 추가 인상 예정.",
-    fullContent: `**S Pass 2026년 기준 (MOM)**
-중급 숙련 외국인력 대상 S Pass의 2026년 기준입니다.
-
-**최저 급여**
-- 일반: **월 S$3,300** / 금융 서비스: **S$3,800**
-- 연령이 높을수록 요구 최저급여 상향
-- 2027년 1월부터: 일반 **S$3,600** / 금융 **S$4,000**로 추가 인상 예정
-
-**LQS(로컬 자격급여) 인상 — 고용주 영향**
-- 2026년 7월 1일부터 풀타임 로컬 직원 LQS **S$1,600 → S$1,800**
-- LQS는 S Pass·Work Permit 쿼터 산정 기준 — 한인 자영업·요식업 고용주에 영향
-
-**레비·쿼터**
-- S Pass 레비: 월 **S$650** (고용주 부담, 급여 공제 불가)
-- 쿼터: 서비스업 10% / 제조업 15%
-
-정확한 기준은 MOM 공식 안내(아래 출처)를 확인하세요.`,
-    source: "MOM · One Visa · Newland Chase",
-    sources: [
-      { name: "MOM — S Pass 자격 변경 안내", url: "https://www.mom.gov.sg/maintenance/passes-and-permits/s-pass/upcoming-changes-to-s-pass-eligibility" },
-      { name: "One Visa — S Pass 최저급여 2026", url: "https://www.one-visa.com/s-pass-minimum-salary-for-2026-what-to-know/" },
-      { name: "Newland Chase — 외국인력 정책", url: "https://newlandchase.com/singapore-announces-further-updates-to-foreign-workforce-policies/" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🪪",
-    relatedIds: ["17"],
-  },
-  {
-    id: "27",
-    publishedAt: "2026-02-17",
-    category: "생활",
-    catStyle: "bg-[#F5F0FF] text-[#7040C0]",
-    title: "🧧 설날(춘절) 2026년 2월 17~18일 — 말의 해, 2026년 공휴일 총 11일",
-    summary: "2026년 춘절(Chinese New Year)은 2월 17일(화)·18일(수) 공식 공휴일. 말의 해. 2월 16일(월) 연차 시 토~수 4일 연휴. 2026년 싱가포르 법정 공휴일은 총 11일(춘절·하리라야·디파발리·크리스마스·노동절·건국기념일 등).",
-    fullContent: `**2026년 춘절 & 공휴일 안내**
-한인 가정의 연휴·여행 계획에 참고하세요.
-
-**춘절(Chinese New Year) 2026**
-- 공식 공휴일: **2월 17일(화)·18일(수)** — 말(馬)의 해
-- 2월 16일(월) 연차 사용 시 **2/15(토)~2/18(수) 4일 연휴**
-- 축제는 15일간 이어지며 정월대보름(Lantern Festival)으로 마무리
-
-**2026년 법정 공휴일 (총 11일)**
-- 신정, 춘절(2일), 성금요일, 노동절, 하리라야 푸아사, 베삭데이, 하리라야 하지, 건국기념일(8/9), 디파발리, 크리스마스 등
-
-**팁**
-- 춘절 연휴엔 한국행 항공권 수요·가격 상승 — 미리 예약
-- 일부 한인 업소·마트 단축영업 가능, 방문 전 확인
-
-정확한 날짜는 아래 출처를 확인하세요.`,
-    source: "MOM · M1 · Foodline",
-    sources: [
-      { name: "M1 — 2026 공휴일 가이드", url: "https://www.m1.com.sg/blog/personal/public-holidays-2026-singapore-long-weekend" },
-      { name: "Eskimo Travel — CNY 2026", url: "https://www.eskimo.travel/en/blog/chinese-new-year-singapore-2026" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🧧",
-    relatedIds: [],
-  },
-  {
-    id: "23",
-    publishedAt: "2026-02-11",
-    category: "부동산",
-    catStyle: "bg-[#FBF5E8] text-[#B07010]",
-    title: "🏠 2026년 초 부동산 추가 쿨링 조치 없음 — 외국인 ABSD 60% 유지, HDB LTV 75%",
-    summary: "정부는 2026년 초 부동산 추가 규제(쿨링) 도입 안 함 — 가격이 연 10% 이상 급등하지 않는 한 관망. 외국인 ABSD 60%, PR 첫 주택 5%·둘째 30% 유지. HDB 대출한도(LTV) 75%. 2023년 4월 틀 유지.",
-    fullContent: `**부동산 규제 현황 (2026년 초)**
-한인 임차·구매자에게 중요한 인지세·대출 규제 현황입니다.
-
-**추가 쿨링 조치 — 당분간 없음**
-- 정부(MAS·MND)는 민간주택 가격이 **연 10% 이상 급등하지 않는 한** 추가 규제 도입 안 함 방침
-- 2023년 4월 조정한 ABSD 등 기존 틀 유지
-
-**ABSD(추가 인지세) — 외국인에 큰 부담**
-- **외국인: 모든 구매에 60%**
-- PR: 첫 주택 5% / 둘째 30%
-- 시민: 첫 0% / 둘째 20% / 셋째+ 30%
-
-**대출(LTV)·기타**
-- HDB 대출한도 LTV 75%, TDSR 55%, 매도 인지세(SSD) 보유기간 규정 등 유지
-
-**한인 참고**
-- EP 소지자 구매 시 ABSD 60%로 **매매보다 임대가 일반적으로 유리**
-- PR 취득 후 첫 주택 구매 시 ABSD 5%로 절세 효과 큼
-
-정확한 세율·요건은 아래 출처를 확인하세요.`,
-    source: "MAS/MND · J&J Property · Homejourney",
-    sources: [
-      { name: "J&J Property — 2026 쿨링 조치 정리", url: "https://www.jjproperty.com.sg/market-insights/market-updates/singapore-property-cooling-measures-2026-what-changed-and-what-it-means-for-buye/" },
-      { name: "Homejourney — ABSD 국적별 2026", url: "https://www.homejourney.sg/blog/absd-rates-by-nationality-2026-comparison-homejourney-202602112001" },
-    ],
-    time: "2026년 2월",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "🏠",
-    relatedIds: ["20"],
-  },
-  {
-    id: "22",
-    publishedAt: "2026-01-29",
-    category: "경제",
-    catStyle: "bg-[#EBF0FB] text-[#2050A0]",
-    title: "📊 MAS 2026년 통화정책·물가 전망 — 수입물가 압력에 근원물가 상승 예상",
-    summary: "MAS는 1월 통화정책성명 발표 후, 수입 비용 상승 영향으로 2026년 근원물가·CPI 전망을 1.5~2.5%로 상향. 근원물가는 향후 분기 상승 후 2027년 후반 평년 수준으로 완화 전망. SGD 정책밴드 운용은 환율·송금에 영향.",
-    fullContent: `**MAS 통화정책 & 2026 물가 전망**
-싱가포르 통화청(MAS)의 정책·물가 전망입니다. 환율에 민감한 한인에게 참고가 됩니다.
-
-**물가 전망**
-- MAS, 2026년 **근원물가·CPI 전망 1.5~2.5%로 상향** (기존 1.0~2.0%)
-- 주된 요인: **수입 비용 상승**(imported cost pressures)
-- 근원물가는 향후 몇 분기 약 2.5%까지 오른 뒤 2027년 후반 평년 수준으로 완화 전망
-
-**통화정책**
-- MAS는 SGD 명목실효환율(S$NEER) 정책밴드로 통화정책 운용 (1월 성명 등)
-- 정책 변화는 SGD 강세/약세 → **한국 송금 환율에 직접 영향**
-
-**한인 참고**
-- SGD가 강하면 한국 송금 시 유리 — 환율 알림(Wise·Instarem) 활용
-- SORI 홈 상단 실시간 환율 위젯에서 현재 시세 확인
-
-정확한 정책·수치는 아래 MAS 공식 자료를 확인하세요.`,
-    source: "MAS · ICIS",
-    sources: [
-      { name: "MAS — 통화정책성명 2026년 1월", url: "https://www.mas.gov.sg/news/monetary-policy-statements/2026/mas-monetary-policy-statement-29jan26" },
-      { name: "ICIS — MAS 물가전망 상향", url: "https://www.icis.com/explore/resources/news/2026/04/14/11197621/singapore-tightens-monetary-policy-raises-2026-inflation-forecast/" },
-    ],
-    time: "2026년 1월 29일",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📊",
-    relatedIds: ["20"],
-  },
-  {
-    id: "31",
-    publishedAt: "2026-03-31",
-    category: "취업",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "📈 2026년 1분기 노동시장 — 실업률 2.0%로 안정, 정리해고는 소폭 증가",
-    summary: "MOM: 2026년 1분기 총고용 +9,400명(18분기 연속 증가), 실업률 2.0%로 낮은 수준 유지. 단 정리해고는 3,690→3,830명으로 소폭 증가(제조·금융·전문서비스 중심). 구인은 여전히 구직 초과(약 1.46배)지만 채용은 신중해지는 분위기.",
-    fullContent: `**2026년 1분기 노동시장 동향 (MOM)**
-한인 구직자·이직 고려자에게 참고가 되는 고용 지표입니다.
-
-**전반적으로 안정**
-- 총고용 **+9,400명** (2021년 말 이후 **18분기 연속 증가**)
-- 실업률 **2.0%** (거주자 2.9%, 시민 3.1%)
-- 구인 약 73,300건, 실업자 1명당 약 **1.46개 일자리**
-
-**주의 신호**
-- 정리해고 **3,690 → 3,830명**(전분기比 소폭 증가), 주로 **제조·금융·전문서비스**
-- 단 해고율은 1,000명당 1.6명으로 비(非)침체 수준
-- 채용·임금 인상 기대는 다소 둔화 — 기업이 신중해지는 분위기
-
-**한인 참고**
-- 전반적으로 견조하나 일부 업종은 채용 보수화 — 이직 시 타이밍·업종 확인
-- EP 신청은 COMPASS·최저급여 기준 동시 충족 필요(관련 기사 참고)
-
-정확한 통계는 아래 MOM 자료를 확인하세요.`,
-    source: "MOM · Human Resources Online",
-    sources: [
-      { name: "Human Resources Online — Q1 노동시장", url: "https://www.humanresourcesonline.net/retrenchments-edged-up-in-q1-but-singapore-s-labour-market-stayed-broadly-stable-says-mom" },
-      { name: "Asian Prime Properties — Q1 2026 고용", url: "https://asianprimeproperties.sg/singapore-employment-growth-q1-2026-labour-market-resilient/" },
-    ],
-    time: "2026년 1분기",
-    isBreaking: false,
-    readTime: "3분",
-    emoji: "📈",
-    relatedIds: ["17", "21"],
-  },
-  {
-    id: "29",
-    publishedAt: "2026-01-02",
-    category: "교통",
-    catStyle: "bg-[#EBF5F0] text-[#2B7A50]",
-    title: "🚉 TEL 5단계 + DTL 연장 2026년 하반기 개통 예정 — Bedok South·Sungei Bedok 등 신설",
-    summary: "Thomson-East Coast Line(TEL) 5단계와 Downtown Line 3 연장이 2026년 하반기 개통 예정. 신역 Xilin·Bedok South·Sungei Bedok(환승역) 3곳으로 두 노선 연결. East Coast Integrated Depot도 2026년 완전 개통. 동부 거주 한인 교통 개선.",
-    fullContent: `**TEL 5단계 & DTL 연장 (2026년 하반기 개통 예정)**
-싱가포르 동부 교통이 개선됩니다.
-
-**개통 내용**
-- **Thomson-East Coast Line(TEL) 5단계** + **Downtown Line 3 연장**이 2026년 하반기 개통 예정
-- 신설역 3곳: **Xilin · Bedok South · Sungei Bedok**(환승역)
-- 이 연결로 TEL·DTL 두 노선이 이어지고, **East Coast Integrated Depot**도 2026년 완전 개통
-
-**한인 참고**
-- Bedok·East Coast 일대 거주 한인의 도심 접근성 개선
-- 정확한 개통일·운행 정보는 개통 임박 시 LTA·운영사(SMRT/SBS) 공지 확인
-
-세부 일정은 변동될 수 있으니 아래 출처를 확인하세요.`,
-    source: "LTA · Land Transport Guru",
-    sources: [
-      { name: "Land Transport Guru — 2026 대중교통 전망", url: "https://landtransportguru.net/2026-outlook-for-public-transport/" },
-      { name: "Wikipedia — Thomson-East Coast Line", url: "https://en.wikipedia.org/wiki/Thomson%E2%80%93East_Coast_Line" },
-    ],
-    time: "2026년",
-    isBreaking: false,
-    readTime: "2분",
-    emoji: "🚉",
     relatedIds: [],
   },
 ];
