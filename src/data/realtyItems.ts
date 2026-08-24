@@ -20,7 +20,11 @@ export interface RealtyItem {
   bathrooms: number;
   floor: string;             // "중층 12층"
   furnished: "풀퍼니시" | "세미퍼니시" | "언퍼니시";
-  availableFrom: string;     // 입주 가능일
+  /** 입주 가능일. 날짜("2026-09-01") 또는 "즉시 입주 가능" 같은 자유 문구(그대로 화면에 표시된다).
+   *  ⚠️ status가 "가능"인 시드 매물에 지난 날짜를 넣지 말 것. "입주 가능일 2026-06-15"인데 등록일이
+   *  2026-07-16(SEED_EPOCH)이면 매물을 올리기도 전에 입주가 시작된 셈이 된다. 이미 지난 매물은
+   *  날짜를 미루지 말고 "즉시 입주 가능"으로 둔다 — 뜻이 정확하고 시간이 지나도 틀려지지 않는다. */
+  availableFrom: string;
   diplomaticClause: boolean; // 외국인 조기 해지 조항
   views: number;
   likes: number;
@@ -83,7 +87,7 @@ export const REALTY_ITEMS: RealtyItem[] = [
     bathrooms: 2,
     floor: "중층 18층",
     furnished: "풀퍼니시",
-    availableFrom: "2026-06-15",
+    availableFrom: "즉시 입주 가능",
     diplomaticClause: true,
     views: 412,
     likes: 28,
@@ -264,7 +268,7 @@ EP/S-Pass/DP 모두 임대 가능. 1년 계약 우선.`,
     bathrooms: 1,
     floor: "중층 15층",
     furnished: "풀퍼니시",
-    availableFrom: "2026-06-20",
+    availableFrom: "즉시 입주 가능",
     diplomaticClause: true,
     views: 356,
     likes: 19,

@@ -11,11 +11,15 @@ import { VIEW_KEY } from "@/lib/metrics";
 // 실제 데이터에 존재하는 카테고리만 동적으로 노출 (빈 결과 방지)
 const NEWS_CATEGORIES = ["전체", ...Array.from(new Set(NEWS_ITEMS.map((n) => n.category)))];
 
-// "2026년 5월 28일" 형식 파싱 → 3일 이내면 NEW
-function isRecentNews(time: string): boolean {
-  const m = time.match(/(\d+)년\s*(\d+)월\s*(\d+)일/);
-  if (!m) return false;
-  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+// 게시 3일 이내면 NEW.
+// 예전에는 표시용 `time` 문자열을 정규식으로 파싱했다. 그러나 time은 사람이 읽으라고 쓴 자유 문구라
+// 형식이 제각각이고(예: "2026년 7월", "2026년 1분기", "2026년") 본문 속 다른 날짜가 먼저 걸리기도 해서
+// (예: "2026년 6월 2일·10일" → 6월 2일로 읽힘) 57건 중 22건이 실제 게시일을 얻지 못했다.
+// publishedAt은 목록 정렬에도 쓰는 정확한 ISO 게시일이므로 표시 문구 대신 이걸 기준으로 삼는다.
+function isRecentNews(publishedAt: string): boolean {
+  // "2026-07-25T00:00:00"(로컬 자정)으로 읽는다. 날짜만 주면 UTC로 해석돼 하루 밀릴 수 있다.
+  const d = new Date(`${publishedAt}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return false;
   const diff = (Date.now() - d.getTime()) / 86_400_000;
   return diff >= 0 && diff <= 3;
 }
@@ -94,7 +98,7 @@ export default function NewsPage() {
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className={`text-[0.65rem] px-2 py-[2px] rounded-full font-semibold ${news.catStyle}`}>{news.category}</span>
                   {news.isBreaking && <span className="text-[0.62rem] bg-[#D04020] text-white px-[5px] py-[1px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>속보</span>}
-                  {!news.isBreaking && isRecentNews(news.time) && <span className="text-[0.62rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>}
+                  {!news.isBreaking && isRecentNews(news.publishedAt) && <span className="text-[0.62rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">NEW</span>}
                   {read && <span className="text-[0.62rem] text-[#888070]">읽음</span>}
                   <span className="text-[0.65rem] text-[#888070]">📖 {news.readTime}</span>
                 </div>

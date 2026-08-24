@@ -11,6 +11,7 @@ import { NEWS_ITEMS } from "@/data/newsItems";
 import { REALTY_ITEMS } from "@/data/realtyItems";
 import { FLEA_ITEMS } from "@/data/fleaItems";
 import { useUserPosts, useUserFlea, useUserJobs, useUserRealty, useUserBiz } from "@/lib/userContent";
+import { isJobExpired } from "@/lib/jobStatus";
 import SearchField from "@/components/shared/SearchField";
 
 const TABS = ["전체", "커뮤니티", "업소", "채용", "뉴스", "부동산", "벼룩"];
@@ -97,9 +98,12 @@ export default function SearchPage() {
     q ? allBiz.filter(
       (b) => b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.tags.some((t) => t.toLowerCase().includes(q)) || b.area.toLowerCase().includes(q)
     ) : [], [q, allBiz]);
+  // 마감 후 6개월 지난 공고는 목록(jobs/page.tsx)에서 이미 숨기는데 검색에는 그 조건이 없었다.
+  // 목록에서 사라진 공고가 검색으로는 열려서 두 화면의 결과가 어긋났으므로 같은 조건을 건다.
   const jobResults = useMemo(() =>
     q ? allJobs.filter(
-      (j) => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q))
+      (j) => !isJobExpired(j.deadline) &&
+        (j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some((t) => t.toLowerCase().includes(q)))
     ) : [], [q, allJobs]);
   const newsResults = useMemo(() =>
     q ? NEWS_ITEMS.filter(

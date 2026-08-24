@@ -320,6 +320,13 @@ export default function CommentSection({ comments, postId }: Props) {
   const list = [...comments, ...userComments];
   const displayList = sortBy === "인기순" ? [...list].sort((a, b) => b.likes - a.likes) : list;
 
+  // 머리말 "댓글 N개"에 쓸 수. 예전에는 list.length(최상위만)라서 글 1은 말풍선이 6개인데
+  // "댓글 4개"로 나왔다. 사용자가 세는 것은 화면의 말풍선이므로 답글까지 센다.
+  // 세는 규칙은 아래 CommentItem이 답글을 그리는 규칙(예시 답글 + 내가 단 답글)과 똑같이 맞춘다.
+  const countAll = (items: Comment[]): number =>
+    items.reduce((sum, c) => sum + 1 + countAll([...(c.replies || []), ...(userReplies[c.id] || [])]), 0);
+  const totalCount = countAll(list);
+
   const ownIds = new Set<string>([
     ...userComments.map((c) => c.id),
     ...Object.values(userReplies).flat().map((r) => r.id),
@@ -412,7 +419,7 @@ export default function CommentSection({ comments, postId }: Props) {
       {/* 댓글 입력 */}
       <div className="px-4 md:px-6 py-4 border-b border-black/[0.06]">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-[0.78rem] font-bold">댓글 {list.length}개</span>
+          <span className="text-[0.78rem] font-bold">댓글 {totalCount}개</span>
           {list.length > 1 && (
             <div className="flex gap-1 ml-1">
               {(["등록순", "인기순"] as const).map((s) => (

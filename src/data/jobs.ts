@@ -15,6 +15,10 @@ export interface Job {
   jobType: JobType;
   tags: string[];
   postedAt: string;
+  /** 지원 마감. 날짜("2026-10-31") 또는 "채용시까지" 같은 자유 문구(파싱 안 되면 상시채용 취급).
+   *  ⚠️ 시드 공고의 날짜는 반드시 게시 시각보다 뒤여야 한다. 시드의 postedAt("1시간 전")은
+   *  lib/format.ts의 고정 기준시각 SEED_EPOCH(2026-07-16)를 기준으로 환산되므로, 그보다 앞선
+   *  날짜를 넣으면 "올리자마자 마감된 공고"가 된다(실제로 3건 모두 '마감'으로 떴다). */
   deadline: string;
   views: number;
   /** 담당자 연락처(이메일 또는 전화번호). 상세 맨 아래에 로그인한 사용자에게만 노출.
@@ -44,7 +48,7 @@ export const JOBS: Job[] = [
     jobType: "정규직",
     tags: ["React Native", "iOS", "Android", "TypeScript"],
     postedAt: "1시간 전",
-    deadline: "2026-06-30",
+    deadline: "2026-10-31",
     views: 1240,
     isNew: true,
     isUrgent: false,
@@ -84,7 +88,7 @@ export const JOBS: Job[] = [
     jobType: "정규직",
     tags: ["한식", "조리사", "요리"],
     postedAt: "5시간 전",
-    deadline: "2026-06-10",
+    deadline: "채용시까지",
     views: 543,
     isNew: false,
     isUrgent: true,
@@ -122,7 +126,7 @@ export const JOBS: Job[] = [
     jobType: "정규직",
     tags: ["Finance", "Bloomberg", "Excel", "CFA"],
     postedAt: "2일 전",
-    deadline: "2026-06-20",
+    deadline: "2026-09-30",
     views: 934,
     isNew: false,
     isUrgent: false,
