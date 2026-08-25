@@ -1,20 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SAMPLE_COMMENTS, type Comment } from "@/data/communityPosts";
+// 예시 댓글 수 계산은 서버 컴포넌트(커뮤니티 상세의 구조화 데이터)도 써야 해서
+// "use client"가 없는 lib/commentCount.ts로 옮겼다. 구현은 그쪽 한 벌뿐이다.
+import { baseCommentCount } from "./commentCount";
 
-// 정적(예시) 댓글 수 — 글별. 답글까지 포함해서 센다.
-// 예전에는 최상위 배열 길이만 셌다. 그래서 글 1은 화면에 말풍선이 6개(최상위 4 + 답글 2)인데
-// 라벨은 "댓글 4개"로 나왔다. 사용자가 세는 것은 화면에 보이는 말풍선 수이므로 답글도 포함한다.
-// 답글은 2단계까지 달릴 수 있어(CommentSection의 depth < 2) 재귀로 센다.
-function countWithReplies(list: Comment[] | undefined): number {
-  if (!list) return 0;
-  return list.reduce((sum, c) => sum + 1 + countWithReplies(c.replies), 0);
-}
-
-export function baseCommentCount(postId: string): number {
-  return countWithReplies(SAMPLE_COMMENTS[postId]);
-}
+export { baseCommentCount };
 
 // 사용자가 추가한 댓글 수(글별) — localStorage 반응형
 export function useUserCommentCounts(): Record<string, number> {
