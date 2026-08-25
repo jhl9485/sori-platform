@@ -2,9 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 import { ToastHost, ConfirmHost, ReportHost } from "@/components/shared/Feedback";
-
-// ⚠️ 실제 배포 도메인으로 교체 필요 (환경변수 NEXT_PUBLIC_SITE_URL 권장)
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://sori-platform.netlify.app";
+// sitemap.ts · robots.ts와 같은 주소를 써야 해서 lib/site.ts 한 곳에서 가져온다.
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

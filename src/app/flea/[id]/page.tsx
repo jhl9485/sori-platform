@@ -1,232 +1,33 @@
-"use client";
+import type { Metadata } from "next";
+import { FLEA_ITEMS } from "@/data/fleaItems";
+import FleaDetailClient from "./FleaDetailClient";
 
-import { notFound } from "next/navigation";
-import PageHeader from "@/components/shared/PageHeader";
-import PhotoCarousel from "@/components/shared/PhotoCarousel";
-import OwnerActions from "@/components/shared/OwnerActions";
-import DetailSkeleton from "@/components/shared/DetailSkeleton";
-import { FLEA_ITEMS, type FleaStatus } from "@/data/fleaItems";
-import { useUserFlea, updateUserItem } from "@/lib/userContent";
-import { useHydrated } from "@/lib/hooks";
-import { toast, confirmDialog } from "@/components/shared/Feedback";
-import DetailActions from "@/components/shared/DetailActions";
-import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
-import { exactTime, resolveISO } from "@/lib/format";
-import { renderInline } from "@/lib/renderMarkdown";
+// 상세 화면 본체는 "use client"라 generateMetadata를 붙일 수 없다(서버 전용 기능).
+// 그래서 이 얇은 서버 페이지가 제목·설명만 만들고, 화면은 클라이언트 쪽에 넘긴다.
+export function generateMetadata({ params }: { params: { id: string } }): Metadata {
+  const item = FLEA_ITEMS.find((f) => f.id === params.id);
+  // 사용자가 올린 물건은 localStorage에만 있어 서버에서 찾을 수 없다.
+  // 못 찾아도 404로 만들지 않고 일반 제목으로 빠진다(화면은 클라이언트가 정상 렌더).
+  if (!item) return { title: "벼룩시장" }; // layout의 template("%s · SORI")이 붙여주므로 여기서 SORI를 또 쓰지 않는다
 
-const conditionColor: Record<string, string> = {
-  "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
-  "최상": "text-[#2050A0] bg-[#EBF0FB]",
-  "상태좋음": "text-[#B07010] bg-[#FBF5E8]",
-  "좋음": "text-[#888070] bg-[#F0EDE8]",
-  "보통": "text-[#888070] bg-[#F0EDE8]",
-};
-
-const FLEA_STATUSES: { id: FleaStatus; label: string; color: string }[] = [
-  { id: "판매중",   label: "판매중",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
-  { id: "예약중",   label: "예약중",   color: "border-[#B07010] bg-[#FBF5E8] text-[#B07010]" },
-  { id: "판매완료", label: "판매완료", color: "border-[#888070] bg-[#F0EDE8] text-[#888070]" },
-];
-
-export default function FleaDetailPage({ params }: { params: { id: string } }) {
-  const hydrated = useHydrated();
-  const userFlea = useUserFlea();
-  const item = userFlea.find((i) => i.id === params.id) || FLEA_ITEMS.find((i) => i.id === params.id);
-  useMarkViewed(VIEW_KEY.flea, item?.id);
-
-  if (!item) {
-    if (!hydrated) return <DetailSkeleton />;
-    return notFound();
-  }
-
-  // 본인 글 여부 — 사용자가 직접 등록한 매물만 상태 변경 가능
-  const isMine = userFlea.some((i) => i.id === params.id);
-  const currentStatus: FleaStatus = item.status || "판매중";
-
-  const changeStatus = async (next: FleaStatus) => {
-    if (!isMine) return;
-    if (next === currentStatus) return;
-    if (!(await confirmDialog({ message: `거래 상태를 "${next}"(으)로 변경할까요?`, confirmText: "변경" }))) return;
-    const ok = updateUserItem<{ id: string; status?: FleaStatus }>("sori_user_flea", params.id, { status: next });
-    if (!ok) toast("상태 변경에 실패했어요. 새로고침 후 다시 시도해주세요.");
-    else toast(`거래 상태를 '${next}'(으)로 변경했어요.`);
+  const title = `${item.title} · ${item.price}`;
+  const description = `${item.price} · ${item.condition} · ${item.category} · ${item.area} · ${item.description}`.slice(0, 150);
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
+}
 
-  // 글꼴 크기가 뉴스·부동산(renderMarkdown)과 달라서 파서를 통째로 합치면 이 화면 모양이 바뀐다.
-  // 그래서 줄 갈래는 그대로 두고, 줄 안쪽 **굵게**를 푸는 조각(renderInline)만 함께 쓴다.
-  // 링크 변환은 원래 없던 동작이라 끄고(false) 굵게만 적용한다 — 지금 모양을 바꾸지 않기 위해서다.
-  const lines = item.description.split("\n").map((line, i) => {
-    if (/^\*\*[^*]+\*\*$/.test(line)) {
-      return <p key={i} className="font-bold text-[0.88rem] mt-3 mb-1">{line.slice(2, -2)}</p>;
-    }
-    if (line.startsWith("- ")) {
-      return <li key={i} className="text-[0.82rem] text-[#181614] ml-4 list-disc leading-relaxed">{renderInline(line.slice(2), false)}</li>;
-    }
-    if (line.trim() === "") return <br key={i} />;
-    return <p key={i} className="text-[0.82rem] text-[#181614] leading-relaxed">{renderInline(line, false)}</p>;
-  });
-
-  return (
-    <div className="max-w-[680px] mx-auto">
-      {/* 좋아요는 지표 줄과 하단 버튼에 있으므로 헤더에는 두지 않는다 */}
-      <PageHeader />
-
-      {/* 이미지 영역 */}
-      <div className="relative">
-        <PhotoCarousel
-          photos={item.photos || []}
-          fallbackEmoji={item.emoji}
-          fallbackBg={item.bg}
-          heightClass="h-[280px]"
-          alt={item.title}
-        />
-        {/* 판매완료면 이미지를 흐리게 덮어 확실히 구분 */}
-        {currentStatus === "판매완료" && (
-          <div className="absolute inset-0 bg-white/55 z-10 flex items-center justify-center">
-            <span className="bg-[#181614]/85 text-white text-[0.95rem] font-bold px-5 py-2 rounded-full">판매완료</span>
-          </div>
-        )}
-        {/* 예약중 배지 */}
-        {currentStatus === "예약중" && (
-          <div className="absolute top-3 left-3 text-[0.72rem] font-bold px-3 py-1 rounded-full z-10 bg-[#B07010] text-white">
-            예약중
-          </div>
-        )}
-      </div>
-
-      {/* 판매완료 안내 배너 */}
-      {currentStatus === "판매완료" && (
-        <div className="bg-[#F0EDE8] border-y border-[#888070]/25 px-4 md:px-6 py-3 flex items-center gap-2">
-          <span className="text-base">✅</span>
-          <span className="text-[0.82rem] font-bold text-[#888070]">이미 판매완료된 물건이에요</span>
-        </div>
-      )}
-
-      {/* 본인 물건이면 수정/삭제 진입점 */}
-      {isMine && (
-        <OwnerActions
-          storageKey="sori_user_flea"
-          itemId={item.id}
-          editHref={`/flea/write?edit=${item.id}`}
-          backHref="/flea"
-          label="내 물건"
-        />
-      )}
-
-      {/* 본인 물건이면 거래 상태 변경 UI */}
-      {isMine && (
-        <div className="bg-[#EBF5F0] border-y border-[#2B7A50]/20 px-4 md:px-6 py-3">
-          <div className="text-[0.72rem] font-bold text-[#2B7A50] mb-2">🔑 내 매물 — 거래 상태를 직접 변경할 수 있어요</div>
-          <div className="grid grid-cols-3 gap-2">
-            {FLEA_STATUSES.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => changeStatus(s.id)}
-                className={`py-2 rounded-[8px] text-[0.78rem] font-bold border-2 transition-all ${
-                  currentStatus === s.id ? s.color : "border-black/[0.08] bg-white text-[#888070]"
-                }`}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* 가격 + 제목 */}
-      <div className="bg-white px-4 md:px-6 py-5">
-        <div className="flex items-start justify-between gap-3 mb-2">
-          {/* 제목이 먼저, 가격이 그다음. 다른 상세 5개와 같은 순서·크기를 쓴다.
-              예전엔 가격(1.3rem)이 제목(0.95rem)보다 커서 제목이 부제처럼 보였다. */}
-          <div>
-            <h1 className="text-[1.1rem] font-bold text-[#181614] leading-snug mb-1">{item.title}</h1>
-            <div className="flex items-center gap-2">
-              <span className="text-[1.3rem] font-bold">{item.price}</span>
-              {item.originalPrice && (
-                <span className="text-[0.88rem] text-[#888070] line-through">{item.originalPrice}</span>
-              )}
-            </div>
-          </div>
-          <span className={`text-[0.72rem] px-2 py-[4px] rounded-lg font-medium flex-shrink-0 ${conditionColor[item.condition]}`}>
-            {item.condition}
-          </span>
-        </div>
-
-        {/* 메타 */}
-        <div className="flex items-center gap-3 text-[0.72rem] text-[#888070] mt-3">
-          <span>📍 {item.location}</span>
-          <span suppressHydrationWarning>{exactTime(resolveISO(item.createdAt, item.time)) || item.time}</span>
-        </div>
-
-        {/* 액션 바 — 모든 카테고리 공통 배치 */}
-        <DetailActions
-          id={item.id}
-          likeKey={LIKE_KEY.flea}
-          viewKey={VIEW_KEY.flea}
-          saveKey={SAVE_KEY.flea}
-          seedLikes={item.likes}
-          seedViews={item.views}
-          shareTitle={item.title}
-          shareText={`${item.price} · ${item.location}`}
-          className="mt-3"
-        />
-
-        {/* 거래 방법 · 협상 가능 여부 — 작성 폼에서 받은 값을 여기서 되돌려준다 */}
-        <div className="flex gap-2 mt-3">
-          {item.canMeet && (
-            <span className="text-[0.72rem] bg-[#EBF0FB] text-[#2050A0] px-2 py-[3px] rounded-full">직거래</span>
-          )}
-          {item.canDeliver && (
-            <span className="text-[0.72rem] bg-[#EBF5F0] text-[#2B7A50] px-2 py-[3px] rounded-full">택배거래</span>
-          )}
-          {item.negotiable && (
-            <span className="text-[0.72rem] bg-[#FBF5E8] text-[#B07010] px-2 py-[3px] rounded-full">협상가능</span>
-          )}
-          {item.isUrgent && (
-            <span className="text-[0.72rem] bg-[#FBEBE8] text-[#D04020] px-2 py-[3px] rounded-full font-medium">급구</span>
-          )}
-        </div>
-      </div>
-
-      {/* 판매자.
-          데이터에 seller·sellerSince·sellerDeals가 있는데 화면에 쓰지 않아
-          "누가 파는 물건인지" 알 수 없었다. */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-4 flex items-center gap-3">
-        <span className="w-10 h-10 rounded-full bg-[#F5F3EE] border border-black/[0.06] flex items-center justify-center text-lg flex-shrink-0">
-          {item.sellerEmoji || "👤"}
-        </span>
-        <div className="min-w-0">
-          <div className="text-[0.85rem] font-bold truncate">{item.seller}</div>
-          {/* 가입 연도·거래 횟수는 확실할 때만 — 둘 다 없으면 줄째로 숨긴다 */}
-          {(item.sellerSince || item.sellerDeals > 0) && (
-            <div className="text-[0.72rem] text-[#888070]">
-              {item.sellerSince && `${item.sellerSince}년부터 활동`}
-              {item.sellerSince && item.sellerDeals > 0 && " · "}
-              {item.sellerDeals > 0 && `거래 ${item.sellerDeals}회`}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* 상품 설명 — 연락 방법도 판매자가 여기에 함께 적는다 */}
-      <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h2 className="text-[0.85rem] font-bold mb-3">상품 설명</h2>
-        <div className="space-y-[2px]">{lines}</div>
-      </div>
-
-      {/* 안전거래 안내 */}
-      <div className="bg-[#FBF5E8] mt-2 px-4 md:px-6 py-4 flex items-start gap-3">
-        <span className="text-lg flex-shrink-0">⚠️</span>
-        <p className="text-[0.75rem] text-[#B07010] leading-relaxed">
-          직거래 시 안전한 공공장소에서 만나세요. 선입금 요구 시 사기 위험이 있습니다.
-          SORI는 거래에 관여하지 않습니다.
-        </p>
-      </div>
-
-      {/* 하단 채팅 버튼은 채팅 기능이 없어 제거했다.
-          좋아요는 위 액션 바에, 연락 방법은 상품 설명에 판매자가 직접 적는다. */}
-
-      <div className="h-4" />
-    </div>
-  );
+export default function Page({ params }: { params: { id: string } }) {
+  return <FleaDetailClient params={params} />;
 }
