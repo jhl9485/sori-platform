@@ -12,6 +12,7 @@ import { toast, confirmDialog } from "@/components/shared/Feedback";
 import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 import { exactTime, resolveISO } from "@/lib/format";
+import { renderInline } from "@/lib/renderMarkdown";
 
 const conditionColor: Record<string, string> = {
   "새상품": "text-[#2B7A50] bg-[#EBF5F0]",
@@ -51,15 +52,18 @@ export default function FleaDetailPage({ params }: { params: { id: string } }) {
     else toast(`거래 상태를 '${next}'(으)로 변경했어요.`);
   };
 
+  // 글꼴 크기가 뉴스·부동산(renderMarkdown)과 달라서 파서를 통째로 합치면 이 화면 모양이 바뀐다.
+  // 그래서 줄 갈래는 그대로 두고, 줄 안쪽 **굵게**를 푸는 조각(renderInline)만 함께 쓴다.
+  // 링크 변환은 원래 없던 동작이라 끄고(false) 굵게만 적용한다 — 지금 모양을 바꾸지 않기 위해서다.
   const lines = item.description.split("\n").map((line, i) => {
-    if (line.startsWith("**") && line.endsWith("**")) {
-      return <p key={i} className="font-bold text-[0.88rem] mt-3 mb-1">{line.replace(/\*\*/g, "")}</p>;
+    if (/^\*\*[^*]+\*\*$/.test(line)) {
+      return <p key={i} className="font-bold text-[0.88rem] mt-3 mb-1">{line.slice(2, -2)}</p>;
     }
     if (line.startsWith("- ")) {
-      return <li key={i} className="text-[0.82rem] text-[#181614] ml-4 list-disc leading-relaxed">{line.slice(2)}</li>;
+      return <li key={i} className="text-[0.82rem] text-[#181614] ml-4 list-disc leading-relaxed">{renderInline(line.slice(2), false)}</li>;
     }
     if (line.trim() === "") return <br key={i} />;
-    return <p key={i} className="text-[0.82rem] text-[#181614] leading-relaxed">{line}</p>;
+    return <p key={i} className="text-[0.82rem] text-[#181614] leading-relaxed">{renderInline(line, false)}</p>;
   });
 
   return (

@@ -6,7 +6,7 @@ import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { JOBS } from "@/data/jobs";
 import { BUSINESSES } from "@/data/businesses";
 import { useUserPosts, useUserJobs, useUserBiz } from "@/lib/userContent";
-import { salaryText } from "@/lib/jobStatus";
+import { salaryText, isJobExpired } from "@/lib/jobStatus";
 import BizReviewCount from "@/components/business/BizReviewCount";
 import { useToggleSet } from "@/lib/storage";
 import { VIEW_KEY } from "@/lib/metrics";
@@ -33,7 +33,13 @@ export default function DesktopRightLists() {
       .slice(0, 3);
   }, [userPosts]);
 
-  const jobsPreview = useMemo(() => [...userJobs, ...JOBS].slice(0, 3), [userJobs]);
+  // 목록(jobs/page.tsx)·검색과 똑같은 규칙으로 만료 공고를 거른다. 1280px 이상에서는 목록과 이
+  // 패널이 한 화면에 같이 보이는데, 여기만 필터가 없어서 목록에서 사라진 공고가 우측에 남았다.
+  // 마감(closed)은 목록도 숨기지 않고 '마감' 표시로 남기므로 여기서도 같이 남긴다.
+  const jobsPreview = useMemo(
+    () => [...userJobs, ...JOBS].filter((job) => !isJobExpired(job.deadline)).slice(0, 3),
+    [userJobs],
+  );
 
   const bizPreview = useMemo(() => {
     // 최근 등록순(사용자 업소 → 시드). 업소가 쌓이면(약 50개↑) 조회수순으로 변경 예정.

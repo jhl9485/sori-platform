@@ -13,6 +13,7 @@ import DetailActions from "@/components/shared/DetailActions";
 import { LIKE_KEY, VIEW_KEY, SAVE_KEY, useMarkViewed } from "@/lib/metrics";
 import { exactTime, resolveISO } from "@/lib/format";
 import { renderMarkdown } from "@/lib/renderMarkdown";
+import { availableFromText } from "@/lib/realtyStatus";
 
 const REALTY_STATUSES: { id: RealtyStatus; label: string; color: string }[] = [
   { id: "가능",   label: "가능",   color: "border-[#2B7A50] bg-[#EBF5F0] text-[#2B7A50]" },
@@ -181,7 +182,11 @@ export default function RealtyDetailPage({ params }: { params: { id: string } })
           </div>
           <div className="flex justify-between py-3">
             <span className="text-[0.78rem] text-[#888070]">📅 입주 가능</span>
-            <span className="text-[0.82rem] font-medium">{item.availableFrom}</span>
+            {/* 지난 날짜는 화면에서 "즉시 입주 가능"으로 바꿔 보여준다(lib/realtyStatus.ts).
+                현재 시각에 따라 달라지는 값이라 서버/클라 렌더가 어긋날 수 있어 경고를 끈다. */}
+            <span className="text-[0.82rem] font-medium" suppressHydrationWarning>
+              {availableFromText(item.availableFrom, currentStatus)}
+            </span>
           </div>
           <div className="flex justify-between py-3">
             <span className="text-[0.78rem] text-[#888070]">📍 주소</span>
