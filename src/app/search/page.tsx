@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useListRestore } from "@/lib/listRestore";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { BUSINESSES } from "@/data/businesses";
@@ -21,17 +21,31 @@ const MAX_RECENT = 6;
 // 추천 검색어 — 라이브 후 실제 검색량 데이터로 교체 예정(백로그 참고). 인기 순위가 아니므로 순위 번호는 붙이지 않는다.
 const SUGGESTED_SEARCHES = ["OCBC 계좌", "EP 비자", "Tanjong Pagar 맛집", "감자탕", "한국어 강사", "콘도 렌트"];
 
-export default function SearchPage() {
+function SearchPageInner() {
   const router = useRouter();
-  const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("전체");
+  const sp = useSearchParams();
+
+  // 주소의 ?q=·?tab= 을 첫 렌더에서 바로 읽어 초기값으로 쓴다.
+  // 예전엔 검색어를 화면 상태로만 들고 있어서 /search?q=감자탕 으로 들어와도 검색창이 비어 있었다.
+  // 효과(useEffect)가 아니라 초기값으로 넣는 이유: 첫 화면부터 결과가 그려져야
+  // 뒤로가기 스크롤 복원이 되돌릴 내용이 이미 있다.
+  const urlQuery = (sp.get("q") ?? "").trim();
+  const urlTab = sp.get("tab") ?? "";
+  const [query, setQuery] = useState(urlQuery);
+  const [debouncedQuery, setDebouncedQuery] = useState(urlQuery);
+  const [activeTab, setActiveTab] = useState(TABS.includes(urlTab) ? urlTab : "전체");
   const [recent, setRecent] = useState<string[]>([]);
 
   // 검색어·탭·스크롤을 기억한다. 목록 6곳이 쓰는 것과 같은 방식.
   // 이게 없으면 결과 하나를 열어보고 뒤로 올 때마다 검색어를 다시 쳐야 해서
   // 여러 결과를 비교하는 것 자체가 불가능했다.
+  //
+  // 주소 동기화와의 우선순위: 주소에 ?q= 가 있으면 주소가 이긴다.
+  // 세션에 남아 있던 옛 검색어가 공유 링크를 덮어써 링크가 깨지는 것을 막는다.
+  // 주소가 비어 있을 때만 예전처럼 세션 기억이 검색어·탭을 되살린다.
+  // (스크롤 복원은 이 콜백과 무관하게 훅 안에서 항상 동작한다)
   useListRestore("sori_list_search", { query, activeTab }, (st) => {
+    if (urlQuery) return;
     setQuery(st.query);
     setDebouncedQuery(st.query);
     setActiveTab(st.activeTab);
@@ -43,6 +57,25 @@ export default function SearchPage() {
     return () => clearTimeout(t);
   }, [query]);
 
+  // 검색어·탭을 주소에 반영해 공유·북마크가 되게 한다.
+  // 글자마다 주소를 새로 쌓으면 "감자탕"을 치고 나갈 때 뒤로가기를 세 번 눌러야 하므로,
+  // 위의 150ms 디바운스를 통과한 값만 쓰고 replaceState로 현재 이력을 덮어쓴다(이력이 안 쌓인다).
+  // 화면에 결과가 뜨는 조건과 같은 debouncedQuery를 쓰므로,
+  // 결과를 눌러 상세로 들어갈 수 있는 시점엔 주소에 검색어가 이미 들어가 있다.
+  useEffect(() => {
+    const params = new URLSearchParams();
+    const t = debouncedQuery.trim();
+    if (t) params.set("q", t);
+    // 검색어 없는 탭만의 주소는 의미가 없어서 검색어가 있을 때만 붙인다.
+    // 기본 탭("전체")도 붙이지 않는다 — 주소가 지저분해진다.
+    if (t && activeTab !== "전체") params.set("tab", activeTab);
+    const qs = params.toString();
+    const next = qs ? `/search?${qs}` : "/search";
+    if (next !== window.location.pathname + window.location.search) {
+      window.history.replaceState(null, "", next);
+    }
+  }, [debouncedQuery, activeTab]);
+
   useEffect(() => {
     try {
       const raw = localStorage.getItem(RECENT_KEY);
@@ -53,7 +86,16 @@ export default function SearchPage() {
   const pushRecent = (term: string) => {
     const t = term.trim();
     if (!t) return;
-    const next = [t, ...recent.filter((r) => r !== t)].slice(0, MAX_RECENT);
+    // 화면 상태(recent)가 아니라 저장소를 먼저 읽어서 합친다.
+    // 공유 링크(/search?q=…)로 들어오면 검색어가 첫 렌더부터 들어 있어서
+    // 이 함수가 목록을 불러오기 전(recent가 아직 [])에 불릴 수 있고,
+    // 그때 화면 상태만 믿으면 사용자의 기존 최근 검색 기록을 통째로 덮어썼다.
+    let prev: string[] = [];
+    try {
+      const raw = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+      if (Array.isArray(raw)) prev = raw;
+    } catch {}
+    const next = [t, ...prev.filter((r) => r !== t)].slice(0, MAX_RECENT);
     setRecent(next);
     try { localStorage.setItem(RECENT_KEY, JSON.stringify(next)); } catch {}
   };
@@ -384,5 +426,14 @@ export default function SearchPage() {
         </div>
       )}
     </div>
+  );
+}
+
+// useSearchParams를 쓰므로 Suspense 경계가 필요하다 (Next.js App Router 요구사항).
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="max-w-[680px] mx-auto p-6 text-[#888070]">불러오는 중…</div>}>
+      <SearchPageInner />
+    </Suspense>
   );
 }

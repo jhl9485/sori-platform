@@ -11,11 +11,11 @@ const SITE_DESCRIPTION =
 
 // 사이트 전체를 설명하는 구조화 데이터. 검색엔진·AI가 "이 도메인이 무엇인지"를 추측하지 않게 한다.
 //
-// ⚠️ potentialAction(SearchAction)을 일부러 넣지 않았다.
-// SearchAction은 "이 주소로 검색어를 붙이면 사이트 내 검색이 된다"는 약속인데,
-// src/app/search/page.tsx는 useSearchParams를 쓰지 않고 검색어를 화면 상태로만 들고 있다.
-// 즉 /search?q=감자탕 으로 들어가도 검색창이 비어 있다 — 지금은 사실이 아닌 약속이 된다.
-// 검색 페이지가 ?q= 를 읽도록 고친 뒤에 넣어야 한다(범위 밖이라 손대지 않음).
+// potentialAction(SearchAction) = "이 주소에 검색어를 붙이면 사이트 내 검색이 된다"는 약속.
+// 예전엔 검색 페이지가 검색어를 화면 상태로만 들고 있어서 /search?q=감자탕 으로 들어가도
+// 검색창이 비어 있었고, 그래서 이 약속을 일부러 넣지 않았다.
+// 이제 src/app/search/page.tsx가 useSearchParams로 ?q= 를 읽어 결과를 그리는 것을
+// 브라우저로 확인했으므로(공유 링크 동작 확인 완료) 사실이 된 약속만 넣는다.
 const WEBSITE_JSONLD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -24,6 +24,14 @@ const WEBSITE_JSONLD = {
   url: SITE_URL,
   description: SITE_DESCRIPTION,
   inLanguage: "ko",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 // logo를 넣지 않은 이유: public 폴더가 없고 favicon 말고는 로고 이미지 파일이 실제로 없다.
