@@ -1096,7 +1096,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     isBreaking: true,
     readTime: "3분",
     emoji: "🎫",
-    relatedIds: ["28"],
+    relatedIds: [],
   },
   {
     id: "auto-20260624-2",
@@ -1135,7 +1135,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     isBreaking: true,
     readTime: "3분",
     emoji: "💰",
-    relatedIds: ["28"],
+    relatedIds: [],
   },
   {
     id: "auto-20260624-3",
@@ -1174,7 +1174,7 @@ HarbourFront Centre에서 1992년부터 운영돼 온 국제 페리·크루즈 �
     isBreaking: true,
     readTime: "3분",
     emoji: "🖥️",
-    relatedIds: ["28"],
+    relatedIds: [],
   },
   {
     id: "auto-20260624-4",
@@ -1448,7 +1448,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     isBreaking: false,
     readTime: "2분",
     emoji: "🚆",
-    relatedIds: ["29"],
+    relatedIds: [],
   },
   {
     id: "auto-20260622-2",
@@ -1487,7 +1487,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     isBreaking: true,
     readTime: "3분",
     emoji: "⚠️",
-    relatedIds: ["28"],
+    relatedIds: [],
   },
   {
     id: "auto-20260622-3",
@@ -1526,7 +1526,7 @@ LTA·SBS Transit·SMRT가 공동 발표한 톰슨이스트코스트선(TEL)·다
     isBreaking: false,
     readTime: "3분",
     emoji: "🏢",
-    relatedIds: ["20"],
+    relatedIds: [],
   },
 
   {
@@ -1601,7 +1601,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     isBreaking: false,
     readTime: "2분",
     emoji: "🚇",
-    relatedIds: ["29"],
+    relatedIds: [],
   },
   {
     id: "auto-20260619-1",
@@ -1743,7 +1743,7 @@ LTA(육상교통청)가 서클선(Circle Line) 마지막 구간인 6단계 개�
     isBreaking: true,
     readTime: "3분",
     emoji: "📋",
-    relatedIds: ["17", "21"],
+    relatedIds: [],
   },
   {
     id: "auto-20260620-3",
@@ -1777,7 +1777,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     isBreaking: false,
     readTime: "2분",
     emoji: "📉",
-    relatedIds: ["23"],
+    relatedIds: [],
   },
   {
     id: "auto-20260620-5",
@@ -1815,7 +1815,7 @@ HDB가 2026년 1분기 재판매·임대 시장 통계를 발표했습니다.
     isBreaking: true,
     readTime: "3분",
     emoji: "🚨",
-    relatedIds: ["28"],
+    relatedIds: [],
   },
   {
     id: "19",
