@@ -5,7 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { JobType, VisaType } from "@/data/jobs";
 import { updateUserItem } from "@/lib/userContent";
-import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
+import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
 
 const DRAFT_KEY = "sori_jobs_draft";
 const SAVED_KEY = "sori_user_jobs";
@@ -145,8 +145,16 @@ function JobsWriteInner() {
   }, [hydrated, isEditMode, company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax, salaryNego,
       location, tagsText, contact, deadline, description, requirements, preferred, benefits]);
 
-  // 작성 중 내용이 있으면 새로고침·창닫기 시 경고
-  const confirmLeave = useUnsavedGuard(!!(company || title || description));
+  // 작성 중 내용이 있으면 새로고침·창닫기 시 경고.
+  // 단 수정 모드는 기존 공고를 불러와 열자마자 내용이 있으므로 그 규칙을 쓰면 항상 경고가 떴다.
+  // 수정 모드만 불러온 값과 비교한다. (신규 등록은 종전 규칙 그대로 — 경고가 사라지면 안 된다)
+  const editDirty = useEditDirty(
+    [company, title, jobType, visaSponsored, visaType, salaryMin, salaryMax, salaryNego,
+     location, tagsText, contact, deadline, description,
+     requirements, preferred, benefits],
+    isEditMode && hydrated
+  );
+  const confirmLeave = useUnsavedGuard(isEditMode ? editDirty : !!(company || title || description));
 
   // 연봉은 선택. 협의를 켜거나 비워두면 "협의"로 저장(화면엔 '연봉 협의'로 표시).
   // 한쪽만 적는 사람이 있다. 그대로 이으면 "$72000 ~ $"처럼 뒤가 잘려 보인다.

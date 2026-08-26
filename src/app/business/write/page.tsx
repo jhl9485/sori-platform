@@ -5,7 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
-import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
+import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
 import type { BizCategory, BizCuisine } from "@/data/businesses";
 import { BIZ_CUISINES } from "@/data/businesses";
 
@@ -80,8 +80,17 @@ function BusinessWriteInner() {
   const [tagsInput, setTagsInput] = useState("");
   const [description, setDescription] = useState("");
   const [fullDescription, setFullDescription] = useState("");
-  const confirmLeave = useUnsavedGuard(!!(name || description));
   const [koreanAvailable, setKoreanAvailable] = useState(true);
+
+  // 수정 모드는 기존 업소를 불러오므로 열자마자 내용이 있다 → "내용이 있는가"로 판정하면
+  // 아무것도 안 고쳐도 항상 이탈 경고가 떴다. 수정 모드만 불러온 값과 비교한다.
+  // (신규 등록은 종전 규칙 그대로 — 경고가 사라지면 안 된다)
+  const editDirty = useEditDirty(
+    [photos, category, cuisine, name, area, address, phone, website, openHours,
+     priceRange, tagsInput, description, fullDescription, koreanAvailable],
+    isEditMode && hydrated
+  );
+  const confirmLeave = useUnsavedGuard(isEditMode ? editDirty : !!(name || description));
 
   useEffect(() => {
     try {

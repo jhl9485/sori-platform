@@ -7,6 +7,7 @@ import { useProfile } from "@/lib/profile";
 import { useAuth, useAuthGate, isLoggedIn, useLoginHref } from "@/lib/auth";
 import { useToggleSet } from "@/lib/storage";
 import { relativeTime } from "@/lib/userContent";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 import { toast, confirmDialog, reportDialog } from "@/components/shared/Feedback";
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 
 const STORAGE_KEY = "sori_user_comments";
 const REPLIES_KEY = "sori_user_replies"; // Record<parentCommentId, Comment[]>
+const DRAFTS_KEY = "sori_comment_drafts"; // Record<postId, 쓰다 만 댓글 본문>
 
 function readAll(): Record<string, Comment[]> {
   if (typeof window === "undefined") return {};
@@ -53,6 +55,31 @@ function writeReplies(parentId: string, replies: Comment[]) {
     const all = readAllReplies();
     all[parentId] = replies;
     localStorage.setItem(REPLIES_KEY, JSON.stringify(all));
+  } catch {}
+}
+
+// 쓰다 만 댓글 임시저장 (기-14).
+// 글쓰기 화면과 달리 댓글에는 임시저장이 없어서, 길게 쓰다 다른 화면으로 넘어가면 그냥 사라졌다.
+// 새로고침·창닫기는 아래 useUnsavedGuard가 경고하지만, 앱 안에서의 이동(하단 탭·뒤로가기)은
+// Next.js App Router에서 막을 방법이 없어 경고만으로는 부족하다 → 본문을 글별로 남겨둔다.
+// 댓글은 사진이 없으므로 "사진만 있으면 저장하지 않는다"는 글쓰기 규칙과는 무관하다.
+function readDrafts(): Record<string, string> {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(DRAFTS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeDraft(postId: string, text: string) {
+  if (typeof window === "undefined") return;
+  try {
+    const all = readDrafts();
+    if (text) all[postId] = text;
+    else delete all[postId]; // 비우면 흔적을 남기지 않는다
+    localStorage.setItem(DRAFTS_KEY, JSON.stringify(all));
   } catch {}
 }
 
@@ -315,7 +342,24 @@ export default function CommentSection({ comments, postId }: Props) {
     const all = readAll();
     setUserComments(all[postId] || []);
     setUserReplies(readAllReplies());
+    const draft = readDrafts()[postId];
+    if (draft) setNewComment(draft); // 쓰다 만 댓글 복원
   }, [postId]);
+
+  // 쓰다 만 댓글 저장. 복원 직후 첫 실행은 건너뛴다 —
+  // 복원된 값이 state에 반영되기 전의 빈 문자열로 방금 읽은 초안을 지워버리기 때문이다.
+  const draftSyncedFor = useRef<string | null>(null);
+  useEffect(() => {
+    if (!postId) return;
+    if (draftSyncedFor.current !== postId) {
+      draftSyncedFor.current = postId;
+      return;
+    }
+    writeDraft(postId, newComment);
+  }, [postId, newComment]);
+
+  // 새로고침·탭 닫기 때 경고 (등록 버튼을 누르면 newComment가 비므로 자동으로 풀린다)
+  useUnsavedGuard(!!newComment.trim());
 
   const list = [...comments, ...userComments];
   const displayList = sortBy === "인기순" ? [...list].sort((a, b) => b.likes - a.likes) : list;

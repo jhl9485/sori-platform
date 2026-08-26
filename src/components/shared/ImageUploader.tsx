@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { toast } from "@/components/shared/Feedback";
 
 interface Props {
@@ -41,19 +41,34 @@ function fileToCompressedDataUrl(file: File): Promise<string> {
 
 export default function ImageUploader({ images, onChange, max = DEFAULT_MAX }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
+  // 큰 사진은 압축(리사이즈)에 몇 초가 걸리는데 아무 표시가 없어 멈춘 것처럼 보였다.
+  // 압축이 도는 동안 + 버튼을 "압축 중"으로 바꿔 진행 중임을 알린다.
+  const [busy, setBusy] = useState(false);
 
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
     const remaining = max - images.length;
-    if (remaining <= 0) return;
-    const slice = Array.from(files).slice(0, remaining);
+    // 예전에는 자리가 없거나 초과분이 있으면 말없이 버려서, 고른 사진이 왜 안 올라왔는지 알 수 없었다.
+    if (remaining <= 0) {
+      toast(`사진은 최대 ${max}장까지예요. 먼저 한 장을 지워주세요.`);
+      return;
+    }
+    const picked = Array.from(files);
+    const slice = picked.slice(0, remaining);
+    const dropped = picked.length - slice.length;
 
+    setBusy(true);
     try {
       const newDataUrls = await Promise.all(slice.map(fileToCompressedDataUrl));
       onChange([...images, ...newDataUrls]);
+      if (dropped > 0) {
+        toast(`사진은 최대 ${max}장까지예요. ${slice.length}장만 올리고 ${dropped}장은 제외했어요.`);
+      }
     } catch (err) {
       console.error(err);
       toast("이미지를 불러오는 데 문제가 생겼어요. 다른 파일로 시도해주세요.");
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -106,7 +121,7 @@ export default function ImageUploader({ images, onChange, max = DEFAULT_MAX }: P
             <button
               key={i}
               type="button"
-              disabled={!isFirstEmpty}
+              disabled={!isFirstEmpty || busy}
               onClick={() => inputRef.current?.click()}
               className={`aspect-square rounded-[10px] flex flex-col items-center justify-center border-2 border-dashed transition-colors ${
                 isFirstEmpty
@@ -114,18 +129,22 @@ export default function ImageUploader({ images, onChange, max = DEFAULT_MAX }: P
                   : "border-black/[0.06] bg-[#F9F8F4] text-[#C0BBB0]"
               }`}
             >
-              <span className="text-xl">📷</span>
+              <span className={`text-xl ${isFirstEmpty && busy ? "animate-pulse" : ""}`}>
+                {isFirstEmpty && busy ? "⏳" : "📷"}
+              </span>
               {isFirstEmpty && (
                 <span className="text-[0.6rem] mt-[2px] font-medium">
-                  {images.length}/{max}
+                  {busy ? "압축 중" : `${images.length}/${max}`}
                 </span>
               )}
             </button>
           );
         })}
       </div>
-      <p className="text-[0.68rem] text-[#888070] mt-2">
-        💡 첫 사진이 대표 이미지가 되어요. 최대 {max}장 · 자동 리사이즈/압축
+      <p className="text-[0.68rem] text-[#888070] mt-2" aria-live="polite">
+        {busy
+          ? "⏳ 사진을 줄이는 중이에요… 잠시만 기다려주세요."
+          : `💡 첫 사진이 대표 이미지가 되어요. 최대 ${max}장 · 자동 리사이즈/압축`}
       </p>
     </div>
   );

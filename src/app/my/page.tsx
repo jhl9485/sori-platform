@@ -18,16 +18,20 @@ import {
   useUserRealty,
   useUserBiz,
   removeUserItem,
+  relativeTime,
 } from "@/lib/userContent";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
 import { toast, confirmDialog, alertDialog } from "@/components/shared/Feedback";
-import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
+import { realCommentCount, useUserCommentCounts, useMyComments, type MyComment } from "@/lib/comments";
 import { toNum } from "@/components/shared/MetricRow";
 
 const TABS = [
   { id: "overview", label: "활동", icon: "📊" },
   { id: "posts",    label: "내 글", icon: "📝" },
+  // 사이드바·서랍의 "내 댓글" 메뉴가 갈 곳이 없어 활동 탭으로 보내고 있었다(기-8).
+  // 메뉴 순서(내가 쓴 글 → 내 댓글 → 저장한 글)와 같게 "내 글" 다음에 둔다.
+  { id: "comments", label: "내 댓글", icon: "💬" },
   { id: "saved",    label: "저장", icon: "🔖" },
   { id: "liked",    label: "좋아요", icon: "❤️" },
   { id: "settings", label: "설정", icon: "⚙️" },
@@ -66,6 +70,7 @@ function MyPageInner() {
   const userJobs = useUserJobs();
   const userRealty = useUserRealty();
   const userBiz = useUserBiz();
+  const myComments = useMyComments();
 
   // 저장/좋아요/도움됨 ID 집합
   const { ids: savedPostIds } = useToggleSet(SAVE_KEY.community);
@@ -236,6 +241,10 @@ function MyPageInner() {
             userRealty={userRealty}
             userBiz={userBiz}
           />
+        )}
+
+        {activeTab === "comments" && (
+          <CommentsTab comments={myComments} userPosts={userPosts} />
         )}
 
         {activeTab === "saved" && (
@@ -545,6 +554,53 @@ function CommunityPostRow({ post }: { post: SavedTabProps["posts"][number] }) {
       sub={`${post.categoryLabel} · ❤️ ${likeCount} · 💬 ${commentCount}`}
       badge={post.time}
     />
+  );
+}
+
+// ── 내 댓글 탭 ──
+// 댓글 저장소(sori_user_comments·sori_user_replies)에는 글 id만 있어서, 어떤 글에 단 댓글인지
+// 제목으로 보여주려면 여기서 되짚어야 한다. 지워진 글이면 "삭제된 글"로 표시하고 링크는 그대로 둔다
+// (글 상세가 "찾을 수 없어요"를 안내하므로 여기서 또 막을 필요는 없다).
+function commentTarget(postId: string, userPosts: ReturnType<typeof useUserPosts>) {
+  if (postId.startsWith("news-")) {
+    const newsId = postId.slice("news-".length);
+    const n = NEWS_ITEMS.find((x) => x.id === newsId);
+    return { href: `/news/${newsId}`, label: n ? `📰 ${n.title}` : "📰 뉴스" };
+  }
+  const p = COMMUNITY_POSTS.find((x) => x.id === postId) || userPosts.find((x) => x.id === postId);
+  return { href: `/community/${postId}`, label: p ? `💬 ${p.title}` : "💬 삭제된 글" };
+}
+
+function CommentsTab({ comments, userPosts }: { comments: MyComment[]; userPosts: ReturnType<typeof useUserPosts> }) {
+  if (comments.length === 0) {
+    return (
+      <EmptyState
+        icon="💬"
+        text="아직 남긴 댓글이 없어요"
+        ctaText="커뮤니티 둘러보기"
+        ctaHref="/community"
+      />
+    );
+  }
+
+  return (
+    <div className="space-y-5">
+      <section className="bg-white rounded-[14px] border border-black/[0.08] p-4">
+        <SectionHeader title="💬 내가 남긴 댓글" count={comments.length} />
+        {comments.map((c) => {
+          const target = commentTarget(c.postId, userPosts);
+          return (
+            <ListLink
+              key={c.id}
+              href={target.href}
+              title={c.content}
+              sub={`${c.isReply ? "답글" : "댓글"} · ${target.label}`}
+              badge={c.createdAt ? relativeTime(c.createdAt) : c.time}
+            />
+          );
+        })}
+      </section>
+    </div>
   );
 }
 

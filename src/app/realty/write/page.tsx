@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { RealtyDeal, RealtyType, RealtyRegion, RealtyStatus } from "@/data/realtyItems";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
-import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
+import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
 
 const DRAFT_KEY = "sori_realty_draft";
 const SAVED_KEY = "sori_user_realty";
@@ -92,7 +92,16 @@ function RealtyWriteInner() {
   const [diplomaticClause, setDiplomaticClause] = useState(false);
   const [amenities, setAmenities] = useState<string[]>([]);
   const [description, setDescription] = useState("");
-  const confirmLeave = useUnsavedGuard(!!(title || description));
+  // 수정 모드는 기존 매물을 불러오므로 열자마자 내용이 있다 → "내용이 있는가"로 판정하면
+  // 아무것도 안 고쳐도 항상 이탈 경고가 떴다. 수정 모드만 불러온 값과 비교한다.
+  // (신규 등록은 종전 규칙 그대로 — 경고가 사라지면 안 된다)
+  const editDirty = useEditDirty(
+    [photos, deal, type, region, title, area, address, mrt, bedrooms, bathrooms,
+     sizeSqft, floor, furnished, price, availableFrom,
+     diplomaticClause, amenities, description],
+    isEditMode && hydrated
+  );
+  const confirmLeave = useUnsavedGuard(isEditMode ? editDirty : !!(title || description));
 
   // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {

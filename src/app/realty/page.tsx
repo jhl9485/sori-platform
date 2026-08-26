@@ -251,7 +251,31 @@ export default function RealtyPage() {
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
           <div className="text-4xl mb-3">🏘️</div>
-          <div className="text-[0.85rem] font-medium">조건에 맞는 매물이 없어요</div>
+          <div className="text-[0.85rem] font-medium mb-1">조건에 맞는 매물이 없어요</div>
+          {/* 빈 화면에서 빠져나갈 길을 준다(기-7).
+              필터·검색 때문에 0건이면 되돌릴 "필터 초기화"가, 원래 아무것도 없으면 "등록"이 다음 행동이다.
+              (초기화 버튼이 위쪽 필터 줄에만 있어 빈 화면에서는 보이지 않았다) */}
+          {activeFilterCount > 0 || searchQuery ? (
+            <>
+              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">필터를 지우면 다른 매물을 볼 수 있어요.</div>
+              <button
+                onClick={resetFilters}
+                className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
+              >
+                🔄 필터 초기화
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 매물을 올려보세요!</div>
+              <Link
+                href="/realty/write"
+                className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
+              >
+                ✏️ 매물 등록
+              </Link>
+            </>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3 pb-8">

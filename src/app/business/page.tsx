@@ -23,6 +23,9 @@ export default function BusinessPage() {
     setSearchQuery(s.searchQuery);
     setVisibleCount(s.visibleCount);
   });
+  // 빈 화면에서 필터를 되돌릴 수 있게(기-7). 위쪽 필터 줄에는 초기화가 없어 여기서 함께 쓴다.
+  const hasFilter = selected !== "all" || cuisine !== "all" || !!searchQuery;
+  const resetFilters = () => { setSelected("all"); setCuisine("all"); setSearchQuery(""); };
   const userBiz = useUserBiz();
   const allBiz = useMemo(() => [...userBiz, ...BUSINESSES], [userBiz]);
   const userIds = useMemo(() => new Set(userBiz.map((u) => u.id)), [userBiz]);
@@ -103,7 +106,31 @@ export default function BusinessPage() {
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
           <div className="text-4xl mb-3">🏪</div>
-          <div className="text-[0.85rem] font-medium">검색 결과가 없어요</div>
+          <div className="text-[0.85rem] font-medium mb-1">
+            {hasFilter ? "검색 결과가 없어요" : "아직 등록된 업소가 없어요"}
+          </div>
+          {/* 빈 화면의 다음 행동(기-7): 검색·필터 때문이면 초기화, 원래 비어 있으면 등록 */}
+          {hasFilter ? (
+            <>
+              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">검색어와 카테고리를 지우면 전체 업소를 볼 수 있어요.</div>
+              <button
+                onClick={resetFilters}
+                className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
+              >
+                🔄 필터 초기화
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 업소를 등록해보세요!</div>
+              <Link
+                href="/business/write"
+                className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
+              >
+                🏪 업소 등록
+              </Link>
+            </>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pb-6">

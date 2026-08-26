@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { confirmDialog } from "@/components/shared/Feedback";
 
 /**
@@ -42,4 +42,39 @@ export function useUnsavedGuard(dirty: boolean) {
   }, [dirty]);
 
   return confirmLeave;
+}
+
+// 값 목록이 같은지 비교. 사진 배열(images/photos)·편의시설 배열까지 다루려고 한 겹만 더 들어간다.
+// 사진은 base64라 문자열이 매우 길지만, 바뀌지 않은 사진은 같은 문자열 참조라 비교가 빠르다.
+function sameValues(a: readonly unknown[], b: readonly unknown[]): boolean {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    const x = a[i];
+    const y = b[i];
+    if (Array.isArray(x) && Array.isArray(y)) {
+      if (x.length !== y.length) return false;
+      for (let j = 0; j < x.length; j++) if (x[j] !== y[j]) return false;
+    } else if (x !== y) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * 수정 모드에서 "정말 고친 것이 있는지"를 판정한다.
+ *
+ * 신규 작성은 "내용이 있으면 저장 안 된 변경"이 맞지만, 수정 모드는 기존 글을 불러오므로
+ * 열자마자 내용이 있다 → 같은 규칙을 쓰면 아무것도 안 고치고 ✕를 눌러도 항상 경고가 떴다.
+ * 그래서 불러오기가 끝난 순간(ready)의 값을 기준값으로 붙잡아 두고, 지금 값과 다를 때만 dirty로 본다.
+ *
+ * @param values 폼의 현재 값들 (수정 대상 필드 전부)
+ * @param ready  기존 값 불러오기가 끝났는지. false면 기준값을 잡지 않고 항상 false를 돌려준다.
+ */
+export function useEditDirty(values: readonly unknown[], ready: boolean): boolean {
+  const baseline = useRef<readonly unknown[] | null>(null);
+  if (!ready) return false;
+  // 기준값은 불러오기가 끝난 첫 렌더에서 한 번만 잡는다(useEffect로 잡으면 그 사이 한 프레임이 dirty로 보인다).
+  if (baseline.current === null) baseline.current = values;
+  return !sameValues(values, baseline.current);
 }

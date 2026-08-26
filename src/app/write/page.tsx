@@ -7,7 +7,7 @@ import { CATEGORIES } from "@/data/categories";
 import type { VisaBadge } from "@/data/communityPosts";
 import { updateUserItem } from "@/lib/userContent";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
-import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
+import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
 import ImageUploader from "@/components/shared/ImageUploader";
 
 const DRAFT_KEY = "sori_write_draft";
@@ -59,7 +59,6 @@ function WriteInner() {
   const [selectedCat, setSelectedCat] = useState(presetCat);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const confirmLeave = useUnsavedGuard(!!(title || content));
   const [isAnon, setIsAnon] = useState(false);
   const [tagsInput, setTagsInput] = useState("");
   const [visaBadge, setVisaBadge] = useState<VisaBadge>(null);
@@ -67,6 +66,15 @@ function WriteInner() {
   const [showCatPicker, setShowCatPicker] = useState(false);
   const [restored, setRestored] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+
+  // 수정 모드는 기존 글을 불러오므로 열자마자 내용이 있다 → "내용이 있는가"로 판정하면
+  // 아무것도 안 고쳐도 항상 이탈 경고가 떴다. 수정 모드만 불러온 값과 비교하고,
+  // 신규 작성은 종전대로 내용 유무로 판정한다(신규 경고는 그대로 살아 있어야 한다).
+  const editDirty = useEditDirty(
+    [selectedCat, title, content, isAnon, tagsInput, visaBadge, images],
+    isEditMode && hydrated
+  );
+  const confirmLeave = useUnsavedGuard(isEditMode ? editDirty : !!(title || content));
 
   useEffect(() => {
     try {

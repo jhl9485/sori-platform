@@ -37,6 +37,9 @@ export default function FleaPage() {
     return true;
   }).sort((a, b) => timeSortKey(b.createdAt, b.time) - timeSortKey(a.createdAt, a.time)), [allItems, selectedCat, q]);
   const userIds = useMemo(() => new Set(userFlea.map((u) => u.id)), [userFlea]);
+  // 빈 화면에서 필터를 되돌릴 수 있게(기-7)
+  const hasFilter = selectedCat !== "전체" || !!searchQuery;
+  const resetFilters = () => { setSelectedCat("전체"); setSearchQuery(""); };
 
   return (
     <div className="max-w-[900px] mx-auto px-4 md:px-6">
@@ -77,9 +80,31 @@ export default function FleaPage() {
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
           <div className="text-4xl mb-3">🛍️</div>
-          <div className="text-[0.85rem] font-medium">
-            {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "이 카테고리엔 아직 물건이 없어요"}
+          <div className="text-[0.85rem] font-medium mb-1">
+            {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : hasFilter ? "이 카테고리엔 아직 물건이 없어요" : "아직 올라온 물건이 없어요"}
           </div>
+          {/* 빈 화면의 다음 행동(기-7): 검색·카테고리 때문이면 초기화, 원래 비어 있으면 등록 */}
+          {hasFilter ? (
+            <>
+              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">검색어와 카테고리를 지우면 전체 물건을 볼 수 있어요.</div>
+              <button
+                onClick={resetFilters}
+                className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
+              >
+                🔄 필터 초기화
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 물건을 올려보세요!</div>
+              <Link
+                href="/flea/write"
+                className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
+              >
+                📸 물건 등록
+              </Link>
+            </>
+          )}
         </div>
       ) : (
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pb-6">

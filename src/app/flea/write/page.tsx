@@ -5,7 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
-import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
+import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
 import type { FleaStatus } from "@/data/fleaItems";
 
 const DRAFT_KEY = "sori_flea_draft";
@@ -70,7 +70,15 @@ function FleaWriteInner() {
   const [canMeet, setCanMeet] = useState(true);
   const [canDeliver, setCanDeliver] = useState(false);
   const [description, setDescription] = useState("");
-  const confirmLeave = useUnsavedGuard(!!(title || description));
+  // 수정 모드는 기존 물건을 불러오므로 열자마자 내용이 있다 → "내용이 있는가"로 판정하면
+  // 아무것도 안 고쳐도 항상 이탈 경고가 떴다. 수정 모드만 불러온 값과 비교한다.
+  // (신규 등록은 종전 규칙 그대로 — 경고가 사라지면 안 된다)
+  const editDirty = useEditDirty(
+    [photos, category, title, price, originalPrice, negotiable, condition,
+     area, canMeet, canDeliver, description],
+    isEditMode && hydrated
+  );
+  const confirmLeave = useUnsavedGuard(isEditMode ? editDirty : !!(title || description));
 
   // 임시저장 복원 또는 수정 모드 로드
   useEffect(() => {
