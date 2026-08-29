@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
 import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
+import MissingFieldsHint from "@/components/shared/MissingFieldsHint";
 import type { FleaStatus } from "@/data/fleaItems";
 
 const DRAFT_KEY = "sori_flea_draft";
@@ -157,7 +158,16 @@ function FleaWriteInner() {
     }
   }, [hydrated, isEditMode, photos, category, title, price, originalPrice, negotiable, condition, area, canMeet, canDeliver, description]);
 
-  const canSubmit = category && title.trim() && price.trim() && description.trim();
+  // 등록 버튼이 왜 잠겨 있는지 알려주려면 "무엇이 비었는지"부터 알아야 한다(기-27).
+  // 폼에 보이는 순서(1 제목 → 3 카테고리 → 4 가격 → 8 설명)대로 담고,
+  // canSubmit을 여기서 끌어내 둘이 어긋날 수 없게 한다(조건 자체는 종전과 동일).
+  const missing = [
+    !title.trim() && "제목",
+    !category && "카테고리",
+    !price.trim() && "가격",
+    !description.trim() && "상품 설명과 연락 방법",
+  ].filter(Boolean) as string[];
+  const canSubmit = missing.length === 0;
 
   const submit = () => {
     if (!canSubmit) return;
@@ -250,6 +260,8 @@ function FleaWriteInner() {
           {isEditMode ? "수정" : "등록"}
         </button>
       </div>
+
+      <MissingFieldsHint missing={missing} />
 
       {restored && (
         <div className="mx-4 mt-3 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-2 flex items-center gap-2">

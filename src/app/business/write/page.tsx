@@ -2,10 +2,12 @@
 import { toast } from "@/components/shared/Feedback";
 
 import { useState, useEffect, Suspense } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
 import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
+import MissingFieldsHint from "@/components/shared/MissingFieldsHint";
 import type { BizCategory, BizCuisine } from "@/data/businesses";
 import { BIZ_CUISINES } from "@/data/businesses";
 
@@ -173,7 +175,16 @@ function BusinessWriteInner() {
   // 음식 종류는 '식당'일 때만 저장한다
   const cuisineValue = category === "식당" ? (cuisine || undefined) : undefined;
 
-  const canSubmit = category && name.trim() && area && description.trim();
+  // 등록 버튼이 왜 잠겨 있는지 알려주려면 "무엇이 비었는지"부터 알아야 한다(기-27).
+  // 폼에 보이는 순서(2 업종 → 3 업소명 → 4 위치 → 9 한 줄 소개)대로 담고,
+  // canSubmit을 여기서 끌어내 둘이 어긋날 수 없게 한다(조건 자체는 종전과 동일).
+  const missing = [
+    !category && "업종",
+    !name.trim() && "업소명",
+    !area && "위치",
+    !description.trim() && "한 줄 소개",
+  ].filter(Boolean) as string[];
+  const canSubmit = missing.length === 0;
 
   const submit = () => {
     if (!canSubmit) return;
@@ -273,6 +284,8 @@ function BusinessWriteInner() {
           {isEditMode ? "수정" : "등록"}
         </button>
       </div>
+
+      <MissingFieldsHint missing={missing} />
 
       {restored && (
         <div className="mx-4 mt-3 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-2 flex items-center gap-2">
@@ -506,6 +519,19 @@ function BusinessWriteInner() {
             허위 정보 · 광고성 도배는 사전 고지 없이 삭제될 수 있어요. 실제 사업자만 등록해주세요. 한국어 상담 가능 표시는 검증 후 부여됩니다.
           </p>
         </div>
+
+        {/* 이 화면으로 등록한 업소는 userContent.ts:356에서 verified:false로 저장돼 목록에 "미인증"으로 뜬다.
+            ✓ SORI 인증을 받는 길(/business/apply)은 화면이 이미 있는데 앱 어디에도 링크가 없어서
+            사장님이 주소를 직접 치지 않는 한 찾을 수 없었다(기-24). 등록 직전이 그 안내가 가장 필요한 자리다. */}
+        <Link
+          href="/business/apply"
+          className="flex items-center justify-between gap-2 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-[10px] hover:bg-[#DFE8F8] transition-colors"
+        >
+          <span className="text-[0.75rem] text-[#2050A0] leading-relaxed">
+            <strong>✓ SORI 인증</strong>은 어떻게 받나요? — 여기서 등록한 업소는 <strong>미인증</strong>으로 표시돼요
+          </span>
+          <span className="text-[#2050A0] text-sm flex-shrink-0">›</span>
+        </Link>
 
         {hydrated && (name || description) && (
           <div className="text-center text-[0.7rem] text-[#C0BBB0]">💾 자동 저장 중</div>

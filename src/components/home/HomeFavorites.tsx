@@ -8,9 +8,15 @@ export default function HomeFavorites() {
   const { favIds, favItems, save } = useFavorites();
   const [editing, setEditing] = useState(false);
 
+  // 마지막 1개는 뺄 수 없다. 0개로 저장하면 favorites.ts:52가 빈 목록을 기본값 8개로 되돌려서
+  // "지웠는데 8개가 도로 생기는" 더 이상한 일이 벌어지기 때문이다.
+  // 종전에는 그냥 return이라 눌러도 아무 일이 없었고, 사용자는 버튼이 고장 난 줄 알았다(기-30).
+  // 최대 개수 쪽(아래 maxed)과 똑같이 "눌리지 않는 표시 + 이유 한 줄"로 맞춘다.
+  const atMin = favIds.length <= 1;
+
   const toggle = (id: string) => {
     if (favIds.includes(id)) {
-      if (favIds.length <= 1) return;
+      if (atMin) return;
       save(favIds.filter((f) => f !== id));
     } else {
       if (favIds.length >= MAX_FAV) return;
@@ -39,11 +45,13 @@ export default function HomeFavorites() {
           {ALL_FAV_ITEMS.map((item) => {
             const selected = favIds.includes(item.id);
             const maxed = favIds.length >= MAX_FAV && !selected;
+            // 하나 남은 마지막 항목 — 빼려고 눌러도 막히므로 막힌 티를 내준다(기-30).
+            const minLocked = atMin && selected;
             return (
               <button
                 key={item.id}
-                onClick={() => !maxed && toggle(item.id)}
-                className={`flex flex-col items-center gap-[5px] relative ${maxed ? "opacity-40" : ""}`}
+                onClick={() => !maxed && !minLocked && toggle(item.id)}
+                className={`flex flex-col items-center gap-[5px] relative ${maxed || minLocked ? "opacity-40" : ""}`}
               >
                 <div className={`w-[52px] h-[52px] rounded-2xl flex items-center justify-center text-[1.4rem] border-2 transition-all ${item.color} ${selected ? "border-[#D04020]" : "border-transparent"}`}>
                   {item.icon}
@@ -63,6 +71,11 @@ export default function HomeFavorites() {
         {favIds.length >= MAX_FAV && (
           <p className="text-center text-[0.72rem] text-[#888070] mt-3">
             최대 {MAX_FAV}개까지 선택 가능합니다
+          </p>
+        )}
+        {atMin && (
+          <p className="text-center text-[0.72rem] text-[#888070] mt-3">
+            최소 1개는 남겨두세요 — 마지막 하나는 뺄 수 없어요
           </p>
         )}
       </div>

@@ -6,6 +6,7 @@ import { useUnreadCount } from "@/lib/notifications";
 import { useLiveNotifications } from "@/lib/liveNotifications";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
+import { writeTargetFor } from "@/lib/writeTarget";
 
 const NAV = [
   { icon: "🏠", label: "홈",         href: "/" },
@@ -28,6 +29,8 @@ export default function DesktopSidebar() {
   const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const { profile } = useProfile();
   const { isAuthed, hydrated } = useAuth();
+  // 보고 있는 게시판에 맞는 글쓰기 대상 (기-25). MobileDrawer와 같은 규칙을 쓴다.
+  const writeTarget = writeTargetFor(pathname);
 
   return (
     <aside className="fixed top-0 left-0 h-screen w-[240px] bg-[#131211] flex flex-col z-50 select-none">
@@ -120,11 +123,11 @@ export default function DesktopSidebar() {
           )}
         </Link>
         <Link
-          href="/write"
+          href={writeTarget.href}
           className="flex items-center justify-center gap-2 w-full py-[10px] rounded-[10px] bg-[#D04020] text-white text-[0.85rem] font-bold hover:bg-[#B83515] transition-colors"
         >
-          <span>✏️</span>
-          <span>글쓰기</span>
+          <span>{writeTarget.icon}</span>
+          <span>{writeTarget.label}</span>
         </Link>
       </div>
 

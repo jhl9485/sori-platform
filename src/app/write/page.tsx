@@ -9,6 +9,7 @@ import { updateUserItem } from "@/lib/userContent";
 import { toast, confirmDialog } from "@/components/shared/Feedback";
 import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
 import ImageUploader from "@/components/shared/ImageUploader";
+import MissingFieldsHint from "@/components/shared/MissingFieldsHint";
 
 const DRAFT_KEY = "sori_write_draft";
 const POSTS_KEY = "sori_user_posts";
@@ -133,7 +134,15 @@ function WriteInner() {
   }, [selectedCat, title, content, isAnon, tagsInput, visaBadge, images, hydrated, isEditMode]);
 
   const selectedCatData = CATEGORIES.find((c) => c.id === selectedCat);
-  const canSubmit = selectedCat && title.trim().length > 0 && content.trim().length > 0;
+
+  // 등록 버튼이 왜 잠겨 있는지 알려주려면 "무엇이 비었는지"부터 알아야 한다(기-27).
+  // 화면에 보이는 항목 순서대로 담고, canSubmit을 여기서 끌어내 둘이 어긋날 수 없게 한다.
+  const missing = [
+    !selectedCat && "게시판",
+    !title.trim() && "제목",
+    !content.trim() && "내용",
+  ].filter(Boolean) as string[];
+  const canSubmit = missing.length === 0;
 
   const parseTags = (input: string): string[] => {
     return input
@@ -222,6 +231,8 @@ function WriteInner() {
           {isEditMode ? "수정" : "등록"}
         </button>
       </div>
+
+      <MissingFieldsHint missing={missing} />
 
       {restored && (
         <div className="mx-4 mt-3 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-2 flex items-center gap-2">

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { JobType, VisaType } from "@/data/jobs";
 import { updateUserItem } from "@/lib/userContent";
 import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
+import MissingFieldsHint from "@/components/shared/MissingFieldsHint";
 
 const DRAFT_KEY = "sori_jobs_draft";
 const SAVED_KEY = "sori_user_jobs";
@@ -174,8 +175,17 @@ function JobsWriteInner() {
           ? `$${minAmount} 이상`
           : `$${maxAmount} 이하`;
 
-  const canSubmit =
-    company.trim() && title.trim() && location.trim() && description.trim() && contact.trim();
+  // 등록 버튼이 왜 잠겨 있는지 알려주려면 "무엇이 비었는지"부터 알아야 한다(기-27).
+  // 폼에 보이는 순서(1 회사&직무 → 5 근무지 → 7 연락처 → 9 직무 설명)대로 담고,
+  // canSubmit을 여기서 끌어내 둘이 어긋날 수 없게 한다(조건 자체는 종전과 동일).
+  const missing = [
+    !company.trim() && "회사명",
+    !title.trim() && "직무 제목",
+    !location.trim() && "근무지",
+    !contact.trim() && "담당자 연락처",
+    !description.trim() && "직무 설명",
+  ].filter(Boolean) as string[];
+  const canSubmit = missing.length === 0;
 
   // "React, Python, 회계" → ["React", "Python", "회계"] (쉼표·줄바꿈 모두 허용)
   const parsedTags = tagsText.split(/[,\n]/).map((s) => s.trim()).filter(Boolean);
@@ -259,6 +269,8 @@ function JobsWriteInner() {
           {isEditMode ? "수정" : "등록"}
         </button>
       </div>
+
+      <MissingFieldsHint missing={missing} />
 
       {restored && (
         <div className="mx-4 mt-3 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] px-3 py-2 flex items-center gap-2">

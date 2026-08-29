@@ -7,6 +7,7 @@ import { useUnreadCount } from "@/lib/notifications";
 import { useLiveNotifications } from "@/lib/liveNotifications";
 import { useProfile } from "@/lib/profile";
 import { useAuth } from "@/lib/auth";
+import { writeTargetFor } from "@/lib/writeTarget";
 
 const NAV = [
   { icon: "🏠", label: "홈",         href: "/" },
@@ -34,6 +35,8 @@ export default function MobileDrawer({ open, onClose }: Props) {
   const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const { profile } = useProfile();
   const { isAuthed, hydrated } = useAuth();
+  // 보고 있는 게시판에 맞는 글쓰기 대상 (기-25). DesktopSidebar와 같은 규칙을 쓴다.
+  const writeTarget = writeTargetFor(pathname);
 
   // 라우트가 바뀌면 자동으로 닫힘
   useEffect(() => {
@@ -154,12 +157,12 @@ export default function MobileDrawer({ open, onClose }: Props) {
         {/* 글쓰기 CTA */}
         <div className="px-4 pb-3">
           <Link
-            href="/write"
+            href={writeTarget.href}
             onClick={onClose}
             className="flex items-center justify-center gap-2 w-full py-[10px] rounded-[10px] bg-[#D04020] text-white text-[0.88rem] font-bold hover:bg-[#B83515] transition-colors"
           >
-            <span className="leading-none">✏️</span>
-            <span>글쓰기</span>
+            <span className="leading-none">{writeTarget.icon}</span>
+            <span>{writeTarget.label}</span>
           </Link>
         </div>
 

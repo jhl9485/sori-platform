@@ -199,6 +199,26 @@ export default function RealtyDetailClient({ params }: { params: { id: string } 
             </div>
           )}
         </div>
+
+        {/* 위쪽 "Diplomatic Clause ✓" 배지만 있고 뜻풀이가 없어서, 모르는 사람은 그냥 지나쳤다(기-26).
+            싱가포르 외국인 임차인에게는 중요한 조건이라 배지와 같은 카드 안에서 한 번 풀어준다.
+            ⚠️ 문구 근거는 프로젝트 안에서만 가져왔다 — data/realtyItems.ts:28의
+            "diplomaticClause: boolean; // 외국인 조기 해지 조항". 계약 조건을 지어내면 안 되므로
+            해지 가능 시점·통보 기간 같은 세부는 쓰지 않고 "확인하세요"로 넘긴다
+            (앱은 이 조항을 true/false 하나로만 저장해서 세부 조건 자체를 갖고 있지 않다). */}
+        {item.diplomaticClause && (
+          <div className="mt-4 bg-[#EBF0FB] border border-[#2050A0]/20 rounded-[10px] p-3">
+            <div className="text-[0.78rem] font-bold text-[#2050A0] mb-1">
+              Diplomatic Clause ✓ 가 뭔가요?
+            </div>
+            <p className="text-[0.74rem] text-[#2050A0]/90 leading-relaxed">
+              <strong>외국인 조기 해지 조항</strong>이에요. 계약 기간이 남아 있어도 중도 해지가 가능한 조건입니다.
+              <br />
+              해지 가능 시점·사전 통보 기간 같은 세부 조건은 계약서마다 다르니,
+              집주인·에이전트에게 직접 확인하세요.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* 매물 설명 — 뉴스와 같은 마크다운 처리. 원문을 그대로 찍으면 **굵게** 별표가 노출된다 */}

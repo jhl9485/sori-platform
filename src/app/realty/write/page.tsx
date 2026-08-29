@@ -7,6 +7,7 @@ import type { RealtyDeal, RealtyType, RealtyRegion, RealtyStatus } from "@/data/
 import ImageUploader from "@/components/shared/ImageUploader";
 import { updateUserItem } from "@/lib/userContent";
 import { useUnsavedGuard, useEditDirty } from "@/lib/useUnsavedGuard";
+import MissingFieldsHint from "@/components/shared/MissingFieldsHint";
 
 const DRAFT_KEY = "sori_realty_draft";
 const SAVED_KEY = "sori_user_realty";
@@ -201,8 +202,19 @@ function RealtyWriteInner() {
     diplomaticClause, amenities, description,
   ]);
 
-  const canSubmit =
-    deal && type && region && title.trim() && area && price.trim() && description.trim();
+  // 등록 버튼이 왜 잠겨 있는지 알려주려면 "무엇이 비었는지"부터 알아야 한다(기-27).
+  // 폼에 보이는 순서(1 제목 → 3 거래유형 → 4 주거타입 → 5 위치 → 8 가격 → 11 설명)대로 담는다.
+  // canSubmit을 여기서 끌어내 둘이 어긋날 수 없게 한다(조건 자체는 종전과 동일).
+  const missing = [
+    !title.trim() && "매물 제목",
+    !deal && "거래 유형",
+    !type && "주거 타입",
+    !region && "지역구분",
+    !area && "동네 / 지구",
+    !price.trim() && "가격",
+    !description.trim() && "매물 설명",
+  ].filter(Boolean) as string[];
+  const canSubmit = missing.length === 0;
 
   const toggleAmenity = (a: string) => {
     setAmenities((prev) =>
@@ -302,6 +314,8 @@ function RealtyWriteInner() {
           {isEditMode ? "수정" : "등록"}
         </button>
       </div>
+
+      <MissingFieldsHint missing={missing} />
 
       {/* 임시저장 복원 알림 */}
       {restored && (
