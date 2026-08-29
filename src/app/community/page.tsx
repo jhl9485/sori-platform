@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef, Suspense } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import FavoritesSection from "@/components/community/FavoritesSection";
@@ -10,6 +10,7 @@ import { COMMUNITY_POSTS } from "@/data/communityPosts";
 import { useUserPosts } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
 import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
+import { confirmDialog } from "@/components/shared/Feedback";
 
 const FEED_TABS = ["최신순", "인기순", "댓글순"] as const;
 type FeedTab = typeof FEED_TABS[number];
@@ -32,7 +33,13 @@ const TOP_TAGS = (() => {
 function CommunityPageInner() {
   const sp = useSearchParams();
   const catFromQuery = sp.get("cat") || "all";
-  const [selectedCategory, setSelectedCategory] = useState(catFromQuery);
+  // 성인은 확인 전에는 절대 초기값으로 들어오면 안 된다.
+  // ?cat=adult로 바로 열면 useState 초기값 단계에서 이미 성인 글이 그려져
+  // 확인창을 띄워도 뒤에 내용이 보이기 때문에, 일단 전체로 시작하고
+  // 아래 동기화 effect가 selectCategory를 거쳐 확인을 받은 뒤에 성인으로 넘긴다.
+  const [selectedCategory, setSelectedCategory] = useState(
+    catFromQuery === "adult" ? "all" : catFromQuery
+  );
   const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -40,10 +47,29 @@ function CommunityPageInner() {
   const userPosts = useUserPosts();
   const userCommentCounts = useUserCommentCounts();
 
+  // 성인 확인창. 원래 CategoryTabs 안에만 있어서 탭을 눌러 들어올 때만 떴고,
+  // 즐겨찾기(하단바·홈)·주소창 직접입력·뒤로가기 복원으로 들어오면 그냥 통과했다.
+  // 카테고리가 실제로 정해지는 곳이 여기 한 곳이므로, 세 입구가 모두 이 함수를 거치게 해
+  // 어디로 들어와도 같은 확인을 받게 한다.
+  const adultOkRef = useRef(false);   // 한 번 확인하면 이 화면에 머무는 동안은 다시 묻지 않는다
+  const askingAdultRef = useRef(false); // 입구 두 곳이 동시에 열리면 확인창이 두 번 뜨는 것을 막는다
+
+  const selectCategory = useCallback(async (id: string) => {
+    if (id === "adult" && !adultOkRef.current) {
+      if (askingAdultRef.current) return;
+      askingAdultRef.current = true;
+      const ok = await confirmDialog({ message: "성인 콘텐츠입니다.\n계속하시겠어요?", confirmText: "계속" });
+      askingAdultRef.current = false;
+      if (!ok) return; // 거절하면 보던 카테고리에 그대로 남는다
+      adultOkRef.current = true;
+    }
+    setSelectedCategory(id);
+  }, []);
+
   // URL의 ?cat= 쿼리가 바뀌면 카테고리 자동 동기화 (BottomNav에서 클릭 시 즉시 반영)
   useEffect(() => {
-    setSelectedCategory(catFromQuery);
-  }, [catFromQuery]);
+    void selectCategory(catFromQuery);
+  }, [catFromQuery, selectCategory]);
 
   useEffect(() => {
     const t = setTimeout(() => setDebouncedSearch(searchQuery), 150);
@@ -61,7 +87,8 @@ function CommunityPageInner() {
         const s = JSON.parse(raw);
         // URL에 ?cat=이 명시돼 있으면 그것을 우선, 없으면 이전에 보던 카테고리 복원
         const cat = catFromQuery !== "all" ? catFromQuery : (s.cat || "all");
-        if (cat && cat !== "all") setSelectedCategory(cat);
+        // 복원값이 성인일 수도 있으므로 여기도 확인을 거친다
+        if (cat && cat !== "all") void selectCategory(cat);
         if (s.feedTab && s.feedTab !== "최신순") setFeedTab(s.feedTab);
         const wasSearching = !!(s.search && String(s.search).trim());
         const sameCat = cat === (s.cat || "all");
@@ -185,7 +212,7 @@ function CommunityPageInner() {
 
       {/* 내 커뮤니티 즐겨찾기 */}
       <div className="px-4 md:px-6">
-        <FavoritesSection onSelect={setSelectedCategory} selectedId={selectedCategory} />
+        <FavoritesSection onSelect={selectCategory} selectedId={selectedCategory} />
       </div>
 
       <div className="h-px bg-black/[0.06] mx-4 md:mx-6 mb-3" />
@@ -194,7 +221,7 @@ function CommunityPageInner() {
       <div className="px-4 md:px-6">
         <CategoryTabs
           selected={selectedCategory}
-          onSelect={setSelectedCategory}
+          onSelect={selectCategory}
           counts={categoryCounts}
           totalCount={allPosts.length}
         />

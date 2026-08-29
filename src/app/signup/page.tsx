@@ -5,11 +5,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth, safeRedirect } from "@/lib/auth";
 import { useProfile } from "@/lib/profile";
+import { PROFILE_VISAS } from "@/data/visas";
 
 const INPUT_CLS =
   "w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.9rem] outline-none placeholder:text-[#C0BBB0] focus:ring-2 focus:ring-[#D04020]/25 transition";
 
-const VISA_OPTIONS = ["EP", "S-Pass", "DP", "PR", "시민권", "WH", "방문", "기타"];
+// 프로필 편집(my)과 같은 질문이므로 목록은 data/visas.ts 한 곳에서 가져온다
+const VISA_OPTIONS = PROFILE_VISAS;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

@@ -116,12 +116,19 @@ export default function JobQuestions({ jobId, isOwner }: { jobId: string; isOwne
                     답변 대기
                   </span>
                 )}
-                <button
-                  onClick={() => handleDelete(q.id)}
-                  className="text-[0.7rem] text-[#888070] hover:text-[#D04020] px-1.5 py-1 rounded-lg hover:bg-[#F5F3EE] transition-colors flex-shrink-0"
-                >
-                  삭제
-                </button>
+                {/* 삭제는 질문을 쓴 본인에게만 보인다 (댓글 CommentSection과 같은 규칙).
+                    이 컴포넌트는 내가 올린 공고에서만 렌더되므로 isOwner가 항상 true라
+                    "공고 주인"은 구분 기준이 될 수 없다 → 작성자 이름으로 가른다.
+                    로그아웃 상태에서도 profile.name은 기본값이 남으므로 isAuthed를 함께 본다.
+                    (이름을 바꾸면 예전 내 질문은 못 지우게 되지만, 남의 글이 지워지는 쪽보다 안전하다.) */}
+                {isAuthed && q.author === profile.name && (
+                  <button
+                    onClick={() => handleDelete(q.id)}
+                    className="text-[0.7rem] text-[#888070] hover:text-[#D04020] px-1.5 py-1 rounded-lg hover:bg-[#F5F3EE] transition-colors flex-shrink-0"
+                  >
+                    삭제
+                  </button>
+                )}
               </div>
               <p className="text-[0.82rem] text-[#181614] leading-relaxed whitespace-pre-line ml-9">{q.content}</p>
 

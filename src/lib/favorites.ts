@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { CATEGORIES } from "@/data/categories";
 
 export interface FavItem {
   id: string;
@@ -20,16 +21,18 @@ export const ALL_FAV_ITEMS: FavItem[] = [
   { id: "jobs",      icon: "💼", label: "구인구직",   href: "/jobs",      color: "bg-[#EBF5F0]" },
   { id: "community", icon: "💬", label: "커뮤니티",   href: "/community", color: "bg-[#F0EDE8]" },
   // 커뮤니티 카테고리 (생활정보·익명·맛집·취업정보·금융/투자·육아·의료·연애·성인)
-  // href에 ?cat= 쿼리를 붙여, 클릭 시 해당 카테고리만 선택된 채로 커뮤니티 페이지 진입
-  { id: "cat_life",      icon: "🏠", label: "생활정보", href: "/community?cat=life",      color: "bg-[#FBF0EC]" },
-  { id: "cat_anon",      icon: "🎭", label: "익명",     href: "/community?cat=anon",      color: "bg-[#F0EDE8]" },
-  { id: "cat_food",      icon: "🍱", label: "맛집",     href: "/community?cat=food",      color: "bg-[#FBF0EC]" },
-  { id: "cat_job",       icon: "💼", label: "취업정보", href: "/community?cat=job",       color: "bg-[#EBF5F0]" },
-  { id: "cat_finance",   icon: "💰", label: "금융/투자", href: "/community?cat=finance",   color: "bg-[#EBF0FB]" },
-  { id: "cat_parenting", icon: "👶", label: "육아",     href: "/community?cat=parenting", color: "bg-[#FFF0F5]" },
-  { id: "cat_medical",   icon: "🏥", label: "의료",     href: "/community?cat=medical",   color: "bg-[#EBF0FB]" },
-  { id: "cat_love",      icon: "💕", label: "연애",     href: "/community?cat=love",      color: "bg-[#FFF0F5]" },
-  { id: "cat_adult",     icon: "🔞", label: "성인",     href: "/community?cat=adult",     color: "bg-[#F0EDE8]" },
+  // 라벨·아이콘·색을 여기에 다시 적으면 data/categories.ts와 두 벌이 되어 조용히 어긋난다.
+  // (커뮤니티 탭에서 이름을 바꿔도 홈 즐겨찾기·하단바에는 반영이 안 되는 식)
+  // → 카테고리 목록은 data/categories.ts 하나만 두고 여기서는 가져다 쓴다.
+  //   id에 cat_ 접두사를 붙이는 이유: 메인 메뉴 id("jobs")와 카테고리 id("job")가 겹치기 때문.
+  //   href에 ?cat= 쿼리를 붙여, 클릭 시 해당 카테고리만 선택된 채로 커뮤니티 페이지 진입
+  ...CATEGORIES.map((c) => ({
+    id: `cat_${c.id}`,
+    icon: c.icon,
+    label: c.label,
+    href: `/community?cat=${c.id}`,
+    color: c.color,
+  })),
 ];
 
 // 기본 노출: 메인 6개 + 자주 쓰는 카테고리 2개

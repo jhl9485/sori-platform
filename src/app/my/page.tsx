@@ -1096,6 +1096,8 @@ function SettingsTab() {
 
 // ── 프로필 편집 모달 ──
 import type { UserProfile } from "@/lib/profile";
+import { PROFILE_VISAS } from "@/data/visas";
+import { useUnsavedGuard } from "@/lib/useUnsavedGuard";
 
 function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; onSave: (p: UserProfile) => void; onClose: () => void }) {
   const [name, setName] = useState(profile.name);
@@ -1103,13 +1105,27 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
   const [yearsInSG, setYearsInSG] = useState(profile.yearsInSG);
   const [area, setArea] = useState(profile.area);
 
-  const VISAS = ["EP", "S-Pass", "DP", "PR", "시민권", "WH", "방문"];
+  // 가입 화면과 같은 질문인데 여기엔 "기타"가 빠져 있어, 가입 때 기타를 고른 사람은
+  // 프로필을 열면 자기 값이 목록에 없었다 → data/visas.ts 한 곳에서 가져온다
+  const VISAS = PROFILE_VISAS;
+
+  // 배경(바깥)을 누르면 고치던 내용이 그냥 사라졌다. 실수로 스치기 쉬운 자리라
+  // 글쓰기 폼과 같은 공용 훅으로 "정말 나갈지" 한 번 묻는다.
+  // 바꾼 게 없으면 confirmLeave()가 바로 true라 예전처럼 조용히 닫힌다.
+  // ✕도 같은 "그냥 닫기"라 함께 막는다. 아래 "취소"는 사용자가 버림을 분명히 고른 것이라 두었다.
+  const dirty =
+    name !== profile.name ||
+    visa !== profile.visa ||
+    yearsInSG !== profile.yearsInSG ||
+    area !== profile.area;
+  const confirmLeave = useUnsavedGuard(dirty);
+  const closeGuarded = async () => { if (await confirmLeave()) onClose(); };
   const AREAS = ["Tanjong Pagar", "Buona Vista", "Orchard", "River Valley", "Clementi", "Bishan", "Marine Parade", "East Coast", "Woodlands", "Bedok", "Marina Bay", "기타"];
 
   return (
     <div
       className="fixed inset-0 z-[100] bg-black/60 flex items-end sm:items-center justify-center sm:px-4 animate-fade-up"
-      onClick={onClose}
+      onClick={closeGuarded}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -1120,7 +1136,7 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
 
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-[1rem] font-bold text-[#181614]">프로필 편집</h2>
-          <button onClick={onClose} className="text-[#888070] hover:text-[#D04020] text-lg leading-none w-8 h-8 flex items-center justify-center -mr-2">✕</button>
+          <button onClick={closeGuarded} className="text-[#888070] hover:text-[#D04020] text-lg leading-none w-8 h-8 flex items-center justify-center -mr-2">✕</button>
         </div>
 
         <div className="space-y-4">
