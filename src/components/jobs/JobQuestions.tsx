@@ -81,7 +81,7 @@ export default function JobQuestions({ jobId, isOwner }: { jobId: string; isOwne
             onChange={(e) => setText(e.target.value.slice(0, MAX))}
             rows={3}
             placeholder="궁금한 점을 남겨보세요. 공고를 올린 분이 답변해요."
-            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+            className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
           <div className="flex items-center justify-between mt-2">
             <span className="text-[0.68rem] text-[#C0BBB0]">{text.length} / {MAX}</span>
@@ -166,7 +166,7 @@ export default function JobQuestions({ jobId, isOwner }: { jobId: string; isOwne
                     rows={3}
                     autoFocus
                     placeholder="답변을 입력하세요."
-                    className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+                    className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-2 text-[0.82rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
                   />
                   <div className="flex justify-end gap-2 mt-1">
                     <button

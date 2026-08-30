@@ -218,7 +218,7 @@ function CommentItem({
             <AutoTextarea
               value={editText}
               onChange={setEditText}
-              className="w-full bg-[#F5F3EE] rounded-[12px] px-3 py-2 text-[0.82rem] outline-none resize-none leading-relaxed"
+              className="w-full bg-[#F5F3EE] rounded-[12px] px-3 py-2 text-[0.82rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 resize-none leading-relaxed"
               autoFocus
             />
             <div className="flex gap-2 mt-1">
@@ -290,7 +290,7 @@ function CommentItem({
                 value={replyText}
                 onChange={setReplyText}
                 placeholder="답글을 입력하세요..."
-                className="flex-1 bg-[#F5F3EE] rounded-[16px] px-3 py-[7px] text-[0.78rem] outline-none resize-none leading-relaxed"
+                className="flex-1 bg-[#F5F3EE] rounded-[16px] px-3 py-[7px] text-[0.78rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 resize-none leading-relaxed"
                 autoFocus
               />
               <button
@@ -504,7 +504,7 @@ export default function CommentSection({ comments, postId }: Props) {
               onChange={setNewComment}
               placeholder="댓글을 입력하세요..."
               maxLength={500}
-              className="flex-1 bg-[#F5F3EE] rounded-[18px] px-4 py-[9px] text-[0.82rem] outline-none min-w-0 resize-none leading-relaxed"
+              className="flex-1 bg-[#F5F3EE] rounded-[18px] px-4 py-[9px] text-[0.82rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 min-w-0 resize-none leading-relaxed"
             />
             <button
               onClick={submitComment}

@@ -94,7 +94,7 @@ export default function BizReviewSection({
               rows={5}
               autoFocus
               placeholder={"직접 다녀온 경험을 적어주세요.\n\n예시:\n- 김치찌개가 한국이랑 거의 같은 맛\n- 점심시간엔 20분 정도 대기\n- 사장님이 한국어로 응대해주셔서 편했어요"}
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
             />
             <div className="flex items-center justify-between mt-2">
               <span className="text-[0.68rem] text-[#C0BBB0]">{text.length} / {MAX}</span>
@@ -183,7 +183,7 @@ export default function BizReviewSection({
                       onChange={(e) => setEditText(e.target.value.slice(0, MAX))}
                       rows={4}
                       autoFocus
-                      className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none placeholder:text-[#C0BBB0] resize-none"
+                      className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
                     />
                     <div className="flex items-center justify-end gap-2 mt-2">
                       <button

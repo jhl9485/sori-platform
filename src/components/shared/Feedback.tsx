@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // ─────────── Toast (인앱 알림) ───────────
 export function toast(message: string) {
@@ -75,17 +75,32 @@ export function ConfirmHost() {
     return () => window.removeEventListener("sori-confirm", h);
   }, []);
 
-  const close = (v: boolean) => {
+  const close = useCallback((v: boolean) => {
     setOpts(null);
     confirmResolver?.(v);
     confirmResolver = null;
-  };
+  }, []);
+
+  // Esc로 닫기 — 배경을 클릭했을 때와 같은 결과(취소)로 맞춘다.
+  // 같은 방식을 MobileDrawer가 이미 쓰고 있다.
+  useEffect(() => {
+    if (!opts) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [opts, close]);
 
   if (!opts) return null;
 
   return (
     <div className="fixed inset-0 z-[130] flex items-center justify-center bg-black/40 px-6" onClick={() => close(false)}>
-      <div className="w-full max-w-[300px] bg-white rounded-[16px] overflow-hidden shadow-xl" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="w-full max-w-[300px] bg-white rounded-[16px] overflow-hidden shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={opts.title || opts.message}
+      >
         <div className="px-5 pt-5 pb-4 text-center">
           {opts.title && <div className="text-[0.95rem] font-bold mb-1">{opts.title}</div>}
           <div className="text-[0.85rem] text-[#3A3630] leading-relaxed whitespace-pre-wrap">{opts.message}</div>
@@ -134,17 +149,31 @@ export function ReportHost() {
     return () => window.removeEventListener("sori-report", h);
   }, []);
 
-  const pick = (reason: string | null) => {
+  const pick = useCallback((reason: string | null) => {
     setOpen(false);
     reportResolver?.(reason);
     reportResolver = null;
-  };
+  }, []);
+
+  // Esc로 닫기 — 배경 클릭·취소 버튼과 같은 결과(선택 안 함)로 맞춘다.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") pick(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, pick]);
 
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-[130] flex items-end sm:items-center justify-center bg-black/40 sm:px-6" onClick={() => pick(null)}>
-      <div className="w-full sm:max-w-[320px] bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="w-full sm:max-w-[320px] bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="신고 사유 선택"
+      >
         <div className="px-5 pt-4 pb-2 text-center">
           <div className="text-[0.95rem] font-bold">신고 사유를 선택해 주세요</div>
           <div className="text-[0.72rem] text-[#888070] mt-1">선택하면 접수되고, 검토 후 조치됩니다.</div>

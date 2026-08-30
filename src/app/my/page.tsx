@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState, useEffect, useCallback } from "react";
+import { Suspense, useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { COMMUNITY_POSTS } from "@/data/communityPosts";
@@ -897,6 +897,19 @@ function SettingsTab() {
   const { privacy, update: updatePrivacy } = usePrivacySettings();
   const allOn = NOTIF_ITEMS.every((it) => settings[it.key]);
 
+  // Esc로 설정 모달 닫기 — 배경 클릭·✕ 버튼과 같은 결과로 맞춘다.
+  // 두 모달은 동시에 열리지 않으므로 한 핸들러에서 같이 닫는다. (MobileDrawer와 같은 방식)
+  useEffect(() => {
+    if (!notifOpen && !privacyOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setNotifOpen(false);
+      setPrivacyOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [notifOpen, privacyOpen]);
+
   const handleMenu = (label: string) => {
     if (label === "알림 설정") { setNotifOpen(true); return; }
     if (label === "개인정보 보호") { setPrivacyOpen(true); return; }
@@ -979,6 +992,9 @@ function SettingsTab() {
           <div
             className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden overflow-y-auto max-h-[88vh] shadow-xl"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="알림 설정"
           >
             <div className="flex items-center justify-between px-4 py-3.5 border-b border-black/[0.06]">
               <span className="text-[0.95rem] font-semibold flex items-center gap-2">🔔 알림 설정</span>
@@ -1031,6 +1047,9 @@ function SettingsTab() {
           <div
             className="w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-2xl overflow-hidden overflow-y-auto max-h-[88vh] shadow-xl"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="개인정보 보호"
           >
             <div className="flex items-center justify-between px-4 py-3.5 border-b border-black/[0.06]">
               <span className="text-[0.95rem] font-semibold flex items-center gap-2">🔒 개인정보 보호</span>
@@ -1119,7 +1138,29 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
     yearsInSG !== profile.yearsInSG ||
     area !== profile.area;
   const confirmLeave = useUnsavedGuard(dirty);
-  const closeGuarded = async () => { if (await confirmLeave()) onClose(); };
+  // "정말 나갈까요?" 확인창이 이미 떠 있는 동안 또 닫기를 요청하면 확인창이 두 번 뜨고,
+  // 먼저 뜬 확인창의 응답 대기가 통째로 버려진다. 그래서 한 번에 하나만 진행시킨다.
+  // (Esc를 눌러 확인창이 떴을 때 Esc를 또 누르는 경우가 정확히 이 상황이다 —
+  //  아래 Esc 핸들러와 확인창 자신의 Esc 핸들러가 같은 키 입력에 함께 반응한다.)
+  const closing = useRef(false);
+  const closeGuarded = useCallback(async () => {
+    if (closing.current) return;
+    closing.current = true;
+    try {
+      if (await confirmLeave()) onClose();
+    } finally {
+      closing.current = false;
+    }
+  }, [confirmLeave, onClose]);
+
+  // Esc로 닫기 — 배경 클릭과 똑같이 closeGuarded를 지난다.
+  // 고치던 내용이 있으면 Esc로도 그냥 닫히지 않고 먼저 확인을 묻는다(9차 규칙과 일치).
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeGuarded(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [closeGuarded]);
+
   const AREAS = ["Tanjong Pagar", "Buona Vista", "Orchard", "River Valley", "Clementi", "Bishan", "Marine Parade", "East Coast", "Woodlands", "Bedok", "Marina Bay", "기타"];
 
   return (
@@ -1130,6 +1171,9 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
       <div
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-t-[20px] sm:rounded-[16px] w-full sm:max-w-[420px] p-5 max-h-[88vh] overflow-y-auto shadow-[0_-8px_30px_rgba(0,0,0,0.15)] sm:shadow-none"
+        role="dialog"
+        aria-modal="true"
+        aria-label="프로필 편집"
       >
         {/* 모바일 grabber */}
         <div className="sm:hidden w-10 h-1 bg-black/[0.12] rounded-full mx-auto mb-3" />
@@ -1147,7 +1191,7 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
               value={name}
               onChange={(e) => setName(e.target.value.slice(0, 12))}
               placeholder="닉네임 (최대 12자)"
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
             />
           </div>
 
@@ -1175,7 +1219,7 @@ function ProfileEditModal({ profile, onSave, onClose }: { profile: UserProfile; 
               value={yearsInSG}
               onChange={(e) => setYearsInSG(e.target.value)}
               placeholder="예: 3년차, 6개월차"
-              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none placeholder:text-[#C0BBB0]"
+              className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
             />
           </div>
 

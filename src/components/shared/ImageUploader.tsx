@@ -104,13 +104,20 @@ export default function ImageUploader({ images, onChange, max = DEFAULT_MAX }: P
                     대표
                   </span>
                 )}
+                {/* 보이는 ✕ 동그라미는 그대로 20×20으로 두고, 누를 수 있는 범위만 36×36으로 넓힌다.
+                    (버튼을 통째로 키우면 사진칸이 64×64뿐이라 사진을 절반 넘게 덮는다.)
+                    바깥 버튼은 top-0 right-0 + p-1이라 안쪽 동그라미가 앉는 자리는 예전 top-1 right-1과 같다.
+                    44×44까지 키우지 않은 이유: 삭제는 되돌릴 수 없는 동작인데 64px 칸에서 44px면
+                    사진 한가운데까지 삭제 영역이 되어 잘못 눌러 지우기 쉬워진다. */}
                 <button
                   type="button"
                   onClick={() => removeAt(i)}
-                  className="absolute top-1 right-1 w-5 h-5 bg-black/70 text-white rounded-full flex items-center justify-center text-[0.65rem] hover:bg-[#D04020]"
+                  className="group absolute top-0 right-0 w-9 h-9 flex items-start justify-end p-1"
                   aria-label={`사진 ${i + 1} 삭제`}
                 >
-                  ✕
+                  <span className="w-5 h-5 bg-black/70 text-white rounded-full flex items-center justify-center text-[0.65rem] group-hover:bg-[#D04020] transition-colors">
+                    ✕
+                  </span>
                 </button>
               </div>
             );

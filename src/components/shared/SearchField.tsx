@@ -15,8 +15,13 @@ interface Props {
  */
 export default function SearchField({ value, onChange, placeholder, onClear, autoFocus, className = "" }: Props) {
   return (
+    // 포커스 표시는 input이 아니라 이 바깥 div에 준다.
+    // input은 bg-transparent에 모서리가 각진 채로 pill 안에 끼어 있어서,
+    // input에 focus:ring을 걸면 돋보기 아이콘 옆에서 시작하는 각진 사각형이
+    // pill의 둥근 테두리를 뚫고 나온다. 바깥 div는 rounded-full이라 링이 pill 모양을 따라간다.
+    // 색·두께는 작성 화면(realty/write 등)에서 쓰는 ring-2 + #D04020/25 를 그대로 쓴다.
     <div
-      className={`flex items-center bg-white border border-black/[0.08] rounded-full px-4 focus-within:border-black/[0.15] transition-colors ${className}`}
+      className={`flex items-center bg-white border border-black/[0.08] rounded-full px-4 focus-within:border-black/[0.15] focus-within:ring-2 focus-within:ring-[#D04020]/25 transition-colors ${className}`}
     >
       <span className="text-[0.9rem] text-[#888070] mr-2 flex-shrink-0 leading-none">🔍</span>
       <input
