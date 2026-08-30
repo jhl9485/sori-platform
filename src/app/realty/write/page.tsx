@@ -340,7 +340,7 @@ function RealtyWriteInner() {
             maxLength={60}
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
-          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{title.length}/60</div>
+          <div className="text-right text-[0.68rem] text-[#6E675C] mt-1">{title.length}/60</div>
         </section>
 
         {/* 2. 사진 */}
@@ -585,7 +585,7 @@ function RealtyWriteInner() {
             placeholder={`매물 강점, 주변 환경, 협상 가능 여부 등 자유롭게 작성해주세요.\n\n예시:\n- 신축 5년차, 깨끗한 상태\n- 한국학교 셔틀 정류장 단지 앞\n- 2년 계약 우대\n- 가구·가전 일체 포함`}
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
-          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">
+          <div className="text-right text-[0.68rem] text-[#6E675C] mt-1">
             {description.length} / 2000
           </div>
         </section>
@@ -599,7 +599,7 @@ function RealtyWriteInner() {
         </div>
 
         {hydrated && (title || description) && (
-          <div className="text-center text-[0.7rem] text-[#C0BBB0]">💾 자동 저장 중</div>
+          <div className="text-center text-[0.7rem] text-[#6E675C]">💾 자동 저장 중</div>
         )}
       </div>
     </div>

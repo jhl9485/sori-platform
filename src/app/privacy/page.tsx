@@ -74,7 +74,7 @@ export default function PrivacyPage() {
               </section>
             ))}
           </div>
-          <p className="text-[0.72rem] text-[#C0BBB0] mt-6 pt-4 border-t border-black/[0.06] leading-relaxed">
+          <p className="text-[0.72rem] text-[#6E675C] mt-6 pt-4 border-t border-black/[0.06] leading-relaxed">
             본 방침은 표준 템플릿을 기반으로 현재 서비스의 데이터 처리 방식을 반영한 것입니다. 정식 출시(서버 도입) 전 법률 검토를 거쳐 최종본을 확정할 예정입니다.
           </p>
         </div>

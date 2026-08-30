@@ -112,7 +112,7 @@ export default function BusinessPage() {
           {/* 빈 화면의 다음 행동(기-7): 검색·필터 때문이면 초기화, 원래 비어 있으면 등록 */}
           {hasFilter ? (
             <>
-              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">검색어와 카테고리를 지우면 전체 업소를 볼 수 있어요.</div>
+              <div className="text-[0.78rem] text-[#6E675C] mb-4">검색어와 카테고리를 지우면 전체 업소를 볼 수 있어요.</div>
               <button
                 onClick={resetFilters}
                 className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
@@ -122,7 +122,7 @@ export default function BusinessPage() {
             </>
           ) : (
             <>
-              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 업소를 등록해보세요!</div>
+              <div className="text-[0.78rem] text-[#6E675C] mb-4">첫 업소를 등록해보세요!</div>
               <Link
                 href="/business/write"
                 className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"

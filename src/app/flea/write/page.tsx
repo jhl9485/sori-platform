@@ -285,7 +285,7 @@ function FleaWriteInner() {
             maxLength={50}
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.88rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
-          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{title.length}/50</div>
+          <div className="text-right text-[0.68rem] text-[#6E675C] mt-1">{title.length}/50</div>
         </section>
 
         {/* 2. 사진 */}
@@ -441,7 +441,7 @@ function FleaWriteInner() {
           <p className="text-[0.68rem] text-[#888070] mt-1">
             💬 SORI에는 아직 채팅이 없어요. 연락받을 방법(왓츠앱·카톡ID·번호)을 꼭 남겨주세요.
           </p>
-          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{description.length} / 2000</div>
+          <div className="text-right text-[0.68rem] text-[#6E675C] mt-1">{description.length} / 2000</div>
         </section>
 
         {/* 안내 */}
@@ -453,7 +453,7 @@ function FleaWriteInner() {
         </div>
 
         {hydrated && (title || description) && (
-          <div className="text-center text-[0.7rem] text-[#C0BBB0]">💾 자동 저장 중</div>
+          <div className="text-center text-[0.7rem] text-[#6E675C]">💾 자동 저장 중</div>
         )}
       </div>
     </div>

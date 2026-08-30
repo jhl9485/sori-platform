@@ -341,7 +341,7 @@ function BusinessWriteInner() {
           {/* 식당이면 음식 종류 선택 (선택) */}
           {category === "식당" && (
             <div className="mt-3">
-              <div className="text-[0.75rem] font-medium text-[#888070] mb-2">음식 종류 <span className="text-[#C0BBB0]">(선택)</span></div>
+              <div className="text-[0.75rem] font-medium text-[#888070] mb-2">음식 종류 <span className="text-[#6E675C]">(선택)</span></div>
               <div className="flex flex-wrap gap-2">
                 {BIZ_CUISINES.map((c) => (
                   <button
@@ -498,7 +498,7 @@ function BusinessWriteInner() {
             placeholder="예: 25년 전통 한식 맛집. 서울에서 직접 공수한 재료만 사용."
             className="w-full bg-[#F5F3EE] rounded-[10px] px-3 py-[10px] text-[0.85rem] outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0]"
           />
-          <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1">{description.length}/80</div>
+          <div className="text-right text-[0.68rem] text-[#6E675C] mt-1">{description.length}/80</div>
         </section>
 
         {/* 10. 상세 설명 */}
@@ -534,7 +534,7 @@ function BusinessWriteInner() {
         </Link>
 
         {hydrated && (name || description) && (
-          <div className="text-center text-[0.7rem] text-[#C0BBB0]">💾 자동 저장 중</div>
+          <div className="text-center text-[0.7rem] text-[#6E675C]">💾 자동 저장 중</div>
         )}
       </div>
     </div>

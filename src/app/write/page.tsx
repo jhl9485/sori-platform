@@ -314,7 +314,7 @@ function WriteInner() {
           maxLength={50}
           className="w-full text-[1rem] font-bold border-b border-black/[0.08] pb-2 outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] bg-transparent"
         />
-        <div className="text-right text-[0.68rem] text-[#C0BBB0] mt-1 mb-3">{title.length}/50</div>
+        <div className="text-right text-[0.68rem] text-[#6E675C] mt-1 mb-3">{title.length}/50</div>
 
         {/* 본문 */}
         <textarea
@@ -360,10 +360,10 @@ function WriteInner() {
         </div>
 
         <div className="flex items-center justify-between mt-3">
-          <span className="text-[0.7rem] text-[#C0BBB0]">
+          <span className="text-[0.7rem] text-[#6E675C]">
             {hydrated && (title || content) ? "💾 자동 저장 중" : ""}
           </span>
-          <span className="text-[0.72rem] text-[#C0BBB0]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+          <span className="text-[0.72rem] text-[#6E675C]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
             {content.length} / 2000
           </span>
         </div>

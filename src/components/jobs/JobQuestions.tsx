@@ -84,7 +84,7 @@ export default function JobQuestions({ jobId, isOwner }: { jobId: string; isOwne
             className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
           />
           <div className="flex items-center justify-between mt-2">
-            <span className="text-[0.68rem] text-[#C0BBB0]">{text.length} / {MAX}</span>
+            <span className="text-[0.68rem] text-[#6E675C]">{text.length} / {MAX}</span>
             <button
               onClick={handleAsk}
               disabled={!text.trim()}

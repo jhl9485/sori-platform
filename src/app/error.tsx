@@ -52,7 +52,7 @@ export default function Error({
 
       {error?.digest && (
         <p
-          className="mt-6 text-[0.65rem] text-[#C0BBB0]"
+          className="mt-6 text-[0.65rem] text-[#6E675C]"
           style={{ fontFamily: "'IBM Plex Mono', monospace" }}
         >
           error_id: {error.digest}

@@ -35,7 +35,7 @@ export default function JobContact({ contact }: { contact?: string }) {
           <div className="text-2xl mb-2">🔒</div>
           <p className="text-[0.8rem] text-[#888070] mb-3 leading-relaxed">
             연락처는 로그인 후 확인할 수 있어요.
-            <span className="block text-[0.7rem] text-[#C0BBB0] mt-1">무분별한 수집·스팸을 막기 위한 조치예요.</span>
+            <span className="block text-[0.7rem] text-[#6E675C] mt-1">무분별한 수집·스팸을 막기 위한 조치예요.</span>
           </p>
           <Link
             href={loginHref}

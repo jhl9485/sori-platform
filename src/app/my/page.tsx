@@ -980,7 +980,7 @@ function SettingsTab() {
       >
         🗑️ 모든 로컬 데이터 초기화
       </button>
-      <div className="text-center mt-4 text-[0.65rem] text-[#C0BBB0]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+      <div className="text-center mt-4 text-[0.65rem] text-[#6E675C]" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
         SORI v1.0.0 · 싱가포르 한인 플랫폼
       </div>
 
@@ -1032,7 +1032,7 @@ function SettingsTab() {
               </div>
             ))}
 
-            <div className="px-4 py-3 text-center text-[0.68rem] text-[#C0BBB0]">
+            <div className="px-4 py-3 text-center text-[0.68rem] text-[#6E675C]">
               설정은 이 기기에 저장돼요. (실제 푸시 발송은 백엔드 연동 후 지원)
             </div>
           </div>
@@ -1103,7 +1103,7 @@ function SettingsTab() {
               <ToggleSwitch on={privacy.activity} onChange={() => updatePrivacy({ activity: !privacy.activity })} label="활동 기록 표시" />
             </div>
 
-            <div className="px-4 py-3 text-center text-[0.68rem] text-[#C0BBB0]">
+            <div className="px-4 py-3 text-center text-[0.68rem] text-[#6E675C]">
               설정은 이 기기에 저장돼요. (실제 반영은 백엔드 연동 후 지원)
             </div>
           </div>

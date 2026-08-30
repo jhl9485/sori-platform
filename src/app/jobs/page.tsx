@@ -109,7 +109,7 @@ export default function JobsPage() {
           {/* 빈 화면의 다음 행동(기-7): 검색·필터 때문이면 초기화, 원래 비어 있으면 등록 */}
           {hasFilter ? (
             <>
-              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">조건을 지우면 다른 공고를 볼 수 있어요.</div>
+              <div className="text-[0.78rem] text-[#6E675C] mb-4">조건을 지우면 다른 공고를 볼 수 있어요.</div>
               <button
                 onClick={resetFilters}
                 className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
@@ -119,7 +119,7 @@ export default function JobsPage() {
             </>
           ) : (
             <>
-              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 공고를 올려보세요!</div>
+              <div className="text-[0.78rem] text-[#6E675C] mb-4">첫 공고를 올려보세요!</div>
               <Link
                 href="/jobs/write"
                 className="bg-[#2B7A50] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#246642] transition-colors"

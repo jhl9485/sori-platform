@@ -12,7 +12,7 @@ export default function DesktopRightPanel() {
         className="flex items-center bg-white border border-black/[0.08] rounded-full px-4 py-[8px] mt-1 hover:border-black/[0.15] transition-colors"
       >
         <span className="text-[0.88rem] text-[#888070] mr-2 leading-none flex-shrink-0">🔍</span>
-        <span className="text-[0.82rem] text-[#C0BBB0]">검색...</span>
+        <span className="text-[0.82rem] text-[#6E675C]">검색...</span>
       </Link>
 
       {/* 실시간 정보 (환율·날씨·MRT) */}
@@ -22,7 +22,7 @@ export default function DesktopRightPanel() {
       <DesktopRightLists />
 
       {/* 푸터 */}
-      <div className="text-[0.63rem] text-[#C0BBB0] leading-relaxed pb-2" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+      <div className="text-[0.63rem] text-[#6E675C] leading-relaxed pb-2" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
         SORI · 싱가포르 한인 커뮤니티<br/>
         © 2026 · All rights reserved
       </div>

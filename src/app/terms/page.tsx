@@ -87,7 +87,7 @@ export default function TermsPage() {
               </section>
             ))}
           </div>
-          <p className="text-[0.72rem] text-[#C0BBB0] mt-6 pt-4 border-t border-black/[0.06] leading-relaxed">
+          <p className="text-[0.72rem] text-[#6E675C] mt-6 pt-4 border-t border-black/[0.06] leading-relaxed">
             본 약관은 싱가포르 한인 커뮤니티 서비스에 맞춘 표준 템플릿입니다. 정식 출시 전 법률 전문가의 검토를 거쳐 최종본을 확정할 예정입니다.
           </p>
         </div>

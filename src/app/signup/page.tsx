@@ -214,7 +214,7 @@ function SignupInner() {
           </Link>
         </p>
 
-        <p className="text-center text-[0.68rem] text-[#C0BBB0] mt-4 leading-relaxed">
+        <p className="text-center text-[0.68rem] text-[#6E675C] mt-4 leading-relaxed">
           데모 버전입니다. 입력하신 정보는 이 기기에만 저장되며,
           <br />
           실제 계정 생성은 백엔드 연동 후 지원돼요.

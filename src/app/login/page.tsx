@@ -107,7 +107,7 @@ function LoginInner() {
 
           <div className="flex items-center gap-3 pt-1">
             <div className="flex-1 h-px bg-black/[0.08]" />
-            <span className="text-[0.72rem] text-[#C0BBB0]">또는</span>
+            <span className="text-[0.72rem] text-[#6E675C]">또는</span>
             <div className="flex-1 h-px bg-black/[0.08]" />
           </div>
 
@@ -134,7 +134,7 @@ function LoginInner() {
           </Link>
         </p>
 
-        <p className="text-center text-[0.68rem] text-[#C0BBB0] mt-4 leading-relaxed">
+        <p className="text-center text-[0.68rem] text-[#6E675C] mt-4 leading-relaxed">
           데모 버전입니다. 실제 인증·비밀번호 확인은 백엔드 연동 후 지원돼요.
         </p>
 

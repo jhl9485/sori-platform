@@ -280,7 +280,7 @@ function CommunityPageInner() {
                 검색 중에는 버튼이 아예 없어 빠져나갈 길이 없었다. */}
             {searchQuery || selectedCategory !== "all" ? (
               <>
-                <div className="text-[0.78rem] text-[#C0BBB0] mb-4">검색어와 카테고리를 지우면 전체 글을 볼 수 있어요.</div>
+                <div className="text-[0.78rem] text-[#6E675C] mb-4">검색어와 카테고리를 지우면 전체 글을 볼 수 있어요.</div>
                 <button
                   onClick={() => { setSearchQuery(""); setSelectedCategory("all"); }}
                   className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
@@ -290,7 +290,7 @@ function CommunityPageInner() {
               </>
             ) : (
               <>
-                <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 글을 남겨서 이야기를 시작해보세요!</div>
+                <div className="text-[0.78rem] text-[#6E675C] mb-4">첫 글을 남겨서 이야기를 시작해보세요!</div>
                 <Link
                   href="/write"
                   className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"

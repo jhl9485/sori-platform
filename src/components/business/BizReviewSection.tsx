@@ -97,7 +97,7 @@ export default function BizReviewSection({
               className="w-full bg-[#F5F3EE] rounded-[10px] px-4 py-3 text-[0.85rem] leading-relaxed outline-none focus:ring-2 focus:ring-[#D04020]/25 placeholder:text-[#C0BBB0] resize-none"
             />
             <div className="flex items-center justify-between mt-2">
-              <span className="text-[0.68rem] text-[#C0BBB0]">{text.length} / {MAX}</span>
+              <span className="text-[0.68rem] text-[#6E675C]">{text.length} / {MAX}</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => { setOpen(false); setText(""); }}
@@ -133,7 +133,7 @@ export default function BizReviewSection({
         <div className="px-4 md:px-6 py-10 text-center">
           <div className="text-3xl mb-2">💬</div>
           <div className="text-[0.85rem] font-medium text-[#888070]">아직 리뷰가 없어요</div>
-          <div className="text-[0.72rem] text-[#C0BBB0] mt-1">첫 리뷰를 남겨보세요</div>
+          <div className="text-[0.72rem] text-[#6E675C] mt-1">첫 리뷰를 남겨보세요</div>
         </div>
       ) : (
         <div className="divide-y divide-black/[0.05]">

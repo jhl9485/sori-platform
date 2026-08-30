@@ -257,7 +257,7 @@ export default function RealtyPage() {
               (초기화 버튼이 위쪽 필터 줄에만 있어 빈 화면에서는 보이지 않았다) */}
           {activeFilterCount > 0 || searchQuery ? (
             <>
-              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">필터를 지우면 다른 매물을 볼 수 있어요.</div>
+              <div className="text-[0.78rem] text-[#6E675C] mb-4">필터를 지우면 다른 매물을 볼 수 있어요.</div>
               <button
                 onClick={resetFilters}
                 className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
@@ -267,7 +267,7 @@ export default function RealtyPage() {
             </>
           ) : (
             <>
-              <div className="text-[0.78rem] text-[#C0BBB0] mb-4">첫 매물을 올려보세요!</div>
+              <div className="text-[0.78rem] text-[#6E675C] mb-4">첫 매물을 올려보세요!</div>
               <Link
                 href="/realty/write"
                 className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"

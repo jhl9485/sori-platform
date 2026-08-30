@@ -542,7 +542,7 @@ function JobsWriteInner() {
         </div>
 
         {hydrated && (company || title || description) && (
-          <div className="text-center text-[0.7rem] text-[#C0BBB0]">💾 자동 저장 중</div>
+          <div className="text-center text-[0.7rem] text-[#6E675C]">💾 자동 저장 중</div>
         )}
       </div>
     </div>
