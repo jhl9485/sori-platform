@@ -132,7 +132,7 @@ export default function ImageUploader({ images, onChange, max = DEFAULT_MAX }: P
               onClick={() => inputRef.current?.click()}
               className={`aspect-square rounded-[10px] flex flex-col items-center justify-center border-2 border-dashed transition-colors ${
                 isFirstEmpty
-                  ? "border-black/[0.15] bg-[#F5F3EE] hover:border-[#D04020] hover:text-[#D04020] text-[#888070]"
+                  ? "border-black/[0.15] bg-[#F5F3EE] hover:border-[#D04020] hover:text-[#D04020] text-[#6E675C]"
                   : "border-black/[0.06] bg-[#F9F8F4] text-[#C0BBB0]"
               }`}
             >

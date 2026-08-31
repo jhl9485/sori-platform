@@ -125,3 +125,24 @@ export function shortPrice(s: string): string {
   }
   return s;
 }
+
+// 마크다운 기호를 걷어낸 "순수 글자"를 만든다.
+//
+// 화면은 renderMarkdown이 **굵게**를 <strong>으로 바꿔 별표가 보이지 않는다(4차에서 고침).
+// 그런데 검색엔진·카톡 미리보기가 읽는 값(JSON-LD description, meta description)은
+// 그냥 문자열이라 그 처리를 못 받는다. 그래서 화면은 멀쩡한데 기계가 읽는 쪽에만
+// **제품 정보** 같은 별표가 그대로 남아 있었다.
+//
+// renderInline과 같은 규칙을 쓴다: 짝이 맞는 **...**만 벗기고, 짝이 없는 별표는
+// 원문 그대로 둔다(원문을 함부로 지우지 않는다).
+//
+// renderMarkdown.tsx에 두지 않은 이유: 그 파일은 "use client"인 Linkify를 가져오는데,
+// 이 함수를 쓰는 곳(flea/[id]/page.tsx)은 서버 컴포넌트라 문자열 하나 때문에
+// 클라이언트 컴포넌트를 딸려 보내게 된다. 여기(순수 문자열 유틸)가 맞는 자리다.
+export function plainFromMarkdown(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1") // 짝이 맞는 굵게만 벗긴다
+    .replace(/^[ \t]*-\s+/gm, "")      // 줄머리 목록 기호("- ")
+    .replace(/\s+/g, " ")              // 줄바꿈·연속 공백을 한 칸으로
+    .trim();
+}

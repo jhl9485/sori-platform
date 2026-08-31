@@ -1,0 +1,335 @@
+"use client";
+
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import FavoritesSection from "@/components/community/FavoritesSection";
+import CategoryTabs from "@/components/community/CategoryTabs";
+import CommunityPostCard from "@/components/community/CommunityPostCard";
+import { COMMUNITY_POSTS } from "@/data/communityPosts";
+import { useUserPosts } from "@/lib/userContent";
+import SearchField from "@/components/shared/SearchField";
+import { realCommentCount, useUserCommentCounts } from "@/lib/comments";
+import { confirmDialog } from "@/components/shared/Feedback";
+
+const FEED_TABS = ["최신순", "인기순", "댓글순"] as const;
+type FeedTab = typeof FEED_TABS[number];
+
+// 공지사항 배너 (실제 서비스 시 관리자 설정)
+const NOTICES: { id: string; emoji: string; text: string; link: string }[] = [];
+
+// 인기 태그 (등장 빈도 상위 8개)
+const TOP_TAGS = (() => {
+  const counts: Record<string, number> = {};
+  for (const p of COMMUNITY_POSTS) {
+    for (const t of p.tags) counts[t] = (counts[t] || 0) + 1;
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([t]) => t);
+})();
+
+// catFromQuery는 서버 페이지(page.tsx)가 주소의 ?cat= 를 읽어 넘겨준다.
+// 예전에는 이 자리에서 useSearchParams()를 썼는데, 그러면 Next.js가 이 페이지의
+// 서버 렌더링을 통째로 포기하고 Suspense fallback("불러오는 중…")만 HTML로 내려보낸다.
+// 그래서 검색엔진이 보는 /community 원문에 글 제목이 한 건도 없었다.
+// prop으로 받으면 첫 렌더부터 값이 있으므로, 아래 성인 확인 초기값 방어와
+// 복원 로직(둘 다 catFromQuery를 첫 렌더에 필요로 한다)은 예전과 똑같이 동작한다.
+export default function CommunityClient({ catFromQuery }: { catFromQuery: string }) {
+  // 성인은 확인 전에는 절대 초기값으로 들어오면 안 된다.
+  // ?cat=adult로 바로 열면 useState 초기값 단계에서 이미 성인 글이 그려져
+  // 확인창을 띄워도 뒤에 내용이 보이기 때문에, 일단 전체로 시작하고
+  // 아래 동기화 effect가 selectCategory를 거쳐 확인을 받은 뒤에 성인으로 넘긴다.
+  const [selectedCategory, setSelectedCategory] = useState(
+    catFromQuery === "adult" ? "all" : catFromQuery
+  );
+  const [feedTab, setFeedTab] = useState<FeedTab>("최신순");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [visibleCount, setVisibleCount] = useState(10);
+  const userPosts = useUserPosts();
+  const userCommentCounts = useUserCommentCounts();
+
+  // 성인 확인창. 원래 CategoryTabs 안에만 있어서 탭을 눌러 들어올 때만 떴고,
+  // 즐겨찾기(하단바·홈)·주소창 직접입력·뒤로가기 복원으로 들어오면 그냥 통과했다.
+  // 카테고리가 실제로 정해지는 곳이 여기 한 곳이므로, 세 입구가 모두 이 함수를 거치게 해
+  // 어디로 들어와도 같은 확인을 받게 한다.
+  const adultOkRef = useRef(false);   // 한 번 확인하면 이 화면에 머무는 동안은 다시 묻지 않는다
+  const askingAdultRef = useRef(false); // 입구 두 곳이 동시에 열리면 확인창이 두 번 뜨는 것을 막는다
+
+  const selectCategory = useCallback(async (id: string) => {
+    if (id === "adult" && !adultOkRef.current) {
+      if (askingAdultRef.current) return;
+      askingAdultRef.current = true;
+      const ok = await confirmDialog({ message: "성인 콘텐츠입니다.\n계속하시겠어요?", confirmText: "계속" });
+      askingAdultRef.current = false;
+      if (!ok) return; // 거절하면 보던 카테고리에 그대로 남는다
+      adultOkRef.current = true;
+    }
+    setSelectedCategory(id);
+  }, []);
+
+  // URL의 ?cat= 쿼리가 바뀌면 카테고리 자동 동기화 (BottomNav에서 클릭 시 즉시 반영)
+  useEffect(() => {
+    void selectCategory(catFromQuery);
+  }, [catFromQuery, selectCategory]);
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(searchQuery), 150);
+    return () => clearTimeout(t);
+  }, [searchQuery]);
+
+  // 복원 완료 여부 (완료 전엔 리셋/저장을 억제해 복원값이 덮어써지지 않게)
+  const restoredRef = useRef(false);
+
+  // 마운트 시: 이전에 보던 카테고리·정렬·더보기·스크롤 복원 (뒤로가기 대응)
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("sori_community_feed");
+      if (raw) {
+        const s = JSON.parse(raw);
+        // URL에 ?cat=이 명시돼 있으면 그것을 우선, 없으면 이전에 보던 카테고리 복원
+        const cat = catFromQuery !== "all" ? catFromQuery : (s.cat || "all");
+        // 복원값이 성인일 수도 있으므로 여기도 확인을 거친다
+        if (cat && cat !== "all") void selectCategory(cat);
+        if (s.feedTab && s.feedTab !== "최신순") setFeedTab(s.feedTab);
+        const wasSearching = !!(s.search && String(s.search).trim());
+        const sameCat = cat === (s.cat || "all");
+        if (!wasSearching && sameCat) {
+          if (typeof s.visibleCount === "number") setVisibleCount(Math.max(10, s.visibleCount));
+          const y = s.y || 0;
+          const doScroll = () => window.scrollTo(0, y);
+          requestAnimationFrame(() => requestAnimationFrame(doScroll));
+          setTimeout(doScroll, 90);
+        }
+      }
+    } catch {}
+    const id = setTimeout(() => { restoredRef.current = true; }, 130);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 사용자가 카테고리/정렬/검색을 바꾸면 더보기 초기화 + 맨 위로 (복원 완료 후에만)
+  useEffect(() => {
+    if (!restoredRef.current) return;
+    setVisibleCount(10);
+    window.scrollTo(0, 0);
+  }, [selectedCategory, debouncedSearch, feedTab]);
+
+  // 현재 뷰 상태(카테고리·정렬·검색·더보기·스크롤) 저장 — 뒤로가기 복원용
+  useEffect(() => {
+    const save = () => {
+      if (!restoredRef.current) return;
+      try {
+        sessionStorage.setItem(
+          "sori_community_feed",
+          JSON.stringify({ y: window.scrollY, visibleCount, cat: selectedCategory, feedTab, search: debouncedSearch })
+        );
+      } catch {}
+    };
+    save();
+    let t: ReturnType<typeof setTimeout>;
+    const onScroll = () => { clearTimeout(t); t = setTimeout(save, 100); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); clearTimeout(t); };
+  }, [visibleCount, selectedCategory, feedTab, debouncedSearch]);
+
+  // 사용자 글 + 정적 글 합치기 (사용자 글이 최상단)
+  const allPosts = useMemo(() => [...userPosts, ...COMMUNITY_POSTS], [userPosts]);
+
+  const categoryCounts = useMemo(() => {
+    return allPosts.reduce<Record<string, number>>((acc, p) => {
+      acc[p.categoryId] = (acc[p.categoryId] || 0) + 1;
+      return acc;
+    }, {});
+  }, [allPosts]);
+
+  const base = useMemo(() => (
+    selectedCategory === "all"
+      ? allPosts
+      : allPosts.filter((p) => p.categoryId === selectedCategory)
+  ), [allPosts, selectedCategory]);
+
+  const q = debouncedSearch.toLowerCase().trim();
+  const searched = useMemo(() => (
+    q
+      ? base.filter((p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.preview.toLowerCase().includes(q) ||
+          p.fullContent.toLowerCase().includes(q) ||
+          p.tags.some((t) => t.toLowerCase().includes(q))
+        )
+      : base
+  ), [q, base]);
+
+  const sorted = useMemo(() => {
+    if (feedTab === "최신순") return searched;
+    const arr = [...searched];
+    if (feedTab === "인기순") {
+      arr.sort((a, b) => parseInt(b.likes.replace(/,/g, "")) - parseInt(a.likes.replace(/,/g, "")));
+    } else if (feedTab === "댓글순") {
+      arr.sort((a, b) => realCommentCount(b.id, userCommentCounts) - realCommentCount(a.id, userCommentCounts));
+    }
+    return arr;
+  }, [searched, feedTab, userCommentCounts]);
+
+  return (
+    <div className="max-w-[680px] mx-auto">
+      {/* 페이지 헤더 */}
+      <div className="px-4 md:px-6 pt-4 md:pt-7 pb-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-[1.2rem] md:text-[1.4rem] font-bold tracking-tight">커뮤니티</h1>
+            {/* 여기에도 개수를 적으면 필터를 걸었을 때 목록 바로 위의 "N개 게시글"과 값이 달라
+                한 화면에 "21개 게시글"과 "3개 게시글"이 동시에 보인다. 개수는 목록 바로 위
+                한 곳에서만 말한다(업소·벼룩·채용·부동산도 같은 방식).
+                전체 개수는 아래 카테고리 탭의 "전체" 칩에 그대로 남아 있다. */}
+            <p className="text-[0.75rem] text-[#888070] mt-[2px]">싱가포르 한인 자유 게시판</p>
+          </div>
+          <Link
+            href="/write"
+            className="bg-[#D04020] text-white text-[0.78rem] font-bold px-3 py-[7px] rounded-[10px] hover:bg-[#B83515] transition-colors"
+          >
+            ✏️ 글쓰기
+          </Link>
+        </div>
+      </div>
+
+      {/* 공지사항 배너 */}
+      {NOTICES.map((notice) => (
+        <Link
+          key={notice.id}
+          href={notice.link}
+          className="mx-4 md:mx-6 mb-3 flex items-center gap-2 bg-[#FBF5E8] border border-[#E8D090] rounded-[10px] px-3 py-[9px] hover:bg-[#F5EDD0] transition-colors"
+        >
+          <span className="text-sm flex-shrink-0">{notice.emoji}</span>
+          <span className="text-[0.78rem] font-medium text-[#B07010] flex-1 line-clamp-1">{notice.text}</span>
+          <span className="text-[#B07010] text-sm flex-shrink-0">›</span>
+        </Link>
+      ))}
+
+      {/* 검색 */}
+      <div className="px-4 md:px-6 pb-3">
+        <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="커뮤니티 검색..." />
+      </div>
+
+      {/* 내 커뮤니티 즐겨찾기 */}
+      <div className="px-4 md:px-6">
+        <FavoritesSection onSelect={selectCategory} selectedId={selectedCategory} />
+      </div>
+
+      <div className="h-px bg-black/[0.06] mx-4 md:mx-6 mb-3" />
+
+      {/* 전체 카테고리 탭 */}
+      <div className="px-4 md:px-6">
+        <CategoryTabs
+          selected={selectedCategory}
+          onSelect={selectCategory}
+          counts={categoryCounts}
+          totalCount={allPosts.length}
+        />
+      </div>
+
+      {/* 인기 태그 */}
+      {TOP_TAGS.length > 0 && (
+        <div className="px-4 md:px-6 pb-3">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[0.7rem] font-bold text-[#888070]">🏷️ 인기 태그</span>
+          </div>
+          <div className="flex flex-wrap gap-[5px]">
+            {TOP_TAGS.map((tag) => (
+              <Link
+                key={tag}
+                href={`/community/tag/${encodeURIComponent(tag)}`}
+                className="text-[0.7rem] rounded-full px-[10px] py-[3px] border bg-white text-[#888070] border-black/[0.08] hover:border-[#D04020] hover:text-[#D04020] transition-colors"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                #{tag}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 피드 정렬 탭 */}
+      <div className="px-4 md:px-6 mb-3 flex items-center justify-between">
+        <div className="flex gap-1">
+          {FEED_TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setFeedTab(tab)}
+              className={`px-3 py-[5px] rounded-full text-[0.75rem] font-medium transition-all ${
+                feedTab === tab ? "bg-[#181614] text-white" : "text-[#888070] hover:text-[#181614]"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+        <span className="text-[0.72rem] text-[#888070]">
+          {sorted.length}개 게시글
+        </span>
+      </div>
+
+      {/* 피드 */}
+      <div className="px-4 md:px-6 pb-6 flex flex-col gap-3">
+        {sorted.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
+            <div className="text-4xl mb-3">{searchQuery ? "🔎" : "✏️"}</div>
+            <div className="text-[0.85rem] font-medium mb-1">
+              {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "이 카테고리엔 아직 글이 없어요"}
+            </div>
+            {/* 다른 목록과 같은 규칙(기-7): 검색·카테고리 때문이면 초기화, 원래 비어 있으면 글쓰기.
+                검색 중에는 버튼이 아예 없어 빠져나갈 길이 없었다. */}
+            {searchQuery || selectedCategory !== "all" ? (
+              <>
+                <div className="text-[0.78rem] text-[#6E675C] mb-4">검색어와 카테고리를 지우면 전체 글을 볼 수 있어요.</div>
+                <button
+                  onClick={() => { setSearchQuery(""); setSelectedCategory("all"); }}
+                  className="bg-[#181614] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-black transition-colors"
+                >
+                  🔄 필터 초기화
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="text-[0.78rem] text-[#6E675C] mb-4">첫 글을 남겨서 이야기를 시작해보세요!</div>
+                <Link
+                  href="/write"
+                  className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
+                >
+                  ✏️ 첫 글 쓰기
+                </Link>
+              </>
+            )}
+          </div>
+        ) : (
+          <>
+            {sorted.slice(0, visibleCount).map((post, i) => (
+              <div key={post.id} style={{ animationDelay: `${i * 0.04}s` }}>
+                <CommunityPostCard post={post} />
+              </div>
+            ))}
+            {sorted.length > visibleCount && (
+              <button
+                onClick={() => setVisibleCount((v) => v + 10)}
+                className="mt-1 py-3 rounded-[12px] border border-black/[0.1] bg-white text-[0.85rem] font-semibold text-[#181614] hover:bg-[#F5F3EE] transition-colors"
+              >
+                더 보기 ({sorted.length - visibleCount}개 남음)
+              </button>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* 글쓰기 플로팅 버튼 */}
+      <Link
+        href="/write"
+        aria-label="글쓰기"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] inline-flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
+      >
+        <span className="block leading-none translate-y-[-1px]">✏️</span>
+      </Link>
+    </div>
+  );
+}

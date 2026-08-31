@@ -3,10 +3,18 @@ import { FLEA_ITEMS, type FleaItem } from "@/data/fleaItems";
 import FleaDetailClient from "./FleaDetailClient";
 import JsonLd from "@/components/shared/JsonLd";
 import { SITE_URL } from "@/lib/site";
+import { plainFromMarkdown } from "@/lib/format";
 
 // 화면 설명과 구조화 데이터 설명이 갈라지지 않게 한 곳에서 만든다.
+//
+// item.description은 마크다운이다(**굵게**, "- " 목록). 화면은 renderMarkdown이 처리해
+// 별표가 안 보이지만(4차), 이 문자열은 JSON-LD description과 meta/og description으로
+// 그대로 나가서 기계가 읽는 쪽에만 "**제품 정보**"처럼 별표가 남아 있었다.
+// 자르기 전에 기호를 먼저 걷어낸다 — 그래야 150자를 별표·줄바꿈으로 낭비하지 않는다.
 function fleaDescription(item: FleaItem): string {
-  return `${item.price} · ${item.condition} · ${item.category} · ${item.area} · ${item.description}`.slice(0, 150);
+  return plainFromMarkdown(
+    `${item.price} · ${item.condition} · ${item.category} · ${item.area} · ${item.description}`
+  ).slice(0, 150);
 }
 
 // 판매 상태 → schema.org ItemAvailability.
