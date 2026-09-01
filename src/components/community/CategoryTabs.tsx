@@ -18,7 +18,10 @@ export default function CategoryTabs({ selected, onSelect, counts, totalCount }:
   // 여기서 또 물으면 탭 클릭 때만 확인창이 두 번 뜨므로, 그대로 넘기기만 한다.
 
   return (
-    <ScrollRow className="gap-0 px-4 pb-3">
+    // 업소·벼룩·채용·부동산·뉴스의 주 필터와 같은 모양(흰 알약 + 옅은 테두리)으로 맞춘다.
+    // 예전에는 테두리도 배경도 없는 맨 글자여서, 고르는 일은 같은데 커뮤니티에서만
+    // 눌리는 것처럼 보이지 않았다. 테두리를 넣으면 칩끼리 선이 붙으므로 gap-0 → gap-2도 함께 준다.
+    <ScrollRow className="gap-2 px-4 pb-3">
       {allTabs.map((tab) => {
         const count = tab.id === "all" ? totalCount : counts?.[tab.id];
         const isActive = selected === tab.id;
@@ -26,8 +29,8 @@ export default function CategoryTabs({ selected, onSelect, counts, totalCount }:
           <button
             key={tab.id}
             onClick={() => onSelect(tab.id)}
-            className={`flex-shrink-0 px-[12px] py-[6px] rounded-full text-[0.78rem] font-medium whitespace-nowrap transition-all flex items-center gap-1 ${
-              isActive ? "bg-[#181614] text-white" : "text-[#888070] hover:text-[#181614]"
+            className={`flex-shrink-0 px-3 py-[5px] rounded-full text-[0.75rem] font-medium whitespace-nowrap border transition-all flex items-center gap-1 ${
+              isActive ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"
             }`}
           >
             <span>{tab.label}{tab.locked && " 🔒"}</span>

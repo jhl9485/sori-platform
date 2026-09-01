@@ -263,7 +263,7 @@ function JobsWriteInner() {
           onClick={submit}
           disabled={!canSubmit}
           className={`text-[0.85rem] font-bold px-3 py-1 rounded-full transition-colors ${
-            canSubmit ? "bg-[#2B7A50] text-white" : "bg-[#F0EDE8] text-[#888070]"
+            canSubmit ? "bg-[#D04020] text-white" : "bg-[#F0EDE8] text-[#888070]"
           }`}
         >
           {isEditMode ? "수정" : "등록"}

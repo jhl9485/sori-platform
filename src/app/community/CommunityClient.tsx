@@ -186,9 +186,14 @@ export default function CommunityClient({ catFromQuery }: { catFromQuery: string
                 전체 개수는 아래 카테고리 탭의 "전체" 칩에 그대로 남아 있다. */}
             <p className="text-[0.75rem] text-[#888070] mt-[2px]">싱가포르 한인 자유 게시판</p>
           </div>
+          {/* 크기는 다른 목록(업소·벼룩·채용·부동산)의 등록 버튼과 같은 0.75rem·py-[6px]로 맞춘다.
+              같은 일을 하는 버튼이 게시판마다 다른 크기로 보일 이유가 없다.
+              자리는 일부러 제목 줄에 둔다 — 아래 "결과 개수 줄"은 이미 정렬 탭(최신순·인기순·댓글순)과
+              개수가 양쪽을 채우고 있어서, 거기에 버튼까지 넣으면 좁은 폭에서 한 줄에 세 덩어리가 된다.
+              뉴스도 제목 줄 오른쪽에 LIVE 배지를 두고 있어 제목 줄을 쓰는 것 자체는 이 앱의 규칙에 어긋나지 않는다. */}
           <Link
             href="/write"
-            className="bg-[#D04020] text-white text-[0.78rem] font-bold px-3 py-[7px] rounded-[10px] hover:bg-[#B83515] transition-colors"
+            className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors"
           >
             ✏️ 글쓰기
           </Link>

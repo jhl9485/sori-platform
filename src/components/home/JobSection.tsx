@@ -52,11 +52,17 @@ function JobCard({ job }: { job: Job }) {
       </div>
       <div className="text-[0.85rem] font-bold mb-[2px] line-clamp-1">{job.title}</div>
       <div className="text-[0.75rem] text-[#888070] mb-2 line-clamp-1">{job.company}</div>
+      {/* 비자·연봉 칩은 예전에 rounded-[6px] + 테두리였다. 같은 비자 정보를 채용 목록·상세는
+          rounded-full에 테두리 없이 그려서, 한 정보가 세 화면에서 세 가지 모양으로 보였다.
+          홈의 다른 칩(즐겨찾기·검색바)도 전부 rounded-full이라 홈 안에서도 이쪽이 다수다.
+          두 방향이 같은 답을 가리키므로 rounded-full로 맞춘다.
+          연봉 칩까지 함께 바꾸는 이유: 한 카드 안에 나란히 붙어 있어 하나만 바꾸면
+          그 자리에서 새로운 어긋남이 생긴다. 색과 글자 크기는 건드리지 않는다. */}
       <div className="flex flex-wrap gap-1">
-        <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#EBF0FB] text-[#2050A0] border-[rgba(32,80,160,0.15)]">
+        <span className="text-[0.68rem] rounded-full px-[7px] py-[2px] bg-[#EBF0FB] text-[#2050A0]">
           {job.visaSponsored ? `${job.visaType} 스폰서` : job.visaType}
         </span>
-        <span className="text-[0.68rem] border rounded-[6px] px-[7px] py-[2px] bg-[#F5F3EE] text-[#888070] border-black/[0.08]">
+        <span className="text-[0.68rem] rounded-full px-[7px] py-[2px] bg-[#F5F3EE] text-[#888070]">
           {salaryText(job.salary)}
         </span>
       </div>

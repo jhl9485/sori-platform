@@ -90,9 +90,13 @@ export default function JobsPage() {
           <span className="font-bold text-[#181614]">{filtered.length}개</span> 공고
         </span>
         <div className="flex items-center gap-2">
+          {/* 등록 버튼은 예전에 초록(#2B7A50)이었다. 하지만 초록은 이 앱에서 "내 것·NEW·가능·인증"
+              같은 상태를 뜻하는 색이지 행동을 부르는 색이 아니다. 업소·벼룩·부동산·커뮤니티의
+              등록 버튼이 전부 주황(#D04020)이라, 채용만 초록이면 같은 동작을 다른 색으로 부르게 된다.
+              비자·연봉 칩과 배지의 초록은 그대로 두고, 누르는 버튼만 주황으로 맞춘다. */}
           <Link
             href="/jobs/write"
-            className="bg-[#2B7A50] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#246642] transition-colors flex items-center gap-1"
+            className="bg-[#D04020] text-white text-[0.75rem] font-bold px-3 py-[6px] rounded-[10px] hover:bg-[#B83515] transition-colors flex items-center gap-1"
           >
             📋 공고 등록
           </Link>
@@ -123,7 +127,7 @@ export default function JobsPage() {
               <div className="text-[0.78rem] text-[#6E675C] mb-4">첫 공고를 올려보세요!</div>
               <Link
                 href="/jobs/write"
-                className="bg-[#2B7A50] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#246642] transition-colors"
+                className="bg-[#D04020] text-white text-[0.8rem] font-bold px-4 py-2 rounded-[10px] hover:bg-[#B83515] transition-colors"
               >
                 📋 공고 등록
               </Link>
@@ -184,7 +188,7 @@ export default function JobsPage() {
 
       <Link
         href="/jobs/write"
-        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#2B7A50] text-white rounded-full shadow-[0_4px_16px_rgba(43,122,80,0.35)] inline-flex items-center justify-center text-xl leading-none z-40 hover:bg-[#246642] hover:scale-105 transition-all"
+        className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] md:bottom-8 right-4 md:right-8 xl:right-[312px] w-12 h-12 bg-[#D04020] text-white rounded-full shadow-[0_4px_16px_rgba(208,64,32,0.35)] inline-flex items-center justify-center text-xl leading-none z-40 hover:bg-[#B83515] hover:scale-105 transition-all"
         aria-label="공고 등록"
       >
         <span className="block leading-none translate-y-[-1px]">📋</span>

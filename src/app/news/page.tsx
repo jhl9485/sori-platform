@@ -71,11 +71,14 @@ export default function NewsPage() {
         <SearchField value={searchQuery} onChange={setSearchQuery} onClear={() => setSearchQuery("")} placeholder="뉴스 검색 (제목·내용·카테고리)..." />
       </div>
 
-      {/* 카테고리 탭 */}
-      <div className="flex gap-0 pb-4 overflow-x-auto scrollbar-hide">
+      {/* 카테고리 탭 — 업소·벼룩·채용·부동산의 주 필터와 같은 모양(흰 알약 + 옅은 테두리)으로 맞춘다.
+          예전에는 테두리도 배경도 없는 맨 글자였다. 고르는 일은 똑같은데 뉴스에서만 눌리는 것처럼
+          보이지 않아, 게시판을 옮겨 다니면 같은 조작을 두 가지로 배우게 된다.
+          테두리를 넣으면 칩끼리 선이 붙으므로 gap-0 → gap-2도 함께 준다. */}
+      <div className="flex gap-2 pb-4 overflow-x-auto scrollbar-hide">
         {NEWS_CATEGORIES.map((cat) => (
           <button key={cat} onClick={() => setSelectedCat(cat)}
-            className={`flex-shrink-0 px-3 py-[5px] rounded-full text-[0.78rem] font-medium whitespace-nowrap transition-all ${selectedCat === cat ? "bg-[#181614] text-white" : "text-[#888070] hover:text-[#181614]"}`}>
+            className={`flex-shrink-0 px-3 py-[5px] rounded-full text-[0.75rem] font-medium whitespace-nowrap border transition-all ${selectedCat === cat ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
             {cat}
           </button>
         ))}
