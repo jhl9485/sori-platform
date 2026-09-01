@@ -142,13 +142,16 @@ export default function BusinessDetailClient({ params }: { params: { id: string 
       {activeTab === "info" ? (
         <div className="bg-white px-4 md:px-6 py-5">
           {/* 설명 */}
-          <h3 className="text-[0.88rem] font-bold mb-2">업소 소개</h3>
+          {/* 제목 단계를 건너뛰지 않는다 — h1 바로 아래는 h2여야 한다.
+              h1 다음에 h3이 오면 화면낭독기가 "중간 단계가 빠졌다"고 읽어 사용자가 길을 잃고,
+              검색엔진도 문서 구조를 잘못 잡는다. 채용·벼룩 상세와 같은 h2 + 0.9rem으로 맞춘다. */}
+          <h2 className="text-[0.9rem] font-bold mb-2">업소 소개</h2>
           <p className="text-[0.82rem] text-[#181614] leading-relaxed whitespace-pre-line mb-5">
             <Linkify text={biz.fullDescription} />
           </p>
 
           {/* 기본 정보 테이블 */}
-          <h3 className="text-[0.88rem] font-bold mb-3">기본 정보</h3>
+          <h2 className="text-[0.9rem] font-bold mb-3">기본 정보</h2>
           <div className="divide-y divide-black/[0.05]">
             {/* 주소 — 탭하면 복사 */}
             <div className="flex gap-3 py-3">

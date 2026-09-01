@@ -210,7 +210,8 @@ export default function FleaDetailClient({ params }: { params: { id: string } })
 
       {/* 상품 설명 — 연락 방법도 판매자가 여기에 함께 적는다 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h2 className="text-[0.85rem] font-bold mb-3">상품 설명</h2>
+        {/* 상세 소제목은 네 게시판(채용·부동산·업소·벼룩) 모두 0.9rem으로 맞춘다 */}
+        <h2 className="text-[0.9rem] font-bold mb-3">상품 설명</h2>
         <div className="space-y-[2px]">{lines}</div>
       </div>
 

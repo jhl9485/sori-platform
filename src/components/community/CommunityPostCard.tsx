@@ -35,8 +35,16 @@ function CommunityPostCardBase({ post }: { post: CommunityPost }) {
   const userCommentCounts = useUserCommentCounts();
   const commentCount = realCommentCount(post.id, userCommentCounts);
 
+  // 여백 p-4(16px): 다른 목록 카드(뉴스·채용·부동산·업소·벼룩)가 모두 p-4라 여기만 14px일 이유가 없다.
+  //
+  // hover 뜨기에 `!`가 붙는 이유 — 이게 없으면 아무 일도 일어나지 않는다(브라우저에서 실측 확인):
+  // animate-fade-up이 `animation-fill-mode: both`라서 애니메이션이 끝난 뒤에도
+  // transform: translateY(0)을 계속 붙들고 있고, CSS 애니메이션은 일반 선언보다 우선순위가 높다.
+  // 그래서 평범한 hover:-translate-y-[1px]는 애니메이션에 밀려 무시된다.
+  // (더 깔끔한 대안은 globals.css의 fill-mode를 both→backwards로 바꾸는 것이지만
+  //  그 클래스는 마이페이지 모달·토스트도 함께 쓰므로 이번 범위 밖으로 두고 팀장에게 보고한다.)
   return (
-    <Link href={`/community/${post.id}`} className={`block rounded-[14px] border p-[14px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-shadow animate-fade-up ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
+    <Link href={`/community/${post.id}`} className={`block rounded-[14px] border p-4 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:!-translate-y-[1px] transition-all animate-fade-up ${read ? "bg-[#FAF8F3] border-black/[0.05]" : "bg-white border-black/[0.08]"}`}>
       {/* 헤더 */}
       <div className="flex items-center gap-2 mb-2">
         <div

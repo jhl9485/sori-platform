@@ -223,7 +223,10 @@ export default function RealtyDetailClient({ params }: { params: { id: string } 
 
       {/* 매물 설명 — 뉴스와 같은 마크다운 처리. 원문을 그대로 찍으면 **굵게** 별표가 노출된다 */}
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h3 className="text-[0.9rem] font-bold mb-3">매물 설명</h3>
+        {/* 제목 단계를 건너뛰지 않는다 — h1 바로 아래는 h2여야 한다.
+            h1 다음에 h3이 오면 화면낭독기가 "중간 단계가 빠졌다"고 읽어 사용자가 길을 잃고,
+            검색엔진도 문서 구조를 잘못 잡는다. 채용·벼룩 상세와 같은 h2로 맞춘다. */}
+        <h2 className="text-[0.9rem] font-bold mb-3">매물 설명</h2>
         <div className="text-[0.85rem] text-[#181614] leading-relaxed">
           {renderMarkdown(item.description)}
         </div>
@@ -232,7 +235,7 @@ export default function RealtyDetailClient({ params }: { params: { id: string } 
       {/* 단지 편의시설 — 선택 항목이므로 하나도 안 고르면 제목째로 숨긴다 */}
       {item.amenities.length > 0 && (
       <div className="bg-white mt-2 px-4 md:px-6 py-5">
-        <h3 className="text-[0.9rem] font-bold mb-3">🏗️ 단지 편의시설</h3>
+        <h2 className="text-[0.9rem] font-bold mb-3">🏗️ 단지 편의시설</h2>
         <div className="flex flex-wrap gap-2">
           {item.amenities.map((a) => (
             <span
