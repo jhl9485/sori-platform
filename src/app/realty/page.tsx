@@ -9,6 +9,7 @@ import {
 } from "@/data/realtyItems";
 import { useUserRealty } from "@/lib/userContent";
 import SearchField from "@/components/shared/SearchField";
+import ScrollRow from "@/components/shared/ScrollRow";
 import MetricRow from "@/components/shared/MetricRow";
 import { LIKE_KEY, VIEW_KEY } from "@/lib/metrics";
 import { cardTime, resolveISO, timeSortKey } from "@/lib/format";
@@ -115,7 +116,7 @@ export default function RealtyPage() {
       </div>
 
       {/* 거래 유형 */}
-      <div className="flex gap-2 pb-2 overflow-x-auto scrollbar-hide">
+      <ScrollRow className="gap-2 pb-2">
         {REALTY_DEALS.map((d) => (
           <button
             key={d}
@@ -129,10 +130,10 @@ export default function RealtyPage() {
             {d}
           </button>
         ))}
-      </div>
+      </ScrollRow>
 
       {/* 주거 타입 */}
-      <div className="flex gap-2 pb-3 overflow-x-auto scrollbar-hide">
+      <ScrollRow className="gap-2 pb-3">
         {REALTY_CATEGORIES.map((cat) => (
           <button
             key={cat.id}
@@ -146,7 +147,7 @@ export default function RealtyPage() {
             {cat.icon} {cat.label}
           </button>
         ))}
-      </div>
+      </ScrollRow>
 
       {/* 상세 필터 토글 */}
       <div className="flex items-center justify-between pb-2">

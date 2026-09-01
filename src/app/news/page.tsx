@@ -5,6 +5,7 @@ import { useListRestore } from "@/lib/listRestore";
 import Link from "next/link";
 import { NEWS_ITEMS } from "@/data/newsItems";
 import SearchField from "@/components/shared/SearchField";
+import ScrollRow from "@/components/shared/ScrollRow";
 import { useToggleSet } from "@/lib/storage";
 import { VIEW_KEY } from "@/lib/metrics";
 
@@ -75,14 +76,14 @@ export default function NewsPage() {
           예전에는 테두리도 배경도 없는 맨 글자였다. 고르는 일은 똑같은데 뉴스에서만 눌리는 것처럼
           보이지 않아, 게시판을 옮겨 다니면 같은 조작을 두 가지로 배우게 된다.
           테두리를 넣으면 칩끼리 선이 붙으므로 gap-0 → gap-2도 함께 준다. */}
-      <div className="flex gap-2 pb-4 overflow-x-auto scrollbar-hide">
+      <ScrollRow className="gap-2 pb-4">
         {NEWS_CATEGORIES.map((cat) => (
           <button key={cat} onClick={() => setSelectedCat(cat)}
             className={`flex-shrink-0 px-3 py-[5px] rounded-full text-[0.75rem] font-medium whitespace-nowrap border transition-all ${selectedCat === cat ? "bg-[#181614] text-white border-[#181614]" : "bg-white text-[#888070] border-black/[0.08] hover:border-black/[0.15]"}`}>
             {cat}
           </button>
         ))}
-      </div>
+      </ScrollRow>
 
       {/* 뉴스 목록 */}
       <div className="flex flex-col gap-3 pb-6">

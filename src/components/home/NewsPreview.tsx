@@ -9,7 +9,9 @@ export default function NewsPreview() {
     <section className="mb-6">
       <div className="flex justify-between items-center px-4 md:px-6 pb-3">
         <div className="flex items-center gap-2">
-          <h2 className="text-[1rem] font-bold tracking-tight">Daily SG 뉴스</h2>
+          {/* 다른 홈 섹션 제목과 같은 text-base. text-[1rem]은 크기는 같아도 줄 높이가 정해지지 않아
+              본문값 1.6(=25.6px)을 물려받아 제목 줄만 1.6px 높았다. */}
+          <h2 className="text-base font-bold tracking-tight">Daily SG 뉴스</h2>
           <span className="text-[0.6rem] bg-[#FBF0EC] text-[#D04020] px-[6px] py-[2px] rounded font-bold" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
             LIVE
           </span>

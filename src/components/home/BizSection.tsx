@@ -20,7 +20,10 @@ export default function BizSection() {
   return (
     <section className="mb-6">
       <div className="flex justify-between items-center px-4 md:px-6 pb-3">
-        <h2 className="text-[1rem] font-bold tracking-tight">새로 등록된 한인 업소</h2>
+        {/* 홈 섹션 제목은 전부 text-base로 쓴다. text-[1rem]도 글자 크기는 같은 16px이지만
+            줄 높이를 정해주지 않아 본문값 1.6(=25.6px)을 물려받는다. text-base는 24px로 정해져 있어
+            제목 줄 높이가 1.6px 더 낮았고, 그만큼 다른 홈 섹션 제목과 줄이 어긋나 있었다. */}
+        <h2 className="text-base font-bold tracking-tight">새로 등록된 한인 업소</h2>
         <Link href="/business" className="text-[0.78rem] text-[#D04020] font-medium hover:underline">전체보기</Link>
       </div>
 
@@ -43,8 +46,12 @@ export default function BizSection() {
 
 function BizCard({ biz }: { biz: Business }) {
   const isUser = biz.id.startsWith("user-");
+  // 마우스를 올렸을 때 뜨는 그림자는 바로 위 채용 섹션 카드와 같은 값으로 맞춘다.
+  // 원래 0 8px 20px이라 그림자가 카드 아래 18px까지 퍼졌는데, 다른 카드들은 10~12px이었다.
+  // 홈 한 화면 안에 뉴스 줄·업소 카드·인기 글 카드가 같이 보여서 마우스를 몇 초 안에 옮겨 다니는데,
+  // 업소 카드만 유독 높이 떠올라 같은 종류의 카드가 아닌 것처럼 보였다.
   return (
-    <Link href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all">
+    <Link href={`/business/${biz.id}`} className="block bg-white rounded-[14px] border border-black/[0.08] overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] transition-all">
       <div className={`relative w-full h-[80px] flex items-center justify-center text-[2.2rem] overflow-hidden ${biz.bg}`}>
         {biz.photos && biz.photos.length > 0 ? (
           // eslint-disable-next-line @next/next/no-img-element
