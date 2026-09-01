@@ -66,7 +66,7 @@ export default function FleaPage() {
       {/* 결과 수 + 등록 버튼 */}
       <div className="flex items-center justify-between pb-3">
         <span className="text-[0.75rem] text-[#888070]">
-          <span className="font-bold text-[#181614]">{filtered.length}개</span> 매물
+          <span className="font-bold text-[#181614]">{filtered.length}개</span> 물건
         </span>
         <Link
           href="/flea/write"
@@ -79,7 +79,8 @@ export default function FleaPage() {
       {/* 그리드 — 모바일 2열, 태블릿 3열, 데스크탑 4열 */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
-          <div className="text-4xl mb-3">🛍️</div>
+          {/* 빈 화면 아이콘은 아래 버튼과 같은 기준으로 갈린다 — 필터 때문에 0건이면 돋보기(되돌리기), 원래 비어 있으면 게시판 아이콘(채우기) */}
+          <div className="text-4xl mb-3">{hasFilter ? "🔍" : "🛍️"}</div>
           <div className="text-[0.85rem] font-medium mb-1">
             {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : hasFilter ? "이 카테고리엔 아직 물건이 없어요" : "아직 올라온 물건이 없어요"}
           </div>
@@ -124,8 +125,8 @@ export default function FleaPage() {
               {/* 상태 배지 (판매중 외) — 좌측 상단 */}
               {isReserved && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#B07010] text-white px-[5px] py-[1px] rounded font-bold">예약중</span>}
               {isCompleted && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#888070] text-white px-[5px] py-[1px] rounded font-bold">완료</span>}
-              {/* 내 글 배지 (상태가 판매중일 때만) */}
-              {!isReserved && !isCompleted && userIds.has(item.id) && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 글</span>}
+              {/* 내 물건 배지 (상태가 판매중일 때만) — 상세의 OwnerActions label과 같은 말로 부른다 */}
+              {!isReserved && !isCompleted && userIds.has(item.id) && <span className="absolute top-2 left-2 text-[0.6rem] bg-[#2B7A50] text-white px-[5px] py-[1px] rounded font-bold">내 물건</span>}
               {item.photos && item.photos.length > 1 && (
                 <span className="absolute bottom-2 left-2 text-[0.6rem] bg-black/60 text-white px-[5px] py-[1px] rounded font-medium">
                   📷 {item.photos.length}

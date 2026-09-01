@@ -214,7 +214,7 @@ function BusinessWriteInner() {
       }
       toast(savedWithoutPhotos
         ? "⚠️ 저장 공간 부족으로 사진 없이 수정됐어요."
-        : "✅ 업소가 수정되었습니다!");
+        : "✅ 업소가 수정되었어요!");
       router.push(`/business/${editId}`);
       return;
     }
@@ -254,8 +254,8 @@ function BusinessWriteInner() {
     }
     try { localStorage.removeItem(DRAFT_KEY); } catch {}
     toast(savedWithoutPhotos
-      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐습니다."
-      : "✅ 업소가 등록되었습니다!");
+      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐어요."
+      : "✅ 업소가 등록되었어요!");
     router.push("/business");
   };
 

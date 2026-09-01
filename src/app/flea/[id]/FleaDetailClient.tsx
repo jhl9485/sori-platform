@@ -116,7 +116,7 @@ export default function FleaDetailClient({ params }: { params: { id: string } })
       {/* 본인 물건이면 거래 상태 변경 UI */}
       {isMine && (
         <div className="bg-[#EBF5F0] border-y border-[#2B7A50]/20 px-4 md:px-6 py-3">
-          <div className="text-[0.72rem] font-bold text-[#2B7A50] mb-2">🔑 내 매물 — 거래 상태를 직접 변경할 수 있어요</div>
+          <div className="text-[0.72rem] font-bold text-[#2B7A50] mb-2">🔑 내 물건 — 거래 상태를 직접 변경할 수 있어요</div>
           <div className="grid grid-cols-3 gap-2">
             {FLEA_STATUSES.map((s) => (
               <button

@@ -275,7 +275,9 @@ export default function CommunityClient({ catFromQuery }: { catFromQuery: string
       <div className="px-4 md:px-6 pb-6 flex flex-col gap-3">
         {sorted.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
-            <div className="text-4xl mb-3">{searchQuery ? "🔎" : "✏️"}</div>
+            {/* 빈 화면 아이콘은 아래 버튼과 같은 기준으로 갈린다 — 필터 때문에 0건이면 돋보기(되돌리기), 원래 비어 있으면 게시판 아이콘(채우기).
+                예전에는 아이콘만 검색어로 갈려서, 카테고리 때문에 0건일 때 아이콘은 "첫 글 쓰기"인데 버튼은 "필터 초기화"였다. */}
+            <div className="text-4xl mb-3">{searchQuery || selectedCategory !== "all" ? "🔍" : "💬"}</div>
             <div className="text-[0.85rem] font-medium mb-1">
               {searchQuery ? `"${searchQuery}" 검색 결과가 없어요` : "이 카테고리엔 아직 글이 없어요"}
             </div>

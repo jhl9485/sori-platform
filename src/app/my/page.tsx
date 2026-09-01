@@ -358,7 +358,7 @@ interface OverviewProps {
 function OverviewTab(props: OverviewProps) {
   const items = [
     { icon: "📝", label: "내가 쓴 글", count: props.userPostsCount, action: () => props.onSelectTab("posts") },
-    { icon: "🛍️", label: "내 판매", count: props.userFleaCount, action: () => props.onSelectTab("posts") },
+    { icon: "🛍️", label: "내 물건", count: props.userFleaCount, action: () => props.onSelectTab("posts") },
     { icon: "💼", label: "내 공고", count: props.userJobsCount, action: () => props.onSelectTab("posts") },
     { icon: "🏘️", label: "내 매물", count: props.userRealtyCount, action: () => props.onSelectTab("posts") },
     // 업소가 빠져 있으면 이 타일들의 합이 위 "작성" 숫자와 맞지 않는다(같은 화면에 함께 보임).

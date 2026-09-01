@@ -102,7 +102,8 @@ export default function JobsPage() {
       {/* 공고 목록 — 데스크탑 2열 그리드 */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
-          <div className="text-4xl mb-3">🔍</div>
+          {/* 빈 화면 아이콘은 아래 버튼과 같은 기준으로 갈린다 — 필터 때문에 0건이면 돋보기(되돌리기), 원래 비어 있으면 게시판 아이콘(채우기) */}
+          <div className="text-4xl mb-3">{hasFilter ? "🔍" : "💼"}</div>
           <div className="text-[0.85rem] font-medium mb-1">
             {hasFilter ? "검색 결과가 없어요" : "아직 등록된 공고가 없어요"}
           </div>

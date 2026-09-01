@@ -193,7 +193,7 @@ function FleaWriteInner() {
       }
       toast(savedWithoutPhotos
         ? "⚠️ 저장 공간 부족으로 사진 없이 수정됐어요."
-        : "✅ 물건이 수정되었습니다!");
+        : "✅ 물건이 수정되었어요!");
       router.push(`/flea/${editId}`);
       return;
     }
@@ -230,8 +230,8 @@ function FleaWriteInner() {
     }
     try { localStorage.removeItem(DRAFT_KEY); } catch {}
     toast(savedWithoutPhotos
-      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐습니다."
-      : "✅ 물건이 등록되었습니다!");
+      ? "⚠️ 저장 공간 부족으로 사진 없이 등록됐어요. 텍스트만 저장됐어요."
+      : "✅ 물건이 등록되었어요!");
     router.push("/flea");
   };
 

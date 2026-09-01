@@ -250,7 +250,8 @@ export default function RealtyPage() {
       {/* 매물 목록 */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-[#888070]">
-          <div className="text-4xl mb-3">🏘️</div>
+          {/* 빈 화면 아이콘은 아래 버튼과 같은 기준으로 갈린다 — 필터 때문에 0건이면 돋보기(되돌리기), 원래 비어 있으면 게시판 아이콘(채우기) */}
+          <div className="text-4xl mb-3">{activeFilterCount > 0 || searchQuery ? "🔍" : "🏘️"}</div>
           <div className="text-[0.85rem] font-medium mb-1">조건에 맞는 매물이 없어요</div>
           {/* 빈 화면에서 빠져나갈 길을 준다(기-7).
               필터·검색 때문에 0건이면 되돌릴 "필터 초기화"가, 원래 아무것도 없으면 "등록"이 다음 행동이다.
