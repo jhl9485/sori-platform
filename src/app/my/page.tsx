@@ -417,6 +417,11 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsT
     toast("삭제했어요.");
   };
 
+  // 아래 목록의 "삭제"는 글자만 있어서 버튼으로 안 보이고 누르기도 어려웠다(약 22×16).
+  // 상단바 아이콘처럼 투명 덧판(before:)으로 범위만 넓히는 방법은 여기서는 위험하다 —
+  // 삭제 버튼 왼쪽이 제목 링크라, 덧판이 그 위를 덮으면 제목을 누르려다 삭제가 눌린다.
+  // 그래서 테두리+여백을 줘서 버튼 자체를 키웠다. 자기 폭만 넓히므로 옆 링크와 겹치지 않는다.
+
   // 위 "작성" 숫자와 같은 식이어야 한다 — 업소를 세지 않으면 "작성 1"을 누르고 들어왔는데
   // "아직 작성한 글이 없어요"가 뜬다.
   const total = userPosts.length + userFlea.length + userJobs.length + userRealty.length + userBiz.length;
@@ -450,7 +455,7 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsT
                   <div className="text-[0.85rem] font-medium line-clamp-1 hover:text-[#D04020] transition-colors">{p.title}</div>
                 </Link>
               </div>
-              <button onClick={() => remove("sori_user_posts", p.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
+              <button onClick={() => remove("sori_user_posts", p.id)} className="text-[0.7rem] font-medium text-[#888070] hover:text-[#D04020] hover:bg-[#FBEBE8] hover:border-[#D04020]/25 flex-shrink-0 mt-1 px-3 py-2 rounded-lg border border-black/[0.10] transition-colors">삭제</button>
             </div>
           ))}
         </section>
@@ -470,7 +475,7 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsT
                 <div className="text-[0.85rem] font-medium line-clamp-1 hover:text-[#D04020] transition-colors">{r.title}</div>
                 <div className="text-[0.78rem] text-[#D04020] font-bold mt-[2px]">{r.price}</div>
               </Link>
-              <button onClick={() => remove("sori_user_realty", r.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
+              <button onClick={() => remove("sori_user_realty", r.id)} className="text-[0.7rem] font-medium text-[#888070] hover:text-[#D04020] hover:bg-[#FBEBE8] hover:border-[#D04020]/25 flex-shrink-0 mt-1 px-3 py-2 rounded-lg border border-black/[0.10] transition-colors">삭제</button>
             </div>
           ))}
         </section>
@@ -489,7 +494,7 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsT
                 <div className="text-[0.85rem] font-medium line-clamp-1 hover:text-[#D04020] transition-colors">{f.title}</div>
                 <div className="text-[0.78rem] text-[#D04020] font-bold mt-[2px]">{f.price}</div>
               </Link>
-              <button onClick={() => remove("sori_user_flea", f.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
+              <button onClick={() => remove("sori_user_flea", f.id)} className="text-[0.7rem] font-medium text-[#888070] hover:text-[#D04020] hover:bg-[#FBEBE8] hover:border-[#D04020]/25 flex-shrink-0 mt-1 px-3 py-2 rounded-lg border border-black/[0.10] transition-colors">삭제</button>
             </div>
           ))}
         </section>
@@ -508,7 +513,7 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsT
                 <div className="text-[0.85rem] font-medium line-clamp-1 hover:text-[#D04020] transition-colors">{j.title}</div>
                 <div className="text-[0.7rem] text-[#888070] mt-[2px]">{j.company} · {j.salary}</div>
               </Link>
-              <button onClick={() => remove("sori_user_jobs", j.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
+              <button onClick={() => remove("sori_user_jobs", j.id)} className="text-[0.7rem] font-medium text-[#888070] hover:text-[#D04020] hover:bg-[#FBEBE8] hover:border-[#D04020]/25 flex-shrink-0 mt-1 px-3 py-2 rounded-lg border border-black/[0.10] transition-colors">삭제</button>
             </div>
           ))}
         </section>
@@ -527,7 +532,7 @@ function PostsTab({ userPosts, userFlea, userJobs, userRealty, userBiz }: PostsT
                 <div className="text-[0.85rem] font-medium line-clamp-1 hover:text-[#D04020] transition-colors">{b.name}</div>
                 <div className="text-[0.7rem] text-[#888070] mt-[2px] line-clamp-1">{b.description}</div>
               </Link>
-              <button onClick={() => remove("sori_user_biz", b.id)} className="text-[0.7rem] text-[#888070] hover:text-[#D04020] flex-shrink-0 mt-1">삭제</button>
+              <button onClick={() => remove("sori_user_biz", b.id)} className="text-[0.7rem] font-medium text-[#888070] hover:text-[#D04020] hover:bg-[#FBEBE8] hover:border-[#D04020]/25 flex-shrink-0 mt-1 px-3 py-2 rounded-lg border border-black/[0.10] transition-colors">삭제</button>
             </div>
           ))}
         </section>

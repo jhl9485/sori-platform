@@ -37,7 +37,7 @@ export default function TopNav() {
         {/* 아이콘 3개는 보이는 상자를 32×32 그대로 두고 before: 투명 덧판으로 누를 범위만 40×44로 넓힌다.
             상자 자체를 키우면 흰 테두리 상자가 눈에 띄게 커져 상단바 모양이 바뀐다.
             가로를 44가 아니라 40으로 잡은 이유: 상자 32 + 간격 8이라 중심 간 거리가 40이다.
-            44로 잡으면 옆 아이콘의 범위와 4px씩 겹쳐 🔔을 누르려다 🤍이 눌릴 수 있다. */}
+            44로 잡으면 옆 아이콘의 범위와 4px씩 겹쳐 🔔을 누르려다 👤이 눌릴 수 있다. */}
         <div className="flex gap-2">
           <Link
             href="/search"
@@ -63,7 +63,11 @@ export default function TopNav() {
             aria-label="마이페이지"
             className="relative w-8 h-8 rounded-[8px] border border-black/[0.08] bg-white flex items-center justify-center text-sm leading-none hover:bg-[#F5F3EE] transition-colors before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-10 before:h-11 before:content-['']"
           >
-            🤍
+            {/* 🤍이 아니라 👤인 이유: 이 앱에서 🤍은 이미 "좋아요를 안 누른 상태"를 뜻한다.
+                (MetricRow·CommentSection이 liked ? "❤️" : "🤍"로 좋아요 버튼을 그린다)
+                반대로 👤은 사이드바·서랍의 로그인 버튼과 마이페이지 기본 아바타가 쓰는
+                "사람/내 계정" 기호다 → 마이페이지는 👤로 맞춘다. */}
+            👤
           </Link>
         </div>
       </div>

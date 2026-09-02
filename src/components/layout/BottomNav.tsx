@@ -3,15 +3,18 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { useUnreadCount } from "@/lib/notifications";
-import { useLiveNotifications } from "@/lib/liveNotifications";
 import { useFavorites } from "@/lib/favorites";
 
+// 알림 배지는 여기 없다 — 상단바(TopNav)의 🔔이 같은 값으로 이미 배지를 띄운다.
+// 예전에는 여기에도 배지 코드가 있었지만 조건이 tab.id === "my" 였다.
+// 하단바 탭은 "home" + 즐겨찾기(lib/favorites.ts: news·business·realty·flea·jobs·community·cat_*)로만
+// 만들어져 "my"라는 id가 존재하지 않는다 → 조건이 참이 될 수 없어 배지가 한 번도 뜬 적이 없었다.
+// 하단바에 알림 자리를 새로 만들지 않은 이유: 탭 구성은 사용자가 즐겨찾기로 바꾸는 것(최대 8개)이라
+// 고정 탭을 끼우면 그 구조와 충돌하고, 상단바 🔔과 배지가 두 개로 겹친다.
 function BottomNavInner() {
   const pathname = usePathname();
   const sp = useSearchParams();
   const currentCat = sp.get("cat");
-  const unread = useUnreadCount(useLiveNotifications().map((n) => n.id));
   const { favItems } = useFavorites();
 
   // active 판단: pathname + ?cat= 쿼리까지 정확히 매칭
@@ -42,22 +45,14 @@ function BottomNavInner() {
       <div className="flex-1 flex items-center overflow-x-auto scrollbar-hide px-1">
         {scrollItems.map((tab) => {
           const active = isActive(tab.href);
-          const showBadge = tab.id === "my" && unread > 0;
           return (
             <Link
               key={tab.id}
               href={tab.href}
               className="flex-shrink-0 min-w-[60px] flex flex-col items-center gap-[3px] py-2 px-1 rounded-[10px] transition-colors relative hover:bg-[#F5F3EE]"
             >
-              <span className="relative">
-                <span className={`text-[1.2rem] leading-none inline-block transition-transform ${active ? "scale-110" : ""}`}>
-                  {tab.icon}
-                </span>
-                {showBadge && (
-                  <span className="absolute -top-1 -right-2 min-w-[14px] h-[14px] bg-[#D04020] text-white text-[0.55rem] font-bold rounded-full px-1 flex items-center justify-center leading-none">
-                    {unread > 99 ? "99+" : unread}
-                  </span>
-                )}
+              <span className={`text-[1.2rem] leading-none inline-block transition-transform ${active ? "scale-110" : ""}`}>
+                {tab.icon}
               </span>
               <span className={`text-[0.6rem] font-medium whitespace-nowrap transition-colors ${active ? "text-[#D04020] font-bold" : "text-[#888070]"}`}>
                 {tab.label}

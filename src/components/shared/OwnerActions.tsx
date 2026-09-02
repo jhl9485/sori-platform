@@ -32,8 +32,14 @@ export default function OwnerActions({ storageKey, itemId, editHref, backHref }:
     setTimeout(() => removeUserItem(storageKey, itemId), 150);
   };
 
+  // 삭제는 되돌릴 수 없는데 수정과 똑같이 생겨서 구분이 안 됐다.
+  // 색(#888070)은 따로 결정 대기 중이라 쉬는 상태의 글자색은 그대로 두고 모양으로 갈랐다:
+  //   · 삭제에만 테두리를 줘서 "눌러야 하는 별개의 버튼"으로 보이게 한다(수정은 글자 버튼 유지)
+  //   · 간격을 4px→8px로 벌려 수정을 누르려다 삭제가 눌리는 것을 줄인다
+  // 테두리로 가른 이유가 하나 더 있다 — 색만으로 구분하면 색을 구별하기 어려운 분에게는
+  // 아무 차이가 없다. 모양 차이는 누구에게나 보인다.
   return (
-    <div className="flex items-center justify-end gap-1 px-4 md:px-6 py-2 border-b border-black/[0.06] bg-[#FAF8F3]">
+    <div className="flex items-center justify-end gap-2 px-4 md:px-6 py-2 border-b border-black/[0.06] bg-[#FAF8F3]">
       {editHref && (
         <button
           onClick={() => router.push(editHref)}
@@ -44,7 +50,7 @@ export default function OwnerActions({ storageKey, itemId, editHref, backHref }:
       )}
       <button
         onClick={handleDelete}
-        className="flex items-center gap-1 text-[0.78rem] font-medium text-[#888070] hover:text-[#D04020] px-2.5 py-1.5 rounded-lg hover:bg-white transition-colors"
+        className="flex items-center gap-1 text-[0.78rem] font-medium text-[#888070] hover:text-[#D04020] hover:bg-[#FBEBE8] hover:border-[#D04020]/25 px-2.5 py-1.5 rounded-lg border border-black/[0.10] transition-colors"
       >
         🗑️ 삭제
       </button>
